@@ -1,4 +1,5 @@
 from graph.state import MissionState
+from replanning.mission_replanner import generate_replan
 from safety.battery_guard import check_battery_safety
 from safety.mission_validator import validate_mission
 from safety.wind_guard import check_wind_safety
@@ -92,6 +93,22 @@ def evaluate_plan_node(
     print(
         "[SAFETY VALIDATOR] Mission status: "
         f"{result['mission_status']}"
+    )
+
+    return result
+
+def replanner_node(
+    state: MissionState,
+) -> dict:
+    print("\n[NODE] replanner")
+
+    result = generate_replan(
+        state
+    )
+
+    print(
+        "[REPLANNER] "
+        f"{result['replan_status']}"
     )
 
     return result

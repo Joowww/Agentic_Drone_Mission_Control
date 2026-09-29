@@ -4,8 +4,10 @@ from graph.nodes import (
     battery_check_node,
     evaluate_plan_node,
     flight_check_node,
+    replanner_node,
     wind_check_node,
 )
+from graph.routes import route_after_evaluation
 from graph.state import MissionState
 
 builder = StateGraph(
@@ -32,6 +34,12 @@ builder.add_node(
     evaluate_plan_node,
 )
 
+builder.add_node(
+    "replanner",
+    replanner_node,
+)
+
+
 builder.add_edge(
     START,
     "flight_check",
@@ -52,8 +60,17 @@ builder.add_edge(
     "evaluate_plan",
 )
 
-builder.add_edge(
+builder.add_conditional_edges(
     "evaluate_plan",
+    route_after_evaluation,
+    {
+        "replan": "replanner",
+        "end": END,
+    },
+)
+
+builder.add_edge(
+    "replanner",
     END,
 )
 

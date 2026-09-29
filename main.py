@@ -9,7 +9,7 @@ def main() -> None:
         "wind_speed_kmh": 12.0,
         "flight_bearing_deg": 90.0,
         "wind_direction_from_deg": 0.0,
-        "battery_percent": 10.0,
+        "battery_percent": 40.0,
         "consumption_percent_per_minute": 1.0,
         "reserve_percent": 10.0,
         "max_safe_wind_speed_kmh": 30.0,
@@ -57,6 +57,41 @@ def main() -> None:
             print(
                 f"- {reason}"
             )
+
+    replan_actions = final_state.get(
+        "replan_actions",
+        [],
+    )
+    if replan_actions:
+        print(
+            "\nREPLAN PROPOSAL"
+        )
+        print(
+            "Status: "
+            f"{final_state['replan_status']}"
+        )
+        for index, action in enumerate(
+            replan_actions,
+            start=1,
+        ):
+            print(
+                f"{index}. {action}"
+            )
+        deferred_actions = final_state.get(
+            "replan_deferred_actions",
+            [],
+        )
+        if deferred_actions:
+            print(
+                "\nDeferred actions:"
+            )
+            for index, action in enumerate(
+                deferred_actions,
+                start=1,
+            ):
+                print(
+                    f"{index}. {action}"
+                )
 
     print(
         "\nFINAL MISSION STATE"
