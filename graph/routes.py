@@ -7,7 +7,7 @@ def route_after_evaluation(
     state: MissionState,
 ) -> Literal[
     "replan",
-    "end",
+    "report",
 ]:
     if (
         state.get("mission_status")
@@ -23,4 +23,4 @@ def route_after_evaluation(
         "[ROUTER] No replanning required."
     )
 
-    return "end"
+    return "report"

@@ -1,5 +1,6 @@
 from graph.state import MissionState
 from replanning.mission_replanner import generate_replan
+from reporting.mission_report import build_mission_report
 from safety.battery_guard import check_battery_safety
 from safety.mission_validator import validate_mission
 from safety.wind_guard import check_wind_safety
@@ -112,3 +113,17 @@ def replanner_node(
     )
 
     return result
+
+def final_report_node(
+    state: MissionState,
+) -> dict:
+    print("\n[NODE] final_report")
+
+    report = build_mission_report(
+        state
+    )
+
+    return {
+        "final_report": report,
+        "response": report,
+    }

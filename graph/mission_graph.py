@@ -3,6 +3,7 @@ from langgraph.graph import END, START, StateGraph
 from graph.nodes import (
     battery_check_node,
     evaluate_plan_node,
+    final_report_node,
     flight_check_node,
     replanner_node,
     wind_check_node,
@@ -39,6 +40,11 @@ builder.add_node(
     replanner_node,
 )
 
+builder.add_node(
+    "final_report",
+    final_report_node,
+)
+
 
 builder.add_edge(
     START,
@@ -65,12 +71,17 @@ builder.add_conditional_edges(
     route_after_evaluation,
     {
         "replan": "replanner",
-        "end": END,
+        "report": "final_report",
     },
 )
 
 builder.add_edge(
     "replanner",
+    "final_report",
+)
+
+builder.add_edge(
+    "final_report",
     END,
 )
 
