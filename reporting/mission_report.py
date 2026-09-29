@@ -146,6 +146,24 @@ def build_mission_report(
             ]
         )
 
+    missing_fields = state.get(
+        "missing_fields",
+        [],
+    )
+
+    if missing_fields:
+        output.extend(
+            [
+                "",
+                "MISSING INFORMATION",
+            ]
+        )
+
+        for field in missing_fields:
+            output.append(
+                f"- {field}"
+            )
+
     failure_reasons = state.get(
         "failure_reasons",
         [],
