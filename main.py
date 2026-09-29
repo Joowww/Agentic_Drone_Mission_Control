@@ -1,13 +1,9 @@
-from graph.nodes import (
-    battery_check_node,
-    flight_check_node,
-    wind_check_node,
-)
+from graph.mission_graph import mission_graph
 from graph.state import MissionState
 
 
 def main() -> None:
-    mission_state: MissionState = {
+    initial_state: MissionState = {
         "distance_km": 15.0,
         "drone_speed_kmh": 40.0,
         "wind_speed_kmh": 12.0,
@@ -19,29 +15,31 @@ def main() -> None:
         "max_safe_wind_speed_kmh": 30.0,
     }
 
-    print("\nINITIAL MISSION STATE")
-    print(mission_state)
-
-    mission_state.update(
-        flight_check_node(
-            mission_state
-        )
+    print(
+        "\nAGENTIC DRONE MISSION CONTROL"
     )
 
-    mission_state.update(
-        wind_check_node(
-            mission_state
-        )
+    print(
+        "\nINITIAL MISSION STATE"
+    )
+    print(
+        initial_state
     )
 
-    mission_state.update(
-        battery_check_node(
-            mission_state
-        )
+    print(
+        "\n[LANGGRAPH] Running mission graph..."
     )
 
-    print("\nFINAL MISSION STATE")
-    print(mission_state)
+    final_state = mission_graph.invoke(
+        initial_state
+    )
+
+    print(
+        "\nFINAL MISSION STATE"
+    )
+    print(
+        final_state
+    )
 
 
 if __name__ == "__main__":
