@@ -1,5 +1,6 @@
 from graph.state import MissionState
 from safety.battery_guard import check_battery_safety
+from safety.mission_validator import validate_mission
 from safety.wind_guard import check_wind_safety
 from tools.flight_dynamics import calculate_flight_time
 
@@ -78,3 +79,19 @@ def battery_check_node(
     return {
         "battery_result": result,
     }
+
+def evaluate_plan_node(
+    state: MissionState,
+) -> dict:
+    print("\n[NODE] evaluate_plan")
+
+    result = validate_mission(
+        state
+    )
+
+    print(
+        "[SAFETY VALIDATOR] Mission status: "
+        f"{result['mission_status']}"
+    )
+
+    return result

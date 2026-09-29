@@ -35,6 +35,30 @@ def main() -> None:
     )
 
     print(
+        "\nMISSION EVALUATION"
+    )
+
+    print(
+        "Status: "
+        f"{final_state['mission_status']}"
+    )
+
+    failure_reasons = final_state.get(
+        "failure_reasons",
+        [],
+    )
+
+    if failure_reasons:
+        print(
+            "\nFailure reasons:"
+        )
+
+        for reason in failure_reasons:
+            print(
+                f"- {reason}"
+            )
+
+    print(
         "\nFINAL MISSION STATE"
     )
     print(
