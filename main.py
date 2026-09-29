@@ -1,35 +1,27 @@
-from graph.mission_graph import mission_graph
-from graph.state import MissionState
+from agents.mission_parser import parse_mission
 
 
 def main() -> None:
-    initial_state: MissionState = {
-        "distance_km": 15.0,
-        "drone_speed_kmh": 40.0,
-        "wind_speed_kmh": 12.0,
-        "flight_bearing_deg": 90.0,
-        "wind_direction_from_deg": 0.0,
-        "battery_percent": 10.0,
-        "consumption_percent_per_minute": 1.0,
-        "reserve_percent": 10.0,
-        "max_safe_wind_speed_kmh": 30.0,
-    }
+    user_input = (
+    "Plan an 8 km flight with a heading of 135 degrees. "
+    "The drone airspeed is 35 km/h. "
+    "There is a 18 km/h wind coming from the west. "
+    "The battery is currently at 65%. "
+    "Maximum safe wind speed is 25 km/h. "
+    "Battery consumption is 0.8% per minute "
+    "and the required reserve is 15%."
+)
 
-    print(
-        "\nAGENTIC DRONE MISSION CONTROL"
+    result = parse_mission(
+        user_input
     )
 
     print(
-        "\n[LANGGRAPH] Running mission graph..."
-    )
-
-    final_state = mission_graph.invoke(
-        initial_state
+        "\nPARSED MISSION"
     )
 
     print(
-        "\n"
-        + final_state["final_report"]
+        result
     )
 
 
