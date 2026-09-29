@@ -20,12 +20,26 @@ def parse_mission_node(
         state["user_input"]
     )
 
-    print(
-        "[MISSION PARSER] Extracted fields: "
-        + ", ".join(parameters.keys())
-    )
+    if parameters:
+        print(
+            "[MISSION PARSER] Extracted fields: "
+            + ", ".join(parameters.keys())
+        )
 
-    return parameters
+    else:
+        print(
+            "[MISSION PARSER] No mission parameters extracted."
+        )
+
+    return {
+        **parameters,
+        "replan_status": "",
+        "replan_actions": [],
+        "replan_deferred_actions": [],
+        "replan_requires_reevaluation": False,
+        "final_report": "",
+        "response": "",
+    }
 
 
 def validate_input_node(

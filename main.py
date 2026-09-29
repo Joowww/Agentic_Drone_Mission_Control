@@ -1,4 +1,15 @@
-from graph.mission_graph import mission_graph
+from graph.mission_graph import (
+    memory,
+    mission_graph,
+)
+
+THREAD_ID = "drone-mission-session"
+
+config = {
+    "configurable": {
+        "thread_id": THREAD_ID,
+    }
+}
 
 
 def main() -> None:
@@ -8,6 +19,14 @@ def main() -> None:
 
     print(
         "\nDescribe the drone mission."
+    )
+
+    print(
+        "You can update mission parameters in later messages."
+    )
+
+    print(
+        "Write 'reset' to start a new mission."
     )
 
     print(
@@ -42,6 +61,17 @@ def main() -> None:
             )
             break
 
+        if user_input.lower() == "reset":
+            memory.delete_thread(
+                THREAD_ID
+            )
+
+            print(
+                "\nMission reset."
+            )
+
+            continue
+
         print(
             "\n[LANGGRAPH] Running mission graph..."
         )
@@ -50,16 +80,19 @@ def main() -> None:
             final_state = mission_graph.invoke(
                 {
                     "user_input": user_input,
-                }
+                },
+                config=config,
             )
 
         except Exception as error:  # noqa: BLE001
             print(
                 "\n[ERROR]"
             )
+
             print(
                 error
             )
+
             continue
 
         print(

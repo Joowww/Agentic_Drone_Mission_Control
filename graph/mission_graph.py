@@ -1,3 +1,4 @@
+from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 
 from graph.nodes import (
@@ -115,4 +116,8 @@ builder.add_edge(
 )
 
 
-mission_graph = builder.compile()
+memory = InMemorySaver()
+
+mission_graph = builder.compile(
+    checkpointer=memory
+)
