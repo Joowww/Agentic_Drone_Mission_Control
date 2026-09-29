@@ -1,107 +1,68 @@
-from graph.mission_graph import (
-    memory,
-    mission_graph,
+from inputs.json_loader import (
+    load_mission_json,
 )
-
-THREAD_ID = "drone-mission-session"
-
-config = {
-    "configurable": {
-        "thread_id": THREAD_ID,
-    }
-}
 
 
 def main() -> None:
-    print(
-        "AGENTIC DRONE MISSION CONTROL"
+    mission = load_mission_json(
+        "missions/examples/"
+        "precision_agriculture_demo.json"
     )
 
     print(
-        "\nDescribe the drone mission."
+        "\nMISSION LOADED SUCCESSFULLY"
     )
 
     print(
-        "You can update mission parameters in later messages."
+        f"\nMission ID: {mission.mission_id}"
     )
 
     print(
-        "Write 'reset' to start a new mission."
+        f"Name: {mission.name}"
     )
 
     print(
-        "Write 'exit' to close the program."
+        f"Vehicle: {mission.vehicle.vehicle_id}"
     )
 
-    while True:
-        try:
-            user_input = input(
-                "\nYou: "
-            ).strip()
+    print(
+        f"Vehicle type: {mission.vehicle.vehicle_type}"
+    )
 
-        except (
-            KeyboardInterrupt,
-            EOFError,
-        ):
-            print(
-                "\nClosing Agentic Drone Mission Control..."
-            )
-            break
+    print(
+        f"Autopilot: {mission.vehicle.autopilot}"
+    )
 
-        if not user_input:
-            continue
+    print(
+        f"Objective: {mission.objective.objective_type}"
+    )
 
-        if user_input.lower() in {
-            "exit",
-            "quit",
-            "salir",
-        }:
-            print(
-                "\nClosing Agentic Drone Mission Control..."
-            )
-            break
+    print(
+        f"Target: {mission.objective.target}"
+    )
 
-        if user_input.lower() == "reset":
-            memory.delete_thread(
-                THREAD_ID
-            )
+    print(
+        f"Route mode: {mission.route.mode}"
+    )
 
-            print(
-                "\nMission reset."
-            )
+    print(
+        f"Waypoints: {len(mission.route.waypoints)}"
+    )
 
-            continue
+    print(
+        "Battery: "
+        f"{mission.vehicle.battery_percent}%"
+    )
 
-        print(
-            "\n[LANGGRAPH] Running mission graph..."
-        )
+    print(
+        "Maximum wind: "
+        f"{mission.constraints.maximum_wind_speed_kmh} km/h"
+    )
 
-        try:
-            final_state = mission_graph.invoke(
-                {
-                    "user_input": user_input,
-                },
-                config=config,
-            )
-
-        except Exception as error:  # noqa: BLE001
-            print(
-                "\n[ERROR]"
-            )
-
-            print(
-                error
-            )
-
-            continue
-
-        print(
-            "\nAGENT:"
-        )
-
-        print(
-            final_state["final_report"]
-        )
+    print(
+        "Failsafe: "
+        f"{mission.failsafe.low_battery_action}"
+    )
 
 
 if __name__ == "__main__":
