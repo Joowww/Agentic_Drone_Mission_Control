@@ -1,9 +1,25 @@
+from graph.state import MissionState
 from safety.battery_guard import check_battery_safety
 from safety.wind_guard import check_wind_safety
 from tools.flight_dynamics import calculate_flight_time
 
 
 def main() -> None:
+    mission_state: MissionState = {
+        "distance_km": 15.0,
+        "drone_speed_kmh": 40.0,
+        "wind_speed_kmh": 12.0,
+        "flight_bearing_deg": 90.0,
+        "wind_direction_from_deg": 0.0,
+        "battery_percent": 10.0,
+        "consumption_percent_per_minute": 1.0,
+        "reserve_percent": 10.0,
+        "max_safe_wind_speed_kmh": 30.0,
+    }
+
+    print("\nMISSION STATE")
+    print(mission_state)
+
     flight_result = calculate_flight_time(
         distance_km=15.0,
         drone_speed_kmh=40.0,
