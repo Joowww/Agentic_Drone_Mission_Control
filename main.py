@@ -1,6 +1,9 @@
 from inputs.json_loader import (
     load_mission_json,
 )
+from tools.route_geometry import (
+    analyze_waypoint_route,
+)
 
 
 def main() -> None:
@@ -9,60 +12,73 @@ def main() -> None:
         "precision_agriculture_demo.json"
     )
 
-    print(
-        "\nMISSION LOADED SUCCESSFULLY"
+    route_analysis = analyze_waypoint_route(
+        mission.route
     )
 
     print(
-        f"\nMission ID: {mission.mission_id}"
+        "\nMISSION"
     )
 
     print(
-        f"Name: {mission.name}"
+        f"{mission.name}"
     )
 
     print(
-        f"Vehicle: {mission.vehicle.vehicle_id}"
+        "\nROUTE ANALYSIS"
     )
 
     print(
-        f"Vehicle type: {mission.vehicle.vehicle_type}"
+        "Total horizontal distance: "
+        f"{route_analysis['total_horizontal_distance_km']} km"
     )
 
     print(
-        f"Autopilot: {mission.vehicle.autopilot}"
+        "Total climb: "
+        f"{route_analysis['total_climb_m']} m"
     )
 
     print(
-        f"Objective: {mission.objective.objective_type}"
+        "Total descent: "
+        f"{route_analysis['total_descent_m']} m"
     )
 
     print(
-        f"Target: {mission.objective.target}"
+        "Route legs: "
+        f"{route_analysis['leg_count']}"
     )
 
     print(
-        f"Route mode: {mission.route.mode}"
+        "\nLEGS"
     )
 
-    print(
-        f"Waypoints: {len(mission.route.waypoints)}"
-    )
+    for leg in route_analysis[
+        "legs"
+    ]:
+        print(
+            "\n"
+            f"Leg {leg['leg_number']}: "
+            f"{leg['from']} -> {leg['to']}"
+        )
 
-    print(
-        "Battery: "
-        f"{mission.vehicle.battery_percent}%"
-    )
+        print(
+            f"Distance: {leg['distance_km']} km"
+        )
 
-    print(
-        "Maximum wind: "
-        f"{mission.constraints.maximum_wind_speed_kmh} km/h"
-    )
+        print(
+            f"Bearing: {leg['bearing_deg']}°"
+        )
 
-    print(
-        "Failsafe: "
-        f"{mission.failsafe.low_battery_action}"
-    )
+        print(
+            "Altitude: "
+            f"{leg['start_altitude_m']} m -> "
+            f"{leg['end_altitude_m']} m"
+        )
+
+        print(
+            "Action: "
+            f"{leg['destination_action']}"
+        )
 
 
 if __name__ == "__main__":

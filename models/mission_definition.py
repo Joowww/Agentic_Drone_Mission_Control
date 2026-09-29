@@ -117,7 +117,9 @@ class RouteDefinition(BaseModel):
 
     home: GeoPoint | None = None
 
-    waypoints: list[Waypoint] = []
+    waypoints: list[Waypoint] = Field(
+        default_factory=list,
+    )
 
     return_to_home: bool = True
 
