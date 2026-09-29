@@ -11,15 +11,21 @@ REQUIRED_MISSION_FIELDS = {
     "reserve_percent": "required battery reserve",
 }
 
-
-def validate_mission(
+def get_missing_mission_fields(
     state: dict,
-) -> dict:
-    missing_fields = [
+) -> list[str]:
+    return [
         label
         for field, label in REQUIRED_MISSION_FIELDS.items()
         if state.get(field) is None
     ]
+
+def validate_mission(
+    state: dict,
+) -> dict:
+    missing_fields = get_missing_mission_fields(
+    state
+)
 
     flight_result = state.get(
         "flight_result"

@@ -24,3 +24,24 @@ def route_after_evaluation(
     )
 
     return "report"
+
+def route_after_input_validation(
+    state: MissionState,
+) -> Literal[
+    "checks",
+    "report",
+]:
+    if state.get(
+        "missing_fields"
+    ):
+        print(
+            "[ROUTER] Mission information incomplete."
+        )
+
+        return "report"
+
+    print(
+        "[ROUTER] Mission information complete."
+    )
+
+    return "checks"

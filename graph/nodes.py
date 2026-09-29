@@ -1,11 +1,60 @@
+from agents.mission_parser import parse_mission
 from graph.state import MissionState
 from replanning.mission_replanner import generate_replan
 from reporting.mission_report import build_mission_report
 from safety.battery_guard import check_battery_safety
-from safety.mission_validator import validate_mission
+from safety.mission_validator import (
+    get_missing_mission_fields,
+    validate_mission,
+)
 from safety.wind_guard import check_wind_safety
 from tools.flight_dynamics import calculate_flight_time
 
+
+def parse_mission_node(
+    state: MissionState,
+) -> dict:
+    print("\n[NODE] parse_mission")
+
+    parameters = parse_mission(
+        state["user_input"]
+    )
+
+    print(
+        "[MISSION PARSER] Extracted fields: "
+        + ", ".join(parameters.keys())
+    )
+
+    return parameters
+
+
+def validate_input_node(
+    state: MissionState,
+) -> dict:
+    print("\n[NODE] validate_input")
+
+    missing_fields = get_missing_mission_fields(
+        state
+    )
+
+    if missing_fields:
+        print(
+            "[INPUT VALIDATOR] Missing mission information."
+        )
+
+        return {
+            "mission_status": "UNDETERMINED",
+            "missing_fields": missing_fields,
+            "failure_reasons": [],
+        }
+
+    print(
+        "[INPUT VALIDATOR] Mission input complete."
+    )
+
+    return {
+        "missing_fields": [],
+    }
 
 def flight_check_node(
     state: MissionState,

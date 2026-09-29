@@ -1,28 +1,74 @@
-from agents.mission_parser import parse_mission
+from graph.mission_graph import mission_graph
 
 
 def main() -> None:
-    user_input = (
-    "Plan an 8 km flight with a heading of 135 degrees. "
-    "The drone airspeed is 35 km/h. "
-    "There is a 18 km/h wind coming from the west. "
-    "The battery is currently at 65%. "
-    "Maximum safe wind speed is 25 km/h. "
-    "Battery consumption is 0.8% per minute "
-    "and the required reserve is 15%."
-)
-
-    result = parse_mission(
-        user_input
+    print(
+        "AGENTIC DRONE MISSION CONTROL"
     )
 
     print(
-        "\nPARSED MISSION"
+        "\nDescribe the drone mission."
     )
 
     print(
-        result
+        "Write 'exit' to close the program."
     )
+
+    while True:
+        try:
+            user_input = input(
+                "\nYou: "
+            ).strip()
+
+        except (
+            KeyboardInterrupt,
+            EOFError,
+        ):
+            print(
+                "\nClosing Agentic Drone Mission Control..."
+            )
+            break
+
+        if not user_input:
+            continue
+
+        if user_input.lower() in {
+            "exit",
+            "quit",
+            "salir",
+        }:
+            print(
+                "\nClosing Agentic Drone Mission Control..."
+            )
+            break
+
+        print(
+            "\n[LANGGRAPH] Running mission graph..."
+        )
+
+        try:
+            final_state = mission_graph.invoke(
+                {
+                    "user_input": user_input,
+                }
+            )
+
+        except Exception as error:  # noqa: BLE001
+            print(
+                "\n[ERROR]"
+            )
+            print(
+                error
+            )
+            continue
+
+        print(
+            "\nAGENT:"
+        )
+
+        print(
+            final_state["final_report"]
+        )
 
 
 if __name__ == "__main__":
