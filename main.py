@@ -1,8 +1,8 @@
 from inputs.json_loader import (
     load_mission_json,
 )
-from tools.route_flight_analysis import (
-    analyze_mission_flight,
+from tools.mission_energy_analysis import (
+    analyze_mission_energy,
 )
 
 
@@ -12,9 +12,17 @@ def main() -> None:
         "precision_agriculture_demo.json"
     )
 
-    analysis = analyze_mission_flight(
+    analysis = analyze_mission_energy(
         mission
     )
+
+    flight = analysis[
+        "flight_analysis"
+    ]
+
+    battery = analysis[
+        "battery_result"
+    ]
 
     print(
         "\nMISSION"
@@ -25,90 +33,62 @@ def main() -> None:
     )
 
     print(
-        "\nMISSION FLIGHT ANALYSIS"
+        "\nFLIGHT ANALYSIS"
     )
 
     print(
         "Total horizontal distance: "
-        f"{analysis['total_horizontal_distance_km']} km"
+        f"{flight['total_horizontal_distance_km']} km"
     )
 
     print(
         "Total estimated flight time: "
-        f"{analysis['total_flight_time_minutes']} minutes"
+        f"{flight['total_flight_time_minutes']} minutes"
     )
 
     print(
-        "Total climb: "
-        f"{analysis['total_climb_m']} m"
+        "\nBATTERY ANALYSIS"
+    )
+
+    if battery is None:
+        print(
+            "Status: UNDETERMINED"
+        )
+
+        print(
+            analysis["message"]
+        )
+
+        return
+
+    print(
+        f"Status: {battery['status'].upper()}"
     )
 
     print(
-        "Total descent: "
-        f"{analysis['total_descent_m']} m"
+        "Starting battery: "
+        f"{mission.vehicle.battery_percent}%"
     )
 
     print(
-        "\nLEG ANALYSIS"
+        "Consumption rate: "
+        f"{mission.vehicle.battery_consumption_percent_per_minute}%/min"
     )
 
-    for leg in analysis[
-        "leg_results"
-    ]:
-        result = leg[
-            "flight_result"
-        ]
+    print(
+        "Estimated consumption: "
+        f"{battery['required_battery_percent']}%"
+    )
 
-        print(
-            "\n"
-            f"Leg {leg['leg_number']}: "
-            f"{leg['from']} -> {leg['to']}"
-        )
+    print(
+        "Estimated battery after mission: "
+        f"{battery['battery_after_flight_percent']}%"
+    )
 
-        print(
-            f"Distance: {leg['distance_km']} km"
-        )
-
-        print(
-            f"Bearing: {leg['bearing_deg']}°"
-        )
-
-        print(
-            f"Airspeed: {leg['airspeed_kmh']} km/h"
-        )
-
-        print(
-            f"Status: {result['status'].upper()}"
-        )
-
-        if result[
-            "status"
-        ] == "success":
-            print(
-                "Ground speed: "
-                f"{result['ground_speed_kmh']} km/h"
-            )
-
-            print(
-                "Headwind: "
-                f"{result['headwind_component_kmh']} km/h"
-            )
-
-            print(
-                "Crosswind: "
-                f"{result['crosswind_component_kmh']} km/h"
-            )
-
-            print(
-                "Flight time: "
-                f"{result['flight_time_minutes']} minutes"
-            )
-
-        else:
-            print(
-                "Reason: "
-                f"{result.get('message')}"
-            )
+    print(
+        "Required reserve: "
+        f"{battery['required_reserve_percent']}%"
+    )
 
 
 if __name__ == "__main__":
