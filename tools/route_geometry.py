@@ -131,6 +131,7 @@ def analyze_waypoint_route(
             "latitude": route.home.latitude,
             "longitude": route.home.longitude,
             "altitude_m": route.home.altitude_m,
+            "speed_kmh": None,
             "action": "home",
         }
     ]
@@ -142,6 +143,7 @@ def analyze_waypoint_route(
                 "latitude": waypoint.latitude,
                 "longitude": waypoint.longitude,
                 "altitude_m": waypoint.altitude_m,
+                "speed_kmh": waypoint.speed_kmh,
                 "action": waypoint.action,
             }
         )
@@ -153,6 +155,7 @@ def analyze_waypoint_route(
                 "latitude": route.home.latitude,
                 "longitude": route.home.longitude,
                 "altitude_m": route.home.altitude_m,
+                "speed_kmh": None,
                 "action": "return_to_home",
             }
         )
@@ -216,6 +219,8 @@ def analyze_waypoint_route(
                 end["altitude_m"],
             "altitude_change_m":
                 altitude_change_m,
+            "speed_kmh":
+                end["speed_kmh"],
             "destination_action":
                 end["action"],
         }

@@ -1,8 +1,8 @@
 from inputs.json_loader import (
     load_mission_json,
 )
-from tools.route_geometry import (
-    analyze_waypoint_route,
+from tools.route_flight_analysis import (
+    analyze_mission_flight,
 )
 
 
@@ -12,8 +12,8 @@ def main() -> None:
         "precision_agriculture_demo.json"
     )
 
-    route_analysis = analyze_waypoint_route(
-        mission.route
+    analysis = analyze_mission_flight(
+        mission
     )
 
     print(
@@ -21,40 +21,44 @@ def main() -> None:
     )
 
     print(
-        f"{mission.name}"
+        mission.name
     )
 
     print(
-        "\nROUTE ANALYSIS"
+        "\nMISSION FLIGHT ANALYSIS"
     )
 
     print(
         "Total horizontal distance: "
-        f"{route_analysis['total_horizontal_distance_km']} km"
+        f"{analysis['total_horizontal_distance_km']} km"
+    )
+
+    print(
+        "Total estimated flight time: "
+        f"{analysis['total_flight_time_minutes']} minutes"
     )
 
     print(
         "Total climb: "
-        f"{route_analysis['total_climb_m']} m"
+        f"{analysis['total_climb_m']} m"
     )
 
     print(
         "Total descent: "
-        f"{route_analysis['total_descent_m']} m"
+        f"{analysis['total_descent_m']} m"
     )
 
     print(
-        "Route legs: "
-        f"{route_analysis['leg_count']}"
+        "\nLEG ANALYSIS"
     )
 
-    print(
-        "\nLEGS"
-    )
-
-    for leg in route_analysis[
-        "legs"
+    for leg in analysis[
+        "leg_results"
     ]:
+        result = leg[
+            "flight_result"
+        ]
+
         print(
             "\n"
             f"Leg {leg['leg_number']}: "
@@ -70,15 +74,41 @@ def main() -> None:
         )
 
         print(
-            "Altitude: "
-            f"{leg['start_altitude_m']} m -> "
-            f"{leg['end_altitude_m']} m"
+            f"Airspeed: {leg['airspeed_kmh']} km/h"
         )
 
         print(
-            "Action: "
-            f"{leg['destination_action']}"
+            f"Status: {result['status'].upper()}"
         )
+
+        if result[
+            "status"
+        ] == "success":
+            print(
+                "Ground speed: "
+                f"{result['ground_speed_kmh']} km/h"
+            )
+
+            print(
+                "Headwind: "
+                f"{result['headwind_component_kmh']} km/h"
+            )
+
+            print(
+                "Crosswind: "
+                f"{result['crosswind_component_kmh']} km/h"
+            )
+
+            print(
+                "Flight time: "
+                f"{result['flight_time_minutes']} minutes"
+            )
+
+        else:
+            print(
+                "Reason: "
+                f"{result.get('message')}"
+            )
 
 
 if __name__ == "__main__":
