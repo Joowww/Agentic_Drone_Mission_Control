@@ -3,72 +3,57 @@
     "mission_id": "precision_agriculture_001",
     "name": "Field A Crop Inspection",
     "source": "json",
-
     "vehicle": {
         "vehicle_id": "drone_01",
         "vehicle_type": "multirotor",
         "autopilot": "PX4",
         "cruise_speed_kmh": 35.0,
-        "battery_percent":22.0,
+        "battery_percent": 70.0,
         "battery_consumption_percent_per_minute": 0.8
     },
-
     "objective": {
         "objective_type": "precision_agriculture",
         "target": "field_A",
         "description": "Inspect Field A and collect aerial imagery for crop health analysis."
     },
-
     "route": {
         "mode": "waypoints",
-
+        "distance_km": null,
+        "bearing_deg": null,
         "home": {
-            "latitude": 41.2750,
-            "longitude": 1.9870,
+            "latitude": 41.275,
+            "longitude": 1.987,
             "altitude_m": 0.0
         },
-
         "waypoints": [
             {
                 "waypoint_id": "WP1",
-                "latitude": 41.2760,
-                "longitude": 1.9890,
+                "latitude": 41.276,
+                "longitude": 1.989,
                 "altitude_m": 30.0,
                 "speed_kmh": 30.0,
                 "action": "navigate"
             },
             {
                 "waypoint_id": "WP2",
-                "latitude": 41.2780,
-                "longitude": 1.9920,
-                "altitude_m": 30.0,
+                "latitude": 41.278,
+                "longitude": 1.992,
+                "altitude_m": 80.0,
                 "speed_kmh": 25.0,
                 "action": "survey"
-            },
-            {
-                "waypoint_id": "WP3",
-                "latitude": 41.2765,
-                "longitude": 1.9950,
-                "altitude_m": 30.0,
-                "speed_kmh": 25.0,
-                "action": "take_photo"
             }
         ],
-
         "return_to_home": true
     },
-
     "environment": {
         "wind_speed_kmh": 12.0,
         "wind_direction_from_deg": 0.0
     },
-
     "constraints": {
         "minimum_battery_reserve_percent": 20.0,
         "maximum_wind_speed_kmh": 30.0,
         "maximum_altitude_m": 120.0
     },
-
     "failsafe": {
         "low_battery_action": "RETURN_TO_HOME",
         "unsafe_wind_action": "RETURN_TO_HOME",
