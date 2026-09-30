@@ -17,20 +17,33 @@ def _has_value(
 
 def _explicit_waypoint_ids(
     user_input: str,
+    mission,
 ) -> set[str]:
-    return {
+    explicit_ids = set()
+    for waypoint in mission.route.waypoints:
+        waypoint_id = waypoint.waypoint_id
+        if re.search(
+            r"\b" + re.escape(waypoint_id) + r"\b",
+            user_input,
+            flags=re.IGNORECASE,
+        ):
+            explicit_ids.add(waypoint_id.upper())
+
+    explicit_ids.update(
         match.upper()
         for match in re.findall(
             r"\bWP\d+\b",
             user_input,
             flags=re.IGNORECASE,
         )
-    }
+    )
+    return explicit_ids
 
 
 def validate_update_grounding(
     user_input: str,
     update: MissionUpdate,
+    mission,
 ) -> None:
     text = user_input.lower()
 
@@ -153,7 +166,12 @@ def validate_update_grounding(
                 field_name
             )
 
-    waypoint_context = bool(
+    explicit_ids = _explicit_waypoint_ids(
+        user_input,
+        mission,
+    )
+
+    waypoint_context = bool(explicit_ids) or bool(
         re.search(
             r"\bWP\d+\b|\bwaypoint\b",
             user_input,
@@ -184,12 +202,6 @@ def validate_update_grounding(
         violations.append(
             "waypoint_removals"
         )
-
-    explicit_ids = (
-        _explicit_waypoint_ids(
-            user_input
-        )
-    )
 
     if explicit_ids:
         proposed_ids = set()

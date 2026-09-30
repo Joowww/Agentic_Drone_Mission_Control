@@ -53,10 +53,11 @@ def parse_mission_update(
     )
 
     deterministic_update = (
-        parse_deterministic_mission_update(
-            user_input
-        )
+    parse_deterministic_mission_update(
+        user_input=user_input,
+        mission=mission,
     )
+)
 
     if not mission_update_is_empty(
         deterministic_update
@@ -210,6 +211,7 @@ wind_direction_from="north"
     validate_update_grounding(
         user_input=user_input,
         update=result,
+        mission=mission,
     )
 
     return result

@@ -1,21 +1,29 @@
-from agents.mission_editor import (
-    parse_mission_update,
-)
-from editing.mission_update_service import (
-    apply_mission_update,
+from agents.mission_planner import (
+    extract_mission_plan_draft,
 )
 from graph.mission_graph import (
     memory,
     mission_graph,
 )
-from graph.waypoint_mission_graph import (
-    waypoint_mission_graph,
-)
 from inputs.json_loader import (
     load_mission_json,
 )
-from inputs.json_saver import (
-    save_mission_json,
+from inputs.qgroundcontrol_adapter import (
+    load_qgroundcontrol_plan,
+)
+from models.mission_plan_draft import (
+    MissionPlanDraft,
+)
+from models.qgc_import import (
+    QGroundControlImportContext,
+)
+from planning.mission_plan_service import (
+    build_mission_from_draft,
+    get_missing_planning_fields,
+    merge_mission_plan_drafts,
+)
+from sessions.structured_mission_session import (
+    run_structured_mission_session,
 )
 
 NATURAL_LANGUAGE_THREAD_ID = (
@@ -33,8 +41,7 @@ NATURAL_LANGUAGE_CONFIG = {
 
 def print_main_menu() -> None:
     print(
-        "\n"
-        "AGENTIC DRONE MISSION CONTROL"
+        "\nAGENTIC DRONE MISSION CONTROL"
     )
 
     print(
@@ -50,7 +57,15 @@ def print_main_menu() -> None:
     )
 
     print(
-        "3. Exit"
+        "3. AI Mission Planner"
+    )
+
+    print(
+        "4. QGroundControl .plan"
+    )
+
+    print(
+        "5. Exit"
     )
 
 
@@ -94,11 +109,6 @@ def run_natural_language_mission() -> bool:
             KeyboardInterrupt,
             EOFError,
         ):
-            print(
-                "\nClosing Agentic Drone "
-                "Mission Control..."
-            )
-
             return False
 
         if not user_input:
@@ -167,139 +177,9 @@ def run_natural_language_mission() -> bool:
         )
 
 
-def evaluate_json_mission(
-    mission,
-) -> None:
-    print(
-        "\n[LANGGRAPH] Running waypoint "
-        "mission graph..."
-    )
-
-    final_state = (
-        waypoint_mission_graph.invoke(
-            {
-                "mission":
-                    mission,
-            }
-        )
-    )
-
-    print(
-        "\nAGENT:"
-    )
-
-    print(
-        final_state[
-            "final_report"
-        ]
-    )
-
-
-def show_json_mission(
-    mission,
-) -> None:
-    print(
-        "\nCURRENT MISSION JSON"
-    )
-
-    print(
-        mission.model_dump_json(
-            indent=4
-        )
-    )
-
-
-def print_json_help() -> None:
-    print(
-        "\nJSON MISSION COMMANDS"
-    )
-
-    print(
-        "\nWrite a natural-language instruction "
-        "to modify the mission."
-    )
-
-    print(
-        "\nExamples:"
-    )
-
-    print(
-        "  Change the battery to 70%."
-    )
-
-    print(
-        "  Set WP2 altitude to 80 meters."
-    )
-
-    print(
-        "  Set the wind to 18 km/h "
-        "coming from the west."
-    )
-
-    print(
-        "  Set the battery reserve to 25%."
-    )
-
-    print(
-        "  Change WP3 speed to 20 km/h."
-    )
-
-    print(
-        "\nCommands:"
-    )
-
-    print(
-        "  show"
-        "   - show the current mission JSON"
-    )
-
-    print(
-        "  report"
-        " - run mission validation again"
-    )
-
-    print(
-        "  save"
-        "   - save the edited mission"
-    )
-
-    print(
-        "  reset"
-        "  - reload the original JSON file"
-    )
-
-    print(
-        "  help"
-        "   - show these commands"
-    )
-
-    print(
-        "  menu"
-        "   - return to the main menu"
-    )
-
-    print(
-        "  exit"
-        "   - close the program"
-    )
-
-
 def run_json_mission() -> bool:
     print(
         "\nJSON MISSION"
-    )
-
-    print(
-        "\nEnter the mission JSON path."
-    )
-
-    print(
-        "Example:"
-    )
-
-    print(
-        "missions/examples/"
-        "precision_agriculture_demo.json"
     )
 
     try:
@@ -314,10 +194,6 @@ def run_json_mission() -> bool:
         return False
 
     if not file_path:
-        print(
-            "\nNo JSON file selected."
-        )
-
         return True
 
     try:
@@ -344,37 +220,57 @@ def run_json_mission() -> bool:
         f"Mission: {mission.name}"
     )
 
+    return (
+        run_structured_mission_session(
+            mission
+        )
+    )
+
+
+def run_ai_mission_planner() -> bool:
     print(
-        f"Mission ID: {mission.mission_id}"
+        "\nAI MISSION PLANNER"
     )
 
-    evaluate_json_mission(
-        mission
+    print(
+        "\nDescribe the mission you want "
+        "the system to create."
     )
 
-    print_json_help()
+    print(
+        "The planner will never invent "
+        "missing operational data."
+    )
+
+    print(
+        "\nWrite 'menu' to return."
+    )
+
+    print(
+        "Write 'exit' to close."
+    )
+
+    draft = MissionPlanDraft()
 
     while True:
         try:
             user_input = input(
-                "\nYou: "
+                "\nPlanner: "
             ).strip()
 
         except (
             KeyboardInterrupt,
             EOFError,
         ):
-            print(
-                "\nClosing Agentic Drone "
-                "Mission Control..."
-            )
-
             return False
 
         if not user_input:
             continue
 
         command = user_input.lower()
+
+        if command == "menu":
+            return True
 
         if command in {
             "exit",
@@ -383,201 +279,239 @@ def run_json_mission() -> bool:
         }:
             return False
 
-        if command == "menu":
-            return True
-
-        if command == "help":
-            print_json_help()
-
-            continue
-
-        if command == "show":
-            show_json_mission(
-                mission
+        try:
+            new_draft = (
+                extract_mission_plan_draft(
+                    user_input=user_input,
+                    current_draft=draft,
+                )
             )
 
-            continue
-
-        if command == "report":
-            evaluate_json_mission(
-                mission
+            draft = (
+                merge_mission_plan_drafts(
+                    current=draft,
+                    new=new_draft,
+                )
             )
 
-            continue
-
-        if command == "reset":
-            try:
-                mission = load_mission_json(
-                    file_path
-                )
-
-            except Exception as error:  # noqa: BLE001
-                print(
-                    "\n[JSON ERROR]"
-                )
-
-                print(
-                    error
-                )
-
-                continue
+        except Exception as error:  # noqa: BLE001
+            print(
+                "\n[PLANNER ERROR]"
+            )
 
             print(
-                "\nMission restored from "
-                "the original JSON file."
-            )
-
-            evaluate_json_mission(
-                mission
+                error
             )
 
             continue
 
-        if (
-            command == "save"
-            or command.startswith(
-                "save "
+        missing = (
+            get_missing_planning_fields(
+                draft
             )
-        ):
-            parts = user_input.split(
-                maxsplit=1
+        )
+
+        if missing:
+            print(
+                "\n[PLANNER] Additional "
+                "information required:"
             )
 
-            if len(parts) == 2:
-                save_path = (
-                    parts[1].strip()
+            for field in missing:
+                print(
+                    f"- {field}"
                 )
 
-            else:
-                save_path = (
-                    "missions/edited/"
-                    f"{mission.mission_id}.json"
-                )
+            continue
 
-            try:
-                saved_path = (
-                    save_mission_json(
-                        mission,
-                        save_path,
+        try:
+            mission = (
+                build_mission_from_draft(
+                    draft
+                )
+            )
+
+        except Exception as error:  # noqa: BLE001
+            print(
+                "\n[MISSION PLAN REJECTED]"
+            )
+
+            print(
+                error
+            )
+
+            continue
+
+        print(
+            "\n[MISSION PLANNER] "
+            "MissionDefinition created."
+        )
+
+        print(
+            f"Mission ID: "
+            f"{mission.mission_id}"
+        )
+
+        print(
+            f"Mission name: "
+            f"{mission.name}"
+        )
+
+        print(
+            f"Waypoints: "
+            f"{len(mission.route.waypoints)}"
+        )
+
+        return (
+            run_structured_mission_session(
+                mission
+            )
+        )
+
+
+def _read_float(
+    label: str,
+) -> float:
+    while True:
+        value = input(
+            f"{label}: "
+        ).strip()
+
+        try:
+            return float(
+                value
+            )
+
+        except ValueError:
+            print(
+                "Please enter a numeric value."
+            )
+
+
+def run_qgroundcontrol_mission() -> bool:
+    print(
+        "\nQGROUNDCONTROL MISSION"
+    )
+
+    try:
+        file_path = input(
+            "\n.plan path: "
+        ).strip()
+
+    except (
+        KeyboardInterrupt,
+        EOFError,
+    ):
+        return False
+
+    if not file_path:
+        return True
+
+    print(
+        "\nQGroundControl provides the route, "
+        "but runtime safety information "
+        "must be provided separately."
+    )
+
+    try:
+        context = (
+            QGroundControlImportContext(
+                battery_percent=(
+                    _read_float(
+                        "Battery %"
                     )
-                )
+                ),
 
-            except Exception as error:  # noqa: BLE001
-                print(
-                    "\n[SAVE ERROR]"
-                )
+                battery_consumption_percent_per_minute=(
+                    _read_float(
+                        "Battery consumption %/min"
+                    )
+                ),
 
-                print(
-                    error
-                )
+                wind_speed_kmh=(
+                    _read_float(
+                        "Wind speed km/h"
+                    )
+                ),
 
-                continue
+                wind_direction_from_deg=(
+                    _read_float(
+                        "Wind direction FROM degrees"
+                    )
+                ),
 
-            print(
-                "\nMission saved successfully:"
+                minimum_battery_reserve_percent=(
+                    _read_float(
+                        "Minimum battery reserve %"
+                    )
+                ),
+
+                maximum_wind_speed_kmh=(
+                    _read_float(
+                        "Maximum safe wind km/h"
+                    )
+                ),
+
+                maximum_altitude_m=(
+                    _read_float(
+                        "Maximum altitude m"
+                    )
+                ),
             )
-
-            print(
-                saved_path
-            )
-
-            continue
-
-        try:
-            update = parse_mission_update(
-                user_input=user_input,
-                mission=mission,
-            )
-
-        except Exception as error:  # noqa: BLE001
-            print(
-                "\n[MISSION EDITOR ERROR]"
-            )
-
-            print(
-                error
-            )
-
-            continue
-
-        try:
-            updated_mission, changes = (
-                apply_mission_update(
-                    mission=mission,
-                    update=update,
-                )
-            )
-
-        except Exception as error:  # noqa: BLE001
-            print(
-                "\n[MISSION UPDATE REJECTED]"
-            )
-
-            print(
-                error
-            )
-
-            continue
-
-        if not changes:
-            print(
-                "\nNo mission modification "
-                "was detected."
-            )
-
-            print(
-                "Write 'help' to see examples."
-            )
-
-            continue
-
-        mission = updated_mission
-
-        print(
-            "\n[MISSION UPDATE] "
-            "Applied successfully."
         )
 
-        for change in changes:
-            print(
-                f"- {change}"
+        result = (
+            load_qgroundcontrol_plan(
+                file_path=file_path,
+                context=context,
             )
-
-        print(
-            "\n[LANGGRAPH] "
-            "Re-evaluating mission..."
         )
 
-        try:
-            final_state = (
-                waypoint_mission_graph.invoke(
-                    {
-                        "mission":
-                            mission,
-                    }
-                )
-            )
-
-        except Exception as error:  # noqa: BLE001
-            print(
-                "\n[ERROR]"
-            )
-
-            print(
-                error
-            )
-
-            continue
-
+    except Exception as error:  # noqa: BLE001
         print(
-            "\nAGENT:"
+            "\n[QGC IMPORT ERROR]"
         )
 
         print(
-            final_state[
-                "final_report"
-            ]
+            error
         )
+
+        return True
+
+    print(
+        "\n[QGC] Mission imported successfully."
+    )
+
+    print(
+        "Source mission items: "
+        f"{result.source_item_count}"
+    )
+
+    print(
+        "Imported waypoints: "
+        f"{result.imported_waypoint_count}"
+    )
+
+    print(
+        "Planned HOME AMSL: "
+        f"{result.planned_home_amsl_m} m"
+    )
+
+    if result.warnings:
+        print(
+            "\nQGC IMPORT WARNINGS"
+        )
+
+        for warning in result.warnings:
+            print(
+                f"- {warning}"
+            )
+
+    return (
+        run_structured_mission_session(
+            result.mission
+        )
+    )
 
 
 def main() -> None:
@@ -593,11 +527,6 @@ def main() -> None:
             KeyboardInterrupt,
             EOFError,
         ):
-            print(
-                "\nClosing Agentic Drone "
-                "Mission Control..."
-            )
-
             break
 
         if option == "1":
@@ -605,24 +534,33 @@ def main() -> None:
                 run_natural_language_mission()
             )
 
-            if not keep_running:
-                break
-
         elif option == "2":
             keep_running = (
                 run_json_mission()
             )
 
-            if not keep_running:
-                break
-
         elif option == "3":
+            keep_running = (
+                run_ai_mission_planner()
+            )
+
+        elif option == "4":
+            keep_running = (
+                run_qgroundcontrol_mission()
+            )
+
+        elif option == "5":
             break
 
         else:
             print(
                 "\nInvalid option."
             )
+
+            continue
+
+        if not keep_running:
+            break
 
     print(
         "\nClosing Agentic Drone "

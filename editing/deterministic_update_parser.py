@@ -1,5 +1,8 @@
 import re
 
+from models.mission_definition import (
+    MissionDefinition,
+)
 from models.mission_update import (
     MissionUpdate,
     WaypointAddition,
@@ -63,8 +66,14 @@ def _get_waypoint_update(
 
 def parse_deterministic_mission_update(
     user_input: str,
+    mission: MissionDefinition | None = None,
 ) -> MissionUpdate:
     text = user_input.strip()
+    waypoint_pattern = (
+    _build_waypoint_pattern(
+        mission
+    )
+)
 
     update = MissionUpdate()
 
@@ -323,16 +332,16 @@ def parse_deterministic_mission_update(
     ] = {}
 
     altitude_pattern = re.compile(
-        (
-            r"\b(WP\d+)\b"
-            r"[^.;\n]*?"
-            r"(?:altitude|height)"
-            r"\s+(?:to\s+)?"
-            r"(-?\d+(?:\.\d+)?)"
-            r"\s*(?:m|meter|meters)"
-        ),
-        flags=re.IGNORECASE,
-    )
+    (
+        rf"\b({waypoint_pattern})\b"
+        r"[^.;\n]*?"
+        r"(?:altitude|height)"
+        r"\s+(?:to\s+)?"
+        r"(-?\d+(?:\.\d+)?)"
+        r"\s*(?:m|meter|meters)"
+    ),
+    flags=re.IGNORECASE,
+)
 
     for match in altitude_pattern.finditer(
         text
@@ -347,16 +356,16 @@ def parse_deterministic_mission_update(
         )
 
     speed_pattern = re.compile(
-        (
-            r"\b(WP\d+)\b"
-            r"[^.;\n]*?"
-            r"speed"
-            r"\s+(?:to\s+)?"
-            r"(-?\d+(?:\.\d+)?)"
-            r"\s*km/?h"
-        ),
-        flags=re.IGNORECASE,
-    )
+    (
+        rf"\b({waypoint_pattern})\b"
+        r"[^.;\n]*?"
+        r"speed"
+        r"\s+(?:to\s+)?"
+        r"(-?\d+(?:\.\d+)?)"
+        r"\s*km/?h"
+    ),
+    flags=re.IGNORECASE,
+)
 
     for match in speed_pattern.finditer(
         text
@@ -371,16 +380,16 @@ def parse_deterministic_mission_update(
         )
 
     action_pattern = re.compile(
-        (
-            r"\b(WP\d+)\b"
-            r"[^.;\n]*?"
-            r"(?:action\s+(?:to\s+)?|"
-            r"make\s+(?:it\s+)?(?:a\s+)?)"
-            r"(navigate|survey|inspect|"
-            r"take[_\s]photo|loiter)"
-        ),
-        flags=re.IGNORECASE,
-    )
+    (
+        rf"\b({waypoint_pattern})\b"
+        r"[^.;\n]*?"
+        r"(?:action\s+(?:to\s+)?|"
+        r"make\s+(?:it\s+)?(?:a\s+)?)"
+        r"(navigate|survey|inspect|"
+        r"take[_\s]photo|loiter)"
+    ),
+    flags=re.IGNORECASE,
+)
 
     for match in action_pattern.finditer(
         text
@@ -406,7 +415,10 @@ def parse_deterministic_mission_update(
     )
 
     removal_matches = re.findall(
-        r"(?:remove|delete)\s+(WP\d+)",
+    (
+        rf"(?:remove|delete)\s+"
+        rf"({waypoint_pattern})"
+    ),
         text,
         flags=re.IGNORECASE,
     )
@@ -473,3 +485,37 @@ def mission_update_is_empty(
             return False
 
     return True
+
+def _build_waypoint_pattern(
+    mission: MissionDefinition | None,
+) -> str:
+    waypoint_ids = []
+
+    if mission is not None:
+        waypoint_ids = [
+            re.escape(
+                waypoint.waypoint_id
+            )
+            for waypoint
+            in mission.route.waypoints
+        ]
+
+    waypoint_ids.append(
+        r"WP\d+"
+    )
+
+    waypoint_ids = sorted(
+        set(
+            waypoint_ids
+        ),
+        key=len,
+        reverse=True,
+    )
+
+    return (
+        "(?:"
+        + "|".join(
+            waypoint_ids
+        )
+        + ")"
+    )
