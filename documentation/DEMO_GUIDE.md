@@ -1,77 +1,43 @@
-# TFG Demo Guide
+# TFG Simulation Demo Guide
 
-## Part 1 — Agentic AI
+## Objective
 
-Show the LangGraph-based mission planner.
+Demonstrate two independently controlled UAVs using:
 
-Explain:
+- Gazebo Harmonic
+- ArduPilot SITL
+- ROS 2 Humble
+- AP_DDS / micro-ROS
 
-1. natural-language mission input;
-2. mission parameter extraction;
-3. deterministic calculations;
-4. safety checks;
-5. replanning;
-6. final mission feasibility report.
+Vehicles:
 
-Key concept:
+- Drone 1 -> `/ap/v1`
+- Drone 2 -> `/ap/v2`
 
-> The LLM interprets and orchestrates. Deterministic Python performs calculations and safety validation.
+The original 3-vehicle configuration with two drones and one rover is preserved and has also been validated.
 
-## Part 2 — Multi-Vehicle Simulation
+---
 
-Architecture:
+## Demo
+
+In VS Code:
+
+`Ctrl + Shift + P`
+
+Select:
+
+`Tasks: Run Task`
+
+### 1. Start
+
+Run:
+
+`TFG: Start Simulation`
+
+Wait for:
 
 ```text
-ROS 2
- ↓
-AP_DDS
- ↓
-ArduPilot SITL
- ↓
-Gazebo
-```
+SIMULATION READY
 
-Current vehicles:
-
-```text
 Drone 1 -> /ap/v1
 Drone 2 -> /ap/v2
-Rover   -> /ap/v3
-```
-
-Validated:
-
-- Drone 1 takeoff to approximately 5 m;
-- Drone 2 takeoff to approximately 7 m;
-- independent drone control;
-- Rover ROS 2 control interface;
-- independent drone landing;
-- final vehicle disarming.
-
-## Current limitation
-
-Simulation Real Time Factor is approximately:
-
-```text
-0.03-0.04
-```
-
-Current work:
-
-> Simulation performance optimization.
-
-## Future integration
-
-```text
-Agentic AI
-    ↓
-Mission planner
-    ↓
-Safety Engine
-    ↓
-ROS 2
-    ↓
-ArduPilot
-    ↓
-Drone swarm / Rover
-```
