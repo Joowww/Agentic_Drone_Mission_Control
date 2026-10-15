@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from agents.mission_editor import (
     parse_mission_update,
 )
@@ -10,6 +12,9 @@ from graph.waypoint_mission_graph import (
 from inputs.json_saver import (
     save_mission_json,
 )
+from inputs.qgroundcontrol_exporter import (
+    export_qgroundcontrol_plan,
+)
 from models.mission_definition import (
     MissionDefinition,
 )
@@ -17,11 +22,20 @@ from models.mission_definition import (
 
 def evaluate_structured_mission(
     mission: MissionDefinition,
-) -> None:
-    print(
-        "\n[LANGGRAPH] Running waypoint "
-        "mission graph..."
-    )
+    *,
+    re_evaluation: bool = False,
+) -> dict:
+    if re_evaluation:
+        print(
+            "\n[LANGGRAPH] "
+            "Re-evaluating mission..."
+        )
+
+    else:
+        print(
+            "\n[LANGGRAPH] Running waypoint "
+            "mission graph..."
+        )
 
     final_state = (
         waypoint_mission_graph.invoke(
@@ -40,6 +54,104 @@ def evaluate_structured_mission(
             "final_report"
         ]
     )
+
+    return final_state
+
+
+def export_validated_mission_plan(
+    mission: MissionDefinition,
+    final_state: dict,
+) -> None:
+    mission_status = final_state.get(
+        "mission_status",
+        "UNKNOWN",
+    )
+
+    output_directory = Path(
+        "missions/generated"
+    )
+
+    approved_path = (
+        output_directory
+        / f"{mission.mission_id}.plan"
+    )
+
+    candidate_path = (
+        output_directory
+        / (
+            f"{mission.mission_id}"
+            "_candidate.plan"
+        )
+    )
+
+    if mission_status == "FEASIBLE":
+        file_path = approved_path
+        stale_path = candidate_path
+        execution_status = "APPROVED"
+
+    else:
+        file_path = candidate_path
+        stale_path = approved_path
+        execution_status = "BLOCKED"
+
+    try:
+        saved_path = (
+            export_qgroundcontrol_plan(
+                mission=mission,
+                file_path=file_path,
+            )
+        )
+
+    except Exception as error:  # noqa: BLE001
+        print(
+            "\n[QGC EXPORT ERROR]"
+        )
+
+        print(
+            error
+        )
+
+        return
+
+    stale_path.unlink(
+        missing_ok=True
+    )
+
+    print(
+        "\n[QGC EXPORT] "
+        "QGroundControl plan generated."
+    )
+
+    print(
+        f"Plan: {saved_path}"
+    )
+
+    print(
+        "Execution status: "
+        f"{execution_status}"
+    )
+
+
+def evaluate_and_export_mission(
+    mission: MissionDefinition,
+    *,
+    re_evaluation: bool = False,
+) -> dict:
+    final_state = (
+        evaluate_structured_mission(
+            mission,
+            re_evaluation=(
+                re_evaluation
+            ),
+        )
+    )
+
+    export_validated_mission_plan(
+        mission=mission,
+        final_state=final_state,
+    )
+
+    return final_state
 
 
 def print_structured_mission_help() -> None:
@@ -116,7 +228,7 @@ def run_structured_mission_session(
         )
     )
 
-    evaluate_structured_mission(
+    evaluate_and_export_mission(
         mission
     )
 
@@ -168,7 +280,7 @@ def run_structured_mission_session(
             continue
 
         if command == "report":
-            evaluate_structured_mission(
+            evaluate_and_export_mission(
                 mission
             )
 
@@ -185,7 +297,7 @@ def run_structured_mission_session(
                 "\nMission restored."
             )
 
-            evaluate_structured_mission(
+            evaluate_and_export_mission(
                 mission
             )
 
@@ -285,26 +397,7 @@ def run_structured_mission_session(
                 f"- {change}"
             )
 
-        print(
-            "\n[LANGGRAPH] "
-            "Re-evaluating mission..."
-        )
-
-        final_state = (
-            waypoint_mission_graph.invoke(
-                {
-                    "mission":
-                        mission,
-                }
-            )
-        )
-
-        print(
-            "\nAGENT:"
-        )
-
-        print(
-            final_state[
-                "final_report"
-            ]
+        evaluate_and_export_mission(
+            mission,
+            re_evaluation=True,
         )
