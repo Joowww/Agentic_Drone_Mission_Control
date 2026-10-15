@@ -61,14 +61,34 @@ def evaluate_structured_mission(
 def export_validated_mission_plan(
     mission: MissionDefinition,
     final_state: dict,
-) -> None:
+    *,
+    output_directory: str | Path | None = None,
+) -> dict:
+    """Export a QGroundControl .plan for a validated mission.
+
+    ``output_directory`` defaults to ``missions/generated``.  When
+    provided it overrides the destination so callers (e.g. the
+    Hermes wrapper and tests) can target a temporary directory.
+
+    Returns a dict with ``execution_status`` (APPROVED / BLOCKED)
+    and ``qgc_plan_path`` (Path or None on export failure).
+    """
     mission_status = final_state.get(
         "mission_status",
         "UNKNOWN",
     )
+    if output_directory is None:
+        output_directory = Path(
+            "missions/generated"
+        )
+    else:
+        output_directory = Path(
+            output_directory
+        )
 
-    output_directory = Path(
-        "missions/generated"
+    output_directory.mkdir(
+        parents=True,
+        exist_ok=True,
     )
 
     approved_path = (
@@ -106,12 +126,13 @@ def export_validated_mission_plan(
         print(
             "\n[QGC EXPORT ERROR]"
         )
-
         print(
             error
         )
-
-        return
+        return {
+            "execution_status": execution_status,
+            "qgc_plan_path": None,
+        }
 
     stale_path.unlink(
         missing_ok=True
@@ -121,15 +142,18 @@ def export_validated_mission_plan(
         "\n[QGC EXPORT] "
         "QGroundControl plan generated."
     )
-
     print(
         f"Plan: {saved_path}"
     )
-
     print(
         "Execution status: "
         f"{execution_status}"
     )
+
+    return {
+        "execution_status": execution_status,
+        "qgc_plan_path": saved_path,
+    }
 
 
 def evaluate_and_export_mission(
