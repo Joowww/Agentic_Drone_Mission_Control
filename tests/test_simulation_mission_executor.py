@@ -187,7 +187,10 @@ def test_successful_navigation_mission(
         executor,
         "_wait_for_takeoff",
         lambda **kwargs: {
-            "reached": True
+            "reached": True,
+            "target_altitude_m": 5.0,
+            "altitude_amsl_m": 589.2,
+            "altitude_error_m": 0.2,
         },
     )
 
@@ -205,6 +208,13 @@ def test_successful_navigation_mission(
         lambda *args, **kwargs: {
             "reached": True,
             "waypoint_id": "WP1",
+            "horizontal_error_m": 0.4,
+            "altitude_error_m": 0.1,
+            "final_position": {
+                "latitude": -35.00001,
+                "longitude": 149.0,
+                "altitude_amsl_m": 589.2,
+            },
         },
     )
 
@@ -221,6 +231,8 @@ def test_successful_navigation_mission(
         "_wait_for_landing",
         lambda **kwargs: {
             "landed": True,
+            "armed": False,
+            "flying": False,
             "final_position": {
                 "latitude": -35.00002,
                 "longitude": 148.99997,
@@ -377,6 +389,8 @@ def test_failure_after_arm_attempts_landing(
         "_wait_for_landing",
         lambda **kwargs: {
             "landed": True,
+            "armed": False,
+            "flying": False,
             "final_position": {},
         },
     )

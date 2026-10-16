@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+import sys
 import time
 
 from inputs.json_loader import load_mission_json
@@ -8,7 +9,6 @@ from tools.mission_execution_gate import (
     check_mission_execution_ready,
 )
 from tools.ros2_flight_control import (
-    FlightControlError,
     GUIDED_MODE,
     arm_vehicle,
     get_vehicle_geopose,
@@ -42,6 +42,28 @@ SUPPORTED_ACTIONS = {
 
 class MissionExecutionError(RuntimeError):
     """Raised when deterministic mission execution fails."""
+
+
+def _emit_progress(
+    message: str,
+    *,
+    enabled: bool,
+) -> None:
+    """Write operator progress without touching stdout.
+
+    stderr is intentionally used because this executor will also be
+    called from an MCP stdio server. Writing progress to stdout could
+    corrupt the MCP transport.
+    """
+
+    if not enabled:
+        return
+
+    print(
+        message,
+        file=sys.stderr,
+        flush=True,
+    )
 
 
 def _horizontal_distance_metres(
@@ -346,6 +368,7 @@ def execute_approved_mission(
     mission_path: str,
     *,
     vehicle: str = "v1",
+    progress: bool = True,
 ) -> dict[str, object]:
     """Execute an approved waypoint mission in simulation.
 
@@ -357,7 +380,15 @@ def execute_approved_mission(
     - action='navigate'
 
     Unsupported mission semantics are blocked rather than ignored.
+
+    Progress messages are written to stderr so the function remains
+    compatible with MCP stdio transport.
     """
+
+    _emit_progress(
+        "[GATE] Checking deterministic mission authorization...",
+        enabled=progress,
+    )
 
     gate = check_mission_execution_ready(
         mission_path
@@ -367,6 +398,11 @@ def execute_approved_mission(
         "execution_authorized",
         False,
     ):
+        _emit_progress(
+            "[GATE] BLOCKED - mission execution was not authorized.",
+            enabled=progress,
+        )
+
         return {
             "success": False,
             "status": "BLOCKED",
@@ -380,6 +416,16 @@ def execute_approved_mission(
             "gate": gate,
         }
 
+    _emit_progress(
+        "[GATE] APPROVED - simulation is ready.",
+        enabled=progress,
+    )
+
+    _emit_progress(
+        "[MISSION] Loading MissionDefinition...",
+        enabled=progress,
+    )
+
     mission = load_mission_json(
         mission_path
     )
@@ -391,6 +437,12 @@ def execute_approved_mission(
     )
 
     if compatibility_errors:
+        _emit_progress(
+            "[COMPATIBILITY] BLOCKED - mission contains "
+            "unsupported execution semantics.",
+            enabled=progress,
+        )
+
         return {
             "success": False,
             "status": "BLOCKED",
@@ -408,12 +460,37 @@ def execute_approved_mission(
             "errors": compatibility_errors,
         }
 
+    _emit_progress(
+        "[SIMULATION] Reading SITL global origin...",
+        enabled=progress,
+    )
+
     origin = get_vehicle_global_origin(
         vehicle=vehicle,
     )
 
+    _emit_progress(
+        "[SIMULATION] Reading real launch position...",
+        enabled=progress,
+    )
+
     launch_position = get_vehicle_geopose(
         vehicle=vehicle,
+    )
+
+    _emit_progress(
+        (
+            "[SIMULATION] Launch position: "
+            f"{launch_position['latitude']:.8f}, "
+            f"{launch_position['longitude']:.8f}, "
+            f"{launch_position['altitude_amsl_m']:.2f} m AMSL"
+        ),
+        enabled=progress,
+    )
+
+    _emit_progress(
+        "[MAPPING] Mapping mission geometry to Gazebo/SITL...",
+        enabled=progress,
     )
 
     mapped_waypoints = (
@@ -434,11 +511,24 @@ def execute_approved_mission(
         ]
     )
 
+    _emit_progress(
+        (
+            "[MAPPING] "
+            f"{len(mapped_waypoints)} waypoint(s) mapped."
+        ),
+        enabled=progress,
+    )
+
     events: list[dict[str, object]] = []
 
     vehicle_may_be_armed = False
 
     try:
+        _emit_progress(
+            "[GUIDED] Switching vehicle to GUIDED mode...",
+            enabled=progress,
+        )
+
         mode_result = switch_vehicle_mode(
             GUIDED_MODE,
             vehicle=vehicle,
@@ -451,6 +541,16 @@ def execute_approved_mission(
                     mode_result["success"]
                 ),
             }
+        )
+
+        _emit_progress(
+            "[GUIDED] Mode accepted.",
+            enabled=progress,
+        )
+
+        _emit_progress(
+            "[ARM] Arming vehicle...",
+            enabled=progress,
         )
 
         arm_result = arm_vehicle(
@@ -468,6 +568,19 @@ def execute_approved_mission(
             }
         )
 
+        _emit_progress(
+            "[ARM] Vehicle armed.",
+            enabled=progress,
+        )
+
+        _emit_progress(
+            (
+                "[TAKEOFF] Commanding takeoff to "
+                f"{takeoff_altitude_m:.1f} m..."
+            ),
+            enabled=progress,
+        )
+
         takeoff_result = takeoff_vehicle(
             takeoff_altitude_m,
             vehicle=vehicle,
@@ -483,6 +596,11 @@ def execute_approved_mission(
                     takeoff_altitude_m
                 ),
             }
+        )
+
+        _emit_progress(
+            "[TAKEOFF] Waiting for target altitude...",
+            enabled=progress,
         )
 
         takeoff_reached = _wait_for_takeoff(
@@ -504,9 +622,33 @@ def execute_approved_mission(
             }
         )
 
+        _emit_progress(
+            (
+                "[TAKEOFF] Target reached "
+                f"(error "
+                f"{takeoff_reached['altitude_error_m']:.2f} m)."
+            ),
+            enabled=progress,
+        )
+
         waypoint_results = []
 
-        for waypoint in mapped_waypoints:
+        for index, waypoint in enumerate(
+            mapped_waypoints,
+            start=1,
+        ):
+            waypoint_id = str(
+                waypoint["waypoint_id"]
+            )
+
+            _emit_progress(
+                (
+                    f"[WAYPOINT {index}/{len(mapped_waypoints)}] "
+                    f"Sending {waypoint_id}..."
+                ),
+                enabled=progress,
+            )
+
             send_result = (
                 send_global_position_target(
                     float(
@@ -534,9 +676,7 @@ def execute_approved_mission(
                         "WAYPOINT_COMMAND"
                     ),
                     "waypoint_id": (
-                        waypoint[
-                            "waypoint_id"
-                        ]
+                        waypoint_id
                     ),
                     "success": (
                         send_result[
@@ -544,6 +684,14 @@ def execute_approved_mission(
                         ]
                     ),
                 }
+            )
+
+            _emit_progress(
+                (
+                    f"[WAYPOINT {index}/{len(mapped_waypoints)}] "
+                    f"Waiting for {waypoint_id}..."
+                ),
+                enabled=progress,
             )
 
             reached = _wait_for_waypoint(
@@ -567,6 +715,18 @@ def execute_approved_mission(
                     ),
                     **reached,
                 }
+            )
+
+            _emit_progress(
+                (
+                    f"[WAYPOINT {index}/{len(mapped_waypoints)}] "
+                    f"{waypoint_id} reached "
+                    f"(horizontal error "
+                    f"{reached['horizontal_error_m']:.2f} m, "
+                    f"altitude error "
+                    f"{reached['altitude_error_m']:.2f} m)."
+                ),
+                enabled=progress,
             )
 
         if mission.route.return_to_home:
@@ -595,6 +755,11 @@ def execute_approved_mission(
                 ),
             }
 
+            _emit_progress(
+                "[RETURN HOME] Sending launch position...",
+                enabled=progress,
+            )
+
             send_global_position_target(
                 float(
                     return_target[
@@ -619,6 +784,11 @@ def execute_approved_mission(
                 }
             )
 
+            _emit_progress(
+                "[RETURN HOME] Waiting for home position...",
+                enabled=progress,
+            )
+
             home_reached = (
                 _wait_for_waypoint(
                     return_target,
@@ -640,6 +810,20 @@ def execute_approved_mission(
                 }
             )
 
+            _emit_progress(
+                (
+                    "[RETURN HOME] Home reached "
+                    f"(horizontal error "
+                    f"{home_reached['horizontal_error_m']:.2f} m)."
+                ),
+                enabled=progress,
+            )
+
+        _emit_progress(
+            "[LAND] Commanding LAND mode...",
+            enabled=progress,
+        )
+
         land_vehicle(
             vehicle=vehicle,
         )
@@ -649,6 +833,11 @@ def execute_approved_mission(
                 "event": "LAND_COMMAND",
                 "success": True,
             }
+        )
+
+        _emit_progress(
+            "[LAND] Waiting for touchdown and auto-disarm...",
+            enabled=progress,
         )
 
         landing = _wait_for_landing(
@@ -662,6 +851,16 @@ def execute_approved_mission(
                 "event": "LANDED",
                 **landing,
             }
+        )
+
+        _emit_progress(
+            "[LAND] Touchdown confirmed. Vehicle disarmed.",
+            enabled=progress,
+        )
+
+        _emit_progress(
+            "[COMPLETE] Mission completed successfully.",
+            enabled=progress,
         )
 
         return {
@@ -695,6 +894,14 @@ def execute_approved_mission(
         }
 
     except Exception as exc:
+        _emit_progress(
+            (
+                "[ERROR] Mission execution failed: "
+                f"{exc}"
+            ),
+            enabled=progress,
+        )
+
         recovery: dict[str, object] = {
             "landing_attempted": False,
             "landing_completed": False,
@@ -705,9 +912,19 @@ def execute_approved_mission(
                 "landing_attempted"
             ] = True
 
+            _emit_progress(
+                "[RECOVERY] Vehicle may be armed. Attempting LAND...",
+                enabled=progress,
+            )
+
             try:
                 land_vehicle(
                     vehicle=vehicle,
+                )
+
+                _emit_progress(
+                    "[RECOVERY] Waiting for touchdown...",
+                    enabled=progress,
                 )
 
                 landing = (
@@ -724,11 +941,24 @@ def execute_approved_mission(
                     "landing"
                 ] = landing
 
+                _emit_progress(
+                    "[RECOVERY] Emergency landing completed.",
+                    enabled=progress,
+                )
+
             except Exception as recovery_exc:
                 recovery[
                     "recovery_error"
                 ] = str(
                     recovery_exc
+                )
+
+                _emit_progress(
+                    (
+                        "[RECOVERY] Landing recovery failed: "
+                        f"{recovery_exc}"
+                    ),
+                    enabled=progress,
                 )
 
         return {
