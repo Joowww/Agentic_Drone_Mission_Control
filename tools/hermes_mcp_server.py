@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+from tools.simulation_status import (
+    check_simulation_ready as get_simulation_status,
+)
+
 from mcp.server import MCPServer
 
 from tools.hermes_mission_validation import validate_mission_file
@@ -60,6 +64,18 @@ def validate_and_export_qgc(
         output_dir=output_dir,
     )
 
+@mcp.tool(
+    name="check_simulation_ready",
+    description=(
+        "Check whether the ROS2, Gazebo and ArduPilot simulation is ready. "
+        "This is a read-only health check: it does not arm, take off, "
+        "or command any vehicle."
+    ),
+    structured_output=True,
+)
+def check_simulation_ready() -> dict[str, object]:
+    """Return the current readiness state of the drone simulation."""
+    return get_simulation_status()
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")

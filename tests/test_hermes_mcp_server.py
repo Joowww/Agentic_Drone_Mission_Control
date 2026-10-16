@@ -12,6 +12,7 @@ def test_mcp_server_exposes_expected_tools():
     tool_names = {tool.name for tool in tools}
 
     assert tool_names == {
-        "validate_mission",
-        "validate_and_export_qgc",
-    }
+    "validate_mission",
+    "validate_and_export_qgc",
+    "check_simulation_ready",
+}
