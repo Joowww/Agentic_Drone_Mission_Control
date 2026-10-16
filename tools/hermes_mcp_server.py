@@ -4,6 +4,11 @@ from tools.simulation_status import (
     check_simulation_ready as get_simulation_status,
 )
 
+from tools.simulation_control import (
+    start_simulation as start_simulation_environment,
+    stop_simulation as stop_simulation_environment,
+)
+
 from mcp.server import MCPServer
 
 from tools.hermes_mission_validation import validate_mission_file
@@ -76,6 +81,33 @@ def validate_and_export_qgc(
 def check_simulation_ready() -> dict[str, object]:
     """Return the current readiness state of the drone simulation."""
     return get_simulation_status()
+
+@mcp.tool(
+    name="start_simulation",
+    description=(
+        "Start the ROS2, Gazebo and ArduPilot simulation environment. "
+        "This starts simulation infrastructure only. "
+        "It does not arm, take off, or command any vehicle."
+    ),
+    structured_output=True,
+)
+def start_simulation() -> dict[str, object]:
+    """Start the drone simulation environment without commanding vehicles."""
+    return start_simulation_environment()
+
+
+@mcp.tool(
+    name="stop_simulation",
+    description=(
+        "Stop the ROS2, Gazebo and ArduPilot simulation environment. "
+        "This stops simulation processes only and does not issue "
+        "flight commands to any vehicle."
+    ),
+    structured_output=True,
+)
+def stop_simulation() -> dict[str, object]:
+    """Stop the drone simulation environment."""
+    return stop_simulation_environment()
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")

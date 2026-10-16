@@ -15,4 +15,6 @@ def test_mcp_server_exposes_expected_tools():
     "validate_mission",
     "validate_and_export_qgc",
     "check_simulation_ready",
+    "start_simulation",
+    "stop_simulation",
 }
