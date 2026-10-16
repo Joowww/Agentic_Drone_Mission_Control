@@ -4,6 +4,10 @@ from tools.simulation_status import (
     check_simulation_ready as get_simulation_status,
 )
 
+from tools.mission_execution_gate import (
+    check_mission_execution_ready as get_mission_execution_readiness,
+)
+
 from tools.simulation_control import (
     start_simulation as start_simulation_environment,
     stop_simulation as stop_simulation_environment,
@@ -108,6 +112,25 @@ def start_simulation() -> dict[str, object]:
 def stop_simulation() -> dict[str, object]:
     """Stop the drone simulation environment."""
     return stop_simulation_environment()
+
+@mcp.tool(
+    name="check_mission_execution_ready",
+    description=(
+        "Determine whether a drone mission is authorized for execution "
+        "in the simulation. The mission must first be APPROVED by the "
+        "deterministic safety pipeline and the ROS2/Gazebo/ArduPilot "
+        "simulation must be READY. This tool does not arm, take off, "
+        "or command any vehicle."
+    ),
+    structured_output=True,
+)
+def check_mission_execution_ready(
+    mission_path: str,
+) -> dict[str, object]:
+    """Check the deterministic execution gate for a mission."""
+    return get_mission_execution_readiness(
+        mission_path
+    )
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")

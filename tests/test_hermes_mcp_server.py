@@ -17,4 +17,5 @@ def test_mcp_server_exposes_expected_tools():
     "check_simulation_ready",
     "start_simulation",
     "stop_simulation",
+    "check_mission_execution_ready",
 }
