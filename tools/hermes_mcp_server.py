@@ -3,6 +3,11 @@ from __future__ import annotations
 from mcp.server import MCPServer
 
 from models.mission_plan_draft import MissionPlanDraft
+from tools.virtual_preflight import run_virtual_preflight as preflight_backend
+from tools.virtual_preflight_jobs import (
+    start_virtual_preflight as start_preflight_backend,
+    get_virtual_preflight as get_preflight_backend,
+)
 from tools.hermes_mission_planning import (
     update_mission_draft as update_draft_backend,
     finalize_mission_draft as finalize_draft_backend,
@@ -40,6 +45,16 @@ mcp = MCPServer(
         "according to requests and results without a fixed tool count. Obtain explicit "
         "user authorization before starting simulation or executing the reviewed "
         "mission_path. APPROVED is not user consent or formal virtual preflight. "
+        "For an explicitly requested rehearsal prefer start_virtual_preflight with a "
+        "request_key chosen and recorded BEFORE starting. Preserve run_id and request_key. "
+        "Poll get_virtual_preflight on the SAME run about every 15-30 seconds; never "
+        "restart a run on timeout, lost response or reconnection. Recover a lost ID by "
+        "querying request_key. ACCEPTED/STARTING is admission, not validation or PASSED. "
+        "INTERRUPTED/UNCONFIRMED requires operator reconciliation; do not infer landing, "
+        "release a restriction or repeat flight. Synchronous tools can exceed MCP timeouts. "
+        "Use run_virtual_preflight only when the user requests a synchronous rehearsal: "
+        "it arms, takes off and moves simulated v1, never starts simulation. "
+        "PASSED is not consent for another execution or permission for real hardware. "
         "Only navigate execution is supported; speed tracking is not verified. "
         "Use these tools to validate drone missions and interact "
         "with the ROS2, Gazebo and ArduPilot simulation stack. "
@@ -50,6 +65,51 @@ mcp = MCPServer(
     ),
     version="0.2.0",
 )
+
+
+@mcp.tool(
+    description=(
+        "Admit ONE asynchronous virtual preflight and quickly return run_id and paths. "
+        "Requires an explicit user rehearsal request: the detached worker may ARM, TAKE OFF "
+        "and MOVE exclusively simulated v1, then land. Choose and record request_key before "
+        "calling; it permanently identifies this admission. Validation/acceptance are pending. "
+        "Never starts simulation. A lost response is recovered with get_virtual_preflight, "
+        "not another start. PASSED grants neither hardware permission nor another flight."
+    ), structured_output=True,
+)
+def start_virtual_preflight(mission_path: str, request_key: str) -> dict[str, object]:
+    return start_preflight_backend(mission_path, request_key)
+
+
+@mcp.tool(
+    description=(
+        "Read-only preflight lookup by exactly one of run_id or request_key, including "
+        "historical reports. Returns job state, current/last phase, final result if available, "
+        "report and paths. Never spawns, resumes, clears v1 ownership or commands flight. "
+        "Poll the same run every 15-30 seconds. INTERRUPTED/UNCONFIRMED never implies landing."
+    ), structured_output=True,
+)
+def get_virtual_preflight(run_id: str | None = None, request_key: str | None = None) -> dict[str, object]:
+    return get_preflight_backend(run_id=run_id, request_key=request_key)
+
+
+@mcp.tool(
+    description=(
+        "SYNCHRONOUS legacy operation: holds the request throughout the rehearsal and may "
+        "exceed the MCP client timeout without cancelling the backend. Prefer "
+        "start_virtual_preflight plus get_virtual_preflight for tracking. "
+        "Run one explicitly requested virtual preflight in Gazebo/ArduPilot SITL. "
+        "WARNING: this tool ARMS, TAKES OFF and MOVES exclusively simulated vehicle v1, "
+        "then lands and waits for disarm via the existing executor. It snapshots and "
+        "hashes the mission, validates safety, checks readiness and compatibility, "
+        "and persists an evidence report. Never starts/restarts simulation or retries "
+        "a flight. Use only when the user requests the rehearsal. PASSED does not "
+        "authorize hardware or grant consent for any subsequent execution."
+    ),
+    structured_output=True,
+)
+def run_virtual_preflight(mission_path: str) -> dict[str, object]:
+    return preflight_backend(mission_path)
 
 
 @mcp.tool(
@@ -167,6 +227,8 @@ def check_mission_execution_ready(
 @mcp.tool(
     name="execute_approved_mission",
     description=(
+        "SYNCHRONOUS: may exceed the MCP client timeout; timeout does not cancel flight. "
+        "Shares v1 exclusion with asynchronous preflight. "
         "Execute an approved waypoint mission on Drone 1 in the "
         "Gazebo/ArduPilot simulation. The executor re-runs the "
         "deterministic execution gate internally before issuing "

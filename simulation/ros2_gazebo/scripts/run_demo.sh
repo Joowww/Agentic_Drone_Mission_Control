@@ -2,6 +2,15 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+if [[ -z "${TFG_V1_DEMO_OWNER:-}" ]]; then
+    cd "$PROJECT_DIR"
+    exec "$PROJECT_DIR/.venv/bin/python" -m tools.guarded_demo
+fi
+# The wrapper must be the live owner, not just an inherited environment value.
+(cd "$PROJECT_DIR" && "$PROJECT_DIR/.venv/bin/python" -m tools.guarded_demo --verify-child)
+
 CONTAINER="tfg-ardupilot-gazebo"
 
 echo "========================================"

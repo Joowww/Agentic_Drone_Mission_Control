@@ -156,3 +156,11 @@ This allows:
 2. easier debugging;
 3. future reuse of the simulator for teaching;
 4. later integration with the high-level agentic mission planner.
+
+
+## Lifecycle cleanup and waypoint diagnostics
+
+The active scripts use the two-drone launch. Project process ownership, bounded
+shutdown, known clock duplication and the WP3 rehearsal evidence are documented
+in [simulation lifecycle and diagnostics](../../docs/simulation-lifecycle-diagnostics.md).
+This describes an offline-tested change awaiting operational verification.

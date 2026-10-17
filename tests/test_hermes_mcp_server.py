@@ -6,6 +6,9 @@ import tools.hermes_mcp_server as server
 
 
 EXPECTED_TOOLS = {
+    "start_virtual_preflight",
+    "get_virtual_preflight",
+    "run_virtual_preflight",
     "validate_mission",
     "validate_and_export_qgc",
     "check_simulation_ready",
@@ -81,3 +84,23 @@ def test_execute_approved_mission_uses_drone1_and_disables_progress(
 
     assert captured["vehicle"] == "v1"
     assert captured["progress"] is False
+
+def test_virtual_preflight_wrapper_forwards_only_mission_path(monkeypatch):
+    calls = []
+    def fake_preflight(path):
+        calls.append(path)
+        return {"status": "BLOCKED", "reasons": ["simulation stopped"]}
+    monkeypatch.setattr(server, "preflight_backend", fake_preflight)
+    assert server.run_virtual_preflight("mission.json")["status"] == "BLOCKED"
+    assert calls == ["mission.json"]
+
+
+def test_async_wrappers_forward_request_identity_without_operational_calls(monkeypatch):
+    calls = []
+    monkeypatch.setattr(server, "start_preflight_backend",
+                        lambda path, key: calls.append((path, key)) or {"job_state": "STARTING"})
+    monkeypatch.setattr(server, "get_preflight_backend",
+                        lambda **kwargs: calls.append(kwargs) or {"job_state": "RUNNING"})
+    assert server.start_virtual_preflight("mission.json", "key-one")["job_state"] == "STARTING"
+    assert server.get_virtual_preflight(request_key="key-one")["job_state"] == "RUNNING"
+    assert calls == [("mission.json", "key-one"), {"run_id": None, "request_key": "key-one"}]

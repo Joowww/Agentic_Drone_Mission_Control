@@ -1,8 +1,12 @@
 from __future__ import annotations
 
+from collections import deque
+from datetime import datetime, timezone
 import math
 import sys
 import time
+
+from tools.vehicle_execution_lock import serialized_v1
 
 from inputs.json_loader import load_mission_json
 from tools.mission_execution_gate import (
@@ -35,6 +39,8 @@ TAKEOFF_TIMEOUT_SECONDS = 180
 WAYPOINT_TIMEOUT_SECONDS = 180
 LAND_TIMEOUT_SECONDS = 180
 
+WAYPOINT_DIAGNOSTIC_SAMPLES = 12
+
 SUPPORTED_ACTIONS = {
     "navigate",
 }
@@ -42,6 +48,14 @@ SUPPORTED_ACTIONS = {
 
 class MissionExecutionError(RuntimeError):
     """Raised when deterministic mission execution fails."""
+
+
+class WaypointWaitError(MissionExecutionError):
+    """A failed waypoint wait with bounded observation evidence."""
+
+    def __init__(self, message: str, diagnostic: dict[str, object]):
+        super().__init__(message)
+        self.diagnostic = diagnostic
 
 
 def _emit_progress(
@@ -180,84 +194,89 @@ def _wait_for_waypoint(
     launch_altitude_amsl_m: float,
     timeout_seconds: int = WAYPOINT_TIMEOUT_SECONDS,
 ) -> dict[str, object]:
-    deadline = (
-        time.monotonic()
-        + timeout_seconds
-    )
+    started = time.monotonic()
+    started_at = datetime.now(timezone.utc).isoformat()
+    deadline = started + timeout_seconds
+    target_latitude = float(waypoint["latitude"])
+    target_longitude = float(waypoint["longitude"])
+    target_altitude_amsl = launch_altitude_amsl_m + float(waypoint["altitude_m"])
+    samples: deque[dict[str, object]] = deque(maxlen=WAYPOINT_DIAGNOSTIC_SAMPLES)
+    attempts = 0
+    observation_count = 0
+    last_observation = None
+    last_status = None
+    failure_stage = "WAIT"
 
-    target_latitude = float(
-        waypoint["latitude"]
-    )
+    def failure(message: str, kind: str, cause: Exception | None = None):
+        finished = time.monotonic()
+        return WaypointWaitError(message, {
+            "waypoint_id": waypoint["waypoint_id"], "vehicle": vehicle,
+            "failure_kind": kind, "failure_stage": failure_stage,
+            "position_outcome": "POSITION_NOT_REACHED" if observation_count else "NO_POSITION_OBSERVATION",
+            "target": {"latitude": target_latitude, "longitude": target_longitude,
+                       "altitude_relative_m": float(waypoint["altitude_m"]),
+                       "altitude_amsl_m": target_altitude_amsl},
+            "tolerances": {"horizontal_m": HORIZONTAL_TOLERANCE_M, "altitude_m": ALTITUDE_TOLERANCE_M},
+            "started_at": started_at, "finished_at": datetime.now(timezone.utc).isoformat(),
+            "elapsed_seconds": finished - started, "timeout_seconds": timeout_seconds,
+            "deadline_overrun_seconds": max(0.0, finished - deadline),
+            "poll_attempts": attempts, "position_observations": observation_count,
+            "last_status": last_status, "last_observation": last_observation,
+            "last_observation_age_seconds": (
+                finished - started - last_observation["elapsed_seconds"] if last_observation else None
+            ),
+            "samples_limit": WAYPOINT_DIAGNOSTIC_SAMPLES, "samples": list(samples),
+            "error": {"type": type(cause).__name__ if cause else "TimeoutError", "message": message},
+        })
 
-    target_longitude = float(
-        waypoint["longitude"]
-    )
+    try:
+        while time.monotonic() < deadline:
+            attempts += 1
+            sample = {"attempt": attempts, "elapsed_seconds": time.monotonic() - started}
+            samples.append(sample)
+            failure_stage = "STATUS_OBSERVATION"
+            call_started = time.monotonic()
+            status = _check_vehicle_safe(vehicle)
+            sample["status_read_seconds"] = time.monotonic() - call_started
+            last_status = dict(status)
+            sample["status"] = last_status
+            if not status["armed"]:
+                failure_stage = "VEHICLE_STATE"
+                raise MissionExecutionError("Vehicle became disarmed while navigating to a waypoint.")
 
-    target_altitude_amsl = (
-        launch_altitude_amsl_m
-        + float(
-            waypoint["altitude_m"]
-        )
-    )
-
-    while time.monotonic() < deadline:
-        status = _check_vehicle_safe(
-            vehicle
-        )
-
-        if not status["armed"]:
-            raise MissionExecutionError(
-                "Vehicle became disarmed while "
-                "navigating to a waypoint."
-            )
-
-        pose = get_vehicle_geopose(
-            vehicle=vehicle,
-        )
-
-        horizontal_error = (
-            _horizontal_distance_metres(
-                pose["latitude"],
-                pose["longitude"],
-                target_latitude,
-                target_longitude,
-            )
-        )
-
-        altitude_error = abs(
-            pose["altitude_amsl_m"]
-            - target_altitude_amsl
-        )
-
-        if (
-            horizontal_error
-            <= HORIZONTAL_TOLERANCE_M
-            and altitude_error
-            <= ALTITUDE_TOLERANCE_M
-        ):
-            return {
-                "reached": True,
-                "waypoint_id": (
-                    waypoint["waypoint_id"]
-                ),
-                "horizontal_error_m": (
-                    horizontal_error
-                ),
-                "altitude_error_m": (
-                    altitude_error
-                ),
-                "final_position": pose,
+            failure_stage = "POSITION_OBSERVATION"
+            call_started = time.monotonic()
+            pose = get_vehicle_geopose(vehicle=vehicle)
+            sample["position_read_seconds"] = time.monotonic() - call_started
+            observation_count += 1
+            last_observation = {
+                "position": dict(pose), "elapsed_seconds": time.monotonic() - started,
+                "observed_at": datetime.now(timezone.utc).isoformat(),
+                "horizontal_error_m": None, "altitude_error_m": None,
             }
+            sample["observation"] = last_observation
+            failure_stage = "POSITION_ERRORS"
+            horizontal_error = _horizontal_distance_metres(
+                pose["latitude"], pose["longitude"], target_latitude, target_longitude,
+            )
+            altitude_error = abs(pose["altitude_amsl_m"] - target_altitude_amsl)
+            last_observation.update(horizontal_error_m=horizontal_error, altitude_error_m=altitude_error)
+            if horizontal_error <= HORIZONTAL_TOLERANCE_M and altitude_error <= ALTITUDE_TOLERANCE_M:
+                return {"reached": True, "waypoint_id": waypoint["waypoint_id"],
+                        "horizontal_error_m": horizontal_error, "altitude_error_m": altitude_error,
+                        "final_position": pose}
+            failure_stage = "WAIT"
+            time.sleep(POLL_INTERVAL_SECONDS)
+    except Exception as exc:
+        if samples:
+            if failure_stage in {"STATUS_OBSERVATION", "POSITION_OBSERVATION"}:
+                duration_key = "status_read_seconds" if failure_stage == "STATUS_OBSERVATION" else "position_read_seconds"
+                samples[-1][duration_key] = time.monotonic() - call_started
+            samples[-1]["error"] = {"type": type(exc).__name__, "message": str(exc), "stage": failure_stage}
+        raise failure(str(exc), "WAIT_ERROR", exc) from exc
 
-        time.sleep(
-            POLL_INTERVAL_SECONDS
-        )
-
-    raise MissionExecutionError(
-        "Waypoint "
-        f"{waypoint['waypoint_id']} "
-        "was not reached within "
-        f"{timeout_seconds} seconds."
+    raise failure(
+        f"Waypoint {waypoint['waypoint_id']} was not reached within {timeout_seconds} seconds.", "TIMEOUT",
     )
 
 
@@ -364,6 +383,7 @@ def _execution_compatibility_errors(
     return errors
 
 
+@serialized_v1
 def execute_approved_mission(
     mission_path: str,
     *,
@@ -970,6 +990,7 @@ def execute_approved_mission(
             ),
             "vehicle": vehicle,
             "error": str(exc),
+            "waypoint_diagnostic": exc.diagnostic if isinstance(exc, WaypointWaitError) else None,
             "events": events,
             "recovery": recovery,
         }

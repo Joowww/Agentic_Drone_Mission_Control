@@ -80,8 +80,10 @@ anterior tras una edición. No requieren Ollama, Docker ni vuelos.
 
 Pendiente: evaluación conversacional real con Hermes, borrado de campos/waypoints,
 control de concurrencia y autorización vinculada a una versión de misión.
-La validación actual no demuestra un preflight virtual formal con simulación,
-análisis y replanning. Sólo está implementada la ejecución `navigate`; no están
+La validación y exportación por sí solas no realizan un ensayo. El primer
+[virtual preflight explícito](virtual-preflight.md) permite ensayar la misión
+con LangGraph y un informe asociado a su contenido; no aplica replanning ni
+repite vuelos automáticamente. Sólo está implementada la ejecución `navigate`; no están
 verificadas acciones agrícolas ni seguimiento de velocidad. Volver al lanzamiento
 y aterrizar no equivale a activar RTL. Exportar `.plan` no demuestra que ArduPilot
 cargue ese archivo. No se ha probado hardware real.

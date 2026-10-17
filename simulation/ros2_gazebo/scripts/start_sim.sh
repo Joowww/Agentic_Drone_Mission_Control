@@ -7,6 +7,14 @@ CONTAINER="tfg-ardupilot-gazebo"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SIM_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+# Serialize lifecycle operations against the same container, including callers
+# whose MCP request has already timed out while the backend is still running.
+exec 9>/tmp/tfg_simulation_control.lock
+if ! flock -n 9; then
+    echo "[ERROR] Another simulation lifecycle operation is in progress."
+    exit 1
+fi
+
 HOST_LAUNCH="$SIM_DIR/launch/tfg_demo_2drones.launch.py"
 
 CONTAINER_SOURCE_LAUNCH="/root/ardu_ws/src/ardupilot_gz/ardupilot_gz_bringup/launch/tfg_demo_2drones.launch.py"
@@ -33,21 +41,15 @@ docker start "$CONTAINER" >/dev/null
 
 echo "[2/6] Stopping previous simulation processes..."
 
-docker exec "$CONTAINER" bash -lc '
-pkill -INT -f "[r]os2 launch ardupilot_gz_bringup" 2>/dev/null || true
-pkill -TERM -f "[g]z sim" 2>/dev/null || true
-pkill -TERM -f "[a]rducopter" 2>/dev/null || true
-pkill -TERM -f "[a]rdurover" 2>/dev/null || true
-pkill -TERM -f "[m]icro_ros_agent" 2>/dev/null || true
-pkill -TERM -f "[m]avproxy.py" 2>/dev/null || true
-'
+docker cp "$SCRIPT_DIR/sim_processes.py" "$CONTAINER:/tmp/tfg_sim_processes.py" >/dev/null
+docker exec "$CONTAINER" python3 /tmp/tfg_sim_processes.py stop
 
 echo "      Waiting for SITL ports 5760 and 5770 to be released..."
 
 for i in $(seq 1 30); do
 
     PORT_STATUS="$(
-        docker exec "$CONTAINER" python3 - <<'PYPORT'
+        docker exec -i "$CONTAINER" python3 - <<'PYPORT'
 ports = {5760, 5770}
 busy = set()
 
@@ -129,18 +131,9 @@ docker cp \
 echo "[5/6] Starting Gazebo + ArduPilot..."
 
 docker exec "$CONTAINER" bash -lc '
-rm -f /tmp/tfg_demo.log /tmp/tfg_demo.pid
-
 source /opt/ros/humble/setup.bash
 source /root/ardu_ws/install/setup.bash
-
-nohup ros2 launch ardupilot_gz_bringup \
-tfg_demo_2drones.launch.py \
-rviz:=false \
-gui:=true \
-> /tmp/tfg_demo.log 2>&1 &
-
-echo $! > /tmp/tfg_demo.pid
+exec python3 /tmp/tfg_sim_processes.py start
 '
 
 echo "[6/6] Waiting for AP_DDS..."

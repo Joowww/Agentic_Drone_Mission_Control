@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "report_persisted": true,
+  "source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/simulation/ros2_gazebo/results/hermes_conversational_2026_10_17/blocked_battery_mission.json",
+  "run_id": "0844c190-59c8-40cf-991e-93cebbd3cf02",
+  "run_directory": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/0844c190-59c8-40cf-991e-93cebbd3cf02",
+  "snapshot_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/0844c190-59c8-40cf-991e-93cebbd3cf02/mission.json",
+  "report_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/0844c190-59c8-40cf-991e-93cebbd3cf02/report.json",
+  "mission_sha256": "851c4226b53fac6cc91e7048214c62367afac42a785201b21c2761324c1195cc",
+  "mission_identity": {
+    "mission_id": "prueba_hermes_001_bateria_baja",
+    "name": "Prueba Hermes bateria insuficiente",
+    "vehicle_id": "drone_01",
+    "simulated_vehicle": "v1"
+  },
+  "status": "BLOCKED",
+  "stage": "validate",
+  "reasons": [
+    "Deterministic validation did not approve the mission.",
+    "The vehicle would finish the mission below the required battery reserve."
+  ],
+  "validation": {
+    "mission_id": "prueba_hermes_001_bateria_baja",
+    "mission_status": "NOT FEASIBLE",
+    "execution_status": "BLOCKED",
+    "qgc_plan_path": null,
+    "failure_reasons": [
+      "The vehicle would finish the mission below the required battery reserve."
+    ],
+    "errors": [],
+    "replan_status": "ACTION REQUIRED",
+    "replan_actions": [
+      "Recharge or replace the battery so the mission starts with at least 20.1% battery."
+    ]
+  },
+  "readiness": null,
+  "compatibility_errors": [],
+  "executor_result": null,
+  "execution_attempted": false,
+  "analysis": null,
+  "started_at": "2026-10-17T13:34:56.623174+00:00",
+  "transitions": [
+    {
+      "node": "snapshot",
+      "started_at": "2026-10-17T13:34:56.628234+00:00",
+      "finished_at": "2026-10-17T13:34:56.628843+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "validate",
+      "started_at": "2026-10-17T13:34:56.629592+00:00",
+      "finished_at": "2026-10-17T13:34:56.633020+00:00",
+      "status": "BLOCKED"
+    },
+    {
+      "node": "write_report",
+      "started_at": "2026-10-17T13:34:56.633725+00:00",
+      "finished_at": "2026-10-17T13:34:56.633725+00:00",
+      "status": "BLOCKED"
+    }
+  ],
+  "finished_at": "2026-10-17T13:34:56.633725+00:00",
+  "scope": "Gazebo/ArduPilot SITL, simulated v1 only",
+  "hardware_authorized": false,
+  "subsequent_execution_authorized": false,
+  "replan_proposals": [
+    "Recharge or replace the battery so the mission starts with at least 20.1% battery."
+  ]
+}
