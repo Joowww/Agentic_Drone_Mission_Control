@@ -2,6 +2,12 @@ from __future__ import annotations
 
 from mcp.server import MCPServer
 
+from models.mission_plan_draft import MissionPlanDraft
+from tools.hermes_mission_planning import (
+    update_mission_draft as update_draft_backend,
+    finalize_mission_draft as finalize_draft_backend,
+)
+
 from tools.hermes_mission_validation import (
     validate_mission_file,
 )
@@ -28,6 +34,13 @@ mcp = MCPServer(
         "tools for the Agentic Drone Mission Control TFG."
     ),
     instructions=(
+        "Interpret operator language into explicit draft fields without inventing facts. "
+        "Use update_mission_draft, retain draft_id across turns, ask for missing fields, "
+        "then finalize_mission_draft to build, validate and export. Choose tools "
+        "according to requests and results without a fixed tool count. Obtain explicit "
+        "user authorization before starting simulation or executing the reviewed "
+        "mission_path. APPROVED is not user consent or formal virtual preflight. "
+        "Only navigate execution is supported; speed tracking is not verified. "
         "Use these tools to validate drone missions and interact "
         "with the ROS2, Gazebo and ArduPilot simulation stack. "
         "Mission safety decisions are deterministic and must never "
@@ -37,6 +50,24 @@ mcp = MCPServer(
     ),
     version="0.2.0",
 )
+
+
+@mcp.tool(
+    description="Create or continue a persistent draft from explicit operator facts. Retain draft_id to continue; empty updates retrieve it. Returns missing fields. Null preserves values and waypoint IDs merge. No flight commands.",
+    structured_output=True,
+)
+def update_mission_draft(
+    updates: MissionPlanDraft, draft_id: str | None = None,
+) -> dict[str, object]:
+    return update_draft_backend(updates, draft_id)
+
+
+@mcp.tool(
+    description="Build MissionDefinition JSON from a complete draft, deterministically validate and export QGC .plan. Returns mission_path for readiness/execution tools or missing fields. Does not start simulation or grant user flight authorization.",
+    structured_output=True,
+)
+def finalize_mission_draft(draft_id: str) -> dict[str, object]:
+    return finalize_draft_backend(draft_id)
 
 
 @mcp.tool(
@@ -72,7 +103,7 @@ def validate_and_export_qgc(
     return validate_mission_file(
         mission_path,
         export_qgc=True,
-        output_directory=output_directory,
+        output_dir=output_directory,
     )
 
 
