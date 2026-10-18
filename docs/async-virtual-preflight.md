@@ -279,3 +279,92 @@ controla órdenes ROS externas ni resuelve todas las carreras TOCTOU de archivos
 - Se verificaron por SHA-256 los 17 artefactos de evidencia, sin modificaciones.
 - El contenido anterior de este documento se conserva íntegro como prefijo.
 - Sin Docker real, simulación, vuelos, llamadas MCP operativas, commit ni push.
+
+
+## 2026-10-17 — Vínculos con planificación y revisiones
+
+El nuevo flujo de planificación, geometría, propuestas y consulta se documenta en
+[Planificación, revisiones y explicación de estado](mission-lifecycle-demo.md).
+No sustituye start/get ni cambia su admisión, gate, exclusión o recuperación.
+
+En una admisión nueva desde un snapshot finalizado/revisado con sidecar verificable,
+`job.json` guarda `source_artifact` (tipo, identificador, hash de misión y de registro).
+El worker lo conserva en el mismo estado/informe LangGraph. Un JSON ordinario sin
+sidecar sigue siendo una entrada válida y su vínculo con un borrador es desconocido.
+La consulta global sólo asocia por estos vínculos e integridad, nunca por nombre,
+fecha o igualdad aparente de rutas. No añade un índice global ni migra evidencias.
+
+Se puede obtener una propuesta persistente de un informe final y construir una
+revisión con cambios explícitos aceptados, declaración de condiciones físicas y
+validación/exportación existentes. Eso no ensaya la revisión ni hereda el PASSED,
+readiness o consentimiento de su fuente; tampoco libera restricciones de `v1`.
+La consulta de estado no revalida, exporta, comprueba la simulación ni ejecuta.
+
+Hermes debe conservar además `draft_id`/versión, `finalization_id`, `proposal_id`/hash
+y `revision_id` cuando existan. Finalizar y construir una revisión ya validan y
+exportan: no repetir esos pasos para explicar el resultado. La autorización
+explícita sigue siendo necesaria para cada ensayo del snapshot revisado; guardar
+o validar lo solicitado no necesita una aprobación adicional.
+
+El resolvedor compartido ahora rechaza un UUID histórico presente en varios
+informes, en lugar de escoger uno por orden de archivos. Los vínculos nuevos se
+han verificado offline con dobles de infraestructura/worker; no tienen un nuevo
+vuelo operativo. Las evidencias, parada y límites del ensayo f5f55084 documentados
+arriba permanecen sin cambios, incluida la causa desconocida del fallo WP3 anterior.
+
+
+## 18/10/2026 — Resumen y detalle de consultas
+
+El wrapper MCP 0.3.0 de `get_virtual_preflight` devuelve `view=summary` por defecto;
+`view=detail` conserva la respuesta completa anterior con el resultado bruto.
+El backend Python, admisión, worker, snapshot, análisis y exclusión no cambian.
+El resumen conserva estado de admisión/ejecución/resultado, restricción de v1,
+análisis/motivos, recuperación y readiness registrada; no resume un worker
+interrumpido como aterrizado ni omite errores para reducir bytes. Detalles de
+compatibilidad y mediciones en [la guía](mission-lifecycle-demo.md).
+
+SITL requiere solicitud del ensayo simulado, no autorización de hardware real.
+PASSED no demuestra la causa del fallo WP3 anterior. Un qgc_plan_path nulo sólo
+indica que esa operación no registró una exportación, sin demostrar ausencia de
+planes anteriores. Los nombres de controles se toman de la salida real; los que
+siguen a un fallo temprano no se dan por ejecutados. La reducción de payload se
+comprobó offline; el efecto sobre compacciones de Hermes está pendiente.
+
+## 18/10/2026 — Ensayo geométrico persistido y revisión del árbol
+
+El ensayo `4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4`, clave
+`joel-rectangulo-preflight-01`, conserva PASSED, cinco puntos, regreso y
+aterrizaje/desarmado. Se verificaron offline sus bytes, vínculo explícito con la
+finalización 8be78baa del borrador 1f84f808 y análisis recalculado; no se repitió
+el ensayo. Workflow 480,344587 s y executor 471,332987 s: supera 300 s, sin que
+estos intervalos equivalgan a tiempo en vuelo. FINISHED consta en job.json;
+la consulta final con vehicle_restriction=null procede del operador y no se ha
+encontrado una respuesta de consulta guardada que pruebe la liberación histórica.
+Inventario, errores finales, hashes y límites en el
+[archivo de evidencias](../simulation/ros2_gazebo/results/hermes_conversational_2026_10_18/README.md).
+
+Corrección del estado de la documentación anterior: la revisión actual detecta
+que el wrapper sigue en 0.2.0 y no conecta las vistas ni acepta `view`. Por tanto,
+la sección de resumen/detalle conserva un contrato previsto, pendiente de conectar
+y verificar, no una capacidad MCP comprobada en este árbol. Se detallan los
+[defectos reproducidos y evaluación actualizada](mission-lifecycle-demo.md#18102026--evaluación-actualizada-tras-el-ensayo-geométrico).
+El funcionamiento asíncrono start/get existente y sus límites no se modifican.
+
+## 18/10/2026 — Corrección offline posterior del wrapper de consulta
+
+El defecto de vistas descrito arriba queda corregido en el registro MCP 0.3.0:
+get_virtual_preflight expone `view` summary/detail, default summary; detail entrega
+el resultado completo anterior y el backend Python mantiene su contrato. La
+consulta conserva fase, resultado, incertidumbre, restricción de v1, razones,
+readiness guardada y análisis; no inicia ni repite un ensayo. ERROR/NOT_FOUND
+se devuelven completos. `error_evidence` del resumen usa una lista `{path, value}`
+con ubicación en la respuesta completa y valores sin truncar.
+
+Se verifican esquemas, despacho real en proceso y salidas del SDK, incluyendo
+interrupción sin aterrizaje inferido y restricciones conservadas. Las pruebas son
+offline, posteriores al PASSED del rectángulo 4bb6a20e, que no se repitió y cuyas
+evidencias permanecen intactas. Su consulta mide 11.658 bytes de detalle y 6.414 de
+resumen como JSON UTF-8 indentado, no tráfico MCP total, tokens o compacciones.
+[Contrato, tests y otras mediciones](mission-lifecycle-demo.md#18102026--corrección-posterior-offline-de-las-vistas-registradas).
+Falta probar conversacionalmente estos wrappers después de recargar Hermes;
+no se acredita aquí resistencia a reinicios del host ni se cambia start/worker.

@@ -8,6 +8,7 @@ class VirtualPreflightState(TypedDict, total=False):
     expected_sha256: str | None
     persist_progress: bool
     source_path: str
+    source_artifact: dict | None
     run_id: str
     run_directory: str
     snapshot_path: str

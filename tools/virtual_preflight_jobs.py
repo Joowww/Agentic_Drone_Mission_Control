@@ -11,6 +11,8 @@ import subprocess
 import sys
 from uuid import UUID, uuid4
 
+from planning.mission_artifacts import artifact_for_input
+
 from tools.vehicle_execution_lock import (
     PROJECT_ROOT, VehicleBusy, atomic_json, file_mutex, identity_alive,
     process_identity, release, reserve, restriction, utc_now,
@@ -75,18 +77,30 @@ def paths(directory):
             "job_path": str(directory / "job.json"), "worker_log_path": str(directory / "worker.log")}
 
 
-def _view(run_id):
+def locate_preflight_report(run_id):
+    """Resolve a report only within configured run/evidence roots; read-only."""
     directory = run_directory(run_id)
     job = read_json(directory / "job.json", RUN_ROOT)
     report = read_json(directory / "report.json", RUN_ROOT)
     actual_report_path = directory / "report.json"
     if job is None and report is None:
+        matches = []
         # Only fixed repository evidence locations; never open a path from JSON.
         for candidate in sorted(LEGACY_ROOT.glob("virtual_preflight_*/*_report.json")):
             historical = read_json(candidate, LEGACY_ROOT)
             if historical and historical.get("run_id") == run_id:
-                report, actual_report_path = historical, candidate
-                break
+                matches.append((historical, candidate))
+        if len(matches) > 1:
+            raise ValueError("Ambiguous historical run_id: multiple persisted reports")
+        if matches:
+            report, actual_report_path = matches[0]
+    return report, actual_report_path
+
+
+def _view(run_id):
+    directory = run_directory(run_id)
+    job = read_json(directory / "job.json", RUN_ROOT)
+    report, actual_report_path = locate_preflight_report(run_id)
     if job is None and report is None:
         return {"run_id": run_id, "job_state": "NOT_FOUND", "result_status": None, "phase": None}
     if report is not None and report.get("run_id") != run_id:
@@ -154,6 +168,7 @@ def start_virtual_preflight(mission_path: str, request_key: str):
                         else "REQUEST_CONFLICT", "spawned": False}
             content = read_mission_input(mission_path)
             digest = hashlib.sha256(content).hexdigest()
+            source_artifact = artifact_for_input(mission_path, digest)
             run_id = str(uuid4())
             launch_token = uuid4().hex
             try:
@@ -166,6 +181,7 @@ def start_virtual_preflight(mission_path: str, request_key: str):
                 directory.mkdir(parents=True)
                 (directory / "input.json").write_bytes(content)
                 job = {"run_id": run_id, "request_key": request_key, "input_sha256": digest,
+                       "source_artifact": source_artifact,
                        "original_source_path": str(Path(mission_path).resolve()),
                        "launch_token_sha256": hashlib.sha256(launch_token.encode()).hexdigest(),
                        "created_at": utc_now(), "admission_status": "ACCEPTED", "job_state": "ADMITTED",

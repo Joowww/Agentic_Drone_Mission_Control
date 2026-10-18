@@ -3,6 +3,10 @@ from __future__ import annotations
 from mcp.server import MCPServer
 
 from models.mission_plan_draft import MissionPlanDraft
+from planning.relative_routes import RelativeRouteRequest
+from planning.draft_provenance import InputAttribution
+from tools.mission_state import get_mission_state as mission_state_backend
+from tools.mission_response_views import ResponseView, summarize_preflight, summarize_proposal
 from tools.virtual_preflight import run_virtual_preflight as preflight_backend
 from tools.virtual_preflight_jobs import (
     start_virtual_preflight as start_preflight_backend,
@@ -11,6 +15,7 @@ from tools.virtual_preflight_jobs import (
 from tools.hermes_mission_planning import (
     update_mission_draft as update_draft_backend,
     finalize_mission_draft as finalize_draft_backend,
+    generate_draft_route as generate_route_backend,
 )
 
 from tools.hermes_mission_validation import (
@@ -30,6 +35,11 @@ from tools.simulation_status import (
     check_simulation_ready as check_simulation_backend,
 )
 
+from planning.mission_revisions import (
+    RevisionChanges, propose_mission_revision as propose_revision_backend,
+    get_revision_proposal as get_proposal_backend, build_mission_revision as build_revision_backend,
+)
+
 
 mcp = MCPServer(
     name="tfg-mission-control",
@@ -39,10 +49,48 @@ mcp = MCPServer(
         "tools for the Agentic Drone Mission Control TFG."
     ),
     instructions=(
-        "Interpret operator language into explicit draft fields without inventing facts. "
+        "Save ONLY facts/decisions actually supplied by the operator; leave all absent values null. "
+        "A mission name or rectangular shape does not imply survey, agriculture, inspection, "
+        "return-to-home, a safety limit or a flight height. Ask for purpose and missing decisions. "
+        "Never invent safety limits or present suggested heights as standards without a basis. "
+        "Existing compatibility defaults are not operator decisions; expose them and provenance "
+        "caveats before seeking explicit consent for a reviewed rehearsal. No new safety defaults. "
+        "MCP data originates from YOU: an operator attribution is your unverified declaration, "
+        "not authenticated evidence of dialogue fidelity. Use attributions only when supported "
+        "by the operator's actual statements, otherwise retain UNKNOWN. "
         "Use update_mission_draft, retain draft_id across turns, ask for missing fields, "
-        "then finalize_mission_draft to build, validate and export. Choose tools "
-        "according to requests and results without a fixed tool count. Obtain explicit "
+        "and persist incomplete geometry_intent (mode/dimensions/known parameters) in that SAME "
+        "draft instead of burying dimensions in objective text. Merge partial facts across turns; "
+        "HOME alone cannot complete geometry. Read the joint mission/geometry pending lists. "
+        "then finalize_mission_draft to build, validate and export. "
+        "Choose tools according to requests and results without a fixed tool count. "
+        "Retain draft_revision and supply expected_revision for edits/finalization; "
+        "generate_draft_route persists partial parameters and generates only when complete; "
+        "geometry changes to an existing route require explicit replacement and current version. "
+        "Ask for missing geometry decisions; never assume orientation, traversal, home location, "
+        "closure, altitude reference or return. Finalization/revision ALREADY validates and "
+        "exports: explain its result without repeating validation/export. Saving and validating "
+        "an already requested mission needs no additional authorization. "
+        "Use get_mission_state with retained IDs after reload or to explain links and next steps; "
+        "it requires an identifier and is NOT a list operation. INVALID_ARGUMENTS/ERROR does "
+        "not establish that no drafts exist: inventory remains unknown. For a NEW mission, "
+        "create its draft directly; for continuation recover a retained identifier or ask for it. "
+        "When the project response already supplies draft, geometry, provenance and pending "
+        "facts, use it without redundant resource discovery or direct file reads. "
+        "Read-only state/proposal/preflight queries default to view=summary; use view=detail "
+        "with the SAME retained identifiers when full fields/events/provenance are needed. "
+        "Follow detail_access instead of inventing identifiers or paths. Neither view grants "
+        "consent, starts a worker, or changes vehicle ownership. Invalid arguments are not "
+        "an empty inventory. Never repeat writes to recover a lost response: query retained "
+        "IDs or the preflight request_key; if unavailable, reconcile with the operator. "
+        "SITL rehearsal consent does not require hardware authorization; recommendations are "
+        "not new technical gates. PASSED does not explain the previous WP3 failure, and "
+        "qgc_plan_path=null does not establish absence of earlier exports. "
+        "do not explore files to guess a latest mission. Saved readiness is historical. "
+        "Propose revisions from final verified run_id, retain proposal_id/hash/request keys, "
+        "and build only explicitly accepted changes in a NEW artifact. Physical changes require "
+        "operator declarations; recommendations are not telemetry or interventions. "
+        "Obtain explicit "
         "user authorization before starting simulation or executing the reviewed "
         "mission_path. APPROVED is not user consent or formal virtual preflight. "
         "For an explicitly requested rehearsal prefer start_virtual_preflight with a "
@@ -63,8 +111,27 @@ mcp = MCPServer(
         "A mission must pass the execution gate before flight "
         "commands can be issued."
     ),
-    version="0.2.0",
+    version="0.3.0",
 )
+
+
+@mcp.tool(description="Persist a proposal from a final verified preflight run_id and snapshot hash. Recommendations only; no source edits or simulation. Preserve request_key/proposal_id and review proposal_sha256 before accepting changes.", structured_output=True)
+def propose_mission_revision(run_id: str, request_key: str) -> dict[str, object]:
+    return propose_revision_backend(run_id, request_key)
+
+
+@mcp.tool(description="Read a persistent proposal and its reviewed version/hash after reload. view=summary (default) keeps source IDs/hashes, reasons, conditions and consent; view=detail preserves the complete previous response including executor evidence. Both verify the same source-copy integrity. No mission edits, simulation, flight or release of v1 restrictions.", structured_output=True)
+def get_revision_proposal(proposal_id: str, view: ResponseView = "summary") -> dict[str, object]:
+    full = get_proposal_backend(proposal_id)
+    return summarize_proposal(full) if view == "summary" else full
+
+
+@mcp.tool(description="Build a NEW mission revision from explicitly accepted/operator-supplied changes and the reviewed proposal hash. Physical battery/wind/performance updates require field declarations, labelled operator-declared, not telemetry. Revalidates and exports QGC once; may remain BLOCKED. Never flies or inherits flight consent. Same request_key is idempotent; different inputs conflict.", structured_output=True)
+def build_mission_revision(proposal_id: str, expected_proposal_sha256: str, changes: RevisionChanges,
+                           operator_statement: str, request_key: str,
+                           declarations: dict[str, str] | None = None) -> dict[str, object]:
+    return build_revision_backend(proposal_id, expected_proposal_sha256, changes, operator_statement,
+                                  request_key, declarations)
 
 
 @mcp.tool(
@@ -86,11 +153,15 @@ def start_virtual_preflight(mission_path: str, request_key: str) -> dict[str, ob
         "Read-only preflight lookup by exactly one of run_id or request_key, including "
         "historical reports. Returns job state, current/last phase, final result if available, "
         "report and paths. Never spawns, resumes, clears v1 ownership or commands flight. "
+        "view=summary by default; view=detail returns the complete previous response and raw "
+        "executor evidence. Both retain result/reasons, uncertainty and vehicle restriction. "
         "Poll the same run every 15-30 seconds. INTERRUPTED/UNCONFIRMED never implies landing."
     ), structured_output=True,
 )
-def get_virtual_preflight(run_id: str | None = None, request_key: str | None = None) -> dict[str, object]:
-    return get_preflight_backend(run_id=run_id, request_key=request_key)
+def get_virtual_preflight(run_id: str | None = None, request_key: str | None = None,
+                          view: ResponseView = "summary") -> dict[str, object]:
+    full = get_preflight_backend(run_id=run_id, request_key=request_key)
+    return summarize_preflight(full) if view == "summary" else full
 
 
 @mcp.tool(
@@ -113,21 +184,39 @@ def run_virtual_preflight(mission_path: str) -> dict[str, object]:
 
 
 @mcp.tool(
-    description="Create or continue a persistent draft from explicit operator facts. Retain draft_id to continue; empty updates retrieve it. Returns missing fields. Null preserves values and waypoint IDs merge. No flight commands.",
+    description="Save only operator-supplied mission facts and partial geometry_intent together; no inferred purpose/agriculture, safety limits, height or return decision. Geometry patches merge non-null facts, preserving dimensions; an explicit mode change clears old shape-specific fields. Retain draft_id/draft_revision; geometry edits require current expected_revision, existing routes require replace_route=true. A partial intent saves without waypoints; invalid facts do not overwrite state. Empty updates retrieve. Returns mission/geometry pending fields, effective compatibility defaults and UNVERIFIED field attribution (optional JSON-pointer attributions). Ordinary legacy waypoint updates merge; explicit manual replacement detaches geometry intent. No extra approval for requested saving, and no flight commands.",
     structured_output=True,
 )
 def update_mission_draft(
     updates: MissionPlanDraft, draft_id: str | None = None,
+    expected_revision: int | None = None,
+    replace_route: bool = False,
+    attributions: dict[str, InputAttribution] | None = None,
 ) -> dict[str, object]:
-    return update_draft_backend(updates, draft_id)
+    return update_draft_backend(updates, draft_id, expected_revision, replace_route, attributions)
+
+
+@mcp.tool(description="Read-only mission explanation using exactly one retained draft_id, revision_id or run_id; NOT a draft inventory. Missing identifier is INVALID_ARGUMENTS, lookup_performed=false, inventory UNKNOWN, never evidence of no drafts. view=summary by default keeps geometry intent/version/count, pending decisions, attribution caveats, defaults, validation and verified links without repeated trees. view=detail returns the complete previous response including route and field provenance. Both perform the same integrity checks. Use retained IDs/detail_access without redundant resource/file exploration. Optional finalization_id selects a draft snapshot. Historical readiness is not current; no consent, validation, writes or operational effects.", structured_output=True)
+def get_mission_state(draft_id: str | None = None, finalization_id: str | None = None,
+                      revision_id: str | None = None, run_id: str | None = None,
+                      view: ResponseView = "summary") -> dict[str, object]:
+    return mission_state_backend(draft_id=draft_id, finalization_id=finalization_id,
+                                 revision_id=revision_id, run_id=run_id, view=view)
+
+
+@mcp.tool(description="Save/complete structured geometry intent in an existing versioned draft, including incomplete parameters; null/omitted facts preserve earlier dimensions/decisions, explicit mode change resets old shape fields. Return joint geometry/mission pending fields; generate waypoints only when all geometry decisions are explicit. HOME alone is insufficient. Existing routes require replace_route=true for changed geometry; incomplete replacements invalidate old waypoints. Metres, length-edge heading clockwise from north. Deterministic generation is not operator attribution, agriculture or coverage. Optional JSON-pointer attributions are unverified agent declarations. Never flies.", structured_output=True)
+def generate_draft_route(draft_id: str, expected_revision: int, request: RelativeRouteRequest,
+                         replace_route: bool = False,
+                         attributions: dict[str, InputAttribution] | None = None) -> dict[str, object]:
+    return generate_route_backend(draft_id, expected_revision, request, replace_route, attributions)
 
 
 @mcp.tool(
-    description="Build MissionDefinition JSON from a complete draft, deterministically validate and export QGC .plan. Returns mission_path for readiness/execution tools or missing fields. Does not start simulation or grant user flight authorization.",
+    description="On requested finalization, snapshot the complete draft, validate and export QGC .plan in ONE operation without another saving/validation approval. Pending geometry also blocks finalization. Supply expected_revision; retain finalization_id/mission_path/hashes. Explain this result without repeating validation/export and show compatibility defaults and unverified provenance before seeking rehearsal consent. Unsafe plans remain BLOCKED candidates. Never starts simulation or grants flight consent.",
     structured_output=True,
 )
-def finalize_mission_draft(draft_id: str) -> dict[str, object]:
-    return finalize_draft_backend(draft_id)
+def finalize_mission_draft(draft_id: str, expected_revision: int | None = None) -> dict[str, object]:
+    return finalize_draft_backend(draft_id, expected_revision)
 
 
 @mcp.tool(

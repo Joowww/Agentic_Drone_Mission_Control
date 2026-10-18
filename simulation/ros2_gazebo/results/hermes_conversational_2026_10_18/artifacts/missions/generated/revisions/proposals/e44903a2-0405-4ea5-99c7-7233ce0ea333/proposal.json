@@ -1,0 +1,114 @@
+{
+  "proposal_id": "e44903a2-0405-4ea5-99c7-7233ce0ea333",
+  "version": 1,
+  "created_at": "2026-10-18T07:24:21.228968+00:00",
+  "run_id": "d4519cab-ebd1-4359-b547-44be38294a6a",
+  "mission_sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+  "report_sha256": "f265cf77fef275c4f0cc600a546dc6a4e339b80116dc3ba97caf0e25c92777a2",
+  "mission_id": "prueba_hermes_001",
+  "category": "INVESTIGATE_EXECUTION",
+  "source_report_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/d4519cab-ebd1-4359-b547-44be38294a6a/report.json",
+  "source_mission_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/d4519cab-ebd1-4359-b547-44be38294a6a/mission.json",
+  "reasons": [
+    "Executor error: Waypoint WP3 was not reached within 180 seconds.",
+    "Acceptance criterion failed: completed",
+    "Acceptance criterion failed: no_failure_or_recovery",
+    "Acceptance criterion failed: count_and_return_flag",
+    "Acceptance criterion failed: event_sequence",
+    "Acceptance criterion failed: all_waypoints_reached",
+    "Acceptance criterion failed: return_home_reached",
+    "Acceptance criterion failed: landed_and_disarmed",
+    "Acceptance criterion failed: position_evidence_consistent"
+  ],
+  "proposed_changes": [],
+  "pending_conditions": [
+    "Investigate the failed waypoint/telemetry/environment; cause unknown. No automatic fix or repeat flight."
+  ],
+  "automatic_patch": null,
+  "diagnostic": null,
+  "execution_evidence": {
+    "success": false,
+    "status": "FAILED",
+    "stage": "MISSION_EXECUTION",
+    "mission_id": "prueba_hermes_001",
+    "vehicle": "v1",
+    "error": "Waypoint WP3 was not reached within 180 seconds.",
+    "events": [
+      {
+        "event": "GUIDED_MODE",
+        "success": true
+      },
+      {
+        "event": "ARM",
+        "success": true
+      },
+      {
+        "event": "TAKEOFF_COMMAND",
+        "success": true,
+        "altitude_m": 5.0
+      },
+      {
+        "event": "TAKEOFF_REACHED",
+        "reached": true,
+        "target_altitude_m": 5.0,
+        "altitude_amsl_m": 589.260009765625,
+        "altitude_error_m": 0.07000732421875
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP1",
+        "success": true
+      },
+      {
+        "event": "WAYPOINT_REACHED",
+        "reached": true,
+        "waypoint_id": "WP1",
+        "horizontal_error_m": 0.4515794605638958,
+        "altitude_error_m": 0.010009765625,
+        "final_position": {
+          "latitude": -35.36323928833008,
+          "longitude": 149.1652069091797,
+          "altitude_amsl_m": 589.2000122070312
+        }
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP2",
+        "success": true
+      },
+      {
+        "event": "WAYPOINT_REACHED",
+        "reached": true,
+        "waypoint_id": "WP2",
+        "horizontal_error_m": 0.5050285972530544,
+        "altitude_error_m": 0.030029296875,
+        "final_position": {
+          "latitude": -35.36323928833008,
+          "longitude": 149.1652374267578,
+          "altitude_amsl_m": 589.1599731445312
+        }
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP3",
+        "success": true
+      }
+    ],
+    "recovery": {
+      "landing_attempted": true,
+      "landing_completed": true,
+      "landing": {
+        "landed": true,
+        "armed": false,
+        "flying": false,
+        "final_position": {
+          "latitude": -35.36323547363281,
+          "longitude": 149.1652374267578,
+          "altitude_amsl_m": 584.1900024414062
+        }
+      }
+    }
+  },
+  "replanner_scope": "Text recommendations only; no generated route, no guaranteed battery solution.",
+  "flight_consent": "NOT_INHERITED"
+}

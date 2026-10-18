@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "measured_at_utc": "2026-10-18T09:20:35.333311+00:00",
+  "method": "Offline in-process SDK mcp.call_tool dispatch to real registered read-only wrappers; structured_content serialized as UTF-8 JSON with ensure_ascii=False and allow_nan=False; no network/stdio transport",
+  "server_version": "0.3.0",
+  "limits": [
+    "Payload bytes only: not MCP framing, serialized text plus structuredContent, tokens, latency or LLM compactions",
+    "Current artifact graph includes five-waypoint run; sizes are not directly comparable to earlier smaller graph measurements",
+    "Queries retain complete backend checks; CPU/I/O reduction is not measured",
+    "Earlier WP3/PASSED size profiles used get_mission_state(run_id); present preflight profiles use get_virtual_preflight(run_id), so those pairs are different queries"
+  ],
+  "registered_input_schemas": {
+    "get_revision_proposal": {
+      "properties": {
+        "proposal_id": {
+          "title": "Proposal Id",
+          "type": "string"
+        },
+        "view": {
+          "default": "summary",
+          "enum": [
+            "summary",
+            "detail"
+          ],
+          "title": "View",
+          "type": "string"
+        }
+      },
+      "required": [
+        "proposal_id"
+      ],
+      "title": "get_revision_proposalArguments",
+      "type": "object"
+    },
+    "get_virtual_preflight": {
+      "properties": {
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "request_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Key"
+        },
+        "view": {
+          "default": "summary",
+          "enum": [
+            "summary",
+            "detail"
+          ],
+          "title": "View",
+          "type": "string"
+        }
+      },
+      "title": "get_virtual_preflightArguments",
+      "type": "object"
+    },
+    "get_mission_state": {
+      "properties": {
+        "draft_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Draft Id"
+        },
+        "finalization_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Finalization Id"
+        },
+        "revision_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Revision Id"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "view": {
+          "default": "summary",
+          "enum": [
+            "summary",
+            "detail"
+          ],
+          "title": "View",
+          "type": "string"
+        }
+      },
+      "title": "get_mission_stateArguments",
+      "type": "object"
+    }
+  },
+  "queries": [
+    {
+      "label": "geometric_draft",
+      "tool": "get_mission_state",
+      "arguments": {
+        "draft_id": "1f84f808-c688-48c9-b7da-1b1c4b29c094"
+      },
+      "default_matches_summary": true,
+      "formats": {
+        "indent_2": {
+          "detail_bytes": 62485,
+          "summary_bytes": 12798,
+          "reduction_percent": 79.52,
+          "detail_sha256": "8b0c8db2d984279e76dca91dc49c655815a63654b551f6a8c1f6c7cb0a5f736c",
+          "summary_sha256": "94b6638c7f40f86cbf8662340e78fa9cd0aee890e512c9460b0925d071294e24"
+        },
+        "compact": {
+          "detail_bytes": 47096,
+          "summary_bytes": 10067,
+          "reduction_percent": 78.62,
+          "detail_sha256": "acb4151a6c97c9052c1abe5a0c59ffe3f61094498a86ce0bdf579a3d5a7fb168",
+          "summary_sha256": "cae74b6f52bf7c58e601f486c616138378a173b6e74dcf8c08c383272b7a71fe"
+        }
+      }
+    },
+    {
+      "label": "approved_revision",
+      "tool": "get_mission_state",
+      "arguments": {
+        "revision_id": "b880d6c3-4557-42c7-ada4-5a04db5e9237"
+      },
+      "default_matches_summary": true,
+      "formats": {
+        "indent_2": {
+          "detail_bytes": 21866,
+          "summary_bytes": 14912,
+          "reduction_percent": 31.8,
+          "detail_sha256": "f30a6053f57a2ea5f68dc37e20c57a41e2a3eaafbb99a41f72b82a78632235e6",
+          "summary_sha256": "9bc9fea2dd3c20d9ffac58bce676f8081d837a784510071d3418976512854aa2"
+        },
+        "compact": {
+          "detail_bytes": 17860,
+          "summary_bytes": 12093,
+          "reduction_percent": 32.29,
+          "detail_sha256": "583144da31dac6c4eb78341a8e404b293f6b995b80668e9ca3fd4ef1f78a86ca",
+          "summary_sha256": "913fee59c6e41b9c8a6a46d318869a179b2eb1943e07b30d3512a0932aeadd8f"
+        }
+      }
+    },
+    {
+      "label": "blocked_revision",
+      "tool": "get_mission_state",
+      "arguments": {
+        "revision_id": "89c3da7d-bc20-42ae-baeb-21d4e839355a"
+      },
+      "default_matches_summary": true,
+      "formats": {
+        "indent_2": {
+          "detail_bytes": 21866,
+          "summary_bytes": 14912,
+          "reduction_percent": 31.8,
+          "detail_sha256": "9195cf622ea85b8548ade39dd84f293892b73385209656350c7f28394915220a",
+          "summary_sha256": "9232816669a9b7fe93942905d3f58a6aac8a018b5181f07f1fda84e6c384da14"
+        },
+        "compact": {
+          "detail_bytes": 17860,
+          "summary_bytes": 12093,
+          "reduction_percent": 32.29,
+          "detail_sha256": "f931bc212d6eedb932f437601870f503462d32e91a781a2ab064b22d0719ac77",
+          "summary_sha256": "2af48d492ad1e6b5aad3a9fb520423aea0ec97272d90d19bda2a55dd0ae5a21d"
+        }
+      }
+    },
+    {
+      "label": "wp3_proposal",
+      "tool": "get_revision_proposal",
+      "arguments": {
+        "proposal_id": "e44903a2-0405-4ea5-99c7-7233ce0ea333"
+      },
+      "default_matches_summary": true,
+      "formats": {
+        "indent_2": {
+          "detail_bytes": 4334,
+          "summary_bytes": 4591,
+          "reduction_percent": -5.93,
+          "detail_sha256": "815e56847ce6e2a3614c4eba79b0fc7896d3d9a2cac7be856263f1bba17eff9e",
+          "summary_sha256": "a9f64e85e000166b0810fdfe8688f49e471e07d47891bdcea5aedbe9dc086923"
+        },
+        "compact": {
+          "detail_bytes": 3235,
+          "summary_bytes": 3831,
+          "reduction_percent": -18.42,
+          "detail_sha256": "0641c478c875fcfa58318b12663f9e04d92c7582db7198c7c87a0fd584371ad1",
+          "summary_sha256": "c9ae90fb9469cb283a7561a3982eec4700a542d7b7d98cd915034c043d7819fd"
+        }
+      }
+    },
+    {
+      "label": "wp3_failed",
+      "tool": "get_virtual_preflight",
+      "arguments": {
+        "run_id": "d4519cab-ebd1-4359-b547-44be38294a6a"
+      },
+      "default_matches_summary": true,
+      "formats": {
+        "indent_2": {
+          "detail_bytes": 9501,
+          "summary_bytes": 8396,
+          "reduction_percent": 11.63,
+          "detail_sha256": "3bb0fdf7e4d9e73baf9365c55608b70af539d2418649781056cd98c0540f2d30",
+          "summary_sha256": "fb6db2df11c72f65f5863b92628874833bf85da533951fe6bf450dd1957fde18"
+        },
+        "compact": {
+          "detail_bytes": 7395,
+          "summary_bytes": 6934,
+          "reduction_percent": 6.23,
+          "detail_sha256": "b789aada8e19679c42bb7e8509b3556687c7c1356e30092131dc1e4b9c170c75",
+          "summary_sha256": "3d29800d828128987bdcfbf496b829c21f537b2466b521e37634d4f0a7bc992c"
+        }
+      }
+    },
+    {
+      "label": "three_waypoints_passed",
+      "tool": "get_virtual_preflight",
+      "arguments": {
+        "run_id": "f5f55084-5af6-4e58-ab1a-ce30a13832b3"
+      },
+      "default_matches_summary": true,
+      "formats": {
+        "indent_2": {
+          "detail_bytes": 10133,
+          "summary_bytes": 5916,
+          "reduction_percent": 41.62,
+          "detail_sha256": "ac43b512c422bd7aa7cdbfabeb697f2edb658c055df169047529c1712e3f35f7",
+          "summary_sha256": "d3380dfb0e5c999759403434b783568146f053eeecf1fa43bcbd0d706570b2e8"
+        },
+        "compact": {
+          "detail_bytes": 7644,
+          "summary_bytes": 4937,
+          "reduction_percent": 35.41,
+          "detail_sha256": "5575ff9199a1e645eeea1e4dd573e257bed51fe3e195219209d885c7c6c79d60",
+          "summary_sha256": "a10d84fee683fb7cb315800a9ba46b548bf5d45525be1ab24320928aee2e8cb8"
+        }
+      }
+    },
+    {
+      "label": "geometric_five_waypoints_passed",
+      "tool": "get_virtual_preflight",
+      "arguments": {
+        "run_id": "4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4"
+      },
+      "default_matches_summary": true,
+      "formats": {
+        "indent_2": {
+          "detail_bytes": 11658,
+          "summary_bytes": 6414,
+          "reduction_percent": 44.98,
+          "detail_sha256": "d42cb6537df3b7a5bd3c2f874cc9e21e6701c06b2ff523e5b621968b482171b6",
+          "summary_sha256": "e507340e0f96410b58c274f98fb4e6d87af3423d9bb20fcf54b37c33d5418879"
+        },
+        "compact": {
+          "detail_bytes": 8688,
+          "summary_bytes": 5330,
+          "reduction_percent": 38.65,
+          "detail_sha256": "04dee266b359d3646fb199eb675096dfca39c1265f8e8417dc1a47850917d736",
+          "summary_sha256": "b1d21d6c22c614264bda970077030d357b1f7b8c57ab5cf177b5f1729ccf96a6"
+        }
+      }
+    }
+  ],
+  "operational_guards_not_called": [
+    "tools.hermes_mcp_server.start_simulation_backend",
+    "tools.hermes_mcp_server.stop_simulation_backend",
+    "tools.hermes_mcp_server.execute_mission_backend",
+    "tools.hermes_mcp_server.start_preflight_backend",
+    "tools.hermes_mcp_server.preflight_backend",
+    "tools.virtual_preflight_jobs.subprocess.Popen",
+    "graph.virtual_preflight_graph.check_simulation_ready",
+    "graph.virtual_preflight_graph.execute_approved_mission",
+    "tools.hermes_mission_planning.validate_mission_file",
+    "tools.vehicle_execution_lock.atomic_json"
+  ],
+  "verification_logs": [
+    {
+      "phase": "baseline",
+      "path": "documentation/verification/mission_response_views_2026_10_18_baseline.json",
+      "sha256": "a1eb30ebf65680a04f813c84639d4e514920ebeaf86cfea97c6f79917eb8c3ba",
+      "result": "11 failed, 6 passed in 2.53s",
+      "stdout_sha256": "e6e8b26870df09a6189fa34d16bfa8ea857a18a11c827b9bee569e248beb7e3c"
+    },
+    {
+      "phase": "affected",
+      "path": "documentation/verification/mission_response_views_2026_10_18_affected.json",
+      "sha256": "43ce4ba5a1cf91c50cc68d7795b9f0d4bf49241dfe7ff2657741971f4dc2ff1b",
+      "result": "45 passed in 2.79s",
+      "stdout_sha256": "ba72000d79af62c9e07fd3f1a612698401a3ffada0c38aaa177ab6fc39270baf"
+    },
+    {
+      "phase": "full_suite",
+      "path": "documentation/verification/mission_response_views_2026_10_18_full_suite.json",
+      "sha256": "68857ab4ac1acdbc7bdbdd656a2ae5b9dde6ca46a7044c29cf2e3afae2bea78a",
+      "result": "318 passed in 8.32s",
+      "stdout_sha256": "107360bf0649a448b74b000fb5d8498e5b137649027350b1b2b91bdedde6f856"
+    }
+  ],
+  "implementation_files_sha256": {
+    "tools/hermes_mcp_server.py": "9dd06e73ff6f918e2a411becee61c1ef096e2f146284a3c6034c34ab1bf5ab39",
+    "tools/mission_state.py": "6fec706cff4cac423ff018ffa82c94664430a87cef1751e7b0eebee7981de50d",
+    "tools/mission_response_views.py": "44b78e21d258a738f1f8b9ff90a063b012b459373649118c772c39ae98db27a8",
+    "tests/test_mission_response_views.py": "73ba85ce417843d9cf7c1673f4a21a0441a3daec6a9293aa10bb67f6af8f755b"
+  },
+  "installed_mcp_version": "2.3.0",
+  "python_version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "historical_comparison": {
+    "prior_documented_result": "307 passed in 12.16s",
+    "available_historical_log_or_versioned_view_files": false,
+    "demonstrated_before_fix": "11 failed, 6 passed in current 17 view cases; previous review recorded 296 passed + 11 failed = 307 total",
+    "new_regression_cases": 11,
+    "current_total_cases": 318,
+    "cause_of_historical_discrepancy": "Unknown; no inference of rollback, SDK changes or author actions"
+  },
+  "final_preservation_and_whitespace_checks": {
+    "unchanged_runtime_and_evidence_files": 127,
+    "exact_archived_copies": 37,
+    "archive_files": 42,
+    "preserved_document_prefixes": 4,
+    "verified_json_test_logs": 3,
+    "source_fingerprints_match": true,
+    "untracked_files_whitespace_checked": 60,
+    "whitespace_issues": []
+  }
+}

@@ -33,6 +33,7 @@ def run_worker(run_id, launch_token=None):
             report = run_preflight_in_directory(
                 directory / "input.json", run_id, directory, started_at=job["created_at"],
                 expected_sha256=job["input_sha256"], persist_progress=True,
+                source_artifact=job.get("source_artifact"),
             )
         job.update(job_state="FINISHED", phase=report.get("stage"), finished_at=utc_now())
         atomic_json(directory / "job.json", job)

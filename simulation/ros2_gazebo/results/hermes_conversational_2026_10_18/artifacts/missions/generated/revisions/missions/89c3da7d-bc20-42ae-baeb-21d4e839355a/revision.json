@@ -1,0 +1,70 @@
+{
+  "status": "REVISED",
+  "revision_id": "89c3da7d-bc20-42ae-baeb-21d4e839355a",
+  "proposal_id": "727082c5-4008-4bf2-a61e-87b48eed35a8",
+  "kind": "revision",
+  "proposal_sha256": "245a45144c15a3b03e5f5598342326b17f4f55249af2b04d50c1192f8b3db2e8",
+  "proposal_version": 1,
+  "source_run_id": "0844c190-59c8-40cf-991e-93cebbd3cf02",
+  "source_report_sha256": "63e5c46c7abd2f0bbb75780e0c3cc25f490de6f4864971022f5a2b5fe090c8c1",
+  "source_mission_sha256": "851c4226b53fac6cc91e7048214c62367afac42a785201b21c2761324c1195cc",
+  "created_at": "2026-10-18T07:48:06.889002+00:00",
+  "mission_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/missions/89c3da7d-bc20-42ae-baeb-21d4e839355a/mission.json",
+  "mission_sha256": "365c646349ea1b74b33a429e3db976281be6cd52ab06af31bdb5459f2e9e8b7b",
+  "validation": {
+    "mission_id": "prueba_hermes_001_bateria_baja",
+    "mission_status": "NOT FEASIBLE",
+    "execution_status": "BLOCKED",
+    "qgc_plan_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/missions/89c3da7d-bc20-42ae-baeb-21d4e839355a/prueba_hermes_001_bateria_baja_candidate.plan",
+    "failure_reasons": [
+      "The vehicle would finish the mission below the required battery reserve."
+    ],
+    "errors": [],
+    "replan_status": "ACTION REQUIRED",
+    "replan_actions": [
+      "Recharge or replace the battery so the mission starts with at least 20.1% battery."
+    ]
+  },
+  "qgc_plan_sha256": "a1464d923c07d8f773f75eb3eb9e62c6e485258029e72ff06a8f390922dcc70c",
+  "differences": [
+    {
+      "path": "/vehicle/battery_percent",
+      "before": 10.0,
+      "after": 11.0
+    }
+  ],
+  "explicit_changes": {
+    "mission_name": null,
+    "vehicle_id": null,
+    "cruise_speed_kmh": null,
+    "battery_percent": 11.0,
+    "battery_consumption_percent_per_minute": null,
+    "objective_type": null,
+    "objective_target": null,
+    "objective_description": null,
+    "wind_speed_kmh": null,
+    "wind_direction_from": null,
+    "wind_direction_from_deg": null,
+    "minimum_battery_reserve_percent": null,
+    "maximum_wind_speed_kmh": null,
+    "maximum_altitude_m": null,
+    "return_to_home": null,
+    "home_latitude": null,
+    "home_longitude": null,
+    "home_altitude_m": null,
+    "waypoint_updates": [],
+    "waypoint_additions": [],
+    "waypoint_removals": []
+  },
+  "operator_statement": "Operador (joel): Acepto la propuesta cambiando únicamente la batería inicial al 11% como condición declarada de simulación. No afirmo sustitución física de batería ni medición por telemetría; el valor 11% se declara como supuesto simulado acordado por el operador, no como medida real de hardware.",
+  "declarations": {
+    "battery_percent": {
+      "statement": "operator_declared_not_telemetry",
+      "source": "operator_declared_not_telemetry"
+    }
+  },
+  "pending_conditions": [
+    "New mission content requires a new explicitly authorized preflight."
+  ],
+  "flight_consent": "NOT_GRANTED"
+}

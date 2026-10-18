@@ -17,6 +17,7 @@ from langgraph.graph import END, START, StateGraph
 
 from graph.virtual_preflight_state import VirtualPreflightState
 from inputs.json_loader import load_mission_json
+from planning.mission_artifacts import artifact_for_input
 from reporting.virtual_preflight_analysis import analyze_executor_result
 from tools.hermes_mission_validation import validate_mission_file
 from tools.simulation_mission_executor import (
@@ -102,6 +103,7 @@ def snapshot_node(state: VirtualPreflightState) -> dict:
                 "reasons": [f"Invalid mission: {exc}"]}
     return {
         "mission_sha256": digest, "mission": mission,
+        "source_artifact": state.get("source_artifact") or artifact_for_input(state["source_path"], digest),
         "mission_identity": {"mission_id": mission.mission_id, "name": mission.name,
                              "vehicle_id": mission.vehicle.vehicle_id, "simulated_vehicle": "v1"},
     }

@@ -25,13 +25,14 @@ def run_virtual_preflight(mission_path: str) -> dict[str, object]:
 
 
 def run_preflight_in_directory(mission_path, run_id, directory, *, started_at=None, expected_sha256=None,
-                              persist_progress=False):
+                              persist_progress=False, source_artifact=None):
     """Shared workflow invocation for synchronous callers and detached workers."""
     started = started_at or utc_now()
     final = virtual_preflight_graph.invoke({
         "run_id": run_id, "run_directory": str(directory),
         "expected_sha256": expected_sha256, "persist_progress": persist_progress,
         "source_path": str(Path(mission_path).resolve()),
+        "source_artifact": source_artifact,
         "snapshot_path": str(directory / "mission.json"),
         "report_path": str(directory / "report.json"),
         "mission_sha256": None, "mission_identity": None,

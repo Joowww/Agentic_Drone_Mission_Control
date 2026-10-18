@@ -1,0 +1,157 @@
+{
+  "fingerprint": "33b8638dc66256d8f0b987b76bf85591ccc173548a07f61d7c4229c423ef24dc",
+  "result": {
+    "status": "PROPOSED",
+    "proposal": {
+      "proposal_id": "ae3bf4c2-3a56-4402-89b9-020e6232d5cf",
+      "version": 1,
+      "created_at": "2026-10-18T07:25:48.821730+00:00",
+      "run_id": "f5f55084-5af6-4e58-ab1a-ce30a13832b3",
+      "mission_sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+      "report_sha256": "9d4920a894f17d125918757d527f99560111a3dc3c37cbea508875d4fd2abc1a",
+      "mission_id": "prueba_hermes_001",
+      "category": "NO_CORRECTION_REQUIRED",
+      "source_report_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/f5f55084-5af6-4e58-ab1a-ce30a13832b3/report.json",
+      "source_mission_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/f5f55084-5af6-4e58-ab1a-ce30a13832b3/mission.json",
+      "reasons": [],
+      "proposed_changes": [],
+      "pending_conditions": [],
+      "automatic_patch": null,
+      "diagnostic": null,
+      "execution_evidence": {
+        "success": true,
+        "status": "COMPLETED",
+        "stage": "MISSION_EXECUTION",
+        "mission_id": "prueba_hermes_001",
+        "vehicle": "v1",
+        "simulation_origin": {
+          "latitude": -35.36326217651367,
+          "longitude": 149.1652374267578,
+          "altitude_amsl_m": 584.0
+        },
+        "launch_position": {
+          "latitude": -35.36326217651367,
+          "longitude": 149.1652069091797,
+          "altitude_amsl_m": 584.1900024414062
+        },
+        "waypoints_completed": 3,
+        "return_to_home": true,
+        "events": [
+          {
+            "event": "GUIDED_MODE",
+            "success": true
+          },
+          {
+            "event": "ARM",
+            "success": true
+          },
+          {
+            "event": "TAKEOFF_COMMAND",
+            "success": true,
+            "altitude_m": 5.0
+          },
+          {
+            "event": "TAKEOFF_REACHED",
+            "reached": true,
+            "target_altitude_m": 5.0,
+            "altitude_amsl_m": 589.1199951171875,
+            "altitude_error_m": 0.07000732421875
+          },
+          {
+            "event": "WAYPOINT_COMMAND",
+            "waypoint_id": "WP1",
+            "success": true
+          },
+          {
+            "event": "WAYPOINT_REACHED",
+            "reached": true,
+            "waypoint_id": "WP1",
+            "horizontal_error_m": 0.4515794605638958,
+            "altitude_error_m": 0.030029296875,
+            "final_position": {
+              "latitude": -35.36323928833008,
+              "longitude": 149.1652069091797,
+              "altitude_amsl_m": 589.1599731445312
+            }
+          },
+          {
+            "event": "WAYPOINT_COMMAND",
+            "waypoint_id": "WP2",
+            "success": true
+          },
+          {
+            "event": "WAYPOINT_REACHED",
+            "reached": true,
+            "waypoint_id": "WP2",
+            "horizontal_error_m": 0.22777375324517357,
+            "altitude_error_m": 0.0,
+            "final_position": {
+              "latitude": -35.36323547363281,
+              "longitude": 149.1652374267578,
+              "altitude_amsl_m": 589.1900024414062
+            }
+          },
+          {
+            "event": "WAYPOINT_COMMAND",
+            "waypoint_id": "WP3",
+            "success": true
+          },
+          {
+            "event": "WAYPOINT_REACHED",
+            "reached": true,
+            "waypoint_id": "WP3",
+            "horizontal_error_m": 0.48068103430828996,
+            "altitude_error_m": 0.03997802734375,
+            "final_position": {
+              "latitude": -35.36326599121094,
+              "longitude": 149.1652374267578,
+              "altitude_amsl_m": 589.22998046875
+            }
+          },
+          {
+            "event": "RETURN_HOME_COMMAND",
+            "success": true
+          },
+          {
+            "event": "RETURN_HOME_REACHED",
+            "reached": true,
+            "waypoint_id": "SIMULATION_HOME",
+            "horizontal_error_m": 0.0,
+            "altitude_error_m": 0.0,
+            "final_position": {
+              "latitude": -35.36326217651367,
+              "longitude": 149.1652069091797,
+              "altitude_amsl_m": 589.1900024414062
+            }
+          },
+          {
+            "event": "LAND_COMMAND",
+            "success": true
+          },
+          {
+            "event": "LANDED",
+            "landed": true,
+            "armed": false,
+            "flying": false,
+            "final_position": {
+              "latitude": -35.36326217651367,
+              "longitude": 149.1652069091797,
+              "altitude_amsl_m": 584.1900024414062
+            }
+          }
+        ],
+        "final_position": {
+          "latitude": -35.36326217651367,
+          "longitude": 149.1652069091797,
+          "altitude_amsl_m": 584.1900024414062
+        },
+        "message": "Mission completed and vehicle landed successfully."
+      },
+      "replanner_scope": "Text recommendations only; no generated route, no guaranteed battery solution.",
+      "flight_consent": "NOT_INHERITED"
+    },
+    "proposal_id": "ae3bf4c2-3a56-4402-89b9-020e6232d5cf",
+    "proposal_sha256": "cf9b6ad7beee8f4f1de0922b9da4a965b3f6ecd8b9c3c0101b9c674b28f7cfe7",
+    "proposal_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/ae3bf4c2-3a56-4402-89b9-020e6232d5cf/proposal.json"
+  }
+}

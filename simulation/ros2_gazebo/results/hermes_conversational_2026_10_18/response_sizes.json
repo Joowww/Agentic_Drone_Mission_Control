@@ -1,0 +1,77 @@
+{
+  "measurement_date_local": "2026-10-18",
+  "method": "Direct read-only Python get_mission_state, view=detail vs summary; same checks, no MCP transport calls",
+  "serialization": "JSON UTF-8, ensure_ascii=false, allow_nan=false; compact separators comma/colon or indent=2",
+  "limits": [
+    "Payload sizes, not MCP wire framing or LLM token counts",
+    "Paths and local artifact population affect size",
+    "No timing, conversational fidelity or compaction-frequency guarantee"
+  ],
+  "profiles": [
+    {
+      "query": {
+        "draft_id": "1f84f808-c688-48c9-b7da-1b1c4b29c094"
+      },
+      "status": "KNOWN",
+      "detail_compact_utf8_bytes": 37828,
+      "detail_indented_utf8_bytes": 48842,
+      "summary_compact_utf8_bytes": 4725,
+      "summary_indented_utf8_bytes": 5698,
+      "indented_reduction_percent": 88.33,
+      "detail_canonical_sha256": "3be27b2d7baaad9a1b73523aacee6216511ab7b7259e33a627afdb40bfc27a70",
+      "summary_canonical_sha256": "ea0aac6bb82b40235d5791cdc1466a96e61f5f0dab44344db5c1493fe1b742c3"
+    },
+    {
+      "query": {
+        "revision_id": "b880d6c3-4557-42c7-ada4-5a04db5e9237"
+      },
+      "status": "KNOWN",
+      "detail_compact_utf8_bytes": 17860,
+      "detail_indented_utf8_bytes": 21866,
+      "summary_compact_utf8_bytes": 10848,
+      "summary_indented_utf8_bytes": 13198,
+      "indented_reduction_percent": 39.64,
+      "detail_canonical_sha256": "583144da31dac6c4eb78341a8e404b293f6b995b80668e9ca3fd4ef1f78a86ca",
+      "summary_canonical_sha256": "4b291c26684b2e80254870825f71ecc0725360fbf11e32573cff45f887282a8a"
+    },
+    {
+      "query": {
+        "revision_id": "89c3da7d-bc20-42ae-baeb-21d4e839355a"
+      },
+      "status": "KNOWN",
+      "detail_compact_utf8_bytes": 17860,
+      "detail_indented_utf8_bytes": 21866,
+      "summary_compact_utf8_bytes": 10848,
+      "summary_indented_utf8_bytes": 13198,
+      "indented_reduction_percent": 39.64,
+      "detail_canonical_sha256": "f931bc212d6eedb932f437601870f503462d32e91a781a2ab064b22d0719ac77",
+      "summary_canonical_sha256": "bd8b290587d7a9715c7f3297e94219c026fd5836b2ca7c4425749c907db576dc"
+    },
+    {
+      "query": {
+        "run_id": "d4519cab-ebd1-4359-b547-44be38294a6a"
+      },
+      "status": "KNOWN_WITH_WARNINGS",
+      "detail_compact_utf8_bytes": 11644,
+      "detail_indented_utf8_bytes": 16477,
+      "summary_compact_utf8_bytes": 9477,
+      "summary_indented_utf8_bytes": 12290,
+      "indented_reduction_percent": 25.41,
+      "detail_canonical_sha256": "a5c548b78d98bb61a0f4a846390db5cc8df0a3b804c2faa026386ae1eb320bf2",
+      "summary_canonical_sha256": "f696e848a03850a7def282da19086e862964cfe4f5e2622169c3522cd14adc9d"
+    },
+    {
+      "query": {
+        "run_id": "f5f55084-5af6-4e58-ab1a-ce30a13832b3"
+      },
+      "status": "KNOWN_WITH_WARNINGS",
+      "detail_compact_utf8_bytes": 12149,
+      "detail_indented_utf8_bytes": 18042,
+      "summary_compact_utf8_bytes": 7926,
+      "summary_indented_utf8_bytes": 10281,
+      "indented_reduction_percent": 43.02,
+      "detail_canonical_sha256": "69d21ae9d2cd8f020eb6ddc566bbfd5bc97ee9bc5490045413c90d40f10c5c60",
+      "summary_canonical_sha256": "0e8662c7273c67a8bfa64566d39ed0731acb4d2f3d5d4e86762031f262a447e0"
+    }
+  ]
+}

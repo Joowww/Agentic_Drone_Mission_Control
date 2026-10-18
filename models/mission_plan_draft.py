@@ -1,5 +1,7 @@
 from typing import Literal
 
+from planning.relative_routes import RelativeRouteRequest
+
 from pydantic import (
     BaseModel,
     ConfigDict,
@@ -77,6 +79,8 @@ class PlannedWaypointDraft(BaseModel):
 
 class MissionPlanDraft(BaseModel):
     model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
+
+    geometry_intent: RelativeRouteRequest | None = None
 
     mission_id: str | None = None
 
