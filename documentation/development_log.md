@@ -958,3 +958,387 @@ SHA-256; las 37 copias coinciden con originales/manifiesto y el archivo conserva
 sus 42 ficheros sin modificaciones. Las cuatro guías/registro previos se conservan
 como prefijos íntegros. Logs JSON y fingerprints de código concordantes. No se
 modifican datos para reducir payload ni se ocultan los resultados negativos previos.
+
+## 2026-10-18 — Skill de dominio y evaluación conversacional preparada
+
+### Base e incidencias
+
+Base real comprobada: feature/hermes-integration, HEAD 66cf94d, árbol limpio al
+inicio. No se encontraron AGENTS.md aplicables en el proyecto ni antecesores.
+Se conservan cambios comprometidos y evidencias, incluidas las 37 copias del
+archivo del 18. Las incidencias de selección/fidelidad son observaciones del
+operador: exploración de código/borradores ante una misión nueva, inferencias de
+survey/agricultura/regreso, confusiones de altitud/cardinales, causalidad de WP3,
+permiso de hardware para SITL y búsqueda genérica get_prompt en vez de consulta
+por run_id. No tenemos la traza completa ni el prompt/catálogo efectivos de esas
+sesiones; no se diagnostica una causa concreta ni se presentan como corregidas.
+
+### Investigación del contexto operativo
+
+El servidor real usa mcp.server.MCPServer, SDK mcp 2.3.0. Sus opciones de
+inicialización contienen instructions, nombre/versión/capacidades. Tiene 17
+herramientas registradas y consultas por run_id con summary/detail. El SDK anuncia
+prompts/recursos, pero las tres listas locales de prompts, recursos y plantillas
+están vacías. Un prompt/recurso genérico no representa un ensayo del proyecto.
+
+Se inspeccionó código del Hermes instalado, commit informado d923a5eb48, con
+hashes de los archivos reales conservados en
+documentation/verification/hermes_domain_context_2026_10_18.json. El cliente
+guarda initialize_result; sus módulos mcp_tool_transport, registration y schema
+usan capacidades y transforman nombres/descripciones/esquemas para el registro,
+incluyendo prefijos y caché de descubrimiento. No se encontró en los caminos
+inspeccionados incorporación de initialize_result.instructions al prompt del
+modelo. Es una conclusión acotada del código inspeccionado, no prueba de lo que
+recibió una sesión anterior ni causa demostrada de su conducta.
+
+La extracción de configuración se limitó a campos no sensibles de skills y
+command/args/enabled de tfg-mission-control: Python del proyecto, -m
+tools.hermes_mcp_server y enabled true. No se encontró en esos campos una
+activación/confianza explícita para el skill nuevo. No se leyó .env, credenciales,
+SOUL personal ni configuración de otros servidores; no se asume que esta
+configuración sea la efectiva de cualquier perfil. No se modifica ningún perfil.
+
+El cliente instalado admite skills del checkout en .hermes/skills o .agents/skills
+si la raíz está en skills.trusted_project_dirs. El índice de skills contiene
+nombres/descripciones, no necesariamente el cuerpo. agent/skill_commands y cli.py
+admiten --skills y skills.auto_load para precargar el cuerpo en una sesión nueva.
+Se verificaron estas convenciones y el parser del comando skills trust antes de
+crear archivos. No se modifica el skill genérico hermes-agent.
+
+### Integración y carga comprobada
+
+Se añade .hermes/skills/tfg-mission-control/SKILL.md, versión 1.0.0. Enseña
+intenciones/estados, no una secuencia ni número fijo de llamadas: hechos conocidos
+en borrador, geometría parcial y decisiones esenciales, generación determinista,
+finalización/validación/exportación sin duplicación, consultas por ID, propuestas
+y revisiones trazables, y start/get del mismo ensayo sólo con petición explícita.
+No copiar de otras misiones sin petición; usar esquemas para enums, no código;
+no inventar IDs ni buscar un run como recurso/prompt. Distingue defaults,
+atribuciones del agente, declaraciones simuladas, telemetría, referencias de
+altura, orientación desde norte, recomendaciones/gate, readiness histórica,
+consentimiento y alcance SITL. No cambia seguridad o capacidades de vuelo.
+
+Se aclaran únicamente las descripciones de get_virtual_preflight y get_mission_state
+para hacer explícita la consulta de un ensayo existente por run_id y la diferencia
+entre job/informe y relaciones de misión. Se refuerzan instructions contra copiar
+hechos o consultar código para enums. Nombres, parámetros, versión 0.3.0 y contratos
+summary/detail permanecen compatibles. No se depende de esas instructions como
+único mecanismo de contexto del cliente.
+
+La prueba aislada inicial con el Python del proyecto no completó el helper de
+Hermes por falta de ruamel.yaml; no se instalaron paquetes. Se usó después el
+Python gestionado del cliente con sus dependencias ya comprometidas, sin pasar
+por launcher/bootstrap/reparación/activación PM. Un HERMES_HOME temporal contenía
+sólo configuración de confianza del checkout y auto_load para la prueba; se eliminó
+al terminar. Los helpers instalados detectaron la raíz, descubrieron el skill y
+build_preloaded_skills_prompt devolvió loaded=[tfg-mission-control], missing=[],
+con el cuerpo completo dentro del texto preparado (8.974 bytes UTF-8). El JSON
+de diagnóstico conserva frontmatter, SHA-256 del skill/texto, método y código del
+probe. No se arrancó un agente, proveedor LLM ni enlace MCP. La prueba no demuestra
+entrega al modelo real ni obediencia a las instrucciones.
+
+La guía docs/hermes-domain-evaluation.md prepara activación revisable:
+hermes skills trust para esta raíz y una sesión nueva desde el checkout con
+--skills tfg-mission-control. El operador decide/aplica la confianza; no se ejecuta
+por nosotros. auto_load se ofrece como fusión opcional de configuración, sin
+reemplazar listas ni alterar modelo, proveedor, permisos o herramientas globales.
+/reload-mcp no se trata como prueba de incorporación del skill a una sesión previa.
+
+### Evaluación reproducible, todavía sin ejecutar
+
+evaluation/hermes_conversation/scenarios.json contiene ocho escenarios y diez
+prompts naturales en una línea, sin nombres de herramientas: creación incompleta;
+continuación tras recarga con ID; geometría ambigua; finalización completa; consulta
+de ensayo existente en sesión nueva; batería bloqueada y revisión declarada;
+FAILED WP3 con causa desconocida; infraestructura histórica. S1–S4 comparten sólo
+su borrador nuevo, S5–S8 son sesiones nuevas. Todos prohíben arranque/parada/ensayo/
+ejecución. Las únicas escrituras pedidas son artefactos nuevos de planificación.
+Se definen hechos esperados, desconocidos, herramientas/intenciones permitidas,
+efectos prohibidos y criterios con evidencia necesaria. No se exige una cantidad
+exacta de llamadas; aclarar una ambigüedad puede no requerir ninguna.
+
+run.schema.json y run.template.json permiten registrar transcripción, argumentos/
+resultados estructurados, nombres efectivos del cliente y del proyecto, modelo/
+proveedor y configuración no sensible, activación/contexto, tiempos, recargas,
+compacciones observadas y hashes de artefactos antes/después. La plantilla sigue
+NOT_RUN. SUMMARY_ONLY o TRANSCRIPT_ONLY no permiten un veredicto completo PASS/FAIL;
+se registra evidencia insuficiente para escrituras no demostradas. Una respuesta
+perdida lleva resultado null, no éxito inferido. No se incluyen campos de credenciales
+en la configuración; la revisión de las trazas debe excluir datos sensibles. El
+esquema no detecta secretos en texto libre ni autentica capturas o prueba efectos
+o fidelidad.
+No se implementa un evaluador automático ni coincidencia de palabras como seguridad.
+
+La guía define revisión humana por criterio y propone repeticiones con/sin skill,
+modelo/datos/herramientas comparables y contexto acreditado. Se conservan denominadores
+y estados PASS/FAIL/INSUFFICIENT_EVIDENCE/NOT_RUN. No se ejecutó ninguna conversación
+real ni se atribuye una mejora al skill sin esa evaluación posterior.
+
+### Comprobaciones y archivos
+
+tests/test_hermes_conversation_contracts.py añade trece casos offline: inicialización
+con instructions y herramientas/esquemas reales; IDs y llamadas de escenarios
+compatibles con el registro, sin autorizar vuelo; expectativas de borrador válidas
+bajo esquemas reales y AMSL rechazado como referencia geométrica; esquema/plantilla
+de registro; rechazo de veredictos sin evidencia estructurada, argumentos narrativos,
+resultado inventado tras respuesta perdida y campos de credenciales. No son tests
+de presencia de frases ni pruebas de fidelidad del LLM. jsonschema ya es dependencia
+del SDK fijado; no se añaden dependencias.
+
+Grupo de contratos y compatibilidad:
+.venv/bin/python -m pytest -q tests/test_hermes_conversation_contracts.py tests/test_hermes_mcp_server.py tests/test_mission_response_views.py
+→ **45 passed in 2.41s**. Suite completa posterior:
+.venv/bin/python -m pytest -q → **331 passed in 8.51s**. No se repite después de
+añadir únicamente documentación y comprobaciones derivadas.
+
+Archivos: skill nuevo; tools/hermes_mcp_server.py (sólo instructions/descripciones);
+los tres JSON de evaluation/hermes_conversation; test de contratos nuevo;
+docs/hermes-domain-evaluation.md; ampliación de docs/hermes-planning.md y de este
+registro; JSON nuevo de diagnóstico en documentation/verification.
+Se mantienen gate, executor, geometría, tolerancias, workers, locks y evidencias.
+No se ejecutaron Docker, simulación, vuelos o llamadas MCP operativas. Sin commit
+ni push. Falta activar el skill en el perfil real y evaluar conversaciones,
+selección efectiva, fidelidad y compacciones. El PASSED operativo del rectángulo
+es previo y no acredita estos cambios posteriores de instrucciones.
+
+Comprobación final: git diff --check limpio y siete archivos nuevos comprobados
+individualmente con git diff --no-index --check, sin errores de whitespace.
+Los 131 archivos originales de runtime, evidencias y verificaciones previas siguen
+idénticos por SHA-256; las 37 copias coinciden con sus originales/manifiesto. No
+se crean nuevos artefactos en runtime/resultados: sólo se añade el diagnóstico
+offline en documentation/verification. Registro y guía anterior conservados como
+prefijos íntegros. Los diez prompts de la guía coinciden con el paquete de escenarios.
+El diagnóstico conserva comandos, salidas reales de tests y hashes de los nuevos
+contratos/skill/código, sin reescribir verificaciones ni evidencias anteriores.
+
+## 18/10/2026 — Evaluación parcial con skill: orientación, atribución y operaciones ya satisfechas
+
+### Evidencia recibida y contraste offline
+
+El operador comunicó una prueba con tfg-mission-control activado y después pegó la
+transcripción durante esta revisión. No hay export nativo con argumentos/resultados
+completos. Se archivan extractos literales seleccionados (no una copia íntegra de
+ese mensaje ni una traza estructurada) y una evaluación por criterio en
+simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18. La transcripción
+completa recibida permanece en la conversación con el operador. El registro parcial
+run_record.json conserva TRANSCRIPT_ONLY/INSUFFICIENT_EVIDENCE; no transforma los
+resúmenes del agente en un PASS completo o en llamadas reconstruidas.
+
+Se conservan 17 copias exactas con rutas originales absolutas, bytes y SHA-256 en
+manifest.json: draft/estado, finalización y snapshots de Parcela Loma, ambas
+exportaciones, misión/informe/job del ensayo histórico y su fuente, paquete de
+escenarios/registro 1.0.0 y guía anterior. El skill anterior se reconstruye por
+reversión del parche propio y se contrasta con el SHA-256 del diagnóstico previo;
+se declara ese método, sin afirmar que esos bytes fueran el contexto real de Hermes.
+No se alteran runtime, borradores o evidencias originales ni las 37 copias anteriores.
+
+Comprobaciones puras: borrador 002867e8-6d7b-447b-9ffe-0087176b18a6 revisión 4,
+draft_sha256 1a0be6460fd0bcc5b58fefa68daf553574f00a82025faa94638e3bc0798ef6a0;
+finalización 2d709a5d-dca4-46aa-8369-e580088242ee y mission_sha256
+695d742261bb6ca52368a5fd498ea7c263d16d0a8e2f4162a160c0bc2fcd1b70. Snapshot
+coincide con borrador actual; integridad y vínculo verificados; validación guardada
+y recalculada FEASIBLE/APPROVED. La validación pura no exporta: su qgc_plan_path=null
+no implica ausencia de los .plan existentes. Los dos miden 4381 bytes y su SHA-256
+es 0b716f703eae5c187a3d2759de1133af32630236ca43087e170c90ed1c2a199c. Los archivos
+solos no prueban qué llamada escribió la segunda copia ni cuándo.
+
+### Fallos visibles, aciertos y límites
+
+- HOME: error de update visible truncado; el agente explica que las atribuciones
+  requerían statement y luego informa de revisión 2. El contrato Python sí lo
+  exige; no se deducen los siete errores completos ni argumentos ausentes.
+- Dirección: ante petición de conservar lo claro y preguntar la orientación, la
+  respuesta fija orientation_deg=90 y lo atribuye antes de aclarar el eje. FAIL de
+  ese criterio visible. El operador después declara explícitamente arista de 40 m
+  a 90°, lo que sí respalda la geometría final. No existe aquí snapshot de revisión
+  3 para reconstruir el payload anterior. La atribución final aún cita «recorrido
+  hacia el este» y no se modifica retrospectivamente.
+- Finalización: finalize ya valida/exporta; el agente lo reconoce pero llama otra
+  vez a validate_and_export_qgc. FAIL visible de redundancia, corroborado por dos
+  .plan idénticos. No se observa una llamada separada a generate_draft_route: no
+  contar su intención en el razonamiento como llamada ejecutada. También relata un
+  error de altitude_reference en nivel raíz; faltan argumentos/error completos.
+- Se observa ls redundante para comprobar un archivo ya devuelto por el proyecto;
+  la UI dice «+ 1 command», cuyo contenido/efectos no se conocen. No hay evento de
+  inicio/vuelo visible, pero no se demuestra ausencia de todo efecto no capturado.
+- Procedencia: la respuesta lista nombre/modo como atribuidos y luego sin atribución;
+  el estado final conserva UNKNOWN para nombre/modo/dimensiones. UNKNOWN significa
+  falta de atribución registrada, no prueba de que fueran invenciones. Ni statement
+  ni esquema autentican fidelidad al diálogo; authenticated sigue false.
+- Consulta histórica: selección visible correcta de get_virtual_preflight y misión
+  fuente distinta de Parcela Loma. Artefactos corroboran PASSED de 4bb6a20e-3aff-48ce-
+  8b6f-e66e92a0e6a4, Circuito Relativo Nuevo, finalización 8be78baa-4cf4-4f65-8531-
+  9388d030c3ed/borrador 1f84f808-c688-48c9-b7da-1b1c4b29c094, SHA-256
+  fee5185407a7f63810a62f652062454f83790aa2b8a7234f869a7d93eda3a936; 11 checks true,
+  cinco puntos, regreso, aterrizaje/desarmado. Es acierto de selección/explicación,
+  sin PASS completo de argumentos/efectos de consulta no capturados.
+- Tiempo: workflow 480.344587 s, executor 471.332987 s, ambos >300 s; el razonamiento
+  llama flight time al intervalo del executor y la respuesta lo presenta como
+  recorrido de 7 min 51 s. No es tiempo aéreo demostrado; faltan timestamps de
+  eventos. Tampoco son tiempos de la consulta de Hermes.
+- Readiness: los cinco nombres y resultados sí figuran en el informe guardado,
+  pero «verificado» debe etiquetarse histórico. La apertura sí dice consulta
+  histórica; no hay prueba de chequeo actual ni se inventa que ocurrió. FINISHED,
+  worker_alive=false y vehicle_restriction=null se atribuyen a la transcripción,
+  pues no se conserva el objeto de respuesta original con esa observación dinámica.
+
+Modelo, proveedor, configuración efectiva, skill/hash entregado y tiempos por turno
+no están capturados. La activación es comunicada por el operador y el razonamiento
+cita instrucciones previas; eso no acredita la totalidad del prompt. Se ve una
+compacción y aviso de reintento del proveedor, sin evidencia para medir su causa o
+impacto controlado. S1/recarga completa/S6–S8 no se dan por evaluados. El PASSED
+operativo es anterior y pertenece a otra misión; APPROVED es validación del plan,
+no consentimiento ni resultado de ensayo de Parcela Loma. No se demuestra causa ni
+resolución de WP3, agricultura, seguimiento de velocidad, carga del .plan o hardware.
+
+### Cambios acotados y comprobaciones
+
+Skill 1.0.1, instrucciones/descripciones MCP y descripción del campo de orientación:
+distinguir dirección de eje/arista explícita, conservar parámetros resueltos y
+preguntar los pendientes; atribuir sólo campos suministrados resueltos, con
+statement no vacío cuando source=OPERATOR_DECLARED_VIA_AGENT. UNKNOWN sigue válido
+sin statement. Se publica if/then en JSON Schema la condición que el validador
+Python ya exigía; no se cambia validación ni geometría. Una orientación numérica
+válida no demuestra fidelidad semántica y no se bloquea por parecerse al ejemplo.
+
+La operación ya completada satisface construir/validar/exportar aunque la solicitud
+enumere esos verbos. Se permite una nueva petición posterior explícita, sin repetir
+por defecto. Se distinguen duración de operaciones/tiempo aéreo y readiness histórica/
+actual. No se añade LLM, parser de frases, evaluador automático ni nueva capacidad
+de vuelo; gate, executor, tolerancias, AP_DDS, recuperación, workers y locks intactos.
+No se presenta la conducta del LLM como corregida hasta repetir la conversación.
+
+Paquete de escenarios 1.0.1 con borrador nuevo Parcela Loma Repetición y S3 con altura
+explícita sobre HOME pero eje pendiente; se conserva la variante anterior 1.0.0 en
+el archivo. El formato de registro admite ambas versiones. La guía conserva historia
+y ofrece prompts de una línea con espacios entre palabras; no normaliza el log
+histórico ni inventa una causa para los espacios ausentes de la transcripción.
+Nueva sesión con skill revisado; reload-mcp sólo recarga el catálogo/enlace. No se
+sobrescribe configuración personal ni se ejecuta el cliente LLM durante la revisión.
+
+Tests nuevos funcionales: 14 casos con esquemas/despacho MCP registrados reales y
+almacenamiento temporal para statement ausente/nulo/vacío/blanco rechazado sin
+escrituras, UNKNOWN permitido, altura explícita sin orientación inventada y cinco
+rumbos válidos conservando authenticated=false. Un caso adicional de argumentos S3
+contra esquema real. No hay tests de frases como prueba de obediencia del modelo.
+
+Primera comprobación afectada: **62 passed in 2.90s**. Después de actualizar escenarios
+y añadir S3, grupo ampliado:
+.venv/bin/python -m pytest -q tests/test_hermes_attribution_contract.py tests/test_hermes_conversation_contracts.py tests/test_partial_geometry_planning.py tests/test_hermes_mcp_server.py tests/test_mission_response_views.py
+→ **91 passed in 3.28s**. Suite completa posterior:
+.venv/bin/python -m pytest -q → **346 passed in 8.86s**.
+Las cifras previas 45/331 se conservan como resultados de la preparación anterior.
+No se ejecutaron Docker, simulación, vuelos, proveedor LLM ni MCP operativo.
+Sin commit ni push.
+
+Cierre de revisión: git diff --check limpio; los 33 archivos nuevos comprobados
+individualmente con git diff --no-index --check, sin errores de whitespace. Los
+144 archivos del inventario previo se contrastaron por hash: 141 intactos y sólo
+los tres JSON del paquete de evaluación cambiados deliberadamente a 1.0.1. Incluye
+todos los originales de runtime/evidencias; las 37 copias anteriores y sus originales
+coinciden. Las 17 copias exactas nuevas y el snapshot de contexto anterior verifican
+sus hashes. Este registro mantiene íntegro el contenido anterior como prefijo.
+Los diez prompts actuales coinciden con el paquete y ocupan una línea cada uno.
+Detalles de comprobaciones y hashes del skill/catálogo preparados en offline_checks.json
+del archivo nuevo; no se presentan como contexto efectivo de la sesión evaluada.
+
+## 18/10/2026 — Repetición Parcela Loma y cierre documental del incremento
+
+### Fuentes y conservación
+
+Se recibe adjunto de completar/finalizar, route JSON inline del operador y luego
+texto del tramo previo (creación/HOME/dirección ambigua) en la conversación. Son
+la misma repetición: borrador f4463a1d-d4b1-4d9e-b986-809a5c43f28a, finalización
+0dde4214-9cca-4514-9176-25607adaea39. Nuevo archivo independiente:
+simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18.
+
+Manifiesto con 12 copias exactas, rutas originales, bytes y SHA-256: siete archivos
+del borrador/finalización, skill preparado, tres archivos de evaluación y adjunto.
+El adjunto se copia byte a byte, 15435 bytes y 213 CRLF, sin normalizar espacios ni
+finales de línea. El tramo previo fue texto pegado, sin archivo original exportado:
+se conservan extractos literales seleccionados, no una falsa copia completa o traza
+estructurada. Su texto completo permanece en la conversación. JSON inline guardado
+como transcripción estructural, no bytes originales de stdout. Originales, 37 copias
+anteriores y archivo de la evaluación previa quedan intactos.
+
+### Archivos frente a explicación del agente
+
+Lecturas puras read_draft_record/load_finalization verifican revisión 4 de borrador
+y geometría, sidecars, snapshot, metadata, misión y .plan. Snapshot coincide con
+borrador actual. SHA-256 de misión:
+79776aa32284026a0eb0554cb600fc7ae70e1a0bdea4b36a721a475aec4086ba.
+Draft SHA-256: 7eaea46fd943844c7ad7b66fc8cc641a31aedb42fc317e93bca0a447cbeb85df.
+Validación guardada y pura recalculada sin exportar: FEASIBLE/APPROVED, sin errores
+ni motivos, pendientes vacíos; no PASSED operativo ni consentimiento de ejecución.
+
+Geometría regenerada coincide con route y con JSON del operador: rectángulo 40×20 m,
+longitud a 90° desde norte, horario, HOME (41,2) centro, HOME altitud relativa 0,
+cinco navigate a 8 m sobre HOME. Offsets N/E:
+WP1 (+10,-20) noroeste; WP2 (+10,+20) noreste; WP3 (-10,+20) sureste;
+WP4 (-10,-20) suroeste; WP5 (+10,-20), cierre WP1. return_to_home=true independiente
+del cierre. Aristas locales 40/20/40/20 m, área firmada este/norte -800 m². Contraste
+esférico independiente: 39.9551/19.9776/39.9552/19.9776 m aproximadamente, compatible
+con el modelo local documentado; no se presenta aproximación como medición física.
+
+.plan 4381 bytes, SHA-256 0b716f703eae5c187a3d2759de1133af32630236ca43087e170c90ed1c2a199c;
+coincide con constructor puro en memoria, sin escribir nueva exportación. No existe
+copia raíz parcela_loma_repeticion_001.plan al revisar. Esa ausencia sola no prueba
+qué llamadas hubo. El cálculo puro devuelve qgc_plan_path=null al no exportar, sin
+negar la exportación anterior.
+
+Aciertos locales visibles: ante petición ambigua conserva/informa altura 8 m sobre
+HOME y pregunta por orientación de la arista de 40 m; la respuesta mantiene la
+orientación pendiente. Después se ven update y finalize, sin llamada adicional
+visible de validación/exportación. No se convierten en PASS de persistencia
+intermedia: faltan argumentos/resultados completos y snapshots de revisiones 1–3.
+
+Fallos visibles que permanecen:
+
+- Primera llamada sin nombre falla con error JSON truncado; después execute_code
+  falla con traceback truncado y recupera con herramienta del proyecto. No se
+  reconstruyen programa/payload ni causa exacta a partir de hipótesis del agente.
+- Resumen final lista NE→NW→SW→SE→NE: coordenadas incorrectas por identificador en
+  los cinco puntos, recorrido aparente antihorario frente al horario del archivo.
+  WP2 además lleva offsets de sureste bajo etiqueta noroeste. No es fallo demostrado
+  del generador: la misión y .plan guardados son coherentes.
+- «RTL al final» es impreciso sin separar representaciones. El .plan SÍ contiene
+  comando 20 MAV_CMD_NAV_RETURN_TO_LAUNCH, conforme al exporter existente. El JSON
+  expresa regreso y el executor actual navega al lanzamiento y LAND; no demuestra
+  activación de modo RTL ni carga/ejecución del .plan. No se declara inválido el .plan.
+- Nombre solicitado «Repetición», guardado «Repeticion». El agente atribuye a la
+  herramienta haber quitado tilde sin prueba; faltan argumentos de creación, el
+  backend inspeccionado conserva draft.name y sólo deriva slug para mission_id.
+  Se conserva como evidencia, sin corrección retrospectiva ni causa inventada.
+- Resúmenes anuncian HOME=0 antes de aportarlo y destacan al final sólo dos de cinco
+  decisiones necesarias; no se puede comprobar su escritura intermedia. Failsafes
+  quedan RETURN_TO_HOME con fuente UNKNOWN sin aceptación explícita en el prompt
+  final; no se presentan como decisiones autenticadas. No se arregla esa procedencia.
+
+Se crean registros parciales S1–S4 con TRANSCRIPT_ONLY/INSUFFICIENT_EVIDENCE y revisión
+por criterio; no PASS global ni mejora estadística con una repetición. Etiqueta de
+modelo visible laguna-s-2.1:free, proveedor/configuración/contexto efectivos no
+verificados. Se observa compacción tras finalizar; no mide reducción de tokens,
+causa ni impacto. No se evalúan aquí recarga o S5–S8. No hay etiqueta visible de
+inicio/vuelo, pero no se prueba ausencia absoluta de efectos no capturados. No se
+atribuye resolución causal de WP3, capacidades agrícolas, velocidad seguida o hardware.
+
+### Cierre técnico offline
+
+Este turno sólo añade evidencias y amplía guía/registro; no cambia código, tests,
+skill 1.0.1 ni paquete de escenarios, y conserva todo el incremento previo sin commit.
+Se revisan diff y archivos nuevos: las correcciones previas publican contratos e
+instrucciones; no autentican trazas ni garantizan la fidelidad del LLM. Ningún nuevo
+defecto funcional del generador se demuestra con la repetición; quedan los defectos
+conversacionales concretos anteriores documentados, sin otra ronda de ajustes.
+
+Suite completa de cierre: .venv/bin/python -m pytest -q → **346 passed in 8.72s**.
+No se añaden tests para presencia de frases ni se repite después por documentación
+sola. Los registros nuevos se validan contra run.schema.json. git diff --check del
+árbol tracked limpio. Se comprueban también archivos nuevos; el adjunto bruto conserva
+avisos originales de CRLF/espacios y blanco final, que se documentan como excepción
+de evidencia sin normalizarlo. Los documentos/código nuevos restantes se revisan
+sin ocultar esos avisos. No se ejecutan Docker, simulación, vuelos, proveedor LLM o
+MCP operativo. Sin commit ni push.
+
+Propuesta de commit (no ejecutada):
+feat: add Hermes mission guidance and conversational evaluation evidence

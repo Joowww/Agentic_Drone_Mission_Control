@@ -1,7 +1,7 @@
 """Attribution records are agent statements, never authentication of a dialogue."""
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from planning.artifact_store import fingerprint
 from planning.mission_plan_service import _generate_mission_id
@@ -14,9 +14,20 @@ SHARED_MISSION_FIELDS = ("home_latitude", "home_longitude", "home_altitude_m", "
 
 
 class InputAttribution(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", json_schema_extra={
+        "allOf": [{
+            "if": {"properties": {"source": {"const": "OPERATOR_DECLARED_VIA_AGENT"}},
+                   "required": ["source"]},
+            "then": {"required": ["statement"],
+                     "properties": {"statement": {"type": "string", "pattern": r"\S"}}},
+        }],
+    })
     source: Literal["OPERATOR_DECLARED_VIA_AGENT", "UNKNOWN"]
-    statement: str | None = None
+    statement: str | None = Field(None, description=(
+        "Required and nonblank for OPERATOR_DECLARED_VIA_AGENT: the agent's supporting "
+        "operator statement for this explicitly resolved, supplied field. Not authentication. "
+        "Omit attribution/use UNKNOWN when unsupported; never invent a statement."
+    ))
 
     @model_validator(mode="after")
     def require_statement(self):

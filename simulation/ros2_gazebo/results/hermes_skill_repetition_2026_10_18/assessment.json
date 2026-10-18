@@ -1,0 +1,114 @@
+{
+  "review_date_local": "2026-10-18",
+  "suite_version": "1.0.1",
+  "scope": "Single partial-evidence repetition S1-S4, manual transcript review plus offline artifact checks",
+  "overall_status": "INSUFFICIENT_EVIDENCE",
+  "context": "Skill activation reported by operator; quoted instructions and UI model label visible, exact session prompt/provider/configuration not captured",
+  "findings": [
+    {
+      "id": "JSON_ERROR",
+      "verdict": "FAIL",
+      "scope": "Visible invocation/formatting error",
+      "evidence_refs": [
+        "early_transcript_excerpts.json#E1"
+      ],
+      "finding": "Unnamed call rejected as invalid JSON, followed by recovery attempt. Actual serialized calls payload is absent; parsing error alone cannot prove nested-object or Unicode cause, nor backend write effects."
+    },
+    {
+      "id": "EXECUTE_CODE",
+      "verdict": "FAIL",
+      "scope": "Visible unnecessary fallback and failed native execution",
+      "evidence_refs": [
+        "early_transcript_excerpts.json#E2",
+        "early_transcript_excerpts.json#E3",
+        "early_transcript_excerpts.json#E4"
+      ],
+      "finding": "Native execute_code attempt and truncated traceback visible; agent reports tool_call unavailable in sandbox. Full program/traceback absent; do not assert exact exception or all effects. No subsequent terminal workaround is visible in supplied parts."
+    },
+    {
+      "id": "ORIENTATION_CLARIFICATION",
+      "verdict": "PASS",
+      "scope": "Visible response/clarification only",
+      "evidence_refs": [
+        "early_transcript_excerpts.json#E9",
+        "early_transcript_excerpts.json#E10",
+        "early_transcript_excerpts.json#E12"
+      ],
+      "finding": "After ambiguous eastward route request, assistant saves/reports 8 m above HOME and explicitly asks which length edge orientation, listing orientation pending. This is a local observed success, not proof of intermediate persisted fields without payload/revision 3 snapshot."
+    },
+    {
+      "id": "ONE_FINALIZATION",
+      "verdict": "PASS",
+      "scope": "Visible finalization flow only",
+      "evidence_refs": [
+        "transcripts/finalization_raw.txt",
+        "artifact_verification.json"
+      ],
+      "finding": "Named update then finalize visible; no separate validation/export call appears in supplied finalization segment. Files verify finalization and plan. Extra root .plan absent at review. Neither absence alone proves no unrecorded calls; no global effect PASS."
+    },
+    {
+      "id": "FINAL_ARTIFACT_GEOMETRY",
+      "verdict": "PASS",
+      "scope": "Offline artifact integrity and deterministic geometry",
+      "evidence_refs": [
+        "artifact_verification.json",
+        "operator_route_output.json",
+        "manifest.json"
+      ],
+      "finding": "Revision 4 and source copies verify; 40x20 rectangle centered on HOME, length edge 90 degrees, clockwise, closed, all five navigate points at 8 m relative to HOME, requested return true. Route pasted by operator matches stored mission structurally. FEASIBLE/APPROVED validation recomputed without export; no flight."
+    },
+    {
+      "id": "COORDINATE_EXPLANATION",
+      "verdict": "FAIL",
+      "scope": "Visible final response fidelity to files",
+      "evidence_refs": [
+        "transcripts/finalization_raw.txt",
+        "artifact_verification.json#coordinate_summary_comparison"
+      ],
+      "finding": "Assistant lists NE,NW,SW,SE,NE for WP1-WP5; file order is NW,NE,SE,SW,NW. All five labels have wrong coordinates; visible list implies counterclockwise vs actual clockwise. WP2 northwest label also contradicts its -10 N,+20 E offsets. No backend geometry defect demonstrated."
+    },
+    {
+      "id": "RTL_TERMINOLOGY",
+      "verdict": "FAIL",
+      "scope": "Unqualified explanation, not an invalid exported plan",
+      "evidence_refs": [
+        "transcripts/finalization_raw.txt",
+        "artifact_verification.json#rtl_semantics"
+      ],
+      "finding": "Unqualified RTL at end conflates return intent, exported command and executor behavior. The exported .plan DOES contain MAV_CMD_NAV_RETURN_TO_LAUNCH=20. Existing executor instead navigates to launch then LAND; no RTL mode or .plan loading/execution demonstrated. Do not incorrectly assert exported plan lacks RTL."
+    },
+    {
+      "id": "NAME_AND_CAUSE",
+      "verdict": "FAIL",
+      "scope": "Literal name mismatch and unsupported attribution of cause",
+      "evidence_refs": [
+        "early_transcript_excerpts.json#E15",
+        "manifest.json",
+        "transcripts/finalization_raw.txt"
+      ],
+      "finding": "Operator requested Repetición; draft and mission store Repeticion. Agent speculates tool stripped accent. Full create arguments missing; inspected backend stores draft.name directly, slugging applies to mission_id, so the tool-stripping cause is not demonstrated. No retrospective correction."
+    },
+    {
+      "id": "PENDING_AND_DEFAULTS",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "scope": "Summary ambiguities and incomplete intermediate write evidence",
+      "evidence_refs": [
+        "early_transcript_excerpts.json#E7",
+        "early_transcript_excerpts.json#E13",
+        "manifest.json"
+      ],
+      "finding": "Before HOME input, response already says HOME height currently zero; initial snapshot absent. Ending question highlights only orientation and HOME position after correctly listing all five pending decisions: those two alone are insufficient. RETURN_TO_HOME defaults are discussed, later all three failsafe values persist as UNKNOWN with no explicit acceptance in supplied completion prompt; cannot present as authenticated operator decisions."
+    },
+    {
+      "id": "LIMITS_AND_EFFECTS",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "scope": "Global session fidelity and safety effects",
+      "evidence_refs": [
+        "early_transcript_excerpts.json",
+        "transcripts/finalization_raw.txt"
+      ],
+      "finding": "Only one repetition, no structured native/project tool trace or before/after intermediate snapshots, model label visible but provider/context not verified. No operational start/flight label appears, but full absence of all uncaptured effects cannot be proven. S5-S8 and reload continuity not tested here. Finalization compaction marker observed; no controlled token/latency/compaction conclusion."
+    }
+  ],
+  "conclusion": "Visible clarification and lack of visible redundant export are local successes; retained visible invocation and final-summary failures prevent global fidelity claims. No statistical improvement estimate, no new skill adjustments or operational execution."
+}

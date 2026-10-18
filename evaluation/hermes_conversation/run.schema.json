@@ -1,0 +1,506 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tfg:hermes-conversation-run:1",
+  "title": "Manual Hermes conversation evidence record, not an automatic fidelity verdict",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_version",
+    "suite_version",
+    "scenario_id",
+    "repetition",
+    "status",
+    "evidence_level",
+    "metadata",
+    "started_at",
+    "finished_at",
+    "turns",
+    "tool_calls",
+    "artifact_evidence",
+    "human_checks",
+    "reviewer",
+    "notes"
+  ],
+  "properties": {
+    "record_version": {
+      "const": 1
+    },
+    "suite_version": {
+      "enum": [
+        "1.0.0",
+        "1.0.1"
+      ]
+    },
+    "scenario_id": {
+      "enum": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8"
+      ]
+    },
+    "repetition": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "NOT_RUN",
+        "PASS",
+        "FAIL",
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    "evidence_level": {
+      "enum": [
+        "NONE",
+        "SUMMARY_ONLY",
+        "TRANSCRIPT_ONLY",
+        "STRUCTURED_TRACE"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_commit",
+        "hermes_commit",
+        "model",
+        "provider",
+        "skill_sha256",
+        "skill_activation",
+        "context_condition",
+        "mcp_tools_schema_sha256",
+        "non_sensitive_config",
+        "context_evidence_refs"
+      ],
+      "properties": {
+        "project_commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hermes_commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "skill_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "skill_activation": {
+          "enum": [
+            "NOT_RECORDED",
+            "PRELOADED_CLI",
+            "AUTO_LOAD",
+            "EXPLICIT_SKILL_VIEW",
+            "ABSENT"
+          ]
+        },
+        "context_condition": {
+          "enum": [
+            "UNRECORDED",
+            "BASELINE",
+            "DOMAIN_SKILL"
+          ]
+        },
+        "mcp_tools_schema_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "non_sensitive_config": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "profile_alias": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "temperature": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "context_limit": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "mcp_timeout_seconds": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "toolset_names": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "context_evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "started_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "finished_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "turns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "turn_id",
+          "user_prompt",
+          "assistant_response",
+          "started_at",
+          "finished_at",
+          "trace_ref",
+          "compaction_observation"
+        ],
+        "properties": {
+          "turn_id": {
+            "type": "string"
+          },
+          "user_prompt": {
+            "type": "string"
+          },
+          "assistant_response": {
+            "type": "string"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "trace_ref": {
+            "type": "string"
+          },
+          "compaction_observation": {
+            "enum": [
+              "NOT_RECORDED",
+              "NONE_OBSERVED",
+              "OBSERVED"
+            ]
+          }
+        }
+      }
+    },
+    "tool_calls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "call_id",
+          "turn_id",
+          "client_tool_name",
+          "project_tool_name",
+          "arguments",
+          "result",
+          "outcome",
+          "started_at",
+          "finished_at",
+          "trace_ref",
+          "evidence_source"
+        ],
+        "properties": {
+          "call_id": {
+            "type": "string"
+          },
+          "turn_id": {
+            "type": "string"
+          },
+          "client_tool_name": {
+            "type": "string"
+          },
+          "project_tool_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "arguments": {
+            "type": "object"
+          },
+          "result": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "outcome": {
+            "enum": [
+              "RETURNED",
+              "ERROR",
+              "RESPONSE_LOST"
+            ]
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "trace_ref": {
+            "type": "string"
+          },
+          "evidence_source": {
+            "const": "STRUCTURED_CAPTURE"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "outcome": {
+                  "const": "RESPONSE_LOST"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "result": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "result": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "artifact_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "artifact_id",
+          "phase",
+          "sha256",
+          "trace_ref"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          },
+          "phase": {
+            "enum": [
+              "BEFORE",
+              "AFTER",
+              "READ_ONLY"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "trace_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "human_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "criterion_id",
+          "verdict",
+          "evidence_refs",
+          "rationale"
+        ],
+        "properties": {
+          "criterion_id": {
+            "type": "string"
+          },
+          "verdict": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "INSUFFICIENT_EVIDENCE",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "reviewer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "evidence_level": {
+            "enum": [
+              "SUMMARY_ONLY",
+              "TRANSCRIPT_ONLY"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "status": {
+            "enum": [
+              "NOT_RUN",
+              "INSUFFICIENT_EVIDENCE"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence_level": {
+            "const": "STRUCTURED_TRACE"
+          },
+          "reviewer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "turns": {
+            "minItems": 1
+          },
+          "human_checks": {
+            "minItems": 1
+          },
+          "metadata": {
+            "properties": {
+              "model": {
+                "type": "string",
+                "minLength": 1
+              },
+              "provider": {
+                "type": "string",
+                "minLength": 1
+              },
+              "context_evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "PASS"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "human_checks": {
+            "items": {
+              "properties": {
+                "verdict": {
+                  "enum": [
+                    "PASS",
+                    "NOT_APPLICABLE"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

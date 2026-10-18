@@ -152,3 +152,40 @@ y 12.798 de resumen en JSON UTF-8 indentado: reducción del 79,52%. La propuesta
 crece un 5,93%; no se garantiza reducción para toda respuesta. No son medidas de
 tokens ni de compacciones. La validación del registro SDK no prueba fidelidad del
 LLM ni transporte/reconexión de Hermes con estos wrappers corregidos.
+
+## 18/10/2026 — Contexto de dominio versionado y evaluación preparada
+
+Se añade el skill del proyecto `.hermes/skills/tfg-mission-control/SKILL.md`, versión
+1.0.0, distinto de `hermes-agent`. La instalación local admite confianza de raíz y
+precarga explícita; no basta con editar este Markdown o las instructions del MCP.
+Se comprobó la carga completa con código instalado y perfil temporal, sin LLM ni
+conexión operativa. No se activó en la configuración personal.
+
+La [guía de activación, diagnóstico y evaluación](hermes-domain-evaluation.md)
+explica los cambios externos revisables y contiene diez prompts naturales para
+ocho escenarios, hechos/desconocidos, llamadas permitidas, efectos prohibidos y
+registro de transcripciones/trazas estructuradas. No implementa un juez automático
+del LLM ni presenta las incidencias como corregidas. Las pruebas deterministas
+no garantizan obediencia, fidelidad o menos compacciones; falta ejecutar y registrar
+las conversaciones reales. El PASSED operativo previo no evalúa estas instrucciones
+posteriores. Gate, executor, geometría, tolerancias, workers y locks se conservan.
+
+## 18/10/2026 — Transcripción con skill y revisión offline posterior
+
+Se recibió la transcripción del operador y se contrastó con los artefactos de
+Parcela Loma y la consulta histórica del rectángulo. La [evaluación parcial](hermes-domain-evaluation.md#revisión-parcial-de-transcripción-recibida-18102026)
+registra orientación prematura, atribuciones/resúmenes imprecisos, exportación y
+lectura de archivo redundantes, y confusión de duración. Reconoce la selección
+correcta de la consulta por run_id y la distinción de misión fuente. Sin argumentos/
+resultados completos no hay PASS de efectos ni fidelidad global. Los originales y
+las 37 copias anteriores permanecen intactos; el archivo nuevo conserva copias con
+hashes y extractos seleccionados, no una falsa traza estructurada completa.
+
+Skill actual 1.0.1 y esquemas/descripciones clarificados, sin cambiar geometría ni
+validación: statement requerido para atribución declarada ya era contrato Python;
+se publica también su condición en el esquema MCP. Se conserva UNKNOWN cuando no
+hay respaldo. La dirección de desplazamiento no elige por sí sola el eje; una altura
+explícita sí se conserva mientras se pregunta el resto. La finalización devuelta
+ya satisface construir/validar/exportar. Readiness histórica y duración de operaciones
+no equivalen a disponibilidad actual ni tiempo en vuelo. Repetición conversacional
+pendiente; no se cambió configuración personal ni se ejecutó una sesión LLM nueva.

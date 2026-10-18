@@ -34,7 +34,12 @@ class RelativeRouteRequest(BaseModel):
     offsets: list[Offset] | None = Field(None, max_length=200)
     length_m: float | None = Field(None, gt=0)
     width_m: float | None = Field(None, gt=0)
-    orientation_deg: float | None = Field(None, ge=0, lt=360)
+    orientation_deg: float | None = Field(None, ge=0, lt=360, description=(
+        "Orientation of the rectangle LENGTH edge, clockwise from north (east=90). "
+        "A travel direction alone does not resolve which edge/axis is oriented. "
+        "Leave null until that decision is explicit; other resolved parameters can be saved. "
+        "Numeric validity cannot establish fidelity to the operator's conversation."
+    ))
     traversal: Literal["clockwise", "counterclockwise"] | None = None
     home_position: Literal["corner", "center"] | None = None
 

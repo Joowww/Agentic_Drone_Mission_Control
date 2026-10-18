@@ -1,0 +1,123 @@
+{
+  "review_version": 1,
+  "review_date_local": "2026-10-18",
+  "overall_status": "INSUFFICIENT_EVIDENCE",
+  "scope": "Manual partial transcript review plus offline artifact checks; definite failures of visible semantic/explanation criteria are retained, no global PASS.",
+  "skill_activation": "Reported by operator; transcript reasoning quotes prior skill guidance, not proof of exact full prompt delivery.",
+  "findings": [
+    {
+      "id": "HOME_CONTRACT",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_refs": [
+        "T1",
+        "T2",
+        "artifact_verification.json"
+      ],
+      "finding": "Initial update error is truncated. Agent says operator attribution required statement, then reports revision 2 success. Current backend independently enforces that requirement. Exact failed arguments and revision 2 content are absent; no attribution of all 7 errors is justified."
+    },
+    {
+      "id": "AXIS_AMBIGUITY",
+      "verdict": "FAIL",
+      "evidence_refs": [
+        "T3",
+        "T4",
+        "T5",
+        "artifact_verification.json"
+      ],
+      "finding": "Visible response commits orientation 90 as operator-declared before resolving which edge/axis points east, despite the explicit clarification request. Later explicit 40 m edge confirmation supports final geometry, not the earlier inference. Stored attribution still cites the ambiguous eastward request. Intermediate revision 3 bytes and payloads are unavailable."
+    },
+    {
+      "id": "FINAL_ARTIFACT",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "artifact_verification.json",
+        "manifest.json"
+      ],
+      "finding": "Offline verification of final revision 4, snapshot and mission hash succeeds; saved and recomputed safety validation is FEASIBLE/APPROVED. Five deterministic waypoints, requested geometry and mission values are persisted. This is an artifact check, not a conversational PASS or a Loma flight result."
+    },
+    {
+      "id": "REDUNDANT_EXPORT",
+      "verdict": "FAIL",
+      "evidence_refs": [
+        "T6",
+        "T7",
+        "manifest.json",
+        "artifact_verification.json"
+      ],
+      "finding": "Visible finalize tool event precedes the extra export label; assistant explicitly acknowledges existing validation/plan before repeating it. Two local .plan files are byte-identical. Exact arguments, output_directory and response payload are not captured, so file effects cannot be reconstructed solely from the labels."
+    },
+    {
+      "id": "DIRECT_FILE_READ",
+      "verdict": "FAIL",
+      "evidence_refs": [
+        "T8"
+      ],
+      "finding": "Visible terminal ls rechecks a plan already reported by the project; additional command hidden by the UI is unknown. Cannot assert every shell action was read-only."
+    },
+    {
+      "id": "HISTORICAL_TOOL_AND_IDENTITY",
+      "verdict": "PASS",
+      "evidence_refs": [
+        "T9",
+        "T10",
+        "artifact_verification.json"
+      ],
+      "finding": "Correct query tool selected visibly and correct different mission/source explained, corroborated by local linked artifacts. Exact run_id/view payload and query result object absent; this PASS covers selection/explanation only."
+    },
+    {
+      "id": "DURATION",
+      "verdict": "FAIL",
+      "evidence_refs": [
+        "T11",
+        "artifact_verification.json"
+      ],
+      "finding": "Transcript reasoning calls executor interval flight time and response presents 7 min 51 s as simulated route duration. Workflow 480.344587 s; executor 471.332987 s. Neither establishes airborne time; no per-event timestamps supply it."
+    },
+    {
+      "id": "READINESS_PRESENTATION",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_refs": [
+        "T12",
+        "artifact_verification.json"
+      ],
+      "finding": "Opening clearly describes a historical query; later readiness verified lacks an explicit historical qualifier. Saved report does contain the five named controls, all PASS. No current check is evidenced and no current availability conclusion is justified; do not label this a proven new readiness call."
+    },
+    {
+      "id": "PROVENANCE_SUMMARY",
+      "verdict": "FAIL",
+      "evidence_refs": [
+        "T16",
+        "T17",
+        "manifest.json"
+      ],
+      "finding": "Visible response lists name/mode as operator-declared then as lacking operator attribution. Final state records name/mode/dimensions UNKNOWN. UNKNOWN means no recorded attribution, not that the agent invented these values. Blanket summary that all decisions were operator-declared cannot authenticate provenance."
+    },
+    {
+      "id": "RESTRICTION_QUERY",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_refs": [
+        "T13"
+      ],
+      "finding": "FINISHED/worker_alive=false/vehicle_restriction=null are reported by the assistant in the transcript. No saved original query response proves its dynamic restriction observation; review does not query current locks or infer consent."
+    },
+    {
+      "id": "COMPACTION",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_refs": [
+        "T14",
+        "T15"
+      ],
+      "finding": "A compaction marker and provider retry marker are visible. No controlled latency, token reduction, compaction cause or total timing can be measured from these rounded/truncated UI events."
+    }
+  ],
+  "not_evaluated": [
+    "Initial creation S1",
+    "Full reload behavior S2",
+    "Battery/revision S6",
+    "WP3 causal explanation S7",
+    "Infrastructure-only S8",
+    "Complete absence of unrecorded operational effects",
+    "LLM behavior after instruction changes 1.0.1"
+  ],
+  "approval_meaning": "FEASIBLE/APPROVED is deterministic plan validation. Historical PASSED belongs to Circuito Relativo Nuevo, not Parcela Loma. Neither grants consent for another execution or real hardware."
+}
