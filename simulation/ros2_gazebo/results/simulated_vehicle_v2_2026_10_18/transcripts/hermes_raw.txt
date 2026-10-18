@@ -1,0 +1,733 @@
+Welcome to Hermes Agent! Type your message or /help for commands.
+✦ Tip: hermes config check scans for missing or stale configuration options.
+Activated skills: tfg-mission-control
+
+
+⚙️  /reload-mcp
+⏳ Reloading MCP servers...
+  ♻️  Reconnected: tfg-mission-control
+  🔧 21 tool(s) available from 1 server(s)
+  ✅ Agent updated — 0 tool(s) available
+
+────────────────────────────────────────
+● Comprueba si missions/examples/simulation_navigation_drone02.json está preparada para
+ejecución simulada; informa del vehículo lógico, interfaz y controles de readiness 
+realmente realizados, sin arrancar simulación ni ejecutar un vuelo.
+Initializing agent...
+────────────────────────────────────────
+
+
+┌─ Reasoning ─────────────────────────────────────────────────────────────────────────┐
+The user is asking me to check if `missions/examples/simulation_navigation_drone0
+2.json` is ready for simulated execution, reporting the logical vehicle, interface
+, and readiness controls that were actually performed. They want me to use the MCP
+ tool `check_simulation_ready` (as per the skill's quick reference).
+
+Let me look at the skill's quick reference again - it mentions `check_simulation_ready
+` and `check_mission_execution_ready`. The user asks about "ejecución simulada" (
+simulated execution), so I should use `check_simulation_ready`.
+
+Let me first locate the file to make sure it exists, then call the appropriate MCP
+ tool. Actually, the skill says I should work by intent and state. Let me call the
+ check_simulation_ready tool. But I need to check what arguments it expects. Let me
+ first locate the mission file to confirm it exists, and then call the tool.
+
+Let me first check if the file exists and look at the tool schema.Actually, the user
+ is asking me to "comprueba" (check) - so I need to call `check_simulation_ready`.
+ Let me first verify the file exists and then call the tool. I can do both in parallel
+ - read the file and describe the tool. But actually I need the tool's schema first
+ to know how to call it. Let me use tool_describe for the check_simulation_ready tool
+, and also search for the file.
+
+Wait, let me re-read: "comprueba si missions/examples/simulation_navigation_drone
+02.json está preparada para ejecución simulada; informa del vehículo lógico, interf
+az y controles de readiness realmente realizados, sin arrancar simulación ni ejecut
+ar un vuelo."
+
+So: check if the mission is prepared for simulated execution; report the logical vehicle
+, interface, and readiness controls actually performed; don't start simulation or
+ fly.
+
+I should use `check_simulation_ready` which checks whether the ROS2, Gazebo and Ar
+duPilot simulation... is ready. But wait, the skill says the readiness saved is historical
+, not current availability. Let me look at both tools - `check_simulation_ready` and
+ `check_mission_execution_ready`.
+
+Actually, looking more carefully, `check_simulation_ready` "Check whether the ROS
+2, Gazebo and ArduPilot simulation processes" are ready - this checks the simulation
+ infrastructure. `check_mission_execution_ready` "Check whether a mission is authorized
+ for execution."
+
+The user wants to check if the mission file is prepared for simulated execution. Let
+ me use `check_simulation_ready` since they mention "ejecución simulada" (simulated
+ execution). But this takes a mission - let me check the schema.
+
+Let me describe the tool first and verify the file exists in parallel.
+└─────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ──────────────────────────────────────────────────────────────────────────╮
+I'll check the mission file and the tool schema in parallel first.
+╰─────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ ⚡ preparing tool details…
+  ┊ 💻 $         ls -la /home/joelm/TFG/Agentic_Drone_Mission_Control/missions/examples/simulation_navigation_drone02.json + 1 command  0.2s
+  ┊ 📖 Reading tool details · 2 tools  0.0s
+
+┌─ Reasoning ─────────────────────────────────────────────────────────────────────────┐
+The file exists. Now let me understand the two tools:
+
+1. `check_simulation_ready` - checks whether the ROS2, Gazebo and ArduPilot simulation
+ stack is healthy and ready. No parameters needed. Read-only check, doesn't issue
+ flight commands.
+
+2. `check_mission_execution_ready` - checks whether a mission is authorized for execution
+. Takes `mission_path`. The deterministic mission-safety pipeline must approve the
+ mission and the simulation must be healthy before execution is authorized.
+
+The user asks: "Comprueba si missions/examples/simulation_navigation_drone02.json
+ está preparada para ejecución simulada; informa del vehículo lógico, interfaz y cont
+roles de readiness realmente realizados, sin arrancar simulación ni ejecutar un v
+uelo."
+
+Translation: "Check if missions/examples/simulation_navigation_drone02.json is prepared
+ for simulated execution; report the logical vehicle, interface, and readiness controls
+ actually performed, without starting simulation or flying a flight."
+
+So the user wants:
+1. Check that the mission is prepared for simulated execution.
+2. Report the logical vehicle, interface, and readiness controls actually performed
+.
+3. Without starting simulation or flying.
+
+The `check_mission_execution_ready` seems most appropriate here since it checks whether
+ a mission is authorized for execution (which includes both the mission-safety pipeline
+ approval AND the simulation health). It takes `mission_path` as required parameter
+.
+
+But wait - "preparada para ejecución simulada" (prepared for simulated execution).
+ The `check_simulation_ready` checks the simulation stack health. The `check_mission
+_execution_ready` checks mission authorization which includes simulation health check
+ + mission-safety approval.
+
+Given the user wants to check if the mission is "preparada para ejecución simulada
+" (prepared for simulated execution), and wants to know the "vehículo lógico" (logical
+ vehicle), "interfaz" (interface), and "controles de readiness realmente realizados
+" (readiness controls actually performed), I think `check_mission_execution_ready
+` is the most comprehensive tool - it checks both the mission safety pipeline AND
+ the simulation health.
+
+Actually, re-reading the skill's pitfalls: "La readiness guardada es histórica, no
+ disponibilidad actual." (Saved readiness is historical, not current availability
+.) And "Nombra únicamente controles registrados: Docker container, Gazebo server,
+ ArduPilot processes, ROS 2 vehicle interfaces y Pre-arm checks, sólo los que lleg
+aron a ejecutarse." (Name only registered controls: Docker container, Gazebo server
+, ArduPilot processes, ROS 2 vehicle interfaces and Pre-arm checks, only those that
+ actually ran.)
+
+So the user wants me to report which readiness controls were actually performed. This
+ suggests using `check_mission_execution_ready` which validates both the mission safety
+ pipeline and simulation health.
+
+Let me call `check_mission_execution_ready` with the mission path. This is the tool
+ that checks if a mission is authorized for execution (which includes simulation being
+ healthy + mission safety pipeline approval).
+
+Actually, wait. Let me reconsider. The user says "comprueba si ... está preparada
+ para ejecución simulada" - check if it's prepared for simulated execution. And "
+informa del vehículo lógico, interfaz y controles de readiness realmente realizados
+" - report the logical vehicle, interface, and readiness controls actually performed
+.
+
+The `check_mission_execution_ready` description says: "The deterministic mission-s
+afety pipeline must approve the mission and the simulation must be healthy before
+ execution is authorized." This seems to be the right tool - it checks both aspects
+.
+
+But `check_simulation_ready` just checks the simulation stack. The user specifically
+ asks about the mission file being prepared for simulated execution, which involves
+ both the mission validation AND the simulation readiness.
+
+Let me use `check_mission_execution_ready` with the mission path. This is the tool
+ that checks whether a mission is authorized for execution, which includes checking
+ that the simulation is healthy and the mission passes the safety pipeline.
+
+Actually, I need to think about this more carefully. The user is asking two things
+:
+1. "Comprueba si ... está preparada para ejecución simulada" - Check if the mission
+ is prepared for simulated execution.
+2. "informa del vehículo lógico, interfaz y controles de readiness realmente real
+izados" - Report the logical vehicle, interface, and readiness controls actually performed
+.
+
+The mission file shows:
+- vehicle_id: "drone_02" - this is the logical vehicle
+- vehicle_type: "multirotor"
+- autopilot: "ArduPilot"
+
+For "interfaz" (interface), I need to check the readiness controls. The `check_mission
+_execution_ready` tool should report this.
+
+Let me call `check_mission_execution_ready` with the mission path. This will check
+ both mission authorization and simulation health.
+
+Wait, but the user says "sin arrancar simulación ni ejecutar un vuelo" (without starting
+ simulation or flying). The `check_mission_execution_ready` description says it's
+ a check - "Check whether a mission is authorized for execution." It doesn't start
+ the simulation, it just checks. And `check_simulation_ready` says "This is a read
+-only check and does not issue flight commands."
+
+Let me use `check_mission_execution_ready` since it checks both the mission and simulation
+ readiness. This is the most comprehensive check for whether the mission is "prepar
+ada para ejecución simulada."
+
+Let me call it now.
+└─────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ──────────────────────────────────────────────────────────────────────────╮
+The mission file exists and references logical vehicle drone_02 (multirotor, ArdiPilot). Now I'll run the read-only execution-readiness check, which validates both the mission-safety pipeline and simulation health without starting anything.
+╰─────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing a tool call…
+  ┊ 🔌 Tfg Mission Control · check mission execution ready  0.3s
+
+╭─ ☤ Hermes ──────────────────────────────────────────────────────────────────────────╮
+Resultado del chequeo de missions/examples/simulation_navigation_drone02.json
+
+Resumen: La misión no está preparada para ejecución simulada. Estado BLOCKED en la etapa SIMULATION_READINESS.
+
+Mission safety pipeline:
+- mission_status: FEASIBLE (la ruta y restricciones pasan el pipeline determinista)
+- execution_status: APPROVED (la misión está autorizada por el pipeline de seguridad)
+
+Simulación (controles realizados con éxito/parcial):
+
+#: 1
+Control realizado: Docker container
+Resultado: PASS — Contenedor en ejecución
+────────────────────────────────────────
+#: 2
+Control realizado: Gazebo server (runway world)
+Resultado: FAIL — World de Gazebo no está en marcha
+────────────────────────────────────────
+#: 3
+Control realizado: ArduPilot processes
+Resultado: (no se llegó a comprobar — abortado tras el fallo de Gazebo)
+────────────────────────────────────────
+#: 4
+Control realizado: ROS 2 vehicle interface (v2)
+Resultado: (no se llegó a comprobar — abortado tras el fallo de Gazebo)
+────────────────────────────────────────
+#: 5
+Control realizado: Pre-arm checks
+Resultado: (no se llegó a ejecutar — abortado tras el fallo de Gazebo)
+
+Vehículo lógico: drone_02 → vehículo simulado v2 (multirotor, ArduPilot). El check se detuvo en el control #2, por lo que los controles #3–#5 no se ejecutaron. No se arrancó la simulación ni se emitieron comandos de vuelo.
+
+Decisión pendiente del operador: iniciar la simulación (Gazebo) para poder pasar el resto de los controles de readiness.
+╰─────────────────────────────────────────────────────────────────────────────────────╯
+
+────────────────────────────────────────
+● Arranca la simulación mediante el control del proyecto y, cuando termine el arranque,
+comprueba su disponibilidad en ese orden; muestra los resultados y no ejecutes misiones
+ni ensayos.
+────────────────────────────────────────
+
+
+┌─ Reasoning ─────────────────────────────────────────────────────────────────────────┐
+The user is now asking me to start the simulation via the project's control (start
+_simulation) and then check its availability (check_simulation_ready). They explicitly
+ say NOT to execute missions or run preflights.
+
+Let me look at the available tools. There's `start_simulation` which "Start the deterministic
+ ROS2, Gazebo and ArduPilot simulation processes." This is a synchronous operation
+. Let me call it, then after it completes, call `check_simulation_ready`.
+
+The user says "mediante el control del proyecto" - via the project's control. This
+ means using `start_simulation`.
+
+Let me call `start_simulation` first. Since `check_simulation_ready` depends on `
+start_simulation` completing first (I need to wait for the startup to finish before
+ checking), I should do these sequentially, not in parallel.
+
+Wait, the skill says: "El worker no arranca simulación. Si no está lista, explica
+ BLOCKED; no la arranques para arreglarlo salvo una petición separada explícita del
+ operador." 
+
+Hmm, but the user is now explicitly asking me to start the simulation: "Arranca la
+ simulación mediante el control del proyecto". This is an explicit request from the
+ operator to start the simulation. So this falls under "una petición separada expl
+ícita del operador" (a separate explicit operator request).
+
+Also: "Sólo una solicitud explícita del ensayo autoriza iniciar un preflight" - only
+ an explicit request authorizes starting a preflight. The user is not asking for a
+ preflight, they're asking to start the simulation.
+
+And: "Una petición SITL no requiere autorización de hardware real ni cambios físicos
+." - An SITL request doesn't require real hardware authorization or physical changes
+.
+
+So the user's request to start the simulation is valid. Let me call `start_simulation
+` first, then `check_simulation_ready`.
+
+Let me check the schema for `start_simulation` to know its parameters.
+└─────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ──────────────────────────────────────────────────────────────────────────╮
+The user explicitly requested starting the simulation. Let me first check the schema for start_simulation, then call it.
+╰─────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing tool details…
+  ┊ 📖 Reading tool details · 1 tool  0.0s
+
+┌─ Reasoning ─────────────────────────────────────────────────────────────────────────┐
+`start_simulation` takes no parameters and starts the simulation environment only
+ (no arming, takeoff, or commands). The description matches what the user wants: "
+Start the deterministic ROS2, Gazebo and ArduPilot simulation stack."
+
+Now let me call `start_simulation`, wait for it to complete, then call `check_simulation
+_ready`.
+
+The user said "cuando termine el arranque, comprueba su disponibilidad en ese orden
+" - when the startup finishes, check availability. So I need to start the simulation
+ first (which is synchronous), then once it returns, check readiness.
+
+Let me call `start_simulation` now.
+└─────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ──────────────────────────────────────────────────────────────────────────╮
+Starting the simulation now (this is a synchronous startup, no flight commands issued).
+╰─────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing a tool call…
+  ┊ 🔌 Tfg Mission Control · start simulation  20.9s
+
+┌─ Reasoning ─────────────────────────────────────────────────────────────────────────┐
+The simulation started successfully. Now the user asked me to check availability in
+ that order (after the startup finishes). Let me call `check_simulation_ready` to
+ verify the availability.
+└─────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ──────────────────────────────────────────────────────────────────────────╮
+Simulation started successfully. Now checking its availability.
+╰─────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing a tool call…
+  ┊ 🔌 Tfg Mission Control · check simulation ready  72.5s
+
+╭─ ☤ Hermes ──────────────────────────────────────────────────────────────────────────╮
+Resultado
+
+1) Arranque de simulación — start_simulation
+
+- Estado: SUCCESS (return_code 0)
+- Salida clave: SIMULATION READY — Drone 1 -> /ap/v1, Drone 2 -> /ap/v2
+- No se armó, despegó ni comandó ningún vehículo (solo se inició el entorno).
+
+2) Chequeo de disponibilidad — check_simulation_ready
+
+- Estado: READY (return_code 0) — "Simulation is healthy and both drones are ready."
+
+Controles de readiness realizados (todos PASS):
+
+#: 1
+Control realizado: Docker container
+Resultado: PASS — Contenedor en ejecución
+────────────────────────────────────────
+#: 2
+Control realizado: Gazebo server (runway world)
+Resultado: PASS — World de Gazebo activo
+────────────────────────────────────────
+#: 3
+Control realizado: ArduPilot processes
+Resultado: PASS — 2 procesos ArduCopter en ejecución
+────────────────────────────────────────
+#: 4
+Control realizado: ROS 2 vehicle interfaces
+Resultado: PASS — /ap/v1/status y /ap/v2/status operativas
+────────────────────────────────────────
+#: 5
+Control realizado: Pre-arm checks
+Resultado: PASS — /ap/v1 y /ap/v2 armables
+
+Vehículos lógicos: drone_01 → /ap/v1 (READY), drone_02 → /ap/v2 (READY).
+
+No se ejecutaron misiones ni ensayos. La simulación está disponible para uso posterior.
+╰─────────────────────────────────────────────────────────────────────────────────────╯
+
+────────────────────────────────────────
+● Gazebo se ha abierto negro y no he iniciado ningún ensayo; detén la simulación 
+mediante el control del proyecto y espera a que termine, después arráncala una única 
+vez y comprueba readiness en ese orden; no ejecutes vuelos y al terminar pregúntame si 
+veo correctamente el mundo y los drones, sin dar la visualización por confirmada ni 
+repetir otro reinicio.
+────────────────────────────────────────
+
+
+┌─ Reasoning ─────────────────────────────────────────────────────────────────────────┐
+The user is telling me:
+1. Gazebo has opened black (blank/black screen) and no trial/flight has been started
+.
+2. Stop the simulation via the project control (`stop_simulation`).
+3. Wait for it to terminate.
+4. Then start it once again (`start_simulation`).
+5. Then check readiness (`check_simulation_ready`).
+6. In that order: stop → start → check readiness.
+7. Do not execute flights.
+8. When finished, ask the user if they see the world and drones correctly.
+9. Do NOT confirm the visualization as correct myself.
+10. Do NOT repeat another restart.
+
+Let me check the schema for `stop_simulation` first, then call it.
+
+Wait, actually I already know from the tool list that `stop_simulation` exists: "
+Stop the ROS2, Gazebo and ArduPilot simulation processes." Let me just call it. But
+ I need to check its parameters. Let me describe it quickly, then proceed with the
+ sequential operations.
+
+ 
+Actually, let me be efficient. Let me look at the tool list - `stop_simulation` is
+ listed as: "Stop the ROS2, Gazebo and ArduPilot simulation processes." It likely
+ takes no parameters. Let me just call it.
+
+But to be safe, let me describe it to know the exact schema. Actually, let me just
+ call stop_simulation first. If it takes parameters, the call will fail and I'll adjust
+. But better to check the schema to be safe.
+
+Let me describe stop_simulation.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Let me check the stop_simulation schema before calling it.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing tool details…
+  ┊ 📖 Reading tool details · 1 tool  0.0s
+
+┌─ Reasoning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+Good, `stop_simulation` takes no parameters. Now I need to:
+1. Stop the simulation (stop_simulation)
+2. Wait for it to terminate
+3. Start it once (start_simulation)
+4. Check readiness (check_simulation_ready)
+
+Steps 3 and 4 are dependent on step 2 (which happens after step 1 returns). So I need
+ to do these sequentially. The user said "detén la simulación mediante el control
+ del proyecto y espera a que termine, después arráncala una única vez y comprueba
+ readiness en ese orden" - stop the simulation via the project control and wait for
+ it to terminate, then start it once and check readiness in that order.
+
+So the sequence is: stop → (wait) → start → check readiness.
+
+Let me start with stop_simulation first.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Stopping the simulation now.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing a tool call…
+  ┊ 🔌 Tfg Mission Control · stop simulation  18.0s
+
+┌─ Reasoning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+The simulation has been stopped successfully. The output says "SIMULATION STOPPED
+: no live processes attributable to the project remain." So the stop completed and
+ all processes are gone.
+
+Now I need to start the simulation once and then check readiness. Let me call `start
+_simulation` next.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Simulation stopped — all project processes terminated. Now starting it once.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing a tool call…
+  ┊ 🔌 Tfg Mission Control · start simulation  21.0s
+
+┌─ Reasoning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+Simulation started successfully again. Now I need to check readiness. Let me call
+ `check_simulation_ready`.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Simulation restarted successfully. Now checking readiness.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing a tool call…
+  ┊ 🔌 Tfg Mission Control · check simulation ready  81.1s
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Resultado: reinicio y chequeo de readiness
+
+Secuencia completada en orden: stop → start → check.
+
+1. Stop — SUCCESS. Se enviaron SIGINT/SIGTERM/SIGKILL a los procesos (pids 34578, 34637, 34639). "no live processes attributable to the project remain."
+
+2. Start — SUCCESS. SIMULATION READY. Gazebo GUI ON, RViz OFF. Drone 1 → /ap/v1, Drone 2 → /ap/v2.
+
+3. Check readiness — READY. Controles realizados tras este arranque:
+
+| #   | Control                      | Resultado                           |
+|-----|------------------------------|-------------------------------------|
+| 1   | Docker container             | PASS — Contenedor en ejecución      |
+| 2   | Gazebo server (runway world) | PASS — World activo                 |
+| 3   | ArduPilot processes          | PASS — 2 procesos ArduCopter        |
+| 4   | ROS 2 vehicle interfaces     | PASS — /ap/v1/status, /ap/v2/status |
+| 5   | Pre-arm checks               | PASS — /ap/v1 y /ap/v2 armables     |
+
+Vehículos: drone_01 → /ap/v1 (READY), drone_02 → /ap/v2 (READY).
+
+No se ejecutaron vuelos ni ensayos.
+
+La simulación está de nuevo operativa y todos los controles de readiness pasan. Dado que mencionas que Gazebo se abrió negro, tengo que dejarte la decisión a ti: ¿ ves correctamente el mundo y los drones en la ventana de Gazebo, o sigue en negro? (No doy por confirmada la visualización desde aquí, y no repito el reinicio.)
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+────────────────────────────────────────
+● Confirmo que veo correctamente el mundo y los drones en Gazebo. Solicito un único ensayo virtual asíncrono de 
+missions/examples/simulation_navigation_drone02.json con clave joel-drone02-preflight-01; autorizo armado, despegue, recorrido y aterrizaje 
+exclusivamente de drone_02 en v2 simulado, sin arrancar ni reiniciar la simulación ni ejecutar otro vehículo; conserva y muestra run_id, 
+identidad lógica, interfaz y rutas.
+────────────────────────────────────────
+
+
+┌─ Reasoning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+The user has confirmed they see the world and drones correctly in Gazebo. Now they
+ want:
+
+1. A single **asynchronous virtual preflight** of `missions/examples/simulation_navigation
+_drone02.json`
+2. With key `joel-drone-01-preflight-01`
+3. Authorization for: arming, takeoff, route traversal, and landing **exclusively
+** of `drone_02` in simulated `v2`
+4. No starting or restarting simulation, no other vehicle
+5. Keep and show: `run_id`, logical identity, interface, and routes
+
+This maps to the `start_virtual_preflight` tool. Let me check its schema. From the
+ tool list:
+- `start_virtual_preflight`: "Admit ONE asynchronous virtual preflight and quickly
+ return."
+
+Let me describe it to know the exact parameters.
+
+The user gives an explicit authorization for the preflight, which the skill rules
+ say is required: "Sólo una solicitud explícita del ensayo autoriza iniciar un preflight
+ del snapshot revisado."
+
+The user explicitly authorized arming, takeoff, route traversal, and landing of drone
+_02 in v2 simulated.
+
+Let me check the tool schema first.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Confirmed — visualization is correct. You've explicitly authorized the virtual preflight with arming, takeoff, route, and landing for drone_02/v2 only. Let me check the tool schema, then launch the single async preflight.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing tool details…
+  ┊ 📖 Reading tool details · 1 tool  0.0s
+
+┌─ Reasoning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+The tool `start_virtual_preflight` takes:
+- `mission_path`: string (the mission file path)
+- `request_key`: string (the key to permanently identify this admission)
+
+The user provided:
+- `mission_path`: `missions/examples/simulation_navigation_drone02.json`
+- `request_key`: `joel-drone02-preflight-01`
+
+This will start an asynchronous virtual preflight. The description says it "quick
+ly returns run_id and paths." It's async, so I'll get a run_id back and then need
+ to poll for the result using `get_virtual_preflight`.
+
+The skill says:
+- "Registra una request_key antes del inicio; conserva run_id y consulta el MISMO
+ ensayo cada 15–30 s cuando proceda."
+- "Aceptas una solicitud explícita del ensayo autoriza iniciar un preflight del snapshot
+ revisado."
+
+The user explicitly authorized this preflight with arming, takeoff, route, and landing
+ for drone_02/v2 only. This is a valid explicit rehearsal request.
+
+Let me call `start_virtual_preflight` with:
+- `mission_path`: "missions/examples/simulation_navigation_drone02.json"
+- `request_key`: "joel-drone02-preflight-01"
+
+Note: the tool says "Never starts simulation" - good, the user said not to start or
+ restart the simulation.
+
+Also note: "one global flight slot" - so only one drone can fly. The user specified
+ drone_02/v2 only.
+
+Let me call this now.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Launching the single async virtual preflight with the user-provided request_key and explicit authorization for drone_02/v2 only.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing a tool call…
+  ┊ 🔌 Tfg Mission Control · start virtual preflight  0.1s
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Ensayo virtual asíncrono admitido
+
+El ensayo ha sido admitido (admission_status: ACCEPTED, job_state: STARTING). La simulación no se reinició ni arrancó de nuevo. Se reservó el slot global de vuelo para drone_02 → v2 exclusivamente.
+
+run_id: 7162bce5-3635-4a76-bf02-6a5a22612aab
+request_key: joel-drone02-preflight-01
+
+Identidad lógica: drone_02 → vehículo simulado v2
+Interfaz ROS 2: /ap/v2 (reservado, process pid 114729)
+
+Rutas persistidas:
+- Run directory: missions/generated/preflights/7162bce5-3635-4a76-bf02-6a5a22612aab/
+- Snapshot: .../mission.json
+- Input: .../input.json
+- Reporte (en construcción): .../report.json
+- Job: .../job.json
+- Log del worker: .../worker.log
+
+Importante: ESTO ES SOLO ADMISIÓN — la validación y acceptance siguen pendientes. El estado actual es STARTING / worker_starting. Por ahorano tengo resultados PASSED/FAILED ni tiempos de vuelo.
+
+Consultaré el estado del MISMO ensayo por run_id cada 15–30 s. ¿Prefieres que lo consulte en unos segundos, o lo dejas correr y me indicas cuándo quieres el primer sondeo?
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+────────────────────────────────────────
+● Consulta únicamente el ensayo asociado a joel-drone02-preflight-01 y muestra run_id, identidad lógica, interfaz, job_state, fase, 
+resultado, motivos, aterrizaje y reservas del vehículo y global; no inicies, repitas ni reanudes ninguna ejecución.
+────────────────────────────────────────
+
+
+┌─ Reasoning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+The user wants me to query the virtual preflight associated with request_key `joel
+-drone02-preflight-01`. The tool `get_virtual_preflight` can be called with either
+ `run_id` or `request_key`.
+
+Let me check the schema for `get_virtual_preflight` to know the exact parameters.
+ From the tool list: "Read-only preflight lookup by exactly one of run_id or request
+_key."
+
+I know the run_id is `7162bce5-3635-4a76-bf02-6a5a22612aab` and the request_key is
+ `joel-drone02-preflight-01`. The user specifically says to use the key `joel-drone
+02-preflight-01`.
+
+Let me call `get_virtual_preflight` with `request_key: "joel-drone02-preflight-01
+"`.
+
+The user wants to see: run_id, logical identity, interface, job_state, phase, result
+, reasons, landing, and vehicle and global reservations. And explicitly says NOT to
+ start, repeat, or resume any execution. This is a read-only query.
+
+Let me describe the tool first to be sure of the parameters, then call it. Actually
+, I know from the tool list that it takes either `run_id` or `request_key`. Let me
+ just call it with request_key. But to be safe, let me describe the schema.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+  ┊ ⚡ preparing tool details…
+  ┊ 📖 Reading tool details · 1 tool  0.0s
+
+┌─ Reasoning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+The tool takes `run_id` or `request_key` (both nullable, default null). The user wants
+ me to query by `request_key: "joel-drone02-preflight-01"`. I'll use summary view
+ first. The user wants: run_id, logical identity, interface, job_state, phase, result
+, reasons, landing, and vehicle and global reservations.
+
+Let me call it with the request_key.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Querying the existing preflight by request_key only (read-only, no execution).
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+  ┊ ⚡ preparing a tool call…
+  ┊ 🔌 Tfg Mission Control · get virtual preflight  0.0s
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Consulta del ensayo — joel-drone02-preflight-01
+
+run_id: 7162bce5-3635-4a76-bf02-6a5a22612aab
+Identidad lógica: drone_02 → vehículo simulado v2 (selección basada en MISSION_SNAPSHOT)
+Interfaz ROS 2: /ap/v2 (reservada/executando, pid 118460, boot_id cbb1fa33-db15-4014-a06b-484e3f0b0dcc)
+
+job_state: RUNNING
+Fase actual: execute (execution_started_at: 2026-10-18T17:34:40.657446Z)
+Resultado: null (aún en curso — ACCEPTED no equivale a PASSED)
+
+Motivos / razones: [] (vacío — no hay fallos registrados hasta el momento)
+Validación previa: FEASIBLE / APPROVED (pipeline de seguridad aprobó la misión)
+Readiness de simulación: READY — todos los 5 controles pasaron (Docker, Gazebo, ArduPilot, ROS 2 interfaces, pre-arm checks)
+
+Reservas de vehículo:
+- vehicle_restriction: state EXECUTING, vehicle v2, vehicle_id drone_02
+
+Reserva global de vuelo:
+- global_flight_restriction: state EXECUTING, vehicle v2, vehicle_id drone_02 (único slot ocupado)
+
+Aterrizaje: No registrado. El estado es RUNNING/EXECUTE, no hay confirmación de aterrizaje registrada. Per el protocolo, started_at/execution_started_at son duraciones de operación, no tiempo de vuelo; sin eventos de aterrizaje adecuados este permanece desconocido.
+
+hardware_authorized: false (no aplica — es SITL simulado)
+qgc_plan_path: null (sin exportación en esta operación; no implica ausencia de exportaciones previas)
+
+Nota de interpretación: Los resultados previos de esta misión indican que una ocurrencia pasada de WP3 falló, pero en este ensayo no se han registrado errores (error_evidence: []). No se ha completado el vuelo aún.
+
+No se ha iniciado, repetido ni reanudado ninguna ejecución. Este es exclusivamente un estado de lectura del ensayo en curso.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+────────────────────────────────────────
+● Consulta únicamente el ensayo 7162bce5-3635-4a76-bf02-6a5a22612aab en vista resumida y muestra identidad, job_state, fase, result_status, 
+motivos, waypoints completados, regreso, aterrizaje/desarmado y reservas del vehículo y global; no inicies, repitas ni reanudes vuelos.
+────────────────────────────────────────
+
+
+┌─ Reasoning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+The user wants me to query the preflight with run_id `7162bce5-3635-4a76-bf02-6a5
+a22612aab` in summary view, and show: identity, job_state, phase, result_status, reasons
+, completed waypoints, return, landing/disarming, and vehicle and global reservations
+. No initiating, repeating, or resuming flights.
+
+Let me call `get_virtual_preflight` with `run_id` and `view="summary"`.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+  ┊ ⚡ preparing a tool call…
+  ┊ 🔌 Tfg Mission Control · get virtual preflight  0.0s
+
+┌─ Reasoning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+The preflight has completed. Let me extract the key information the user asked for
+:
+
+1. **Identidad:** drone_02 → v2 (mission_snapshot basis)
+2. **job_state:** FINISHED
+3. **Fase:** analyze
+4. **result_status:** PASSED
+5. **Motivos:** [] (empty — no reasons/failures)
+6. **Waypoints completados:** WP1, WP2, WP3 (all 3 reached)
+7. **Regreso (return_to_home):** true — return_home_reached: true
+8. **Aterrizaje/desarmado:** LANDED — armed: false, flying: false (landed_and_dis
+armed: true)
+9. **Reservas de vehículo y global:** Both are now null (the flight has finished,
+ so the reservations are released)
+
+Let me present this clearly.
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+╭─ ☤ Hermes ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+Consulta del ensayo — run_id 7162bce5-3635-4a76-bf02-6a5a22612aab (vista resumida)
+
+Identidad: drone_02 → vehículo simulado v2 (selección: MISSION_SNAPSHOT)
+job_state: FINISHED
+Fase: analyze
+result_status: PASSED
+Motivos / razones: [] — no hay fallos registrados
+
+Waypoints completados: WP1, WP2, WP3 — los tres alcanzados (coinciden con expected_waypoint_ids)
+- WP totales: 3/3 completados
+- Tolerancias: horizontal 1.0 m, altitud 0.75 m
+
+Regreso a HOME: true — return_home_reached: true (return_to_home: true)
+
+Aterrizaje / desarmado:
+- Evento: LANDED — landed: true, armed: false, flying: false
+- landed_and_disarmed: true
+- Mensaje: "Mission completed and vehicle landed successfully."
+- event_count: 14, failed_events: [], error_evidence: []
+
+Reservas (vehicle y global): ambas son null — el slot global de vuelo y la restricción del vehículo se han liberado al concluir el ensayo (state pasó de RESERVED → EXECUTING → liberado). No quedan reservas activas.
+
+Timings de la operación:
+- Worker finalizado: 2026-10-18T17:39:26.640580Z (desde admitido 17:34:26.794699Z)
+- Ejecución completada: 17:39:26.629183Z (inició 17:34:40.657446Z)
+
+Nota: Estos timings son duraciones de operación del workflow/executor, no tiempo de vuelo. La simulación no se reinició ni arrancó de nuevo en esta consulta.
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+ ☤ laguna-s-2.1:free │ ~35.5K/65.5K pinned │ [█████░░░░░] ~54% │ ◎ 56.4% │ ◷ 14.7s │ ↑ 25 t/s │ 17m │ ⏲ 20s. ─ Verificar readiness simul... 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ Set a reminder or schedule a recurring task
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ 

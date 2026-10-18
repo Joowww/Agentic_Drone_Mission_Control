@@ -1,6 +1,16 @@
 from __future__ import annotations
 
+from types import SimpleNamespace
+import pytest
+
 import tools.mission_execution_gate as execution_gate
+
+
+@pytest.fixture(autouse=True)
+def explicit_mission_vehicle(monkeypatch):
+    # These gate tests isolate safety/readiness; selection is exercised separately.
+    monkeypatch.setattr(execution_gate, "load_mission_json", lambda path:
+                        SimpleNamespace(vehicle=SimpleNamespace(vehicle_id="drone_01")))
 
 
 def test_blocks_mission_not_approved(monkeypatch):

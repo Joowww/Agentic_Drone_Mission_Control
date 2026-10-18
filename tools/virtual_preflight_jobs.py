@@ -12,6 +12,8 @@ import sys
 from uuid import UUID, uuid4
 
 from planning.mission_artifacts import artifact_for_input
+from models.mission_definition import MissionDefinition
+from tools.simulated_vehicle import checked_selection, resolve_mission_vehicle, recorded_report_selection
 
 from tools.vehicle_execution_lock import (
     PROJECT_ROOT, VehicleBusy, atomic_json, file_mutex, identity_alive,
@@ -97,6 +99,29 @@ def locate_preflight_report(run_id):
     return report, actual_report_path
 
 
+def job_vehicle_selection(job, directory, *, for_execution=False):
+    """Verify new admission binding against its exact input, never a path from JSON."""
+    if job.get("schema_version") != 2:
+        # Old admissions were v1-only. Do not reinterpret an old worker as v2.
+        if not for_execution:
+            return {"vehicle_id": None, "simulated_vehicle": "v1"}
+        content = (directory / "input.json").read_bytes()
+        if hashlib.sha256(content).hexdigest() != job["input_sha256"]:
+            raise ValueError("Legacy admission input hash mismatch")
+        selected = resolve_mission_vehicle(MissionDefinition.model_validate_json(content)).as_dict()
+        if selected["simulated_vehicle"] != "v1":
+            raise ValueError("Legacy admission cannot be reinterpreted as v2")
+        return selected
+    selection = checked_selection(job.get("vehicle_selection")).as_dict()
+    content = (directory / "input.json").read_bytes()
+    if hashlib.sha256(content).hexdigest() != job["input_sha256"]:
+        raise ValueError("Admission input hash mismatch")
+    mission = MissionDefinition.model_validate_json(content)
+    if resolve_mission_vehicle(mission).as_dict() != selection:
+        raise ValueError("Admission vehicle differs from its mission input")
+    return selection
+
+
 def _view(run_id):
     directory = run_directory(run_id)
     job = read_json(directory / "job.json", RUN_ROOT)
@@ -107,6 +132,30 @@ def _view(run_id):
         raise ValueError("Report identity does not match requested run_id")
     if job is not None and job.get("run_id") != run_id:
         raise ValueError("Job identity does not match requested run_id")
+    selected = job_vehicle_selection(job, directory) if job is not None else None
+    if report is not None:
+        if (job or {}).get("schema_version") == 2 and report.get("schema_version") != "1.1":
+            raise ValueError("New admission requires a new-format report; no legacy downgrade")
+        recorded = recorded_report_selection(report)
+        if recorded is not None and selected is not None and any(
+            recorded.get(k) is not None and selected.get(k) is not None and recorded[k] != selected[k]
+            for k in ("vehicle_id", "simulated_vehicle")
+        ):
+            raise ValueError("Report and admission vehicle identities disagree")
+        selected = recorded or selected
+        if report.get("schema_version") == "1.1" and report.get("mission_sha256"):
+            content = actual_report_path.with_name("mission.json").read_bytes()
+            if hashlib.sha256(content).hexdigest() != report["mission_sha256"]:
+                raise ValueError("Report snapshot hash mismatch")
+            # A blocked malformed input has no resolved identity; preserve its error.
+            if selected is not None:
+                mission = MissionDefinition.model_validate_json(content)
+                if resolve_mission_vehicle(mission).as_dict() != selected:
+                    raise ValueError("Report vehicle differs from its mission snapshot")
+                if (report.get("mission_identity") or {}).get("mission_id") != mission.mission_id:
+                    raise ValueError("Report mission identity differs from its snapshot")
+        if job is not None and report.get("mission_sha256") not in (None, job["input_sha256"]):
+            raise ValueError("Report and admission mission hashes disagree")
     final = bool(report and report.get("status") in TERMINAL and report.get("finished_at"))
     identity = job.get("worker") if job else None
     alive = identity_alive(identity) if identity else None
@@ -124,13 +173,18 @@ def _view(run_id):
         "job_state": state, "phase": (report or {}).get("stage", (job or {}).get("phase")),
         "result_status": report["status"] if final else None,
         "mission_sha256": (report or {}).get("mission_sha256") or (job or {}).get("input_sha256"),
+        "vehicle_selection": selected,
+        "vehicle_selection_basis": "MISSION_SNAPSHOT" if (job or {}).get("schema_version") == 2
+                                   or (report or {}).get("schema_version") == "1.1" else "LEGACY_RECORDED_V1",
         "worker_alive": alive, "worker": identity,
         "worker_error": (job or {}).get("error"),
         "created_at": (job or {}).get("created_at"),
         "worker_started_at": (job or {}).get("started_at"),
         "worker_finished_at": (job or {}).get("finished_at"),
         "paths": {**paths(directory), "report_path": str(actual_report_path)},
-        "report": report, "vehicle_restriction": restriction(),
+        "report": report,
+        "vehicle_restriction": restriction(selected["simulated_vehicle"]) if selected else None,
+        "global_flight_restriction": restriction(),
         "message": ("No final result: do not infer landing, clear a restriction or restart."
                     if state in {"INTERRUPTED", "UNCONFIRMED"} else "Read-only status; no execution initiated."),
     }
@@ -147,12 +201,12 @@ def get_virtual_preflight(*, run_id=None, request_key=None):
                 return {"request_key": request_key, "job_state": "NOT_FOUND", "result_status": None}
             run_id = record["run_id"]
         return _view(valid_run_id(run_id))
-    except (ValueError, OSError, KeyError, TypeError) as exc:
+    except (ValueError, OSError, KeyError, TypeError, VehicleBusy) as exc:
         return {"job_state": "ERROR", "result_status": None, "errors": [str(exc)]}
 
 
 def start_virtual_preflight(mission_path: str, request_key: str):
-    """Persist admission, reserve v1, detach once and return without waiting for flight."""
+    """Persist mission binding, reserve its vehicle AND global flight slot, detach once."""
     try:
         request_path = key_path(request_key)
         with file_mutex(RUN_ROOT / "admission.lock"):
@@ -168,19 +222,22 @@ def start_virtual_preflight(mission_path: str, request_key: str):
                         else "REQUEST_CONFLICT", "spawned": False}
             content = read_mission_input(mission_path)
             digest = hashlib.sha256(content).hexdigest()
+            selected = resolve_mission_vehicle(MissionDefinition.model_validate_json(content)).as_dict()
             source_artifact = artifact_for_input(mission_path, digest)
             run_id = str(uuid4())
             launch_token = uuid4().hex
             try:
-                reserve(run_id, "asynchronous_preflight")
+                reserve(run_id, "asynchronous_preflight", selected["simulated_vehicle"])
             except VehicleBusy as exc:
                 return {"admission_status": "VEHICLE_BUSY", "job_state": "REJECTED",
+                        "vehicle_selection": selected, "global_flight_restriction": restriction(),
                         "result_status": None, "spawned": False, "message": str(exc)}
             directory = run_directory(run_id)
             try:
                 directory.mkdir(parents=True)
                 (directory / "input.json").write_bytes(content)
-                job = {"run_id": run_id, "request_key": request_key, "input_sha256": digest,
+                job = {"schema_version": 2, "vehicle_selection": selected,
+                       "run_id": run_id, "request_key": request_key, "input_sha256": digest,
                        "source_artifact": source_artifact,
                        "original_source_path": str(Path(mission_path).resolve()),
                        "launch_token_sha256": hashlib.sha256(launch_token.encode()).hexdigest(),
@@ -190,7 +247,7 @@ def start_virtual_preflight(mission_path: str, request_key: str):
                 request_path.parent.mkdir(parents=True, exist_ok=True)
                 atomic_json(request_path, {"run_id": run_id, "input_sha256": digest})
             except Exception:
-                release(run_id)  # no worker spawn has been attempted
+                release(run_id, selected["simulated_vehicle"])  # no worker spawn attempted
                 raise
             try:
                 with (directory / "worker.log").open("ab") as log:
@@ -203,14 +260,17 @@ def start_virtual_preflight(mission_path: str, request_key: str):
                 job.update(job_state="STARTING", phase="worker_starting", worker=process_identity(child.pid))
                 atomic_json(directory / "job.json", job)
             except Exception as exc:
-                # A spawn/setup ambiguity is not a reason to spawn again or clear v1.
+                # A spawn/setup ambiguity never authorizes replay or clearing the reservation.
                 job.update(job_state="UNCONFIRMED", phase="worker_start_uncertain", error=str(exc))
                 atomic_json(directory / "job.json", job)
             return {"run_id": run_id, "request_key": request_key, "admission_status": "ACCEPTED",
                     "job_state": job["job_state"], "phase": job["phase"], "result_status": None,
                     "mission_sha256": digest, "paths": paths(directory), "worker": job["worker"],
+                    "vehicle_selection": selected,
+                    "vehicle_restriction": restriction(selected["simulated_vehicle"]),
+                    "global_flight_restriction": restriction(),
                     "spawned": job["job_state"] == "STARTING",
                     "message": "Admission only; validation and acceptance remain pending. Query this run, never restart it."}
-    except (ValueError, OSError, KeyError, TypeError) as exc:
+    except (ValueError, OSError, KeyError, TypeError, VehicleBusy) as exc:
         return {"admission_status": "ERROR", "job_state": "ERROR", "result_status": None,
                 "spawned": False, "errors": [str(exc)]}

@@ -6,7 +6,8 @@ import math
 import sys
 import time
 
-from tools.vehicle_execution_lock import serialized_v1
+from tools.vehicle_execution_lock import serialized_execution
+from tools.simulated_vehicle import resolve_mission_vehicle, logical_vehicle_for_interface as resolve_vehicle_id
 
 from inputs.json_loader import load_mission_json
 from tools.mission_execution_gate import (
@@ -383,8 +384,8 @@ def _execution_compatibility_errors(
     return errors
 
 
-@serialized_v1
-def execute_approved_mission(
+@serialized_execution
+def _execute_resolved_mission(
     mission_path: str,
     *,
     vehicle: str = "v1",
@@ -427,6 +428,7 @@ def execute_approved_mission(
             "success": False,
             "status": "BLOCKED",
             "stage": "EXECUTION_GATE",
+            "vehicle": vehicle, "vehicle_id": resolve_vehicle_id(vehicle),
             "mission_id": gate.get(
                 "mission_id"
             ),
@@ -449,6 +451,12 @@ def execute_approved_mission(
     mission = load_mission_json(
         mission_path
     )
+
+    try:
+        resolve_mission_vehicle(mission, vehicle)
+    except ValueError as exc:
+        return {"success": False, "status": "BLOCKED", "stage": "VEHICLE_SELECTION",
+                "vehicle": vehicle, "vehicle_id": resolve_vehicle_id(vehicle), "errors": [str(exc)]}
 
     compatibility_errors = (
         _execution_compatibility_errors(
@@ -477,6 +485,7 @@ def execute_approved_mission(
                 "supported by the current "
                 "simulation executor."
             ),
+            "vehicle": vehicle, "vehicle_id": mission.vehicle.vehicle_id,
             "errors": compatibility_errors,
         }
 
@@ -890,7 +899,7 @@ def execute_approved_mission(
             "mission_id": (
                 mission.mission_id
             ),
-            "vehicle": vehicle,
+            "vehicle": vehicle, "vehicle_id": mission.vehicle.vehicle_id,
             "simulation_origin": origin,
             "launch_position": (
                 launch_position
@@ -988,9 +997,24 @@ def execute_approved_mission(
             "mission_id": (
                 mission.mission_id
             ),
-            "vehicle": vehicle,
+            "vehicle": vehicle, "vehicle_id": mission.vehicle.vehicle_id,
             "error": str(exc),
             "waypoint_diagnostic": exc.diagnostic if isinstance(exc, WaypointWaitError) else None,
             "events": events,
             "recovery": recovery,
         }
+
+
+def execute_approved_mission(mission_path: str, *, vehicle: str | None = None,
+                             progress: bool = True) -> dict[str, object]:
+    """Resolve the mission binding before reservation; an explicit override must match."""
+    try:
+        mission = load_mission_json(mission_path)
+        selection = resolve_mission_vehicle(mission, vehicle)
+    except (ValueError, OSError, AttributeError) as exc:
+        return {"success": False, "status": "BLOCKED", "stage": "VEHICLE_SELECTION",
+                "errors": [str(exc)], "message": "Cannot select a supported mission vehicle."}
+    raw = _execute_resolved_mission(mission_path, vehicle=selection.simulated_vehicle, progress=progress)
+    if isinstance(raw, dict) and raw.get("stage") == "VEHICLE_EXCLUSION":
+        raw = {**raw, "vehicle_id": selection.vehicle_id}
+    return raw

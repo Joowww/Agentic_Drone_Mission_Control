@@ -41,25 +41,17 @@ def test_restriction_release_needs_positive_no_flight_or_landing_evidence(raw, s
     assert vehicle.safe_executor_exit(raw) is safe
 
 
-def test_interactive_demo_is_rejected_before_subprocess_when_reserved(monkeypatch):
-    vehicle.reserve("async-run", "asynchronous_preflight")
-    call = Mock(side_effect=AssertionError("demo must not start"))
-    monkeypatch.setattr(demo.subprocess, "run", call)
+@pytest.mark.parametrize("busy", [False, True])
+def test_legacy_parallel_demo_is_disabled_even_without_a_reservation(monkeypatch, busy):
+    if busy:
+        vehicle.reserve("async-run", "asynchronous_preflight", "v2")
+    call = Mock(side_effect=AssertionError("legacy parallel demo must not start"))
+    monkeypatch.setattr("subprocess.run", call)
+    before = vehicle.restriction()
     assert demo.run_demo() == 1
+    assert demo.verify_child() is False
+    assert vehicle.restriction() == before
     call.assert_not_called()
-
-
-def test_interactive_demo_keeps_reservation_until_landing_confirmed(monkeypatch):
-    import tools.simulation_mission_executor as executor
-    child = Mock(return_value=type("Result", (), {"returncode": 0})())
-    monkeypatch.setattr(demo.subprocess, "run", child)
-    def landed(**kwargs):
-        assert vehicle.restriction()["actor"] == "interactive_demo"
-        return {"landed": True, "armed": False, "flying": False}
-    monkeypatch.setattr(executor, "_wait_for_landing", landed)
-    assert demo.run_demo() == 0
-    assert vehicle.restriction() is None
-    child.assert_called_once()
 
 
 def test_copied_context_cannot_reuse_an_expired_execution_scope():

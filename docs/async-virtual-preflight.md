@@ -1,5 +1,9 @@
 # Seguimiento asíncrono del virtual preflight
 
+> Estado actual: [selección de vehículo y exclusión global](simulated-vehicle-selection.md).
+> Las secciones iniciales conservan el incremento histórico limitado a v1; ahora
+> drone_01→v1 y drone_02→v2 se ensayan individualmente, nunca en paralelo.
+
 El ensayo `d4519cab-ebd1-4359-b547-44be38294a6a` continuó después de los 300 s de
 espera MCP y guardó `FAILED` por WP3, con recuperación LAND confirmada. Para
 separar esa espera de la ejecución se añaden dos operaciones MCP:

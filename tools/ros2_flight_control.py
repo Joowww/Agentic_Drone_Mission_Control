@@ -5,6 +5,9 @@ import shlex
 import subprocess
 from pathlib import Path
 
+from tools.simulated_vehicle import validate_interface
+from tools.vehicle_execution_lock import assert_execution_authority
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -142,6 +145,7 @@ def _extract_int(
 def get_vehicle_status(
     vehicle: str = "v1",
 ) -> dict[str, object]:
+    validate_interface(vehicle)
     output = _run_ros_command(
         (
             f"timeout 10 ros2 topic echo "
@@ -177,6 +181,7 @@ def get_vehicle_status(
 def get_vehicle_geopose(
     vehicle: str = "v1",
 ) -> dict[str, float]:
+    validate_interface(vehicle)
     output = _run_ros_command(
         (
             f"timeout 10 ros2 topic echo "
@@ -204,6 +209,7 @@ def get_vehicle_geopose(
 def get_vehicle_global_origin(
     vehicle: str = "v1",
 ) -> dict[str, float]:
+    validate_interface(vehicle)
     output = _run_ros_command(
         (
             f"timeout 10 ros2 topic echo "
@@ -234,6 +240,7 @@ def switch_vehicle_mode(
     *,
     vehicle: str = "v1",
 ) -> dict[str, object]:
+    assert_execution_authority(vehicle)
     output = _run_ros_command(
         (
             f"ros2 service call "
@@ -265,6 +272,7 @@ def arm_vehicle(
     *,
     vehicle: str = "v1",
 ) -> dict[str, object]:
+    assert_execution_authority(vehicle)
     output = _run_ros_command(
         (
             f"ros2 service call "
@@ -297,6 +305,7 @@ def takeoff_vehicle(
             "Takeoff altitude must be greater than zero."
         )
 
+    assert_execution_authority(vehicle)
     output = _run_ros_command(
         (
             f"ros2 service call "
@@ -326,6 +335,7 @@ def send_global_position_target(
     *,
     vehicle: str = "v1",
 ) -> dict[str, object]:
+    assert_execution_authority(vehicle)
     payload = f"""
 {{
   header: {{
@@ -373,6 +383,7 @@ def land_vehicle(
     *,
     vehicle: str = "v1",
 ) -> dict[str, object]:
+    assert_execution_authority(vehicle)
     result = switch_vehicle_mode(
         LAND_MODE,
         vehicle=vehicle,

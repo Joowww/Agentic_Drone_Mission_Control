@@ -25,6 +25,7 @@ from tools.simulation_mission_executor import (
     execute_approved_mission,
 )
 from tools.simulation_status import check_simulation_ready
+from tools.simulated_vehicle import resolve_mission_vehicle, checked_selection
 
 
 def utc_now() -> str:
@@ -45,10 +46,12 @@ def _json_evidence(value):
 
 def make_report(state: VirtualPreflightState) -> dict:
     return _json_evidence({
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "report_persisted": True,
         **{key: value for key, value in state.items() if key not in {"mission", "report"}},
-        "scope": "Gazebo/ArduPilot SITL, simulated v1 only",
+        "scope": ("Gazebo/ArduPilot SITL, simulated "
+                  + (state.get("vehicle_selection") or {}).get("simulated_vehicle", "vehicle unresolved")
+                  + " only; at most one project-wide flight"),
         "hardware_authorized": False,
         "subsequent_execution_authorized": False,
         "replan_proposals": (state.get("validation") or {}).get("replan_actions", []),
@@ -98,14 +101,18 @@ def snapshot_node(state: VirtualPreflightState) -> dict:
                 "reasons": ["Admission snapshot hash changed; execution refused."]}
     try:
         mission = load_mission_json(str(snapshot))
+        selection = resolve_mission_vehicle(mission).as_dict()
+        expected = state.get("expected_vehicle_selection")
+        if expected is not None and checked_selection(expected).as_dict() != selection:
+            raise ValueError("Snapshot vehicle differs from admission vehicle")
     except ValueError as exc:
         return {"mission_sha256": digest, "status": "BLOCKED",
                 "reasons": [f"Invalid mission: {exc}"]}
     return {
-        "mission_sha256": digest, "mission": mission,
+        "mission_sha256": digest, "mission": mission, "vehicle_selection": selection,
         "source_artifact": state.get("source_artifact") or artifact_for_input(state["source_path"], digest),
         "mission_identity": {"mission_id": mission.mission_id, "name": mission.name,
-                             "vehicle_id": mission.vehicle.vehicle_id, "simulated_vehicle": "v1"},
+                             **selection},
     }
 
 
@@ -158,7 +165,8 @@ def execute_node(state: VirtualPreflightState) -> dict:
     # process dies, RUNNING is evidence of an unfinished run, never PASSED.
     persist_report({**state, **execution, "stage": "execute"})
     try:
-        raw = execute_approved_mission(state["snapshot_path"], vehicle="v1", progress=False)
+        raw = execute_approved_mission(state["snapshot_path"],
+                                      vehicle=state["vehicle_selection"]["simulated_vehicle"], progress=False)
     except Exception as exc:
         return {**execution, "execution_finished_at": utc_now(), "status": "ERROR",
                 "reasons": [f"Executor raised {type(exc).__name__}: {exc}; outcome unknown."]}
@@ -168,7 +176,7 @@ def execute_node(state: VirtualPreflightState) -> dict:
 @step("analyze")
 def analyze_node(state: VirtualPreflightState) -> dict:
     raw = state.get("executor_result")
-    analysis = analyze_executor_result(state["mission"], raw)
+    analysis = analyze_executor_result(state["mission"], raw, require_vehicle_identity=True)
     if not _snapshot_matches(state):
         return {"analysis": analysis, "status": "ERROR",
                 "reasons": ["Mission snapshot changed during execution; hash association is invalid."]}
@@ -176,7 +184,7 @@ def analyze_node(state: VirtualPreflightState) -> dict:
     # Preserve that as BLOCKED only if there is no indication of flight/recovery.
     if (isinstance(raw, dict) and raw.get("status") == "BLOCKED"
             and raw.get("success") is False and not raw.get("events") and not raw.get("recovery")
-            and raw.get("stage") in {"EXECUTION_GATE", "EXECUTION_COMPATIBILITY", "VEHICLE_EXCLUSION"}):
+            and raw.get("stage") in {"EXECUTION_GATE", "EXECUTION_COMPATIBILITY", "VEHICLE_EXCLUSION", "VEHICLE_SELECTION"}):
         return {"analysis": analysis, "status": "BLOCKED", "reasons": [
             str(raw.get("message", "Executor internal gate or compatibility check blocked execution.")),
             *raw.get("errors", []),

@@ -37,7 +37,8 @@ def _run_view(run_id):
                 or sha256(snapshot.read_bytes()) != report["mission_sha256"]):
             raise ValueError("Preflight snapshot hash mismatch; cannot associate evidence")
         view["snapshot_integrity"] = "VERIFIED_LOCAL_HASH"
-    view["result_scope"] = "Historical result for this exact simulated v1 snapshot only; no new consent"
+    interface = (view.get("vehicle_selection") or {}).get("simulated_vehicle", "unresolved vehicle")
+    view["result_scope"] = f"Historical result for this exact simulated {interface} snapshot only; no new consent"
     return view
 
 

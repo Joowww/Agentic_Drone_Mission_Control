@@ -1,0 +1,271 @@
+{
+  "verification_kind": "OFFLINE_READ_AND_REANALYSIS_OF_OPERATOR_RUN",
+  "archive_date_local": "2026-10-18",
+  "verified_at_utc": "2026-10-18T17:46:50.158445+00:00",
+  "run_id": "7162bce5-3635-4a76-bf02-6a5a22612aab",
+  "request_key": "joel-drone02-preflight-01",
+  "mission_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+  "mission_input_source_identical": true,
+  "job_report_expected_hashes_match": true,
+  "identity_consistent": {
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "paths_and_request_index_consistent": true,
+  "source_artifact": null,
+  "source_basis": "Standalone example JSON, not a draft finalization",
+  "persisted_result": {
+    "job_state": "FINISHED",
+    "report_status": "PASSED",
+    "executor_status": "COMPLETED",
+    "executor_success": true,
+    "execution_attempted": true,
+    "events": 14,
+    "waypoints_completed": 3,
+    "return_to_home": true,
+    "landing_event": {
+      "event": "LANDED",
+      "landed": true,
+      "armed": false,
+      "flying": false,
+      "final_position": {
+        "latitude": -35.36326217651367,
+        "longitude": 149.16526794433594,
+        "altitude_amsl_m": 584.1900024414062
+      }
+    },
+    "simulation_origin": {
+      "latitude": -35.36326217651367,
+      "longitude": 149.1652374267578,
+      "altitude_amsl_m": 584.0
+    },
+    "launch_position": {
+      "latitude": -35.36326217651367,
+      "longitude": 149.16526794433594,
+      "altitude_amsl_m": 584.1900024414062
+    }
+  },
+  "recomputed_analysis": {
+    "passed": true,
+    "checks": {
+      "completed": true,
+      "identity": true,
+      "no_failure_or_recovery": true,
+      "count_and_return_flag": true,
+      "event_sequence": true,
+      "commands_confirmed": true,
+      "all_waypoints_reached": true,
+      "return_home_reached": true,
+      "takeoff_reached": true,
+      "landed_and_disarmed": true,
+      "position_evidence_consistent": true
+    },
+    "expected_waypoint_ids": [
+      "WP1",
+      "WP2",
+      "WP3"
+    ],
+    "observed_waypoint_ids": [
+      "WP1",
+      "WP2",
+      "WP3"
+    ],
+    "tolerances": {
+      "horizontal_m": 1.0,
+      "altitude_m": 0.75
+    },
+    "reasons": []
+  },
+  "recomputed_validation": {
+    "mission_id": "simulation_navigation_drone02",
+    "mission_status": "FEASIBLE",
+    "execution_status": "APPROVED",
+    "qgc_plan_path": null,
+    "failure_reasons": [],
+    "errors": [],
+    "replan_status": "",
+    "replan_actions": []
+  },
+  "worker_identity_recorded": {
+    "pid": 118460,
+    "start_ticks": 6684810,
+    "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+  },
+  "worker_identity_evidence_limit": "PID/start_ticks/boot_id stored; not checking current process liveness or reconstructing historical identity independently",
+  "worker_log": {
+    "lines": 2,
+    "claimed_admission_and_finished_passed": true,
+    "limitation": "Two lifecycle lines; not an independent command/telemetry or reservation audit log"
+  },
+  "waypoint_observations": [
+    {
+      "event": "WAYPOINT_REACHED",
+      "reached": true,
+      "waypoint_id": "WP1",
+      "horizontal_error_m": 0.3967705046808455,
+      "altitude_error_m": 0.0,
+      "final_position": {
+        "latitude": -35.36323165893555,
+        "longitude": 149.16526794433594,
+        "altitude_amsl_m": 589.1900024414062
+      }
+    },
+    {
+      "event": "WAYPOINT_REACHED",
+      "reached": true,
+      "waypoint_id": "WP2",
+      "horizontal_error_m": 0.22777375324517357,
+      "altitude_error_m": 0.0,
+      "final_position": {
+        "latitude": -35.36323547363281,
+        "longitude": 149.16529846191406,
+        "altitude_amsl_m": 589.1900024414062
+      }
+    },
+    {
+      "event": "WAYPOINT_REACHED",
+      "reached": true,
+      "waypoint_id": "WP3",
+      "horizontal_error_m": 0.48068103430828996,
+      "altitude_error_m": 0.010009765625,
+      "final_position": {
+        "latitude": -35.36326599121094,
+        "longitude": 149.16529846191406,
+        "altitude_amsl_m": 589.2000122070312
+      }
+    }
+  ],
+  "return_observation": {
+    "event": "RETURN_HOME_REACHED",
+    "reached": true,
+    "waypoint_id": "SIMULATION_HOME",
+    "horizontal_error_m": 0.0,
+    "altitude_error_m": 0.0,
+    "final_position": {
+      "latitude": -35.36326217651367,
+      "longitude": 149.16526794433594,
+      "altitude_amsl_m": 589.1900024414062
+    }
+  },
+  "operation_durations_seconds": {
+    "report_started_to_finished_including_admission_interval": 299.843057,
+    "executor": 285.971737,
+    "admission_to_job_finished": 299.845881,
+    "worker_started_to_job_finished": 299.30176
+  },
+  "timings": {
+    "started_at": "2026-10-18T17:34:26.794699+00:00",
+    "finished_at": "2026-10-18T17:39:26.637756+00:00",
+    "execution_started_at": "2026-10-18T17:34:40.657446+00:00",
+    "execution_finished_at": "2026-10-18T17:39:26.629183+00:00"
+  },
+  "workflow_nodes": [
+    "snapshot",
+    "validate",
+    "check_readiness",
+    "compatibility",
+    "execute",
+    "analyze",
+    "write_report"
+  ],
+  "airborne_duration_seconds": null,
+  "airborne_duration_reason": "Events have no individual timestamps; operation durations include non-airborne work",
+  "recorded_readiness": {
+    "ready": true,
+    "scope": "Historical at rehearsal, not checked now",
+    "checks": [
+      "Docker container",
+      "Gazebo server",
+      "ArduPilot processes",
+      "ROS 2 vehicle interfaces",
+      "Pre-arm checks"
+    ],
+    "both_status_topics_and_prearm_observed_in_saved_output": true
+  },
+  "reservation_evidence": {
+    "persistent_files_contain_release_audit": false,
+    "operator_transcript_says_during_run": {
+      "vehicle_restriction": "EXECUTING drone_02/v2",
+      "global_flight_restriction": "EXECUTING drone_02/v2"
+    },
+    "operator_transcript_says_final": {
+      "vehicle_restriction": null,
+      "global_flight_restriction": null
+    },
+    "source": "Human-readable Hermes summaries accompanying visible get_virtual_preflight call labels; raw structured replies are not captured",
+    "current_restrictions_queried": false,
+    "interpretation": "Serial single-flight policy in reviewed code and offline tests; no operational contention/rejection test or independent v1 telemetry"
+  },
+  "conversation_observations": {
+    "skill_activation_visible": true,
+    "loaded_skill_version_verified": false,
+    "client_reported_tool_count": 21,
+    "client_followup_updated_agent_tools": 0,
+    "repository_offline_registered_tool_count_previous_verification": 17,
+    "tool_catalog_discrepancy_cause": "Unknown; no client/config changes or operational checks in this review",
+    "model_display_only": "laguna-s-2.1:free",
+    "provider_and_model_config_verified": false,
+    "user_requested_one_sequential_gui_restart": true,
+    "visible_recovery_call_order": [
+      "stop_simulation",
+      "start_simulation",
+      "check_simulation_ready"
+    ],
+    "operator_confirmed_world_and_drones_visible_before_consent": true,
+    "reservation_check_before_gui_restart_captured": false,
+    "visual_question_after_first_start_captured": false,
+    "explicit_v2_rehearsal_request_visible": true,
+    "visible_preflight_starts": 1,
+    "visible_preflight_queries": 2,
+    "arguments_and_raw_structured_results_captured": false,
+    "global_agent_fidelity_verdict": "NOT_ESTABLISHED"
+  },
+  "offline_tests": {
+    "command": ".venv/bin/python -m pytest -q",
+    "actual_result": "388 passed in 10.11s",
+    "distinction": "Deterministic offline tests, not a new operational flight or LLM evaluation"
+  },
+  "repository_state_at_review": {
+    "branch": "feature/hermes-integration",
+    "head": "041d266afe95b7c8e32de06467510d1b3be3d09f",
+    "dirty_at_start": true,
+    "deployed_worker_code_identity_verified": false
+  },
+  "limits": [
+    "No independent evidence that v1 stayed motionless",
+    "No simultaneous coordination, separation or collision avoidance demonstrated",
+    "No agricultural action despite precision_agriculture objective metadata",
+    "No commanded speed tracking or .plan loading demonstrated",
+    "No real hardware or subsequent flight consent",
+    "No causal resolution of previous WP3 failure or black GUI",
+    "Local hashes do not authenticate conversation, historical runtime or all TOCTOU",
+    "Lifecycle and flight do not share an atomic lock; cooperative exclusion does not cover manual/external ROS/QGC or old processes",
+    "No host restart resilience or current readiness/restriction verification"
+  ],
+  "preservation": {
+    "baseline_files": 346,
+    "changed_existing_files": [
+      "docs/simulated-vehicle-selection.md",
+      "documentation/development_log.md"
+    ],
+    "other_existing_files_sha256_unchanged": 344,
+    "original_runtime_and_evidence_files_sha256_unchanged": 198,
+    "previous_conversational_archive_copies_verified": 37,
+    "new_archive_files": 11,
+    "exact_original_copies": 8
+  },
+  "diff_review": {
+    "tracked_git_diff_check": "clean",
+    "untracked_files_checked_individually": 17,
+    "untracked_files_clean": 16,
+    "raw_transcript_whitespace": "Trailing whitespace findings (original CRLF/spaces), preserved byte-for-byte; no Git config changes or normalization",
+    "functional_changes_this_turn": false,
+    "skill_changes_this_turn": false,
+    "persistent_limits": [
+      "Lifecycle/flight not atomically excluded",
+      "No independent telemetry of v1 during v2 run",
+      "No raw structured MCP result/lease audit in transcript",
+      "Client 21/0 catalog messages vs repository 17, cause unverified"
+    ]
+  }
+}

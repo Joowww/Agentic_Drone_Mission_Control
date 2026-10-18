@@ -1342,3 +1342,380 @@ MCP operativo. Sin commit ni push.
 
 Propuesta de commit (no ejecutada):
 feat: add Hermes mission guidance and conversational evaluation evidence
+
+## 18/10/2026 — Selección drone_01/v1 y drone_02/v2 con exclusión global
+
+### Inspección y alcance
+
+Árbol inicial limpio en feature/hermes-integration, HEAD 041d266 (el incremento
+conversacional anterior ya estaba committed por el operador). No se encontraron
+AGENTS.md aplicables en la raíz/ancestros ni dentro del proyecto. Se conservaron
+los cambios y evidencias recibidos; no se ejecutó infraestructura.
+
+Inspección de mapper, control ROS2, executor completo, workflow LangGraph síncrono,
+admisión/worker asíncronos, reservas, análisis, fuente verificada/revisiones y
+wrappers/esquemas MCP reales. Mapper y ROS ya recibían interfaz; v1 seguía fijado
+en MCP/graph/análisis y exclusión. El decorador antiguo dejaba pasar v2 sin lock.
+Además run_demo.sh arma/despega ambos drones y su wrapper sólo esperaba aterrizaje
+de v1: una reserva única no volvía seguro ese vuelo paralelo bajo el nuevo alcance.
+
+Incremento exclusivamente SITL, una misión/un vehículo seleccionado por solicitud,
+una sola ejecución de vuelo activa global. No agricultura, asignación, coordinación,
+separación entre drones, nuevo modo RTL ni garantía operativa de v2.
+
+### Resolución, ejecución y garantías
+
+Nuevo resolver puro tools/simulated_vehicle.py: correspondencia exacta drone_01→v1,
+drone_02→v2; sin aliases, fallback o sustitución de IDs desconocidos. Public executor
+conserva keyword vehicle como comprobación opcional de correspondencia (None deriva
+de MissionDefinition). La selección ocurre antes de reservar/gate y se comprueba
+otra vez con la carga que usa el executor. Desconocidos/discrepancias bloqueados antes
+de ROS. El gate añade identidad antes de su validación/readiness; mantiene reglas
+deterministas y no depende del preflight. Compatibilidad real sigue comprobada por
+executor/workflow antes de comandos (no se amplían multirrotor/ArduPilot/navigate).
+
+Se reutiliza el cuerpo del executor con un wrapper de selección, sin copiar la lógica
+de vuelo. Origen, geopose de lanzamiento, status, GUIDED, ARM, despegue, objetivos,
+regreso, waits, LAND, recuperación y diagnóstico usan la interfaz resuelta. Mapper
+permanece intacto: copia geometría relativa alrededor del lanzamiento real de ese
+dron, no gps_global_origin. Control ROS valida namespace y exige autoridad viva del
+mismo vehículo para emitir órdenes. Constantes AP_DDS 6/3576, QoS best_effort,
+tolerancias 1 m/0.75 m, polling, timeouts y recuperación no cambiados.
+
+Reservas por namespace v1.json/v2.json con vehículo lógico/interfaz en registros
+nuevos; registry.lock serializa cambios y la presencia de cualquiera bloquea ambos.
+El fichero OS existente v1.execution.lock se conserva como mutex GLOBAL compartido,
+no uno por dron. Autoridad revocable/contexto, PID+start ticks+boot ID, token worker,
+clave idempotente, snapshot/hash y logs separados de stdio MCP se conservan. El alias
+Python serialized_v1 permanece, protegiendo también v2 en vez de saltárselo.
+Reservas malformadas/conflictivas fallan cerrado; consultas no las reparan o liberan.
+
+Safe release requiere no vuelo o aterrizaje/desarmado del seleccionado y coherencia
+de identidad. Worker desaparecido/reciclado, recuperación fallida, resultado o
+binding no confirmado conservan reserva y bloqueo global. Una identidad contradictoria
+no autoriza liberar aunque el resultado diga COMPLETED o incluya LAND. No se añaden
+reintentos, arranque automático, desbloqueo ni recuperación automática de workers.
+La demo paralela queda explícitamente deshabilitada antes de subprocess tanto en
+wrapper como verificación de hijo del script existente; no se sustituye por una
+falsa demo monovehículo ni se habilitan dos vuelos. Es una restricción intencional
+de esa entrada histórica para cumplir una sola ejecución, no soporte de coordinación.
+
+### Informes, consulta y compatibilidad
+
+Jobs nuevos schema_version=2 e informes 1.1 incluyen vehicle_selection con vehicle_id
+lógico y simulated_vehicle. Admission/get y summary/detail lo conservan; raw executor
+mantiene vehicle como interfaz y añade vehicle_id. Analyzer estricto comprueba ambos,
+además de los once checks reales existentes. Worker y consultas contrastan input/hash,
+selección, snapshot, misión e identidad del resultado; errores no desencadenan efectos.
+vehicle_restriction describe el elegido; global_flight_restriction puede pertenecer
+al otro y bloquearlo. Resultado, motivos, incertidumbres, consentimiento, rutas y
+vínculos se mantienen. No hay selector nuevo MCP independiente que pueda contradecir
+la misión; el wrapper execute ya no fija v1 y sigue usando progress=False.
+
+Históricos 1.0 conservan contenido/hash/criterios v1. Respuestas indican
+LEGACY_RECORDED_V1, sin convertir antiguos ensayos en v2 ni rellenar lógico desconocido
+con drone_01. Fuente verificada mantiene análisis legacy para no invalidar hashes ni
+revisiones previas. No se reescriben informes. Nuevos casos con identidad incompleta
+o contradictoria no heredan esa excepción legacy. Readiness sigue comprobando el
+stack y ambos vehículos con sus controles actuales, sin inventar probes por namespace.
+
+Ejemplo nuevo missions/examples/simulation_navigation_drone02.json: tres waypoints
+del ejemplo existente, vehículo explícito drone_02, valores de escenario SITL. Validación
+pura real sin exportar → FEASIBLE/APPROVED, sin errores, binding drone_02/v2; no es
+PASSED ni vuelo. Skill de dominio 1.1.0 sólo actualiza alcance factual/binding/exclusión
+y exige evidencia operativa específica, sin afirmar una mejora de fidelidad del LLM.
+Las evaluaciones/skills archivados 1.0.x no se modifican. Nueva guía
+ docs/simulated-vehicle-selection.md y avisos de estado actual en guías de preflight,
+con historia v1 conservada y prompts de una línea para revisión/ensayo/consulta posterior.
+
+### Pruebas offline y límites
+
+Se adaptan dobles antiguos a la identidad requerida, sin relajar criterios de vuelo:
+SimpleNamespace declara drone_01, resultados completos incluyen lógico, informes
+sintéticos de worker tienen binding/snapshot/hash coherentes y primitivas ROS se
+prueban dentro del ámbito autorizado. El test de input de admisión alterado ahora
+exige rechazo antes de ejecutar y reserva conservada, no una limpieza insegura.
+Tests de la demo reflejan su bloqueo intencional incluso sin otro propietario.
+
+41 casos nuevos en tests/test_simulated_vehicle_selection.py: ejecución real de código
+con control/telemetría doblados para v1/v2, mapping desde lanzamientos distintos,
+objetivos/regreso/LAND, rechazo de IDs/discrepancias/capacidades sin comandos, graph y
+worker completos v2, recuperación correcta/fallida y diagnóstico, análisis de identidad,
+consultas SDK summary/detail sin efectos, históricos/hash intactos, inicios concurrentes,
+idempotencia/cambio de dron con misma clave, recarga sin replay, worker perdido,
+reserva global cruzada, OS mutex común, autoridad caducada/equivocada, registros
+malformados y corrupción de selección/misión/resultado. Builders ROS comprobados
+con namespaces/constantes reales y runner doblado. No se infiere evidencia de un
+vuelo a partir de estos tests.
+
+Resultados reales: primera revisión afectada 25 failed/96 passed por contratos de
+los dobles y selección; se corrigieron sus entradas/expectativas y las validaciones,
+sin ocultar fallos. Grupo original después 121 passed in 3.34s; 34 nuevos iniciales
+34 passed in 2.28s; primera suite completa 380 passed in 9.20s. Tras refuerzos de
+identidad, recarga/corrupción y reserva JSON malformada, comprobación final:
+.venv/bin/python -m pytest -q tests/test_simulated_vehicle_selection.py tests/test_simulation_mission_executor.py tests/test_virtual_preflight.py tests/test_virtual_preflight_jobs.py tests/test_vehicle_execution_lock.py tests/test_ros2_flight_control.py tests/test_mission_execution_gate.py tests/test_hermes_mcp_server.py
+→ **162 passed in 4.10s**.
+.venv/bin/python -m pytest -q → **387 passed in 9.40s**.
+No se repite la suite tras cambios exclusivamente documentales/de evidencia.
+
+Pendiente prueba operativa autorizada de drone_02/v2 en Gazebo/AP_DDS. No se demuestra
+separación, prevención de colisiones, seguimiento de velocidad, carga/ejecución del
+.plan, agricultura, hardware o solución causal del fallo antiguo WP3. El control es
+cooperativo entre entradas del proyecto, no contra ROS/QGC manual o versiones antiguas
+aún ejecutándose; no se acredita actualización en caliente ni resistencia a reinicio
+host. Se mantienen límites TOCTOU y consentimiento explícito por ensayo/hash.
+No se ejecutaron Docker, simulación, vuelos, proveedor LLM o llamadas MCP operativas;
+el registro SDK se prueba en proceso con dobles. Sin commit ni push.
+
+Revisión final adicional: se impide rebajar un informe nuevo a schema 1.0 para evitar
+la comprobación estricta de identidad de v1. Jobs schema 2 exigen informe 1.1 y un
+informe con vehicle_selection no puede clasificarse como legacy. Se añade regresión
+con un resultado nuevo v1 alterado (se elimina lógico y cambia versión): consulta y
+fuente verificada rechazan sin reparar o repetir ejecución. Los históricos genuinos
+no cambian ni se invalidan. Esta corrección funcional justifica repetir pruebas;
+no es una ronda de tests tras documentación sola.
+
+Resultados definitivos: **42 casos nuevos**, grupo **163 passed in 4.20s**, suite
+completa **388 passed in 11.70s**. Sustituyen las cifras de cierre provisional 162/387
+anteriores, que se conservan como historia real. git diff --check limpio y cinco
+archivos nuevos comprobados individualmente sin errores de whitespace. Inventario de
+192 archivos de misiones generadas/evidencias, incluido el raw histórico y las 37
+copias anteriores: mismos archivos y SHA-256, sin nuevas escrituras en esos árboles.
+Comandos, resultados, inventario completo del diff y límites en
+ documentation/verification/simulated_vehicle_selection_2026_10_18.json.
+No commit/push ni prueba operativa nueva; sigue pendiente el ensayo autorizado de v2.
+
+## 18/10/2026 — Backend listo y confirmación visual de Gazebo
+
+Incremento exclusivamente conversacional sobre el árbol anterior de selección v1/v2,
+sin descartar sus cambios ni modificar sus evidencias. No aparece un AGENTS.md
+aplicable en el repositorio o sus ancestros inspeccionados. Se revisan el skill de
+dominio, inicialización/descripciones MCP, wrappers de lifecycle/readiness, scripts
+de arranque/parada/check y contratos de consulta antes de editar.
+
+### Observación comunicada y alcance de la evidencia
+
+El operador comunica en este chat que el último arranque devolvió READY para ambas
+interfaces pero Gazebo apareció negro. No se aporta aquí la transcripción de su otro
+chat: argumentos, salida bruta, secuencia, imagen y momento exacto de cada comprobación
+no están capturados. Se registra como observación del operador, sin afirmar causa,
+cinco checks verificados o relación causal con incidentes antiguos/WP3. No se ejecuta
+un arranque, recuperación o prueba conversacional nueva para corroborarla.
+
+### Inspección y cambios
+
+El script de start limpia procesos previos antes de lanzar el stack; repetir start
+puede reiniciarlo y no es una consulta visual. Su anuncio de topics disponibles y
+GUI ON no demuestra renderizado. El checker separado observa Docker container,
+Gazebo server, ArduPilot processes, ROS 2 vehicle interfaces y Pre-arm checks; no
+comprueba imagen ni ausencia de vuelos/reservas. No se añade un control ficticio.
+
+Skill tfg-mission-control 1.1.1, instrucciones de inicialización y descripciones
+registradas de check_simulation_ready/start_simulation/stop_simulation separan backend
+de imagen declarada por el operador. Tras arranque con GUI se pregunta si aparecen
+correctamente mundo y drones, pantalla negra o ninguna ventana. Ante negro/ausencia,
+se ofrece un reinicio controlado, dejar pendiente o continuar expresamente sin imagen.
+El aviso de fallo no concede permiso de reinicio; continuar sin imagen no autoriza
+vuelo ni elimina readiness, gate, reservas o consentimiento explícito por ensayo.
+
+Antes de recuperar se comprueban ejecuciones conocidas y restricciones actuales por
+IDs/claves reales con las consultas del proyecto. Worker activo, cualquier reserva
+global/por vehículo o resultado no confirmado impiden stop/start por la GUI incluso
+con aceptación. ERROR/NOT_FOUND, falta de ID o respuesta perdida no prueban estado
+libre: se deja pendiente, sin inventar IDs, explorar carpetas ni liberar restricciones.
+FINISHED/PASSED histórico no acredita ausencia global de otra ejecución. No hay una
+consulta de inventario global sin ID en este incremento.
+
+Con aceptación específica y estado libre verificado se revalida antes de actuar:
+un stop, esperar parada confirmada, un start, esperar resultado, consultar readiness
+y volver a preguntar por la imagen. Sin paralelismo, avance tras fallo/timeout,
+reintento por respuesta perdida o bucle automático; si sigue negro, no se extiende
+el permiso anterior. Se documentan sólo evidencias reales de parada (remaining=[]
+cuando esté en la salida), sin inventar campos devueltos por los wrappers.
+
+Las consultas no adquieren un cerrojo atómico entre lifecycle y vuelo; start/stop
+comparten su propio lock, no el mutex de ejecución. Se exige establecer con el
+operador un intervalo sin otros inicios y dejar pendiente si no puede comprobarse.
+Es guía conversacional, no un nuevo interlock ni garantía frente a una carrera
+concurrente. No se modifican scripts, renderizado, executor, gate, reservas,
+geometría, selección de vehículo, esquemas de entrada ni cuerpos de las herramientas.
+
+Nueva guía docs/simulation-gui-confirmation.md y enlace en docs/hermes-planning.md:
+fuentes/tiempos del estado visual, límites y siete escenarios manuales preparados,
+todavía no ejecutados. No se inventan campos de imagen en MissionDefinition/report.
+El contenido anterior de las guías/registro se conserva. La recarga de catálogo MCP
+no demuestra carga del skill revisado: debe comprobarse su contexto en Hermes.
+
+### Comprobaciones offline
+
+.venv/bin/python -m pytest -q tests/test_hermes_conversation_contracts.py tests/test_hermes_mcp_server.py tests/test_simulation_lifecycle.py tests/test_simulated_vehicle_selection.py
+→ **77 passed in 7.12s**. Son contratos SDK registrados y lifecycle/selección con
+dobles, no llamadas MCP operativas ni verificación de obediencia del LLM. No se
+añaden tests de presencia de frases. La suite completa de 388 del incremento anterior
+queda como resultado histórico; no se repite tras cambios sólo de instrucciones,
+descripciones y documentación. La conducta conversacional nueva sigue pendiente de
+evaluación con argumentos/resultados y consentimiento capturados.
+
+No se ejecutan Docker, simulación, vuelos, proveedor LLM ni MCP operativo. Sin commit
+ni push. Se preservan los cambios de selección v1/v2 y las evidencias anteriores.
+
+Cierre offline: 17 herramientas registradas, mismos esquemas de entrada SHA-256
+a7102e858c349855ed8143cdbf3359976950f2cbe08cd99f9a2d20b52404d980 que en la
+verificación anterior. Inventario al inicio de este turno: 339 archivos; sólo cambian
+skill, servidor (instrucciones/descripciones), guía Hermes y este registro, más la
+guía GUI nueva. Los 192 archivos de misiones generadas/evidencias mantienen sus
+SHA-256; todos los demás cambios anteriores permanecen intactos. Prefijos completos
+anteriores de guía/registro conservados. git diff --check limpio; los seis archivos
+nuevos del árbol acumulado comprobados individualmente sin errores de whitespace.
+
+## 18/10/2026 — Primer ensayo operativo del incremento en drone_02/v2
+
+Se verifica offline el ensayo 7162bce5-3635-4a76-bf02-6a5a22612aab, clave
+joel-drone02-preflight-01, ya ejecutado por el operador. No aparece AGENTS.md aplicable
+en los ancestros/repositorio inspeccionados. Se conservan todos los cambios anteriores
+de selección v1/v2 y GUI, borradores, logs brutos y evidencias; no se añade funcionalidad
+ni se ajusta el skill. El estado inicial sigue en feature/hermes-integration sobre
+041d266afe95b7c8e32de06467510d1b3be3d09f, con cambios sin commit.
+
+### Archivo exacto e integridad
+
+Nueva carpeta simulation/ros2_gazebo/results/simulated_vehicle_v2_2026_10_18:
+ocho copias exactas (74292 bytes) de mission.json, input.json, job.json, report.json,
+worker.log, índice de request_key, ejemplo fuente y adjunto completo de Hermes.
+Manifiesto con rutas originales/copias, bytes y SHA-256; README y offline_checks.json
+son documentos derivados. Copia binaria, sin normalizar transcripción ni worker.log.
+No se sobrescriben originales, otras copias o manifiestos anteriores, incluidas las
+37 copias del archivo conversacional del día.
+
+Snapshot, input y missions/examples/simulation_navigation_drone02.json son idénticos:
+1717 bytes, SHA-256 ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb.
+Coincide con job.input_sha256, report.expected_sha256 y report.mission_sha256. Índice
+de clave, run_id y rutas pertinentes coherentes; source_artifact=null: procede del
+ejemplo JSON autónomo, no de una finalización de borrador. Job schema 2, report 1.1,
+selection/expected_selection, mission_identity y executor coinciden en drone_02/v2.
+PID/start_ticks/boot_id del worker conservados; no se consulta vida actual ni se
+autentica qué árbol de código estaba desplegado en aquel proceso.
+
+### Resultado persistido y reanálisis real
+
+Job FINISHED, phase=analyze; informe PASSED, execution_attempted=true. Executor
+success=true/COMPLETED con 14 eventos en orden: GUIDED/ARM, despegue a 5 m, tres
+waypoints WP1/WP2/WP3, regreso a SIMULATION_HOME, LAND y LANDED. Final:
+landed=true/armed=false/flying=false; no error o recuperación registrados. Regreso
+por navegación al lanzamiento y LAND, no modo RTL. simulation_origin y launch_position
+son distintos y se conservan: el reanálisis usa el lanzamiento para el mapper.
+
+Errores horizontales WP1/WP2/WP3 0.396770505/0.227773753/0.480681034 m; verticales
+0/0/0.010009766 m. Regreso 0/0 m; despegue error 0.230041504 m. Tolerancias actuales
+1 m horizontal y 0.75 m vertical, sin cambios. analyze_executor_result con identidad
+estricta reproduce exactamente el análisis guardado: once criterios true, sin motivos.
+validate_mission sin exportar reproduce exactamente FEASIBLE/APPROVED sin errores.
+Readiness guardada: Docker container, Gazebo server, ArduPilot processes, ROS 2
+vehicle interfaces y Pre-arm checks, ambos topics/status y armables; histórica, no
+una comprobación actual o evidencia de renderizado. worker.log sólo conserva dos
+líneas (claim y final PASSED), no telemetría/comandos independientes.
+
+Duraciones calculadas con timestamps UTC del informe: started_at 17:34:26.794699 a
+finished_at 17:39:26.637756 → **299.843057 s**, incluida la admisión anterior al graph;
+execution_started_at 17:34:40.657446 a execution_finished_at 17:39:26.629183 →
+**285.971737 s**. Admisión a job.finished_at 17:39:26.640580 → 299.845881 s;
+worker.started_at a job.finished_at → 299.301760 s. Son intervalos de operaciones,
+no tiempo en vuelo: faltan timestamps individuales de eventos. Este ensayo no
+superó 300 s en esos intervalos ni elimina el límite de las herramientas síncronas.
+
+### Conversación, reservas y alcance operativo
+
+Ahora sí existe un adjunto accesible, conservado completo con su hash. Muestra
+activación del skill sin acreditar versión cargada, readiness inicial bloqueada,
+petición de arranque, aviso de pantalla negra y petición explícita de un reinicio
+único secuencial. Se ven stop/start/check, pregunta visual posterior, confirmación
+del operador de que ve mundo/drones y autorización explícita de un solo ensayo v2.
+No se ve comprobación de reservas previa al reinicio ni pregunta visual tras el
+primer arranque. No se transforma este tramo en PASS completo del skill o solución
+causal del negro. No se ajustan instrucciones en esta revisión.
+
+Se ve un inicio y dos consultas del mismo ensayo, por clave y run_id. Hermes comunica
+reserva vehicle/global EXECUTING en la consulta intermedia y ambas null al finalizar.
+Se atribuyen a esos resúmenes de consulta del operador: no hay respuestas MCP
+estructuradas brutas, historial de reserva o auditoría de liberación en los cinco
+archivos. El fin/log es coherente con salida normal, sin usar FINISHED/PASSED para
+inferir por sí solos reserva libre actual. No se consulta/borra ahora ninguna reserva.
+La política revisada mantiene ejecución serializada con reserva global; tests
+offline verifican rechazo entre v1/v2, no se hace prueba operativa de contención.
+No hay posición/status independiente de v1 durante el ensayo: no se afirma que
+permaneció inmóvil, coordinación simultánea, separación o prevención de colisiones.
+
+El adjunto anuncia 21 herramientas y luego «Agent updated — 0 tool(s) available»;
+la verificación offline previa del registro del repositorio tenía 17. Queda
+desacuerdo de catálogo/contexto sin causa demostrada, no prueba de inexistencia de
+herramientas ni motivo para cambiar configuración personal. También se ven lecturas
+de archivos/esquemas y resúmenes, pero no argumentos completos de todas las llamadas.
+No se acredita fidelidad global, mejora estadística, configuración/modelo reales o
+versión desplegada; la etiqueta visible laguna-s-2.1:free es sólo dato de la transcripción.
+
+Se actualiza docs/simulated-vehicle-selection.md con el primer ensayo operativo de
+este incremento; sus cifras offline iniciales se conservan como historia. El
+precision_agriculture del JSON es metadato del ejemplo: sólo se ejecutan navigate,
+sin acción agrícola verificable, velocidad seguida, .plan cargado o hardware.
+qgc_plan_path=null no acredita ausencia de exportaciones previas. PASSED no autoriza
+otro vuelo ni resuelve la causa antigua de WP3. Persisten límites de hash/TOCTOU,
+control cooperativo frente a ROS/QGC externo/versiones antiguas, ausencia de interlock
+atómico lifecycle/vuelo y falta de evidencia de resistencia a reinicios del host.
+
+### Revisión y comprobaciones
+
+Se revisa el diff acumulado de selección/identidad, executor, ROS, graph, análisis,
+worker, reservas globales/por vehículo, consultas, MCP y tests, incluidos archivos
+nuevos. Sin cambios de código en este cierre. Los límites anteriores siguen abiertos;
+un único vuelo no valida interleavings concurrentes o todo el comportamiento del LLM.
+.venv/bin/python -m pytest -q → **388 passed in 10.11s**, suite completa offline con
+dobles. Se comprueban además hashes/copia exacta, índice, rutas, identidad, validación
+y análisis sobre los artefactos operativos, sin ejecutar graph/executor ni MCP.
+No se repiten tests tras documentación/copias solamente. No Docker, simulación,
+vuelos o proveedor LLM durante este cierre. No commit ni push.
+
+Cierre de conservación: inventario inicial de 346 archivos; sólo se modifican esta
+entrada del registro y docs/simulated-vehicle-selection.md. Los otros 344 conservan
+SHA-256, incluidos los 198 archivos originales de misiones generadas/evidencias.
+Las 37 copias del archivo hermes_conversational_2026_10_18 también se verifican
+contra su manifiesto previo, sin modificarlo. Únicos archivos añadidos en este turno:
+11 del nuevo archivo (ocho copias, README, offline_checks.json y manifest.json).
+
+git diff --check de archivos versionados limpio. Se comprueban individualmente los
+17 archivos no versionados del árbol acumulado: 16 limpios; la copia binaria
+transcripts/hermes_raw.txt emite avisos de trailing whitespace por sus CRLF/espacios
+originales. Se conserva byte a byte por ser evidencia; no se normaliza, no se cambia
+configuración Git para ocultar avisos ni se presenta ese fichero como limpio.
+Los hashes del manifiesto y de las dos comprobaciones derivadas quedan verificados.
+
+### 18/10/2026 — Ampliación del operador: parada y readiness posterior
+
+Para el cierre del ensayo 7162bce5-3635-4a76-bf02-6a5a22612aab, el operador comunica
+en un mensaje posterior: stop_simulation devolvió SUCCESS y ausencia de procesos
+atribuibles restantes; después check_simulation_ready devolvió NOT READY, con
+Docker aún activo y fallo en Gazebo. Es una declaración del operador sobre una
+secuencia ya realizada, no una llamada operativa ni nueva observación de este agente.
+El mensaje no aporta respuesta estructurada bruta o tiempos de las operaciones.
+
+Se contrasta la semántica leyendo check_sim.sh, sin ejecutarlo: Docker container
+se comprueba primero; el fallo de Gazebo server provoca exit 1 antes de ArduPilot
+processes, ROS 2 vehicle interfaces y Pre-arm checks. Por tanto esos tres controles
+se registran como NO EJECUTADOS, no FAIL/PASS ni ausencia demostrada de interfaces.
+Docker activo y procesos del proyecto detenidos son compatibles: stop no implica
+parar el contenedor. El NOT READY posterior no contradice ni modifica PASSED o los
+cinco controles históricos guardados durante el ensayo. Tampoco acredita por sí
+solo reserva libre, inmovilidad de v1 o causa del negro.
+
+Se añade closure_operator_followup bajo el archivo de evidencias v2 del día:
+operator_statement.txt conserva el texto recibido (UTF-8 con salto de línea final),
+verification.json registra la atribución, secuencia y controles no ejecutados;
+manifest.json da hashes de esos dos archivos y referencia el SHA-256 del manifiesto
+previo. No se reescriben las ocho copias, transcripción bruta, metadatos, informe,
+offline_checks.json o manifiesto anterior. La guía de selección incorpora este
+cierre distinguiendo relato del operador de hechos persistidos.
+
+Verificación offline: hashes de originales/copias y manifiestos, análisis estricto
+y validación determinista del ensayo. No se repite la suite por este cambio sólo
+documental/de evidencia; **388 passed in 10.11s** sigue siendo el resultado real de
+la revisión anterior, no una ejecución nueva. Sin cambios de código/skill ni
+Docker, simulación, vuelos, proveedor LLM o MCP operativo. Sin commit ni push.

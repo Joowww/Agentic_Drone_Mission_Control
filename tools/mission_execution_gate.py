@@ -9,9 +9,11 @@ from tools.hermes_mission_validation import (
     validate_mission_file,
 )
 from tools.simulation_status import check_simulation_ready
+from inputs.json_loader import load_mission_json
+from tools.simulated_vehicle import resolve_mission_vehicle
 
 
-def check_mission_execution_ready(
+def _check_mission_execution_ready(
     mission_path: str,
 ) -> dict[str, object]:
     """Check whether a mission is authorized for simulation execution.
@@ -93,3 +95,12 @@ def check_mission_execution_ready(
         ),
         "simulation": simulation,
     }
+
+def check_mission_execution_ready(mission_path: str) -> dict[str, object]:
+    """Keep deterministic validation/readiness; reject unsupported logical identities first."""
+    try:
+        selection = resolve_mission_vehicle(load_mission_json(mission_path))
+    except (ValueError, OSError, AttributeError) as exc:
+        return {"execution_authorized": False, "status": "BLOCKED", "stage": "VEHICLE_SELECTION",
+                "errors": [str(exc)], "failure_reasons": [], "simulation_ready": None}
+    return {**_check_mission_execution_ready(mission_path), **selection.as_dict()}

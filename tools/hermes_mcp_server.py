@@ -99,6 +99,23 @@ mcp = MCPServer(
         "Obtain explicit "
         "user authorization before starting simulation or executing the reviewed "
         "mission_path. APPROVED is not user consent or formal virtual preflight. "
+        "After a requested GUI start, distinguish backend readiness from operator-confirmed "
+        "visualization: ask whether Gazebo shows the world and drones correctly, is black, "
+        "or did not open. READY, a GUI process or GUI: ON is not proof of a rendered image. "
+        "For a black/missing window, offer one controlled restart, leaving recovery pending, "
+        "or explicitly continuing without visualization. Get acceptance before restarting. "
+        "Before any recovery stop/start, verify no active execution and no vehicle/global "
+        "reservation through known project run IDs/keys; INTERRUPTED/UNCONFIRMED, a remaining "
+        "reservation, ERROR/NOT_FOUND or missing evidence forbids GUI recovery. Do not invent "
+        "IDs or treat a historical query as a global execution inventory. With verified idle "
+        "state and consent, recheck immediately before acting, stop once and await confirmed "
+        "completion, start once, await completion, check backend readiness and ask about the "
+        "image again. No parallel lifecycle calls, automatic loops or retries on timeout/lost "
+        "response. Start also cleans previous processes, so another start is a restart, not "
+        "a visual probe. Queries do not atomically fence lifecycle against a new flight; "
+        "if that idle interval cannot be established, leave recovery pending. Continuing "
+        "without visualization requires the operator's explicit choice and grants no flight "
+        "consent or gate bypass. No automatic visual detection or unsupported cause claim. "
         "For an explicitly requested rehearsal prefer start_virtual_preflight with a "
         "request_key chosen and recorded BEFORE starting. Preserve run_id and request_key. "
         "Poll get_virtual_preflight on the SAME run about every 15-30 seconds; never "
@@ -107,12 +124,12 @@ mcp = MCPServer(
         "INTERRUPTED/UNCONFIRMED requires operator reconciliation; do not infer landing, "
         "release a restriction or repeat flight. Synchronous tools can exceed MCP timeouts. "
         "Use run_virtual_preflight only when the user requests a synchronous rehearsal: "
-        "it arms, takes off and moves simulated v1, never starts simulation. "
+        "it arms, takes off and moves the mission-selected simulated vehicle, never starts simulation. "
         "PASSED is not consent for another execution or permission for real hardware. "
         "Only navigate execution is supported; speed tracking is not verified. "
         "Use these tools to validate drone missions and interact "
         "with the ROS2, Gazebo and ArduPilot simulation stack. "
-        "Mission safety decisions are deterministic and must never "
+        "Only drone_01->v1 and drone_02->v2 are supported; never substitute another vehicle. At most one project flight may execute; no simultaneous flight or separation guarantee. Mission safety decisions are deterministic and must never "
         "be invented or overridden by the language model. "
         "A mission must pass the execution gate before flight "
         "commands can be issued."
@@ -126,7 +143,7 @@ def propose_mission_revision(run_id: str, request_key: str) -> dict[str, object]
     return propose_revision_backend(run_id, request_key)
 
 
-@mcp.tool(description="Read a persistent proposal and its reviewed version/hash after reload. view=summary (default) keeps source IDs/hashes, reasons, conditions and consent; view=detail preserves the complete previous response including executor evidence. Both verify the same source-copy integrity. No mission edits, simulation, flight or release of v1 restrictions.", structured_output=True)
+@mcp.tool(description="Read a persistent proposal and its reviewed version/hash after reload. view=summary (default) keeps source IDs/hashes, reasons, conditions and consent; view=detail preserves the complete previous response including executor evidence. Both verify the same source-copy integrity. No mission edits, simulation, flight or release of vehicle/global restrictions.", structured_output=True)
 def get_revision_proposal(proposal_id: str, view: ResponseView = "summary") -> dict[str, object]:
     full = get_proposal_backend(proposal_id)
     return summarize_proposal(full) if view == "summary" else full
@@ -144,7 +161,7 @@ def build_mission_revision(proposal_id: str, expected_proposal_sha256: str, chan
     description=(
         "Admit ONE asynchronous virtual preflight and quickly return run_id and paths. "
         "Requires an explicit user rehearsal request: the detached worker may ARM, TAKE OFF "
-        "and MOVE exclusively simulated v1, then land. Choose and record request_key before "
+        "and MOVE only the mission-selected drone_01->v1 or drone_02->v2, then land; one global flight slot. Choose and record request_key before "
         "calling; it permanently identifies this admission. Validation/acceptance are pending. "
         "Never starts simulation. A lost response is recovered with get_virtual_preflight, "
         "not another start. PASSED grants neither hardware permission nor another flight."
@@ -159,7 +176,7 @@ def start_virtual_preflight(mission_path: str, request_key: str) -> dict[str, ob
         "Read-only preflight lookup by exactly one of run_id or request_key, including "
         "historical reports. Use this to query an EXISTING rehearsal by its run_id; "
         "a run is not an MCP prompt or generic resource. Returns job state, current/last phase, final result if available, "
-        "report and paths. Never spawns, resumes, clears v1 ownership or commands flight. "
+        "report and paths. Never spawns, resumes, clears vehicle/global ownership or commands flight. "
         "view=summary by default; view=detail returns the complete previous response and raw "
         "executor evidence. Both retain result/reasons, uncertainty and vehicle restriction. "
         "Saved readiness is historical, not current availability; workflow/executor times "
@@ -179,7 +196,7 @@ def get_virtual_preflight(run_id: str | None = None, request_key: str | None = N
         "exceed the MCP client timeout without cancelling the backend. Prefer "
         "start_virtual_preflight plus get_virtual_preflight for tracking. "
         "Run one explicitly requested virtual preflight in Gazebo/ArduPilot SITL. "
-        "WARNING: this tool ARMS, TAKES OFF and MOVES exclusively simulated vehicle v1, "
+        "WARNING: this tool ARMS, TAKES OFF and MOVES only the mission-selected drone_01->v1 or drone_02->v2, "
         "then lands and waits for disarm via the existing executor. It snapshots and "
         "hashes the mission, validates safety, checks readiness and compatibility, "
         "and persists an evidence report. Never starts/restarts simulation or retries "
@@ -272,7 +289,8 @@ def validate_and_export_qgc(
     description=(
         "Check whether the ROS2, Gazebo and ArduPilot simulation "
         "stack is healthy and ready. This is a read-only check and "
-        "does not issue flight commands."
+        "does not issue flight commands. Backend readiness does not verify GUI rendering, "
+        "a visible window, operator visualization or absence of active flights/reservations."
     ),
     structured_output=True,
 )
@@ -285,7 +303,14 @@ def check_simulation_ready() -> dict[str, object]:
     description=(
         "Start the deterministic ROS2, Gazebo and ArduPilot "
         "simulation stack. This starts the simulation environment "
-        "only and does not arm, take off or command a vehicle."
+        "only and does not arm, take off or command a vehicle. It also stops previous "
+        "project simulation processes: repeating start is a restart, never a read-only GUI probe. "
+        "After a GUI start, check backend readiness and ask the operator whether the world "
+        "and drones are visible, black or no window opened; success/READY/process existence "
+        "cannot confirm the image. GUI recovery needs explicit restart acceptance and verified "
+        "absence of active execution or any unresolved vehicle/global reservation. If unknown, "
+        "do not restart. Use one sequential confirmed stop/start/readiness/visual question; "
+        "never retry automatically. Explicitly choosing no visualization grants no flight consent."
     ),
     structured_output=True,
 )
@@ -298,7 +323,11 @@ def start_simulation() -> dict[str, object]:
     description=(
         "Stop the ROS2, Gazebo and ArduPilot simulation processes. "
         "This tool is intended for simulation lifecycle management "
-        "and does not represent a normal in-flight landing command."
+        "and does not represent a normal in-flight landing command. For GUI recovery require "
+        "explicit restart acceptance and verify no active execution or vehicle/global reservation "
+        "first; unknown outcome, lost worker or remaining reservation forbids stopping/restarting "
+        "to fix the image. Await confirmed stop before start; no parallel calls or automatic retries. "
+        "This description is conversational guidance, not an atomic lifecycle/flight lock."
     ),
     structured_output=True,
 )
@@ -328,8 +357,8 @@ def check_mission_execution_ready(
     name="execute_approved_mission",
     description=(
         "SYNCHRONOUS: may exceed the MCP client timeout; timeout does not cancel flight. "
-        "Shares v1 exclusion with asynchronous preflight. "
-        "Execute an approved waypoint mission on Drone 1 in the "
+        "Shares global flight exclusion and per-vehicle reservations with asynchronous preflight. "
+        "Resolve MissionDefinition.vehicle.vehicle_id (drone_01->v1, drone_02->v2), reject unknown IDs, and execute one approved waypoint mission in the "
         "Gazebo/ArduPilot simulation. The executor re-runs the "
         "deterministic execution gate internally before issuing "
         "any flight command. Unsupported or unsafe missions are "
@@ -343,7 +372,6 @@ def execute_approved_mission(
 ) -> dict[str, object]:
     return execute_mission_backend(
         mission_path,
-        vehicle="v1",
         progress=False,
     )
 

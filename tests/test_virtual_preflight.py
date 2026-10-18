@@ -47,7 +47,7 @@ def completed_result(mission):
         {"event": "LANDED", "landed": True, "armed": False, "flying": False, "final_position": launch},
     ])
     return {"status": "COMPLETED", "success": True, "stage": "MISSION_EXECUTION",
-            "mission_id": mission.mission_id, "vehicle": "v1", "launch_position": launch,
+            "mission_id": mission.mission_id, "vehicle": "v1", "vehicle_id": mission.vehicle.vehicle_id, "launch_position": launch,
             "simulation_origin": launch, "events": events, "final_position": launch,
             "waypoints_completed": len(mission.route.waypoints), "return_to_home": mission.route.return_to_home}
 

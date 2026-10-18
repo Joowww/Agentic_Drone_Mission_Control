@@ -189,3 +189,20 @@ explícita sí se conserva mientras se pregunta el resto. La finalización devue
 ya satisface construir/validar/exportar. Readiness histórica y duración de operaciones
 no equivalen a disponibilidad actual ni tiempo en vuelo. Repetición conversacional
 pendiente; no se cambió configuración personal ni se ejecutó una sesión LLM nueva.
+
+## 18/10/2026 — Confirmación visual tras arranque con GUI
+
+El skill 1.1.1 incorpora la [distinción backend/visualización](simulation-gui-confirmation.md):
+después de un arranque con GUI pregunta al operador si ve mundo y drones, pantalla
+negra o ninguna ventana. READY/proceso/GUI ON no verifican imagen. Una recuperación
+necesita aceptación explícita, comprobar ausencia de ejecución/reserva global y una
+única secuencia stop confirmado→start→readiness→pregunta visual, sin bucles ni
+reintentos por timeout. Si no se puede verificar estado libre, queda pendiente.
+Start también limpia procesos previos y no es un sondeo visual inocuo.
+
+Continuar sin visualización es una elección explícita separada de consentimiento
+de vuelo; mantiene gates y reservas. No hay detector de GUI ni interlock nuevo;
+las consultas no cierran atómicamente la carrera entre lifecycle y un nuevo vuelo.
+El último READY con pantalla negra es relato del operador, sin transcripción del
+otro chat ni causa demostrada. Este cambio de instrucciones no acredita obediencia
+del LLM; no se ejecuta recuperación ni conversación real durante el desarrollo.

@@ -10,6 +10,7 @@ from tools.simulation_mission_executor import (
     _horizontal_distance_metres,
 )
 from tools.simulation_mission_mapper import map_mission_route_to_simulation
+from tools.simulated_vehicle import resolve_mission_vehicle
 
 
 def _number(value: object) -> bool:
@@ -30,7 +31,8 @@ def _position(value: object) -> bool:
     )
 
 
-def analyze_executor_result(mission: MissionDefinition, raw: object) -> dict:
+def analyze_executor_result(mission: MissionDefinition, raw: object, *, require_vehicle_identity=False,
+                            legacy_v1=False) -> dict:
     """Missing, malformed or contradictory evidence fails closed.
 
     These are executor observations, not an independent telemetry recording.
@@ -43,10 +45,21 @@ def analyze_executor_result(mission: MissionDefinition, raw: object) -> dict:
                 "reasons": ["Executor did not return a result object."]}
 
     checks["completed"] = raw.get("status") == "COMPLETED" and raw.get("success") is True
-    checks["identity"] = (
-        raw.get("mission_id") == mission.mission_id and raw.get("vehicle") == "v1"
-        and raw.get("stage") == "MISSION_EXECUTION"
-    )
+    try:
+        if legacy_v1:
+            checks["identity"] = (raw.get("mission_id") == mission.mission_id
+                                  and raw.get("vehicle") == "v1"
+                                  and raw.get("stage") == "MISSION_EXECUTION")
+        else:
+            selected = resolve_mission_vehicle(mission)
+            checks["identity"] = (
+                raw.get("mission_id") == mission.mission_id and raw.get("vehicle") == selected.simulated_vehicle
+                and raw.get("stage") == "MISSION_EXECUTION"
+                and (not require_vehicle_identity and selected.simulated_vehicle == "v1"
+                     or raw.get("vehicle_id") == selected.vehicle_id)
+            )
+    except ValueError:
+        checks["identity"] = False
     checks["no_failure_or_recovery"] = not any(
         raw.get(key) for key in ("error", "errors", "recovery", "gate")
     )

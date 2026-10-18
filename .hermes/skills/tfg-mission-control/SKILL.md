@@ -1,7 +1,7 @@
 ---
 name: tfg-mission-control
 description: Planifica y consulta misiones del TFG mediante MCP.
-version: 1.0.1
+version: 1.1.1
 author: Joel (TFG)
 metadata:
   hermes:
@@ -120,7 +120,12 @@ en una búsqueda genérica que no consultó el proyecto.
 - Sólo una solicitud explícita del ensayo autoriza iniciar un preflight del snapshot
   revisado. Preparar, consultar, aprobar planificación o generar .plan no lo autoriza.
   Una petición SITL no requiere autorización de hardware real ni cambios físicos.
-- El ensayo arma, despega y mueve exclusivamente v1 simulado. El worker no arranca
+- El ensayo arma, despega y mueve sólo el vehículo lógico de la misión: `drone_01`
+  corresponde a `v1` y `drone_02` a `v2`, exclusivamente simulados. No sustituyas IDs
+  desconocidos ni copies otra misión para cambiar de dron sin solicitud. Hay una sola
+  ejecución global: una reserva de cualquiera bloquea ambos; no prometas vuelos
+  simultáneos ni separación. Selección implementada no equivale a vuelo operativo
+  verificado: consulta evidencia específica del vehículo. El worker no arranca
   simulación. Si no está lista, explica BLOCKED; no la arranques para arreglarlo
   salvo una petición separada explícita del operador.
 - Registra una request_key antes del inicio; conserva run_id y consulta el MISMO
@@ -138,6 +143,42 @@ en una búsqueda genérica que no consultó el proyecto.
 - FAILED WP3 exige describir evidencia y recuperación disponibles, causa desconocida.
   Un PASSED posterior no demuestra su causa ni resolución. Un fallo de infraestructura
   tampoco demuestra un defecto de ruta. No rellenes causalidad a partir de coincidencias.
+
+### Arranque con GUI y confirmación visual
+
+- Tras un arranque solicitado con GUI, separa el resultado del arranque/readiness
+  del backend de la imagen observada por el operador. Pregunta: «¿Gazebo muestra
+  correctamente el mundo y los drones, aparece negro o no se abrió?». Hasta la
+  respuesta, visualización no confirmada. READY, proceso GUI o «GUI: ON» no prueban
+  renderizado, ventana abierta ni imagen útil; no inventes detección automática.
+- Pantalla negra o ventana no abierta: reconoce la observación sin atribuir causa.
+  Ofrece una recuperación mediante un único reinicio controlado, dejarlo pendiente
+  o continuar expresamente sin visualización. No reinicies sin aceptación del
+  operador ni interpretes su reporte de fallo como autorización. Continuar sin
+  imagen no autoriza ensayo/vuelo ni sustituye readiness, gate o consentimiento.
+- Antes de ejecutar la recuperación, consulta los ensayos conocidos por
+  sus IDs/claves con las herramientas del proyecto: revisa estado/worker y
+  `vehicle_restriction`/`global_flight_restriction`. No detengas ni arranques si hay
+  ejecución activa (incluido worker aún activo), reserva de cualquiera de los
+  vehículos o resultado no confirmado,
+  incluso con FINISHED/PASSED. Si faltan IDs, hay ERROR/NOT_FOUND, respuesta perdida
+  o no puedes establecer ausencia de actividad/reserva global, mantén la recuperación
+  pendiente y explica qué falta. No inventes IDs ni reconstruyas estado por directorios.
+  Una consulta histórica no es inventario ni prueba de ausencia de otras ejecuciones.
+- Con aceptación de ese único reinicio y estado verificado libre, revalida justo
+  antes de actuar y realiza una sola secuencia: stop, esperar resultado de parada
+  confirmada, start, esperar resultado, comprobar readiness y volver a preguntar
+  por la imagen. No encadenes llamadas en paralelo ni avances tras fallo/timeout
+  o resultado de parada incierto; no repitas operaciones por respuesta perdida.
+  Si sigue negro/no abierto, no hagas otro ciclo automático: presenta lo observado
+  y vuelve a las opciones del operador, sin extender el consentimiento anterior.
+- `start_simulation` también limpia procesos anteriores: repetir start cuenta como
+  recuperación/reinicio, no como consulta de GUI. Nunca lo uses para eludir la
+  comprobación de reservas o la aceptación. Este paso es conversacional; las
+  consultas no reservan atómicamente el ciclo de vida frente a un nuevo vuelo.
+  Si no puede asegurarse el intervalo sin actividad, no reinicies por la GUI.
+  Conserva elección, aceptación, intentos y resultados en el contexto con sus
+  fuentes; no inventes campos visuales en MissionDefinition o informes del backend.
 
 ## Pitfalls
 

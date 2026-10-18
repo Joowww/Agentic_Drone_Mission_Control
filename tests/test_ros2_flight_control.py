@@ -23,6 +23,14 @@ pose:
 """
 
 
+@pytest.fixture
+def authority():
+    from tools.vehicle_execution_lock import reserve, execution_scope
+    reserve("ros-test", "test")
+    with execution_scope("ros-test"):
+        yield
+
+
 def test_status_parser(monkeypatch):
     monkeypatch.setattr(
         flight,
@@ -60,7 +68,7 @@ def test_geopose_parser(monkeypatch):
 
 
 def test_global_target_contains_required_ap_dds_fields(
-    monkeypatch,
+    monkeypatch, authority,
 ):
     captured = {}
 
@@ -99,7 +107,7 @@ def test_takeoff_rejects_invalid_altitude():
         flight.takeoff_vehicle(0.0)
 
 
-def test_guided_mode_acceptance(monkeypatch):
+def test_guided_mode_acceptance(monkeypatch, authority):
     monkeypatch.setattr(
         flight,
         "_run_ros_command",

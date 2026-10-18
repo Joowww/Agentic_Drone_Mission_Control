@@ -32,7 +32,7 @@ def test_expected_mcp_tools_are_registered():
     assert EXPECTED_TOOLS <= tool_names
 
 
-def test_execute_approved_mission_uses_drone1_and_disables_progress(
+def test_execute_approved_mission_defers_vehicle_resolution_and_disables_progress(
     monkeypatch,
 ):
     captured = {}
@@ -40,7 +40,7 @@ def test_execute_approved_mission_uses_drone1_and_disables_progress(
     def fake_execute(
         mission_path: str,
         *,
-        vehicle: str,
+        vehicle: str | None = None,
         progress: bool,
     ):
         captured[
@@ -82,7 +82,7 @@ def test_execute_approved_mission_uses_drone1_and_disables_progress(
         == "/tmp/mission.json"
     )
 
-    assert captured["vehicle"] == "v1"
+    assert captured["vehicle"] is None
     assert captured["progress"] is False
 
 def test_virtual_preflight_wrapper_forwards_only_mission_path(monkeypatch):

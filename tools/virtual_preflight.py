@@ -8,7 +8,7 @@ PREFLIGHT_ROOT = Path(__file__).resolve().parents[1] / "missions/generated/prefl
 
 
 def run_virtual_preflight(mission_path: str) -> dict[str, object]:
-    """Arms, takes off and moves only simulated v1 when all checks pass.
+    """Arms, takes off and moves the mission's resolved simulated vehicle only.
 
     Never starts/restarts simulation. Never authorizes another flight or hardware.
     """
@@ -25,7 +25,7 @@ def run_virtual_preflight(mission_path: str) -> dict[str, object]:
 
 
 def run_preflight_in_directory(mission_path, run_id, directory, *, started_at=None, expected_sha256=None,
-                              persist_progress=False, source_artifact=None):
+                              persist_progress=False, source_artifact=None, vehicle_selection=None):
     """Shared workflow invocation for synchronous callers and detached workers."""
     started = started_at or utc_now()
     final = virtual_preflight_graph.invoke({
@@ -33,6 +33,7 @@ def run_preflight_in_directory(mission_path, run_id, directory, *, started_at=No
         "expected_sha256": expected_sha256, "persist_progress": persist_progress,
         "source_path": str(Path(mission_path).resolve()),
         "source_artifact": source_artifact,
+        "vehicle_selection": None, "expected_vehicle_selection": vehicle_selection,
         "snapshot_path": str(directory / "mission.json"),
         "report_path": str(directory / "report.json"),
         "mission_sha256": None, "mission_identity": None,

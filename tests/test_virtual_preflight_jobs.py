@@ -46,6 +46,22 @@ def tree_bytes(root):
     return {str(path): path.read_bytes() for path in root.rglob("*") if path.is_file()}
 
 
+def persist_typed_stub(directory, report, selection, digest):
+    """Synthetic worker reports obey the new identity contract, without a flight."""
+    content = (directory / "input.json").read_bytes()
+    (directory / "mission.json").write_bytes(content)
+    mission = json.loads(content)
+    report.update(schema_version="1.1", vehicle_selection=selection,
+                  mission_identity={"mission_id": mission["mission_id"], "name": mission["name"], **selection},
+                  mission_sha256=digest)
+    raw = report.get("executor_result")
+    if isinstance(raw, dict):
+        raw.update(vehicle=selection["simulated_vehicle"], vehicle_id=selection["vehicle_id"],
+                   mission_id=mission["mission_id"])
+    vehicle.atomic_json(directory / "report.json", report)
+    return report
+
+
 def test_start_returns_without_running_workflow_and_detaches_stdio(admitted, monkeypatch):
     invoked = Mock(side_effect=AssertionError("Admission must not run the workflow"))
     monkeypatch.setattr(workflow, "run_preflight_in_directory", invoked)
@@ -192,8 +208,7 @@ def test_final_results_are_read_after_worker_completion(admitted, monkeypatch, t
         report = {"run_id": run_id, "status": terminal, "stage": "analyze", "finished_at": vehicle.utc_now(),
                   "execution_attempted": False, "report_persisted": True,
                   "mission_sha256": kwargs["expected_sha256"], "executor_result": None}
-        vehicle.atomic_json(directory / "report.json", report)
-        return report
+        return persist_typed_stub(directory, report, kwargs["vehicle_selection"], kwargs["expected_sha256"])
     monkeypatch.setattr(workflow, "run_preflight_in_directory", finish)
     assert run_admitted(result, admitted)
     status = jobs.get_virtual_preflight(run_id=result["run_id"])
@@ -207,7 +222,8 @@ def test_final_results_are_read_after_worker_completion(admitted, monkeypatch, t
 
 def test_worker_uses_real_graph_and_same_snapshot_gate_and_analysis(admitted, monkeypatch):
     result = begin(admitted)
-    raw = {"success": False, "status": "BLOCKED", "stage": "EXECUTION_GATE", "message": "inner gate blocked"}
+    raw = {"success": False, "status": "BLOCKED", "stage": "EXECUTION_GATE", "message": "inner gate blocked",
+           "vehicle": "v1", "vehicle_id": "drone_01"}
     execute = Mock(return_value=raw)
     monkeypatch.setattr(graph, "check_simulation_ready", lambda: {"ready": True})
     monkeypatch.setattr(graph, "execute_approved_mission", execute)
@@ -225,11 +241,11 @@ def test_worker_uses_real_graph_and_same_snapshot_gate_and_analysis(admitted, mo
 def test_worker_rejects_changed_admission_snapshot_without_execution(admitted):
     result = begin(admitted)
     Path(result["paths"]["input_path"]).write_text("{}")
-    assert run_admitted(result, admitted)
+    assert not run_admitted(result, admitted)
     status = jobs.get_virtual_preflight(run_id=result["run_id"])
-    assert status["result_status"] == "ERROR"
+    assert status["job_state"] == "ERROR" and status["errors"]
     graph.execute_approved_mission.assert_not_called()
-    assert vehicle.restriction() is None  # positively no execution
+    assert vehicle.restriction()["owner_id"] == result["run_id"]  # tampered admission is never auto-cleared
 
 
 def test_worker_exception_is_unconfirmed_and_restriction_survives(admitted, monkeypatch):
@@ -249,8 +265,7 @@ def test_failed_recovery_keeps_restriction_even_with_final_report(admitted, monk
                   "execution_attempted": True, "report_persisted": True,
                   "executor_result": {"status": "FAILED", "success": False,
                                       "recovery": {"landing_completed": False}}}
-        vehicle.atomic_json(directory / "report.json", report)
-        return report
+        return persist_typed_stub(directory, report, kwargs["vehicle_selection"], kwargs["expected_sha256"])
     monkeypatch.setattr(workflow, "run_preflight_in_directory", unsafe)
     assert run_admitted(result, admitted)
     assert jobs.get_virtual_preflight(run_id=result["run_id"])["result_status"] == "FAILED"
@@ -318,9 +333,9 @@ def test_another_worker_cannot_claim_the_same_job(admitted, monkeypatch):
 def test_final_report_wins_when_worker_exits_before_publishing_job_completion(admitted, monkeypatch):
     result = begin(admitted)
     directory = jobs.run_directory(result["run_id"])
-    vehicle.atomic_json(directory / "report.json", {
+    persist_typed_stub(directory, {
         "run_id": result["run_id"], "status": "FAILED", "stage": "analyze", "finished_at": vehicle.utc_now(),
-    })
+    }, result["vehicle_selection"], result["mission_sha256"])
     monkeypatch.setattr(jobs, "identity_alive", lambda identity: False)
     status = jobs.get_virtual_preflight(run_id=result["run_id"])
     assert status["job_state"] == "FINISHED" and status["result_status"] == "FAILED"
@@ -347,7 +362,8 @@ def test_worker_run_id_alone_cannot_launch_a_persisted_admission(admitted):
 def test_worker_scope_reaches_existing_internal_gate_through_langgraph(admitted, monkeypatch):
     import tools.simulation_mission_executor as executor
     result = begin(admitted)
-    gate = Mock(return_value={"execution_authorized": False, "mission_id": "blocked"})
+    gate = Mock(return_value={"execution_authorized": False,
+                              "mission_id": json.loads(admitted[0].read_bytes())["mission_id"]})
     monkeypatch.setattr(executor, "check_mission_execution_ready", gate)
     monkeypatch.setattr(graph, "check_simulation_ready", lambda: {"ready": True})
     monkeypatch.setattr(graph, "execute_approved_mission", executor.execute_approved_mission)

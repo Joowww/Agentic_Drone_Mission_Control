@@ -90,7 +90,7 @@ def _artifact(value):
 def _execution(raw):
     if not isinstance(raw, dict):
         return deepcopy(raw)
-    result = _take(raw, ("status", "success", "stage", "mission_id", "vehicle", "error", "errors",
+    result = _take(raw, ("status", "success", "stage", "mission_id", "vehicle", "vehicle_id", "error", "errors",
                         "waypoints_completed", "return_to_home", "recovery", "waypoint_diagnostic", "message"))
     events = raw.get("events")
     if isinstance(events, list):
@@ -109,7 +109,7 @@ def _execution(raw):
 def _report(value):
     if not isinstance(value, dict):
         return deepcopy(value)
-    result = _take(value, ("run_id", "status", "stage", "report_persisted", "mission_identity", "mission_sha256",
+    result = _take(value, ("run_id", "status", "stage", "report_persisted", "mission_identity", "mission_sha256", "vehicle_selection",
                            "expected_sha256", "source_artifact", "execution_attempted", "validation",
                            "readiness", "compatibility_errors", "analysis", "reasons", "started_at", "finished_at",
                            "execution_started_at", "execution_finished_at", "scope", "hardware_authorized",
@@ -124,7 +124,8 @@ def summarize_preflight(value):
     result = _take(value, ("run_id", "request_key", "admission_status", "job_state", "phase", "result_status",
                            "mission_sha256", "worker_alive", "worker", "worker_error", "created_at", "worker_started_at",
                            "worker_finished_at", "paths", "vehicle_restriction", "message", "source_artifact",
-                           "snapshot_integrity", "readiness_now", "readiness_scope", "result_scope"))
+                           "snapshot_integrity", "readiness_now", "readiness_scope", "result_scope",
+                           "vehicle_selection", "vehicle_selection_basis", "global_flight_restriction"))
     result["report"] = _report(value.get("report"))
     if value.get("run_id"):
         result["detail_access"] = _access("get_virtual_preflight", run_id=value["run_id"])

@@ -16,6 +16,8 @@ class VirtualPreflightState(TypedDict, total=False):
     mission_sha256: str | None
     mission: MissionDefinition
     mission_identity: dict | None
+    vehicle_selection: dict | None
+    expected_vehicle_selection: dict | None
     status: str
     stage: str
     reasons: list[str]

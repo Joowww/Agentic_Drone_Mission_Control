@@ -59,6 +59,7 @@ def test_unsupported_action_is_blocked(
     mission = SimpleNamespace(
         mission_id="mission_1",
         vehicle=SimpleNamespace(
+            vehicle_id="drone_01",
             vehicle_type="multirotor",
             autopilot="ArduPilot",
         ),
@@ -109,6 +110,7 @@ def test_successful_navigation_mission(
     mission = SimpleNamespace(
         mission_id="mission_1",
         vehicle=SimpleNamespace(
+            vehicle_id="drone_01",
             vehicle_type="multirotor",
             autopilot="ArduPilot",
         ),
@@ -284,6 +286,7 @@ def test_failure_after_arm_attempts_landing(
     mission = SimpleNamespace(
         mission_id="mission_1",
         vehicle=SimpleNamespace(
+            vehicle_id="drone_01",
             vehicle_type="multirotor",
             autopilot="ArduPilot",
         ),

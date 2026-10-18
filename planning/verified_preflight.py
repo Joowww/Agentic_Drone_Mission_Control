@@ -6,6 +6,7 @@ from planning.artifact_store import identifier, sha256
 from reporting.virtual_preflight_analysis import analyze_executor_result
 from tools.hermes_mission_validation import validate_mission
 from tools.virtual_preflight_jobs import TERMINAL, locate_preflight_report
+from tools.simulated_vehicle import recorded_report_selection, resolve_mission_vehicle
 
 
 def verified_source(run_id):
@@ -32,6 +33,10 @@ def verified_source(run_id):
     if digest != report.get("mission_sha256") or report.get("expected_sha256", digest) != digest:
         raise ValueError("Mission snapshot hash mismatch")
     mission = MissionDefinition.model_validate_json(mission_bytes)
+    selected = recorded_report_selection(report)
+    strict = report.get("schema_version") == "1.1"
+    if strict and selected is not None and selected != resolve_mission_vehicle(mission).as_dict():
+        raise ValueError("Report vehicle differs from snapshot")
     if mission.mission_id != (report.get("mission_identity") or {}).get("mission_id"):
         raise ValueError("Mission identity mismatch")
     validation = validate_mission(mission)
@@ -42,11 +47,11 @@ def verified_source(run_id):
         raise ValueError("Saved validation contradicts the snapshot")
     raw = report.get("executor_result")
     if raw and (raw.get("mission_id", mission.mission_id) != mission.mission_id
-                or raw.get("vehicle", "v1") != "v1"):
+                or raw.get("vehicle", "v1") != (selected or {}).get("simulated_vehicle", "v1")):
         raise ValueError("Executor identity mismatch")
     status = report["status"]
     if status in {"PASSED", "FAILED"}:
-        actual = analyze_executor_result(mission, raw)
+        actual = analyze_executor_result(mission, raw, require_vehicle_identity=strict, legacy_v1=not strict)
         if (report.get("execution_attempted") is not True
                 or (report.get("analysis") or {}).get("passed") is not (status == "PASSED")
                 or actual["passed"] is not (status == "PASSED")):
@@ -58,7 +63,8 @@ def verified_source(run_id):
     elif status == "BLOCKED":
         stage = report.get("stage")
         valid_block = (
-            stage == "validate" and validation["execution_status"] != "APPROVED"
+            stage == "snapshot" and bool(report.get("reasons")) and selected is None
+            or stage == "validate" and validation["execution_status"] != "APPROVED"
             or stage == "check_readiness" and (report.get("readiness") or {}).get("ready") is False
             or stage == "compatibility" and bool(report.get("compatibility_errors"))
             or stage == "analyze" and isinstance(raw, dict) and raw.get("status") == "BLOCKED"

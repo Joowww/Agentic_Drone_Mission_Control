@@ -1,5 +1,9 @@
 # Primer incremento de virtual preflight con LangGraph
 
+> Estado actual: [selección de vehículo y exclusión global](simulated-vehicle-selection.md).
+> Las secciones iniciales conservan el incremento histórico limitado a v1; ahora
+> drone_01→v1 y drone_02→v2 se ensayan individualmente, nunca en paralelo.
+
 `run_virtual_preflight(mission_path)` ofrece un ensayo explícito de una misión
 JSON en Gazebo/ArduPilot SITL. **Arma, despega y mueve exclusivamente el vehículo
 simulado `v1`**, y utiliza el aterrizaje y la recuperación del executor existente.

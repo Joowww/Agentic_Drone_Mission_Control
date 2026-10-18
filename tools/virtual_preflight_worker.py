@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import traceback
+from tools.simulated_vehicle import recorded_report_selection
 
 from tools import virtual_preflight_jobs as jobs
 from tools.vehicle_execution_lock import (
@@ -23,32 +24,43 @@ def run_worker(run_id, launch_token=None):
                 or job["job_state"] not in {"ADMITTED", "STARTING"}
                 or job.get("worker") not in (None, identity)):
             return False  # duplicate, terminal, interrupted or different worker: never fly
+        try:
+            selected = jobs.job_vehicle_selection(job, directory, for_execution=True)
+        except (ValueError, OSError, KeyError, TypeError):
+            return False  # corrupted admission never launches or releases a reservation
+        vehicle = selected["simulated_vehicle"]
         job.update(worker=identity, job_state="RUNNING", phase="workflow", started_at=utc_now())
         atomic_json(directory / "job.json", job)
     print(f"{utc_now()} run={run_id} worker claimed admission", flush=True)
     try:
         # Import the existing graph only after identity has been published.
         from tools.virtual_preflight import run_preflight_in_directory
-        with execution_scope(run_id):
+        with execution_scope(run_id, vehicle):
             report = run_preflight_in_directory(
                 directory / "input.json", run_id, directory, started_at=job["created_at"],
                 expected_sha256=job["input_sha256"], persist_progress=True,
                 source_artifact=job.get("source_artifact"),
+                vehicle_selection=selected,
             )
+        report_selection = recorded_report_selection(report)
+        if report_selection is not None and report_selection != selected:
+            raise ValueError("Worker report vehicle differs from its admission")
+        if report.get("mission_sha256") != job["input_sha256"]:
+            raise ValueError("Worker report mission hash differs from its admission")
         job.update(job_state="FINISHED", phase=report.get("stage"), finished_at=utc_now())
         atomic_json(directory / "job.json", job)
         if (report.get("status") in jobs.TERMINAL and report.get("report_persisted") is True
                 and (report.get("execution_attempted") is False
-                     or safe_executor_exit(report.get("executor_result")))):
-            release(run_id)
+                     or safe_executor_exit(report.get("executor_result"), selection=selected))):
+            release(run_id, vehicle)
         else:
-            mark_uncertain(run_id)
+            mark_uncertain(run_id, vehicle)
         print(f"{utc_now()} run={run_id} result={report.get('status')} worker finished", flush=True)
         return True
     except BaseException as exc:
         # In particular, no automatic LAND claim, retry, or clearing of the lease.
         traceback.print_exc()
-        mark_uncertain(run_id)
+        mark_uncertain(run_id, vehicle)
         job.update(job_state="UNCONFIRMED", phase="worker_exception", error=f"{type(exc).__name__}: {exc}")
         atomic_json(directory / "job.json", job)
         return False
