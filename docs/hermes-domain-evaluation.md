@@ -381,3 +381,21 @@ cuatro registros parciales y hashes de copias verificados. `git diff --check` tr
 limpio. La comprobación de archivos nuevos informa whitespace del adjunto bruto
 (CRLF/espacios/blanco final originales); se conserva como evidencia sin normalizar.
 No se añaden tests de obediencia por frases ni otra ronda de cambios de instrucciones.
+
+
+## 19/10/2026 — Demo Reunion como material inicial de observabilidad
+
+[Copias y evaluación offline](../simulation/ros2_gazebo/results/demo_observability_2026_10_19/README.md).
+El TXT original anunciado no estaba accesible; se conserva el texto pegado por el
+operador, con hash propio, y siete artefactos exactos del borrador
+7f2e3345-a62e-4060-a0c0-9b034714b49e/finalización
+17764ef0-5114-4447-87d5-de6f00455bf3. La transcripción empieza a mitad de interacción
+y no contiene todos los argumentos/resultados MCP: no se reconstruye el inicio.
+
+Persisten geometría rectangular correcta 40×20 m a 8 m, validación y .plan; no
+consentimiento de vuelo. Se observan error JSON/clarify, razonamiento repetido,
+valores sin confirmación visible suficiente, UUID mal copiado y mezcla LAND/retorno.
+No se atribuye una causa al JSON ni se llama NAV_LAND al comando 20.
+Bytes, longitud de transcripción e indicador de contexto no son tokens facturados.
+No hay evaluación LLM nueva, PASS global, mejora estadística ni refactorización
+del comportamiento conversacional; los tests deterministas no prueban fidelidad.
