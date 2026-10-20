@@ -227,7 +227,7 @@ if sys.argv[-1] == 'stop':
     project = tmp_path / "project"
     source = Path(__file__).resolve().parents[1]
     relative_files = ["tools/__init__.py", "tools/simulated_vehicle.py", "tools/vehicle_execution_lock.py",
-                      "tools/simulation_lifecycle.py", "simulation/ros2_gazebo/launch/tfg_demo_2drones.launch.py"]
+                      "tools/simulation_lifecycle.py", "tools/simulation_profiles.py", "simulation/ros2_gazebo/launch/tfg_demo_2drones.launch.py"]
     relative_files += ["simulation/ros2_gazebo/scripts/"+name for name in
                        ("start_sim.sh", "stop_sim.sh", "restart_sim.sh", "start_sim_backend.sh", "stop_sim_backend.sh", "sim_processes.py")]
     for relative in relative_files:

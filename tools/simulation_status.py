@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import os
 import subprocess
 from pathlib import Path
+
+from tools.simulation_profiles import get_profile, UnknownSimulationProfile
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -15,12 +18,18 @@ CHECK_SCRIPT = (
 )
 
 
-def check_simulation_ready() -> dict[str, object]:
+def check_simulation_ready(profile: str = "two_drones") -> dict[str, object]:
     """Check whether the ROS2/Gazebo/ArduPilot simulation is ready.
 
     This function is read-only with respect to vehicle execution:
     it does not arm, take off, or command any vehicle.
     """
+
+    try:
+        selected = get_profile(profile)
+    except UnknownSimulationProfile as exc:
+        return {"ready": False, "status": "BLOCKED", "return_code": None,
+                "message": str(exc), "output": ""}
 
     if not CHECK_SCRIPT.exists():
         return {
@@ -34,6 +43,7 @@ def check_simulation_ready() -> dict[str, object]:
     result = subprocess.run(
         ["bash", str(CHECK_SCRIPT)],
         cwd=str(PROJECT_ROOT),
+        env={**os.environ, "TFG_SIM_PROFILE": selected.name},
         capture_output=True,
         text=True,
         timeout=180,
@@ -47,6 +57,7 @@ def check_simulation_ready() -> dict[str, object]:
     )
 
     return {
+        "profile": selected.name,
         "ready": result.returncode == 0,
         "status": "READY" if result.returncode == 0 else "NOT READY",
         "return_code": result.returncode,

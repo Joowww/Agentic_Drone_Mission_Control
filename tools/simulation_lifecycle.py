@@ -12,6 +12,7 @@ import sys
 from uuid import uuid4
 
 from tools import vehicle_execution_lock as locks
+from tools.simulation_profiles import get_profile, UnknownSimulationProfile
 
 SCRIPTS = locks.PROJECT_ROOT / "simulation/ros2_gazebo/scripts"
 
@@ -19,6 +20,9 @@ SCRIPTS = locks.PROJECT_ROOT / "simulation/ros2_gazebo/scripts"
 def verify_backend():
     lease = json.loads((locks.LOCK_ROOT / "lifecycle.json").read_text())
     expected = json.loads(os.environ["TFG_LIFECYCLE_PROCESS"])
+    selected = get_profile(os.environ.get("TFG_SIM_PROFILE", "two_drones"))
+    if lease.get("profile") != selected.name:
+        raise locks.VehicleBusy("Lifecycle/profile mismatch")
     # Python verifier <- shell backend <- owning Python lifecycle process.
     fields = Path(f"/proc/{os.getppid()}/stat").read_text().rpartition(")")[2].split()
     descriptor = int(os.environ["TFG_LIFECYCLE_FD"])
@@ -33,7 +37,8 @@ def verify_backend():
 
 
 def _backend(action, gui, descriptor, process, log_path):
-    env = {**os.environ, "TFG_LIFECYCLE_PROCESS": json.dumps(process),
+    selected = get_profile(json.loads((locks.LOCK_ROOT / "lifecycle.json").read_text())["profile"])
+    env = {**os.environ, "TFG_SIM_PROFILE": selected.name, "TFG_LIFECYCLE_PROCESS": json.dumps(process),
            "TFG_LIFECYCLE_FD": str(descriptor), "TFG_SIM_GUI": "true" if gui else "false"}
     with log_path.open("ab") as log:
         return subprocess.run(["bash", str(SCRIPTS / f"{action}_sim_backend.sh")],
@@ -42,9 +47,13 @@ def _backend(action, gui, descriptor, process, log_path):
                               timeout=180 if action == "start" else 60, check=False).returncode
 
 
-def run_lifecycle(action, *, gui=True):
+def run_lifecycle(action, *, gui=True, profile="two_drones"):
     if action not in {"start", "stop", "restart"} or type(gui) is not bool:
         return {"success": False, "status": "ERROR", "message": "Invalid action or GUI mode"}
+    try:
+        selected = get_profile(profile)  # before mutex files, leases or subprocesses
+    except UnknownSimulationProfile as exc:
+        return {"success": False, "status": "BLOCKED", "message": str(exc)}
     try:
         # Same order as executor/reconciliation. Even a damaged/missing durable
         # reservation cannot let lifecycle disrupt a still-running OS executor.
@@ -56,7 +65,7 @@ def run_lifecycle(action, *, gui=True):
             root = locks.LOCK_ROOT.parent / "simulation_lifecycle" / owner_id
             root.mkdir(parents=True)
             record = {"kind": "SIMULATION_LIFECYCLE", "owner_id": owner_id,
-                      "state": "EXECUTING", "action": action, "gui": gui,
+                      "state": "EXECUTING", "action": action, "gui": gui, "profile": selected.name,
                       "process": locks.process_identity(), "started_at": locks.utc_now(),
                       "log_path": str(root / "backend.log")}
             locks.atomic_json(locks.LOCK_ROOT / "lifecycle.json", record)
@@ -86,11 +95,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("start", "stop", "restart", "verify"))
     parser.add_argument("--headless", action="store_true")
+    parser.add_argument("--profile", default="two_drones")
     args = parser.parse_args()
     if args.action == "verify":
+        get_profile(args.profile)
         verify_backend()
         return 0
-    result = run_lifecycle(args.action, gui=not args.headless)
+    result = run_lifecycle(args.action, gui=not args.headless, profile=args.profile)
     print(json.dumps(result, ensure_ascii=False))
     return 0 if result["success"] else 1
 

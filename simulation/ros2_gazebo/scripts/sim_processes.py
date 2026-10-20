@@ -17,6 +17,14 @@ import subprocess
 import time
 from uuid import uuid4
 
+try:
+    from tools.simulation_profiles import get_profile
+except ModuleNotFoundError as exc:
+    if exc.name not in {"tools", "tools.simulation_profiles"}:
+        raise
+    # Copied next to this standalone helper by the protected backend.
+    from tfg_simulation_profiles import get_profile
+
 PROJECT = "Agentic_Drone_Mission_Control"
 MARKER = "TFG_SIM_PROJECT"
 STATE = Path("/tmp/tfg_demo.processes.json")
@@ -185,7 +193,8 @@ def shutdown(*, scan=snapshot, send=os.kill, read=read_process,
             "remaining": [asdict(p) for p in remaining.values()]}
 
 
-def start() -> dict:
+def start(profile="two_drones") -> dict:
+    selected = get_profile(profile)
     table = snapshot()
     owned = select_owned(table, remembered_identities())
     if owned or unattributed_auxiliaries(table, owned):
@@ -198,8 +207,8 @@ def start() -> dict:
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     with LOG_FILE.open("wb") as log:
         child = subprocess.Popen(
-            ["ros2", "launch", "ardupilot_gz_bringup", "tfg_demo_2drones.launch.py",
-             "rviz:=false", "gui:=" + ("false" if os.environ.get("TFG_SIM_GUI") == "false" else "true")],
+            ["ros2", "launch", selected.launch_package, selected.launch_file,
+             *selected.fixed_launch_arguments, "gui:=" + ("false" if os.environ.get("TFG_SIM_GUI") == "false" else "true")],
             env=environment, cwd="/", start_new_session=True, stdin=subprocess.DEVNULL,
             stdout=log, stderr=subprocess.STDOUT,
         )
@@ -215,9 +224,11 @@ def start() -> dict:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("start", "stop"))
+    parser.add_argument("--profile", default=os.environ.get("TFG_SIM_PROFILE", "two_drones"))
     args = parser.parse_args()
     try:
-        result = start() if args.action == "start" else shutdown()
+        selected = get_profile(args.profile)
+        result = start(selected.name) if args.action == "start" else shutdown()
     except Exception as exc:
         result = {"success": False, "error": f"{type(exc).__name__}: {exc}"}
     print(json.dumps(result))

@@ -3,6 +3,18 @@
 set -euo pipefail
 
 CONTAINER="tfg-ardupilot-gazebo"
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+PROFILE="${TFG_SIM_PROFILE-two_drones}"
+profile_field() {
+    (cd "$PROJECT_DIR" && "$PROJECT_DIR/.venv/bin/python" -m tools.simulation_profiles --profile "$PROFILE" "$1")
+}
+WORLD="$(profile_field world)"
+PROCESS_CHECK="$(profile_field process-check)"
+read -r SITL_EXECUTABLE EXPECTED_COUNT <<< "$PROCESS_CHECK"
+PROFILE_TOPICS="$(profile_field status-topics)"
+PROFILE_SERVICES="$(profile_field prearm-services)"
+mapfile -t STATUS_TOPICS <<< "$PROFILE_TOPICS"
+mapfile -t PREARM_SERVICES <<< "$PROFILE_SERVICES"
 
 echo "========================================"
 echo " TFG - Simulation Check"
@@ -22,7 +34,7 @@ echo
 echo "[2/5] Gazebo server..."
 
 if ! docker exec "$CONTAINER" bash -lc \
-    'pgrep -f "[g]z sim.*runway.sdf" >/dev/null'; then
+    'pgrep -f "[g]z sim.*${1}.sdf" >/dev/null' bash "$WORLD"; then
     echo "[FAIL] Gazebo runway world is not running."
     exit 1
 fi
@@ -32,14 +44,14 @@ echo "[PASS] Gazebo runway world running."
 echo
 echo "[3/5] ArduPilot processes..."
 
-ARDUCOPTER_COUNT="$(
+SITL_COUNT="$(
     docker exec "$CONTAINER" bash -lc \
-    'pgrep -x arducopter | wc -l'
+    'pgrep -x "$1" | wc -l' bash "$SITL_EXECUTABLE"
 )"
 
-if [[ "$ARDUCOPTER_COUNT" -ne 2 ]]; then
+if [[ "$SITL_COUNT" -ne "$EXPECTED_COUNT" ]]; then
     echo "[FAIL] Expected 2 ArduCopter processes."
-    echo "       Found: $ARDUCOPTER_COUNT"
+    echo "       Found: $SITL_COUNT"
     exit 1
 fi
 
@@ -60,8 +72,11 @@ for i in $(seq 1 15); do
         '
     )"
 
-    if echo "$TOPICS" | grep -qx "/ap/v1/status" && \
-       echo "$TOPICS" | grep -qx "/ap/v2/status"; then
+    ALL_TOPICS=1
+    for TOPIC in "${STATUS_TOPICS[@]}"; do
+        if ! echo "$TOPICS" | grep -qxF "$TOPIC"; then ALL_TOPICS=0; fi
+    done
+    if [[ "$ALL_TOPICS" -eq 1 ]]; then
         READY=1
         break
     fi
@@ -87,33 +102,20 @@ ARMABLE=0
 
 for ATTEMPT in $(seq 1 18); do
 
-    D1="$(
-        docker exec "$CONTAINER" bash -lc '
-        source /opt/ros/humble/setup.bash
-        source /root/ardu_ws/install/setup.bash
-
-        timeout 30 ros2 service call \
-        /ap/v1/prearm_check \
-        std_srvs/srv/Trigger \
-        "{}"
-        ' 2>&1 || true
-    )"
-
-    D2="$(
-        docker exec "$CONTAINER" bash -lc '
-        source /opt/ros/humble/setup.bash
-        source /root/ardu_ws/install/setup.bash
-
-        timeout 30 ros2 service call \
-        /ap/v2/prearm_check \
-        std_srvs/srv/Trigger \
-        "{}"
-        ' 2>&1 || true
-    )"
-
-    if echo "$D1" | grep -q "success=True" && \
-       echo "$D2" | grep -q "success=True"; then
-
+    ALL_ARMABLE=1
+    PREARM_OUTPUTS=()
+    for SERVICE in "${PREARM_SERVICES[@]}"; do
+        OUTPUT="$(
+            docker exec "$CONTAINER" bash -lc '
+            source /opt/ros/humble/setup.bash
+            source /root/ardu_ws/install/setup.bash
+            timeout 30 ros2 service call "$1" std_srvs/srv/Trigger "{}"
+            ' bash "$SERVICE" 2>&1 || true
+        )"
+        PREARM_OUTPUTS+=("$OUTPUT")
+        if ! echo "$OUTPUT" | grep -q "success=True"; then ALL_ARMABLE=0; fi
+    done
+    if [[ "$ALL_ARMABLE" -eq 1 ]]; then
         ARMABLE=1
         break
     fi
@@ -127,11 +129,7 @@ echo
 if [[ "$ARMABLE" -ne 1 ]]; then
     echo "[FAIL] Vehicles did not become armable."
     echo
-    echo "Drone 1:"
-    echo "$D1"
-    echo
-    echo "Drone 2:"
-    echo "$D2"
+    printf '%s\n' "${PREARM_OUTPUTS[@]}"
     exit 1
 fi
 

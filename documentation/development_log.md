@@ -2546,3 +2546,31 @@ verifican fuentes/manifiesto, sin nuevo contrato funcional. Los 613 tests de la
 tanda anterior no se presentan como una ejecución nueva ni prueba de GUI.
 Sin staging, commit ni push. Pendiente: captura operativa autorizada y comparación
 si procede; no es una causa raíz confirmada ni una solución de renderizado.
+
+## 2026-10-20 — Cierre offline de perfiles de simulación
+
+Sobre feature/hermes-integration, HEAD inicial ff0afab, índice inicialmente vacío;
+sin AGENTS.md aplicable en el repositorio o ancestros comprobados. Se conserva el
+trabajo existente. two_drones pasa de catálogo de referencia a fuente consumida
+por lifecycle, backend, supervisor y readiness: launch/argumentos, puertos,
+mundo, cantidad de procesos, tópicos y prearm. El perfil se valida antes de
+operaciones y coincide con el lease protegido. Defaults GUI/headless y exclusión
+global conservados; sin rover, v3, vuelos simultáneos o cambios al executor/gate.
+La construcción de la topología sigue en el launch, contrastada offline.
+
+Se revisan el diff conjunto y los archivos nuevos de perfiles/captura: no se
+detectan dependencias funcionales cruzadas. Pruebas de perfiles con dobles de
+Docker, ROS, Popen y proyectos temporales; no acreditan la configuración instalada
+ni renderizado real. docs/simulation-profiles.md prepara regresiones GUI y headless
+separadas: start protegido, readiness, observación del operador, stop protegido y
+readiness posterior. No se ejecutan y no conceden consentimiento.
+
+Una única ejecución nueva de la suite completa sobre el árbol conjunto:
+`.venv/bin/python -m pytest -q`: **691 passed in 77.06s**. Incluye captura opcional
+todavía sin cargar en Hermes; el resultado no es prueba operativa de ninguno de
+los incrementos. Sin fallos ni necesidad de repetir la suite. Sintaxis: AST de
+10 archivos Python de ambos incrementos y del lector de puertos embebido;
+`bash -n` de seis scripts lifecycle/readiness; esquema JSON legible. Comprobación
+de 20 enlaces locales de las tres guías nuevas y whitespace de código/documentos
+nuevos, además de git diff --check: correctos. No se ejecutan Docker, ROS,
+Gazebo, MCP operativo, proveedores LLM, instalaciones ni operaciones de runtime.

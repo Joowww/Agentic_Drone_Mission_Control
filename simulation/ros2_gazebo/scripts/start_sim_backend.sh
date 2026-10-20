@@ -18,10 +18,18 @@ if ! flock -n 9; then
     exit 1
 fi
 
-HOST_LAUNCH="$SIM_DIR/launch/tfg_demo_2drones.launch.py"
-
-CONTAINER_SOURCE_LAUNCH="/root/ardu_ws/src/ardupilot_gz/ardupilot_gz_bringup/launch/tfg_demo_2drones.launch.py"
-CONTAINER_INSTALL_LAUNCH="/root/ardu_ws/install/ardupilot_gz_bringup/share/ardupilot_gz_bringup/launch/tfg_demo_2drones.launch.py"
+PROFILE="${TFG_SIM_PROFILE-two_drones}"
+profile_field() {
+    (cd "$PROJECT_DIR" && "$PROJECT_DIR/.venv/bin/python" -m tools.simulation_profiles --profile "$PROFILE" "$1")
+}
+LAUNCH_PACKAGE="$(profile_field launch-package)"
+LAUNCH_FILE="$(profile_field launch-file)"
+PORTS_JSON="$(profile_field ports-json)"
+PROFILE_TOPICS="$(profile_field status-topics)"
+mapfile -t STATUS_TOPICS <<< "$PROFILE_TOPICS"
+HOST_LAUNCH="$SIM_DIR/launch/$LAUNCH_FILE"
+CONTAINER_SOURCE_LAUNCH="/root/ardu_ws/src/ardupilot_gz/$LAUNCH_PACKAGE/launch/$LAUNCH_FILE"
+CONTAINER_INSTALL_LAUNCH="/root/ardu_ws/install/$LAUNCH_PACKAGE/share/$LAUNCH_PACKAGE/launch/$LAUNCH_FILE"
 
 echo "========================================"
 echo " TFG - Start Drone Simulation"
@@ -44,16 +52,19 @@ docker start "$CONTAINER" >/dev/null
 
 echo "[2/6] Stopping previous simulation processes..."
 
+docker cp "$PROJECT_DIR/tools/simulation_profiles.py" "$CONTAINER:/tmp/tfg_simulation_profiles.py" >/dev/null
 docker cp "$SCRIPT_DIR/sim_processes.py" "$CONTAINER:/tmp/tfg_sim_processes.py" >/dev/null
-docker exec "$CONTAINER" python3 /tmp/tfg_sim_processes.py stop
+docker exec -e TFG_SIM_PROFILE="${TFG_SIM_PROFILE-two_drones}" "$CONTAINER" python3 /tmp/tfg_sim_processes.py stop
 
 echo "      Waiting for SITL ports 5760 and 5770 to be released..."
 
 for i in $(seq 1 30); do
 
     PORT_STATUS="$(
-        docker exec -i "$CONTAINER" python3 - <<'PYPORT'
-ports = {5760, 5770}
+        docker exec -e TFG_SIM_PORTS="$PORTS_JSON" -i "$CONTAINER" python3 - <<'PYPORT'
+import json
+import os
+ports = set(json.loads(os.environ["TFG_SIM_PORTS"]))
 busy = set()
 
 for filename in ("/proc/net/tcp", "/proc/net/tcp6"):
@@ -116,10 +127,7 @@ fi
 
 echo "[4/6] Updating launch file inside Docker..."
 
-docker exec "$CONTAINER" bash -lc '
-mkdir -p /root/ardu_ws/src/ardupilot_gz/ardupilot_gz_bringup/launch
-mkdir -p /root/ardu_ws/install/ardupilot_gz_bringup/share/ardupilot_gz_bringup/launch
-'
+docker exec "$CONTAINER" mkdir -p "${CONTAINER_SOURCE_LAUNCH%/*}" "${CONTAINER_INSTALL_LAUNCH%/*}"
 
 docker cp \
 "$HOST_LAUNCH" \
@@ -133,7 +141,7 @@ docker cp \
 
 echo "[5/6] Starting Gazebo + ArduPilot..."
 
-docker exec -e TFG_SIM_GUI="${TFG_SIM_GUI:-true}" "$CONTAINER" bash -lc '
+docker exec -e TFG_SIM_GUI="${TFG_SIM_GUI:-true}" -e TFG_SIM_PROFILE="$PROFILE" "$CONTAINER" bash -lc '
 source /opt/ros/humble/setup.bash
 source /root/ardu_ws/install/setup.bash
 exec python3 /tmp/tfg_sim_processes.py start
@@ -151,8 +159,11 @@ for i in $(seq 1 60); do
         '
     )"
 
-    if echo "$TOPICS" | grep -qx "/ap/v1/status" && \
-       echo "$TOPICS" | grep -qx "/ap/v2/status"; then
+    READY=1
+    for TOPIC in "${STATUS_TOPICS[@]}"; do
+        if ! echo "$TOPICS" | grep -qxF "$TOPIC"; then READY=0; fi
+    done
+    if [[ "$READY" -eq 1 ]]; then
 
         echo
         echo "========================================"
@@ -162,7 +173,7 @@ for i in $(seq 1 60); do
         echo "Drone 1 -> /ap/v1"
         echo "Drone 2 -> /ap/v2"
         echo
-        echo "Gazebo GUI: ON"
+        echo "Gazebo GUI requested: ${TFG_SIM_GUI:-true} (visual confirmation required)"
         echo "RViz:       OFF"
         echo
         exit 0
