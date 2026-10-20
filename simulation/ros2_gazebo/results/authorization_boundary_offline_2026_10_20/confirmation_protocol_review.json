@@ -1,0 +1,43 @@
+{
+  "inspection_mode": "Local source only; no live handshake, elicitation, client UI, model, credentials or configuration edits",
+  "inspected_client_checkout": "/home/joelm/.hermes/hermes-agent",
+  "client_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
+  "sources": [
+    {
+      "path": "/home/joelm/.hermes/hermes-agent/tools/mcp_tool_transport.py",
+      "sha256": "b8f415a5d90c9ad2f0f0a7468fa863e3ebd14bbe9a58e99e46654b02e05375f9"
+    },
+    {
+      "path": "/home/joelm/.hermes/hermes-agent/tools/mcp_tool_sampling.py",
+      "sha256": "ae7c3218d5fedcb43b6dbac78302d2842adb77134369a10aa54c63ec1969eb80"
+    },
+    {
+      "path": "/home/joelm/.hermes/hermes-agent/tools/approval_prompt.py",
+      "sha256": "39cac4277f49771ee265ff4c5c11bd0c16f37ee4ba2614173130e0a0a90fbecb"
+    },
+    {
+      "path": "/home/joelm/.hermes/hermes-agent/tools/mcp_tool_handlers.py",
+      "sha256": "d3f99c5832dd7a99b0a39447f97981281cccd13ba582587b97f914c726cdb5d6"
+    },
+    {
+      "path": "/home/joelm/.hermes/hermes-agent/tools/slash_confirm.py",
+      "sha256": "d4d9ab487ab08c41c3428b679c5c39b4bf439223cb0713a95d7425d28a67770b"
+    }
+  ],
+  "sdk_source": {
+    "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/.venv/lib/python3.12/site-packages/mcp/server/mcpserver/context.py",
+    "sha256": "546e7616543a525dd287722851dba92ede6158e14dfa1ba703adb5857e0e956d"
+  },
+  "findings": [
+    "Hermes has form elicitation callback routed to approval_prompt; accept returns empty content",
+    "SDK Context.elicit explicitly permits agent client to generate responses automatically",
+    "Project wrapper previously passed ordinary agent-authored authorization without independent exchange",
+    "No verified human-origin confirmation channel integrated for this project; mutation/recovery blocked"
+  ],
+  "not_established": [
+    "active client capabilities/configuration",
+    "actual UI operation",
+    "human identity/provenance of accept",
+    "authenticated original conversation"
+  ]
+}
