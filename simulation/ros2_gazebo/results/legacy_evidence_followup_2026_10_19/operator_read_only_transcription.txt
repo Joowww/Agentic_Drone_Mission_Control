@@ -1,0 +1,28 @@
+(.venv) joelm@MSI:~/TFG/Agentic_Drone_Mission_Control$ uname -n; cat /etc/os-release; date --iso-8601=seconds; date -u --iso-8601=seconds
+MSI
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+2026-10-19T21:36:28+02:00
+2026-10-19T19:36:28+00:00
+(.venv) joelm@MSI:~/TFG/Agentic_Drone_Mission_Control$ docker context show
+default
+(.venv) joelm@MSI:~/TFG/Agentic_Drone_Mission_Control$ docker context inspect --format '{{.Name}} {{json .Endpoints.docker.Host}}'
+default "unix:///var/run/docker.sock"
+(.venv) joelm@MSI:~/TFG/Agentic_Drone_Mission_Control$ printenv DOCKER_HOST DOCKER_CONTEXT
+(.venv) joelm@MSI:~/TFG/Agentic_Drone_Mission_Control$ printenv DOCKER_HOST DOCKER_CONTEXT
+(.venv) joelm@MSI:~/TFG/Agentic_Drone_Mission_Control$ docker info --format 'EngineID={{.ID}} Name={{.Name}} OS={{.OperatingSystem}} DockerRootDir={{.DockerRootDir}}'
+EngineID=2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99 Name=docker-desktop OS=Docker Desktop DockerRootDir=/var/lib/docker
+(.venv) joelm@MSI:~/TFG/Agentic_Drone_Mission_Control$ docker inspect --type container --format 'ID={{.Id}} Name={{.Name}} Created={{.Created}} Image={{.Image}} State={{json .State}}' tfg-ardupilot-gazebo
+ID=0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f Name=/tfg-ardupilot-gazebo Created=2026-10-02T07:28:34.87176229Z Image=sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66 State={"Dead":false,"Error":"","ExitCode":255,"FinishedAt":"2026-10-19T18:01:24.5530994Z","OOMKilled":false,"Paused":false,"Pid":0,"Restarting":false,"Running":false,"StartedAt":"2026-10-16T16:41:55.313301992Z","Status":"exited"}
+(.venv) joelm@MSI:~/TFG/Agentic_Drone_Mission_Control$

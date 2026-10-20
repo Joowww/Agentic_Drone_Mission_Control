@@ -1,0 +1,30 @@
+{
+  "scope": "Offline comparisons of operator-provided transcription and retained JSON only",
+  "operator_metadata_matches_ad234044": {
+    "container_id": true,
+    "name": true,
+    "created_at": true,
+    "image_id": true,
+    "engine_id": true,
+    "state": true
+  },
+  "source_inspection_sha256": "60a17c81680ea58864cd98c92f3d1102acfc8907d9d7ad89393f7d04b0eab844",
+  "historical_execution_endpoint_binding": "NOT_FOUND_IN_336_REVIEWED_FILES",
+  "historical_context_continuity": "UNKNOWN",
+  "historical_clock_comparability": "UNKNOWN",
+  "current_context_proves_original_context": false,
+  "host_boot_proves_docker_restart": false,
+  "current_code_can_apply_without_unknown_declarations": false,
+  "functional_code_changes": false,
+  "decision": "Keep technical reconciliation blocked; finite read-only search, then case-specific administrative retirement proposal if evidence cannot be recovered",
+  "administrative_retirement_implemented": false,
+  "administrative_retirement_authorized": false,
+  "prepared_read_only_commands": [
+    "timeout -k 2s 15s docker events --since '2026-10-18T21:10:00Z' --until '2026-10-18T21:30:00Z' --filter type=container --filter container=0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f --format '{{json .}}'",
+    "timeout -k 2s 15s powershell.exe -NoProfile -Command '$p=Join-Path $env:LOCALAPPDATA \"Docker\\log\"; if (Test-Path -LiteralPath $p) {Get-ChildItem -LiteralPath $p -Recurse -File -ErrorAction SilentlyContinue | Select-Object FullName,Length,LastWriteTimeUtc} else {\"DIRECTORIO_NO_DISPONIBLE\"}'",
+    "timeout -k 2s 15s powershell.exe -NoProfile -Command 'Select-String -LiteralPath \"<RUTA_DEL_LOG_DEL_LISTADO>\" -SimpleMatch -Pattern \"0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f\",\"2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99\" | Select-Object -First 80 Path,LineNumber,Line'",
+    "timeout -k 2s 10s journalctl --utc --boot=cbb1fa33db154014a06b484e3f0b0dcc --since '2026-10-18 20:30:00 UTC' --until '2026-10-18 22:00:00 UTC' --unit=systemd-timesyncd.service --no-pager -n 80"
+  ],
+  "command_checks": "bash -n only; no Docker, Windows or journal commands executed",
+  "relevant_tests": "16 passed in 1.53s"
+}

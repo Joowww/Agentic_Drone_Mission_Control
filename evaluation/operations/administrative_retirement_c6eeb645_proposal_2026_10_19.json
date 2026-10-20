@@ -1,0 +1,124 @@
+{
+  "proposal_kind": "CASE_SPECIFIC_ADMINISTRATIVE_RETIREMENT_UNVERIFIED",
+  "status": "DOCUMENTED_ONLY_NOT_IMPLEMENTED_NOT_AUTHORIZED_NOT_EXECUTABLE",
+  "sequence_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+  "allowed_records": {
+    "sequence.json": {
+      "owner_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+      "sha256": "47385b4ebc900482d1202131e2421d55a316c7144ccce8bc135cabfaaf73505e"
+    },
+    "v2.json": {
+      "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+      "sha256": "c7bcb0a629e02e9676a5b25b43a089b73686c23ce4e39e7a4368936c59b91954"
+    }
+  },
+  "expected_absent_records": [
+    "v1.json",
+    "lifecycle.json",
+    "reconciliation.json"
+  ],
+  "observed_environment_not_historical_binding": {
+    "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+    "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+    "name": "/tfg-ardupilot-gazebo",
+    "source": "Operator transcription of current read-only checks; must be freshly rechecked before any future action",
+    "required_current_state": {
+      "Status": "exited",
+      "Running": false,
+      "Pid": 0,
+      "Paused": false,
+      "Restarting": false,
+      "Dead": false
+    }
+  },
+  "facts_not_to_declare_true": {
+    "original_environment_binding_verified": false,
+    "historical_context_continuity": "UNKNOWN",
+    "historical_clock_comparability": "UNKNOWN",
+    "original_environment_termination": "UNKNOWN",
+    "landing_or_original_success_inferred": false
+  },
+  "required_authorization_scope": "Only retirement of these exact local legacy restrictions despite explicitly unresolved historical environment binding. Not a declaration that unknown facts are true. No hardware, simulator lifecycle or flight consent.",
+  "preconditions_for_future_reviewed_implementation": [
+    "Dedicated one-case procedure, not apply_execution_reconciliation and not a generic force-unlock",
+    "Hold existing global execution mutex then registry mutex without waiting for active workers",
+    "Recheck exact owners, record hashes and complete inspected original artifact versions; no new/changed/unexpected restriction",
+    "Fresh bounded metadata on pinned current engine/container shows exited/non-running/Pid0, no identity/state change during transaction",
+    "Fresh pertinent local process identities/PID reuse checks and free global executor mutex; local host scope explicit",
+    "Persist separate retirement authorization/audit and durable barrier before any record removal",
+    "Archive exact originals with fsync; preserve all original operation/jobs/reports and evidence",
+    "If interrupted retain barrier/restrictions, no automatic resume"
+  ],
+  "result_label_in_separate_audit": "ADMINISTRATIVELY_RETIRED_UNVERIFIED",
+  "original_operation_and_child_results_to_preserve": {
+    "operation": "UNCONFIRMED",
+    "v1_run_id": "467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+    "v1_result": "PASSED",
+    "v2_run_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+    "v2_result": "ERROR"
+  },
+  "prohibited_effects": [
+    "No edit/relabel historical ERROR/PASSED/UNCONFIRMED",
+    "No assertion of landing, never-flown or technically verified termination of original environment",
+    "No operation on unknown remote or former environments",
+    "No simulator stop/start/restart or flight",
+    "No reusable authorization or future admission through expired inspection",
+    "No removal of any reservation outside the pinned two-record set"
+  ],
+  "remaining_risk": "Original execution endpoint remains unverified; unknown external/previous environments are outside what local registry retirement establishes. The one-flight policy continues for admissions coordinated by this updated checkout, not proof about unknown former endpoints.",
+  "inspected_artifact_versions": {
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/sequence.json": {
+      "sha256": "47385b4ebc900482d1202131e2421d55a316c7144ccce8bc135cabfaaf73505e"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/v1.json": {
+      "exists": false
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/v2.json": {
+      "sha256": "c7bcb0a629e02e9676a5b25b43a089b73686c23ce4e39e7a4368936c59b91954"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/lifecycle.json": {
+      "exists": false
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/operation.json": {
+      "sha256": "1540aadc56680e058b217b9dfc029f0560d54fc8351c0ca5d6310bbfc69268d0"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/plan.json": {
+      "sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/mission_1.json": {
+      "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/job.json": {
+      "sha256": "5a7bb17f1acdeaf15936b0658208341c9690b3533a503ac899d2ba1ddc6a1b4c"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/input.json": {
+      "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/report.json": {
+      "sha256": "d967bc138c2c9a9834ba0a845417139a491c01953bd9690b610a10ac7b155451"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/mission.json": {
+      "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/mission_2.json": {
+      "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/job.json": {
+      "sha256": "9b03a3b4e93029b2c7c2cb519f731220d3da492dd316976a7535e2aaebc1de5a"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/input.json": {
+      "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/report.json": {
+      "sha256": "2ab1614fbec51fc827dc108d6cc863c212d0f5595a21c5ff91526791ec259a61"
+    },
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/mission.json": {
+      "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+    }
+  },
+  "expired_reference_for_audit_only": {
+    "inspection_id": "ad234044-4e5d-4785-b8c4-43f05b89a54a",
+    "sha256": "60a17c81680ea58864cd98c92f3d1102acfc8907d9d7ad89393f7d04b0eab844",
+    "cannot_authorize_or_apply": true
+  }
+}
