@@ -1,5 +1,9 @@
 # Seguimiento asíncrono del virtual preflight
 
+> Pareja ordenada nueva: [orquestación secuencial persistente](sequential-preflight.md).
+> Dos starts independientes no reservan el intervalo entre ellos; la pareja utiliza
+> su propia admisión y una reserva exterior común, sin cambiar los informes anteriores.
+
 > Estado actual: [selección de vehículo y exclusión global](simulated-vehicle-selection.md).
 > Las secciones iniciales conservan el incremento histórico limitado a v1; ahora
 > drone_01→v1 y drone_02→v2 se ensayan individualmente, nunca en paralelo.
@@ -372,3 +376,22 @@ resumen como JSON UTF-8 indentado, no tráfico MCP total, tokens o compacciones.
 [Contrato, tests y otras mediciones](mission-lifecycle-demo.md#18102026--corrección-posterior-offline-de-las-vistas-registradas).
 Falta probar conversacionalmente estos wrappers después de recargar Hermes;
 no se acredita aquí resistencia a reinicios del host ni se cambia start/worker.
+
+
+## 19/10/2026 — Diagnóstico y recuperación explícita (offline)
+
+Las lecturas iniciales fallidas ahora retornan evidencia estructurada del executor,
+que se conserva y analiza en el mismo workflow; no se reparan informes históricos.
+Las consultas summary incluyen la operación/endpoint fallido y detail conserva todo.
+Lifecycle comparte exclusión con admisión/ejecución; un timeout deja una barrera
+duradera. Reconciliación exige inspección fresca, revisión de identidad/versiones,
+confirmación visual independiente de ambos modelos y autorización separada.
+Consulta por inspection_id tras respuesta perdida, sin volver a aplicar.
+Véase [procedimiento y límites](reconciliation-and-lifecycle.md), incluida la GUI
+negra sin fuente de suelo: BLOCKED, nunca reinicio o liberación implícita.
+Sólo verificado offline; la secuencia incompleta sigue sin reconciliar.
+
+
+### 19/10: entorno detenido durante reconciliación
+
+La inspección ahora conserva propietarios/contexto aunque falle el colector y diferencia Docker inaccesible, contenedor ausente, sustituido, desconocido, ACTIVE y STOPPED. Un entorno detenido con identidad previa verificable admite cierre administrativo autorizado y revalidado; no exige telemetría/GUI imposible ni repara informes históricos. [Contrato y procedimiento actual](stopped-sitl-reconciliation.md). Implementado offline; no aplicado a reservas reales.

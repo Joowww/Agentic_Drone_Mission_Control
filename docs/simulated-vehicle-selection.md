@@ -282,3 +282,19 @@ salidas MCP brutas, argumentos completos ni timestamps de las operaciones. Se
 registra como evidencia aportada por el operador, no como chequeo actual realizado
 en esta revisión. No acredita por sí sola liberación de reservas, inmovilidad de v1
 ni causa de una pantalla negra. No se inicia ninguna operación para comprobarla.
+
+
+## 19/10/2026 — Exclusión lifecycle/flight y reconciliación offline
+
+La selección drone_01→v1/drone_02→v2 no cambia. Start/stop/restart actualizados
+comparten registro y mutex global con el executor: ni la ausencia accidental de
+un fichero de reserva permite interrumpir un executor cuyo mutex sigue tomado.
+La reserva exterior de secuencia también excluye lifecycle entre hijos.
+
+Se añaden diagnóstico de operaciones, inspección/aplicación de reconciliación y
+auditoría consultable, conservando informes e identidad de cada vehículo.
+La fuente de suelo admitida es observación visual ACTUAL del operador de drone1
+y drone2 apoyados en la pista, separada de AP armed/flying. Sin imagen u otra
+vista actual esta versión no puede aplicar reconciliación; no inventa sensor.
+[Procedimiento, ámbito de exclusión y límites](reconciliation-and-lifecycle.md).
+No hay nuevo ensayo operativo ni demostración de separación/simultaneidad.

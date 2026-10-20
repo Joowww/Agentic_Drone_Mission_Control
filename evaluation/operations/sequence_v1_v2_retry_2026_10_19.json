@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "purpose": "Prepared operational repetition only; not an admission or flight authorization",
+  "request_key": "joel-secuencia-sitl-20261019-r02",
+  "failed_sequence_not_to_resume": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+  "ordered_missions": [
+    {
+      "mission_path": "missions/examples/simulation_navigation_3waypoint.json",
+      "mission_id": "simulation_navigation_3waypoint_001",
+      "vehicle_id": "drone_01",
+      "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+    },
+    {
+      "mission_path": "missions/examples/simulation_navigation_drone02.json",
+      "mission_id": "simulation_navigation_drone02",
+      "vehicle_id": "drone_02",
+      "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+    }
+  ],
+  "authorization_statement": null,
+  "prerequisites": [
+    "Explicit reviewed reconciliation APPLIED; no restrictions remain",
+    "Current readiness; per-child internal gate still mandatory",
+    "New explicit operator authorization for these two exact snapshots"
+  ],
+  "stop_conditions": [
+    "Missing/expired/contradictory inspection or ground evidence",
+    "Any active or UNCONFIRMED reservation",
+    "First child not verified PASSED with landing/disarm and coherent release",
+    "GUI state not confirmed and no express choice of headless operation"
+  ],
+  "no_auto_resume": true,
+  "no_hardware_authorization": true
+}

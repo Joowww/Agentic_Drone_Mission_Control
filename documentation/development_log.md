@@ -1719,3 +1719,775 @@ y validación determinista del ensayo. No se repite la suite por este cambio só
 documental/de evidencia; **388 passed in 10.11s** sigue siendo el resultado real de
 la revisión anterior, no una ejecución nueva. Sin cambios de código/skill ni
 Docker, simulación, vuelos, proveedor LLM o MCP operativo. Sin commit ni push.
+
+## 18/10/2026 — Orquestación persistente de dos ensayos SITL secuenciales
+
+Base real feature/hermes-integration, 7b6e34977a865ce031482f9bf3358fc8960c917b,
+árbol limpio al iniciar; instrucciones AGENTS.md no presentes en repositorio/ancestros
+inspeccionados. Se conservan los incrementos y evidencias anteriores. No se ejecuta
+Docker, simulación, vuelos, proveedor LLM o MCP operativo en este desarrollo.
+
+### Decisión de exclusión y reutilización
+
+Inspección previa de jobs, worker, authority, reservas, mutex, análisis/verificación,
+gate y contratos MCP: dos starts independientes liberarían el slot entre hijos.
+Se explica ese hueco antes de implementar. Se introduce sequence.json en el registro
+de reservas, bajo el registry.lock común. Dura toda la operación y bloquea tanto
+admisiones independientes como executor síncrono, incluso entre hijos cuando no
+hay v1.json/v2.json activo. Cada slot exacto run_id/vehículo/hash se consume una vez,
+en orden, sin permitir el siguiente hasta la aceptación explícita del resultado
+del anterior por el coordinador. Esa aceptación es determinista, no un segundo
+consentimiento del LLM ni nueva autorización de otro ensayo.
+
+La operación es un único coordinador separado de stdio MCP: stdin DEVNULL,
+stdout/stderr coordinator.log, nueva sesión, close_fds; identidad con PID/start_ticks/
+boot_id y token de lanzamiento de un uso. Ejecuta inline, en serie, el worker
+existente para dos jobs persistidos con sus propias claves, inputs y worker.log.
+No duplica workflow, análisis, executor, mapper o recuperación. Los hijos comparten
+PID del coordinador; worker_alive=true de un hijo finalizado no significa que
+continúe volando. Job/informe/reservas determinan la transición.
+
+Se mantiene el mutex OS global por ejecución hija. Su authority se vincula además,
+sólo para hijos de secuencia, al hash y a una única llamada al executor: se consume
+antes de llamar, se rechaza otro contenido, se revoca al salir y no permite emitir
+órdenes desde ese ámbito después del retorno del executor. No se hereda una
+autoridad de vuelo de la operación ni se puede reutilizar un Context copiado.
+El comportamiento de las entradas individuales permanece y la demo paralela
+continúa bloqueada. No se cambia gate, tolerancias, AP_DDS, geometría o LAND.
+
+### Admisión, estados y continuación
+
+Nuevas herramientas registradas start_preflight_sequence y get_preflight_sequence.
+La primera recibe exactamente dos mission_paths ordenados, request_key y declaración
+no vacía authorization_statement. Exige una misión drone_01/v1 y otra drone_02/v2,
+en cualquiera de los dos órdenes. Archivos regulares acotados dentro de missions/,
+sin escapes/FIFO o IDs desconocidos. La atribución del consentimiento se registra
+como declaración del agente, no como autenticación de diálogo.
+
+Antes de separar el proceso se persisten plan/hash, snapshots exactos de ambas
+misiones, orden, consentimiento declarado y vínculos/IDs/claves de los hijos en el
+almacén de jobs existente. Se extrae únicamente su escritura de admisión común,
+sin refactorizar la lógica de vuelo. Misma clave y hashes/declaración recuperan
+EXISTING, otra solicitud REQUEST_CONFLICT, sin spawn adicional. Si un duplicado ya
+no puede leer sus fuentes, request_comparison=UNAVAILABLE expresa esa incertidumbre;
+no repite trabajo. ACCEPTED/STARTING no significan validación o PASSED.
+
+El coordinador valida ambas misiones y compatibilidad antes del primer hijo. Si
+alguna no pasa, resultado global BLOCKED y ambas NOT_STARTED (jobs QUEUED, sin
+informe de vuelo inventado). Cada hijo conserva la validación/readiness del workflow
+y gate interno justo antes de las órdenes. No hay arranque/reinicio de simulación.
+Después del primero se exige worker retornado, job FINISHED, informe íntegro
+persistido y hash/identidad correctos, análisis estricto recalculado idéntico,
+PASSED, LANDED/desarmado confirmado y liberación coherente de reserva hija con la
+reserva exterior aún presente. Se comprueba de nuevo ese informe antes del segundo
+y ambos antes del PASSED global. Un FAILED recuperado con LAND puede cerrar FAILED
+y liberar normalmente tras prueba positiva; nunca inicia el segundo por ese hecho.
+
+Estados de operación ADMITTED/STARTING/RUNNING/FINALIZING; FINISHED con PASSED,
+FAILED, BLOCKED o ERROR cuando el cierre es conocido. Hijo NOT_STARTED se distingue
+de STARTING/RUNNING/VERIFYING, FINISHED y UNCONFIRMED; observed_result_status no
+equivale a aceptación por el coordinador. Ante identidad/archivo incoherente, worker
+perdido, despacho ambiguo o falta de evidencia, queda UNCONFIRMED, resultado global
+null y restricciones conservadas. No se reanuda al reconectar/reiniciar ni se supone
+aterrizaje por muerte del proceso. Un hijo QUEUED con informe previo es contradicción,
+no una invitación a sobrescribir/repetirlo.
+
+Consulta por UUID canónico o clave (exactamente uno), sin rutas arbitrarias, lecturas
+con raíces fijas y verificación de integridad. Summary muestra vínculos, hashes,
+estado, motivos, consentimiento e incertidumbres/reservas; detail añade informes
+existentes. No crea archivos, workers, vuelos o libera restricciones. Los contratos
+anteriores siguen; las vistas de hijos conservan sequence_id/sequence_index. Informes
+históricos y evidencias operativas de v1/v2 no se migran ni reescriben.
+
+### Tests y límites
+
+40 casos nuevos offline en tests/test_preflight_sequences.py: ambos órdenes, doble
+prevalidación, segundo inválido/acción no soportada, readiness por hijo, FAILED con
+recuperación sin segundo, landing incompleto, identidad/hash/análisis/job corruptos,
+worker perdido, hueco entre hijos ocupado por guard, entradas sync/async concurrentes,
+duplicados, conflictos, recarga sin efectos, pérdida entre hijos, tokens/autoridad
+no reutilizables y ligados al snapshot, rutas/FIFO/IDs inválidos, consultas en vuelo,
+registro/esquemas MCP y paso real por wrappers summary/detail. Se usa también el
+executor y su gate reales con control/telemetría doblados para ambos vehículos.
+
+Resultados reales: primera suite intermedia 413 passed in 11.80s (25 casos nuevos);
+tras ampliar contratos de integridad/autoridad, grupo final
+.venv/bin/python -m pytest -q tests/test_preflight_sequences.py tests/test_virtual_preflight_jobs.py tests/test_vehicle_execution_lock.py tests/test_simulated_vehicle_selection.py tests/test_hermes_mcp_server.py
+→ **139 passed in 6.65s**. Suite completa .venv/bin/python -m pytest -q
+→ **428 passed in 12.91s**. Son pruebas deterministas con dobles, no vuelos ni
+evaluación de obediencia del LLM. No se repiten después de documentación solamente.
+
+Guía nueva docs/sequential-preflight.md y enlace desde async-virtual-preflight.md:
+activación mediante catálogo MCP recargado, contratos, estados, almacenamiento,
+límites y prompts de una línea. No se cambia configuración personal ni skill.
+La carga efectiva de instrucciones en Hermes queda por comprobar conversacionalmente.
+
+Control cooperativo entre entradas actualizadas: ROS/QGC manual y servidores viejos
+que ignoren sequence.json quedan fuera. No desplegar con workers antiguos activos.
+Lifecycle no comparte interlock atómico con vuelo; no reiniciar GUI con reserva o
+incertidumbre. No hay watchdog que aterrice al perder coordinador, resistencia
+demostrada a reinicio host/corte eléctrico ni solución total de TOCTOU/autenticidad.
+No se demuestra inmovilidad del otro dron, coordinación simultánea, separación,
+agricultura, velocidad seguida, carga del .plan o hardware. Prueba operativa de la
+pareja pendiente; PASSED individuales anteriores no validan esta orquestación.
+Sin commit ni push.
+
+Cierre: inventario inicial de 360 archivos; los 212 de runtime/evidencias anteriores
+conservan SHA-256, sin nuevos trabajos reales. El prefijo completo anterior de este
+registro permanece intacto. Siete archivos existentes modificados y cuatro nuevos
+(dos módulos de secuencia, tests y guía). git diff --check limpio y cuatro nuevos
+comprobados individualmente sin errores de whitespace. Registro SDK: 19 herramientas;
+los esquemas de entrada de las 17 anteriores mantienen SHA-256
+a7102e858c349855ed8143cdbf3359976950f2cbe08cd99f9a2d20b52404d980.
+Sin cambios posteriores de código ni repetición innecesaria de tests tras documentación.
+
+## 18/10/2026 — Diagnóstico de la primera pareja SITL incompleta
+
+Secuencia c6eeb645-17d2-4081-9afb-cecfd23af393, clave joel-secuencia-sitl-01. El
+operador aporta transcripción y autoriza inspección Docker/telemetría/logs estrictamente
+de lectura con timeout, sin modo/armado/despegue/navegación/LAND, parada/reinicio,
+workers/ensayos, liberaciones o reanudación. Comunica además GUI negra repetida y
+recuperaciones irregulares tras reinicios previos; no confirma visualmente suelo/aire.
+No se presupone causa común con ROS2. AGENTS.md no presente en repositorio/ancestros
+inspeccionados. Se mantiene feature/hermes-integration sobre 7b6e349 con todos los
+cambios pendientes anteriores; no se implementa ninguna corrección funcional.
+
+### Preservación previa e identidad
+
+Antes de inspeccionar el contenedor se conservan 32 copias locales exactas con
+manifest_local_initial.json en
+simulation/ros2_gazebo/results/sequential_preflight_diagnostic_2026_10_18/c6eeb645-17d2-4081-9afb-cecfd23af393:
+plan/op/snapshots, ambos jobs e informes/logs, reservas e índices, fuentes relevantes,
+adjunto bruto y misión/informe PASSED anterior de v2. Baseline de 384 archivos del
+árbol/runtime/evidencias para comprobar que no se alteran originales. Las capturas
+posteriores Docker/ROS se separan del material inicial y conservan recepción UTC,
+límites, retornos, fuente y hashes. Los logs vivos pueden crecer durante su lectura;
+el hash identifica los bytes capturados, no una congelación atómica del contenedor.
+
+El plan SHA-256 49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436
+coincide con op y reserva exterior. Snapshots parentales, inputs, misiones hijas y
+hashes esperados de job/report coinciden. Vehículos correctos en cada vínculo.
+v1 467f7ec6-b2a6-4b68-9d97-766d85732f8e: informe PASSED, executor COMPLETED, tres WP,
+regreso y LANDED con landed=true/armed=false/flying=false, análisis estricto
+recalculado idéntico (once checks true). Su hash de informe coincide con el retenido
+por la operación. v2 1b69dfc7-0707-4b68-a009-062610418fe4: job FINISHED, report ERROR
+en execute con retorno 124 y output vacío; executor_result=null, analysis=null.
+Su estado aceptado por coordinador es UNCONFIRMED/result_status=null, aunque el
+informe observado diga ERROR. La operación queda UNCONFIRMED/result_status=null;
+next_index=2 significa dos despachos consumidos, completed_count=1 sólo un hijo
+verificado completo. Reservas v2.json y sequence.json siguen UNCONFIRMED, intactas.
+
+El PASSED individual anterior v2 7162bce5-3635-4a76-bf02-6a5a22612aab se vuelve a
+verificar sin cambios; tiene el mismo hash de misión ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb,
+sin resolver ni aprobar retrospectivamente este intento. Intervalos reales de
+executor: v1 235.144404 s, v2 18.574868 s; worker v2 26.914309 s. El started_at del
+report v2 incluye la cola, no sólo su worker. Ningún intervalo se llama tiempo en vuelo.
+
+### Telemetría autorizada y actualidad
+
+El primer acceso Docker sin elevación se deniega por permisos del socket; las
+lecturas posteriores se realizan con aprobación. Contenedor running, no paused ni
+restarting. Se usan suscripciones de lectura best_effort/volatile, sin cambiar QoS
+de publishers/configuración, más lectores CLI exactos del executor. Sólo se crean
+observadores/logs ROS inherentes a la consulta, sin órdenes a los vehículos. Ventanas
+de hasta 22 s incluyendo arranque del proceso; otras lecturas limitadas a 8–25 s.
+
+Dos ventanas guardadas, a las 23:38 y 23:42 Europe/Madrid (UTC+02:00). En la última,
+v1 status recibido 23:42:56.473818, armed=false/flying=false/mode=9; v2 a
+23:42:57.735763, armed=false/flying=false/mode=0. Tres muestras de status/posición
+por vehículo en cada ventana, con stamps crecientes. Geopose estable: ambos lat
+-35.36326217651367, v1 lon 149.1652069091797, v2 lon 149.16526794433594, ambos
+584.1900024414062 m AMSL, al nivel registrado de salida en v1 y en el ensayo individual
+previo de v2; el hijo v2 fallido no conserva launch_position. Es evidencia de telemetría
+entrante durante esas ventanas y consistente con desarmados/no volando/en nivel
+de salida; no es contacto con el suelo observado independientemente, imagen
+confirmada o garantía de estado posterior. No se reconcilia/libera por ello.
+
+Clocks AP y Gazebo observados por separado, con distintos orígenes; en la ventana
+final el sello status avanza aproximadamente 0.16 s por segundo de recepción.
+No restar el reloj PC al sello simulado para declarar edad. Cada dato conserva
+header y momento de recepción. /ap/v1/clock y /ap/v2/clock tienen un publisher
+observado cada uno; los bridges actuales publican /drone1/clock y /drone2/clock,
+también uno cada uno. No se demuestra duplicación de publicadores sobre /clock
+global; la suscripción diagnóstica inicial no descubrió publisher de ese tópico.
+
+Lectores exactos de origen v2, geopose v2 y origen v1 devuelven 0 durante seguimiento
+(6.74, 2.55 y 6.74 s), sin reproducir el 124. El proceso coordinador 133909 mantiene
+start_ticks=8003617 y boot_id registrados, pero está Z (zombi, terminado/no recogido).
+No se mata/recoge ni se equipara su fin con aterrizaje. Lectura guardada de /proc,
+sin ejecutar una consulta MCP operativa, gate/readiness con prearm o control alguno.
+
+### Límite de captura del executor
+
+En las fuentes conservadas, get_vehicle_global_origin y get_vehicle_geopose están
+fuera del try principal y antes de GUIDED/ARM/eventos. Sus lectores llevan timeout
+10 ros2 topic echo --once; el helper FlightControlError conserva retorno/output
+pero no comando/topic/etapa. progress=False elimina los mensajes de etapa. Al
+fallar una de esas lecturas, el error sale sin devolver el contexto parcial, el
+graph lo convierte en ERROR/null y omite análisis. execution_attempted=true acredita
+intención/entrada al executor, no prueba de armado o vuelo. El código actual acota
+dos lecturas candidatas; faltan datos para elegir cuál o asegurar la versión cargada
+en aquel proceso. El 124 no demuestra causa raíz, QoS, congelación o interferencia.
+
+Tres probes offline con mocks y temporales verifican el límite real: ambos errores
+de lectura inicial propagan ERROR/null, mientras que el mismo error de modo dentro
+del try produce FAILED estructurado. No hay órdenes reales; resultados en
+offline_exception_probes.json. La versión instalada de ros2topic echo usa sensor_data
+y adaptación a publishers; no se demuestra desajuste QoS ni se altera. Es diagnóstico,
+no una corrección funcional del problema de observabilidad.
+
+### GUI y servidor: evidencias distintas
+
+Arranque actual 21:12:11 UTC: supervisor ROS2 46687, un servidor Gazebo, una GUI y
+dos ArduCopter observados vivos. /tmp/tfg_demo.log se identifica con ese supervisor;
+se conservan launch.log y server_console.log de ese arranque, aparte de auto_default.log
+GUI y ogre2.log. No se usa /tmp/tfg_2drones.log histórico. Variables gráficas sólo
+seleccionadas, sin leer credenciales ni volcar el entorno completo: DISPLAY=:0,
+QT_QPA_PLATFORM=xcb; GUI engine ogre2. Log OGRE: GL 4.1/Mesa 23.2.1, vendor Microsoft,
+renderer D3D12 (Intel UHD Graphics); no se confunde la exploración EGL software
+con el renderer declarado. /dev/dxg, biblioteca WSL d3d12 y X0 presentes.
+
+GUI: errores URI package://ardupilot_gazebo y geometrías iris/gimbal no resueltas,
+aunque las mallas consultadas existen instaladas. Se registra pista de recursos,
+sin atribuir toda la pantalla negra a esa causa. No aparece cierre con exit 139 ni
+process has died en el main log capturado de este arranque; no se importa la causa
+del crash OGRE antiguo. Servidor/SITL: avisos controller reset y No JSON sensor
+message en sus contextos, sin demostrar relación causal con el fallo ROS2 o GUI.
+Capturas adicionales de launch_params históricos quedan identificadas como tales;
+sólo los dos YAML referidos por argumentos de bridges activos se consideran actuales.
+
+### Recuperación propuesta y comprobaciones
+
+Se entrega como secuencia INCOMPLETA, sin PASSED global. Opciones no ejecutadas:
+mantener restricciones y sólo actualizar lecturas; autorizar por separado una futura
+reconciliación revisable con telemetría fresca, identidad, hashes y propiedad de
+reservas, preservando ERROR/historia; después de reconciliación segura y permiso
+específico, investigar recursos/renderizado o preparar recuperación GUI independiente.
+No reiniciar, repetir hijos, reanudar o borrar reservas para salir de este estado.
+No se implementa reconciliación, parche de executor, QoS o renderizado.
+
+Se actualiza la guía secuencial con el intento incompleto y vínculo al diagnóstico.
+Tres probes offline pasados y verificaciones reales de hashes/identidad/reanálisis;
+no se ejecuta una suite nueva por documentación/evidencias solamente. Los 428 tests
+anteriores siguen como resultado histórico, no prueba de que este fallo esté resuelto.
+Las comprobaciones de whitespace distinguen texto bruto con CRLF/ANSI/espacios de
+documentos derivados; nunca se normalizan originales para ocultar avisos. Sin commit
+ni push, sin acciones operativas adicionales de control.
+
+Cierre de conservación: baseline 384 archivos; sólo cambian este registro y la guía
+secuencial, con prefijo histórico del registro conservado. Los otros 382, incluidos
+232 de runtime/evidencias anteriores y todos los registros de reserva, mantienen
+SHA-256. Las 32 copias locales iniciales siguen idénticas a originales. Se añade
+manifest_final.json con inventario/hash de las 320 piezas capturadas/derivadas
+(321 archivos contando ese manifiesto), diferenciando originales locales, fuentes
+del contenedor, capturas temporales y análisis. git diff --check versionado limpio;
+siete piezas brutas/fuentes conservan avisos de whitespace, sin normalizarlas.
+README, assessment y resultados de probes derivados están limpios. No se ejecuta
+ninguna acción de recuperación ni prueba operativa adicional.
+
+
+## 2026-10-19 — Cierre offline de los pasos 3–11: diagnóstico, reconciliación y lifecycle
+
+Se parte de feature/hermes-integration y del árbol sucio existente, incluyendo
+secuencia persistente, diagnósticos/evidencias del 18/10 y guion de reunión. No se
+encuentra AGENTS.md aplicable en el checkout ni sus ancestros/subdirectorios revisados.
+Se conserva todo el trabajo anterior. Sin Docker/ROS/LLM/MCP operativo, vuelo,
+reconciliación real, liberación de reservas, staging, commit, push o cambio de rama.
+
+### Implementación y garantías comprobables offline
+
+- Origen global/geopose inicial entran en el manejo de errores del executor: futuro
+  fallo produce resultado explicativo con contexto parcial y análisis/informe,
+  sin inventar posición ni ordenar LAND antes de cualquier control. No identifica
+  retrospectivamente cuál lectura falló ni la causa del 124 del 18/10.
+- Diagnóstico por vehículo lógico/interfaz, etapa, endpoint/operación, UTC/duración
+  monotónica de pared, timeout, retorno y error/cadena original. Primeras 16 y últimas
+  96 operaciones; controles diferencian intento y confirmación. ARM se considera
+  posiblemente efectivo antes de la llamada: un timeout conserva recuperación LAND.
+  Se mantienen gate, hashes, geometría, tolerancias, AP_DDS, QoS y plazos del executor.
+- Inspect/apply/get de reconciliación: versiones de archivos, identidades PID/start/
+  boot, mutex libre, nueva ventana de status/geopose de ambos vehículos, TTL de 120 s
+  monotónicos en el mismo boot y revalidación bajo exclusión. No inferir edad absoluta
+  de mensajes comparando clocks simulados con pared; headers crecientes no la prueban.
+- La fuente independiente de suelo admitida es OPERATOR_VISUAL: declaración reciente
+  por ambos modelos identificados y apoyados en la pista, con hora y statement.
+  No se acepta sólo armed=false/flying=false. Si la GUI sigue negra sin otra vista
+  actual, aplicar queda BLOCKED; no hay sensor de contacto añadido ni force-unlock.
+  Esta limitación operativa se documenta, sin fingir que queda resuelta.
+- Historial exacto de reservas, autorización y transición; barrera duradera antes
+  de retirarlas, sin tocar ERROR/PASSED/jobs ni reanudar. Repetición exacta idempotente;
+  auditoría consultable sin nueva telemetría. Una transacción interrumpida queda
+  bloqueada, no se continúa automáticamente. Job/identidad faltante no se reconstruye.
+- Lifecycle usa el mismo orden mutex global→registro y mantiene exclusión durante
+  start/stop/restart, incluidos MCP/Python/scripts y backend con lease heredado.
+  Aunque falte una reserva, un mutex de executor todavía tomado impide lifecycle.
+  Timeout/crash deja restricción durable y logs separados de stdio MCP. Restart es
+  una sola transacción stop/start; no hay intercalado entre hijos de secuencia.
+- GUI/headless reutiliza el argumento existente; se elimina gui=true hardcodeado
+  en el supervisor y se aclara su descripción. No se parchea OGRE ni se atribuye
+  GUI negra a 124. Logs de GUI/render, servidor y ROS se interpretan por separado.
+- Plan nuevo versionable de v1→v2 con paths/hashes y clave no usada al prepararlo,
+  joel-secuencia-sitl-20261019-r02; authorization_statement=null. No se admite ni
+  se reanuda la secuencia fallida. Readiness/gate actuales se mantienen por hijo.
+
+La secuencia c6eeb645-17d2-4081-9afb-cecfd23af393 continúa incompleta: v1 PASSED,
+v2 ERROR/null/null; sequence.json y v2.json siguen UNCONFIRMED y byte-idénticos a
+las copias preservadas. Las observaciones armed=false/flying=false del 18/10 son
+históricas. Se distinguen worker terminado y vehículo aterrizado.
+
+### Demo aportada y material para observabilidad futura
+
+El TXT Texto pegado(20261019-153307).txt no estaba accesible. El operador pegó el
+contenido en este chat; se conserva ese string UTF-8 literal, no se afirma copia
+byte-a-byte de un TXT no disponible. 74834 bytes, hash
+7e361bcc9074274650f0e45ad9d9accd7a3b9cb98fadb4dc91ece1acf81af0eb.
+Se guardan además siete copias exactas del borrador 7f2e3345-a62e-4060-a0c0-9b034714b49e
+y finalización 17764ef0-5114-4447-87d5-de6f00455bf3. Originales intactos.
+Geometría verificada 40×20 m/90°/horario/HOME central/8 m/cierre/regreso; validación
+FEASIBLE/APPROVED, .plan con [22,16,16,16,16,16,20], flight_consent=NOT_GRANTED.
+
+El texto empieza a mitad de interacción y faltan argumentos/resultados completos:
+se observan errores JSON/clarify, razonamiento repetido, valores persistidos sin
+confirmación visible suficiente (consumo 1.5, viento desde norte, objetivo custom),
+UUID mal copiado y afirmación equivocada de exportación ausente, luego rectificada;
+el resumen mezcla LAND y retorno. No se reconstruye el inicio ni se prueba ausencia
+global de llamadas. Bytes/longitud/indicador de UI no son tokens facturados.
+No se integra LangSmith/Opik ni se refactoriza fidelidad de Hermes ni otro LLM.
+
+### Comprobaciones reales y alcance pendiente
+
+Selección ampliada: 248 passed in 9.97s. Suite completa final: 477 passed in 15.65s.
+Sintaxis: 23 Python, 5 scripts con bash -n y observador embebido correctos. Primera
+suite verificable: 457 passed y 2 failed in 14.98s, por tests de scripts que usaban
+el checkout real y quedaron bloqueados antes del Docker falso. Se corrigió el
+entorno de tests a un proyecto temporal que ejercita wrappers/backend reales y
+preserva la comprobación de abortar al fallar cleanup. Un test nuevo de job ausente
+también reveló un defecto y quedó corregido. Los 428 anteriores son resultado
+histórico; no se inventa una comparación de baseline no registrada.
+
+Tests de carreras con Events/mutex y dobles: lifecycle/admisión, mutex sin registro,
+intervalo entre hijos, primer hijo fallido/incierto, PID reciclado/worker perdido,
+evidencia ausente/caducada, cambios durante inspección/aplicación, interrupción,
+repetición y consulta de auditoría sin efectos. Esquemas y dispatch SDK MCP probados
+sin llamadas operativas. No hay tests de frases para asegurar obediencia del LLM.
+
+git diff --check tracked y nuevos de código/documentación limpios. Nueve piezas de
+evidencia bruta/fuentes conservan avisos de whitespace: siete del archivo diagnóstico
+anterior, el texto recién pegado y el primer log pytest fallido. Se informan y preservan sus bytes/hashes.
+Se verifican manifiestos históricos, incluidas las 37 copias del archivo conversacional,
+y los originales runtime seleccionados; resultados en roadmap_offline_2026_10_19.
+
+Tabla por paso, estados IMPLEMENTADO_OFFLINE/PENDIENTE_OPERATIVO, límites, propuesta
+de commits en inglés y guía concreta con prompts en docs/roadmap-3-11-offline.md y
+docs/reconciliation-and-lifecycle.md. Los pasos 6, 8 y 9 siguen pendientes operativos;
+ningún ensayo ni recuperación real se declara completado. Primer paso de Joel:
+inspección de sólo lectura; autorizaciones separadas para aplicar, recuperar GUI y
+ensayar después. Sin fuente visual actual suficiente, la reconciliación no es
+operativamente aplicable en esta versión y se mantienen restricciones.
+
+
+## 2026-10-19 — Inspección BLOCKED con SITL detenido y cierre administrativo offline
+
+### Evidencia operativa aportada y contraste local
+
+El operador comunica la primera inspección de la secuencia
+`c6eeb645-17d2-4081-9afb-cecfd23af393`: `1a977374-4df9-42a6-9409-d0e0c3a991e2`,
+SHA-256 `ce2fc0ec49d29a617f81a8236329308c80bf4b91c19dd7ac6f24525765db61b8`.
+Se leyó el JSON local y se conservó copia exacta (452 bytes) con ruta original y
+hash. Registra BLOCKED, error del colector porque el contenedor completo
+`0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f` no se ejecutaba,
+`reservations_changed=false`; no hay telemetría, captura de propietarios/versiones
+ni aplicación. El archivo original no se modificó. El error no prueba por sí solo
+terminación, aterrizaje ni causa del 124. No se consultó el contenedor en este trabajo.
+
+### Implementación offline y criterios
+
+Se incorpora lectura acotada de metadatos Docker seleccionados, sin exec ni lectura
+de credenciales/configuración personal: identidad de motor, resolución exacta de
+nombre, inspect por ID completo, imagen/creación/estado/inicio/fin y comprobación
+final de nombre y motor. Máximo cinco llamadas de sólo lectura, timeout de 3 s cada
+una. Distingue DOCKER_UNAVAILABLE, CONTAINER_ABSENT, UNKNOWN, ACTIVE y STOPPED;
+la valoración de referencia añade REPLACED_OR_RESTARTED. Retornos, errores,
+campos desconocidos y contexto parcial se conservan. Sólo ACTIVE intenta ROS.
+
+La inspección conservada aporta una referencia débil de identidad, no evidencia
+suficiente de terminación: ID completo del contenedor al que Docker dirigió la
+inspección del mismo propietario. No conocemos su motor/incarnación históricos;
+se declara `historical_engine_identity_known=false`. Sólo se admite combinada con
+metadatos nuevos concordantes de ese ID/nombre y terminación verificable, más
+propietarios/versiones y procesos consistentes. Las futuras auditorías ACTIVE
+conservan una referencia completa de motor/contenedor/imagen/creación/inicio y
+reservas. No se reciben rutas/IDs de contenedor arbitrarios; referencias
+contradictorias, enlaces externos y IDs de inspección incoherentes bloquean.
+Una mera inspección STOPPED sin vínculo previo no se convierte en su propia prueba
+repitiéndola. Sin vínculo suficiente se conserva BLOCKED y se identifica lo faltante.
+
+La vía ENVIRONMENT_TERMINATED exige contenedor exacto `exited`, Running=false,
+Pid=0, sin paused/restarting/dead y tiempos Docker válidos Created <= StartedAt <
+FinishedAt. No son tiempos ROS ni se restan del reloj de pared del host para fingir
+edad de generación. Un contenedor exacto ahora detenido termina sus encarnaciones
+anteriores: no se exige telemetría imposible del entorno ya terminado. La identidad
+actual, estado e inicio/fin se congelan para revalidarlos al aplicar.
+
+Devuelve AWAITING_TERMINATION_RECONCILIATION_AUTHORIZATION, inspection_id/hash,
+base/aplicabilidad y datos pendientes, sin cambiar restricciones. Aplicar exige
+ese hash y autorización explícita separada de cierre administrativo; se omiten
+confirmaciones de suelo que no aplican. El parámetro MCP de confirmaciones pasa a
+opcional para ese caso, con contrato anterior activo conservado: nueva telemetría
+de ambas interfaces y declaraciones visuales OPERATOR_VISUAL posteriores a inspección.
+GUI negra bloquea la vía activa sin fuente visual, no obliga a arrancar un entorno
+detenido para demostrar que el anterior terminó. No se promete reparar GUI.
+
+Bajo los mutex global de ejecución/registro se revalidan procesos mediante
+PID/start_ticks/boot, propietarios/versiones/hashes, referencia y nuevos metadatos.
+Coordinador/workers/ejecutores deben estar ausentes y el mutex global libre;
+un PID reciclado también bloquea. Se mantienen TTL 120 s/mismo boot, barrera durable,
+archivo exacto/fsync, idempotencia y retención ante interrupción. No se debilita
+exclusión de admisión/lifecycle/ejecución ni se crean autorizaciones heredadas.
+APPLIED administrativo registra ADMINISTRATIVE_CLOSURE_ENVIRONMENT_TERMINATED y
+NOT_ASSERTED para suelo: no significa aterrizaje ni PASSED; operación, jobs e informes
+ERROR/UNCONFIRMED/PASSED históricos no se editan ni reanudan. No hay force-unlock.
+Los clientes externos/checkout antiguo no participan en esta exclusión.
+
+La inspección nueva retiene contexto conocido aunque falle colector/sonda. Consulta
+histórica del BLOCKED original comprobada offline: NOT_COLLECTED,
+evidence_expired=null, remaining_seconds=null, application=null; no se presenta
+evidencia nunca obtenida como caducada. Metadatos parciales tienen su propio estado
+de recogida y desconocidos; no se inventan observaciones.
+
+### Comprobaciones reales y siguiente acción
+
+Selección final: **97 passed in 5.59s**. Suite completa: **532 passed in 19.64s**.
+Sintaxis: **27 Python**, **5 scripts bash -n**, observador embebido compilado.
+Diff versionado sin avisos; nuevos de código/docs limpios. Nueve piezas brutas
+anteriores mantienen avisos de whitespace, sin normalizar. **472 archivos previos**
+y runtime seleccionados mantienen hashes, incluidas las reservas reales. La copia
+nueva del BLOCKED coincide con el SHA-256 comunicado y su original.
+
+Durante la edición hubo un error de sintaxis nuevo (paréntesis faltante), detectado
+durante la colección y corregido antes de las ejecuciones verdes; las dos primeras invocaciones terminaron con
+2 y 4 errores de colección del mismo defecto. No se atribuye al árbol previo.
+Después se registran tandas verdes de 76, 93, 94, 96 y 97 afectados y una suite
+intermedia de 528; los resultados finales son los indicados arriba y sus logs
+exactos están conservados. No se inventan logs brutos de las dos invocaciones que
+sólo se observaron en la salida de herramientas.
+
+Código/docs y manifiesto en `docs/stopped-sitl-reconciliation.md` y
+`simulation/ros2_gazebo/results/stopped_sitl_reconciliation_2026_10_19/`.
+Se actualizan enlaces de las guías conservando las conclusiones anteriores como
+historia del cierre previo. Este incremento implementa la vía administrativa
+**offline**; aplicación real, recuperación GUI y nueva secuencia siguen pendientes
+y requieren decisiones/autorizaciones separadas. La siguiente prueba es sólo
+inspección de c6eeb645 con metadatos actuales: no se aplica ni libera nada en este
+trabajo. Sin Docker/ROS/MCP operativo, simulación, vuelo, proveedor LLM, commit/push.
+
+
+## 2026-10-19 — Revisión crítica del vínculo legacy de ad234044
+
+### Lectura offline, conservación y conclusión
+
+Se revisó el JSON persistido de la inspección
+`ad234044-4e5d-4785-b8c4-43f05b89a54a` de la secuencia c6eeb645:
+53 756 bytes, SHA-256
+`60a17c81680ea58864cd98c92f3d1102acfc8907d9d7ad89393f7d04b0eab844`.
+Copia exacta, referencia previa 1a977374 y código anterior conservados bajo
+`simulation/ros2_gazebo/results/legacy_binding_review_2026_10_19/`.
+No se encontró otro JSON adjunto independiente accesible; se contrastaron el archivo
+local y los datos comunicados. Snapshot.files coincide en hashes y bytes con los
+originales presentes. Consulta local, no MCP operativo: EXPIRED,
+application_eligible=false, application=null. No se intentó aplicar la inspección.
+
+Había una laguna real. La referencia LEGACY_FAILED_INSPECTION_CONTAINER_ID sólo
+vinculaba el ID completo del contenedor consultado por una inspección posterior
+al fallo. `_environment_reasons` comparaba ese único campo y exigía estado detenido
+actual; `_process_reasons` y capture verificaban procesos y archivos locales, no
+el endpoint Docker original. El flag historical_engine_identity_known=false no
+se traducía en revisión o restricción adicional. Por eso no había razones técnicas
+de bloqueo y se devolvía ENVIRONMENT_TERMINATED elegible para autorización genérica.
+Un cambio de contexto A→B posterior al vuelo podía producir una referencia de B
+coincidente con su inspect, sin demostrar terminación de A; incluso un B creado
+después del ensayo no quedaba rechazado por cronología. No es una colisión de IDs.
+
+Los datos reales son compatibles: contenedor creado el 2/10, StartedAt 16/10,
+secuencia 18/10 y FinishedAt 19/10 18:01:24 UTC. El diagnóstico de sólo lectura del
+18/10 registra exactamente el mismo StartedAt, pero sin ID completo ni engine_id.
+Es corroboración bajo continuidad/rutina de relojes, no autenticación del vínculo.
+ExitCode=255 no explica 124 ni GUI, y no se infiere ausencia de vuelo del segundo.
+PASSED del primer hijo, ERROR del segundo, operación y reservas UNCONFIRMED intactos.
+
+### Corrección y límites explícitos
+
+Se añade binding_review: recoge fuentes/hashes y tiempos de inicio de jobs/report,
+metadatos y fecha de referencia; detecta ausencia/fechas inválidas, creación posterior
+a la actividad original, salida anterior al inicio y referencia anterior a los
+intentos registrados. La comparación es condicional a una base de relojes UTC de
+pared comparables; no ROS ni edad absoluta de simulación. Un ERROR puede escribirse
+tras salir el contenedor; no se exige que el contenedor viva hasta terminar el informe.
+
+Sin contradicciones, devuelve AWAITING_LEGACY_ENVIRONMENT_REVIEW,
+application_eligible=false, original_execution_environment_bound=false y supuestos
+pendientes. ENVIRONMENT_TERMINATED describe lo observado físicamente, no prueba el
+endpoint original. Una referencia ACTIVE_ENVIRONMENT_AUDIT posterior conoce el
+motor en esa auditoría y tampoco evita la revisión; no se presenta su campo histórico
+compatible como identidad del motor durante el vuelo original.
+
+La aplicación existente exige además legacy_environment_confirmation tipada:
+source=OPERATOR_ENVIRONMENT_REVIEW, IDs de motor/contenedor coincidentes,
+continuous_project_environment=true, wall_clock_comparison_supported=true y statement
+con base real. La continuidad incluye selector/despliegue, ausencia conocida de
+sustituciones/clones/restauraciones y ausencia de traslado a otro host con workers
+anteriores potencialmente activos. Se valida bajo exclusión con la cronología y
+las comprobaciones anteriores, ligada a ID/hash y autorización de la solicitud.
+Sin declaración explícita, contradicción o caducidad no se aplica. La consulta de
+auditoría expone la declaración y que el vínculo técnico original sigue sin registrarse.
+Aplicaciones previas ya persistidas se conservan y su replay no repite transiciones.
+
+No se pide inventar IDs históricos ni una prueba de suelo imposible. El procedimiento
+legacy viable es revisar con Joel su continuidad de instalación/contexto/WSL y
+registros/comandos, y la base de relojes disponible; si puede sostenerlo, se registra
+como declaración administrativa vía agente. Si no puede, conservar restricciones
+y revisar los endpoints/hosts originales de sólo lectura con autorización separada;
+esta versión no implementa descarte de múltiples entornos desconocidos ni force-unlock.
+El esquema no prueba verdad de la declaración ni fidelidad semántica de Hermes.
+
+Se distingue boot_id del host del worker (cbb1fa33 en el intento, f4b6327f en la
+inspección), identidad actual del motor Docker (2c4ad774) y StartedAt del contenedor.
+/proc sólo inspecciona el host/namespace local; no demuestra ausencia en otro host
+si se trasladó el workspace. Boot distinto no acredita un reinicio de Docker; ID
+motor tampoco es contador de reinicios. No hay identidad del motor original guardada.
+
+Guía actual: `docs/legacy-environment-binding-review.md`; se añade aviso en la guía
+anterior conservando su historia. Próximo paso: revisión de continuidad/relojes y
+nueva inspección de sólo lectura, sin aplicar ad234044 ni liberar restricciones.
+No Docker/ROS real, operaciones MCP, arranque, simulación, vuelo, reconciliación,
+liberación, commit ni push en este trabajo.
+
+### Verificación offline de esta revisión
+
+Tests afectados finales: **114 passed in 6.04s**. Suite completa final:
+**549 passed in 21.36s**. Sintaxis: **28 archivos Python**, **5 Bash** y observador
+Python embebido. `git diff --check` sin avisos; código/docs nuevos limpios. Nueve
+piezas brutas anteriores mantienen avisos de whitespace y no se normalizan.
+**502 archivos previos** conservan hashes, incluidas inspecciones, reservas,
+PASSED/ERROR y archivos de evidencia anteriores. La aplicación real de ad234044
+sigue ausente. Regresiones: cambio de contexto/creación posterior, cronología
+incompleta/contradictoria, revisión ausente/incoherente, boot de host distinto sin
+prueba de motor, referencia ACTIVE posterior, ERROR registrado tras la salida,
+caducidad, reserva e informes intactos, esquema/dispatch MCP y auditoría de la
+atribución administrativa no autenticada. También se mantienen las carreras de
+admisión/lifecycle con barreras. No se ejecutó LLM ni se probó obediencia por frases.
+Logs/manifiesto en `simulation/ros2_gazebo/results/legacy_binding_review_2026_10_19/`.
+
+
+## 2026-10-19 — Joel aporta contexto actual; continuidad histórica no confirmable
+
+Joel aporta comprobaciones de lectura a las 21:36:28 CEST / 19:36:28 UTC: MSI,
+Ubuntu 24.04.4, contexto default con unix:///var/run/docker.sock, sin salida de
+DOCKER_HOST/DOCKER_CONTEXT, engine 2c4ad774 y container 0274e4fd completos. La comparación
+offline confirma coincidencia exacta con ad234044 en IDs, nombre, creación, imagen
+y State (incluidos StartedAt/FinishedAt, exited/Running=false/Pid=0). Se conserva
+transcripción del mensaje y manifiesto bajo legacy_evidence_followup_2026_10_19;
+no se presenta como un TXT terminal original ni como comandos ejecutados por Codex.
+
+Joel sólo sabe que WSL se cerró y reabrió: no puede sostener continuidad histórica
+del contexto ni comparabilidad histórica de relojes. No se le vuelve a pedir que
+confirme esos hechos ni se rellena la declaración true por inferencia. El cambio
+de boot del host y la hora actual local/UTC no son prueba histórica sobre Docker.
+
+Se revisaron 336 archivos del diagnóstico del 18/10 y originales de secuencia/hijos.
+No contienen campos de engine/container ID ni los IDs actuales. El capturador
+conservó docker exec por nombre; final_metadata el mismo StartedAt sin esos IDs.
+Es corroboración, no vínculo suficiente con el daemon original. No se descarta
+que existan logs externos de Docker Desktop/eventos/journal no archivados.
+Falta una traza contemporánea que correlacione la ejecución concreta y su endpoint/
+contenedor, y una base para relacionar clocks si se usa cronología cruzada. No se
+puede fabricar esa evidencia desde otra consulta actual ni activar logging ahora
+para reconstruir el pasado.
+
+Decisión: conservar bloqueo técnico. LegacyEnvironmentConfirmation actual exige
+los dos true y _confirm_legacy_environment los valida; el caso de hechos desconocidos
+ya se rechaza. No se modifica ni relaja código ni se vuelve a generar inspección
+operativa. Se preparan cuatro comandos de lectura acotados (eventos del intervalo,
+inventario Windows Docker/log, búsqueda de IDs en un archivo realmente listado y
+journal histórico de timesyncd), comprobados sólo con bash -n, sin ejecutarlos.
+Una respuesta vacía/no retenida no prueba ausencia de vuelo o de sincronización.
+La búsqueda tiene cierre: una pasada por fuentes existentes; si no hay vínculo,
+registrar no recuperado en esas fuentes y no entrar en bucle de inspecciones MCP.
+
+Alternativa explícita si el vínculo no es recuperable: retiro administrativo no
+verificado, sin afirmar hechos desconocidos. Se documenta el protocolo exclusivo
+de c6eeb645 y v2/1b69dfc7, con hashes exactos de sus dos reservas y 16 versiones/
+ausencias de artefactos en una propuesta JSON de evaluation/operations. Estado:
+DOCUMENTED_ONLY_NOT_IMPLEMENTED_NOT_AUTHORIZED_NOT_EXECUTABLE. No es un nuevo modo
+de apply_execution_reconciliation ni un force-unlock genérico. Materializarlo
+requiere encargo/implementación puntual revisable y autorización explícita del
+riesgo administrativo, no una declaración ficticia de continuidad.
+
+La propuesta exige exclusión común, nuevos controles del motor/contenedor actual
+fijado detenido, procesos locales/propietarios/versiones sin cambios ni otras
+reservas; auditoría y barrera durable antes de archivar exactamente las dos reservas
+con fsync, ninguna operación ajena. Auditar como ADMINISTRATIVELY_RETIRED_UNVERIFIED,
+no PASSED/reconciliación técnica; mantener secuencia UNCONFIRMED, v1 PASSED y v2 ERROR
+y sus evidencias. Reconocer original_environment_termination=UNKNOWN y el límite
+frente a posibles entornos/hosts antiguos desconocidos. Sin arranque ni vuelo ni
+consentimiento heredado. Una interrupción conserva barrera, sin reanudación automática.
+
+Guía concreta: docs/legacy-administrative-retirement-c6eeb645.md; propuesta:
+evaluation/operations/administrative_retirement_c6eeb645_proposal_2026_10_19.json.
+Pruebas de política existentes: **16 passed in 1.53s** sobre temporales/dobles.
+101 archivos de código funcional y 518 archivos previos seleccionados mantienen
+hashes; reservas reales e inspección ad234044 intactas y sin application.json.
+No se repite la suite completa porque sólo se añaden documentación/evidencia/propuesta;
+549 anteriores son resultado histórico, no nueva ejecución completa de este turno.
+Sin Docker/ROS, MCP operativo, controles, inspección operativa, liberación, arranque,
+vuelo, commit ni push. El próximo paso es una consulta acotada de eventos históricos;
+si no cierra el vínculo, la opción honesta es revisar el retiro administrativo
+preparado, sin pedir a Joel certificar lo desconocido.
+
+
+## 2026-10-19 — Retiro administrativo exclusivo del caso legacy c6eeb645 (offline)
+
+Joel comunica que docker events histórico devolvió salida vacía y código 0. Se
+conserva como observación del operador, sin argumentos exactos ni log terminal
+original aportados aquí. No se repite ni se infiere ausencia de actividad, vuelo,
+eventos retenidos o cambios de endpoint. El vínculo con el entorno original y la
+comparabilidad histórica de relojes siguen desconocidos.
+
+Se implementa la propuesta puntual sin relajar apply_execution_reconciliation ni
+pedir afirmar continuidad/relojes desconocidos. La propuesta JSON original conserva
+bytes y estado documental histórico; tools/legacy_administrative_retirement.py fija
+su SHA-256 32eb6f31ae191174136fa6bf054beb5071f4625d2f6fbcff61209d213c76d99a.
+Sólo admite sequence.json de c6eeb645 (47385b4e...) y v2.json de 1b69dfc7
+(c7bcb0a6...), con 16 versiones/ausencias originales exactas. No acepta políticas,
+rutas, propietarios alternativos ni force.
+
+MCP expone prepare_legacy_sequence_retirement, get_legacy_sequence_retirement y
+apply_legacy_sequence_retirement. Preparar sólo lee estado operativo y guarda una
+auditoría separada. Consultar sólo lee archivos: no recoge observaciones, aplica,
+reanuda ni libera. La primera aceptación requiere preparación vigente (120 s
+monotónicos, mismo boot), ID/hash revisados y declaración tipada de aceptar la
+incertidumbre histórica y el alcance local. Es una declaración vía agente, no
+conversación autenticada. Un ID no autoriza la aplicación, ni ésta autoriza GUI,
+lifecycle o vuelos posteriores.
+
+Bajo el mutex global de ejecución y registry.lock, sin esperar a workers, se
+revalidan propietarios/versiones, procesos originales (PID/start_ticks/boot;
+PID reciclado bloquea) y metadatos actuales acotados del engine 2c4ad774 y container
+0274e4fd fijados: exited, Running=false, Pid=0, sin paused/restarting/dead. Docker
+inaccesible, ausente, sustituido o dudoso bloquea. Se repiten controles tras leer
+metadatos y tras archivar; no se compara clock host con el Docker antiguo ni se
+arranca para demostrar nada. Boot del host no identifica un reinicio de Docker.
+
+Intención/autorización inmutable y durable, luego barrera común de reconciliación;
+ambos originales se publican sin sobrescritura y con fsync antes de retirar v2 y
+sequence. Cada paso revalida, registra journal y fsync. Resultado final durable
+antes de quitar barrera. Esto conserva exclusión de admisiones v1/v2, secuencias,
+ejecuciones y lifecycle incluso entre retiradas y tras una interrupción con barrera
+en disco. No cambia gate, executor, tolerancias, workers ni geometría.
+
+La consulta muestra RECOVERY_REQUIRED, barrera, archivos restantes, integridad y
+accepted_request con argumentos exactos; nunca reanuda. Sólo una nueva llamada
+explícita idéntica puede completar la transacción durable bajo comprobaciones
+actuales. La caducidad inicial no invalida ese alcance ya fijado, pero no permite
+otro ID, hash, autorización, propietario, proceso o entorno. Sin intención durable
+se exige preparación vigente. Replay final no toca restricciones posteriores.
+Se re-fsyncan publicaciones interrumpidas de intención y resultado. Resultado
+escrito con barrera pendiente sigue requiriendo recuperación explícita. Fallos
+expuestos no se convierten en liberación confirmada; no se sobrescribe evidencia
+dañada o distinta para repararla.
+
+Resultado separado ADMINISTRATIVELY_RETIRED_UNVERIFIED, conservando secuencia
+UNCONFIRMED, v1 PASSED, v2 ERROR, snapshots y hashes. Se registran terminación del
+entorno original UNKNOWN, suelo NOT_ASSERTED y flight_authorized=false. No se
+afirma nunca-vuelo, aterrizaje, éxito ni terminación original verificada. Alcance
+local: no descarta un entorno/host antiguo desconocido ni controla ROS/QGC/Docker
+externos, clientes antiguos o ediciones manuales. Recuperabilidad bajo garantías
+del filesystem local; daño de evidencia, pérdida del dispositivo o errores
+permanentes de persistencia bloquean y requieren revisión.
+
+Resultados reales: **112 passed in 15.31s** en tests afectados finales; suite
+completa **601 passed in 44.11s**. Copias exactas del caso en temporales y dobles de
+entorno, procesos, colector y lanzamiento. Se prueban esquemas/dispatch MCP reales,
+propietarios/versiones cambiados, otros casos, PID reciclado, caducidad, autorización
+distinta, consultas tras recarga sin efectos, fallos de publicación/fsync/archivo/
+retirada y aplicación repetida. Carreras con barreras/Event, sin sleeps; barrera
+durable probada también después de devolver error. No prueba de obediencia del LLM
+ni operación real.
+
+Sintaxis sin ejecutar: 30 archivos Python, 5 Bash y observador Python embebido.
+git diff --check limpio; código/documentación nuevos limpios. Nueve evidencias
+brutas previas conservan avisos históricos de whitespace sin normalizar. **529
+archivos previos** conservan hashes y las 16 versiones fijadas coinciden. Reservas
+reales intactas, sin preparación/intención/barrera administrativa real nueva.
+Logs y manifiesto: simulation/ros2_gazebo/results/administrative_retirement_offline_2026_10_19/.
+Guía: docs/administrative-retirement-c6eeb645.md; enlaces desde guías anteriores
+conservando historia. Sin Docker/ROS reales, MCP operativo, reconciliación, retiro
+administrativo real, liberación, arranque, vuelo, staging, commit ni push. Próximo
+paso de Joel: preparación en lectura si decide comprobarlo. Aplicación, recuperación
+de GUI y cualquier ensayo siguen separados.
+
+
+## 2026-10-20 — Desajuste de autorización y barrera cerrada del retiro legacy
+
+Fuente del incidente: docs/auditoria-retiro-c6eeb645-2026-10-20.md, conservada sin
+modificar. Según el operador, autorizó a55dcde0/0d93dde4; el intento quedó bloqueado
+por caducidad/boot y Hermes aplicó después 88f0dfab/8957c36b sin nueva autorización
+humana comunicada para esa pareja. Los archivos corroboran parejas, bloqueo,
+declaración posterior e intención/resultado; no autentican el diálogo. El retiro
+local ya finalizó ADMINISTRATIVELY_RETIRED_UNVERIFIED. No se revierte, repite ni
+legitima retrospectivamente su autorización; originales e informes permanecen.
+
+Inspección de código local, no sesión operativa: Hermes ElicitationHandler en
+tools/mcp_tool_sampling.py puede encaminar form-mode a approval_prompt y devuelve
+accept con content vacío; transport instala callbacks. CLI/TUI/gateway son rutas
+de interacción fuera de argumentos ordinarios del modelo, pero el servidor no
+recibe una prueba de origen humano ligada a esta preparación. Context.elicit del
+SDK advierte incluso que un cliente agente puede responder automáticamente. No se
+prueba configuración/capacidades/UI en vivo, ni se leen credenciales o cambian
+permisos/configuración personal. Disponibilidad de elicitation no es autenticación
+integrada. Fuentes y hashes en confirmation_protocol_review.json del nuevo archivo.
+
+Decisión acotada: aplicación/recuperación mutantes deshabilitadas mientras no haya
+un canal verificable integrado. _require_operator_confirmation falla siempre en
+producción con OPERATOR_CONFIRMATION_UNAVAILABLE, sin fallback, flag ni token
+autogenerado. La barrera precede a mutex, observaciones operativas y escrituras de
+aplicación, incluidos intentos fallidos. La declaración añade preparation_id y
+preparation_sha256 obligatorios y deben coincidir exactamente con los exteriores:
+CONFIRMATION_BINDING_MISMATCH ante otra pareja. Igualdad de campos sólo comprueba
+binding, no persona. PREPARATION_EXPIRED_OR_BOOT_CHANGED ante caducidad/otro boot;
+no se prepara otra vez, sustituye scope, hereda aceptación ni reanuda automáticamente.
+
+Pérdida de respuesta, error o recarga sólo conducen a consulta de historia. Consulta
+expone operator_confirmation_verified=false y application_enabled=false;
+authorization_recorded/accepted_request se explican como declaración histórica
+del agente, no recibo humano ni instrucción para continuar. Resultado completo
+puede leerse sin repetir aplicación y sin migrar formatos legacy. Transacción
+parcial permanece protegida; aun sus mismos argumentos no permiten recuperación.
+No se ofrece un terminal/receipt que el mismo agente pueda fabricar como solución.
+
+Se preserva el motor de persistencia y su cobertura de barreras, fsync y exclusión
+con un doble explícito del verificador sólo en las pruebas. No se presenta ese
+éxito como confirmación humana disponible. La regresión antigua de recuperación
+tras caducidad/recarga ahora exige BLOCKED, ausencia de observaciones/escrituras y
+barrera intacta, por el contrato corregido. Nuevas regresiones ejercitan la barrera
+real sin doble, esquemas/dispatch MCP registrados, pareja exacta fresca, reutilización
+de confirmación tras caducar, declaración con IDs reescritos, campos ausentes,
+timeout/error, respuesta perdida, recarga, consulta sin efectos, intención parcial
+y resultado ya retirado con formato legacy en temporales.
+
+Resultados reales: primer subconjunto **64 passed in 8.44s**; afectados finales
+**101 passed in 10.72s**; suite completa **613 passed in 26.86s**. Sintaxis compile
+de los 4 archivos Python modificados/nuevos, sin ejecutarlos. git diff --check
+limpio y comprobación de whitespace de código/documentación nuevos. **663 archivos
+existentes** de runtime, evidencias, política y nota de auditoría mantienen hashes;
+no se preparó ni aplicó retiro real ni se alteraron reservas o informes.
+
+Guía vigente: docs/administrative-retirement-c6eeb645.md, con aviso fechado que
+sustituye sus prompts anteriores conservando el texto histórico. Detalle y límites:
+docs/retirement-confirmation-2026-10-20.md. Logs/manifiesto nuevos en
+simulation/ros2_gazebo/results/authorization_boundary_offline_2026_10_20/.
+Queda pendiente diseñar/verificar un canal confiable con respuesta nueva por scope
+y sesión, caducidad, revocación/consumo y tratamiento de desconexiones; no se habilita
+por texto del agente. No es frontera contra procesos con permiso para modificar
+código o archivos. Sin Docker/ROS, Gazebo, simulación, vuelos, proveedor LLM,
+MCP operativo, preparación/aplicación/reconciliación real, commit ni push.

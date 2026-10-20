@@ -1,0 +1,290 @@
+{
+  "scope": "Offline only; no Docker/ROS/operational MCP/LLM, flights, reconciliation or release; no staging/commit/push",
+  "branch": "feature/hermes-integration",
+  "head": "7b6e34977a865ce031482f9bf3358fc8960c917b",
+  "affected_tests": {
+    "passed": 248,
+    "elapsed_seconds": 9.97,
+    "output": "tests_affected.txt"
+  },
+  "full_suite": {
+    "passed": 477,
+    "elapsed_seconds": 15.65,
+    "output": "tests_full.txt"
+  },
+  "initial_full_suite": {
+    "passed": 457,
+    "failed": 2,
+    "elapsed_seconds": 14.98,
+    "output": "tests_first_full.txt",
+    "cause_demonstrated": "Script tests used real checkout; new guard stopped before fake Docker. Now exercise actual scripts/backend in isolated temporary checkout."
+  },
+  "historical_428_tests": "Previous development-log result, not a new untouched baseline execution",
+  "syntax": {
+    "python_files": [
+      "simulation/ros2_gazebo/launch/tfg_demo_2drones.launch.py",
+      "simulation/ros2_gazebo/scripts/sim_processes.py",
+      "tests/test_execution_diagnostics.py",
+      "tests/test_execution_reconciliation.py",
+      "tests/test_preflight_sequences.py",
+      "tests/test_reconciliation_mcp.py",
+      "tests/test_sequence_lifecycle_exclusion.py",
+      "tests/test_simulation_lifecycle.py",
+      "tests/test_simulation_lifecycle_exclusion.py",
+      "tools/execution_diagnostics.py",
+      "tools/execution_reconciliation.py",
+      "tools/hermes_mcp_server.py",
+      "tools/mission_response_views.py",
+      "tools/preflight_sequence_worker.py",
+      "tools/preflight_sequences.py",
+      "tools/reconciliation_observer.py",
+      "tools/ros2_flight_control.py",
+      "tools/simulation_control.py",
+      "tools/simulation_lifecycle.py",
+      "tools/simulation_mission_executor.py",
+      "tools/vehicle_execution_lock.py",
+      "tools/virtual_preflight_jobs.py",
+      "tools/virtual_preflight_worker.py"
+    ],
+    "shell_files": [
+      "simulation/ros2_gazebo/scripts/restart_sim.sh",
+      "simulation/ros2_gazebo/scripts/start_sim.sh",
+      "simulation/ros2_gazebo/scripts/start_sim_backend.sh",
+      "simulation/ros2_gazebo/scripts/stop_sim.sh",
+      "simulation/ros2_gazebo/scripts/stop_sim_backend.sh"
+    ],
+    "observer_embedded_syntax": "OK"
+  },
+  "evidence_checks": {
+    "manifests": [
+      {
+        "manifest": "simulation/ros2_gazebo/results/demo_observability_2026_10_19/manifest.json",
+        "verified_entries": 10
+      },
+      {
+        "manifest": "simulation/ros2_gazebo/results/hermes_conversational_2026_10_18/manifest.json",
+        "verified_entries": 37
+      },
+      {
+        "manifest": "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/manifest.json",
+        "verified_entries": 23
+      },
+      {
+        "manifest": "simulation/ros2_gazebo/results/simulated_vehicle_v2_2026_10_18/manifest.json",
+        "verified_entries": 10
+      },
+      {
+        "manifest": "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/manifest.json",
+        "verified_entries": 22
+      },
+      {
+        "manifest": "simulation/ros2_gazebo/results/sequential_preflight_diagnostic_2026_10_18/c6eeb645-17d2-4081-9afb-cecfd23af393/manifest_final.json",
+        "verified_entries": 320
+      },
+      {
+        "manifest": "simulation/ros2_gazebo/results/simulated_vehicle_v2_2026_10_18/closure_operator_followup/manifest.json",
+        "verified_entries": 2
+      }
+    ],
+    "original_runtime_unchanged": [
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/mission_1.json",
+        "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/operation.json",
+        "sha256": "1540aadc56680e058b217b9dfc029f0560d54fc8351c0ca5d6310bbfc69268d0"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/plan.json",
+        "sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/mission_2.json",
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/coordinator.log",
+        "sha256": "9db8898f69f034f6efbb0fb45718cc740e843f963025c9b4b704c5a842bd0727"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/mission.json",
+        "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/worker.log",
+        "sha256": "0d8cf0d08e76615c4d37bde09a687c58c4e27fe07698acede9f3c01a0d5e82d0"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/job.json",
+        "sha256": "5a7bb17f1acdeaf15936b0658208341c9690b3533a503ac899d2ba1ddc6a1b4c"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/input.json",
+        "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/report.json",
+        "sha256": "d967bc138c2c9a9834ba0a845417139a491c01953bd9690b610a10ac7b155451"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/mission.json",
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/worker.log",
+        "sha256": "567980b913ef824073108c14ce0a155d5c9a2f38ee2f38eaa4426076bc776238"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/job.json",
+        "sha256": "9b03a3b4e93029b2c7c2cb519f731220d3da492dd316976a7535e2aaebc1de5a"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/input.json",
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/report.json",
+        "sha256": "2ab1614fbec51fc827dc108d6cc863c212d0f5595a21c5ff91526791ec259a61"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/sequence.json",
+        "sha256": "47385b4ebc900482d1202131e2421d55a316c7144ccce8bc135cabfaaf73505e"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/v2.json",
+        "sha256": "c7bcb0a629e02e9676a5b25b43a089b73686c23ce4e39e7a4368936c59b91954"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/registry.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/v1.execution.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/requests/b64f5e0c723bfbc1c6be1d6bd4fec72c3fb2f05aa541523a51fa8c49ab7d90b3.json",
+        "sha256": "e75b6139c4e1d4f8ef066274068ae95979ba3174eb4e312fa659900c4ac34558"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/requests/36b9af5318fd94c827e21000ad577b8848e5daea085321d15e838360f1cf98c3.json",
+        "sha256": "c7ef020d2f8ae4ad10b2039eeb0cd6840f2ad187ca9ca0a8535cd490a0ddfa0d"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/requests/aa8721685ea5ff0bb40cb3e7a278965ff85407b517892be0a3a0314e3715ab0e.json",
+        "sha256": "9bdefb23075ec04df73d0fa0578de0edbe518c0f8d15ea8e3cd71c66591f58ce"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/7162bce5-3635-4a76-bf02-6a5a22612aab/mission.json",
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/7162bce5-3635-4a76-bf02-6a5a22612aab/report.json",
+        "sha256": "2e38bc9f2295c52b21d289f068f9cfe6731709a03789be21e76cb88cae09d3ff"
+      }
+    ]
+  },
+  "prepared_plan_checks": [
+    {
+      "path": "missions/examples/simulation_navigation_3waypoint.json",
+      "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74",
+      "selection": {
+        "vehicle_id": "drone_01",
+        "simulated_vehicle": "v1"
+      },
+      "validation": {
+        "mission_id": "simulation_navigation_3waypoint_001",
+        "mission_status": "FEASIBLE",
+        "execution_status": "APPROVED",
+        "qgc_plan_path": null,
+        "failure_reasons": [],
+        "errors": [],
+        "replan_status": "",
+        "replan_actions": []
+      },
+      "compatibility_errors": [],
+      "readiness_checked": false
+    },
+    {
+      "path": "missions/examples/simulation_navigation_drone02.json",
+      "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+      "selection": {
+        "vehicle_id": "drone_02",
+        "simulated_vehicle": "v2"
+      },
+      "validation": {
+        "mission_id": "simulation_navigation_drone02",
+        "mission_status": "FEASIBLE",
+        "execution_status": "APPROVED",
+        "qgc_plan_path": null,
+        "failure_reasons": [],
+        "errors": [],
+        "replan_status": "",
+        "replan_actions": []
+      },
+      "compatibility_errors": [],
+      "readiness_checked": false
+    }
+  ],
+  "source_versions_sha256": {
+    "docs/async-virtual-preflight.md": "f2a6b3cc355eb0e70092656cb461c90c4daf478c8cf28b390387a59a15a00a64",
+    "docs/demo-reunion-2026-10-19.md": "1f27f52369ede6996e8755d1a6f25ebb0d57ca1e00147eb0533a8c398e094b11",
+    "docs/hermes-domain-evaluation.md": "4c1716569eb5a56797178a335f1c2005030eda97a6cb63ae50e0bafa0f1c8cc4",
+    "docs/reconciliation-and-lifecycle.md": "252f506a545ffe58b819549e904afec7374edc6c62f128a73478cfa2a727dd49",
+    "docs/roadmap-3-11-offline.md": "b46a10b16a4f0aca195bc5256426cabfe53318b4579aba362195455ed4d6fd71",
+    "docs/sequential-preflight.md": "ac2aa93364c139fe9426698d80ad4016415b1eb797d2ab99012a1e16a7873b76",
+    "docs/simulated-vehicle-selection.md": "4a3f776d7f7761ae22516340ed8d6ba5c7134e344b99a500be574d3938db581f",
+    "documentation/development_log.md": "e0e59f27826c5425ef533b0386414e722c9f97480f0c8dd55f54bd2a37358706",
+    "evaluation/operations/sequence_v1_v2_retry_2026_10_19.json": "78952434df82aff97d05878c97b3e11bb359616875c8ed69be51cd9915fc9080",
+    "simulation/ros2_gazebo/launch/tfg_demo_2drones.launch.py": "9b826bfafeb788e9a5470aab8a60b33d17635f680c703a578d43b0ee8a948038",
+    "simulation/ros2_gazebo/scripts/restart_sim.sh": "ee746baf0d34433c409881489d93329d1cc8c61e1610c75f36413d5bfe2e1fe9",
+    "simulation/ros2_gazebo/scripts/sim_processes.py": "8fcbe74153ee6eb4919182311c75ae2e01e3cb6beb4b569759a0441e68a6d184",
+    "simulation/ros2_gazebo/scripts/start_sim.sh": "e43b0ac0277c93bfe7b97f10a290f7f6e0c6bb200dfe87ca0b9c59b5c3740189",
+    "simulation/ros2_gazebo/scripts/start_sim_backend.sh": "214915f996e95e6f0f1214fe249016d8aa01c169e949c9500304f9582dbe5583",
+    "simulation/ros2_gazebo/scripts/stop_sim.sh": "d8713bcb02f71ce2bcb5c3ef58981d87c78e2383b7cf1c5e0013e19ade17075c",
+    "simulation/ros2_gazebo/scripts/stop_sim_backend.sh": "0154c3b5d532effecbd39ac2209f13ce3638011eccf49cc229ec7c3a2c5040ec",
+    "tests/test_execution_diagnostics.py": "7059a75a0c628f3b4be90864aa2f5d521769f347921cccb76946667ca4212604",
+    "tests/test_execution_reconciliation.py": "e19bca933e39a2564f38f0be5ad5d85841b9ceac0171242d715b6e767b1a81a5",
+    "tests/test_preflight_sequences.py": "77fbf238f8540017bbb3648cb2e4f5160deb40b2777f1cc9a238411257b1b8a7",
+    "tests/test_reconciliation_mcp.py": "e27b6860d963e6605cbe2bf5a237f39b1694369ad65f328b123dce96f4fd33c1",
+    "tests/test_sequence_lifecycle_exclusion.py": "defed51ae6ff11dc0200ea2fc578dbf21a336199e003ef06d759459356ee84cd",
+    "tests/test_simulation_lifecycle.py": "f77f55629505dd72754894893782620a659e09b0f60e9dd6bce0dd2f1d8d10b3",
+    "tests/test_simulation_lifecycle_exclusion.py": "a3a2d532bfe55d42d603f80b23becbd1631f81fc1dd4e3108085a20e9d932d3c",
+    "tools/execution_diagnostics.py": "552782f479afd4fdbee008f0f68cd8a2cf70bd8d35ff80f6675e4538a551d838",
+    "tools/execution_reconciliation.py": "b6fdfc4df7862c3a6c619112bd363c6fd4cd3822fe049a3c86df372afd354145",
+    "tools/hermes_mcp_server.py": "169fb7d66e0e22c5fee6cc1e87cd5eb0c2ca8158f4ea8be983ffc4e0e67bf313",
+    "tools/mission_response_views.py": "b80593fab857562b3eb0819c2c74fa0b503fb5a526cc16f4f3791658146b0752",
+    "tools/preflight_sequence_worker.py": "9ab6fb1a0a0df2f9b5ea597647660776a8642cc2fff3fe54fc9bc7076e405589",
+    "tools/preflight_sequences.py": "80aae52ed0e220d7d43222bb2151517e8ca7055cd321be90b0cb805fab33389b",
+    "tools/reconciliation_observer.py": "1e408a6827b53572539dff83226b677dfea5b6ca11016fb0b849e6aea1a7a638",
+    "tools/ros2_flight_control.py": "74788a22b7b79fe4e3d071c65e75bb5bbe781f841cd6d787a4d1462ba586b02e",
+    "tools/simulation_control.py": "99a386e67b0090c79d729cf6fb81b2ba7dcedc705026d477f6409c979284256f",
+    "tools/simulation_lifecycle.py": "0b963f6ab9634aa0fc00f5ae9e7692589a7a95179a9c62691ca1daea6a3bb8e6",
+    "tools/simulation_mission_executor.py": "8eeadcb8b9200f414a36ed62e64cb04cef01c04c37ea8f479b0a88136e8be828",
+    "tools/vehicle_execution_lock.py": "8dd0210ed9e440ac68559bd98d6988951413f6bcea80a2ccf56bfbbd1d8abc03",
+    "tools/virtual_preflight_jobs.py": "64ec1039eacd53d654ab1311e3b2003f7fb530dabfbfe205b646ad164485fd17",
+    "tools/virtual_preflight_worker.py": "7c4c94744f01b9e1fd67ce6554f9f1926b6d9c1311f9d8f9d56593048527f460"
+  },
+  "reserved_sequence_original_preserved": true,
+  "reserves_released": false,
+  "remaining_operational_steps": [
+    6,
+    8,
+    9
+  ],
+  "blocking_limits": [
+    "Ground confirmation is OPERATOR_VISUAL for both identified models resting on runway; not AP status. If GUI remains black with no current alternative view, application is BLOCKED; no independent contact sensor implemented.",
+    "Collector has offline syntax/contract tests only; ROS runtime execution untested in this increment.",
+    "No automatic continuation of interrupted reconciliation; durable barrier remains.",
+    "Updated checkout entry points only; manual ROS/QGC/Docker/older clones are outside exclusion.",
+    "Pasted UTF-8 reply archived; announced original TXT unavailable. No billed token claim."
+  ],
+  "whitespace_checks": {
+    "tracked": "PASS",
+    "new_code_and_docs": "PASS",
+    "raw_files_with_preserved_notices": 9,
+    "details": "whitespace.json"
+  },
+  "local_markdown_links_checked": 38
+}

@@ -1,0 +1,35 @@
+{
+  "python_files": [
+    "simulation/ros2_gazebo/launch/tfg_demo_2drones.launch.py",
+    "simulation/ros2_gazebo/scripts/sim_processes.py",
+    "tests/test_execution_diagnostics.py",
+    "tests/test_execution_reconciliation.py",
+    "tests/test_preflight_sequences.py",
+    "tests/test_reconciliation_mcp.py",
+    "tests/test_sequence_lifecycle_exclusion.py",
+    "tests/test_simulation_lifecycle.py",
+    "tests/test_simulation_lifecycle_exclusion.py",
+    "tools/execution_diagnostics.py",
+    "tools/execution_reconciliation.py",
+    "tools/hermes_mcp_server.py",
+    "tools/mission_response_views.py",
+    "tools/preflight_sequence_worker.py",
+    "tools/preflight_sequences.py",
+    "tools/reconciliation_observer.py",
+    "tools/ros2_flight_control.py",
+    "tools/simulation_control.py",
+    "tools/simulation_lifecycle.py",
+    "tools/simulation_mission_executor.py",
+    "tools/vehicle_execution_lock.py",
+    "tools/virtual_preflight_jobs.py",
+    "tools/virtual_preflight_worker.py"
+  ],
+  "shell_files": [
+    "simulation/ros2_gazebo/scripts/restart_sim.sh",
+    "simulation/ros2_gazebo/scripts/start_sim.sh",
+    "simulation/ros2_gazebo/scripts/start_sim_backend.sh",
+    "simulation/ros2_gazebo/scripts/stop_sim.sh",
+    "simulation/ros2_gazebo/scripts/stop_sim_backend.sh"
+  ],
+  "observer_embedded_syntax": "OK"
+}

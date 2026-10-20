@@ -1,0 +1,124 @@
+........................................................................ [ 15%]
+........................................................................ [ 31%]
+........................................................................ [ 47%]
+........................................................................ [ 62%]
+........................................FF.............................. [ 78%]
+........................................................................ [ 94%]
+...........................                                              [100%]
+=================================== FAILURES ===================================
+_ test_scripts_abort_on_cleanup_failure_with_a_fake_docker_only[start_sim.sh] __
+
+tmp_path = PosixPath('/tmp/pytest-of-joelm/pytest-1/test_scripts_abort_on_cleanup_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a80b917c8f0>
+script = 'start_sim.sh'
+
+    @pytest.mark.parametrize("script", ["start_sim.sh", "stop_sim.sh"])
+    def test_scripts_abort_on_cleanup_failure_with_a_fake_docker_only(tmp_path, monkeypatch, script):
+        import os
+        import subprocess
+        bin_dir = tmp_path / "bin"
+        bin_dir.mkdir()
+        docker = bin_dir / "docker"
+        log = tmp_path / "calls.jsonl"
+        docker.write_text("""#!/usr/bin/env python3
+    import json,os,sys
+    with open(os.environ['TFG_TEST_DOCKER_LOG'],'a') as f:
+        f.write(json.dumps(sys.argv[1:])+'\\n')
+    if sys.argv[1] == 'inspect':
+        print('true')
+    if sys.argv[-1] == 'stop':
+        print('simulated cleanup failed')
+        sys.exit(1)
+    """)
+        docker.chmod(0o755)
+        monkeypatch.setenv("PATH", str(bin_dir) + os.pathsep + os.environ["PATH"])
+        monkeypatch.setenv("TFG_TEST_DOCKER_LOG", str(log))
+        path = Path(__file__).resolve().parents[1] / "simulation/ros2_gazebo/scripts" / script
+        result = subprocess.run(["bash", str(path)], capture_output=True, text=True, timeout=5)
+        assert result.returncode != 0
+>       calls = [json.loads(line) for line in log.read_text().splitlines()]
+                                              ^^^^^^^^^^^^^^^
+
+tests/test_simulation_lifecycle.py:226: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-joelm/pytest-1/test_scripts_abort_on_cleanup_0/calls.jsonl')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-joelm/pytest-1/test_scripts_abort_on_cleanup_0/calls.jsonl'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+__ test_scripts_abort_on_cleanup_failure_with_a_fake_docker_only[stop_sim.sh] __
+
+tmp_path = PosixPath('/tmp/pytest-of-joelm/pytest-1/test_scripts_abort_on_cleanup_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a80b917db50>
+script = 'stop_sim.sh'
+
+    @pytest.mark.parametrize("script", ["start_sim.sh", "stop_sim.sh"])
+    def test_scripts_abort_on_cleanup_failure_with_a_fake_docker_only(tmp_path, monkeypatch, script):
+        import os
+        import subprocess
+        bin_dir = tmp_path / "bin"
+        bin_dir.mkdir()
+        docker = bin_dir / "docker"
+        log = tmp_path / "calls.jsonl"
+        docker.write_text("""#!/usr/bin/env python3
+    import json,os,sys
+    with open(os.environ['TFG_TEST_DOCKER_LOG'],'a') as f:
+        f.write(json.dumps(sys.argv[1:])+'\\n')
+    if sys.argv[1] == 'inspect':
+        print('true')
+    if sys.argv[-1] == 'stop':
+        print('simulated cleanup failed')
+        sys.exit(1)
+    """)
+        docker.chmod(0o755)
+        monkeypatch.setenv("PATH", str(bin_dir) + os.pathsep + os.environ["PATH"])
+        monkeypatch.setenv("TFG_TEST_DOCKER_LOG", str(log))
+        path = Path(__file__).resolve().parents[1] / "simulation/ros2_gazebo/scripts" / script
+        result = subprocess.run(["bash", str(path)], capture_output=True, text=True, timeout=5)
+        assert result.returncode != 0
+>       calls = [json.loads(line) for line in log.read_text().splitlines()]
+                                              ^^^^^^^^^^^^^^^
+
+tests/test_simulation_lifecycle.py:226: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/pathlib.py:1029: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-joelm/pytest-1/test_scripts_abort_on_cleanup_1/calls.jsonl')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-joelm/pytest-1/test_scripts_abort_on_cleanup_1/calls.jsonl'
+
+/usr/lib/python3.12/pathlib.py:1015: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_simulation_lifecycle.py::test_scripts_abort_on_cleanup_failure_with_a_fake_docker_only[start_sim.sh]
+FAILED tests/test_simulation_lifecycle.py::test_scripts_abort_on_cleanup_failure_with_a_fake_docker_only[stop_sim.sh]
+2 failed, 457 passed in 14.98s
