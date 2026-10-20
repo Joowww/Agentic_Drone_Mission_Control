@@ -3,6 +3,10 @@ from __future__ import annotations
 import re
 import shlex
 import subprocess
+import time
+from datetime import datetime, timezone
+
+from tools.execution_diagnostics import last_ros_call
 from pathlib import Path
 
 from tools.simulated_vehicle import validate_interface
@@ -39,6 +43,11 @@ def _run_ros_command(
 {command}
 """
 
+    started = time.monotonic()
+    diagnostic = {"command": command, "started_at_utc": datetime.now(timezone.utc).isoformat(),
+                  "timeout_seconds": timeout_seconds, "return_code": None, "output": None,
+                  "clock": "HOST_UTC_AND_MONOTONIC"}
+    last_ros_call.set(diagnostic)
     try:
         result = subprocess.run(
             [
@@ -56,11 +65,13 @@ def _run_ros_command(
             check=False,
         )
 
-    except subprocess.TimeoutExpired as exc:
-        raise FlightControlError(
-            f"ROS2 command timed out after "
-            f"{timeout_seconds} seconds."
-        ) from exc
+    except (subprocess.TimeoutExpired, OSError) as exc:
+        diagnostic.update(error_type=type(exc).__name__, error=str(exc),
+                          elapsed_wall_seconds=time.monotonic()-started,
+                          finished_at_utc=datetime.now(timezone.utc).isoformat())
+        error = FlightControlError(f"ROS2 command failed: {type(exc).__name__}: {exc}")
+        error.diagnostic = diagnostic
+        raise error from exc
 
     output = "\n".join(
         part.strip()
@@ -71,11 +82,13 @@ def _run_ros_command(
         if part.strip()
     )
 
+    diagnostic.update(return_code=result.returncode, output=output[-8192:],
+                      output_truncated=len(output)>8192, elapsed_wall_seconds=time.monotonic()-started,
+                      finished_at_utc=datetime.now(timezone.utc).isoformat())
     if result.returncode != 0:
-        raise FlightControlError(
-            f"ROS2 command failed with return code "
-            f"{result.returncode}:\n{output}"
-        )
+        error = FlightControlError(f"ROS2 command failed with return code {result.returncode}:\n{output}")
+        error.diagnostic = diagnostic
+        raise error
 
     return output
 

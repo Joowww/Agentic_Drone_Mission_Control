@@ -6,6 +6,7 @@ import math
 import sys
 import time
 
+from tools.execution_diagnostics import operation as _operation, trace_execution, current_trace, error_evidence
 from tools.vehicle_execution_lock import serialized_execution
 from tools.simulated_vehicle import resolve_mission_vehicle, logical_vehicle_for_interface as resolve_vehicle_id
 
@@ -116,7 +117,7 @@ def _horizontal_distance_metres(
 def _check_vehicle_safe(
     vehicle: str,
 ) -> dict[str, object]:
-    status = get_vehicle_status(
+    status = _operation("read_status", get_vehicle_status,
         vehicle=vehicle,
     )
 
@@ -135,6 +136,8 @@ def _wait_for_takeoff(
     target_altitude_m: float,
     timeout_seconds: int = TAKEOFF_TIMEOUT_SECONDS,
 ) -> dict[str, object]:
+    if current_trace.get() is not None:
+        current_trace.get().context["stage"] = "TAKEOFF_WAIT"
     deadline = (
         time.monotonic()
         + timeout_seconds
@@ -150,7 +153,7 @@ def _wait_for_takeoff(
             vehicle
         )
 
-        pose = get_vehicle_geopose(
+        pose = _operation("read_position", get_vehicle_geopose,
             vehicle=vehicle,
         )
 
@@ -195,6 +198,8 @@ def _wait_for_waypoint(
     launch_altitude_amsl_m: float,
     timeout_seconds: int = WAYPOINT_TIMEOUT_SECONDS,
 ) -> dict[str, object]:
+    if current_trace.get() is not None:
+        current_trace.get().context["stage"] = "WAYPOINT_WAIT:" + str(waypoint["waypoint_id"])
     started = time.monotonic()
     started_at = datetime.now(timezone.utc).isoformat()
     deadline = started + timeout_seconds
@@ -247,7 +252,7 @@ def _wait_for_waypoint(
 
             failure_stage = "POSITION_OBSERVATION"
             call_started = time.monotonic()
-            pose = get_vehicle_geopose(vehicle=vehicle)
+            pose = _operation("read_position", get_vehicle_geopose,vehicle=vehicle)
             sample["position_read_seconds"] = time.monotonic() - call_started
             observation_count += 1
             last_observation = {
@@ -286,13 +291,15 @@ def _wait_for_landing(
     vehicle: str,
     timeout_seconds: int = LAND_TIMEOUT_SECONDS,
 ) -> dict[str, object]:
+    if current_trace.get() is not None:
+        current_trace.get().context["stage"] = "LANDING_WAIT"
     deadline = (
         time.monotonic()
         + timeout_seconds
     )
 
     while time.monotonic() < deadline:
-        status = get_vehicle_status(
+        status = _operation("read_status", get_vehicle_status,
             vehicle=vehicle,
         )
 
@@ -300,7 +307,7 @@ def _wait_for_landing(
             not status["armed"]
             and not status["flying"]
         ):
-            pose = get_vehicle_geopose(
+            pose = _operation("read_position", get_vehicle_geopose,
                 vehicle=vehicle,
             )
 
@@ -385,6 +392,7 @@ def _execution_compatibility_errors(
 
 
 @serialized_execution
+@trace_execution
 def _execute_resolved_mission(
     mission_path: str,
     *,
@@ -451,6 +459,7 @@ def _execute_resolved_mission(
     mission = load_mission_json(
         mission_path
     )
+    current_trace.get().context["mission_id"] = mission.mission_id
 
     try:
         resolve_mission_vehicle(mission, vehicle)
@@ -489,76 +498,78 @@ def _execute_resolved_mission(
             "errors": compatibility_errors,
         }
 
-    _emit_progress(
-        "[SIMULATION] Reading SITL global origin...",
-        enabled=progress,
-    )
-
-    origin = get_vehicle_global_origin(
-        vehicle=vehicle,
-    )
-
-    _emit_progress(
-        "[SIMULATION] Reading real launch position...",
-        enabled=progress,
-    )
-
-    launch_position = get_vehicle_geopose(
-        vehicle=vehicle,
-    )
-
-    _emit_progress(
-        (
-            "[SIMULATION] Launch position: "
-            f"{launch_position['latitude']:.8f}, "
-            f"{launch_position['longitude']:.8f}, "
-            f"{launch_position['altitude_amsl_m']:.2f} m AMSL"
-        ),
-        enabled=progress,
-    )
-
-    _emit_progress(
-        "[MAPPING] Mapping mission geometry to Gazebo/SITL...",
-        enabled=progress,
-    )
-
-    mapped_waypoints = (
-        map_mission_route_to_simulation(
-            mission,
-            simulation_home_latitude=(
-                launch_position["latitude"]
-            ),
-            simulation_home_longitude=(
-                launch_position["longitude"]
-            ),
-        )
-    )
-
-    takeoff_altitude_m = float(
-        mapped_waypoints[0][
-            "altitude_m"
-        ]
-    )
-
-    _emit_progress(
-        (
-            "[MAPPING] "
-            f"{len(mapped_waypoints)} waypoint(s) mapped."
-        ),
-        enabled=progress,
-    )
-
     events: list[dict[str, object]] = []
 
     vehicle_may_be_armed = False
 
+    origin = None
+    launch_position = None
     try:
+        _emit_progress(
+            "[SIMULATION] Reading SITL global origin...",
+            enabled=progress,
+        )
+
+        origin = _operation("read_origin", get_vehicle_global_origin,
+            vehicle=vehicle,
+        )
+
+        _emit_progress(
+            "[SIMULATION] Reading real launch position...",
+            enabled=progress,
+        )
+
+        launch_position = _operation("read_position", get_vehicle_geopose,
+            vehicle=vehicle,
+        )
+
+        _emit_progress(
+            (
+                "[SIMULATION] Launch position: "
+                f"{launch_position['latitude']:.8f}, "
+                f"{launch_position['longitude']:.8f}, "
+                f"{launch_position['altitude_amsl_m']:.2f} m AMSL"
+            ),
+            enabled=progress,
+        )
+
+        _emit_progress(
+            "[MAPPING] Mapping mission geometry to Gazebo/SITL...",
+            enabled=progress,
+        )
+
+        mapped_waypoints = (
+            map_mission_route_to_simulation(
+                mission,
+                simulation_home_latitude=(
+                    launch_position["latitude"]
+                ),
+                simulation_home_longitude=(
+                    launch_position["longitude"]
+                ),
+            )
+        )
+
+        takeoff_altitude_m = float(
+            mapped_waypoints[0][
+                "altitude_m"
+            ]
+        )
+
+        _emit_progress(
+            (
+                "[MAPPING] "
+                f"{len(mapped_waypoints)} waypoint(s) mapped."
+            ),
+            enabled=progress,
+        )
+
         _emit_progress(
             "[GUIDED] Switching vehicle to GUIDED mode...",
             enabled=progress,
         )
 
-        mode_result = switch_vehicle_mode(
+        mode_result = _operation("guided", switch_vehicle_mode,
             GUIDED_MODE,
             vehicle=vehicle,
         )
@@ -582,7 +593,9 @@ def _execute_resolved_mission(
             enabled=progress,
         )
 
-        arm_result = arm_vehicle(
+        # A timed-out arm request may have armed the vehicle; recover conservatively.
+        vehicle_may_be_armed = True
+        arm_result = _operation("arm", arm_vehicle,
             vehicle=vehicle,
         )
 
@@ -610,7 +623,7 @@ def _execute_resolved_mission(
             enabled=progress,
         )
 
-        takeoff_result = takeoff_vehicle(
+        takeoff_result = _operation("takeoff", takeoff_vehicle,
             takeoff_altitude_m,
             vehicle=vehicle,
         )
@@ -679,7 +692,7 @@ def _execute_resolved_mission(
             )
 
             send_result = (
-                send_global_position_target(
+                _operation("navigate", send_global_position_target,
                     float(
                         waypoint[
                             "latitude"
@@ -789,7 +802,7 @@ def _execute_resolved_mission(
                 enabled=progress,
             )
 
-            send_global_position_target(
+            _operation("return_home", send_global_position_target,
                 float(
                     return_target[
                         "latitude"
@@ -853,7 +866,7 @@ def _execute_resolved_mission(
             enabled=progress,
         )
 
-        land_vehicle(
+        _operation("land", land_vehicle,
             vehicle=vehicle,
         )
 
@@ -892,6 +905,7 @@ def _execute_resolved_mission(
             enabled=progress,
         )
 
+        current_trace.get().context.update(simulation_origin=origin, launch_position=launch_position)
         return {
             "success": True,
             "status": "COMPLETED",
@@ -931,6 +945,7 @@ def _execute_resolved_mission(
             enabled=progress,
         )
 
+        current_trace.get().context.update(simulation_origin=origin, launch_position=launch_position)
         recovery: dict[str, object] = {
             "landing_attempted": False,
             "landing_completed": False,
@@ -947,7 +962,7 @@ def _execute_resolved_mission(
             )
 
             try:
-                land_vehicle(
+                _operation("recovery_land", land_vehicle,
                     vehicle=vehicle,
                 )
 
@@ -999,6 +1014,9 @@ def _execute_resolved_mission(
             ),
             "vehicle": vehicle, "vehicle_id": mission.vehicle.vehicle_id,
             "error": str(exc),
+            "error_evidence": error_evidence(exc),
+            "simulation_origin": origin, "launch_position": launch_position,
+            "control_outcome": "NOT_ATTEMPTED" if not current_trace.get().controls else "SEE_ATTEMPTS_AND_RECOVERY",
             "waypoint_diagnostic": exc.diagnostic if isinstance(exc, WaypointWaitError) else None,
             "events": events,
             "recovery": recovery,

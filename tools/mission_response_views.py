@@ -91,7 +91,24 @@ def _execution(raw):
     if not isinstance(raw, dict):
         return deepcopy(raw)
     result = _take(raw, ("status", "success", "stage", "mission_id", "vehicle", "vehicle_id", "error", "errors",
-                        "waypoints_completed", "return_to_home", "recovery", "waypoint_diagnostic", "message"))
+                        "waypoints_completed", "return_to_home", "recovery", "waypoint_diagnostic", "message",
+                        "control_outcome", "controls_not_attempted"))
+    diagnostic = raw.get("operation_diagnostics")
+    if isinstance(diagnostic, dict):
+        buckets = (diagnostic.get("initial", []), diagnostic.get("recent", []))
+        if not all(isinstance(bucket, list) for bucket in buckets):
+            # Malformed diagnostics remain visible; summary must not hide them or raise.
+            result["operation_diagnostics"] = deepcopy(diagnostic)
+            buckets = ([], [])
+        else:
+            result["operation_diagnostics"] = _take(diagnostic, ("clock", "simulated_time_inferred",
+                                                                "total_operations", "omitted_operations"))
+        result["operation_diagnostics"]["failed_operations"] = [
+            _take(op, ("operation", "stage", "vehicle", "vehicle_id", "endpoint_kind", "endpoint",
+                       "started_at_utc", "finished_at_utc", "elapsed_wall_seconds", "timeout_seconds",
+                       "inner_timeout_seconds", "return_code", "attempted", "confirmed", "effects", "error"))
+            for op in [*buckets[0], *buckets[1]]
+            if isinstance(op, dict) and op.get("error")]
     events = raw.get("events")
     if isinstance(events, list):
         result["event_count"] = len(events)
