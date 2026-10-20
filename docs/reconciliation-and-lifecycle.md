@@ -306,3 +306,12 @@ revalidación bajo exclusión y transacción durable recuperable. No cambia ni r
 la reconciliación técnica. Resultado ADMINISTRATIVELY_RETIRED_UNVERIFIED, sin afirmar
 aterrizaje ni terminación del entorno original y conservando PASSED/ERROR/UNCONFIRMED.
 Implementación verificada offline; ninguna aplicación o liberación real realizada.
+
+
+### 20/10/2026 — Diagnóstico específico de GUI, sin corrección de renderizado
+
+[Hechos, fuentes y comparación futura de apertura negra/correcta](gazebo-black-gui-diagnostic.md).
+La revisión offline no identifica la causa. Se separan errores de recursos, contexto
+OpenGL y presentación visible; PID/READY no prueban una imagen correcta. No se repite
+el parche existente de modelos ni se cambia renderer. Primero preservar un intento
+en lectura; cualquier reapertura necesita autorización y exclusión actuales.

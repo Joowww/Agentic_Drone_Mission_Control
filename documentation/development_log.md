@@ -2491,3 +2491,58 @@ y sesión, caducidad, revocación/consumo y tratamiento de desconexiones; no se 
 por texto del agente. No es frontera contra procesos con permiso para modificar
 código o archivos. Sin Docker/ROS, Gazebo, simulación, vuelos, proveedor LLM,
 MCP operativo, preparación/aplicación/reconciliación real, commit ni push.
+
+
+## 2026-10-20 — GUI negra de Gazebo: revisión offline y procedimiento comparativo
+
+HEAD inicial 5d6ef2c4371a97491697e8e13f74daa3f5849c2c, rama
+feature/hermes-integration, índice/árbol limpios. No se encontró AGENTS.md en los
+ancestros o repositorio inspeccionados. Se conservan código, configuración y
+evidencias originales. No se ejecuta Docker, ROS, Gazebo, MCP, proveedor LLM,
+procesos de vuelo, arranque/parada/reinicio, reconciliación o liberación.
+
+Se inspeccionan wrappers y backend start/stop/restart, lifecycle, supervisor, launch
+de dos drones, readiness y fuentes gráficas conservadas del 18/10. El lifecycle ya
+coordina la exclusión global, conserva incertidumbre y separa visual_confirmation;
+GUI/headless ya llega al launch. El backend ya aplica el parche acotado de dos
+prefijos package:// en iris_with_gimbal/model.sdf; no se propone repetirlo. Su
+literal final Gazebo GUI: ON es fijo incluso en headless y no constituye evidencia
+visual. El arranque sólo espera nombres de status; check_sim.sh añade los cinco
+controles registrados, incluidos servicios prearm, pero no inspecciona píxeles.
+Se documenta esa diferencia sin ampliar este incremento a cambios funcionales.
+
+El manifiesto final del diagnóstico de la secuencia c6eeb645 se vuelve a comprobar:
+320 entradas, tamaños y SHA-256 coincidentes. auto_default.log del 18/10 registra
+ventana, petición de mundo/estado y errores de resolución de mallas/visuales.
+ogre2.log inicializa GL 4.1/Mesa y declara D3D12 Intel; la enumeración EGL software
+no prueba el renderer final ni la causa. gui.config conserva MinimalScene/ogre2,
+fondo gris y cámara. final_metadata guarda existencia/tamaño de tres mallas, no
+validez o resolución de todas. El main log de ese arranque no contiene process
+has died ni exit code 139; no se generaliza a otros logs/instantes. La caída 139
+anterior pertenece a otro arranque, sin demostrar causa común con WP3/v2/124.
+
+Conclusión: fallos concretos de recursos observados, causa de la pantalla negra
+NO IDENTIFICADA. El relato de repetición y recuperación irregular es del operador.
+No hay pareja controlada de capturas visibles y logs equivalentes negra/correcta.
+No se afirma que OGRE esté reparado ni que inicializar contexto equivalga a
+presentar frames. No hay corrección funcional suficientemente sustentada.
+
+Nueva guía docs/gazebo-black-gui-diagnostic.md: inspección de lectura primero;
+clasificación de ventana ausente/negra/panel 3D/modelos incompletos; captura y
+respuesta literal con UTC de pared; identidad de procesos y entorno, logs separados
+y hashes antes de cualquier reapertura. Diferencia tiempos de pared/simulación,
+fuentes ausentes/timeout y logs mutables. Propone como máximo una comparación A/B,
+sólo con nueva autorización y exclusión, sin cambiar drivers/configuración/renderer
+ni saltarse restricciones. Readiness y respuesta visual se guardan por separado.
+No se autoriza operación por ese documento ni por su prompt de inspección.
+
+Comprobaciones de este cierre: enlaces locales y hashes citados contrastados,
+prefijos históricos de las dos guías/registro existentes conservados; git diff
+--check tracked y comprobación individual del Markdown nuevo. Inventario previo
+de 853 archivos con SHA-256/permisos; sólo se amplían este registro y la guía de
+reconciliación, sin cambiar originales de runtime/evidencias ni código. No se
+añaden tests de frases ni se repite la suite: sólo cambia documentación y se
+verifican fuentes/manifiesto, sin nuevo contrato funcional. Los 613 tests de la
+tanda anterior no se presentan como una ejecución nueva ni prueba de GUI.
+Sin staging, commit ni push. Pendiente: captura operativa autorizada y comparación
+si procede; no es una causa raíz confirmada ni una solución de renderizado.
