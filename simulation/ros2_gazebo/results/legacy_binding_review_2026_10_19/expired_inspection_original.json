@@ -1,0 +1,467 @@
+{
+  "schema_version": 2,
+  "inspection_id": "ad234044-4e5d-4785-b8c4-43f05b89a54a",
+  "target_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+  "created_at": "2026-10-19T19:06:18.905301+00:00",
+  "boot_id": "f4b6327f-8e51-43b5-9e72-7d0206aacb37",
+  "created_monotonic": 3898.822523564,
+  "ttl_seconds": 120,
+  "snapshot": {
+    "guards": {
+      "sequence.json": {
+        "kind": "PREFLIGHT_SEQUENCE",
+        "owner_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+        "actor": "sequential_preflight",
+        "state": "UNCONFIRMED",
+        "plan_sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436",
+        "children": [
+          {
+            "owner_id": "467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+            "vehicle": "v1",
+            "input_sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+          },
+          {
+            "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+            "vehicle": "v2",
+            "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+          }
+        ],
+        "next_index": 2,
+        "completed_count": 1,
+        "active_child": {
+          "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+          "vehicle": "v2",
+          "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+        },
+        "created_at": "2026-10-18T21:14:36.472104+00:00",
+        "process": {
+          "pid": 130817,
+          "start_ticks": 7968185,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "coordinator": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "updated_at": "2026-10-18T21:18:42.213841+00:00"
+      },
+      "v2.json": {
+        "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+        "vehicle": "v2",
+        "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+        "sequence_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+        "actor": "sequence_child",
+        "state": "UNCONFIRMED",
+        "vehicle_id": "drone_02",
+        "created_at": "2026-10-18T21:18:42.217622+00:00",
+        "process": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "updated_at": "2026-10-18T21:19:09.156883+00:00"
+      }
+    },
+    "files": {
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/sequence.json": {
+        "sha256": "47385b4ebc900482d1202131e2421d55a316c7144ccce8bc135cabfaaf73505e",
+        "content": "{\n  \"kind\": \"PREFLIGHT_SEQUENCE\",\n  \"owner_id\": \"c6eeb645-17d2-4081-9afb-cecfd23af393\",\n  \"actor\": \"sequential_preflight\",\n  \"state\": \"UNCONFIRMED\",\n  \"plan_sha256\": \"49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436\",\n  \"children\": [\n    {\n      \"owner_id\": \"467f7ec6-b2a6-4b68-9d97-766d85732f8e\",\n      \"vehicle\": \"v1\",\n      \"input_sha256\": \"b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74\"\n    },\n    {\n      \"owner_id\": \"1b69dfc7-0707-4b68-a009-062610418fe4\",\n      \"vehicle\": \"v2\",\n      \"input_sha256\": \"ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb\"\n    }\n  ],\n  \"next_index\": 2,\n  \"completed_count\": 1,\n  \"active_child\": {\n    \"owner_id\": \"1b69dfc7-0707-4b68-a009-062610418fe4\",\n    \"vehicle\": \"v2\",\n    \"input_sha256\": \"ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb\"\n  },\n  \"created_at\": \"2026-10-18T21:14:36.472104+00:00\",\n  \"process\": {\n    \"pid\": 130817,\n    \"start_ticks\": 7968185,\n    \"boot_id\": \"cbb1fa33-db15-4014-a06b-484e3f0b0dcc\"\n  },\n  \"coordinator\": {\n    \"pid\": 133909,\n    \"start_ticks\": 8003617,\n    \"boot_id\": \"cbb1fa33-db15-4014-a06b-484e3f0b0dcc\"\n  },\n  \"updated_at\": \"2026-10-18T21:18:42.213841+00:00\"\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/v1.json": {
+        "exists": false
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/v2.json": {
+        "sha256": "c7bcb0a629e02e9676a5b25b43a089b73686c23ce4e39e7a4368936c59b91954",
+        "content": "{\n  \"owner_id\": \"1b69dfc7-0707-4b68-a009-062610418fe4\",\n  \"vehicle\": \"v2\",\n  \"input_sha256\": \"ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb\",\n  \"sequence_id\": \"c6eeb645-17d2-4081-9afb-cecfd23af393\",\n  \"actor\": \"sequence_child\",\n  \"state\": \"UNCONFIRMED\",\n  \"vehicle_id\": \"drone_02\",\n  \"created_at\": \"2026-10-18T21:18:42.217622+00:00\",\n  \"process\": {\n    \"pid\": 133909,\n    \"start_ticks\": 8003617,\n    \"boot_id\": \"cbb1fa33-db15-4014-a06b-484e3f0b0dcc\"\n  },\n  \"updated_at\": \"2026-10-18T21:19:09.156883+00:00\"\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/lifecycle.json": {
+        "exists": false
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/operation.json": {
+        "sha256": "1540aadc56680e058b217b9dfc029f0560d54fc8351c0ca5d6310bbfc69268d0",
+        "content": "{\n  \"schema_version\": 1,\n  \"sequence_id\": \"c6eeb645-17d2-4081-9afb-cecfd23af393\",\n  \"request_key\": \"joel-secuencia-sitl-01\",\n  \"plan_sha256\": \"49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436\",\n  \"created_at\": \"2026-10-18T21:14:36.491127+00:00\",\n  \"admission_status\": \"ACCEPTED\",\n  \"job_state\": \"UNCONFIRMED\",\n  \"phase\": \"reconciliation_required\",\n  \"coordinator\": {\n    \"pid\": 133909,\n    \"start_ticks\": 8003617,\n    \"boot_id\": \"cbb1fa33-db15-4014-a06b-484e3f0b0dcc\"\n  },\n  \"launch_token_sha256\": \"2586f28437e5e5c3156c82b82aa8fba39ca910ab7d03e56434af2d4dfd6d58f4\",\n  \"result_status\": null,\n  \"reasons\": [\n    \"VehicleBusy: No consistent final child/landing/release evidence; sequence stays restricted\"\n  ],\n  \"children\": [\n    {\n      \"state\": \"FINISHED\",\n      \"result_status\": \"PASSED\",\n      \"started_at\": \"2026-10-18T21:14:38.204129+00:00\",\n      \"report_sha256\": \"d967bc138c2c9a9834ba0a845417139a491c01953bd9690b610a10ac7b155451\",\n      \"finished_at\": \"2026-10-18T21:18:42.196598+00:00\",\n      \"reasons\": []\n    },\n    {\n      \"state\": \"UNCONFIRMED\",\n      \"result_status\": null,\n      \"started_at\": \"2026-10-18T21:18:42.224986+00:00\"\n    }\n  ],\n  \"started_at\": \"2026-10-18T21:14:38.173651+00:00\",\n  \"prevalidation\": [\n    {\n      \"validation\": {\n        \"mission_id\": \"simulation_navigation_3waypoint_001\",\n        \"mission_status\": \"FEASIBLE\",\n        \"execution_status\": \"APPROVED\",\n        \"qgc_plan_path\": null,\n        \"failure_reasons\": [],\n        \"errors\": [],\n        \"replan_status\": \"\",\n        \"replan_actions\": []\n      },\n      \"compatibility_errors\": []\n    },\n    {\n      \"validation\": {\n        \"mission_id\": \"simulation_navigation_drone02\",\n        \"mission_status\": \"FEASIBLE\",\n        \"execution_status\": \"APPROVED\",\n        \"qgc_plan_path\": null,\n        \"failure_reasons\": [],\n        \"errors\": [],\n        \"replan_status\": \"\",\n        \"replan_actions\": []\n      },\n      \"compatibility_errors\": []\n    }\n  ],\n  \"interrupted_at\": \"2026-10-18T21:19:09.208803+00:00\"\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/plan.json": {
+        "sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436",
+        "content": "{\n  \"schema_version\": 1,\n  \"sequence_id\": \"c6eeb645-17d2-4081-9afb-cecfd23af393\",\n  \"request_key\": \"joel-secuencia-sitl-01\",\n  \"authorization\": {\n    \"source\": \"OPERATOR_DECLARED_VIA_AGENT\",\n    \"statement\": \"Autorizo una única pareja de ensayos SITL secuenciales: missions/examples/simulation_navigation_3waypoint.json con drone_01/v1 y después missions/examples/simulation_navigation_drone02.json con drone_02/v2, con clave joel-secuencia-sitl-01. Ejecuta el segundo sólo tras éxito íntegro y aterrizaje/desarmado del primero. Sin arrancar ni reiniciar simulación.\",\n    \"scope\": \"These two ordered snapshots only; SITL; no further flights or hardware\"\n  },\n  \"children\": [\n    {\n      \"index\": 0,\n      \"run_id\": \"467f7ec6-b2a6-4b68-9d97-766d85732f8e\",\n      \"request_key\": \"sequence-c6eeb645-17d2-4081-9afb-cecfd23af393-1\",\n      \"mission_sha256\": \"b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74\",\n      \"vehicle_selection\": {\n        \"vehicle_id\": \"drone_01\",\n        \"simulated_vehicle\": \"v1\"\n      },\n      \"original_source_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/examples/simulation_navigation_3waypoint.json\",\n      \"source_artifact\": null\n    },\n    {\n      \"index\": 1,\n      \"run_id\": \"1b69dfc7-0707-4b68-a009-062610418fe4\",\n      \"request_key\": \"sequence-c6eeb645-17d2-4081-9afb-cecfd23af393-2\",\n      \"mission_sha256\": \"ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb\",\n      \"vehicle_selection\": {\n        \"vehicle_id\": \"drone_02\",\n        \"simulated_vehicle\": \"v2\"\n      },\n      \"original_source_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/examples/simulation_navigation_drone02.json\",\n      \"source_artifact\": null\n    }\n  ]\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/mission_1.json": {
+        "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74",
+        "content": "{\n  \"schema_version\": \"1.0\",\n  \"mission_id\": \"simulation_navigation_3waypoint_001\",\n  \"name\": \"Three-waypoint simulation navigation test\",\n  \"source\": \"json\",\n  \"vehicle\": {\n    \"vehicle_id\": \"drone_01\",\n    \"vehicle_type\": \"multirotor\",\n    \"autopilot\": \"ArduPilot\",\n    \"cruise_speed_kmh\": 35.0,\n    \"battery_percent\": 100.0,\n    \"battery_consumption_percent_per_minute\": 0.8\n  },\n  \"objective\": {\n    \"objective_type\": \"precision_agriculture\",\n    \"target\": \"field_A\",\n    \"description\": \"Navigate a short three-waypoint route in simulation and return to launch.\"\n  },\n  \"route\": {\n    \"mode\": \"waypoints\",\n    \"home\": {\n      \"latitude\": 41.275,\n      \"longitude\": 1.987,\n      \"altitude_m\": 0.0\n    },\n    \"waypoints\": [\n      {\n        \"waypoint_id\": \"WP1\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.987,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP2\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP3\",\n        \"latitude\": 41.275,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      }\n    ],\n    \"return_to_home\": true\n  },\n  \"environment\": {\n    \"wind_speed_kmh\": 0.0,\n    \"wind_direction_from_deg\": 0.0\n  },\n  \"constraints\": {\n    \"minimum_battery_reserve_percent\": 20.0,\n    \"maximum_wind_speed_kmh\": 30.0,\n    \"maximum_altitude_m\": 120.0\n  },\n  \"failsafe\": {\n    \"low_battery_action\": \"RETURN_TO_HOME\",\n    \"unsafe_wind_action\": \"RETURN_TO_HOME\",\n    \"communication_loss_action\": \"RETURN_TO_HOME\"\n  }\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/job.json": {
+        "sha256": "5a7bb17f1acdeaf15936b0658208341c9690b3533a503ac899d2ba1ddc6a1b4c",
+        "content": "{\n  \"schema_version\": 2,\n  \"sequence_id\": \"c6eeb645-17d2-4081-9afb-cecfd23af393\",\n  \"sequence_index\": 0,\n  \"vehicle_selection\": {\n    \"vehicle_id\": \"drone_01\",\n    \"simulated_vehicle\": \"v1\"\n  },\n  \"run_id\": \"467f7ec6-b2a6-4b68-9d97-766d85732f8e\",\n  \"request_key\": \"sequence-c6eeb645-17d2-4081-9afb-cecfd23af393-1\",\n  \"input_sha256\": \"b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74\",\n  \"source_artifact\": null,\n  \"original_source_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/examples/simulation_navigation_3waypoint.json\",\n  \"launch_token_sha256\": \"13e64aa7f7c2c58f87645afe38ebf665d09b1e020dc41b8a57417cc010120bdf\",\n  \"created_at\": \"2026-10-18T21:14:36.477416+00:00\",\n  \"admission_status\": \"ACCEPTED\",\n  \"job_state\": \"FINISHED\",\n  \"phase\": \"analyze\",\n  \"worker\": {\n    \"pid\": 133909,\n    \"start_ticks\": 8003617,\n    \"boot_id\": \"cbb1fa33-db15-4014-a06b-484e3f0b0dcc\"\n  },\n  \"run_directory\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e\",\n  \"snapshot_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/mission.json\",\n  \"input_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/input.json\",\n  \"report_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/report.json\",\n  \"job_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/job.json\",\n  \"worker_log_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/worker.log\",\n  \"started_at\": \"2026-10-18T21:14:38.208705+00:00\",\n  \"finished_at\": \"2026-10-18T21:18:42.182020+00:00\"\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/input.json": {
+        "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74",
+        "content": "{\n  \"schema_version\": \"1.0\",\n  \"mission_id\": \"simulation_navigation_3waypoint_001\",\n  \"name\": \"Three-waypoint simulation navigation test\",\n  \"source\": \"json\",\n  \"vehicle\": {\n    \"vehicle_id\": \"drone_01\",\n    \"vehicle_type\": \"multirotor\",\n    \"autopilot\": \"ArduPilot\",\n    \"cruise_speed_kmh\": 35.0,\n    \"battery_percent\": 100.0,\n    \"battery_consumption_percent_per_minute\": 0.8\n  },\n  \"objective\": {\n    \"objective_type\": \"precision_agriculture\",\n    \"target\": \"field_A\",\n    \"description\": \"Navigate a short three-waypoint route in simulation and return to launch.\"\n  },\n  \"route\": {\n    \"mode\": \"waypoints\",\n    \"home\": {\n      \"latitude\": 41.275,\n      \"longitude\": 1.987,\n      \"altitude_m\": 0.0\n    },\n    \"waypoints\": [\n      {\n        \"waypoint_id\": \"WP1\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.987,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP2\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP3\",\n        \"latitude\": 41.275,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      }\n    ],\n    \"return_to_home\": true\n  },\n  \"environment\": {\n    \"wind_speed_kmh\": 0.0,\n    \"wind_direction_from_deg\": 0.0\n  },\n  \"constraints\": {\n    \"minimum_battery_reserve_percent\": 20.0,\n    \"maximum_wind_speed_kmh\": 30.0,\n    \"maximum_altitude_m\": 120.0\n  },\n  \"failsafe\": {\n    \"low_battery_action\": \"RETURN_TO_HOME\",\n    \"unsafe_wind_action\": \"RETURN_TO_HOME\",\n    \"communication_loss_action\": \"RETURN_TO_HOME\"\n  }\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/report.json": {
+        "sha256": "d967bc138c2c9a9834ba0a845417139a491c01953bd9690b610a10ac7b155451",
+        "content": "{\n  \"schema_version\": \"1.1\",\n  \"report_persisted\": true,\n  \"expected_sha256\": \"b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74\",\n  \"persist_progress\": true,\n  \"source_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/input.json\",\n  \"source_artifact\": null,\n  \"run_id\": \"467f7ec6-b2a6-4b68-9d97-766d85732f8e\",\n  \"run_directory\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e\",\n  \"snapshot_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/mission.json\",\n  \"report_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/report.json\",\n  \"mission_sha256\": \"b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74\",\n  \"mission_identity\": {\n    \"mission_id\": \"simulation_navigation_3waypoint_001\",\n    \"name\": \"Three-waypoint simulation navigation test\",\n    \"vehicle_id\": \"drone_01\",\n    \"simulated_vehicle\": \"v1\"\n  },\n  \"vehicle_selection\": {\n    \"vehicle_id\": \"drone_01\",\n    \"simulated_vehicle\": \"v1\"\n  },\n  \"expected_vehicle_selection\": {\n    \"vehicle_id\": \"drone_01\",\n    \"simulated_vehicle\": \"v1\"\n  },\n  \"status\": \"PASSED\",\n  \"stage\": \"analyze\",\n  \"reasons\": [],\n  \"validation\": {\n    \"mission_id\": \"simulation_navigation_3waypoint_001\",\n    \"mission_status\": \"FEASIBLE\",\n    \"execution_status\": \"APPROVED\",\n    \"qgc_plan_path\": null,\n    \"failure_reasons\": [],\n    \"errors\": [],\n    \"replan_status\": \"\",\n    \"replan_actions\": []\n  },\n  \"readiness\": {\n    \"ready\": true,\n    \"status\": \"READY\",\n    \"return_code\": 0,\n    \"message\": \"Simulation is healthy and both drones are ready.\",\n    \"output\": \"========================================\\n TFG - Simulation Check\\n========================================\\n\\n[1/5] Docker container...\\n[PASS] Container running.\\n\\n[2/5] Gazebo server...\\n[PASS] Gazebo runway world running.\\n\\n[3/5] ArduPilot processes...\\n[PASS] 2 ArduCopter processes running.\\n\\n[4/5] ROS 2 vehicle interfaces...\\n\\n[PASS] /ap/v1/status\\n[PASS] /ap/v2/status\\n\\n[5/5] Pre-arm checks...\\n\\n[PASS] /ap/v1 - Vehicle is Armable\\n[PASS] /ap/v2 - Vehicle is Armable\\n\\n========================================\\n SIMULATION HEALTHY\\n========================================\\n\\nDrone 1 -> READY\\nDrone 2 -> READY\"\n  },\n  \"compatibility_errors\": [],\n  \"executor_result\": {\n    \"success\": true,\n    \"status\": \"COMPLETED\",\n    \"stage\": \"MISSION_EXECUTION\",\n    \"mission_id\": \"simulation_navigation_3waypoint_001\",\n    \"vehicle\": \"v1\",\n    \"vehicle_id\": \"drone_01\",\n    \"simulation_origin\": {\n      \"latitude\": -35.36326217651367,\n      \"longitude\": 149.1652374267578,\n      \"altitude_amsl_m\": 584.0\n    },\n    \"launch_position\": {\n      \"latitude\": -35.36326217651367,\n      \"longitude\": 149.1652069091797,\n      \"altitude_amsl_m\": 584.1900024414062\n    },\n    \"waypoints_completed\": 3,\n    \"return_to_home\": true,\n    \"events\": [\n      {\n        \"event\": \"GUIDED_MODE\",\n        \"success\": true\n      },\n      {\n        \"event\": \"ARM\",\n        \"success\": true\n      },\n      {\n        \"event\": \"TAKEOFF_COMMAND\",\n        \"success\": true,\n        \"altitude_m\": 5.0\n      },\n      {\n        \"event\": \"TAKEOFF_REACHED\",\n        \"reached\": true,\n        \"target_altitude_m\": 5.0,\n        \"altitude_amsl_m\": 588.489990234375,\n        \"altitude_error_m\": 0.70001220703125\n      },\n      {\n        \"event\": \"WAYPOINT_COMMAND\",\n        \"waypoint_id\": \"WP1\",\n        \"success\": true\n      },\n      {\n        \"event\": \"WAYPOINT_REACHED\",\n        \"reached\": true,\n        \"waypoint_id\": \"WP1\",\n        \"horizontal_error_m\": 0.0274044779415251,\n        \"altitude_error_m\": 0.030029296875,\n        \"final_position\": {\n          \"latitude\": -35.36323547363281,\n          \"longitude\": 149.1652069091797,\n          \"altitude_amsl_m\": 589.1599731445312\n        }\n      },\n      {\n        \"event\": \"WAYPOINT_COMMAND\",\n        \"waypoint_id\": \"WP2\",\n        \"success\": true\n      },\n      {\n        \"event\": \"WAYPOINT_REACHED\",\n        \"reached\": true,\n        \"waypoint_id\": \"WP2\",\n        \"horizontal_error_m\": 0.22777375324517357,\n        \"altitude_error_m\": 0.010009765625,\n        \"final_position\": {\n          \"latitude\": -35.36323547363281,\n          \"longitude\": 149.1652374267578,\n          \"altitude_amsl_m\": 589.1799926757812\n        }\n      },\n      {\n        \"event\": \"WAYPOINT_COMMAND\",\n        \"waypoint_id\": \"WP3\",\n        \"success\": true\n      },\n      {\n        \"event\": \"WAYPOINT_REACHED\",\n        \"reached\": true,\n        \"waypoint_id\": \"WP3\",\n        \"horizontal_error_m\": 0.22611909091657167,\n        \"altitude_error_m\": 0.010009765625,\n        \"final_position\": {\n          \"latitude\": -35.36326217651367,\n          \"longitude\": 149.1652374267578,\n          \"altitude_amsl_m\": 589.2000122070312\n        }\n      },\n      {\n        \"event\": \"RETURN_HOME_COMMAND\",\n        \"success\": true\n      },\n      {\n        \"event\": \"RETURN_HOME_REACHED\",\n        \"reached\": true,\n        \"waypoint_id\": \"SIMULATION_HOME\",\n        \"horizontal_error_m\": 0.0,\n        \"altitude_error_m\": 0.03997802734375,\n        \"final_position\": {\n          \"latitude\": -35.36326217651367,\n          \"longitude\": 149.1652069091797,\n          \"altitude_amsl_m\": 589.22998046875\n        }\n      },\n      {\n        \"event\": \"LAND_COMMAND\",\n        \"success\": true\n      },\n      {\n        \"event\": \"LANDED\",\n        \"landed\": true,\n        \"armed\": false,\n        \"flying\": false,\n        \"final_position\": {\n          \"latitude\": -35.36326217651367,\n          \"longitude\": 149.1652069091797,\n          \"altitude_amsl_m\": 584.1900024414062\n        }\n      }\n    ],\n    \"final_position\": {\n      \"latitude\": -35.36326217651367,\n      \"longitude\": 149.1652069091797,\n      \"altitude_amsl_m\": 584.1900024414062\n    },\n    \"message\": \"Mission completed and vehicle landed successfully.\"\n  },\n  \"execution_attempted\": true,\n  \"analysis\": {\n    \"passed\": true,\n    \"checks\": {\n      \"completed\": true,\n      \"identity\": true,\n      \"no_failure_or_recovery\": true,\n      \"count_and_return_flag\": true,\n      \"event_sequence\": true,\n      \"commands_confirmed\": true,\n      \"all_waypoints_reached\": true,\n      \"return_home_reached\": true,\n      \"takeoff_reached\": true,\n      \"landed_and_disarmed\": true,\n      \"position_evidence_consistent\": true\n    },\n    \"expected_waypoint_ids\": [\n      \"WP1\",\n      \"WP2\",\n      \"WP3\"\n    ],\n    \"observed_waypoint_ids\": [\n      \"WP1\",\n      \"WP2\",\n      \"WP3\"\n    ],\n    \"tolerances\": {\n      \"horizontal_m\": 1.0,\n      \"altitude_m\": 0.75\n    },\n    \"reasons\": []\n  },\n  \"started_at\": \"2026-10-18T21:14:36.477416+00:00\",\n  \"execution_started_at\": \"2026-10-18T21:14:47.032411+00:00\",\n  \"execution_finished_at\": \"2026-10-18T21:18:42.176815+00:00\",\n  \"transitions\": [\n    {\n      \"node\": \"snapshot\",\n      \"started_at\": \"2026-10-18T21:14:38.229083+00:00\",\n      \"finished_at\": \"2026-10-18T21:14:38.255722+00:00\",\n      \"status\": \"RUNNING\"\n    },\n    {\n      \"node\": \"validate\",\n      \"started_at\": \"2026-10-18T21:14:38.256744+00:00\",\n      \"finished_at\": \"2026-10-18T21:14:38.259707+00:00\",\n      \"status\": \"RUNNING\"\n    },\n    {\n      \"node\": \"check_readiness\",\n      \"started_at\": \"2026-10-18T21:14:38.260526+00:00\",\n      \"finished_at\": \"2026-10-18T21:14:47.028899+00:00\",\n      \"status\": \"RUNNING\"\n    },\n    {\n      \"node\": \"compatibility\",\n      \"started_at\": \"2026-10-18T21:14:47.029985+00:00\",\n      \"finished_at\": \"2026-10-18T21:14:47.030736+00:00\",\n      \"status\": \"RUNNING\"\n    },\n    {\n      \"node\": \"execute\",\n      \"started_at\": \"2026-10-18T21:14:47.031675+00:00\",\n      \"finished_at\": \"2026-10-18T21:18:42.176876+00:00\",\n      \"status\": \"RUNNING\"\n    },\n    {\n      \"node\": \"analyze\",\n      \"started_at\": \"2026-10-18T21:18:42.178233+00:00\",\n      \"finished_at\": \"2026-10-18T21:18:42.179676+00:00\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"node\": \"write_report\",\n      \"started_at\": \"2026-10-18T21:18:42.180468+00:00\",\n      \"finished_at\": \"2026-10-18T21:18:42.180468+00:00\",\n      \"status\": \"PASSED\"\n    }\n  ],\n  \"finished_at\": \"2026-10-18T21:18:42.180468+00:00\",\n  \"scope\": \"Gazebo/ArduPilot SITL, simulated v1 only; at most one project-wide flight\",\n  \"hardware_authorized\": false,\n  \"subsequent_execution_authorized\": false,\n  \"replan_proposals\": []\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/mission.json": {
+        "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74",
+        "content": "{\n  \"schema_version\": \"1.0\",\n  \"mission_id\": \"simulation_navigation_3waypoint_001\",\n  \"name\": \"Three-waypoint simulation navigation test\",\n  \"source\": \"json\",\n  \"vehicle\": {\n    \"vehicle_id\": \"drone_01\",\n    \"vehicle_type\": \"multirotor\",\n    \"autopilot\": \"ArduPilot\",\n    \"cruise_speed_kmh\": 35.0,\n    \"battery_percent\": 100.0,\n    \"battery_consumption_percent_per_minute\": 0.8\n  },\n  \"objective\": {\n    \"objective_type\": \"precision_agriculture\",\n    \"target\": \"field_A\",\n    \"description\": \"Navigate a short three-waypoint route in simulation and return to launch.\"\n  },\n  \"route\": {\n    \"mode\": \"waypoints\",\n    \"home\": {\n      \"latitude\": 41.275,\n      \"longitude\": 1.987,\n      \"altitude_m\": 0.0\n    },\n    \"waypoints\": [\n      {\n        \"waypoint_id\": \"WP1\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.987,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP2\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP3\",\n        \"latitude\": 41.275,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      }\n    ],\n    \"return_to_home\": true\n  },\n  \"environment\": {\n    \"wind_speed_kmh\": 0.0,\n    \"wind_direction_from_deg\": 0.0\n  },\n  \"constraints\": {\n    \"minimum_battery_reserve_percent\": 20.0,\n    \"maximum_wind_speed_kmh\": 30.0,\n    \"maximum_altitude_m\": 120.0\n  },\n  \"failsafe\": {\n    \"low_battery_action\": \"RETURN_TO_HOME\",\n    \"unsafe_wind_action\": \"RETURN_TO_HOME\",\n    \"communication_loss_action\": \"RETURN_TO_HOME\"\n  }\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/mission_2.json": {
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+        "content": "{\n  \"schema_version\": \"1.0\",\n  \"mission_id\": \"simulation_navigation_drone02\",\n  \"name\": \"SITL navigation on drone_02\",\n  \"source\": \"json\",\n  \"vehicle\": {\n    \"vehicle_id\": \"drone_02\",\n    \"vehicle_type\": \"multirotor\",\n    \"autopilot\": \"ArduPilot\",\n    \"cruise_speed_kmh\": 35.0,\n    \"battery_percent\": 100.0,\n    \"battery_consumption_percent_per_minute\": 0.8\n  },\n  \"objective\": {\n    \"objective_type\": \"precision_agriculture\",\n    \"target\": \"field_A\",\n    \"description\": \"Navigate a short three-waypoint route in simulation and return to launch.\"\n  },\n  \"route\": {\n    \"mode\": \"waypoints\",\n    \"home\": {\n      \"latitude\": 41.275,\n      \"longitude\": 1.987,\n      \"altitude_m\": 0.0\n    },\n    \"waypoints\": [\n      {\n        \"waypoint_id\": \"WP1\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.987,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP2\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP3\",\n        \"latitude\": 41.275,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      }\n    ],\n    \"return_to_home\": true\n  },\n  \"environment\": {\n    \"wind_speed_kmh\": 0.0,\n    \"wind_direction_from_deg\": 0.0\n  },\n  \"constraints\": {\n    \"minimum_battery_reserve_percent\": 20.0,\n    \"maximum_wind_speed_kmh\": 30.0,\n    \"maximum_altitude_m\": 120.0\n  },\n  \"failsafe\": {\n    \"low_battery_action\": \"RETURN_TO_HOME\",\n    \"unsafe_wind_action\": \"RETURN_TO_HOME\",\n    \"communication_loss_action\": \"RETURN_TO_HOME\"\n  }\n}\n"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/job.json": {
+        "sha256": "9b03a3b4e93029b2c7c2cb519f731220d3da492dd316976a7535e2aaebc1de5a",
+        "content": "{\n  \"schema_version\": 2,\n  \"sequence_id\": \"c6eeb645-17d2-4081-9afb-cecfd23af393\",\n  \"sequence_index\": 1,\n  \"vehicle_selection\": {\n    \"vehicle_id\": \"drone_02\",\n    \"simulated_vehicle\": \"v2\"\n  },\n  \"run_id\": \"1b69dfc7-0707-4b68-a009-062610418fe4\",\n  \"request_key\": \"sequence-c6eeb645-17d2-4081-9afb-cecfd23af393-2\",\n  \"input_sha256\": \"ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb\",\n  \"source_artifact\": null,\n  \"original_source_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/examples/simulation_navigation_drone02.json\",\n  \"launch_token_sha256\": \"9625b7f87bcac0227d612f35386d0658bf577f2bd6edbc463fb446c590a6d0a4\",\n  \"created_at\": \"2026-10-18T21:14:36.484712+00:00\",\n  \"admission_status\": \"ACCEPTED\",\n  \"job_state\": \"FINISHED\",\n  \"phase\": \"execute\",\n  \"worker\": {\n    \"pid\": 133909,\n    \"start_ticks\": 8003617,\n    \"boot_id\": \"cbb1fa33-db15-4014-a06b-484e3f0b0dcc\"\n  },\n  \"run_directory\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4\",\n  \"snapshot_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/mission.json\",\n  \"input_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/input.json\",\n  \"report_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/report.json\",\n  \"job_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/job.json\",\n  \"worker_log_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/worker.log\",\n  \"started_at\": \"2026-10-18T21:18:42.230989+00:00\",\n  \"finished_at\": \"2026-10-18T21:19:09.145298+00:00\"\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/input.json": {
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+        "content": "{\n  \"schema_version\": \"1.0\",\n  \"mission_id\": \"simulation_navigation_drone02\",\n  \"name\": \"SITL navigation on drone_02\",\n  \"source\": \"json\",\n  \"vehicle\": {\n    \"vehicle_id\": \"drone_02\",\n    \"vehicle_type\": \"multirotor\",\n    \"autopilot\": \"ArduPilot\",\n    \"cruise_speed_kmh\": 35.0,\n    \"battery_percent\": 100.0,\n    \"battery_consumption_percent_per_minute\": 0.8\n  },\n  \"objective\": {\n    \"objective_type\": \"precision_agriculture\",\n    \"target\": \"field_A\",\n    \"description\": \"Navigate a short three-waypoint route in simulation and return to launch.\"\n  },\n  \"route\": {\n    \"mode\": \"waypoints\",\n    \"home\": {\n      \"latitude\": 41.275,\n      \"longitude\": 1.987,\n      \"altitude_m\": 0.0\n    },\n    \"waypoints\": [\n      {\n        \"waypoint_id\": \"WP1\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.987,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP2\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP3\",\n        \"latitude\": 41.275,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      }\n    ],\n    \"return_to_home\": true\n  },\n  \"environment\": {\n    \"wind_speed_kmh\": 0.0,\n    \"wind_direction_from_deg\": 0.0\n  },\n  \"constraints\": {\n    \"minimum_battery_reserve_percent\": 20.0,\n    \"maximum_wind_speed_kmh\": 30.0,\n    \"maximum_altitude_m\": 120.0\n  },\n  \"failsafe\": {\n    \"low_battery_action\": \"RETURN_TO_HOME\",\n    \"unsafe_wind_action\": \"RETURN_TO_HOME\",\n    \"communication_loss_action\": \"RETURN_TO_HOME\"\n  }\n}\n"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/report.json": {
+        "sha256": "2ab1614fbec51fc827dc108d6cc863c212d0f5595a21c5ff91526791ec259a61",
+        "content": "{\n  \"schema_version\": \"1.1\",\n  \"report_persisted\": true,\n  \"expected_sha256\": \"ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb\",\n  \"persist_progress\": true,\n  \"source_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/input.json\",\n  \"source_artifact\": null,\n  \"run_id\": \"1b69dfc7-0707-4b68-a009-062610418fe4\",\n  \"run_directory\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4\",\n  \"snapshot_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/mission.json\",\n  \"report_path\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/report.json\",\n  \"mission_sha256\": \"ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb\",\n  \"mission_identity\": {\n    \"mission_id\": \"simulation_navigation_drone02\",\n    \"name\": \"SITL navigation on drone_02\",\n    \"vehicle_id\": \"drone_02\",\n    \"simulated_vehicle\": \"v2\"\n  },\n  \"vehicle_selection\": {\n    \"vehicle_id\": \"drone_02\",\n    \"simulated_vehicle\": \"v2\"\n  },\n  \"expected_vehicle_selection\": {\n    \"vehicle_id\": \"drone_02\",\n    \"simulated_vehicle\": \"v2\"\n  },\n  \"status\": \"ERROR\",\n  \"stage\": \"execute\",\n  \"reasons\": [\n    \"Executor raised FlightControlError: ROS2 command failed with return code 124:\\n; outcome unknown.\"\n  ],\n  \"validation\": {\n    \"mission_id\": \"simulation_navigation_drone02\",\n    \"mission_status\": \"FEASIBLE\",\n    \"execution_status\": \"APPROVED\",\n    \"qgc_plan_path\": null,\n    \"failure_reasons\": [],\n    \"errors\": [],\n    \"replan_status\": \"\",\n    \"replan_actions\": []\n  },\n  \"readiness\": {\n    \"ready\": true,\n    \"status\": \"READY\",\n    \"return_code\": 0,\n    \"message\": \"Simulation is healthy and both drones are ready.\",\n    \"output\": \"========================================\\n TFG - Simulation Check\\n========================================\\n\\n[1/5] Docker container...\\n[PASS] Container running.\\n\\n[2/5] Gazebo server...\\n[PASS] Gazebo runway world running.\\n\\n[3/5] ArduPilot processes...\\n[PASS] 2 ArduCopter processes running.\\n\\n[4/5] ROS 2 vehicle interfaces...\\n\\n[PASS] /ap/v1/status\\n[PASS] /ap/v2/status\\n\\n[5/5] Pre-arm checks...\\n\\n[PASS] /ap/v1 - Vehicle is Armable\\n[PASS] /ap/v2 - Vehicle is Armable\\n\\n========================================\\n SIMULATION HEALTHY\\n========================================\\n\\nDrone 1 -> READY\\nDrone 2 -> READY\"\n  },\n  \"compatibility_errors\": [],\n  \"executor_result\": null,\n  \"execution_attempted\": true,\n  \"analysis\": null,\n  \"started_at\": \"2026-10-18T21:14:36.484712+00:00\",\n  \"execution_started_at\": \"2026-10-18T21:18:50.566241+00:00\",\n  \"execution_finished_at\": \"2026-10-18T21:19:09.141109+00:00\",\n  \"transitions\": [\n    {\n      \"node\": \"snapshot\",\n      \"started_at\": \"2026-10-18T21:18:42.242915+00:00\",\n      \"finished_at\": \"2026-10-18T21:18:42.245750+00:00\",\n      \"status\": \"RUNNING\"\n    },\n    {\n      \"node\": \"validate\",\n      \"started_at\": \"2026-10-18T21:18:42.247779+00:00\",\n      \"finished_at\": \"2026-10-18T21:18:42.252449+00:00\",\n      \"status\": \"RUNNING\"\n    },\n    {\n      \"node\": \"check_readiness\",\n      \"started_at\": \"2026-10-18T21:18:42.253373+00:00\",\n      \"finished_at\": \"2026-10-18T21:18:50.562581+00:00\",\n      \"status\": \"RUNNING\"\n    },\n    {\n      \"node\": \"compatibility\",\n      \"started_at\": \"2026-10-18T21:18:50.563847+00:00\",\n      \"finished_at\": \"2026-10-18T21:18:50.564459+00:00\",\n      \"status\": \"RUNNING\"\n    },\n    {\n      \"node\": \"execute\",\n      \"started_at\": \"2026-10-18T21:18:50.565451+00:00\",\n      \"finished_at\": \"2026-10-18T21:19:09.141206+00:00\",\n      \"status\": \"ERROR\"\n    },\n    {\n      \"node\": \"write_report\",\n      \"started_at\": \"2026-10-18T21:19:09.143212+00:00\",\n      \"finished_at\": \"2026-10-18T21:19:09.143212+00:00\",\n      \"status\": \"ERROR\"\n    }\n  ],\n  \"finished_at\": \"2026-10-18T21:19:09.143212+00:00\",\n  \"scope\": \"Gazebo/ArduPilot SITL, simulated v2 only; at most one project-wide flight\",\n  \"hardware_authorized\": false,\n  \"subsequent_execution_authorized\": false,\n  \"replan_proposals\": []\n}"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/mission.json": {
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+        "content": "{\n  \"schema_version\": \"1.0\",\n  \"mission_id\": \"simulation_navigation_drone02\",\n  \"name\": \"SITL navigation on drone_02\",\n  \"source\": \"json\",\n  \"vehicle\": {\n    \"vehicle_id\": \"drone_02\",\n    \"vehicle_type\": \"multirotor\",\n    \"autopilot\": \"ArduPilot\",\n    \"cruise_speed_kmh\": 35.0,\n    \"battery_percent\": 100.0,\n    \"battery_consumption_percent_per_minute\": 0.8\n  },\n  \"objective\": {\n    \"objective_type\": \"precision_agriculture\",\n    \"target\": \"field_A\",\n    \"description\": \"Navigate a short three-waypoint route in simulation and return to launch.\"\n  },\n  \"route\": {\n    \"mode\": \"waypoints\",\n    \"home\": {\n      \"latitude\": 41.275,\n      \"longitude\": 1.987,\n      \"altitude_m\": 0.0\n    },\n    \"waypoints\": [\n      {\n        \"waypoint_id\": \"WP1\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.987,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP2\",\n        \"latitude\": 41.27502694933525,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      },\n      {\n        \"waypoint_id\": \"WP3\",\n        \"latitude\": 41.275,\n        \"longitude\": 1.98703582,\n        \"altitude_m\": 5.0,\n        \"speed_kmh\": 10.0,\n        \"action\": \"navigate\"\n      }\n    ],\n    \"return_to_home\": true\n  },\n  \"environment\": {\n    \"wind_speed_kmh\": 0.0,\n    \"wind_direction_from_deg\": 0.0\n  },\n  \"constraints\": {\n    \"minimum_battery_reserve_percent\": 20.0,\n    \"maximum_wind_speed_kmh\": 30.0,\n    \"maximum_altitude_m\": 120.0\n  },\n  \"failsafe\": {\n    \"low_battery_action\": \"RETURN_TO_HOME\",\n    \"unsafe_wind_action\": \"RETURN_TO_HOME\",\n    \"communication_loss_action\": \"RETURN_TO_HOME\"\n  }\n}\n"
+      }
+    },
+    "processes": [
+      {
+        "role": "sequence coordinator",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      },
+      {
+        "role": "worker 467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      },
+      {
+        "role": "worker 1b69dfc7-0707-4b68-a009-062610418fe4",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      },
+      {
+        "role": "v2.json executor/owner",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      },
+      {
+        "role": "worker 1b69dfc7-0707-4b68-a009-062610418fe4",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      }
+    ],
+    "admission_processes": [
+      {
+        "role": "sequence admission",
+        "registered": {
+          "pid": 130817,
+          "start_ticks": 7968185,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      }
+    ]
+  },
+  "observation": {},
+  "summary": {
+    "reservations": {
+      "sequence.json": {
+        "kind": "PREFLIGHT_SEQUENCE",
+        "owner_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+        "actor": "sequential_preflight",
+        "state": "UNCONFIRMED",
+        "plan_sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436",
+        "children": [
+          {
+            "owner_id": "467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+            "vehicle": "v1",
+            "input_sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+          },
+          {
+            "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+            "vehicle": "v2",
+            "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+          }
+        ],
+        "next_index": 2,
+        "completed_count": 1,
+        "active_child": {
+          "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+          "vehicle": "v2",
+          "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+        },
+        "created_at": "2026-10-18T21:14:36.472104+00:00",
+        "process": {
+          "pid": 130817,
+          "start_ticks": 7968185,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "coordinator": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "updated_at": "2026-10-18T21:18:42.213841+00:00"
+      },
+      "v2.json": {
+        "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+        "vehicle": "v2",
+        "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+        "sequence_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+        "actor": "sequence_child",
+        "state": "UNCONFIRMED",
+        "vehicle_id": "drone_02",
+        "created_at": "2026-10-18T21:18:42.217622+00:00",
+        "process": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "updated_at": "2026-10-18T21:19:09.156883+00:00"
+      }
+    },
+    "process_checks": [
+      {
+        "role": "sequence coordinator",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      },
+      {
+        "role": "worker 467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      },
+      {
+        "role": "worker 1b69dfc7-0707-4b68-a009-062610418fe4",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      },
+      {
+        "role": "v2.json executor/owner",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      },
+      {
+        "role": "worker 1b69dfc7-0707-4b68-a009-062610418fe4",
+        "registered": {
+          "pid": 133909,
+          "start_ticks": 8003617,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      }
+    ],
+    "admission_process_checks": [
+      {
+        "role": "sequence admission",
+        "registered": {
+          "pid": 130817,
+          "start_ticks": 7968185,
+          "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+        },
+        "observed": null
+      }
+    ],
+    "artifact_versions": {
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/sequence.json": {
+        "sha256": "47385b4ebc900482d1202131e2421d55a316c7144ccce8bc135cabfaaf73505e"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/v1.json": {
+        "exists": false
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/v2.json": {
+        "sha256": "c7bcb0a629e02e9676a5b25b43a089b73686c23ce4e39e7a4368936c59b91954"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/vehicle_locks/lifecycle.json": {
+        "exists": false
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/operation.json": {
+        "sha256": "1540aadc56680e058b217b9dfc029f0560d54fc8351c0ca5d6310bbfc69268d0"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/plan.json": {
+        "sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/mission_1.json": {
+        "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/job.json": {
+        "sha256": "5a7bb17f1acdeaf15936b0658208341c9690b3533a503ac899d2ba1ddc6a1b4c"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/input.json": {
+        "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/report.json": {
+        "sha256": "d967bc138c2c9a9834ba0a845417139a491c01953bd9690b610a10ac7b155451"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/mission.json": {
+        "sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/c6eeb645-17d2-4081-9afb-cecfd23af393/mission_2.json": {
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/job.json": {
+        "sha256": "9b03a3b4e93029b2c7c2cb519f731220d3da492dd316976a7535e2aaebc1de5a"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/input.json": {
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/report.json": {
+        "sha256": "2ab1614fbec51fc827dc108d6cc863c212d0f5595a21c5ff91526791ec259a61"
+      },
+      "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/mission.json": {
+        "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+      }
+    },
+    "telemetry": {
+      "v1": {
+        "status": {
+          "count": 0,
+          "latest": null
+        },
+        "position": {
+          "count": 0,
+          "latest": null
+        }
+      },
+      "v2": {
+        "status": {
+          "count": 0,
+          "latest": null
+        },
+        "position": {
+          "count": 0,
+          "latest": null
+        }
+      }
+    },
+    "absolute_generation_age_known": false,
+    "independent_ground_confirmation": "NOT_APPLICABLE_ENVIRONMENT_TERMINATED"
+  },
+  "environment": {
+    "status": "STOPPED",
+    "expected_container_name": "tfg-ardupilot-gazebo",
+    "started_at_utc": "2026-10-19T19:06:16.146666+00:00",
+    "command_timeout_seconds": 3,
+    "reasons": [],
+    "operations": [
+      {
+        "operation": "engine_identity",
+        "return_code": 0,
+        "error": null
+      },
+      {
+        "operation": "resolve_exact_name",
+        "return_code": 0,
+        "error": null
+      },
+      {
+        "operation": "container_metadata",
+        "return_code": 0,
+        "error": null
+      },
+      {
+        "operation": "recheck_name",
+        "return_code": 0,
+        "error": null
+      },
+      {
+        "operation": "recheck_engine",
+        "return_code": 0,
+        "error": null
+      }
+    ],
+    "unknown_fields": [],
+    "clock": "Docker daemon wall timestamps; not ROS/simulation time",
+    "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+    "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+    "name": "/tfg-ardupilot-gazebo",
+    "created_at": "2026-10-02T07:28:34.87176229Z",
+    "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 255,
+      "FinishedAt": "2026-10-19T18:01:24.5530994Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-10-16T16:41:55.313301992Z",
+      "Status": "exited"
+    },
+    "finished_at_utc": "2026-10-19T19:06:18.896621+00:00"
+  },
+  "identity_reference": {
+    "inspection_id": "1a977374-4df9-42a6-9409-d0e0c3a991e2",
+    "sha256": "ce2fc0ec49d29a617f81a8236329308c80bf4b91c19dd7ac6f24525765db61b8",
+    "identity": {
+      "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f"
+    },
+    "kind": "LEGACY_FAILED_INSPECTION_CONTAINER_ID",
+    "historical_engine_identity_known": false,
+    "limitation": "Full ID addressed by a prior inspection of this owner; no historical daemon/incarnation or termination evidence"
+  },
+  "environment_assessment": "STOPPED",
+  "reconciliation_basis": "ENVIRONMENT_TERMINATED",
+  "status": "AWAITING_TERMINATION_RECONCILIATION_AUTHORIZATION",
+  "reasons": [],
+  "telemetry_collection": "NOT_APPLICABLE_ENVIRONMENT_STOPPED",
+  "eligibility_evidence_collected": true,
+  "environment_collection": "COLLECTED",
+  "unknown_fields": [],
+  "generation_freshness": "NOT_APPLICABLE_ENVIRONMENT_TERMINATED",
+  "ground_contact": "NOT_ASSERTED",
+  "reservations_changed": false,
+  "no_flight_or_hardware_consent": true,
+  "applicability": {
+    "basis": "ENVIRONMENT_TERMINATED",
+    "requires_explicit_authorization": true,
+    "requires_ground_confirmations": false,
+    "not_applicable": [
+      "telemetry",
+      "ground_confirmation"
+    ],
+    "missing_or_blocking_reasons": []
+  }
+}
