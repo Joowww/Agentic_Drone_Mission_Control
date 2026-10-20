@@ -1,0 +1,151 @@
+{
+  "started_at": "2026-10-20T08:55:26.208910+00:00",
+  "under_lifecycle_exclusion": true,
+  "guards": {
+    "sequence.json": false,
+    "v1.json": false,
+    "v2.json": false,
+    "lifecycle.json": false,
+    "reconciliation.json": false
+  },
+  "environment": {
+    "context": "default",
+    "endpoint": "unix:///var/run/docker.sock",
+    "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+    "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+    "image": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+    "created": "2026-10-02T07:28:34.87176229Z",
+    "name": "/tfg-ardupilot-gazebo",
+    "state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 255,
+      "Error": "",
+      "StartedAt": "2026-10-16T16:41:55.313301992Z",
+      "FinishedAt": "2026-10-19T18:01:24.5530994Z"
+    },
+    "overrides": {
+      "DOCKER_HOST": null,
+      "DOCKER_CONTEXT": null
+    }
+  },
+  "reads": [
+    {
+      "command": [
+        "docker",
+        "context",
+        "show"
+      ],
+      "started_at": "2026-10-20T08:55:26.209004+00:00",
+      "finished_at": "2026-10-20T08:55:26.231473+00:00",
+      "return_code": 0,
+      "stdout": "default\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "context",
+        "inspect",
+        "--format",
+        "{{json .Endpoints.docker.Host}}"
+      ],
+      "started_at": "2026-10-20T08:55:26.231492+00:00",
+      "finished_at": "2026-10-20T08:55:26.251174+00:00",
+      "return_code": 0,
+      "stdout": "\"unix:///var/run/docker.sock\"\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "info",
+        "--format",
+        "{{.ID}}"
+      ],
+      "started_at": "2026-10-20T08:55:26.251192+00:00",
+      "finished_at": "2026-10-20T08:55:26.719079+00:00",
+      "return_code": 0,
+      "stdout": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "--type",
+        "container",
+        "tfg-ardupilot-gazebo"
+      ],
+      "started_at": "2026-10-20T08:55:26.719097+00:00",
+      "finished_at": "2026-10-20T08:55:26.768372+00:00",
+      "return_code": 0,
+      "stdout": "[\n    {\n        \"Id\": \"0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f\",\n        \"Created\": \"2026-10-02T07:28:34.87176229Z\",\n        \"Path\": \"/ros_entrypoint.sh\",\n        \"Args\": [\n            \"bash\"\n        ],\n        \"State\": {\n            \"Status\": \"exited\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 255,\n            \"Error\": \"\",\n            \"StartedAt\": \"2026-10-16T16:41:55.313301992Z\",\n            \"FinishedAt\": \"2026-10-19T18:01:24.5530994Z\"\n        },\n        \"Image\": \"sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66\",\n        \"ResolvConfPath\": \"/var/lib/docker/containers/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f/resolv.conf\",\n        \"HostnamePath\": \"/var/lib/docker/containers/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f/hostname\",\n        \"HostsPath\": \"/var/lib/docker/containers/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f/hosts\",\n        \"LogPath\": \"/var/lib/docker/containers/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f-json.log\",\n        \"Name\": \"/tfg-ardupilot-gazebo\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": [\n                \"/tmp/.X11-unix:/tmp/.X11-unix\",\n                \"/usr/lib/wsl:/usr/lib/wsl:ro\",\n                \"/home/joelm/TFG/ardupilot_ros2_ws:/root/ardu_ws\",\n                \"/home/joelm/TFG/Agentic_Drone_Mission_Control:/workspace/tfg\"\n            ],\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"json-file\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"bridge\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                41,\n                76\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": null,\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": [],\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": false,\n            \"SecurityOpt\": null,\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 0,\n            \"NanoCpus\": 0,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [\n                {\n                    \"PathOnHost\": \"/dev/dxg\",\n                    \"PathInContainer\": \"/dev/dxg\",\n                    \"CgroupPermissions\": \"rwm\"\n                }\n            ],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 0,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": null,\n            \"PidsLimit\": null,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"/home/joelm/TFG/ardupilot_ros2_ws\",\n                \"Destination\": \"/root/ardu_ws\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"/tmp/.X11-unix\",\n                \"Destination\": \"/tmp/.X11-unix\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control\",\n                \"Destination\": \"/workspace/tfg\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"/usr/lib/wsl\",\n                \"Destination\": \"/usr/lib/wsl\",\n                \"Mode\": \"ro\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"tfg-gz\",\n            \"Domainname\": \"\",\n            \"User\": \"\",\n            \"AttachStdin\": true,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": true,\n            \"OpenStdin\": true,\n            \"StdinOnce\": true,\n            \"Env\": [\n                \"DISPLAY=:0\",\n                \"QT_QPA_PLATFORM=xcb\",\n                \"QT_X11_NO_MITSHM=1\",\n                \"LD_LIBRARY_PATH=/usr/lib/wsl/lib\",\n                \"PATH=/usr/lib/ccache:/dds-gen/scripts:/opt/gcc-arm-none-eabi-10/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"LC_ALL=C.UTF-8\",\n                \"ROS_DISTRO=humble\",\n                \"DEBIAN_FRONTEND=noninteractive\",\n                \"PYTHONUNBUFFERED=1\",\n                \"PYTHONDONTWRITEBYTECODE=1\",\n                \"PIP_DISABLE_PIP_VERSION_CHECK=on\",\n                \"PIP_BREAK_SYSTEM_PACKAGES=1\",\n                \"PYTHON_PIP_VERSION=25.0.1\",\n                \"PYTHON_SETUPTOOLS_VERSION=65.5.1\",\n                \"PYTHON_GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py\",\n                \"DISABLE_MAVNATIVE=True\",\n                \"BUILDLOGS=/tmp/buildlogs\",\n                \"TZ=UTC\",\n                \"PIP_ROOT_USER_ACTION=ignore\"\n            ],\n            \"Cmd\": [\n                \"bash\"\n            ],\n            \"Image\": \"ardupilot/ardupilot-dev-ros:tfg\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/ros_entrypoint.sh\"\n            ],\n            \"Labels\": {\n                \"desktop.docker.io/wsl-distro\": \"Ubuntu\",\n                \"org.opencontainers.image.version\": \"22.04\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"bridge\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"4e3dd7f7b3853bfbd9b5d33842863b387a2a171a2da21e565f632be34ace2ec9\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:851050b1e1a5c9ca62ede27dd8e82713c89c8215dca172a229dcb64866e1fa7f\",\n            \"size\": 4111,\n            \"platform\": {\n                \"architecture\": \"amd64\",\n                \"os\": \"linux\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    }
+  ],
+  "process_candidates": [],
+  "process_errors": [],
+  "second_reads": [
+    {
+      "command": [
+        "docker",
+        "context",
+        "show"
+      ],
+      "started_at": "2026-10-20T08:55:26.776624+00:00",
+      "finished_at": "2026-10-20T08:55:26.795751+00:00",
+      "return_code": 0,
+      "stdout": "default\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "context",
+        "inspect",
+        "--format",
+        "{{json .Endpoints.docker.Host}}"
+      ],
+      "started_at": "2026-10-20T08:55:26.795796+00:00",
+      "finished_at": "2026-10-20T08:55:26.816602+00:00",
+      "return_code": 0,
+      "stdout": "\"unix:///var/run/docker.sock\"\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "info",
+        "--format",
+        "{{.ID}}"
+      ],
+      "started_at": "2026-10-20T08:55:26.816623+00:00",
+      "finished_at": "2026-10-20T08:55:27.314183+00:00",
+      "return_code": 0,
+      "stdout": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "--type",
+        "container",
+        "tfg-ardupilot-gazebo"
+      ],
+      "started_at": "2026-10-20T08:55:27.314207+00:00",
+      "finished_at": "2026-10-20T08:55:27.364895+00:00",
+      "return_code": 0,
+      "stdout": "[\n    {\n        \"Id\": \"0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f\",\n        \"Created\": \"2026-10-02T07:28:34.87176229Z\",\n        \"Path\": \"/ros_entrypoint.sh\",\n        \"Args\": [\n            \"bash\"\n        ],\n        \"State\": {\n            \"Status\": \"exited\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 255,\n            \"Error\": \"\",\n            \"StartedAt\": \"2026-10-16T16:41:55.313301992Z\",\n            \"FinishedAt\": \"2026-10-19T18:01:24.5530994Z\"\n        },\n        \"Image\": \"sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66\",\n        \"ResolvConfPath\": \"/var/lib/docker/containers/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f/resolv.conf\",\n        \"HostnamePath\": \"/var/lib/docker/containers/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f/hostname\",\n        \"HostsPath\": \"/var/lib/docker/containers/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f/hosts\",\n        \"LogPath\": \"/var/lib/docker/containers/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f/0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f-json.log\",\n        \"Name\": \"/tfg-ardupilot-gazebo\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlayfs\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": [\n                \"/tmp/.X11-unix:/tmp/.X11-unix\",\n                \"/usr/lib/wsl:/usr/lib/wsl:ro\",\n                \"/home/joelm/TFG/ardupilot_ros2_ws:/root/ardu_ws\",\n                \"/home/joelm/TFG/Agentic_Drone_Mission_Control:/workspace/tfg\"\n            ],\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"json-file\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"bridge\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"ConsoleSize\": [\n                41,\n                76\n            ],\n            \"CapAdd\": null,\n            \"CapDrop\": null,\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": [],\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": false,\n            \"SecurityOpt\": null,\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 0,\n            \"NanoCpus\": 0,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": [],\n            \"BlkioDeviceWriteBps\": [],\n            \"BlkioDeviceReadIOps\": [],\n            \"BlkioDeviceWriteIOps\": [],\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [\n                {\n                    \"PathOnHost\": \"/dev/dxg\",\n                    \"PathInContainer\": \"/dev/dxg\",\n                    \"CgroupPermissions\": \"rwm\"\n                }\n            ],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 0,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": null,\n            \"PidsLimit\": null,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"MaskedPaths\": [\n                \"/proc/acpi\",\n                \"/proc/asound\",\n                \"/proc/interrupts\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/sys/devices/virtual/powercap\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"Storage\": {\n            \"RootFS\": {\n                \"Snapshot\": {\n                    \"Name\": \"overlayfs\"\n                }\n            }\n        },\n        \"Mounts\": [\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"/home/joelm/TFG/ardupilot_ros2_ws\",\n                \"Destination\": \"/root/ardu_ws\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"/tmp/.X11-unix\",\n                \"Destination\": \"/tmp/.X11-unix\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"/home/joelm/TFG/Agentic_Drone_Mission_Control\",\n                \"Destination\": \"/workspace/tfg\",\n                \"Mode\": \"\",\n                \"RW\": true,\n                \"Propagation\": \"rprivate\"\n            },\n            {\n                \"Type\": \"bind\",\n                \"Source\": \"/usr/lib/wsl\",\n                \"Destination\": \"/usr/lib/wsl\",\n                \"Mode\": \"ro\",\n                \"RW\": false,\n                \"Propagation\": \"rprivate\"\n            }\n        ],\n        \"Config\": {\n            \"Hostname\": \"tfg-gz\",\n            \"Domainname\": \"\",\n            \"User\": \"\",\n            \"AttachStdin\": true,\n            \"AttachStdout\": true,\n            \"AttachStderr\": true,\n            \"Tty\": true,\n            \"OpenStdin\": true,\n            \"StdinOnce\": true,\n            \"Env\": [\n                \"DISPLAY=:0\",\n                \"QT_QPA_PLATFORM=xcb\",\n                \"QT_X11_NO_MITSHM=1\",\n                \"LD_LIBRARY_PATH=/usr/lib/wsl/lib\",\n                \"PATH=/usr/lib/ccache:/dds-gen/scripts:/opt/gcc-arm-none-eabi-10/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"LC_ALL=C.UTF-8\",\n                \"ROS_DISTRO=humble\",\n                \"DEBIAN_FRONTEND=noninteractive\",\n                \"PYTHONUNBUFFERED=1\",\n                \"PYTHONDONTWRITEBYTECODE=1\",\n                \"PIP_DISABLE_PIP_VERSION_CHECK=on\",\n                \"PIP_BREAK_SYSTEM_PACKAGES=1\",\n                \"PYTHON_PIP_VERSION=25.0.1\",\n                \"PYTHON_SETUPTOOLS_VERSION=65.5.1\",\n                \"PYTHON_GET_PIP_URL=https://bootstrap.pypa.io/get-pip.py\",\n                \"DISABLE_MAVNATIVE=True\",\n                \"BUILDLOGS=/tmp/buildlogs\",\n                \"TZ=UTC\",\n                \"PIP_ROOT_USER_ACTION=ignore\"\n            ],\n            \"Cmd\": [\n                \"bash\"\n            ],\n            \"Image\": \"ardupilot/ardupilot-dev-ros:tfg\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": [\n                \"/ros_entrypoint.sh\"\n            ],\n            \"Labels\": {\n                \"desktop.docker.io/wsl-distro\": \"Ubuntu\",\n                \"org.opencontainers.image.version\": \"22.04\"\n            }\n        },\n        \"NetworkSettings\": {\n            \"SandboxID\": \"\",\n            \"SandboxKey\": \"\",\n            \"Ports\": {},\n            \"Networks\": {\n                \"bridge\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": null,\n                    \"DriverOpts\": null,\n                    \"GwPriority\": 0,\n                    \"NetworkID\": \"4e3dd7f7b3853bfbd9b5d33842863b387a2a171a2da21e565f632be34ace2ec9\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"MacAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"DNSNames\": null\n                }\n            }\n        },\n        \"ImageManifestDescriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.manifest.v1+json\",\n            \"digest\": \"sha256:851050b1e1a5c9ca62ede27dd8e82713c89c8215dca172a229dcb64866e1fa7f\",\n            \"size\": 4111,\n            \"platform\": {\n                \"architecture\": \"amd64\",\n                \"os\": \"linux\"\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    }
+  ],
+  "status": "ALLOWED_FOR_SINGLE_START",
+  "finished_at": "2026-10-20T08:55:27.365216+00:00"
+}

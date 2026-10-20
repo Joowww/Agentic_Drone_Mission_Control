@@ -1,0 +1,478 @@
+(2026-10-20T08:55:34.126661039) (2026-10-20T08:55:34.126673397) [Msg] Gazebo Sim Server v8.15.0
+(2026-10-20T08:55:34.234236597) (2026-10-20T08:55:34.234247859) [Msg] Loading SDF world file[/root/ardu_ws/install/ardupilot_gz_gazebo/share/ardupilot_gz_gazebo/worlds/runway.sdf].
+(2026-10-20T08:55:35.13039858) (2026-10-20T08:55:35.13056502) [Msg] Serving entity system service on [/entity/system/add]
+(2026-10-20T08:55:36.194095122) (2026-10-20T08:55:36.194113459) [Dbg] [Physics.cc:1004] Loaded [gz::physics::dartsim::Plugin] from library [/usr/lib/x86_64-linux-gnu/gz-physics-7/engine-plugins/libgz-physics-dartsim-plugin.so]
+(2026-10-20T08:55:36.194240423) (2026-10-20T08:55:36.194248894) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Physics] for entity [1]
+(2026-10-20T08:55:36.275970522) (2026-10-20T08:55:36.275990055) [Dbg] [Sensors.cc:697] Configuring Sensors system
+(2026-10-20T08:55:36.276185085) (2026-10-20T08:55:36.276196446) [Dbg] [Sensors.cc:557] SensorsPrivate::Run
+(2026-10-20T08:55:36.276547940) (2026-10-20T08:55:36.276558504) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Sensors] for entity [(2026-10-20T08:55:36.276672612) (2026-10-20T08:55:36.2767003172026-10-20T08:55:36.276700317) ]
+[Dbg] [Sensors.cc:532] 
+[Dbg] [Sensors.cc:532] SensorsPrivate::RenderThread started
+(2026-10-20T08:55:36.276874619) (2026-10-20T08:55:36.276883189) [Dbg] [Sensors.cc:337] Waiting for init
+(2026-10-20T08:55:36.291919285) (2026-10-20T08:55:36.291945296) [Msg] Create service on [/world/runway/create_multiple] (async)
+(2026-10-20T08:55:36.292015554) (2026-10-20T08:55:36.292022431) [Msg] Create service on [/world/runway/create_multiple/blocking] (blocking)
+(2026-10-20T08:55:36.292790794) (2026-10-20T08:55:36.292802653) [Msg] Remove service on [/world/runway/remove] (async)
+(2026-10-20T08:55:36.292847997) (2026-10-20T08:55:36.292855472) [Msg] Remove service on [/world/runway/remove/blocking] (blocking)
+(2026-10-20T08:55:36.293586762) (2026-10-20T08:55:36.293598123) [Msg] Pose service on [/world/runway/set_pose] (async)
+(2026-10-20T08:55:36.293643567) (2026-10-20T08:55:36.293651141) [Msg] Pose service on [/world/runway/set_pose/blocking] (blocking)
+(2026-10-20T08:55:36.294364194) (2026-10-20T08:55:36.294379142) [Msg] Pose service on [/world/runway/set_pose_vector] (async)
+(2026-10-20T08:55:36.294425184) (2026-10-20T08:55:36.294433157) [Msg] Pose service on [/world/runway/set_pose_vector/blocking] (blocking)
+(2026-10-20T08:55:36.295192451) (2026-10-20T08:55:36.295203513) [Msg] Light configuration service on [/world/runway/light_config] (async)
+(2026-10-20T08:55:36.295313037) (2026-10-20T08:55:36.295334962) [Msg] Light configuration service on [/world/runway/light_config/blocking] (blocking)
+(2026-10-20T08:55:36.296665894) (2026-10-20T08:55:36.296679547) [Msg] Physics service on [/world/runway/set_physics] (async)
+(2026-10-20T08:55:36.296727682) (2026-10-20T08:55:36.296735356) [Msg] Physics service on [/world/runway/set_physics/blocking] (blocking)
+(2026-10-20T08:55:36.297789936) (2026-10-20T08:55:36.297866773) [Msg] SphericalCoordinates service on [/world/runway/set_spherical_coordinates] (async)
+(2026-10-20T08:55:36.297920289) (2026-10-20T08:55:36.297929358) [Msg] SphericalCoordinates service on [/world/runway/set_spherical_coordinates/blocking] (blocking)
+(2026-10-20T08:55:36.298720642) (2026-10-20T08:55:36.298734096) [Msg] Enable collision service on [/world/runway/enable_collision] (async)
+(2026-10-20T08:55:36.298779839) (2026-10-20T08:55:36.298786815) [Msg] Enable collision service on [/world/runway/enable_collision/blocking] (blocking)
+(2026-10-20T08:55:36.299704864) (2026-10-20T08:55:36.299719115) [Msg] Disable collision service on [/world/runway/disable_collision] (async)
+(2026-10-20T08:55:36.299763762) (2026-10-20T08:55:36.299769044) [Msg] Disable collision service on [/world/runway/disable_collision/blocking] (blocking)
+(2026-10-20T08:55:36.300845848) (2026-10-20T08:55:36.300858904) [Msg] Material service on [/world/runway/visual_config] (async)
+(2026-10-20T08:55:36.300906241) (2026-10-20T08:55:36.300934444) [Msg] Material service on [/world/runway/visual_config/blocking] (blocking)
+(2026-10-20T08:55:36.301949560) (2026-10-20T08:55:36.301961220) [Msg] Material service on [/world/runway/wheel_slip] (async)
+(2026-10-20T08:55:36.302057789) (2026-10-20T08:55:36.302066459) [Msg] Material service on [/world/runway/wheel_slip/blocking] (blocking)
+(2026-10-20T08:55:36.302129343) (2026-10-20T08:55:36.302136120) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::UserCommands] for entity [1]
+(2026-10-20T08:55:36.310545359) (2026-10-20T08:55:36.310563198) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::SceneBroadcaster] for entity [1]
+(2026-10-20T08:55:36.319790629) (2026-10-20T08:55:36.319810361) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::AirPressure] for entity [1]
+(2026-10-20T08:55:36.327391642) (2026-10-20T08:55:36.327406890) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::AirSpeed] for entity [1]
+(2026-10-20T08:55:36.334458787) (2026-10-20T08:55:36.334504630) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Altimeter] for entity [1]
+(2026-10-20T08:55:36.342664724) (2026-10-20T08:55:36.342683161) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Imu] for entity [1]
+(2026-10-20T08:55:36.351490234) (2026-10-20T08:55:36.351505781) [Dbg] [Magnetometer.cc:261] Magnetometer: using param [use_units_gauss: 1].
+(2026-10-20T08:55:36.351558600) (2026-10-20T08:55:36.351566074) [Dbg] [Magnetometer.cc:269] Magnetometer: using param [use_earth_frame_ned: 1].
+(2026-10-20T08:55:36.351644306) (2026-10-20T08:55:36.351652976) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Magnetometer] for entity [1]
+(2026-10-20T08:55:36.361576817) (2026-10-20T08:55:36.361593559) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::NavSat] for entity [1]
+(2026-10-20T08:55:36.364198120) (2026-10-20T08:55:36.364346212) [Msg] Loaded level [default]
+(2026-10-20T08:55:36.368179855) (2026-10-20T08:55:36.368197993) [Msg] Serving world controls on [/world/runway/control], [/world/runway/control/state] and [/world/runway/playback/control]
+(2026-10-20T08:55:36.368667581) (2026-10-20T08:55:36.368679640) [Msg] Serving GUI information on [/world/runway/gui/info]
+(2026-10-20T08:55:36.368746111) (2026-10-20T08:55:36.368753387) [Msg] World [runway] initialized with [1ms] physics profile.
+(2026-10-20T08:55:36.369223274) (2026-10-20T08:55:36.369234336) [Msg] Serving world SDF generation service on [/world/runway/generate_world_sdf]
+(2026-10-20T08:55:36.369667150) (2026-10-20T08:55:36.369678412) [Msg] Serving world names on [/gazebo/worlds]
+(2026-10-20T08:55:36.369974894) (2026-10-20T08:55:36.369985657) [Msg] Resource path add service on [/gazebo/resource_paths/add].
+(2026-10-20T08:55:36.370281641) (2026-10-20T08:55:36.370292704) [Msg] Resource path get service on [/gazebo/resource_paths/get].
+(2026-10-20T08:55:36.471540118) (2026-10-20T08:55:36.471561943) [Msg] Resource path resolve service on [/gazebo/resource_paths/resolve].
+(2026-10-20T08:55:36.572689867) (2026-10-20T08:55:36.572710496) [Msg] Resource paths published on [/gazebo/resource_paths].
+(2026-10-20T08:55:36.573685849) (2026-10-20T08:55:36.573701993) [Msg] Server control service on [/server_control].
+(2026-10-20T08:55:36.574756674) (2026-10-20T08:55:36.574772918) [Msg] Found no publishers on /stats, adding root stats topic
+(2026-10-20T08:55:36.575356614) (2026-10-20T08:55:36.575368872) [Msg] Found no publishers on /clock, adding root clock topic
+(2026-10-20T08:55:36.575771491) (2026-10-20T08:55:36.575783151) [Dbg] [SimulationRunner.cc:627] Creating PostUpdate worker threads: 9
+(2026-10-20T08:55:36.575843842) (2026-10-20T08:55:36.575852413) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (0)
+(2026-10-20T08:55:36.579573940) (2026-10-20T08:55:36.579592576) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (1)
+(2026-10-20T08:55:36.581316061) (2026-10-20T08:55:36.581333402) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (2)
+(2026-10-20T08:55:36.581725058) (2026-10-20T08:55:36.581738213) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (3)
+(2026-10-20T08:55:36.582167738) (2026-10-20T08:55:36.582180196) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (4)
+(2026-10-20T08:55:36.582608227) (2026-10-20T08:55:36.582623076) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (5)
+(2026-10-20T08:55:36.583215044) (2026-10-20T08:55:36.583225907) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (6)
+(2026-10-20T08:55:36.583537438) (2026-10-20T08:55:36.583548500) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (7)
+(2026-10-20T08:55:37.493743384) (2026-10-20T08:55:37.493758830) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointStatePublisher] for entity [11]
+(2026-10-20T08:55:37.498796071) (2026-10-20T08:55:37.498811816) [Msg] OdometryPublisher publishing odometry on [/model/drone1/odometry]
+(2026-10-20T08:55:37.499075502) (2026-10-20T08:55:37.499087859) [Msg] OdometryPublisher publishing odometry with covariance on [/model/drone1/odometry_with_covariance]
+(2026-10-20T08:55:37.499284777) (2026-10-20T08:55:37.499295041) [Msg] OdometryPublisher publishing Pose_V (TF) on [/model/drone1/pose]
+(2026-10-20T08:55:37.499338491) (2026-10-20T08:55:37.499345666) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::OdometryPublisher] for entity [11]
+(2026-10-20T08:55:37.504717447) (2026-10-20T08:55:37.504729306) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [11]
+(2026-10-20T08:55:37.505268935) (2026-10-20T08:55:37.505279299) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [11]
+(2026-10-20T08:55:37.506447450) (2026-10-20T08:55:37.506459010) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [11]
+(2026-10-20T08:55:37.508582949) (2026-10-20T08:55:37.508602581) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [11]
+(2026-10-20T08:55:37.510026246) (2026-10-20T08:55:37.510039201) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [11]
+(2026-10-20T08:55:37.510753226) (2026-10-20T08:55:37.510764587) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [11]
+(2026-10-20T08:55:37.511279502) (2026-10-20T08:55:37.511289268) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [11]
+(2026-10-20T08:55:37.511759538) (2026-10-20T08:55:37.511872248) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [11]
+(2026-10-20T08:55:37.518540934) (2026-10-20T08:55:37.518554786) [Msg] ApplyJointForce subscribing to Double messages on [/model/drone1/joint/rotor_0_joint/cmd_force]
+(2026-10-20T08:55:37.518613183) (2026-10-20T08:55:37.518621155) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::ApplyJointForce] for entity [11]
+(2026-10-20T08:55:37.519558606) (2026-10-20T08:55:37.519569568) [Msg] ApplyJointForce subscribing to Double messages on [/model/drone1/joint/rotor_1_joint/cmd_force]
+(2026-10-20T08:55:37.519615310) (2026-10-20T08:55:37.519622186) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::ApplyJointForce] for entity [11]
+(2026-10-20T08:55:37.520512301) (2026-10-20T08:55:37.520522266) [Msg] ApplyJointForce subscribing to Double messages on [/model/drone1/joint/rotor_2_joint/cmd_force]
+(2026-10-20T08:55:37.520670851) (2026-10-20T08:55:37.520681215) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::ApplyJointForce] for entity [11]
+(2026-10-20T08:55:37.521538444) (2026-10-20T08:55:37.521549306) [Msg] ApplyJointForce subscribing to Double messages on [/model/drone1/joint/rotor_3_joint/cmd_force]
+(2026-10-20T08:55:37.521598237) (2026-10-20T08:55:37.521606010) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::ApplyJointForce] for entity [11]
+(2026-10-20T08:55:37.530437200) (2026-10-20T08:55:37.530450554) [Msg] LinearBatteryPlugin configured. Battery name: lipo_3500mAh
+(2026-10-20T08:55:37.530496594) (2026-10-20T08:55:37.530504367) [Dbg] [LinearBatteryPlugin.cc:412] Battery initial voltage: 12.6
+(2026-10-20T08:55:37.531187500) (2026-10-20T08:55:37.531197365) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LinearBatteryPlugin] for entity [11]
+(2026-10-20T08:55:37.570928853) (2026-10-20T08:55:37.570940214) [Msg] [drone1] Advertising on /gimbal/cmd_roll.
+(2026-10-20T08:55:37.571511633) (2026-10-20T08:55:37.571520602) [Msg] [drone1] Advertising on /gimbal/cmd_pitch.
+(2026-10-20T08:55:37.571809601) (2026-10-20T08:55:37.571816178) [Msg] [drone1] Advertising on /gimbal/cmd_yaw.
+(2026-10-20T08:55:37.572341158) [drone1] flight dynamics model @ 127.0.0.1:9002
+(2026-10-20T08:55:37.572678688) [drone1] ArduPilot ready to fly. The force will be with you
+(2026-10-20T08:55:37.572761999) (2026-10-20T08:55:37.572770370) [Dbg] [SystemManager.cc:80] Loaded system [ArduPilotPlugin] for entity [11]
+(2026-10-20T08:55:37.577333654) (2026-10-20T08:55:37.577344616) [Msg] JointPositionController subscribing to Double messages on [/gimbal/cmd_roll]
+(2026-10-20T08:55:37.577379096) (2026-10-20T08:55:37.577383381) [Dbg] [JointPositionController.cc:302] [JointPositionController] system parameters:
+(2026-10-20T08:55:37.577397333) (2026-10-20T08:55:37.577401120) [Dbg] [JointPositionController.cc:303] p_gain: [2]
+(2026-10-20T08:55:37.577426034) (2026-10-20T08:55:37.577429820) [Dbg] [JointPositionController.cc:304] i_gain: [0.1]
+(2026-10-20T08:55:37.577448456) (2026-10-20T08:55:37.577452243) [Dbg] [JointPositionController.cc:305] d_gain: [0.01]
+(2026-10-20T08:55:37.577470181) (2026-10-20T08:55:37.577473868) [Dbg] [JointPositionController.cc:306] i_max: [1]
+(2026-10-20T08:55:37.577491407) (2026-10-20T08:55:37.577495094) [Dbg] [JointPositionController.cc:307] i_min: [-1]
+(2026-10-20T08:55:37.577512633) (2026-10-20T08:55:37.577516420) [Dbg] [JointPositionController.cc:308] cmd_max: [1000]
+(2026-10-20T08:55:37.577556581) (2026-10-20T08:55:37.577560468) [Dbg] [JointPositionController.cc:309] cmd_min: [-1000]
+(2026-10-20T08:55:37.577579103) (2026-10-20T08:55:37.577582890) [Dbg] [JointPositionController.cc:310] cmd_offset: [0]
+(2026-10-20T08:55:37.577601226) (2026-10-20T08:55:37.577605113) [Dbg] [JointPositionController.cc:311] Topic: [/gimbal/cmd_roll]
+(2026-10-20T08:55:37.577622752) (2026-10-20T08:55:37.577626638) [Dbg] [JointPositionController.cc:312] initial_position: [0]
+(2026-10-20T08:55:37.577724399) (2026-10-20T08:55:37.577731176) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointPositionController] for entity [11]
+(2026-10-20T08:55:37.578344550) (2026-10-20T08:55:37.578352124) [Msg] JointPositionController subscribing to Double messages on [/gimbal/cmd_pitch]
+(2026-10-20T08:55:37.578376938) (2026-10-20T08:55:37.578381123) [Dbg] [JointPositionController.cc:302] [JointPositionController] system parameters:
+(2026-10-20T08:55:37.578394975) (2026-10-20T08:55:37.578398961) [Dbg] [JointPositionController.cc:303] p_gain: [2]
+(2026-10-20T08:55:37.578419490) (2026-10-20T08:55:37.578423377) [Dbg] [JointPositionController.cc:304] i_gain: [0.1]
+(2026-10-20T08:55:37.578442112) (2026-10-20T08:55:37.578445899) [Dbg] [JointPositionController.cc:305] d_gain: [0.01]
+(2026-10-20T08:55:37.578464534) (2026-10-20T08:55:37.578468520) [Dbg] [JointPositionController.cc:306] i_max: [1]
+(2026-10-20T08:55:37.578486558) (2026-10-20T08:55:37.578490345) [Dbg] [JointPositionController.cc:307] i_min: [-1]
+(2026-10-20T08:55:37.578508482) (2026-10-20T08:55:37.578512468) [Dbg] [JointPositionController.cc:308] cmd_max: [1000]
+(2026-10-20T08:55:37.578531004) (2026-10-20T08:55:37.578534890) [Dbg] [JointPositionController.cc:309] cmd_min: [-1000]
+(2026-10-20T08:55:37.578553227) (2026-10-20T08:55:37.578557014) [Dbg] [JointPositionController.cc:310] cmd_offset: [0]
+(2026-10-20T08:55:37.578595082) (2026-10-20T08:55:37.578598769) [Dbg] [JointPositionController.cc:311] Topic: [/gimbal/cmd_pitch]
+(2026-10-20T08:55:37.578614714) (2026-10-20T08:55:37.578618201) [Dbg] [JointPositionController.cc:312] initial_position: [0]
+(2026-10-20T08:55:37.578642119) (2026-10-20T08:55:37.578648098) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointPositionController] for entity [11]
+(2026-10-20T08:55:37.579350962) (2026-10-20T08:55:37.579360329) [Msg] JointPositionController subscribing to Double messages on [/gimbal/cmd_yaw]
+(2026-10-20T08:55:37.579385243) (2026-10-20T08:55:37.579389030) [Dbg] [JointPositionController.cc:302] [JointPositionController] system parameters:
+(2026-10-20T08:55:37.579401487) (2026-10-20T08:55:37.579404974) [Dbg] [JointPositionController.cc:303] p_gain: [2]
+(2026-10-20T08:55:37.579424507) (2026-10-20T08:55:37.579427995) [Dbg] [JointPositionController.cc:304] i_gain: [0.1]
+(2026-10-20T08:55:37.579444737) (2026-10-20T08:55:37.579448225) [Dbg] [JointPositionController.cc:305] d_gain: [0.01]
+(2026-10-20T08:55:37.579464568) (2026-10-20T08:55:37.579468056) [Dbg] [JointPositionController.cc:306] i_max: [1]
+(2026-10-20T08:55:37.579484001) (2026-10-20T08:55:37.579487389) [Dbg] [JointPositionController.cc:307] i_min: [-1]
+(2026-10-20T08:55:37.579503433) (2026-10-20T08:55:37.579507021) [Dbg] [JointPositionController.cc:308] cmd_max: [1000]
+(2026-10-20T08:55:37.579596810) (2026-10-20T08:55:37.579602390) [Dbg] [JointPositionController.cc:309] cmd_min: [-1000]
+(2026-10-20T08:55:37.579621424) (2026-10-20T08:55:37.579625311) [Dbg] [JointPositionController.cc:310] cmd_offset: [0]
+(2026-10-20T08:55:37.579642850) (2026-10-20T08:55:37.579646537) [Dbg] [JointPositionController.cc:311] Topic: [/gimbal/cmd_yaw]
+(2026-10-20T08:55:37.579663478) (2026-10-20T08:55:37.579667365) [Dbg] [JointPositionController.cc:312] initial_position: [0]
+(2026-10-20T08:55:37.579694571) (2026-10-20T08:55:37.579698657) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointPositionController] for entity [11]
+(2026-10-20T08:55:37.599215609) (2026-10-20T08:55:37.599270320) [Dbg] [CameraZoomPlugin.cc:309] CameraZoomPlugin attached to sensor [camera].
+(2026-10-20T08:55:37.601880672) (2026-10-20T08:55:37.601894524) [Dbg] [CameraZoomPlugin.cc:380] CameraZoomPlugin subscribing to messages on [/model/drone1/sensor/camera/zoom/cmd_zoom]
+(2026-10-20T08:55:37.602953454) (2026-10-20T08:55:37.602962821) [Dbg] [SystemManager.cc:80] Loaded system [CameraZoomPlugin] for entity [56]
+(2026-10-20T08:55:37.703300843) (2026-10-20T08:55:37.703355453) [Msg] GstCameraPlugin: attached to sensor [camera]
+(2026-10-20T08:55:37.703801706) (2026-10-20T08:55:37.703807686) [Msg] GstCameraPlugin: streaming video to 127.0.0.1:5600
+(2026-10-20T08:55:37.704386878) (2026-10-20T08:55:37.704393057) [Dbg] [SystemManager.cc:80] Loaded system [GstCameraPlugin] for entity [56]
+(2026-10-20T08:55:37.704842599) (2026-10-20T08:55:37.704849375) [Dbg] [UserCommands.cc:1093] Created entity [11] named [drone1]
+(2026-10-20T08:55:37.714864861) (2026-10-20T08:55:37.714880307) [Dbg] [SDFFeatures.cc:333] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2026-10-20T08:55:37.714912296) (2026-10-20T08:55:37.714916482) [Dbg] [SDFFeatures.cc:865] The geometry element of collision [base_collision] couldn't be created
+(2026-10-20T08:55:37.717283677) (2026-10-20T08:55:37.717295636) [Dbg] [SDFFeatures.cc:333] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2026-10-20T08:55:37.717321247) (2026-10-20T08:55:37.717327724) [Dbg] [SDFFeatures.cc:865] The geometry element of collision [yaw_collision] couldn't be created
+(2026-10-20T08:55:37.717407747) (2026-10-20T08:55:37.717414922) [Dbg] [SDFFeatures.cc:333] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2026-10-20T08:55:37.717436149) (2026-10-20T08:55:37.717442327) [Dbg] [SDFFeatures.cc:865] The geometry element of collision [roll_collision] couldn't be created
+(2026-10-20T08:55:37.717516171) (2026-10-20T08:55:37.717523247) [Dbg] [SDFFeatures.cc:333] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2026-10-20T08:55:37.717588919) (2026-10-20T08:55:37.717599981) [Dbg] [SDFFeatures.cc:865] The geometry element of collision [pitch_collision] couldn't be created
+(2026-10-20T08:55:37.722910275) (2026-10-20T08:55:37.722919842) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl]
+(2026-10-20T08:55:37.723135395) (2026-10-20T08:55:37.723141274) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl]
+(2026-10-20T08:55:37.723177548) (2026-10-20T08:55:37.723181335) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl]
+(2026-10-20T08:55:37.723204953) (2026-10-20T08:55:37.723208740) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl].
+(2026-10-20T08:55:37.723689175) (2026-10-20T08:55:37.723695354) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:37.723743786) (2026-10-20T08:55:37.723747971) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:37.723769397) (2026-10-20T08:55:37.723773184) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:37.723789826) (2026-10-20T08:55:37.723793713) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae].
+(2026-10-20T08:55:37.723909312) (2026-10-20T08:55:37.723914096) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:37.723955751) (2026-10-20T08:55:37.723959937) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:37.723980764) (2026-10-20T08:55:37.723984551) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:37.724000695) (2026-10-20T08:55:37.724004383) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae].
+(2026-10-20T08:55:37.724120679) (2026-10-20T08:55:37.724125363) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:37.724167716) (2026-10-20T08:55:37.724193926) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:37.724222327) (2026-10-20T08:55:37.724226513) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:37.724243354) (2026-10-20T08:55:37.724247241) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae].
+(2026-10-20T08:55:37.727345004) (2026-10-20T08:55:37.727371711) [Dbg] [Sensors.cc:953] Initialization needed
+(2026-10-20T08:55:37.727505747) (2026-10-20T08:55:37.727514118) [Dbg] [Sensors.cc:349] Initializing render context
+(2026-10-20T08:55:37.727679644) (2026-10-20T08:55:37.727686321) [Msg] Loading plugin [gz-rendering-ogre2]
+(2026-10-20T08:55:37.729600586) (2026-10-20T08:55:37.729613441) [Dbg] [AltimeterSensor.cc:114] Altimeter data for [drone1::base_link::altimeter_sensor] advertised on [world/runway/model/drone1/link/base_link/sensor/altimeter_sensor/altimeter]
+(2026-10-20T08:55:37.729883605) (2026-10-20T08:55:37.729895065) [Dbg] [ImuSensor.cc:150] IMU data for [drone1::imu_link::imu_sensor] advertised on [world/runway/model/drone1/link/imu_link/sensor/imu_sensor/imu]
+(2026-10-20T08:55:37.730647557) (2026-10-20T08:55:37.730655330) [Dbg] [AirSpeedSensor.cc:125] Air speed for [(drone1::base_link::air_speed_sensor] advertised on [world/runway/model/drone1/link/base_link/sensor/air_speed_sensor/air_speedworld/runway/model/drone1/link/base_link/sensor/air_speed_sensor/air_speed2026-10-20T08:55:37.730751895) (2026-10-20T08:55:37.730763953) ]
+world/runway/model/drone1/link/base_link/sensor/air_speed_sensor/air_speed[Dbg] [AirPressureSensor.cc:126] Air pressure for [drone1::base_link::air_pressure_sensor] advertised on [world/runway/model/drone1/link/base_link/sensor/air_pressure_sensor/air_pressure]
+(2026-10-20T08:55:37.731333978) (2026-10-20T08:55:37.731346534) [Msg] Serving scene information on [/world/runway/scene/info]
+(2026-10-20T08:55:37.732263157) (2026-10-20T08:55:37.732272425) [Msg] Serving graph information on [/world/runway/scene/graph]
+(2026-10-20T08:55:37.733065476) (2026-10-20T08:55:37.733076538) [Msg] (Serving full state on [2026-10-20T08:55:37.733112314) (/world/runway/2026-10-20T08:55:37.733204494) [Dbg] [MagnetometerSensor.cc:117] [Dbg] [MagnetometerSensor.cc:117] state]Magnetometer data for [drone1::base_link::magnetometer_sensor] advertised on [world/runway/model/drone1/link/base_link/sensor/magnetometer_sensor/magnetometer]
+(2026-10-20T08:55:37.733578000) (2026-10-20T08:55:37.733589460) [Msg] Serving full state (async) on [/world/runway/state_async]
+(2026-10-20T08:55:37.733852050) (2026-10-20T08:55:37.733859823) [Msg] Publishing scene information on [/world/runway/scene/info]
+(2026-10-20T08:55:37.734100788) (2026-10-20T08:55:37.734111451) [Msg] Publishing entity deletions on [/world/runway/scene/deletion]
+(2026-10-20T08:55:37.734434830) (2026-10-20T08:55:37.734446191) [Msg] Publishing state changes on [/world/runway/state]
+(2026-10-20T08:55:37.734734591) (2026-10-20T08:55:37.734745852) [Msg] Publishing pose messages on [/world/runway/pose/info]
+(2026-10-20T08:55:37.735110089) (2026-10-20T08:55:37.735120254) [Msg] Publishing dynamic pose messages on [/world/runway/dynamic_pose/info]
+(((2026-10-20T08:55:37.736754988(2026-10-20T08:55:37.7368082042026-10-20T08:55:37.7368082042026-10-20T08:55:37.7368147812026-10-20T08:55:37.7368082042026-10-20T08:55:37.736814781) ) ) 2026-10-20T08:55:37.7368661032026-10-20T08:55:37.7368661032026-10-20T08:55:37.736761765() (2026-10-20T08:55:37.736922009) (2026-10-20T08:55:37.736943834) ) ) ) ) ) ([Dbg] [SimulationRunner.cc:654] ) ([Dbg] [SimulationRunner.cc:654] ) ((2026-10-20T08:55:37.7371242082026-10-20T08:55:37.737153009) ) (2026-10-20T08:55:37.737181809) 2026-10-20T08:55:37.7372677112026-10-20T08:55:37.7372677112026-10-20T08:55:37.737299202) () () ((2026-10-20T08:55:37.737338665) Exiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] Exiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] 2026-10-20T08:55:37.737270601) (2026-10-20T08:55:37.737380620) 2026-10-20T08:55:37.737381018) Exiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] Exiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] Exiting postupdate worker thread (Exiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] Exiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] 660)
+)Exiting postupdate worker thread (Exiting postupdate worker thread (
+7Exiting postupdate worker thread (3)Exiting postupdate worker thread ()1)1
+)1
+Exiting postupdate worker thread (
+Exiting postupdate worker thread (
+Exiting postupdate worker thread ()
+
+44)
+)
+2)
+(2026-10-20T08:55:37.738900452) (2026-10-20T08:55:37.738913208) [Dbg] [SimulationRunner.cc:627] Creating PostUpdate worker threads: 14
+(2026-10-20T08:55:37.738960643) (2026-10-20T08:55:37.738968217) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (0)
+(2026-10-20T08:55:37.881014842) (2026-10-20T08:55:37.881027495) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (1)
+(2026-10-20T08:55:37.881135097) (2026-10-20T08:55:37.881141772) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (2)
+(2026-10-20T08:55:37.881235126) (2026-10-20T08:55:37.881241802) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (3)
+(2026-10-20T08:55:37.881341632) (2026-10-20T08:55:37.881357971) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (4)
+(2026-10-20T08:55:37.881484602) (2026-10-20T08:55:37.881491178) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (5)
+(2026-10-20T08:55:37.881600871) (2026-10-20T08:55:37.881607447) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (6)
+(2026-10-20T08:55:37.881711761) (2026-10-20T08:55:37.881718735) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (7)
+(2026-10-20T08:55:37.881823845) (2026-10-20T08:55:37.881830521) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (8)
+(2026-10-20T08:55:37.881973192) (2026-10-20T08:55:37.881979469) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (9)
+(2026-10-20T08:55:37.882202343) (2026-10-20T08:55:37.882209318) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (10)
+(2026-10-20T08:55:37.882314329) (2026-10-20T08:55:37.882321203) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (11)
+(2026-10-20T08:55:37.882512096) (2026-10-20T08:55:37.882519070) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (12)
+(2026-10-20T08:55:38.322632817) (2026-10-20T08:55:38.322644002) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointStatePublisher] for entity [67]
+(2026-10-20T08:55:38.323634286) (2026-10-20T08:55:38.323645270) [Msg] OdometryPublisher publishing odometry on [/model/drone2/odometry]
+(2026-10-20T08:55:38.323820310) (2026-10-20T08:55:38.323827768) [Msg] OdometryPublisher publishing odometry with covariance on [/model/drone2/odometry_with_covariance]
+(2026-10-20T08:55:38.324095820) (2026-10-20T08:55:38.324105595) [Msg] OdometryPublisher publishing Pose_V (TF) on [/model/drone2/pose]
+(2026-10-20T08:55:38.324151648) (2026-10-20T08:55:38.324159306) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::OdometryPublisher] for entity [67]
+(2026-10-20T08:55:38.324757689) (2026-10-20T08:55:38.324767464) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [67]
+(2026-10-20T08:55:38.325263462) (2026-10-20T08:55:38.325273237) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [67]
+(2026-10-20T08:55:38.325768328) (2026-10-20T08:55:38.325778405) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [67]
+(2026-10-20T08:55:38.326107223) (2026-10-20T08:55:38.326113572) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [67]
+(2026-10-20T08:55:38.326399159) (2026-10-20T08:55:38.326404701) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [67]
+(2026-10-20T08:55:38.326670839) (2026-10-20T08:55:38.326676684) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [67]
+(2026-10-20T08:55:38.327223371) (2026-10-20T08:55:38.327232843) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [67]
+(2026-10-20T08:55:38.327742647) (2026-10-20T08:55:38.327752120) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LiftDrag] for entity [67]
+(2026-10-20T08:55:38.328645763) (2026-10-20T08:55:38.328656445) [Msg] ApplyJointForce subscribing to Double messages on [/model/drone2/joint/rotor_0_joint/cmd_force]
+(2026-10-20T08:55:38.328717714) (2026-10-20T08:55:38.328725473) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::ApplyJointForce] for entity [67]
+(2026-10-20T08:55:38.329530035) (2026-10-20T08:55:38.329540213) [Msg] ApplyJointForce subscribing to Double messages on [/model/drone2/joint/rotor_1_joint/cmd_force]
+(2026-10-20T08:55:38.329611458) (2026-10-20T08:55:38.329619721) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::ApplyJointForce] for entity [67]
+(2026-10-20T08:55:38.336576596) (2026-10-20T08:55:38.336586573) [Msg] ApplyJointForce subscribing to Double messages on [/model/drone2/joint/rotor_2_joint/cmd_force]
+(2026-10-20T08:55:38.336620432) (2026-10-20T08:55:38.336624463) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::ApplyJointForce] for entity [67]
+(2026-10-20T08:55:38.337254487) (2026-10-20T08:55:38.337265270) [Msg] ApplyJointForce subscribing to Double messages on [/model/drone2/joint/rotor_3_joint/cmd_force]
+(2026-10-20T08:55:38.337333089) (2026-10-20T08:55:38.337338329) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::ApplyJointForce] for entity [67]
+(2026-10-20T08:55:38.337918573) (2026-10-20T08:55:38.337927642) [Msg] LinearBatteryPlugin configured. Battery name: lipo_3500mAh
+(2026-10-20T08:55:38.337957471) (2026-10-20T08:55:38.337963920) [Dbg] [LinearBatteryPlugin.cc:412] Battery initial voltage: 12.6
+(2026-10-20T08:55:38.338259685) (2026-10-20T08:55:38.338269661) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::LinearBatteryPlugin] for entity [67]
+(2026-10-20T08:55:38.339917883) (2026-10-20T08:55:38.339926852) [Msg] [drone2] Advertising on /gimbal/cmd_roll.
+(2026-10-20T08:55:38.340349489) (2026-10-20T08:55:38.340356240) [Msg] [drone2] Advertising on /gimbal/cmd_pitch.
+(2026-10-20T08:55:38.340652005) (2026-10-20T08:55:38.340658455) [Msg] [drone2] Advertising on /gimbal/cmd_yaw.
+(2026-10-20T08:55:38.341029697) [drone2] flight dynamics model @ 127.0.0.1:9012
+(2026-10-20T08:55:38.341115958) [drone2] ArduPilot ready to fly. The force will be with you
+(2026-10-20T08:55:38.341214614) (2026-10-20T08:55:38.341222272) [Dbg] [SystemManager.cc:80] Loaded system [ArduPilotPlugin] for entity [67]
+(2026-10-20T08:55:38.342569388) (2026-10-20T08:55:38.342584605) [Msg] JointPositionController subscribing to Double messages on [/gimbal/cmd_roll]
+(2026-10-20T08:55:38.342632673) (2026-10-20T08:55:38.342639122) [Dbg] [JointPositionController.cc:302] [JointPositionController] system parameters:
+(2026-10-20T08:55:38.342662501) (2026-10-20T08:55:38.342668850) [Dbg] [JointPositionController.cc:303] p_gain: [2]
+(2026-10-20T08:55:38.342722360) (2026-10-20T08:55:38.342730018) [Dbg] [JointPositionController.cc:304] i_gain: [0.1]
+(2026-10-20T08:55:38.342770932) (2026-10-20T08:55:38.342778086) [Dbg] [JointPositionController.cc:305] d_gain: [0.01]
+(2026-10-20T08:55:38.342810535) (2026-10-20T08:55:38.342817287) [Dbg] [JointPositionController.cc:306] i_max: [1]
+(2026-10-20T08:55:38.342904454) (2026-10-20T08:55:38.342913524) [Dbg] [JointPositionController.cc:307] i_min: [-1]
+(2026-10-20T08:55:38.342947685) (2026-10-20T08:55:38.342955445) [Dbg] [JointPositionController.cc:308] cmd_max: [1000]
+(2026-10-20T08:55:38.342989102) (2026-10-20T08:55:38.342995955) [Dbg] [JointPositionController.cc:309] cmd_min: [-1000]
+(2026-10-20T08:55:38.343061658) (2026-10-20T08:55:38.343070425) [Dbg] [JointPositionController.cc:310] cmd_offset: [0]
+(2026-10-20T08:55:38.343108618) (2026-10-20T08:55:38.343115470) [Dbg] [JointPositionController.cc:311] Topic: [/gimbal/cmd_roll]
+(2026-10-20T08:55:38.343143485) (2026-10-20T08:55:38.343149934) [Dbg] [JointPositionController.cc:312] initial_position: [0]
+(2026-10-20T08:55:38.343193870) (2026-10-20T08:55:38.343200924) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointPositionController] for entity [67]
+(2026-10-20T08:55:38.344329567) (2026-10-20T08:55:38.344340652) [Msg] JointPositionController subscribing to Double messages on [/gimbal/cmd_pitch]
+(2026-10-20T08:55:38.344399402) (2026-10-20T08:55:38.344406557) [Dbg] [JointPositionController.cc:302] [JointPositionController] system parameters:
+(2026-10-20T08:55:38.344429331) (2026-10-20T08:55:38.344435478) [Dbg] [JointPositionController.cc:303] p_gain: [2]
+(2026-10-20T08:55:38.344469539) (2026-10-20T08:55:38.344475888) [Dbg] [JointPositionController.cc:304] i_gain: [0.1]
+(2026-10-20T08:55:38.344506623) (2026-10-20T08:55:38.344512770) [Dbg] [JointPositionController.cc:305] d_gain: [0.01]
+(2026-10-20T08:55:38.344542901) (2026-10-20T08:55:38.344550056) [Dbg] [JointPositionController.cc:306] i_max: [1]
+(2026-10-20T08:55:38.344579783) (2026-10-20T08:55:38.344586434) [Dbg] [JointPositionController.cc:307] i_min: [-1]
+(2026-10-20T08:55:38.344618782) (2026-10-20T08:55:38.344626138) [Dbg] [JointPositionController.cc:308] cmd_max: [1000]
+(2026-10-20T08:55:38.344658184) (2026-10-20T08:55:38.344722375) [Dbg] [JointPositionController.cc:309] cmd_min: [-1000]
+(2026-10-20T08:55:38.344765002) (2026-10-20T08:55:38.344772862) [Dbg] [JointPositionController.cc:310] cmd_offset: [0]
+(2026-10-20T08:55:38.344804605) (2026-10-20T08:55:38.344810954) [Dbg] [JointPositionController.cc:311] Topic: [/gimbal/cmd_pitch]
+(2026-10-20T08:55:38.344838061) (2026-10-20T08:55:38.344843906) [Dbg] [JointPositionController.cc:312] initial_position: [0]
+(2026-10-20T08:55:38.344887943) (2026-10-20T08:55:38.344894897) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointPositionController] for entity [67]
+(2026-10-20T08:55:38.345975774) (2026-10-20T08:55:38.345987363) [Msg] JointPositionController subscribing to Double messages on [/gimbal/cmd_yaw]
+(2026-10-20T08:55:38.346027369) (2026-10-20T08:55:38.346034826) [Dbg] [JointPositionController.cc:302] [JointPositionController] system parameters:
+(2026-10-20T08:55:38.346059918) (2026-10-20T08:55:38.346066972) [Dbg] [JointPositionController.cc:303] p_gain: [2]
+(2026-10-20T08:55:38.346103351) (2026-10-20T08:55:38.346110606) [Dbg] [JointPositionController.cc:304] i_gain: [0.1]
+(2026-10-20T08:55:38.346144264) (2026-10-20T08:55:38.346151923) [Dbg] [JointPositionController.cc:305] d_gain: [0.01]
+(2026-10-20T08:55:38.346185984) (2026-10-20T08:55:38.346193138) [Dbg] [JointPositionController.cc:306] i_max: [1]
+(2026-10-20T08:55:38.346226191) (2026-10-20T08:55:38.346232943) [Dbg] [JointPositionController.cc:307] i_min: [-1]
+(2026-10-20T08:55:38.346265795) (2026-10-20T08:55:38.346272849) [Dbg] [JointPositionController.cc:308] cmd_max: [1000]
+(2026-10-20T08:55:38.346386217) (2026-10-20T08:55:38.346394279) [Dbg] [JointPositionController.cc:309] cmd_min: [-1000]
+(2026-10-20T08:55:38.346426324) (2026-10-20T08:55:38.346433277) [Dbg] [JointPositionController.cc:310] cmd_offset: [0]
+(2026-10-20T08:55:38.346464315) (2026-10-20T08:55:38.346470865) [Dbg] [JointPositionController.cc:311] Topic: [/gimbal/cmd_yaw]
+(2026-10-20T08:55:38.346497973) (2026-10-20T08:55:38.346504926) [Dbg] [JointPositionController.cc:312] initial_position: [0]
+(2026-10-20T08:55:38.346544227) (2026-10-20T08:55:38.346551180) [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::JointPositionController] for entity [67]
+(2026-10-20T08:55:38.348539910) (2026-10-20T08:55:38.348552708) [Dbg] [CameraZoomPlugin.cc:309] CameraZoomPlugin attached to sensor [camera].
+(2026-10-20T08:55:38.349033691) (2026-10-20T08:55:38.349044272) [Dbg] [CameraZoomPlugin.cc:380] CameraZoomPlugin subscribing to messages on [/model/drone2/sensor/camera/zoom/cmd_zoom]
+(2026-10-20T08:55:38.349254986) (2026-10-20T08:55:38.349265163) [Dbg] [SystemManager.cc:80] Loaded system [CameraZoomPlugin] for entity [112]
+(2026-10-20T08:55:38.350175837) (2026-10-20T08:55:38.350189542) [Msg] GstCameraPlugin: attached to sensor [camera]
+(2026-10-20T08:55:38.350256052) (2026-10-20T08:55:38.350263106) [Msg] GstCameraPlugin: streaming video to 127.0.0.1:5600
+(2026-10-20T08:55:38.350345738) (2026-10-20T08:55:38.350354505) [Dbg] [SystemManager.cc:80] Loaded system [GstCameraPlugin] for entity [112]
+(2026-10-20T08:55:38.351066155) (2026-10-20T08:55:38.351082480) [Dbg] [UserCommands.cc:1093] Created entity [67] named [drone2]
+(2026-10-20T08:55:38.363169138) (2026-10-20T08:55:38.363192114) [Msg] Found IMU sensor with name [imu_link::imu_sensor]
+(2026-10-20T08:55:38.363336822) (2026-10-20T08:55:38.363347605) [Dbg] [ArduPilotPlugin.cc:1168] Computed IMU topic to be: world/runway/model/drone1/link/imu_link/sensor/imu_sensor/imu
+(2026-10-20T08:55:38.367142667) (2026-10-20T08:55:38.367156775) [Dbg] [JointPositionController.cc:376] Identified joint [roll_joint] as Entity [63]
+(2026-10-20T08:55:38.367294731) (2026-10-20T08:55:38.367302692) [Dbg] [JointPositionController.cc:376] Identified joint [pitch_joint] as Entity [64]
+(2026-10-20T08:55:38.367389054) (2026-10-20T08:55:38.367395906) [Dbg] [JointPositionController.cc:376] Identified joint [yaw_joint] as Entity [62]
+(2026-10-20T08:55:38.806718475) (2026-10-20T08:55:38.806727141) [Dbg] [RenderUtil.cc:2646] Create scene [scene]
+(2026-10-20T08:55:38.806801914) (2026-10-20T08:55:38.806809774) [Dbg] [RenderingIface.cc:156] No scene has been created yet
+(2026-10-20T08:55:38.806974334) (2026-10-20T08:55:38.806980481) [Wrn] [CameraZoomPlugin.cc:218] No scene or camera sensors available.
+(2026-10-20T08:55:38.807060897) (2026-10-20T08:55:38.807067044) [Msg] GstCameraPlugin: camera name [drone1::pitch_link::camera]
+(2026-10-20T08:55:38.809406963) (2026-10-20T08:55:38.809417645) [Dbg] [SDFFeatures.cc:333] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2026-10-20T08:55:38.809442939) (2026-10-20T08:55:38.809447171) [Dbg] [SDFFeatures.cc:865] The geometry element of collision [base_collision] couldn't be created
+(2026-10-20T08:55:38.811430156) (2026-10-20T08:55:38.811443055) [Dbg] [SDFFeatures.cc:333] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2026-10-20T08:55:38.811465729) (2026-10-20T08:55:38.811469860) [Dbg] [SDFFeatures.cc:865] The geometry element of collision [yaw_collision] couldn't be created
+(2026-10-20T08:55:38.811543323) (2026-10-20T08:55:38.811548563) [Dbg] [SDFFeatures.cc:333] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2026-10-20T08:55:38.811563377) (2026-10-20T08:55:38.811567609) [Dbg] [SDFFeatures.cc:865] The geometry element of collision [roll_collision] couldn't be created
+(2026-10-20T08:55:38.811636537) (2026-10-20T08:55:38.811644296) [Dbg] [SDFFeatures.cc:333] Mesh construction from an SDF has not been implemented yet for dartsim. Use AttachMeshShapeFeature to use mesh shapes.
+(2026-10-20T08:55:38.811669489) (2026-10-20T08:55:38.811674024) [Dbg] [SDFFeatures.cc:865] The geometry element of collision [pitch_collision] couldn't be created
+(2026-10-20T08:55:38.813880622) (2026-10-20T08:55:38.813890497) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl]
+(2026-10-20T08:55:38.814027547) (2026-10-20T08:55:38.814032989) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl]
+(2026-10-20T08:55:38.814055360) (2026-10-20T08:55:38.814058988) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl]
+(2026-10-20T08:55:38.814076220) (2026-10-20T08:55:38.814079847) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl].
+(2026-10-20T08:55:38.814529894) (2026-10-20T08:55:38.814562947) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:38.814614240) (2026-10-20T08:55:38.814618472) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:38.814639130) (2026-10-20T08:55:38.814642657) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:38.814658579) (2026-10-20T08:55:38.814662106) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae].
+(2026-10-20T08:55:38.814781621) (2026-10-20T08:55:38.814786257) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:38.814825860) (2026-10-20T08:55:38.814829790) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:38.814849138) (2026-10-20T08:55:38.814882292) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:38.814911818) (2026-10-20T08:55:38.814918066) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae].
+(2026-10-20T08:55:38.815133214) (2026-10-20T08:55:38.815140469) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:38.815204661) (2026-10-20T08:55:38.815210909) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:38.815243055) (2026-10-20T08:55:38.815249101) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:38.815275403) (2026-10-20T08:55:38.815281550) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae].
+(2026-10-20T08:55:38.819119440) (2026-10-20T08:55:38.819137478) [Dbg] [CameraZoomPlugin.cc:502] Camera name: [drone1::pitch_link::camera].
+(2026-10-20T08:55:38.820226316) (2026-10-20T08:55:38.820239517) [Dbg] [AltimeterSensor.cc:114] Altimeter data for [drone2::base_link::altimeter_sensor] advertised on [world/runway/model/drone2/link/base_link/sensor/altimeter_sensor/altimeter]
+(2026-10-20T08:55:38.820703873) (2026-10-20T08:55:38.820715361) [Dbg] [ImuSensor.cc:150] IMU data for [drone2::imu_link::imu_sensor] advertised on [world/runway/model/drone2/link/imu_link/sensor/imu_sensor/imu]
+(2026-10-20T08:55:38.821524961) (2026-10-20T08:55:38.821533224) [Dbg] [MagnetometerSensor.cc:117] Magnetometer data for [drone2::base_link::magnetometer_sensor] advertised on [world/runway/model/drone2/link/base_link/sensor/magnetometer_sensor/magnetometer]
+(2026-10-20T08:55:38.822075880) (2026-10-20T08:55:38.822083538) [Dbg] [AirPressureSensor.cc:126] Air pressure for [drone2::base_link::air_pressure_sensor] advertised on [world/runway/model/drone2/link/base_link/sensor/air_pressure_sensor/air_pressure]
+(2026-10-20T08:55:38.822948260) (2026-10-20T08:55:38.822960353) [Dbg] [AirSpeedSensor.cc:125] Air speed for [drone2::base_link::air_speed_sensor] advertised on [world/runway/model/drone2/link/base_link/sensor/air_speed_sensor/air_speed]
+(2026-10-20T08:55:38.823146277) (2026-10-20T08:55:38.823171067) [Dbg] [EntityComponentManager.cc:1710] Updated state thread iterators: 16 threads processing around 8 entities each.
+(2026-10-20T08:55:38.825303093) (2026-10-20T08:55:38.825316395) [Wrn] [Component.hh:144] Trying to serialize component with data type [St6vectorIdSaIdEE], which doesn't have `operator<<`. Component will not be serialized.
+(2026-10-20T08:55:38.958824380) (2026-10-20T08:55:38.958848767) [Dbg] [Sensors.cc:391] Rendering Thread initializedRendering Thread initialized(2026-10-20T08:55:38.959033884) 
+(2026-10-20T08:55:38.959124277) [Dbg] [Sensors.cc:953] Initialization needed
+(((2026-10-20T08:55:38.9643615832026-10-20T08:55:38.9643615832026-10-20T08:55:38.964364909((2026-10-20T08:55:38.9643615832026-10-20T08:55:38.964364909(((2026-10-20T08:55:38.9643615832026-10-20T08:55:38.964364909((((2026-10-20T08:55:38.9643615832026-10-20T08:55:38.964364909((((((2026-10-20T08:55:38.9643615832026-10-20T08:55:38.964364909(((((((2026-10-20T08:55:38.9643615832026-10-20T08:55:38.964364909(((((((2026-10-20T08:55:38.9643615832026-10-20T08:55:38.964364909(((((((() ) (2026-10-20T08:55:38.964594970) ) [Dbg] [SimulationRunner.cc:654] 2026-10-20T08:55:38.9646599682026-10-20T08:55:38.9646599682026-10-20T08:55:38.9646702472026-10-20T08:55:38.964670247) ) 2026-10-20T08:55:38.964720330(2026-10-20T08:55:38.964757616) ) ) ) 2026-10-20T08:55:38.9648952702026-10-20T08:55:38.9648952702026-10-20T08:55:38.964803971) ) (() ) 2026-10-20T08:55:38.965058117(2026-10-20T08:55:38.9650833102026-10-20T08:55:38.965083310) ) ) ) 2026-10-20T08:55:38.965150223) ) 2026-10-20T08:55:38.965150223) (((((((2026-10-20T08:55:38.9653102482026-10-20T08:55:38.9653102482026-10-20T08:55:38.9652646992026-10-20T08:55:38.9653102482026-10-20T08:55:38.965264699) ) (2026-10-20T08:55:38.9654174692026-10-20T08:55:38.965438833) ) 2026-10-20T08:55:38.965484281Exiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] (2026-10-20T08:55:38.965732582) ) Exiting postupdate worker thread (2)) 
+) 
+[Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] (2026-10-20T08:55:38.966221930) Exiting postupdate worker thread (Exiting postupdate worker thread (Exiting postupdate worker thread (111)
+
+
+[Dbg] [SimulationRunner.cc:654] Exiting postupdate worker thread (1Exiting postupdate worker thread (Exiting postupdate worker thread (4
+[Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] Exiting postupdate worker thread (Exiting postupdate worker thread ())Exiting postupdate worker thread ()Exiting postupdate worker thread ())97
+Exiting postupdate worker thread (0066
+
+
+
+88
+
+)6))
+)))
+
+(2026-10-20T08:55:38.969022375) (2026-10-20T08:55:38.969037591) [Dbg] [SimulationRunner.cc:627] Creating PostUpdate worker threads: 19
+(2026-10-20T08:55:38.969083745) (2026-10-20T08:55:38.969091101) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (0)
+(2026-10-20T08:55:38.969303326) (2026-10-20T08:55:38.969314210) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (1)
+(2026-10-20T08:55:38.969468995) (2026-10-20T08:55:38.969479979) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (2)
+(2026-10-20T08:55:38.969630028) (2026-10-20T08:55:38.969641012) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (3)
+(2026-10-20T08:55:38.969788844) (2026-10-20T08:55:38.969799929) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (4)
+(2026-10-20T08:55:38.969981318) (2026-10-20T08:55:38.969992202) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (5)
+(2026-10-20T08:55:38.970170668) (2026-10-20T08:55:38.970180947) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (6)
+(2026-10-20T08:55:38.970336942) (2026-10-20T08:55:38.970347120) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (7)
+(2026-10-20T08:55:38.970581011) (2026-10-20T08:55:38.970591693) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (8)
+(2026-10-20T08:55:38.970773585) (2026-10-20T08:55:38.970812181) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (9)
+(2026-10-20T08:55:38.971082753) (2026-10-20T08:55:38.971090916) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (10)
+(2026-10-20T08:55:38.971230585) (2026-10-20T08:55:38.971238143) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (11)
+(2026-10-20T08:55:38.971379929) (2026-10-20T08:55:38.971389804) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (12)
+(2026-10-20T08:55:38.971573612) (2026-10-20T08:55:38.971582681) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (13)
+(2026-10-20T08:55:38.971759233) (2026-10-20T08:55:38.971769714) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (14)
+(2026-10-20T08:55:38.971929134) (2026-10-20T08:55:38.971936491) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (15)
+(2026-10-20T08:55:38.972082711) (2026-10-20T08:55:38.972094199) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (16)
+(2026-10-20T08:55:38.972303904) (2026-10-20T08:55:38.972316299) [Dbg] [SimulationRunner.cc:638] Creating postupdate worker thread (17)
+(2026-10-20T08:55:38.973099295) [drone1] Connected to ArduPilot controller @ 127.0.0.1:44646
+(2026-10-20T08:55:38.973135876) (2026-10-20T08:55:38.973143232) [Wrn] [ArduPilotPlugin.cc:1599] ArduPilot controller has reset
+(2026-10-20T08:55:38.973358682) (2026-10-20T08:55:38.973366643) [Wrn] [CameraZoomPlugin.cc:218] No scene or camera sensors available.
+(2026-10-20T08:55:38.976063898) (2026-10-20T08:55:38.976075587) [Msg] Found IMU sensor with name [imu_link::imu_sensor]
+(2026-10-20T08:55:38.976126074) (2026-10-20T08:55:38.976134035) [Dbg] [ArduPilotPlugin.cc:1168] Computed IMU topic to be: world/runway/model/drone2/link/imu_link/sensor/imu_sensor/imu
+(2026-10-20T08:55:38.976664094) (2026-10-20T08:55:38.976671551) [Dbg] [JointPositionController.cc:376] Identified joint [roll_joint] as Entity [119]
+(2026-10-20T08:55:38.976769703) (2026-10-20T08:55:38.976787036) [Dbg] [JointPositionController.cc:376] Identified joint [pitch_joint] as Entity [120]
+(2026-10-20T08:55:38.976864428) (2026-10-20T08:55:38.976869265) [Dbg] [JointPositionController.cc:376] Identified joint [yaw_joint] as Entity [118]
+(2026-10-20T08:55:38.976935875) (2026-10-20T08:55:38.976940914) [Wrn] [CameraZoomPlugin.cc:218] No scene or camera sensors available.
+(2026-10-20T08:55:38.977019314) (2026-10-20T08:55:38.977026771) [Msg] GstCameraPlugin: camera name [drone2::pitch_link::camera]
+(2026-10-20T08:55:38.981592535) (2026-10-20T08:55:38.981610674) [Dbg] [CameraZoomPlugin.cc:502] Camera name: [drone2::pitch_link::camera].
+(2026-10-20T08:55:39.542334143) (2026-10-20T08:55:39.542347527) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae]
+(2026-10-20T08:55:39.542491829) (2026-10-20T08:55:39.542500886) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae]
+(2026-10-20T08:55:39.542542647) (2026-10-20T08:55:39.542549087) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae]
+(2026-10-20T08:55:39.542579175) (2026-10-20T08:55:39.542585615) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae].
+(2026-10-20T08:55:39.542622244) (2026-10-20T08:55:39.542628282) [Err] [SceneManager.cc:426] Failed to load geometry for visual: base_visual
+(2026-10-20T08:55:39.551876398) (2026-10-20T08:55:39.551888776) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.552053405) (2026-10-20T08:55:39.552062462) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.552165606) (2026-10-20T08:55:39.552174059) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.552272173) (2026-10-20T08:55:39.552284147) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae].
+(2026-10-20T08:55:39.552337984) (2026-10-20T08:55:39.552345531) [Err] [SceneManager.cc:426] Failed to load geometry for visual: visual
+(2026-10-20T08:55:39.552640576) (2026-10-20T08:55:39.552649532) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.552740400) (2026-10-20T08:55:39.552745934) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.552783167) (2026-10-20T08:55:39.552790211) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.552820903) (2026-10-20T08:55:39.552828249) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae].
+(2026-10-20T08:55:39.552866689) (2026-10-20T08:55:39.552874136) [Err] [SceneManager.cc:426] Failed to load geometry for visual: visual
+(2026-10-20T08:55:39.553118161) (2026-10-20T08:55:39.553127922) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.553189507) (2026-10-20T08:55:39.553194136) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.553217382) (2026-10-20T08:55:39.553221508) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.553239419) (2026-10-20T08:55:39.553243545) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae].
+(2026-10-20T08:55:39.553331898) (2026-10-20T08:55:39.553337935) [Err] [SceneManager.cc:426] Failed to load geometry for visual: visual
+(2026-10-20T08:55:39.553490288) (2026-10-20T08:55:39.553495521) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.553542615) (2026-10-20T08:55:39.553546942) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.553569282) (2026-10-20T08:55:39.553573307) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.553598565) (2026-10-20T08:55:39.553604703) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae].
+(2026-10-20T08:55:39.553640024) (2026-10-20T08:55:39.553646867) [Err] [SceneManager.cc:426] Failed to load geometry for visual: visual
+(2026-10-20T08:55:39.553820854) (2026-10-20T08:55:39.553861106) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae]
+(2026-10-20T08:55:39.553917559) (2026-10-20T08:55:39.553922289) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae]
+(2026-10-20T08:55:39.553945635) (2026-10-20T08:55:39.553949660) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae]
+(2026-10-20T08:55:39.553967672) (2026-10-20T08:55:39.553971899) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae].
+(2026-10-20T08:55:39.553995043) (2026-10-20T08:55:39.553999270) [Err] [SceneManager.cc:426] Failed to load geometry for visual: gimbal_visual
+(2026-10-20T08:55:39.554133912) (2026-10-20T08:55:39.554138842) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:39.554183622) (2026-10-20T08:55:39.554188050) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:39.554210490) (2026-10-20T08:55:39.554214415) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:39.554232126) (2026-10-20T08:55:39.554236151) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae].
+(2026-10-20T08:55:39.554257987) (2026-10-20T08:55:39.554262012) [Err] [SceneManager.cc:426] Failed to load geometry for visual: yaw_visual
+(2026-10-20T08:55:39.554380453) (2026-10-20T08:55:39.554385585) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:39.554430566) (2026-10-20T08:55:39.554434893) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:39.554456931) (2026-10-20T08:55:39.554461057) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:39.554478466) (2026-10-20T08:55:39.554482491) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae].
+(2026-10-20T08:55:39.554504730) (2026-10-20T08:55:39.554508755) [Err] [SceneManager.cc:426] Failed to load geometry for visual: roll_visual
+(2026-10-20T08:55:39.554634340) (2026-10-20T08:55:39.554639372) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:39.554685359) (2026-10-20T08:55:39.554689787) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:39.554777233) (2026-10-20T08:55:39.554804001) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:39.554824730) (2026-10-20T08:55:39.554829158) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae].
+(2026-10-20T08:55:39.555005158) (2026-10-20T08:55:39.555017435) [Err] [SceneManager.cc:426] Failed to load geometry for visual: pitch_visual
+(2026-10-20T08:55:39.555992632) (2026-10-20T08:55:39.556004003) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae]
+(2026-10-20T08:55:39.556094569) (2026-10-20T08:55:39.556102418) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae]
+(2026-10-20T08:55:39.556142770) (2026-10-20T08:55:39.556149714) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae]
+(2026-10-20T08:55:39.556181714) (2026-10-20T08:55:39.556188657) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae].
+(2026-10-20T08:55:39.556227198) (2026-10-20T08:55:39.556234343) [Err] [SceneManager.cc:426] Failed to load geometry for visual: base_visual
+(2026-10-20T08:55:39.557496433) (2026-10-20T08:55:39.557507100) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.557600483) (2026-10-20T08:55:39.557608735) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.557646873) (2026-10-20T08:55:39.557652911) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.557684609) (2026-10-20T08:55:39.557691452) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae].
+(2026-10-20T08:55:39.557730999) (2026-10-20T08:55:39.557737440) [Err] [SceneManager.cc:426] Failed to load geometry for visual: visual
+(2026-10-20T08:55:39.558013566) (2026-10-20T08:55:39.558024333) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.558377944) (2026-10-20T08:55:39.558387504) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.558430271) (2026-10-20T08:55:39.558437416) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae]
+(2026-10-20T08:55:39.558468913) (2026-10-20T08:55:39.558476158) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae].
+(2026-10-20T08:55:39.558517718) (2026-10-20T08:55:39.558525064) [Err] [SceneManager.cc:426] Failed to load geometry for visual: visual
+(2026-10-20T08:55:39.558976184) (2026-10-20T08:55:39.558985744) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.559064234) (2026-10-20T08:55:39.559069165) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.559128536) (2026-10-20T08:55:39.559136989) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.559169895) (2026-10-20T08:55:39.559176637) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae].
+(2026-10-20T08:55:39.559211555) (2026-10-20T08:55:39.559216084) [Err] [SceneManager.cc:426] Failed to load geometry for visual: visual
+(2026-10-20T08:55:39.559445216) (2026-10-20T08:55:39.559450851) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.559498248) (2026-10-20T08:55:39.559502373) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.559524210) (2026-10-20T08:55:39.559528134) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae]
+(2026-10-20T08:55:39.559545443) (2026-10-20T08:55:39.559549367) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae].
+(2026-10-20T08:55:39.559570701) (2026-10-20T08:55:39.559574726) [Err] [SceneManager.cc:426] Failed to load geometry for visual: visual
+(2026-10-20T08:55:39.559735028) (2026-10-20T08:55:39.559744085) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae]
+(2026-10-20T08:55:39.559798827) (2026-10-20T08:55:39.559803154) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae]
+(2026-10-20T08:55:39.559825292) (2026-10-20T08:55:39.559829116) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae]
+(2026-10-20T08:55:39.559846827) (2026-10-20T08:55:39.559850751) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae].
+(2026-10-20T08:55:39.559872890) (2026-10-20T08:55:39.559876714) [Err] [SceneManager.cc:426] Failed to load geometry for visual: gimbal_visual
+(2026-10-20T08:55:39.560005217) (2026-10-20T08:55:39.560010148) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:39.560058651) (2026-10-20T08:55:39.560065393) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:39.560101720) (2026-10-20T08:55:39.560108764) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae]
+(2026-10-20T08:55:39.560139255) (2026-10-20T08:55:39.560146098) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae].
+(2026-10-20T08:55:39.560170349) (2026-10-20T08:55:39.560174375) [Err] [SceneManager.cc:426] Failed to load geometry for visual: yaw_visual
+(2026-10-20T08:55:39.560354400) (2026-10-20T08:55:39.560362249) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:39.560490249) (2026-10-20T08:55:39.560498602) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:39.560535130) (2026-10-20T08:55:39.560542375) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae]
+(2026-10-20T08:55:39.560570249) (2026-10-20T08:55:39.560576992) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae].
+(2026-10-20T08:55:39.560611507) (2026-10-20T08:55:39.560618149) [Err] [SceneManager.cc:426] Failed to load geometry for visual: roll_visual
+(2026-10-20T08:55:39.560903835) (2026-10-20T08:55:39.560913193) [Err] [SystemPaths.cc:426] Unable to find file with URI [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:39.560996313) (2026-10-20T08:55:39.561003760) [Err] [SystemPaths.cc:526] Could not resolve file [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:39.561041797) (2026-10-20T08:55:39.561049143) [Err] [MeshManager.cc:211] Unable to find file[package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae]
+(2026-10-20T08:55:39.561163760) (2026-10-20T08:55:39.561172716) [Wrn] [Util.cc:884] Failed to load mesh from [package://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae].
+(2026-10-20T08:55:39.561214074) (2026-10-20T08:55:39.561221722) [Err] [SceneManager.cc:426] Failed to load geometry for visual: pitch_visual
+(2026-10-20T08:55:39.563317223) (2026-10-20T08:55:39.563330808) [Dbg] [CameraSensor.cc:405] Camera images for [drone1::pitch_link::camera] advertised on [world/runway/model/drone1/link/pitch_link/sensor/camera/image]
+(2026-10-20T08:55:39.564007740) (2026-10-20T08:55:39.564018809) [Dbg] [CameraSensor.cc:695] Camera info for [drone1::pitch_link::camera] advertised on [/world/runway/model/drone1/link/pitch_link/sensor/camera/camera_info]
+(2026-10-20T08:55:39.574094901) (2026-10-20T08:55:39.574107379) [Wrn] [Ogre2Camera.cc:423] Ogre2Camera::SetVisibilityMask: Mask bits c0000000 are set but will be ignored as they conflict with the reserved bits used internally by the ogre2 backend.
+(2026-10-20T08:55:39.575727306) (2026-10-20T08:55:39.575739885) [Dbg] [CameraSensor.cc:405] Camera images for [drone2::pitch_link::camera] advertised on [world/runway/model/drone2/link/pitch_link/sensor/camera/image]
+(2026-10-20T08:55:39.575898175) (2026-10-20T08:55:39.575906326) [Dbg] [CameraSensor.cc:695] Camera info for [drone2::pitch_link::camera] advertised on [/world/runway/model/drone2/link/pitch_link/sensor/camera/camera_info]
+(2026-10-20T08:55:39.576037647) (2026-10-20T08:55:39.576045194) [Wrn] [Ogre2Camera.cc:423] Ogre2Camera::SetVisibilityMask: Mask bits c0000000 are set but will be ignored as they conflict with the reserved bits used internally by the ogre2 backend.
+(2026-10-20T08:55:39.578431814) (2026-10-20T08:55:39.578443185) [Wrn] [Ogre2RenderTarget.cc:668] Anti-aliasing level of '' is not supported; valid FSAA levels are: [ 0 ]. Setting to 1
+(2026-10-20T08:55:40.205657391) (2026-10-20T08:55:40.205667943) [Dbg] [CameraSensor.cc:504] Enabling camera sensor: 'drone1::pitch_link::camera' data generation.
+(2026-10-20T08:55:40.971429139) (2026-10-20T08:55:40.971438486) [Dbg] [CameraSensor.cc:504] Enabling camera sensor: 'drone2::pitch_link::camera' data generation.
+(2026-10-20T08:55:41.382565571) (2026-10-20T08:55:41.382586353) [Wrn] [ArduPilotPlugin.cc:1452] [drone1] Drained n packets: 2
+(2026-10-20T08:55:41.383117339) (2026-10-20T08:55:41.383150871) [Msg] GstCameraPlugin: image topic [world/runway/model/drone1/link/pitch_link/sensor/camera/image]
+(2026-10-20T08:55:41.383198659) (2026-10-20T08:55:41.383206791) [Msg] GstCameraPlugin: enable topic [world/runway/model/drone1/link/pitch_link/sensor/camera/image/enable_streaming]
+(2026-10-20T08:55:41.386412287) (2026-10-20T08:55:41.386428551) [Wrn] [ArduPilotPlugin.cc:1452] [drone2] Drained n packets: 1
+(2026-10-20T08:55:41.386572818) [drone2] Connected to ArduPilot controller @ 127.0.0.1:43810
+(2026-10-20T08:55:41.386603639) (2026-10-20T08:55:41.386611570) [Wrn] [ArduPilotPlugin.cc:1599] ArduPilot controller has reset
+(2026-10-20T08:55:41.386707748) (2026-10-20T08:55:41.386717386) [Msg] GstCameraPlugin: image topic [world/runway/model/drone2/link/pitch_link/sensor/camera/image]
+(2026-10-20T08:55:41.386757042) (2026-10-20T08:55:41.386765375) [Msg] GstCameraPlugin: enable topic [world/runway/model/drone2/link/pitch_link/sensor/camera/image/enable_streaming]

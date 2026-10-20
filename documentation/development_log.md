@@ -2602,3 +2602,39 @@ Las afirmaciones y observaciones de aquel intento pertenecen a esa nota; este
 cierre no reconstruye tráfico ni certifica retrospectivamente lo no capturado.
 Activación y prueba real siguen pendientes de autorización independiente. Sin
 operaciones de runtime, instalaciones o proveedor LLM en este cierre.
+
+## 2026-10-20 — Archivo de apertura GUI y protocolo de rendimiento propuesto
+
+Se versiona la carpeta gui_diagnostic_2026_10_20/2d62a398-be5e-42fb-9718-6c2d2316ba75
+ya existente, sin normalizar registros ni tar. Su manifest.json verifica 25/25
+copias/metadatos: tamaños y SHA-256 coinciden (5.402.965 bytes en las entradas;
+el manifiesto se excluye a sí mismo). Se comprueban los miembros de los cuatro
+tar: gui.config y logs GUI/main/OGRE, sin temporales personales o credenciales
+detectadas en la revisión acotada. El inventario de hashes/permisos se conserva
+idéntico durante este cierre. Siete logs brutos contienen avisos originales de
+whitespace; se revisan y retienen deliberadamente, no son defectos normalizados.
+
+request.json registra HEAD ff0afab y un único arranque GUI autorizado. El resultado
+lifecycle persistido es SUCCESS; readiness posterior registra READY y cinco
+controles. visual_confirmation.json es la respuesta del operador recibida a las
+08:56:36 UTC: «Veo la pista y ambos drones correctamente», sin screenshot ni hora
+exacta de observación. No es detección automática de píxeles. summary.json separa
+before/ (aperturas anteriores) y after/ (incluye candidatos históricos); no todos
+los logs candidatos acreditan la apertura nueva. Esta evidencia es anterior a la
+integración de perfiles y no valida operativamente ese incremento. No prueba causa
+raíz ni arreglo permanente de GUI negra, ausencia de errores OGRE o vuelos.
+
+docs/rover-performance-test-protocol.md continúa PROPUESTO, NO AUTORIZADO y NO
+EJECUTADO: matriz dos drones/dos drones más rover, GUI/headless, repeticiones,
+warm-up, métricas y umbrales provisionales, captura y decisiones pendientes.
+Se corrige su descripción previa del catálogo para reflejar el consumo actual de
+two_drones; no se habilita rover ni se modifica performance_tests.md o resultados.
+Sin campaña de rendimiento ni operación nueva en este cierre. Se conserva la
+distinción entre datos históricos, recomendaciones y futura autorización.
+
+Comprobaciones: manifiesto e inventario de evidencia íntegros; enlaces locales y
+whitespace de documentación correctos. git diff --check y comprobaciones staged
+de código/documentación sin avisos; el diff del archivo de evidencia conserva los
+avisos brutos indicados. No se repiten tests: tras los 691 pasados sólo se ajustan
+documentación y registro, y se archivan copias existentes. Commits separados de
+perfiles, captura y este archivo documental; sin push ni operaciones de runtime.
