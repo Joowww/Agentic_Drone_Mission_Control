@@ -2574,3 +2574,31 @@ los incrementos. Sin fallos ni necesidad de repetir la suite. Sintaxis: AST de
 de 20 enlaces locales de las tres guías nuevas y whitespace de código/documentos
 nuevos, además de git diff --check: correctos. No se ejecutan Docker, ROS,
 Gazebo, MCP operativo, proveedores LLM, instalaciones ni operaciones de runtime.
+
+## 2026-10-20 — Cierre offline de captura local opcional de Hermes
+
+Se incorpora observability/hermes_capture como plugin opcional, fuera de las rutas
+de descubrimiento de Hermes y desactivado por defecto. Opt-in y directorio absoluto
+son necesarios; no se instala, activa ni importa Hermes durante este cierre.
+Esquema tfg.hermes.capture/3: eventos JSONL por lista blanca, sin prompts,
+argumentos/resultados de herramientas ni exportadores. Se distinguen contadores
+recibidos, ceros ambiguos, valores derivados, ausencia y duraciones no medidas;
+no se convierten bytes de transcripción en tokens ni se estima facturación.
+
+La suite conjunta de este cierre (691 passed in 77.06s, registrada arriba) incluye
+payloads sintéticos, validación de esquema, callbacks con FakeContext, permisos,
+concurrencia, silencio stdio, errores de escritura y contratos estáticos del código
+Hermes instalado, leído con AST. No demuestra discovery/carga/dispatch real ni
+comportamiento de proveedores; no es autenticación humana ni prueba de fidelidad.
+Sin repetir la suite al separar commits. Sintaxis y whitespace del paquete,
+tests/documentación nuevos comprobados; se aclara que O_NOFOLLOW protege el
+archivo final y que permisos existentes/padres requieren una ruta privada confiable.
+
+Se conserva en docs/hermes-observability-capture.md la incidencia aportada por el
+trabajo de captura: intento de bootstrap aislado abandonado (~09:39–09:40 UTC),
+creación del entorno antes del bloqueo de red y probable descarga pública según
+metadatos de caché. No se repite ni se presenta como carga exitosa del plugin.
+Las afirmaciones y observaciones de aquel intento pertenecen a esa nota; este
+cierre no reconstruye tráfico ni certifica retrospectivamente lo no capturado.
+Activación y prueba real siguen pendientes de autorización independiente. Sin
+operaciones de runtime, instalaciones o proveedor LLM en este cierre.
