@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "mission_id": "simulation_navigation_3waypoint_001",
+  "name": "Three-waypoint simulation navigation test",
+  "source": "json",
+  "vehicle": {
+    "vehicle_id": "drone_01",
+    "vehicle_type": "multirotor",
+    "autopilot": "ArduPilot",
+    "cruise_speed_kmh": 35.0,
+    "battery_percent": 100.0,
+    "battery_consumption_percent_per_minute": 0.8
+  },
+  "objective": {
+    "objective_type": "precision_agriculture",
+    "target": "field_A",
+    "description": "Navigate a short three-waypoint route in simulation and return to launch."
+  },
+  "route": {
+    "mode": "waypoints",
+    "home": {
+      "latitude": 41.275,
+      "longitude": 1.987,
+      "altitude_m": 0.0
+    },
+    "waypoints": [
+      {
+        "waypoint_id": "WP1",
+        "latitude": 41.27502694933525,
+        "longitude": 1.987,
+        "altitude_m": 5.0,
+        "speed_kmh": 10.0,
+        "action": "navigate"
+      },
+      {
+        "waypoint_id": "WP2",
+        "latitude": 41.27502694933525,
+        "longitude": 1.98703582,
+        "altitude_m": 5.0,
+        "speed_kmh": 10.0,
+        "action": "navigate"
+      },
+      {
+        "waypoint_id": "WP3",
+        "latitude": 41.275,
+        "longitude": 1.98703582,
+        "altitude_m": 5.0,
+        "speed_kmh": 10.0,
+        "action": "navigate"
+      }
+    ],
+    "return_to_home": true
+  },
+  "environment": {
+    "wind_speed_kmh": 0.0,
+    "wind_direction_from_deg": 0.0
+  },
+  "constraints": {
+    "minimum_battery_reserve_percent": 20.0,
+    "maximum_wind_speed_kmh": 30.0,
+    "maximum_altitude_m": 120.0
+  },
+  "failsafe": {
+    "low_battery_action": "RETURN_TO_HOME",
+    "unsafe_wind_action": "RETURN_TO_HOME",
+    "communication_loss_action": "RETURN_TO_HOME"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "captured_at_utc": "2026-10-18T21:43:59.856353+00:00",
+  "host_boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc",
+  "coordinator_process_observed": {
+    "pid": 133909,
+    "state": "Z",
+    "start_ticks": 8003617,
+    "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+  },
+  "docker_state": {
+    "return_code": 0,
+    "stdout": "{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":6735,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-10-16T16:41:55.313301992Z\",\"FinishedAt\":\"2026-10-16T16:36:02.1877012Z\"}\n",
+    "stderr": ""
+  },
+  "container_read": {
+    "return_code": 0,
+    "stderr": "",
+    "observation": {
+      "captured_at_utc": "2026-10-18T21:44:00.164778+00:00",
+      "files": [
+        {
+          "path": "/tmp/tmp_rbh5s2k.yaml",
+          "bytes": 3124,
+          "mtime_utc": "2026-10-18T21:12:11.620103+00:00",
+          "sha256": "28e1e71d56a799e41801af5424394aa33f9e2b7eb4819e35c77e560f55f772d6",
+          "copy_path": "active_bridge_configs/tmp_rbh5s2k.yaml"
+        },
+        {
+          "path": "/tmp/tmp_426fxnn.yaml",
+          "bytes": 3124,
+          "mtime_utc": "2026-10-18T21:12:11.681789+00:00",
+          "sha256": "04d6dfb72ce533f1c23dc46b4aeb2a4d93e650577fba0ae13ecf5aaaea023f0d",
+          "copy_path": "active_bridge_configs/tmp_426fxnn.yaml"
+        }
+      ],
+      "mesh_files_metadata_only": [
+        {
+          "path": "/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae",
+          "exists": true,
+          "bytes": 21644731,
+          "mtime_utc": "2026-10-02T08:52:34+00:00"
+        },
+        {
+          "path": "/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae",
+          "exists": true,
+          "bytes": 354209,
+          "mtime_utc": "2026-10-02T08:52:34+00:00"
+        },
+        {
+          "path": "/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae",
+          "exists": true,
+          "bytes": 3884412,
+          "mtime_utc": "2026-10-02T08:52:34+00:00"
+        }
+      ]
+    }
+  }
+}

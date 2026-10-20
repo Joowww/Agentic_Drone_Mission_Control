@@ -1,0 +1,142 @@
+/**:
+  ros__parameters:
+    robot_description: "<?xml version='1.0'?>\n<sdf version=\"1.9\">\n  <model name=\"\
+      iris_with_gimbal\">\n    <include merge=\"true\">\n      <uri>file:///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs</uri>\n\
+      \      <name>drone2</name>\n    </include>\n\n    <include merge=\"true\">\n\
+      \      <uri>file:///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d</uri>\n\
+      \      <name>gimbal</name>\n      <pose degrees=\"true\">0 -0.01 -0.124923 90\
+      \ 0 90</pose>\n    </include>\n\n    <joint name=\"gimbal_joint\" type=\"revolute\"\
+      >\n      <parent>base_link</parent>\n      <child>gimbal_link</child>\n    \
+      \  <axis>\n        <limit>\n          <lower>0</lower>\n          <upper>0</upper>\n\
+      \        </limit>\n        <xyz>0 0 1</xyz>\n      </axis>\n    </joint>\n\n\
+      \    <!-- plugins -->\n    <plugin filename=\"gz-sim-joint-state-publisher-system\"\
+      \n      name=\"gz::sim::systems::JointStatePublisher\">\n    </plugin>\n\n \
+      \   <plugin\n      filename=\"gz-sim-odometry-publisher-system\"\n      name=\"\
+      gz::sim::systems::OdometryPublisher\">\n      <odom_frame>odom</odom_frame>\n\
+      \      <robot_base_frame>base_link</robot_base_frame>\n      <dimensions>3</dimensions>\n\
+      \    </plugin>\n\n    <plugin filename=\"gz-sim-lift-drag-system\"\n       \
+      \ name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n\
+      \      <cla>4.2500</cla>\n      <cda>0.10</cda>\n      <cma>0.0</cma>\n    \
+      \  <cla_stall>-0.025</cla_stall>\n      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <area>0.002</area>\n      <air_density>1.2041</air_density>\n      <cp>0.084\
+      \ 0 0</cp>\n      <forward>0 1 0</forward>\n      <upward>0 0 1</upward>\n \
+      \     <link_name>rotor_0</link_name>\n    </plugin>\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n      <cla>4.2500</cla>\n\
+      \      <cda>0.10</cda>\n      <cma>0.0</cma>\n      <cla_stall>-0.025</cla_stall>\n\
+      \      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n      <area>0.002</area>\n\
+      \      <air_density>1.2041</air_density>\n      <cp>-0.084 0 0</cp>\n      <forward>0\
+      \ -1 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>rotor_0</link_name>\n\
+      \    </plugin>\n\n    <plugin filename=\"gz-sim-lift-drag-system\"\n       \
+      \ name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n\
+      \      <cla>4.2500</cla>\n      <cda>0.10</cda>\n      <cma>0.0</cma>\n    \
+      \  <cla_stall>-0.025</cla_stall>\n      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <area>0.002</area>\n      <air_density>1.2041</air_density>\n      <cp>0.084\
+      \ 0 0</cp>\n      <forward>0 1 0</forward>\n      <upward>0 0 1</upward>\n \
+      \     <link_name>rotor_1</link_name>\n    </plugin>\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n      <cla>4.2500</cla>\n\
+      \      <cda>0.10</cda>\n      <cma>0.0</cma>\n      <cla_stall>-0.025</cla_stall>\n\
+      \      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n      <area>0.002</area>\n\
+      \      <air_density>1.2041</air_density>\n      <cp>-0.084 0 0</cp>\n      <forward>0\
+      \ -1 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>rotor_1</link_name>\n\
+      \    </plugin>\n\n    <plugin filename=\"gz-sim-lift-drag-system\"\n       \
+      \ name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n\
+      \      <cla>4.2500</cla>\n      <cda>0.10</cda>\n      <cma>0.0</cma>\n    \
+      \  <cla_stall>-0.025</cla_stall>\n      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <area>0.002</area>\n      <air_density>1.2041</air_density>\n      <cp>0.084\
+      \ 0 0</cp>\n      <forward>0 -1 0</forward>\n      <upward>0 0 1</upward>\n\
+      \      <link_name>rotor_2</link_name>\n    </plugin>\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n      <cla>4.2500</cla>\n\
+      \      <cda>0.10</cda>\n      <cma>0.0</cma>\n      <cla_stall>-0.025</cla_stall>\n\
+      \      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n      <area>0.002</area>\n\
+      \      <air_density>1.2041</air_density>\n      <cp>-0.084 0 0</cp>\n      <forward>0\
+      \ 1 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>rotor_2</link_name>\n\
+      \    </plugin>\n\n    <plugin filename=\"gz-sim-lift-drag-system\"\n       \
+      \ name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n\
+      \      <cla>4.2500</cla>\n      <cda>0.10</cda>\n      <cma>0.0</cma>\n    \
+      \  <cla_stall>-0.025</cla_stall>\n      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <area>0.002</area>\n      <air_density>1.2041</air_density>\n      <cp>0.084\
+      \ 0 0</cp>\n      <forward>0 -1 0</forward>\n      <upward>0 0 1</upward>\n\
+      \      <link_name>rotor_3</link_name>\n    </plugin>\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n      <cla>4.2500</cla>\n\
+      \      <cda>0.10</cda>\n      <cma>0.0</cma>\n      <cla_stall>-0.025</cla_stall>\n\
+      \      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n      <area>0.002</area>\n\
+      \      <air_density>1.2041</air_density>\n      <cp>-0.084 0 0</cp>\n      <forward>0\
+      \ 1 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>rotor_3</link_name>\n\
+      \    </plugin>\n\n    <plugin filename=\"gz-sim-apply-joint-force-system\"\n\
+      \      name=\"gz::sim::systems::ApplyJointForce\">\n      <joint_name>rotor_0_joint</joint_name>\n\
+      \    </plugin>\n    <plugin filename=\"gz-sim-apply-joint-force-system\"\n \
+      \     name=\"gz::sim::systems::ApplyJointForce\">\n      <joint_name>rotor_1_joint</joint_name>\n\
+      \    </plugin>\n    <plugin filename=\"gz-sim-apply-joint-force-system\"\n \
+      \     name=\"gz::sim::systems::ApplyJointForce\">\n      <joint_name>rotor_2_joint</joint_name>\n\
+      \    </plugin>\n    <plugin filename=\"gz-sim-apply-joint-force-system\"\n \
+      \     name=\"gz::sim::systems::ApplyJointForce\">\n      <joint_name>rotor_3_joint</joint_name>\n\
+      \    </plugin>\n\n    <plugin filename=\"gz-sim-linearbatteryplugin-system\"\
+      \n      name=\"gz::sim::systems::LinearBatteryPlugin\">\n      <battery_name>lipo_3500mAh</battery_name>\n\
+      \      <fix_issue_225>true</fix_issue_225>\n      <open_circuit_voltage_constant_coef>12.6</open_circuit_voltage_constant_coef>\n\
+      \      <open_circuit_voltage_linear_coef>-2.7</open_circuit_voltage_linear_coef>\n\
+      \      <capacity>3.5</capacity>\n      <voltage>12.6</voltage>\n      <initial_charge>3.5</initial_charge>\n\
+      \      <power_load>200.0</power_load>\n      <start_draining>false</start_draining>\n\
+      \    </plugin>\n\n    <plugin name=\"ArduPilotPlugin\"\n      filename=\"ArduPilotPlugin\"\
+      >\n      <!-- Port settings -->\n      <fdm_addr>127.0.0.1</fdm_addr>\n    \
+      \  <fdm_port_in>9012</fdm_port_in>\n      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>\n\
+      \      <lock_step>1</lock_step>\n      <no_time_sync>1</no_time_sync>\n\n  \
+      \    <!-- Frame conventions\n        Require by ArduPilot: change model and\
+      \ gazebo from XYZ to XY-Z coordinates\n      -->\n      <modelXYZToAirplaneXForwardZDown\
+      \ degrees=\"true\">0 0 0 180 0 0</modelXYZToAirplaneXForwardZDown>\n      <gazeboXYZToNED\
+      \ degrees=\"true\">0 0 0 180 0 90</gazeboXYZToNED>\n\n      <!-- Sensors -->\n\
+      \      <imuName>imu_link::imu_sensor</imuName>\n\n      <!--\n          incoming\
+      \ control command [0, 1]\n          so offset it by 0 to get [0, 1]\n      \
+      \    and divide max target by 1.\n          offset = 0\n          multiplier\
+      \ = 838 max rpm / 1 = 838\n        -->\n      <control channel=\"0\">\n    \
+      \    <jointName>rotor_0_joint</jointName>\n        <useForce>1</useForce>\n\
+      \        <multiplier>838</multiplier>\n        <offset>0</offset>\n        <servo_min>1100</servo_min>\n\
+      \        <servo_max>1900</servo_max>\n        <type>VELOCITY</type>\n      \
+      \  <p_gain>0.20</p_gain>\n        <i_gain>0</i_gain>\n        <d_gain>0</d_gain>\n\
+      \        <i_max>0</i_max>\n        <i_min>0</i_min>\n        <cmd_max>2.5</cmd_max>\n\
+      \        <cmd_min>-2.5</cmd_min>\n        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>\n\
+      \      </control>\n\n      <control channel=\"1\">\n        <jointName>rotor_1_joint</jointName>\n\
+      \        <useForce>1</useForce>\n        <multiplier>838</multiplier>\n    \
+      \    <offset>0</offset>\n        <servo_min>1100</servo_min>\n        <servo_max>1900</servo_max>\n\
+      \        <type>VELOCITY</type>\n        <p_gain>0.20</p_gain>\n        <i_gain>0</i_gain>\n\
+      \        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n        <i_min>0</i_min>\n\
+      \        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>\n\
+      \      </control>\n\n      <control channel=\"2\">\n        <jointName>rotor_2_joint</jointName>\n\
+      \        <useForce>1</useForce>\n        <multiplier>-838</multiplier>\n   \
+      \     <offset>0</offset>\n        <servo_min>1100</servo_min>\n        <servo_max>1900</servo_max>\n\
+      \        <type>VELOCITY</type>\n        <p_gain>0.20</p_gain>\n        <i_gain>0</i_gain>\n\
+      \        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n        <i_min>0</i_min>\n\
+      \        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>\n\
+      \      </control>\n\n      <control channel=\"3\">\n        <jointName>rotor_3_joint</jointName>\n\
+      \        <useForce>1</useForce>\n        <multiplier>-838</multiplier>\n   \
+      \     <offset>0</offset>\n        <servo_min>1100</servo_min>\n        <servo_max>1900</servo_max>\n\
+      \        <type>VELOCITY</type>\n        <p_gain>0.20</p_gain>\n        <i_gain>0</i_gain>\n\
+      \        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n        <i_min>0</i_min>\n\
+      \        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>\n\
+      \      </control>\n\n      <!-- roll range is -30 to +30 deg -->\n      <control\
+      \ channel=\"8\">\n        <jointName>roll_joint</jointName>\n        <multiplier>1.047197551196</multiplier>\n\
+      \        <offset>-0.5</offset>\n        <servo_min>1100</servo_min>\n      \
+      \  <servo_max>1900</servo_max>\n        <type>COMMAND</type>\n        <cmd_topic>/gimbal/cmd_roll</cmd_topic>\n\
+      \        <p_gain>2</p_gain>\n      </control>\n\n      <!-- pitch range is -135\
+      \ to +45 deg -->\n      <control channel=\"9\">\n        <jointName>pitch_joint</jointName>\n\
+      \        <multiplier>-3.14159265</multiplier>\n        <offset>-0.75</offset>\n\
+      \        <servo_min>1100</servo_min>\n        <servo_max>1900</servo_max>\n\
+      \        <type>COMMAND</type>\n        <cmd_topic>/gimbal/cmd_pitch</cmd_topic>\n\
+      \        <p_gain>2</p_gain>\n      </control>\n\n      <!-- yaw range is -160\
+      \ to +160 deg -->\n      <control channel=\"10\">\n        <jointName>yaw_joint</jointName>\n\
+      \        <multiplier>-5.5850536</multiplier>\n        <offset>-0.5</offset>\n\
+      \        <servo_min>1100</servo_min>\n        <servo_max>1900</servo_max>\n\
+      \        <type>COMMAND</type>\n        <cmd_topic>/gimbal/cmd_yaw</cmd_topic>\n\
+      \        <p_gain>2</p_gain>\n      </control>\n\n    </plugin>\n\n    <plugin\n\
+      \      filename=\"gz-sim-joint-position-controller-system\"\n      name=\"gz::sim::systems::JointPositionController\"\
+      >\n      <joint_name>roll_joint</joint_name>\n      <topic>/gimbal/cmd_roll</topic>\n\
+      \      <p_gain>2</p_gain>\n    </plugin>\n    <plugin\n      filename=\"gz-sim-joint-position-controller-system\"\
+      \n      name=\"gz::sim::systems::JointPositionController\">\n      <joint_name>pitch_joint</joint_name>\n\
+      \      <topic>/gimbal/cmd_pitch</topic>\n      <p_gain>2</p_gain>\n    </plugin>\n\
+      \    <plugin\n      filename=\"gz-sim-joint-position-controller-system\"\n \
+      \     name=\"gz::sim::systems::JointPositionController\">\n      <joint_name>yaw_joint</joint_name>\n\
+      \      <topic>/gimbal/cmd_yaw</topic>\n      <p_gain>2</p_gain>\n    </plugin>\n\
+      \n  </model>\n</sdf>\n"

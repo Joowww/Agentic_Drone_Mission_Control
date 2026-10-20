@@ -1,0 +1,499 @@
+/**:
+  ros__parameters:
+    robot_description: "<?xml version=\"1.0\"?>\n<sdf version=\"1.7\">\n  <model name=\"\
+      alti_transition_quad\">\n    <pose>0 0 0 0 0 0</pose>\n\n    <link name=\"base_link\"\
+      >\n      <pose>0 0 0 0 0 0</pose>\n      <inertial>\n        <pose>-0.1 0 0\
+      \ 0 0 0</pose>\n        <mass>4.5</mass>\n        <inertia>\n          <ixx>0.45</ixx>\n\
+      \          <ixy>0</ixy>\n          <ixz>0.06</ixz>\n          <iyy>0.325</iyy>\n\
+      \          <iyz>0</iyz>\n          <izz>0.75</izz>\n        </inertia>\n   \
+      \   </inertial>\n      <collision name=\"fuselage_collision\">\n        <pose>0.2\
+      \ 0 -0.05 0 1.570796327 0</pose>\n        <geometry>\n          <cylinder>\n\
+      \            <radius>0.1</radius>\n            <length>1.1</length>\n      \
+      \    </cylinder>\n        </geometry>\n      </collision>\n      <collision\
+      \ name=\"left_wing_collision\">\n        <pose>-0.05 0.7 0.04 0.087266463 0\
+      \ 0.13962634</pose>\n        <geometry>\n          <box>\n            <size>0.3\
+      \ 1.4 0.02</size>\n          </box>\n        </geometry>\n      </collision>\n\
+      \      <collision name=\"right_wing_collision\">\n        <pose>-0.05 -0.7 0.04\
+      \ -0.087266463 0 -0.13962634</pose>\n        <geometry>\n          <box>\n \
+      \           <size>0.3 1.4 0.02</size>\n          </box>\n        </geometry>\n\
+      \      </collision>\n      <collision name=\"left_winglet_collision\">\n   \
+      \     <pose>-0.19 1.45 0.17 -0.523598776 -0.261799388 0.087266463</pose>\n \
+      \       <geometry>\n          <box>\n            <size>0.1 0.01 0.16</size>\n\
+      \          </box>\n        </geometry>\n      </collision>\n      <collision\
+      \ name=\"right_winglet_collision\">\n        <pose>-0.19 -1.45 0.17 0.523598776\
+      \ -0.261799388 -0.087266463</pose>\n        <geometry>\n          <box>\n  \
+      \          <size>0.1 0.01 0.16</size>\n          </box>\n        </geometry>\n\
+      \      </collision>\n      <collision name=\"left_vstab_collision\">\n     \
+      \   <pose>-1.25 0.405 0.07 0.122173048 -0.436332313 0</pose>\n        <geometry>\n\
+      \          <box>\n            <size>0.18 0.01 0.23</size>\n          </box>\n\
+      \        </geometry>\n      </collision>\n      <collision name=\"right_vstab_collision\"\
+      >\n        <pose>-1.25 -0.405 0.07 -0.122173048 -0.436332313 0</pose>\n    \
+      \    <geometry>\n          <box>\n            <size>0.18 0.01 0.23</size>\n\
+      \          </box>\n        </geometry>\n      </collision>\n      <collision\
+      \ name=\"hstab_collision\">\n        <pose>-1.35 0 0.215 0 0 0</pose>\n    \
+      \    <geometry>\n          <box>\n            <size>0.06 0.7 0.01</size>\n \
+      \         </box>\n        </geometry>\n      </collision>\n      <collision\
+      \ name=\"left_landing_gear_collision\">\n        <pose>0.255 0.3 -0.26 0 0 0</pose>\n\
+      \        <geometry>\n          <sphere>\n            <radius>0.02</radius>\n\
+      \          </sphere>\n        </geometry>\n      </collision>\n      <collision\
+      \ name=\"right_landing_gear_collision\">\n        <pose>0.255 -0.3 -0.26 0 0\
+      \ 0</pose>\n        <geometry>\n          <sphere>\n            <radius>0.02</radius>\n\
+      \          </sphere>\n        </geometry>\n      </collision>\n      <collision\
+      \ name=\"rear_landing_gear_collision\">\n        <pose>-0.265 0 -0.26 0 0 0</pose>\n\
+      \        <geometry>\n          <sphere>\n            <radius>0.02</radius>\n\
+      \          </sphere>\n        </geometry>\n      </collision>\n      <visual\
+      \ name=\"base_link_visual\">\n        <geometry>\n          <mesh>\n       \
+      \     <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/alti_transition_base.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n        <material>\n          <diffuse>1.0\
+      \ 1.0 1.0</diffuse>\n          <specular>1.0 1.0 1.0</specular>\n          <pbr>\n\
+      \            <metal>\n                <albedo_map>package://ardupilot_sitl_models/models/alti_transition_quad/materials/textures/AltiTransitionMap.png</albedo_map>\n\
+      \                <metalness>0.1</metalness>\n            </metal>\n        \
+      \  </pbr>\n        </material>\n      </visual>\n      <!-- save for debugging\
+      \ use -->\n      <!-- <visual name=\"cp_main_wing\">\n        <pose>0.02 0 0.021946\
+      \ 0 0 0</pose>\n        <geometry>\n          <sphere>\n            <radius>0.05</radius>\n\
+      \          </sphere>\n        </geometry>\n        <material>\n          <ambient>0\
+      \ 0 1</ambient>\n          <diffuse>0 0 1</diffuse>\n          <specular>0.1\
+      \ 0.1 0.1 1</specular>\n        </material>\n      </visual>\n      <visual\
+      \ name=\"cp_left_aileron\">\n        <pose>-0.161120956 1.116470319 0.073423477\
+      \ 0 0 0</pose>\n        <geometry>\n          <sphere>\n            <radius>0.02</radius>\n\
+      \          </sphere>\n        </geometry>\n        <material>\n          <ambient>1\
+      \ 0 0</ambient>\n          <diffuse>1 0 0</diffuse>\n          <specular>0.1\
+      \ 0.1 0.1 1</specular>\n        </material>\n      </visual>\n      <visual\
+      \ name=\"cp_right_aileron\">\n        <pose>-0.161120956 -1.116470319 0.073423477\
+      \ 0 0 0</pose>\n        <geometry>\n          <sphere>\n            <radius>0.02</radius>\n\
+      \          </sphere>\n        </geometry>\n        <material>\n          <ambient>0\
+      \ 1 0</ambient>\n          <diffuse>0 1 0</diffuse>\n          <specular>0.1\
+      \ 0.1 0.1 1</specular>\n        </material>\n      </visual>\n      <visual\
+      \ name=\"cp_left_winglet\">\n        <pose>-0.19 1.46 0.15 0 0 0</pose>\n  \
+      \      <geometry>\n          <sphere>\n            <radius>0.015</radius>\n\
+      \          </sphere>\n        </geometry>\n        <material>\n          <ambient>1\
+      \ 0 0</ambient>\n          <diffuse>1 0 0</diffuse>\n          <specular>0.1\
+      \ 0.1 0.1 1</specular>\n        </material>\n      </visual>\n      <visual\
+      \ name=\"cp_right_winglet\">\n        <pose>-0.19 -1.46 0.15 0 0 0</pose>\n\
+      \        <geometry>\n          <sphere>\n            <radius>0.015</radius>\n\
+      \          </sphere>\n        </geometry>\n        <material>\n          <ambient>0\
+      \ 1 0</ambient>\n          <diffuse>0 1 0</diffuse>\n          <specular>0.1\
+      \ 0.1 0.1 1</specular>\n        </material>\n      </visual>\n      <visual\
+      \ name=\"cp_hstab\">\n        <pose>-1.383506602 0 0.213284959 0 0 0</pose>\n\
+      \        <geometry>\n          <sphere>\n            <radius>0.015</radius>\n\
+      \          </sphere>\n        </geometry>\n        <material>\n          <ambient>0\
+      \ 0 1</ambient>\n          <diffuse>0 0 1</diffuse>\n          <specular>0.1\
+      \ 0.1 0.1 1</specular>\n        </material>\n      </visual>\n      <visual\
+      \ name=\"cp_left_vstab\">\n        <pose>-1.25 0.405 0.1 0 0 0</pose>\n    \
+      \    <geometry>\n          <sphere>\n            <radius>0.015</radius>\n  \
+      \        </sphere>\n        </geometry>\n        <material>\n          <ambient>1\
+      \ 0 0</ambient>\n          <diffuse>1 0 0</diffuse>\n          <specular>0.1\
+      \ 0.1 0.1 1</specular>\n        </material>\n      </visual>\n      <visual\
+      \ name=\"cp_right_vstab\">\n        <pose>-1.25 -0.405 0.1 0 0 0</pose>\n  \
+      \      <geometry>\n          <sphere>\n            <radius>0.015</radius>\n\
+      \          </sphere>\n        </geometry>\n        <material>\n          <ambient>0\
+      \ 1 0</ambient>\n          <diffuse>0 1 0</diffuse>\n          <specular>0.1\
+      \ 0.1 0.1 1</specular>\n        </material>\n      </visual> -->\n    </link>\n\
+      \n    <link name=\"motor_1\">\n      <pose>0.399766589 -0.428448099 -0.042066584\
+      \ -0.052 0 0</pose>\n      <inertial>\n        <pose>0 0 0 0 0 0</pose>\n  \
+      \      <mass>0.025</mass>\n        <inertia>\n          <ixx>9.75e-06</ixx>\n\
+      \          <ixy>0</ixy>\n          <ixz>0</ixz>\n          <iyy>0.000166704</iyy>\n\
+      \          <iyz>0</iyz>\n          <izz>0.000167604</izz>\n        </inertia>\n\
+      \      </inertial>\n      <collision name=\"collision\">\n        <pose>0 0\
+      \ 0 0 0 0</pose>\n        <geometry>\n          <cylinder>\n            <length>0.005</length>\n\
+      \            <radius>0.2286</radius>\n          </cylinder>\n        </geometry>\n\
+      \      </collision>\n      <visual name=\"visual\">\n        <pose>0 0 0 0 0\
+      \ 0</pose>\n        <geometry>\n          <mesh>\n            <scale>1.7 1.7\
+      \ 1.7</scale>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/prop_cw.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n        <material>\n          <diffuse>1.0\
+      \ 1.0 1.0</diffuse>\n          <specular>1.0 1.0 1.0</specular>\n          <pbr>\n\
+      \            <metal>\n                <albedo_map>package://ardupilot_sitl_models/models/alti_transition_quad/materials/textures/x8.tga</albedo_map>\n\
+      \                <metalness>0.5</metalness>\n            </metal>\n        \
+      \  </pbr>\n        </material>\n      </visual>\n    </link>\n    <joint name=\"\
+      motor_1_joint\" type=\"revolute\">\n      <child>motor_1</child>\n      <parent>base_link</parent>\n\
+      \      <axis>\n        <xyz>0 0 1</xyz>\n        <limit>\n          <lower>-1e+16</lower>\n\
+      \          <upper>1e+16</upper>\n        </limit>\n        <dynamics>\n    \
+      \      <damping>0.002</damping>\n        </dynamics>\n        <use_parent_model_frame>1</use_parent_model_frame>\n\
+      \      </axis>\n    </joint>\n\n    <link name=\"motor_2\">\n      <pose>-0.466782469\
+      \ 0.429388845 0.085456111 0.052 0 0</pose>\n      <inertial>\n        <pose>0\
+      \ 0 0 0 0 0</pose>\n        <mass>0.025</mass>\n        <inertia>\n        \
+      \  <ixx>9.75e-06</ixx>\n          <ixy>0</ixy>\n          <ixz>0</ixz>\n   \
+      \       <iyy>0.000166704</iyy>\n          <iyz>0</iyz>\n          <izz>0.000167604</izz>\n\
+      \        </inertia>\n      </inertial>\n      <collision name=\"collision\"\
+      >\n        <pose>0 0 0 0 0 0</pose>\n        <geometry>\n          <cylinder>\n\
+      \            <length>0.005</length>\n            <radius>0.2286</radius>\n \
+      \         </cylinder>\n        </geometry>\n      </collision>\n      <visual\
+      \ name=\"visual\">\n        <pose>0 0 0 0 0 0</pose>\n        <geometry>\n \
+      \         <mesh>\n            <scale>1.7 1.7 1.7</scale>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/prop_cw.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n        <material>\n          <diffuse>1.0\
+      \ 1.0 1.0</diffuse>\n          <specular>1.0 1.0 1.0</specular>\n          <pbr>\n\
+      \            <metal>\n                <albedo_map>package://ardupilot_sitl_models/models/alti_transition_quad/materials/textures/x8.tga</albedo_map>\n\
+      \                <metalness>0.5</metalness>\n            </metal>\n        \
+      \  </pbr>\n        </material>\n      </visual>\n    </link>\n    <joint name=\"\
+      motor_2_joint\" type=\"revolute\">\n      <child>motor_2</child>\n      <parent>base_link</parent>\n\
+      \      <axis>\n        <xyz>0 0 1</xyz>\n        <limit>\n          <lower>-1e+16</lower>\n\
+      \          <upper>1e+16</upper>\n        </limit>\n        <dynamics>\n    \
+      \      <damping>0.002</damping>\n        </dynamics>\n        <use_parent_model_frame>1</use_parent_model_frame>\n\
+      \      </axis>\n    </joint>\n\n    <link name=\"motor_3\">\n      <pose>0.399766589\
+      \ 0.428448099 -0.042066584 0.052 0 0</pose>\n      <inertial>\n        <pose>0\
+      \ 0 0 0 0 0</pose>\n        <mass>0.025</mass>\n        <inertia>\n        \
+      \  <ixx>9.75e-06</ixx>\n          <ixy>0</ixy>\n          <ixz>0</ixz>\n   \
+      \       <iyy>0.000166704</iyy>\n          <iyz>0</iyz>\n          <izz>0.000167604</izz>\n\
+      \        </inertia>\n      </inertial>\n      <collision name=\"collision\"\
+      >\n        <pose>0 0 0 0 0 0</pose>\n        <geometry>\n          <cylinder>\n\
+      \            <length>0.005</length>\n            <radius>0.2286</radius>\n \
+      \         </cylinder>\n        </geometry>\n      </collision>\n      <visual\
+      \ name=\"visual\">\n        <pose>0 0 0 0 0 0</pose>\n        <geometry>\n \
+      \         <mesh>\n            <scale>1.7 1.7 1.7</scale>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/prop_ccw.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n        <material>\n          <diffuse>1.0\
+      \ 1.0 1.0</diffuse>\n          <specular>1.0 1.0 1.0</specular>\n          <pbr>\n\
+      \            <metal>\n                <albedo_map>package://ardupilot_sitl_models/models/alti_transition_quad/materials/textures/x8.tga</albedo_map>\n\
+      \                <metalness>0.5</metalness>\n            </metal>\n        \
+      \  </pbr>\n        </material>\n      </visual>\n    </link>\n    <joint name=\"\
+      motor_3_joint\" type=\"revolute\">\n      <child>motor_3</child>\n      <parent>base_link</parent>\n\
+      \      <axis>\n        <xyz>0 0 1</xyz>\n        <limit>\n          <lower>-1e+16</lower>\n\
+      \          <upper>1e+16</upper>\n        </limit>\n        <dynamics>\n    \
+      \      <damping>0.002</damping>\n        </dynamics>\n        <use_parent_model_frame>1</use_parent_model_frame>\n\
+      \      </axis>\n    </joint>\n\n    <link name=\"motor_4\">\n      <pose>-0.466782469\
+      \ -0.429388845 0.085456111 -0.052 0 0</pose>\n      <inertial>\n        <pose>0\
+      \ 0 0 0 0 0</pose>\n        <mass>0.025</mass>\n        <inertia>\n        \
+      \  <ixx>9.75e-06</ixx>\n          <ixy>0</ixy>\n          <ixz>0</ixz>\n   \
+      \       <iyy>0.000166704</iyy>\n          <iyz>0</iyz>\n          <izz>0.000167604</izz>\n\
+      \        </inertia>\n      </inertial>\n      <collision name=\"collision\"\
+      >\n        <pose>0 0 0 0 0 0</pose>\n        <geometry>\n          <cylinder>\n\
+      \            <length>0.005</length>\n            <radius>0.2286</radius>\n \
+      \         </cylinder>\n        </geometry>\n      </collision>\n      <visual\
+      \ name=\"visual\">\n        <pose>0 0 0 0 0 0</pose>\n        <geometry>\n \
+      \         <mesh>\n            <scale>1.7 1.7 1.7</scale>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/prop_ccw.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n        <material>\n          <diffuse>1.0\
+      \ 1.0 1.0</diffuse>\n          <specular>1.0 1.0 1.0</specular>\n          <pbr>\n\
+      \            <metal>\n                <albedo_map>package://ardupilot_sitl_models/models/alti_transition_quad/materials/textures/x8.tga</albedo_map>\n\
+      \                <metalness>0.5</metalness>\n            </metal>\n        \
+      \  </pbr>\n        </material>\n      </visual>\n    </link>\n    <joint name=\"\
+      motor_4_joint\" type=\"revolute\">\n      <child>motor_4</child>\n      <parent>base_link</parent>\n\
+      \      <axis>\n        <xyz>0 0 1</xyz>\n        <limit>\n          <lower>-1e+16</lower>\n\
+      \          <upper>1e+16</upper>\n        </limit>\n        <dynamics>\n    \
+      \      <damping>0.002</damping>\n        </dynamics>\n        <use_parent_model_frame>1</use_parent_model_frame>\n\
+      \      </axis>\n    </joint>\n\n    <link name=\"motor_f\">\n      <pose>-0.462542074\
+      \ 0 -0.014101091 0 -1.570796327 0</pose>\n      <inertial>\n        <mass>0.025</mass>\n\
+      \        <inertia>\n          <ixx>9.75e-06</ixx>\n          <ixy>0</ixy>\n\
+      \          <ixz>0</ixz>\n          <iyy>0.000166704</iyy>\n          <iyz>0</iyz>\n\
+      \          <izz>0.000167604</izz>\n        </inertia>\n      </inertial>\n \
+      \     <collision name=\"collision\">\n        <pose>0.0 0 0 0 0 0</pose>\n \
+      \       <geometry>\n          <cylinder>\n            <length>0.005</length>\n\
+      \            <radius>0.2286</radius>\n          </cylinder>\n        </geometry>\n\
+      \      </collision>\n      <visual name=\"visual\">\n        <pose>0 0 0 0 0\
+      \ 0</pose>\n        <geometry>\n          <mesh>\n            <scale>1.7 1.7\
+      \ 1.7</scale>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/prop_ccw.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n        <material>\n          <diffuse>1.0\
+      \ 1.0 1.0</diffuse>\n          <specular>1.0 1.0 1.0</specular>\n          <pbr>\n\
+      \            <metal>\n                <albedo_map>package://ardupilot_sitl_models/models/alti_transition_quad/materials/textures/x8.tga</albedo_map>\n\
+      \                <metalness>0.5</metalness>\n            </metal>\n        \
+      \  </pbr>\n        </material>\n      </visual>\n    </link>\n    <joint name=\"\
+      motor_f_joint\" type=\"revolute\">\n      <child>motor_f</child>\n      <parent>base_link</parent>\n\
+      \      <axis>\n        <xyz>0 0 1</xyz>\n        <limit>\n          <lower>-1e+16</lower>\n\
+      \          <upper>1e+16</upper>\n        </limit>\n        <dynamics>\n    \
+      \      <damping>0.002</damping>\n        </dynamics>\n        <use_parent_model_frame>1</use_parent_model_frame>\n\
+      \      </axis>\n    </joint>\n\n    <link name=\"left_aileron_link\">\n    \
+      \  <pose relative_to=\"left_aileron_joint\">0 0 0 -0.087266463 0 -0.034906585</pose>\n\
+      \      <inertial>\n        <mass>0.1</mass>\n        <inertia>\n          <ixx>0.000102319</ixx>\n\
+      \          <ixy>0</ixy>\n          <iyy>0.00334417</iyy>\n          <ixz>0</ixz>\n\
+      \          <iyz>0</iyz>\n          <izz>0.003446072</izz>\n        </inertia>\n\
+      \      </inertial>\n      <!-- <collision name=\"collision\">\n        <geometry>\n\
+      \          <mesh>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/alti_transition_aileron_left.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n      </collision> -->\n      <visual\
+      \ name=\"visual\">\n        <geometry>\n          <mesh>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/alti_transition_aileron_left.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n        <material>\n          <diffuse>1.0\
+      \ 1.0 1.0</diffuse>\n          <specular>1.0 1.0 1.0</specular>\n          <pbr>\n\
+      \            <metal>\n                <albedo_map>package://ardupilot_sitl_models/models/alti_transition_quad/materials/textures/AltiTransitionMap.png</albedo_map>\n\
+      \                <metalness>0.1</metalness>\n            </metal>\n        \
+      \  </pbr>\n        </material>\n      </visual>\n    </link>\n\n    <!-- Joint\
+      \ range -25/+25 deg. -->\n    <joint name=\"left_aileron_joint\" type=\"revolute\"\
+      >\n      <parent>base_link</parent>\n      <child>left_aileron_link</child>\n\
+      \      <pose relative_to=\"base_link\">-0.163120956 1.122682319 0.073423477\
+      \ 0.087266463 0 0.034906585</pose>\n      <axis>\n        <xyz>0 1 0</xyz>\n\
+      \        <limit>\n          <lower>-0.436332313</lower>\n          <upper>0.436332313</upper>\n\
+      \        </limit>\n        <dynamics>\n          <damping>0.1</damping>\n  \
+      \      </dynamics>\n      </axis>\n    </joint>\n\n    <link name=\"right_aileron_link\"\
+      >\n      <pose relative_to=\"right_aileron_joint\">0 0 0 0.087266463 0 0.034906585</pose>\n\
+      \      <inertial>\n        <mass>0.1</mass>\n        <inertia>\n          <ixx>0.000102319</ixx>\n\
+      \          <ixy>0</ixy>\n          <iyy>0.00334417</iyy>\n          <ixz>0</ixz>\n\
+      \          <iyz>0</iyz>\n          <izz>0.003446072</izz>\n        </inertia>\n\
+      \      </inertial>\n      <!-- <collision name=\"collision\">\n        <geometry>\n\
+      \          <mesh>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/alti_transition_aileron_right.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n      </collision> -->\n      <visual\
+      \ name=\"visual\">\n        <geometry>\n          <mesh>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/alti_transition_aileron_right.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n        <material>\n          <diffuse>1.0\
+      \ 1.0 1.0</diffuse>\n          <specular>1.0 1.0 1.0</specular>\n          <pbr>\n\
+      \            <metal>\n                <albedo_map>package://ardupilot_sitl_models/models/alti_transition_quad/materials/textures/AltiTransitionMap.png</albedo_map>\n\
+      \                <metalness>0.1</metalness>\n            </metal>\n        \
+      \  </pbr>\n        </material>\n      </visual>\n    </link>\n\n    <!-- Joint\
+      \ range -25/+25 deg. -->\n    <joint name=\"right_aileron_joint\" type=\"revolute\"\
+      >\n      <parent>base_link</parent>\n      <child>right_aileron_link</child>\n\
+      \      <pose relative_to=\"base_link\">-0.161120956 -1.116470319 0.073423477\
+      \ -0.087266463 0 -0.034906585</pose>\n      <axis>\n        <xyz>0 1 0</xyz>\n\
+      \        <limit>\n          <lower>-0.436332313</lower>\n          <upper>0.436332313</upper>\n\
+      \        </limit>\n        <dynamics>\n          <damping>0.1</damping>\n  \
+      \      </dynamics>\n      </axis>\n    </joint>\n\n    <link name=\"elevator_link\"\
+      >\n      <pose relative_to=\"elevator_joint\">0 0 0 0 0 0</pose>\n      <inertial>\n\
+      \        <mass>0.1</mass>\n        <inertia>\n          <ixx>0.000102319</ixx>\n\
+      \          <ixy>0</ixy>\n          <iyy>0.00334417</iyy>\n          <ixz>0</ixz>\n\
+      \          <iyz>0</iyz>\n          <izz>0.003446072</izz>\n        </inertia>\n\
+      \      </inertial>\n      <!-- <collision name=\"collision\">\n        <geometry>\n\
+      \          <mesh>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/alti_transition_elevator.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n      </collision> -->\n      <collision\
+      \ name=\"collision\">\n        <pose>-0.03 0 0 0 0 0</pose>\n        <geometry>\n\
+      \          <box>\n            <size>0.06 0.62 0.01</size>\n          </box>\n\
+      \        </geometry>\n      </collision>\n      <visual name=\"visual\">\n \
+      \       <geometry>\n          <mesh>\n            <uri>package://ardupilot_sitl_models/models/alti_transition_quad/meshes/alti_transition_elevator.dae</uri>\n\
+      \          </mesh>\n        </geometry>\n        <material>\n          <diffuse>1.0\
+      \ 1.0 1.0</diffuse>\n          <specular>1.0 1.0 1.0</specular>\n          <pbr>\n\
+      \            <metal>\n                <albedo_map>package://ardupilot_sitl_models/models/alti_transition_quad/materials/textures/AltiTransitionMap.png</albedo_map>\n\
+      \                <metalness>0.1</metalness>\n            </metal>\n        \
+      \  </pbr>\n        </material>\n      </visual>\n    </link>\n\n    <!-- Joint\
+      \ range -25/+25 deg. -->\n    <joint name=\"elevator_joint\" type=\"revolute\"\
+      >\n      <parent>base_link</parent>\n      <child>elevator_link</child>\n  \
+      \    <pose relative_to=\"base_link\">-1.383506602 0 0.213284959 0 0 0</pose>\n\
+      \      <axis>\n        <xyz>0 1 0</xyz>\n        <limit>\n          <lower>-0.436332313</lower>\n\
+      \          <upper>0.436332313</upper>\n        </limit>\n        <dynamics>\n\
+      \          <damping>0.1</damping>\n        </dynamics>\n      </axis>\n    </joint>\n\
+      \n    <!-- sensors -->\n    <link name=\"imu_link\">\n      <inertial>\n   \
+      \     <pose>0 0 0 0 0 0</pose>\n        <mass>0.15</mass>\n        <inertia>\n\
+      \          <ixx>0.00002</ixx>\n          <ixy>0</ixy>\n          <ixz>0</ixz>\n\
+      \          <iyy>0.00002</iyy>\n          <iyz>0</iyz>\n          <izz>0.00002</izz>\n\
+      \        </inertia>\n      </inertial>\n      <sensor name=\"imu_sensor\" type=\"\
+      imu\">\n        <pose degrees=\"true\">0 0 0 180 0 0</pose>\n        <always_on>1</always_on>\n\
+      \        <update_rate>1000.0</update_rate>\n      </sensor>\n    </link>\n \
+      \   <joint name=\"imu_joint\" type=\"revolute\">\n      <child>imu_link</child>\n\
+      \      <parent>base_link</parent>\n      <axis>\n        <xyz>0 0 1</xyz>\n\
+      \        <limit>\n          <lower>0</lower>\n          <upper>0</upper>\n \
+      \         <effort>0</effort>\n          <velocity>0</velocity>\n        </limit>\n\
+      \        <dynamics>\n          <damping>1.0</damping>\n        </dynamics>\n\
+      \        <use_parent_model_frame>1</use_parent_model_frame>\n      </axis>\n\
+      \    </joint>\n\n    <!-- plugins -->\n    <plugin filename=\"gz-sim-joint-state-publisher-system\"\
+      \n      name=\"gz::sim::systems::JointStatePublisher\">\n    </plugin>\n   \
+      \ <!-- motor_1 (cw) lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\
+      \n        name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n\
+      \      <cla>4.2500</cla>\n      <cda>0.10</cda>\n      <cma>0.0</cma>\n    \
+      \  <cla_stall>-0.025</cla_stall>\n      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <area>0.002</area>\n      <air_density>1.2041</air_density>\n      <cp>0.084\
+      \ 0 0</cp>\n      <forward>0 -1 0</forward>\n      <upward>0 0 1</upward>\n\
+      \      <link_name>motor_1</link_name>\n    </plugin>\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n      <cla>4.2500</cla>\n\
+      \      <cda>0.10</cda>\n      <cma>0.0</cma>\n      <cla_stall>-0.025</cla_stall>\n\
+      \      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n      <area>0.002</area>\n\
+      \      <air_density>1.2041</air_density>\n      <cp>-0.084 0 0</cp>\n      <forward>0\
+      \ 1 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>motor_1</link_name>\n\
+      \    </plugin>\n    <!-- motor_2 (cw) lift-drag -->\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n      <cla>4.2500</cla>\n\
+      \      <cda>0.10</cda>\n      <cma>0.0</cma>\n      <cla_stall>-0.025</cla_stall>\n\
+      \      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n      <area>0.002</area>\n\
+      \      <air_density>1.2041</air_density>\n      <cp>0.084 0 0</cp>\n      <forward>0\
+      \ -1 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>motor_2</link_name>\n\
+      \    </plugin>\n    <plugin filename=\"gz-sim-lift-drag-system\"\n        name=\"\
+      gz::sim::systems::LiftDrag\">\n      <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n\
+      \      <cla>4.2500</cla>\n      <cda>0.10</cda>\n      <cma>0.0</cma>\n    \
+      \  <cla_stall>-0.025</cla_stall>\n      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <area>0.002</area>\n      <air_density>1.2041</air_density>\n      <cp>-0.084\
+      \ 0 0</cp>\n      <forward>0 1 0</forward>\n      <upward>0 0 1</upward>\n \
+      \     <link_name>motor_2</link_name>\n    </plugin>\n    <!-- motor_3 (ccw)\
+      \ lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\n        name=\"\
+      gz::sim::systems::LiftDrag\">\n      <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n\
+      \      <cla>4.2500</cla>\n      <cda>0.10</cda>\n      <cma>0.0</cma>\n    \
+      \  <cla_stall>-0.025</cla_stall>\n      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <area>0.002</area>\n      <air_density>1.2041</air_density>\n      <cp>0.084\
+      \ 0 0</cp>\n      <forward>0 1 0</forward>\n      <upward>0 0 1</upward>\n \
+      \     <link_name>motor_3</link_name>\n    </plugin>\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n      <cla>4.2500</cla>\n\
+      \      <cda>0.10</cda>\n      <cma>0.0</cma>\n      <cla_stall>-0.025</cla_stall>\n\
+      \      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n      <area>0.002</area>\n\
+      \      <air_density>1.2041</air_density>\n      <cp>-0.084 0 0</cp>\n      <forward>0\
+      \ -1 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>motor_3</link_name>\n\
+      \    </plugin>\n    <!-- motor_4 (ccw) lift-drag -->\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n      <cla>4.2500</cla>\n\
+      \      <cda>0.10</cda>\n      <cma>0.0</cma>\n      <cla_stall>-0.025</cla_stall>\n\
+      \      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n      <area>0.002</area>\n\
+      \      <air_density>1.2041</air_density>\n      <cp>0.084 0 0</cp>\n      <forward>0\
+      \ 1 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>motor_4</link_name>\n\
+      \    </plugin>\n    <plugin filename=\"gz-sim-lift-drag-system\"\n        name=\"\
+      gz::sim::systems::LiftDrag\">\n      <a0>0.3</a0>\n      <alpha_stall>1.4</alpha_stall>\n\
+      \      <cla>4.2500</cla>\n      <cda>0.10</cda>\n      <cma>0.0</cma>\n    \
+      \  <cla_stall>-0.025</cla_stall>\n      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <area>0.002</area>\n      <air_density>1.2041</air_density>\n      <cp>-0.084\
+      \ 0 0</cp>\n      <forward>0 -1 0</forward>\n      <upward>0 0 1</upward>\n\
+      \      <link_name>motor_4</link_name>\n    </plugin>\n    <!-- motor_f (ccw)\
+      \ lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\n        name=\"\
+      gz::sim::systems::LiftDrag\">\n      <a0>0.30</a0>\n      <alpha_stall>1.4</alpha_stall>\n\
+      \      <cla>4.2500</cla>\n      <cda>0.10</cda>\n      <cma>0.0</cma>\n    \
+      \  <cla_stall>-0.025</cla_stall>\n      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <area>0.02</area>\n      <air_density>1.2041</air_density>\n      <cp>0.074205\
+      \ 0 0</cp>\n      <forward>0 1 0</forward>\n      <upward>0 0 1</upward>\n \
+      \     <link_name>motor_f</link_name>\n    </plugin>\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.30</a0>\n      <alpha_stall>1.4</alpha_stall>\n      <cla>4.2500</cla>\n\
+      \      <cda>0.10</cda>\n      <cma>0.0</cma>\n      <cla_stall>-0.025</cla_stall>\n\
+      \      <cda_stall>0.0</cda_stall>\n      <cma_stall>0.0</cma_stall>\n      <area>0.02</area>\n\
+      \      <air_density>1.2041</air_density>\n      <cp>-0.074205 0 0</cp>\n   \
+      \   <forward>0 -1 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>motor_f</link_name>\n\
+      \    </plugin>\n    <!-- main_wing lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\
+      \n        name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.13</a0>\n      <cla>3.7</cla>\n\
+      \      <cda>0.06417112299</cda>\n      <cma>0.0</cma>\n      <alpha_stall>0.3391428111</alpha_stall>\n\
+      \      <cla_stall>-3.85</cla_stall>\n      <cda_stall>-0.9233984055</cda_stall>\n\
+      \      <cma_stall>0.0</cma_stall>\n      <cp>0.02 0 0.021946</cp>\n      <area>0.8306432</area>\n\
+      \      <air_density>1.2041</air_density>\n      <forward>1 0 0</forward>\n \
+      \     <upward>0 0 1</upward>\n      <link_name>base_link</link_name>\n    </plugin>\n\
+      \    <!-- left_aileron lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\
+      \n        name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.15</a0>\n      <cla>6.8</cla>\n\
+      \      <cda>0.06417112299</cda>\n      <cma>0.0</cma>\n      <alpha_stall>0.6391428111</alpha_stall>\n\
+      \      <cla_stall>-3.85</cla_stall>\n      <cda_stall>-0.9233984055</cda_stall>\n\
+      \      <cma_stall>0.0</cma_stall>\n      <cp>-0.161120956 1.116470319 0.073423477</cp>\n\
+      \      <area>0.031165499</area>\n      <air_density>1.2041</air_density>\n \
+      \     <forward>1 0 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>base_link</link_name>\n\
+      \      <control_joint_name>left_aileron_joint</control_joint_name>\n      <control_joint_rad_to_cl>-5.0</control_joint_rad_to_cl>\n\
+      \    </plugin>\n    <!-- right_aileron lift-drag -->\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.15</a0>\n      <cla>6.8</cla>\n      <cda>0.06417112299</cda>\n \
+      \     <cma>0.0</cma>\n      <alpha_stall>0.6391428111</alpha_stall>\n      <cla_stall>-3.85</cla_stall>\n\
+      \      <cda_stall>-0.9233984055</cda_stall>\n      <cma_stall>0.0</cma_stall>\n\
+      \      <cp>-0.161120956 -1.116470319 0.073423477</cp>\n      <area>0.031165499</area>\n\
+      \      <air_density>1.2041</air_density>\n      <forward>1 0 0</forward>\n \
+      \     <upward>0 0 1</upward>\n      <link_name>base_link</link_name>\n     \
+      \ <control_joint_name>right_aileron_joint</control_joint_name>\n      <control_joint_rad_to_cl>-5.0</control_joint_rad_to_cl>\n\
+      \    </plugin>\n    <!-- left_winglet lift-drag -->\n    <plugin filename=\"\
+      gz-sim-lift-drag-system\"\n        name=\"gz::sim::systems::LiftDrag\">\n  \
+      \    <a0>0.0</a0>\n      <cla>4.752798721</cla>\n      <cda>0.6417112299</cda>\n\
+      \      <cma>0.0</cma>\n      <alpha_stall>0.3391428111</alpha_stall>\n     \
+      \ <cla_stall>-3.85</cla_stall>\n      <cda_stall>-0.9233984055</cda_stall>\n\
+      \      <cma_stall>0.0</cma_stall>\n      <cp>-0.19 1.46 0.15</cp>\n      <area>0.0152</area>\n\
+      \      <air_density>1.2041</air_density>\n      <forward>1 0 0</forward>\n \
+      \     <upward>0 1 0</upward>\n      <link_name>base_link</link_name>\n    </plugin>\n\
+      \    <!-- right_winglet lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\
+      \n        name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.0</a0>\n      <cla>4.752798721</cla>\n\
+      \      <cda>0.6417112299</cda>\n      <cma>0.0</cma>\n      <alpha_stall>0.3391428111</alpha_stall>\n\
+      \      <cla_stall>-3.85</cla_stall>\n      <cda_stall>-0.9233984055</cda_stall>\n\
+      \      <cma_stall>0.0</cma_stall>\n      <cp>-0.19 -1.46 0.15</cp>\n      <area>0.0152</area>\n\
+      \      <air_density>1.2041</air_density>\n      <forward>1 0 0</forward>\n \
+      \     <upward>0 -1 0</upward>\n      <link_name>base_link</link_name>\n    </plugin>\n\
+      \    <!-- hstab lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\
+      \n        name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.13</a0>\n      <cla>3.7</cla>\n\
+      \      <cda>0.06417112299</cda>\n      <cma>0.0</cma>\n      <alpha_stall>0.3391428111</alpha_stall>\n\
+      \      <cla_stall>-3.85</cla_stall>\n      <cda_stall>-0.9233984055</cda_stall>\n\
+      \      <cma_stall>0.0</cma_stall>\n      <cp>-1.383506602 0 0.213284959</cp>\n\
+      \      <area>0.0864</area>\n      <air_density>1.2041</air_density>\n      <forward>1\
+      \ 0 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>base_link</link_name>\n\
+      \    </plugin>\n    <!-- elevator lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\
+      \n        name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.15</a0>\n      <cla>6.8</cla>\n\
+      \      <cda>0.06417112299</cda>\n      <cma>0.0</cma>\n      <alpha_stall>0.6391428111</alpha_stall>\n\
+      \      <cla_stall>-3.85</cla_stall>\n      <cda_stall>-0.9233984055</cda_stall>\n\
+      \      <cma_stall>0.0</cma_stall>\n      <cp>-1.383506602 0 0.213284959</cp>\n\
+      \      <area>0.02376</area>\n      <air_density>1.2041</air_density>\n     \
+      \ <forward>1 0 0</forward>\n      <upward>0 0 1</upward>\n      <link_name>base_link</link_name>\n\
+      \      <control_joint_name>elevator_joint</control_joint_name>\n      <control_joint_rad_to_cl>-5.0</control_joint_rad_to_cl>\n\
+      \    </plugin>\n    <!-- left_vstab lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\
+      \n        name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.0</a0>\n      <cla>4.752798721</cla>\n\
+      \      <cda>0.6417112299</cda>\n      <cma>0.0</cma>\n      <alpha_stall>0.3391428111</alpha_stall>\n\
+      \      <cla_stall>-3.85</cla_stall>\n      <cda_stall>-0.9233984055</cda_stall>\n\
+      \      <cma_stall>0.0</cma_stall>\n      <cp>-1.25 0.405 0.1</cp>\n      <area>0.0378</area>\n\
+      \      <air_density>1.2041</air_density>\n      <forward>1 0 0</forward>\n \
+      \     <upward>0 1 0</upward>\n      <link_name>base_link</link_name>\n    </plugin>\n\
+      \    <!-- right_vstab lift-drag -->\n    <plugin filename=\"gz-sim-lift-drag-system\"\
+      \n        name=\"gz::sim::systems::LiftDrag\">\n      <a0>0.0</a0>\n      <cla>4.752798721</cla>\n\
+      \      <cda>0.6417112299</cda>\n      <cma>0.0</cma>\n      <alpha_stall>0.3391428111</alpha_stall>\n\
+      \      <cla_stall>-3.85</cla_stall>\n      <cda_stall>-0.9233984055</cda_stall>\n\
+      \      <cma_stall>0.0</cma_stall>\n      <cp>-1.25 -0.405 0.1</cp>\n      <area>0.0378</area>\n\
+      \      <air_density>1.2041</air_density>\n      <forward>1 0 0</forward>\n \
+      \     <upward>0 -1 0</upward>\n      <link_name>base_link</link_name>\n    </plugin>\n\
+      \n    <plugin filename=\"gz-sim-apply-joint-force-system\"\n      name=\"gz::sim::systems::ApplyJointForce\"\
+      >\n      <joint_name>motor_1_joint</joint_name>\n    </plugin>\n    <plugin\
+      \ filename=\"gz-sim-apply-joint-force-system\"\n      name=\"gz::sim::systems::ApplyJointForce\"\
+      >\n      <joint_name>motor_2_joint</joint_name>\n    </plugin>\n    <plugin\
+      \ filename=\"gz-sim-apply-joint-force-system\"\n      name=\"gz::sim::systems::ApplyJointForce\"\
+      >\n      <joint_name>motor_3_joint</joint_name>\n    </plugin>\n    <plugin\
+      \ filename=\"gz-sim-apply-joint-force-system\"\n      name=\"gz::sim::systems::ApplyJointForce\"\
+      >\n      <joint_name>motor_4_joint</joint_name>\n    </plugin>\n    <plugin\
+      \ filename=\"gz-sim-apply-joint-force-system\"\n      name=\"gz::sim::systems::ApplyJointForce\"\
+      >\n      <joint_name>motor_f_joint</joint_name>\n    </plugin>\n    <plugin\
+      \ filename=\"gz-sim-apply-joint-force-system\"\n      name=\"gz::sim::systems::ApplyJointForce\"\
+      >\n      <joint_name>left_aileron_joint</joint_name>\n    </plugin>\n    <plugin\
+      \ filename=\"gz-sim-apply-joint-force-system\"\n      name=\"gz::sim::systems::ApplyJointForce\"\
+      >\n      <joint_name>right_aileron_joint</joint_name>\n    </plugin>\n\n   \
+      \ <plugin name=\"ArduPilotPlugin\" filename=\"ArduPilotPlugin\">\n      <!--\
+      \ Port settings -->\n      <fdm_addr>127.0.0.1</fdm_addr>\n      <fdm_port_in>9032</fdm_port_in>\n\
+      \      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>\n      <lock_step>1</lock_step>\n\
+      \n      <modelXYZToAirplaneXForwardZDown degrees=\"true\">0 0 0 180 0 0</modelXYZToAirplaneXForwardZDown>\n\
+      \      <gazeboXYZToNED degrees=\"true\">0 0 0 180 0 90</gazeboXYZToNED>\n\n\
+      \      <!-- Sensors -->\n      <imuName>imu_sensor</imuName>\n\n      <!-- \n\
+      \          SERVO1_FUNCTION   4 (Aileron)\n          SERVO1_MAX        2000\n\
+      \          SERVO1_MIN        1000\n          SERVO1_REVERSED   0\n         \
+      \ SERVO1_TRIM       1500\n\n          pwm:          =>  [1100, 1900] \n    \
+      \      input:        =>  [0, 1]\n          offset: -0.5  =>  [-0.5, 0.5]\n \
+      \         scale:   2.0  =>  [-1.0, 1.0]\n          scale: 0.524  =>  [-0.524,\
+      \ 0.524]\n       -->\n      <control channel=\"0\">\n        <jointName>left_aileron_joint</jointName>\n\
+      \        <useForce>1</useForce>\n        <multiplier>-0.872664626</multiplier>\n\
+      \        <offset>-0.5</offset>\n        <servo_min>1000</servo_min>\n      \
+      \  <servo_max>2000</servo_max>\n        <type>POSITION</type>\n        <p_gain>10.0</p_gain>\n\
+      \        <i_gain>0</i_gain>\n        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n\
+      \        <i_min>0</i_min>\n        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n\
+      \      </control>\n\n      <control channel=\"0\">\n        <jointName>right_aileron_joint</jointName>\n\
+      \        <useForce>1</useForce>\n        <multiplier>0.872664626</multiplier>\n\
+      \        <offset>-0.5</offset>\n        <servo_min>1000</servo_min>\n      \
+      \  <servo_max>2000</servo_max>\n        <type>POSITION</type>\n        <p_gain>10.0</p_gain>\n\
+      \        <i_gain>0</i_gain>\n        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n\
+      \        <i_min>0</i_min>\n        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n\
+      \      </control>\n\n      <!-- \n          SERVO2_FUNCTION   19 (Elevator)\n\
+      \          SERVO2_MAX        2000\n          SERVO2_MIN        1000\n      \
+      \    SERVO2_REVERSED   0\n          SERVO2_TRIM       1500\n       -->\n   \
+      \   <control channel=\"1\">\n        <jointName>elevator_joint</jointName>\n\
+      \        <useForce>1</useForce>\n        <multiplier>0.872664626</multiplier>\n\
+      \        <offset>-0.5</offset>\n        <servo_min>1000</servo_min>\n      \
+      \  <servo_max>2000</servo_max>\n        <type>POSITION</type>\n        <p_gain>10.0</p_gain>\n\
+      \        <i_gain>0</i_gain>\n        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n\
+      \        <i_min>0</i_min>\n        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n\
+      \      </control>\n\n      <!-- \n          SERVO3_FUNCTION   70 (Throttle)\n\
+      \          SERVO3_MAX        2000\n          SERVO3_MIN        1000\n      \
+      \    SERVO3_REVERSED   0\n          SERVO3_TRIM       1000\n\n          incoming\
+      \ control command [0, 1]\n          so offset it by 0 to get [0, 1]\n      \
+      \    and divide max target by 1.\n          offset = 0\n          multiplier\
+      \ = 838 max rpm / 1 = 838\n       -->\n      <control channel=\"2\">\n     \
+      \   <jointName>motor_f_joint</jointName>\n        <useForce>1</useForce>\n \
+      \       <multiplier>-1500</multiplier>\n        <offset>0</offset>\n       \
+      \ <servo_min>1000</servo_min>\n        <servo_max>2000</servo_max>\n       \
+      \ <type>VELOCITY</type>\n        <p_gain>0.20</p_gain>\n        <i_gain>0</i_gain>\n\
+      \        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n        <i_min>0</i_min>\n\
+      \        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n      </control>\n\
+      \n\n      <!-- \n          SERVO5_FUNCTION   33 (Motor1 Front Right CW)\n  \
+      \        SERVO5_MAX        2000\n          SERVO5_MIN        1000\n        \
+      \  SERVO5_REVERSED   0\n          SERVO5_TRIM       1500\n       -->\n     \
+      \ <control channel=\"4\">\n        <jointName>motor_1_joint</jointName>\n  \
+      \      <useForce>1</useForce>\n        <multiplier>-1500</multiplier>\n    \
+      \    <offset>0</offset>\n        <servo_min>1000</servo_min>\n        <servo_max>2000</servo_max>\n\
+      \        <type>VELOCITY</type>\n        <p_gain>0.20</p_gain>\n        <i_gain>0</i_gain>\n\
+      \        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n        <i_min>0</i_min>\n\
+      \        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n      </control>\n\
+      \n      <!-- \n          SERVO6_FUNCTION   34 (Motor2 Rear Left CW)\n      \
+      \    SERVO6_MAX        2000\n          SERVO6_MIN        1000\n          SERVO6_REVERSED\
+      \   0\n          SERVO6_TRIM       1500\n       -->\n      <control channel=\"\
+      5\">\n        <jointName>motor_2_joint</jointName>\n        <useForce>1</useForce>\n\
+      \        <multiplier>-1500</multiplier>\n        <offset>0</offset>\n      \
+      \  <servo_min>1000</servo_min>\n        <servo_max>2000</servo_max>\n      \
+      \  <type>VELOCITY</type>\n        <p_gain>0.20</p_gain>\n        <i_gain>0</i_gain>\n\
+      \        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n        <i_min>0</i_min>\n\
+      \        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n      </control>\n\
+      \n      <!-- \n          SERVO7_FUNCTION   35 (Motor3 Front Left CCW)\n    \
+      \      SERVO7_MAX        2000\n          SERVO7_MIN        1000\n          SERVO7_REVERSED\
+      \   0\n          SERVO7_TRIM       1500\n       -->\n      <control channel=\"\
+      6\">\n        <jointName>motor_3_joint</jointName>\n        <useForce>1</useForce>\n\
+      \        <multiplier>1500</multiplier>\n        <offset>0</offset>\n       \
+      \ <servo_min>1000</servo_min>\n        <servo_max>2000</servo_max>\n       \
+      \ <type>VELOCITY</type>\n        <p_gain>0.20</p_gain>\n        <i_gain>0</i_gain>\n\
+      \        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n        <i_min>0</i_min>\n\
+      \        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n      </control>\n\
+      \n      <!-- \n          SERVO8_FUNCTION   36 (Motor4 Rear Right CCW)\n    \
+      \      SERVO8_MAX        2000\n          SERVO8_MIN        1000\n          SERVO8_REVERSED\
+      \   0\n          SERVO8_TRIM       1500\n       -->\n      <control channel=\"\
+      7\">\n        <jointName>motor_4_joint</jointName>\n        <useForce>1</useForce>\n\
+      \        <multiplier>1500</multiplier>\n        <offset>0</offset>\n       \
+      \ <servo_min>1000</servo_min>\n        <servo_max>2000</servo_max>\n       \
+      \ <type>VELOCITY</type>\n        <p_gain>0.20</p_gain>\n        <i_gain>0</i_gain>\n\
+      \        <d_gain>0</d_gain>\n        <i_max>0</i_max>\n        <i_min>0</i_min>\n\
+      \        <cmd_max>2.5</cmd_max>\n        <cmd_min>-2.5</cmd_min>\n      </control>\n\
+      \n    </plugin>\n  </model>\n</sdf>\n"

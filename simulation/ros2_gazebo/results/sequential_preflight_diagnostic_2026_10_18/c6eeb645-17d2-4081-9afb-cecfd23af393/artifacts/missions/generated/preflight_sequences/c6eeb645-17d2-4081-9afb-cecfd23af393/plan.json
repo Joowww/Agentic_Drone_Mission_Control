@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "sequence_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+  "request_key": "joel-secuencia-sitl-01",
+  "authorization": {
+    "source": "OPERATOR_DECLARED_VIA_AGENT",
+    "statement": "Autorizo una única pareja de ensayos SITL secuenciales: missions/examples/simulation_navigation_3waypoint.json con drone_01/v1 y después missions/examples/simulation_navigation_drone02.json con drone_02/v2, con clave joel-secuencia-sitl-01. Ejecuta el segundo sólo tras éxito íntegro y aterrizaje/desarmado del primero. Sin arrancar ni reiniciar simulación.",
+    "scope": "These two ordered snapshots only; SITL; no further flights or hardware"
+  },
+  "children": [
+    {
+      "index": 0,
+      "run_id": "467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+      "request_key": "sequence-c6eeb645-17d2-4081-9afb-cecfd23af393-1",
+      "mission_sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74",
+      "vehicle_selection": {
+        "vehicle_id": "drone_01",
+        "simulated_vehicle": "v1"
+      },
+      "original_source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/examples/simulation_navigation_3waypoint.json",
+      "source_artifact": null
+    },
+    {
+      "index": 1,
+      "run_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+      "request_key": "sequence-c6eeb645-17d2-4081-9afb-cecfd23af393-2",
+      "mission_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+      "vehicle_selection": {
+        "vehicle_id": "drone_02",
+        "simulated_vehicle": "v2"
+      },
+      "original_source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/examples/simulation_navigation_drone02.json",
+      "source_artifact": null
+    }
+  ]
+}
