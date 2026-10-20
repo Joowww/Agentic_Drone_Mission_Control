@@ -1,0 +1,55 @@
+{
+  "scope": "Offline implementation and doubled tests only; no administrative preparation/application on real state",
+  "tests": {
+    "affected_final": {
+      "passed": 112,
+      "wall_seconds": 15.31,
+      "log": "tests_affected_final.txt"
+    },
+    "complete_suite": {
+      "passed": 601,
+      "wall_seconds": 44.11,
+      "log": "tests_full.txt"
+    }
+  },
+  "previous_code_baseline_count": 101,
+  "previous_code_files_changed": [
+    "tools/hermes_mcp_server.py"
+  ],
+  "code_baseline_source": "simulation/ros2_gazebo/results/legacy_evidence_followup_2026_10_19/code_baseline.json",
+  "syntax": {
+    "python_files": 30,
+    "bash_files": 5,
+    "embedded_observer": 1,
+    "log": "syntax.json"
+  },
+  "preservation": {
+    "baseline_files_unchanged": 529,
+    "pinned_versions": 16,
+    "runtime_case_created": false,
+    "real_guards_untouched": {
+      "sequence.json": {
+        "sha256": "47385b4ebc900482d1202131e2421d55a316c7144ccce8bc135cabfaaf73505e",
+        "owner_id": "c6eeb645-17d2-4081-9afb-cecfd23af393"
+      },
+      "v2.json": {
+        "sha256": "c7bcb0a629e02e9676a5b25b43a089b73686c23ce4e39e7a4368936c59b91954",
+        "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4"
+      }
+    },
+    "log": "preservation_check.json"
+  },
+  "whitespace": {
+    "tracked_clean": true,
+    "new_functional_documentation_clean": true,
+    "prior_raw_evidence_files_with_notices": 9,
+    "log": "whitespace.json"
+  },
+  "historical_environment_binding": "UNVERIFIED",
+  "historical_clock_comparability": "UNKNOWN",
+  "original_environment_termination": "UNKNOWN",
+  "ground_contact": "NOT_ASSERTED",
+  "real_retirement_applied": false,
+  "historical_results_changed": false,
+  "operational_verification": "PENDING_SEPARATE_OPERATOR_AUTHORIZATION"
+}
