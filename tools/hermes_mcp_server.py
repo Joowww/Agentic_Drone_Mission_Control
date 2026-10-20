@@ -31,6 +31,7 @@ from tools.hermes_mission_validation import (
 from tools.mission_execution_gate import (
     check_mission_execution_ready as check_execution_ready,
 )
+from tools.execution_reconciliation import GroundConfirmation, LegacyEnvironmentConfirmation
 from tools.simulation_control import (
     restart_simulation as restart_simulation_backend,
     start_simulation as start_simulation_backend,
@@ -122,7 +123,18 @@ mcp = MCPServer(
         "image again. No parallel lifecycle calls, automatic loops or retries on timeout/lost "
         "response. Start also cleans previous processes, so another start is a restart, not "
         "a visual probe. The updated lifecycle entry points atomically fence flight admissions; "
-        "inspection queries alone do not. Continuing "
+        "inspection queries alone do not. UNCONFIRMED requires inspect_execution_reconciliation, "
+        "reviewed inspection ID/hash and separate explicit reconciliation authorization. In an ACTIVE "
+        "environment require new telemetry and independent visual ON-GROUND confirmations for BOTH "
+        "vehicles; do not infer ground from armed/flying. A verifiably STOPPED exact environment "
+        "has a separate administrative-closure path with prior container identity, dead owners and "
+        "matching reservation versions, without telemetry/ground claims. Posthoc identity references do not "
+        "bind the original execution: review continuity and wall clocks with the operator and supply "
+        "legacy_environment_confirmation explicitly, never infer it from host boot_id or matching IDs. "
+        "Missing name or Docker "
+        "exec failure alone is insufficient; never start/restart to prove an earlier flight ended. "
+        "Black GUI blocks the active ground path, not verified environment-termination inspection. "
+        "Continuing "
         "without visualization requires the operator's explicit choice and grants no flight "
         "consent or gate bypass. No automatic visual detection or unsupported cause claim. "
         "For an explicitly requested rehearsal prefer start_virtual_preflight with a "
@@ -367,6 +379,31 @@ def start_simulation(gui: bool = True) -> dict[str, object]:
 @mcp.tool(description="Explicitly authorized ONE simulator stop/start transaction. Atomically excludes all project flight admissions. Active/uncertain flight, sequence or lifecycle restrictions block it; never reconcile implicitly. gui=false selects headless, gui=true still requires operator visual confirmation. Does not grant flight consent or retry automatically.", structured_output=True)
 def restart_simulation(gui: bool = True) -> dict[str, object]:
     return restart_simulation_backend(gui=gui)
+
+
+@mcp.tool(description="Explicit read-only operational reconciliation INSPECTION of a known current reservation owner UUID (sequence/run/lifecycle). First reads bounded Docker metadata and known owners/versions/process identities under OS mutex. For ACTIVE environment collects new telemetry for BOTH interfaces. For verifiably STOPPED exact container uses retained identity evidence, with no telemetry or ground claim; Docker inaccessible/absent/replaced/unknown blocks. Persists only a separate audit, never controls, edits/releases restrictions or resumes work. Historical telemetry is insufficient. Return inspection_id/hash, basis, known/unknown fields, collection state, applicability and expiry (never-collected is not expired). Separate explicit authorization is always required. STOPPED with posthoc identity returns AWAITING_LEGACY_ENVIRONMENT_REVIEW, application_eligible=false until the separate operator continuity/clock declaration accompanies application; chronology is conditional evidence. Only the ACTIVE path requires independent recent visual on-ground confirmations. Absolute message generation age is unknown; armed=false/flying=false is not ground contact.", structured_output=True)
+def inspect_execution_reconciliation(target_id: str) -> dict[str, object]:
+    from tools.execution_reconciliation import inspect_execution_reconciliation as inspect_backend
+    return inspect_backend(target_id)
+
+
+@mcp.tool(description="Read a retained reconciliation inspection/application audit by inspection_id after reload or lost response. Fixed project root, no telemetry collection, reservation writes, application, resume or new consent. An APPLIED audit reconciles restrictions, never repairs historical mission results. Preserve inspection hash and original application arguments; do not repeat with invented fresh declarations.", structured_output=True)
+def get_execution_reconciliation(inspection_id: str) -> dict[str, object]:
+    from tools.execution_reconciliation import get_execution_reconciliation as get_backend
+    return get_backend(inspection_id)
+
+
+@mcp.tool(description="Apply ONLY an explicitly authorized reviewed reconciliation inspection_id + exact SHA-256, within expiry and same boot. For ACTIVE_TELEMETRY_AND_GROUND requires OPERATOR_VISUAL ground_confirmations for v1/v2 with vehicle, on_ground=true, statement and observed_at_utc after inspection, plus new telemetry. For ENVIRONMENT_TERMINATED omit ground_confirmations: administrative closure revalidates exact Docker engine/container/incarnation stopped state and retained identity reference, dead responsible processes and all versions under common exclusion. Never start the simulator to obtain evidence. Posthoc references require legacy_environment_confirmation: explicit operator review of deployment/selector continuity, no substitution/clone and comparable wall clocks, matching inspected engine_id/container_id with a supporting statement. Missing or contradicted review stays pending/blocked; original historical identity is still unknown. Host boot_id is not Docker engine identity/restart evidence. Administrative closure asserts neither landing nor mission success. Missing/changed/uncertain evidence stays blocked. Preserves original reservations in audit/history and never edits ERROR/PASSED reports, resumes, retries or authorizes flights. Identical repeated application is idempotent; no force unlock. Claims supplied through MCP are unverified agent declarations.", structured_output=True)
+def apply_execution_reconciliation(inspection_id: str, inspection_sha256: str,
+                                   authorization_statement: str,
+                                   ground_confirmations: list[GroundConfirmation] | None = None,
+                                   legacy_environment_confirmation: LegacyEnvironmentConfirmation | None = None) -> dict[str, object]:
+    from tools.execution_reconciliation import apply_execution_reconciliation as apply_backend
+    arguments = (inspection_id, inspection_sha256, authorization_statement,
+                 [g.model_dump() for g in ground_confirmations] if ground_confirmations is not None else None)
+    if legacy_environment_confirmation is not None:
+        return apply_backend(*arguments, legacy_environment_confirmation=legacy_environment_confirmation.model_dump())
+    return apply_backend(*arguments)
 
 
 @mcp.tool(
