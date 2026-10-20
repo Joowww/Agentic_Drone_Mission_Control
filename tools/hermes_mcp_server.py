@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Annotated
+from typing import Annotated, Literal
 from pydantic import Field
 
 from mcp.server import MCPServer
@@ -32,6 +32,7 @@ from tools.mission_execution_gate import (
     check_mission_execution_ready as check_execution_ready,
 )
 from tools.execution_reconciliation import GroundConfirmation, LegacyEnvironmentConfirmation
+from tools.legacy_administrative_retirement import AdministrativeRetirementAuthorization
 from tools.simulation_control import (
     restart_simulation as restart_simulation_backend,
     start_simulation as start_simulation_backend,
@@ -131,6 +132,15 @@ mcp = MCPServer(
         "matching reservation versions, without telemetry/ground claims. Posthoc identity references do not "
         "bind the original execution: review continuity and wall clocks with the operator and supply "
         "legacy_environment_confirmation explicitly, never infer it from host boot_id or matching IDs. "
+        "For the exclusively pinned c6eeb645-17d2-4081-9afb-cecfd23af393 case whose historical facts "
+        "remain unknown, prepare_legacy_sequence_retirement only observes current state and saves an audit. "
+        "Mutating apply_legacy_sequence_retirement and recovery are DISABLED because this project has "
+        "no integrated verified human-confirmation channel. Text written by the agent is not consent. "
+        "Declaration preparation_id/SHA-256 must match the exact reviewed pair; a new preparation "
+        "requires a new human confirmation and can NEVER inherit the old one. After expiry, error, "
+        "lost response or reload, only query get_legacy_sequence_retirement; do not automatically "
+        "prepare again, substitute IDs/hashes, apply or resume. Preserve any completed historical "
+        "ADMINISTRATIVELY_RETIRED_UNVERIFIED without retrying or legitimizing its agent declaration. "
         "Missing name or Docker "
         "exec failure alone is insufficient; never start/restart to prove an earlier flight ended. "
         "Black GUI blocks the active ground path, not verified environment-termination inspection. "
@@ -404,6 +414,54 @@ def apply_execution_reconciliation(inspection_id: str, inspection_sha256: str,
     if legacy_environment_confirmation is not None:
         return apply_backend(*arguments, legacy_environment_confirmation=legacy_environment_confirmation.model_dump())
     return apply_backend(*arguments)
+
+
+@mcp.tool(description=(
+    "READ-ONLY operational preparation of administrative retirement for ONLY the pinned legacy "
+    "sequence c6eeb645-17d2-4081-9afb-cecfd23af393 and its exact v2 restriction. Requires fresh bounded "
+    "metadata that the pinned current Docker engine/container is stopped, exact owners/artifact hashes "
+    "and absent pertinent processes under common exclusion. Saves a separate preparation audit only; "
+    "no release, control, simulator start/restart or flight. Returns preparation_id/hash and expiry. "
+    "Original environment and historical clocks remain UNKNOWN; no continuity declaration requested. "
+    "Only prepare on an explicit preparation request, never as an expiry/error/lost-response fallback. "
+    "New preparation means new confirmation scope; old consent cannot transfer. Mutating application "
+    "is disabled without a verified human channel. Existing transaction is returned read-only, never resumed."
+), structured_output=True)
+def prepare_legacy_sequence_retirement(
+    sequence_id: Literal['c6eeb645-17d2-4081-9afb-cecfd23af393'] = 'c6eeb645-17d2-4081-9afb-cecfd23af393',
+) -> dict[str, object]:
+    from tools.legacy_administrative_retirement import prepare_legacy_sequence_retirement as prepare_backend
+    return prepare_backend(sequence_id)
+
+
+@mcp.tool(description=(
+    "READ-ONLY audit of the one pinned legacy retirement. Supply preparation_id, or omit to recover "
+    "the existing accepted transaction/latest preparation after response loss or MCP reload. No "
+    "Docker/ROS observations, reservation writes or automatic recovery. RECOVERY_REQUIRED means the "
+    "durable intent/barrier remains protected; mutating recovery is disabled without verified human confirmation. "
+    "accepted_request records historical agent input, not authenticated consent or permission to retry. "
+    "ADMINISTRATIVELY_RETIRED_UNVERIFIED is local administrative history, not verified termination, "
+    "landing, success, flight consent or release of any new reservation."
+), structured_output=True)
+def get_legacy_sequence_retirement(preparation_id: str | None = None) -> dict[str, object]:
+    from tools.legacy_administrative_retirement import get_legacy_sequence_retirement as get_backend
+    return get_backend(preparation_id)
+
+
+@mcp.tool(description=(
+    "MUTATING APPLICATION/RECOVERY DISABLED: no verified human-confirmation channel is integrated. "
+    "Agent-generated authorization text, source labels, IDs or an elicitation accept alone do not "
+    "authenticate the operator. Declaration preparation_id/preparation_sha256 must equal the outer "
+    "reviewed pair, but matching fields alone still BLOCK. Never prepare again automatically after "
+    "expiry/error, substitute a new pair, replay or resume after response loss/reload. Query the "
+    "existing audit instead. A fully completed historical result can only be returned read-only; "
+    "never repeat or modify the retirement. Scope remains ONLY pinned legacy c6eeb645-17d2-4081-9afb-cecfd23af393; "
+    "no force flag, other owners/paths, simulation start/restart or flight."
+), structured_output=True)
+def apply_legacy_sequence_retirement(preparation_id: str, preparation_sha256: str,
+                                     authorization: AdministrativeRetirementAuthorization) -> dict[str, object]:
+    from tools.legacy_administrative_retirement import apply_legacy_sequence_retirement as apply_backend
+    return apply_backend(preparation_id, preparation_sha256, authorization.model_dump())
 
 
 @mcp.tool(
