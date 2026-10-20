@@ -142,7 +142,8 @@ def summarize_preflight(value):
                            "mission_sha256", "worker_alive", "worker", "worker_error", "created_at", "worker_started_at",
                            "worker_finished_at", "paths", "vehicle_restriction", "message", "source_artifact",
                            "snapshot_integrity", "readiness_now", "readiness_scope", "result_scope",
-                           "vehicle_selection", "vehicle_selection_basis", "global_flight_restriction"))
+                           "vehicle_selection", "vehicle_selection_basis", "global_flight_restriction",
+                           "sequence_id", "sequence_index"))
     result["report"] = _report(value.get("report"))
     if value.get("run_id"):
         result["detail_access"] = _access("get_virtual_preflight", run_id=value["run_id"])

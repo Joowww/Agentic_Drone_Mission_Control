@@ -165,7 +165,7 @@ def _view(run_id):
             state = "UNCONFIRMED"
         if identity and not alive:
             state = "INTERRUPTED"
-        elif not identity:
+        elif not identity and not (job.get("sequence_id") and state == "QUEUED"):
             state = "UNCONFIRMED"  # includes admission/spawn window: no restart on lookup
     return {
         "run_id": run_id, "request_key": (job or {}).get("request_key"),
@@ -183,6 +183,8 @@ def _view(run_id):
         "worker_finished_at": (job or {}).get("finished_at"),
         "paths": {**paths(directory), "report_path": str(actual_report_path)},
         "report": report,
+        **({"sequence_id": job["sequence_id"], "sequence_index": job["sequence_index"]}
+           if job and job.get("sequence_id") else {}),
         "vehicle_restriction": restriction(selected["simulated_vehicle"]) if selected else None,
         "global_flight_restriction": restriction(),
         "message": ("No final result: do not infer landing, clear a restriction or restart."
@@ -203,6 +205,16 @@ def get_virtual_preflight(*, run_id=None, request_key=None):
         return _view(valid_run_id(run_id))
     except (ValueError, OSError, KeyError, TypeError, VehicleBusy) as exc:
         return {"job_state": "ERROR", "result_status": None, "errors": [str(exc)]}
+
+
+def persist_admission(directory, content, job):
+    """Shared storage contract for standalone and queued sequence jobs; caller holds admission.lock."""
+    directory.mkdir(parents=True)
+    (directory / "input.json").write_bytes(content)
+    atomic_json(directory / "job.json", job)
+    request_path = key_path(job["request_key"])
+    request_path.parent.mkdir(parents=True, exist_ok=True)
+    atomic_json(request_path, {"run_id": job["run_id"], "input_sha256": job["input_sha256"]})
 
 
 def start_virtual_preflight(mission_path: str, request_key: str):
@@ -234,8 +246,6 @@ def start_virtual_preflight(mission_path: str, request_key: str):
                         "result_status": None, "spawned": False, "message": str(exc)}
             directory = run_directory(run_id)
             try:
-                directory.mkdir(parents=True)
-                (directory / "input.json").write_bytes(content)
                 job = {"schema_version": 2, "vehicle_selection": selected,
                        "run_id": run_id, "request_key": request_key, "input_sha256": digest,
                        "source_artifact": source_artifact,
@@ -243,9 +253,7 @@ def start_virtual_preflight(mission_path: str, request_key: str):
                        "launch_token_sha256": hashlib.sha256(launch_token.encode()).hexdigest(),
                        "created_at": utc_now(), "admission_status": "ACCEPTED", "job_state": "ADMITTED",
                        "phase": "admitted", "worker": None, **paths(directory)}
-                atomic_json(directory / "job.json", job)
-                request_path.parent.mkdir(parents=True, exist_ok=True)
-                atomic_json(request_path, {"run_id": run_id, "input_sha256": digest})
+                persist_admission(directory, content, job)
             except Exception:
                 release(run_id, selected["simulated_vehicle"])  # no worker spawn attempted
                 raise

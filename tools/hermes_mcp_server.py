@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from typing import Annotated
+from pydantic import Field
+
 from mcp.server import MCPServer
 
 from models.mission_plan_draft import MissionPlanDraft
@@ -11,6 +14,10 @@ from tools.virtual_preflight import run_virtual_preflight as preflight_backend
 from tools.virtual_preflight_jobs import (
     start_virtual_preflight as start_preflight_backend,
     get_virtual_preflight as get_preflight_backend,
+)
+from tools.preflight_sequences import (
+    start_preflight_sequence as start_sequence_backend,
+    get_preflight_sequence as get_sequence_backend,
 )
 from tools.hermes_mission_planning import (
     update_mission_draft as update_draft_backend,
@@ -132,10 +139,47 @@ mcp = MCPServer(
         "Only drone_01->v1 and drone_02->v2 are supported; never substitute another vehicle. At most one project flight may execute; no simultaneous flight or separation guarantee. Mission safety decisions are deterministic and must never "
         "be invented or overridden by the language model. "
         "A mission must pass the execution gate before flight "
-        "commands can be issued."
+        "commands can be issued. "
+        "For an explicitly authorized ordered pair, use start_preflight_sequence with two mission paths "
+        "in operator order and a recorded request_key/authorization_statement. It reserves the whole "
+        "sequence, validates both before flight, and only proceeds after a verified PASSED/landed child. "
+        "It may arm/take off/move both simulated vehicles strictly sequentially, never starts simulation. "
+        "Query get_preflight_sequence by the SAME ID/key after lost response/reload; never repeat, "
+        "resume or substitute a child. Admission is not PASSED; uncertainty requires reconciliation."
     ),
     version="0.3.0",
 )
+
+
+@mcp.tool(description=(
+    "Quick persistent admission of exactly TWO SITL rehearsals, one drone_01/v1 and one drone_02/v2, "
+    "in the operator-supplied order. Requires explicit consent to BOTH exact snapshots, recorded as "
+    "authorization_statement (agent declaration, not authenticated conversation). Detached coordinator "
+    "may ARM, TAKE OFF, MOVE and LAND each vehicle strictly sequentially; whole-sequence global "
+    "reservation prevents intervening project flights. No separation guarantee, task allocation, "
+    "simulation start/restart or automatic retry. ACCEPTED is not validation/PASSED. Record request_key "
+    "before calling; recover via get_preflight_sequence after timeout/lost response, never another flight. "
+    "Paths must be regular bounded mission files inside this project's missions root."
+), structured_output=True)
+def start_preflight_sequence(
+    mission_paths: Annotated[list[str], Field(min_length=2, max_length=2)],
+    request_key: str,
+    authorization_statement: Annotated[str, Field(min_length=1)],
+) -> dict[str, object]:
+    return start_sequence_backend(mission_paths, request_key, authorization_statement)
+
+
+@mcp.tool(description=(
+    "Read-only persistent sequence lookup by exactly one sequence_id or request_key. Never creates, "
+    "resumes or retries any work. Returns ordered snapshot hashes, declared consent, coordinator "
+    "identity/liveness, individual child states/report links and whole-sequence/global restrictions. "
+    "NOT_STARTED differs from FAILED. summary by default; detail includes existing child reports. "
+    "UNCONFIRMED or integrity errors forbid continuation; no inference of landing/release. "
+    "Historical PASSED grants no hardware or subsequent flight permission."
+), structured_output=True)
+def get_preflight_sequence(sequence_id: str | None = None, request_key: str | None = None,
+                           view: ResponseView = "summary") -> dict[str, object]:
+    return get_sequence_backend(sequence_id=sequence_id, request_key=request_key, detail=view == "detail")
 
 
 @mcp.tool(description="Persist a proposal from a final verified preflight run_id and snapshot hash. Recommendations only; no source edits or simulation. Preserve request_key/proposal_id and review proposal_sha256 before accepting changes.", structured_output=True)

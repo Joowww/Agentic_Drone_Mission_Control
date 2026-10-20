@@ -10,6 +10,7 @@ from tools import virtual_preflight_jobs as jobs
 from tools.vehicle_execution_lock import (
     atomic_json, execution_scope, file_mutex, mark_uncertain, process_identity,
     release, safe_executor_exit, utc_now,
+    sequence_restriction,
 )
 
 
@@ -29,6 +30,13 @@ def run_worker(run_id, launch_token=None):
         except (ValueError, OSError, KeyError, TypeError):
             return False  # corrupted admission never launches or releases a reservation
         vehicle = selected["simulated_vehicle"]
+        if job.get("sequence_id"):
+            guard = sequence_restriction()
+            if (not guard or guard["owner_id"] != job["sequence_id"]
+                    or guard["state"] != "EXECUTING" or guard.get("coordinator") != identity
+                    or guard.get("active_child") != {"owner_id": run_id, "vehicle": vehicle,
+                                                      "input_sha256": job["input_sha256"]}):
+                return False  # one exact child, in its live coordinator process, never inherited/replayed
         job.update(worker=identity, job_state="RUNNING", phase="workflow", started_at=utc_now())
         atomic_json(directory / "job.json", job)
     print(f"{utc_now()} run={run_id} worker claimed admission", flush=True)
