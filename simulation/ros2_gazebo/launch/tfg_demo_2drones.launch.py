@@ -106,7 +106,7 @@ def generate_launch_description():
             DeclareLaunchArgument(
                 "gui",
                 default_value="true",
-                description="Run Gazebo simulation headless.",
+                description="Open Gazebo GUI (false runs the backend headless).",
             ),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(

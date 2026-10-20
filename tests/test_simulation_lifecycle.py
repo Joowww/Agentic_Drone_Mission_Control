@@ -199,7 +199,7 @@ def test_unrelated_namespaces_and_launch_argument_text_are_not_owned_or_blockers
     assert env.sent == []
 
 
-@pytest.mark.parametrize("script", ["start_sim.sh", "stop_sim.sh"])
+@pytest.mark.parametrize("script", ["start_sim.sh", "stop_sim.sh", "restart_sim.sh"])
 def test_scripts_abort_on_cleanup_failure_with_a_fake_docker_only(tmp_path, monkeypatch, script):
     import os
     import subprocess
@@ -220,8 +220,25 @@ if sys.argv[-1] == 'stop':
     docker.chmod(0o755)
     monkeypatch.setenv("PATH", str(bin_dir) + os.pathsep + os.environ["PATH"])
     monkeypatch.setenv("TFG_TEST_DOCKER_LOG", str(log))
-    path = Path(__file__).resolve().parents[1] / "simulation/ros2_gazebo/scripts" / script
-    result = subprocess.run(["bash", str(path)], capture_output=True, text=True, timeout=5)
+    # A separate temporary project exercises the REAL wrappers/lease/backend with
+    # fake Docker, without reading or changing the real runtime reservations.
+    import shutil
+    import sys
+    project = tmp_path / "project"
+    source = Path(__file__).resolve().parents[1]
+    relative_files = ["tools/__init__.py", "tools/simulated_vehicle.py", "tools/vehicle_execution_lock.py",
+                      "tools/simulation_lifecycle.py", "simulation/ros2_gazebo/launch/tfg_demo_2drones.launch.py"]
+    relative_files += ["simulation/ros2_gazebo/scripts/"+name for name in
+                       ("start_sim.sh", "stop_sim.sh", "restart_sim.sh", "start_sim_backend.sh", "stop_sim_backend.sh", "sim_processes.py")]
+    for relative in relative_files:
+        target = project / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if (source/relative).exists(): shutil.copyfile(source/relative, target)
+        else: target.touch()
+    python = project / ".venv/bin/python"
+    python.parent.mkdir(parents=True); python.symlink_to(sys.executable)
+    path = project / "simulation/ros2_gazebo/scripts" / script
+    result = subprocess.run(["bash", str(path)], cwd=project, capture_output=True, text=True, timeout=10)
     assert result.returncode != 0
     calls = [json.loads(line) for line in log.read_text().splitlines()]
     assert any(call[-1] == "stop" for call in calls)

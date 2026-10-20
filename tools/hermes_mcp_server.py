@@ -32,6 +32,7 @@ from tools.mission_execution_gate import (
     check_mission_execution_ready as check_execution_ready,
 )
 from tools.simulation_control import (
+    restart_simulation as restart_simulation_backend,
     start_simulation as start_simulation_backend,
     stop_simulation as stop_simulation_backend,
 )
@@ -115,12 +116,13 @@ mcp = MCPServer(
         "reservation through known project run IDs/keys; INTERRUPTED/UNCONFIRMED, a remaining "
         "reservation, ERROR/NOT_FOUND or missing evidence forbids GUI recovery. Do not invent "
         "IDs or treat a historical query as a global execution inventory. With verified idle "
-        "state and consent, recheck immediately before acting, stop once and await confirmed "
-        "completion, start once, await completion, check backend readiness and ask about the "
+        "state and consent, use restart_simulation ONCE for the atomic stop/start transaction "
+        "and await its confirmed completion; "
+        "check backend readiness and ask about the "
         "image again. No parallel lifecycle calls, automatic loops or retries on timeout/lost "
         "response. Start also cleans previous processes, so another start is a restart, not "
-        "a visual probe. Queries do not atomically fence lifecycle against a new flight; "
-        "if that idle interval cannot be established, leave recovery pending. Continuing "
+        "a visual probe. The updated lifecycle entry points atomically fence flight admissions; "
+        "inspection queries alone do not. Continuing "
         "without visualization requires the operator's explicit choice and grants no flight "
         "consent or gate bypass. No automatic visual detection or unsupported cause claim. "
         "For an explicitly requested rehearsal prefer start_virtual_preflight with a "
@@ -358,8 +360,13 @@ def check_simulation_ready() -> dict[str, object]:
     ),
     structured_output=True,
 )
-def start_simulation() -> dict[str, object]:
-    return start_simulation_backend()
+def start_simulation(gui: bool = True) -> dict[str, object]:
+    return start_simulation_backend(gui=gui)
+
+
+@mcp.tool(description="Explicitly authorized ONE simulator stop/start transaction. Atomically excludes all project flight admissions. Active/uncertain flight, sequence or lifecycle restrictions block it; never reconcile implicitly. gui=false selects headless, gui=true still requires operator visual confirmation. Does not grant flight consent or retry automatically.", structured_output=True)
+def restart_simulation(gui: bool = True) -> dict[str, object]:
+    return restart_simulation_backend(gui=gui)
 
 
 @mcp.tool(
@@ -371,7 +378,7 @@ def start_simulation() -> dict[str, object]:
         "explicit restart acceptance and verify no active execution or vehicle/global reservation "
         "first; unknown outcome, lost worker or remaining reservation forbids stopping/restarting "
         "to fix the image. Await confirmed stop before start; no parallel calls or automatic retries. "
-        "This description is conversational guidance, not an atomic lifecycle/flight lock."
+        "All updated project entry points share an atomic lifecycle/flight exclusion. A failed or interrupted lifecycle retains its own restriction. Explicit restart uses one transaction, not parallel stop/start calls."
     ),
     structured_output=True,
 )

@@ -84,7 +84,7 @@ def file_mutex(path: Path, *, blocking=True):
         except BlockingIOError as exc:
             raise VehicleBusy("Another project execution owns the OS mutex") from exc
         try:
-            yield
+            yield file
         finally:
             fcntl.flock(file, fcntl.LOCK_UN)
 
@@ -105,10 +105,28 @@ def _restriction(vehicle):
     return record
 
 
+def infrastructure_restriction():
+    for name in ("reconciliation.json", "lifecycle.json"):
+        path = LOCK_ROOT / name
+        try:
+            value = json.loads(path.read_text())
+        except FileNotFoundError:
+            continue
+        except (ValueError, OSError) as exc:
+            raise VehicleBusy(f"Unreadable {name}; manual inspection required") from exc
+        if not isinstance(value, dict) or not value.get("owner_id"):
+            raise VehicleBusy(f"Malformed {name}; manual inspection required")
+        return value
+    return None
+
+
 def restriction(vehicle=None):
     """No argument returns the global blocker; lookup never clears or migrates it."""
     if vehicle is not None:
         return _restriction(vehicle)
+    barrier = infrastructure_restriction()
+    if barrier is not None:
+        return barrier
     records = [record for v in ("v1", "v2") if (record := _restriction(v)) is not None]
     if len(records) > 1:
         raise VehicleBusy("Conflicting vehicle reservations; operator reconciliation required")

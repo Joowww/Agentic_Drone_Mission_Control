@@ -99,18 +99,15 @@ def _run_script(
     }
 
 
-def start_simulation() -> dict[str, object]:
+def start_simulation(gui: bool = True) -> dict[str, object]:
     """Start the ROS2/Gazebo/ArduPilot simulation environment.
 
     This starts the simulation infrastructure only.
     It does not arm, take off, or command any vehicle.
     """
 
-    return _run_script(
-        START_SCRIPT,
-        action="start",
-        timeout_seconds=180,
-    )
+    from tools.simulation_lifecycle import run_lifecycle
+    return run_lifecycle("start", gui=gui)
 
 
 def stop_simulation() -> dict[str, object]:
@@ -120,8 +117,11 @@ def stop_simulation() -> dict[str, object]:
     It does not issue flight commands to any vehicle.
     """
 
-    return _run_script(
-        STOP_SCRIPT,
-        action="stop",
-        timeout_seconds=60,
-    )
+    from tools.simulation_lifecycle import run_lifecycle
+    return run_lifecycle("stop")
+
+
+def restart_simulation(gui: bool = True):
+    """One authorized stop/start transaction, no admission gap and no retry loop."""
+    from tools.simulation_lifecycle import run_lifecycle
+    return run_lifecycle("restart", gui=gui)

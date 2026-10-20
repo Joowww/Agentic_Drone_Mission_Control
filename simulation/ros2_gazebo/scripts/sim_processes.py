@@ -199,7 +199,7 @@ def start() -> dict:
     with LOG_FILE.open("wb") as log:
         child = subprocess.Popen(
             ["ros2", "launch", "ardupilot_gz_bringup", "tfg_demo_2drones.launch.py",
-             "rviz:=false", "gui:=true"],
+             "rviz:=false", "gui:=" + ("false" if os.environ.get("TFG_SIM_GUI") == "false" else "true")],
             env=environment, cwd="/", start_new_session=True, stdin=subprocess.DEVNULL,
             stdout=log, stderr=subprocess.STDOUT,
         )
