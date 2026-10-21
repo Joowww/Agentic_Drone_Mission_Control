@@ -1,0 +1,356 @@
+{
+ "mode": "dry-run",
+ "sent": false,
+ "verification": "UNVERIFIED_AGAINST_OPIK_SDK: opik not installed; fields follow the official OpenAPI spec for traces/batch and spans/batch (comet-ml/opik@6ff71e2, reviewed 2026-10-21)",
+ "destination": {
+  "platform": "opik",
+  "project": "tfg-opik",
+  "workspace": null
+ },
+ "events": 6,
+ "traces": 1,
+ "spans": 3,
+ "point_events": 1,
+ "synthetic_traces": 1,
+ "unknown_provenance_traces": 0,
+ "captured_traces": 0,
+ "withheld_traces": [
+  {
+   "events": 1,
+   "kind": "synthetic_fixture",
+   "reason": "no_measured_interval"
+  },
+  {
+   "events": 1,
+   "kind": "synthetic_fixture",
+   "reason": "no_measured_interval"
+  }
+ ],
+ "blocked_for_future_send_by_default": [
+  "plan contains synthetic traces; explicit synthetic authorization required"
+ ],
+ "provenance_check": null,
+ "errors": [],
+ "warnings": [],
+ "payload": {
+  "traces_batches": [
+   {
+    "traces": [
+     {
+      "id": "01a14a34-3590-7ea3-8f6c-3610c2c895ed",
+      "project_name": "tfg-opik",
+      "name": "SYNTHETIC \u00b7 hermes_turn",
+      "start_time": "2026-10-17T14:11:38.000000Z",
+      "end_time": "2026-10-20T16:11:00.475060Z",
+      "metadata": {
+       "tfg_grouping": "derived_from_turn_ref",
+       "tfg_observed_event": false,
+       "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+       "tfg_case_id": "SYNTHETIC-fixtures",
+       "tfg_session_ref": "sha256:673148cf03884aa5",
+       "tfg_turn_ref": "sha256:935eef91e794938f",
+       "tfg_data_kind": "synthetic_fixture",
+       "tfg_provenance_basis": "synthetic_marker_in_ids",
+       "tfg_timed_spans": 3,
+       "tfg_point_events": [
+        {
+         "name": "tfg.tool_call",
+         "time": "2026-10-20T16:11:00.476509+00:00",
+         "metadata": {
+          "tfg_event_id": "a87e20a9-d446-4fdb-827b-b257e5e933f8",
+          "tfg_recorded_at_utc": "2026-10-20T16:11:00.476509+00:00",
+          "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+          "tfg_case_id": "SYNTHETIC-fixtures",
+          "tfg_session_ref": "sha256:673148cf03884aa5",
+          "tfg_task_ref": "sha256:eb58a98b26c4ade6",
+          "tfg_turn_ref": "sha256:935eef91e794938f",
+          "tfg_api_request_ref": "sha256:4392ef0e82447006",
+          "tfg_absent_fields": [
+           "error_type"
+          ],
+          "tfg_redacted_fields": [],
+          "tfg_ambiguous_zero_fields": [],
+          "tfg_tool_call_ref": "sha256:6e150d2008b04e15",
+          "tfg_tool_name": "mcp_tfg_get_mission_state",
+          "tfg_status": "ok",
+          "tfg_error_type": null,
+          "tfg_duration_ms_received": 742,
+          "tfg_duration_ms_measured": 742,
+          "tfg_duration_source": "hermes_reported_ms",
+          "tfg_event_type": "tool_call",
+          "tfg_schema": "tfg.hermes.capture/3",
+          "tfg_exporter_version": "1",
+          "tfg_data_kind": "synthetic_fixture",
+          "tfg_provenance_basis": "synthetic_marker_in_ids",
+          "tfg_time_basis": "capture_recorded_at_point_not_an_interval",
+          "tfg_units": {
+           "duration_ms_received": "ms",
+           "duration_ms_measured": "ms"
+          },
+          "tfg_cost": "not_computed",
+          "tfg_exporter": "tfg-opik-offline",
+          "tfg_latency_measured": false
+         }
+        }
+       ],
+       "tfg_exporter": "tfg-opik-offline",
+       "tfg_exporter_version": "1",
+       "tfg_cost": "not_computed",
+       "tfg_point_event_time_basis": "capture_recorded_at_not_compared_with_hermes_epochs",
+       "tfg_time_basis": "derived_min_max_of_hermes_epochs",
+       "tfg_interval_derived": true,
+       "tfg_interval_status": "derived_from_measured_spans_only",
+       "tfg_latency_measured": false
+      },
+      "tags": [
+       "tfg-hermes-capture",
+       "schema:tfg.hermes.capture/3",
+       "synthetic"
+      ]
+     }
+    ]
+   }
+  ],
+  "spans_batches": [
+   {
+    "spans": [
+     {
+      "id": "01a14a34-3590-7592-83d1-11aea3b21b83",
+      "trace_id": "01a14a34-3590-7ea3-8f6c-3610c2c895ed",
+      "project_name": "tfg-opik",
+      "type": "llm",
+      "name": "SYNTHETIC \u00b7 llm_call:SYNTHETIC-model",
+      "start_time": "2026-10-17T14:11:38.000000Z",
+      "end_time": "2026-10-17T14:11:39.250000Z",
+      "metadata": {
+       "tfg_event_id": "08be7ff2-2eb4-40bb-bdda-72aed6a7414c",
+       "tfg_recorded_at_utc": "2026-10-20T16:11:00.473337+00:00",
+       "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+       "tfg_case_id": "SYNTHETIC-fixtures",
+       "tfg_session_ref": "sha256:673148cf03884aa5",
+       "tfg_task_ref": "sha256:eb58a98b26c4ade6",
+       "tfg_turn_ref": "sha256:935eef91e794938f",
+       "tfg_api_request_ref": "sha256:4392ef0e82447006",
+       "tfg_absent_fields": [
+        "context_length",
+        "retry_count"
+       ],
+       "tfg_redacted_fields": [],
+       "tfg_ambiguous_zero_fields": [
+        "usage.cache_read_tokens",
+        "usage.cache_write_tokens",
+        "usage.output_tokens",
+        "usage.reasoning_tokens"
+       ],
+       "tfg_provider": "custom",
+       "tfg_upstream_provider": "SYNTHETIC-upstream",
+       "tfg_model": "SYNTHETIC-model",
+       "tfg_response_model": "SYNTHETIC-response-model",
+       "tfg_api_mode": "chat_completions",
+       "tfg_finish_reason": "tool_calls",
+       "tfg_timing_source": "hermes_hook_wall_clock",
+       "tfg_timing_scope": "api_call_from_first_attempt",
+       "tfg_api_duration_s": 1.25,
+       "tfg_started_at_epoch_s": 1792246298.0,
+       "tfg_ended_at_epoch_s": 1792246299.25,
+       "tfg_first_chunk_offset_s": 0.40000009536743164,
+       "tfg_api_call_count": 1,
+       "tfg_message_count": 1,
+       "tfg_assistant_tool_call_count": 1,
+       "tfg_context_length": null,
+       "tfg_requested_tool_names": [
+        "mcp_tfg_get_mission_state"
+       ],
+       "tfg_usage_source": "hermes_normalized_summary",
+       "tfg_usage": {
+        "cache_read_tokens": {
+         "status": "zero_unconfirmed",
+         "value": 0
+        },
+        "cache_write_tokens": {
+         "status": "zero_unconfirmed",
+         "value": 0
+        },
+        "input_tokens": {
+         "status": "nonzero_normalized",
+         "value": 1200
+        },
+        "output_tokens": {
+         "status": "zero_unconfirmed",
+         "value": 0
+        },
+        "prompt_tokens": {
+         "status": "derived_nonzero",
+         "value": 1200
+        },
+        "reasoning_tokens": {
+         "status": "zero_unconfirmed",
+         "value": 0
+        },
+        "total_tokens": {
+         "status": "derived_nonzero",
+         "value": 1200
+        }
+       },
+       "tfg_retry_count": null,
+       "tfg_event_type": "llm_call",
+       "tfg_schema": "tfg.hermes.capture/3",
+       "tfg_exporter_version": "1",
+       "tfg_data_kind": "synthetic_fixture",
+       "tfg_provenance_basis": "synthetic_marker_in_ids",
+       "tfg_time_basis": "hermes_epochs",
+       "tfg_units": {
+        "api_duration_s": "s",
+        "started_at_epoch_s": "s_since_epoch",
+        "ended_at_epoch_s": "s_since_epoch",
+        "first_chunk_offset_s": "s"
+       },
+       "tfg_cost": "not_computed",
+       "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+       "tfg_exporter": "tfg-opik-offline",
+       "tfg_latency_measured": true
+      },
+      "tags": [
+       "tfg-hermes-capture",
+       "schema:tfg.hermes.capture/3",
+       "synthetic"
+      ]
+     },
+     {
+      "id": "01a14a34-3d60-7254-bb6e-b7b3fe41b955",
+      "trace_id": "01a14a34-3590-7ea3-8f6c-3610c2c895ed",
+      "project_name": "tfg-opik",
+      "type": "llm",
+      "name": "SYNTHETIC \u00b7 llm_call:SYNTHETIC-model",
+      "start_time": "2026-10-17T14:11:40.000000Z",
+      "end_time": "2026-10-17T14:11:40.500000Z",
+      "metadata": {
+       "tfg_event_id": "0a050929-d892-4a9a-ad61-bca627daa765",
+       "tfg_recorded_at_utc": "2026-10-20T16:11:00.474567+00:00",
+       "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+       "tfg_case_id": "SYNTHETIC-fixtures",
+       "tfg_session_ref": "sha256:673148cf03884aa5",
+       "tfg_task_ref": "sha256:eb58a98b26c4ade6",
+       "tfg_turn_ref": "sha256:935eef91e794938f",
+       "tfg_api_request_ref": "sha256:c3d3844bc8bd4825",
+       "tfg_absent_fields": [
+        "context_length",
+        "first_chunk_offset_s",
+        "retry_count",
+        "upstream_provider",
+        "usage"
+       ],
+       "tfg_redacted_fields": [],
+       "tfg_ambiguous_zero_fields": [],
+       "tfg_provider": "custom",
+       "tfg_upstream_provider": null,
+       "tfg_model": "SYNTHETIC-model",
+       "tfg_response_model": "SYNTHETIC-response-model",
+       "tfg_api_mode": "chat_completions",
+       "tfg_finish_reason": "stop",
+       "tfg_timing_source": "hermes_hook_wall_clock",
+       "tfg_timing_scope": "api_call_from_first_attempt",
+       "tfg_api_duration_s": 0.5,
+       "tfg_started_at_epoch_s": 1792246300.0,
+       "tfg_ended_at_epoch_s": 1792246300.5,
+       "tfg_first_chunk_offset_s": null,
+       "tfg_api_call_count": 2,
+       "tfg_message_count": 0,
+       "tfg_assistant_tool_call_count": 1,
+       "tfg_context_length": null,
+       "tfg_requested_tool_names": [
+        "mcp_tfg_get_mission_state"
+       ],
+       "tfg_usage_source": "absent",
+       "tfg_usage": null,
+       "tfg_retry_count": null,
+       "tfg_event_type": "llm_call",
+       "tfg_schema": "tfg.hermes.capture/3",
+       "tfg_exporter_version": "1",
+       "tfg_data_kind": "synthetic_fixture",
+       "tfg_provenance_basis": "synthetic_marker_in_ids",
+       "tfg_time_basis": "hermes_epochs",
+       "tfg_units": {
+        "api_duration_s": "s",
+        "started_at_epoch_s": "s_since_epoch",
+        "ended_at_epoch_s": "s_since_epoch",
+        "first_chunk_offset_s": "s"
+       },
+       "tfg_cost": "not_computed",
+       "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+       "tfg_exporter": "tfg-opik-offline",
+       "tfg_latency_measured": true
+      },
+      "tags": [
+       "tfg-hermes-capture",
+       "schema:tfg.hermes.capture/3",
+       "synthetic"
+      ]
+     },
+     {
+      "id": "01a14a34-4148-7283-9df4-25fd403c551c",
+      "trace_id": "01a14a34-3590-7ea3-8f6c-3610c2c895ed",
+      "project_name": "tfg-opik",
+      "type": "llm",
+      "name": "SYNTHETIC \u00b7 llm_error:SYNTHETIC-model",
+      "start_time": "2026-10-17T14:11:41.000000Z",
+      "end_time": "2026-10-20T16:11:00.475060Z",
+      "metadata": {
+       "tfg_event_id": "2670bab2-d903-459a-bf6a-69867ca1c7cc",
+       "tfg_recorded_at_utc": "2026-10-20T16:11:00.475635+00:00",
+       "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+       "tfg_case_id": "SYNTHETIC-fixtures",
+       "tfg_session_ref": "sha256:673148cf03884aa5",
+       "tfg_task_ref": "sha256:eb58a98b26c4ade6",
+       "tfg_turn_ref": "sha256:935eef91e794938f",
+       "tfg_api_request_ref": "sha256:61bf8b3a01443b0a",
+       "tfg_absent_fields": [],
+       "tfg_redacted_fields": [],
+       "tfg_ambiguous_zero_fields": [],
+       "tfg_provider": "custom",
+       "tfg_model": "SYNTHETIC-model",
+       "tfg_api_mode": "chat_completions",
+       "tfg_timing_source": "hermes_hook_wall_clock",
+       "tfg_timing_scope": "api_call_from_first_attempt",
+       "tfg_api_duration_s": 266359.4750595093,
+       "tfg_started_at_epoch_s": 1792246301.0,
+       "tfg_ended_at_epoch_s": 1792512660.4750595,
+       "tfg_api_call_count": 3,
+       "tfg_status_code": 429,
+       "tfg_retry_count": 1,
+       "tfg_max_retries": 3,
+       "tfg_retryable": true,
+       "tfg_reason": "rate_limited",
+       "tfg_error_type": "SyntheticRateLimitError",
+       "tfg_event_type": "llm_error",
+       "tfg_schema": "tfg.hermes.capture/3",
+       "tfg_exporter_version": "1",
+       "tfg_data_kind": "synthetic_fixture",
+       "tfg_provenance_basis": "synthetic_marker_in_ids",
+       "tfg_time_basis": "hermes_epochs",
+       "tfg_units": {
+        "api_duration_s": "s",
+        "started_at_epoch_s": "s_since_epoch",
+        "ended_at_epoch_s": "s_since_epoch"
+       },
+       "tfg_cost": "not_computed",
+       "tfg_exporter": "tfg-opik-offline",
+       "tfg_latency_measured": true
+      },
+      "tags": [
+       "tfg-hermes-capture",
+       "schema:tfg.hermes.capture/3",
+       "synthetic"
+      ],
+      "error_info": {
+       "exception_type": "SyntheticRateLimitError",
+       "message": "status_code=429",
+       "traceback": "not captured (metadata-only export)"
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "note": "Nothing was sent. Metadata-only; token counters are Hermes-normalised; no cost, usage, model/provider or ttft at top level."
+}

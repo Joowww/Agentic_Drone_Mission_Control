@@ -453,3 +453,39 @@ def test_api_call_identity_and_start_are_shared_by_retries():
     assert 'f"{s.turn_id}:api:{s.api_call_count}"' in loop
     request = (HERMES / "agent" / "turn_api_request.py").read_text(encoding="utf-8")
     assert "agent._last_api_first_chunk_at = None" in request  # reset per attempt, start is not
+
+
+# --- sink provenance record --------------------------------------------------------------
+
+def _named_context(module, name):
+    cls = type(name, (), {"register_hook": lambda self, hook, callback: None})
+    cls.__module__ = module
+    return cls()
+
+
+@pytest.mark.parametrize("ctx, origin", [
+    (lambda: _named_context("hermes_cli.plugins", "PluginContext"), "hermes_plugin_context"),
+    (lambda: FakeContext(), "non_hermes_context"),
+])
+def test_sink_writes_one_private_provenance_record_before_its_first_event(tmp_path, ctx, origin):
+    sink = capture.register(ctx(), environ=enabled_env(tmp_path))
+    assert not (tmp_path / "capture").exists()  # nothing until an event arrives
+    sink.on_post_api_request(**post_api_kwargs())
+    sink.on_post_tool_call(tool_name="x", duration_ms=3, status="ok")
+    (record_path,) = (tmp_path / "capture").glob("capture-provenance-*.json")
+    record = json.loads(record_path.read_text(encoding="utf-8"))
+    assert record["origin"] == origin and record["schema"] == capture.PROVENANCE_SCHEMA
+    assert record["capture_schema"] == capture.SCHEMA and record["sink_id"] == sink.sink_id
+    assert record_path.name == f"capture-provenance-{sink.sink_id}.json"
+    assert stat.S_IMODE(record_path.stat().st_mode) == 0o600
+    events, raw = read_events(tmp_path)
+    assert record["created_at_utc"] <= min(e["recorded_at_utc"] for e in events)
+    assert set(record) == {"schema", "origin", "context_type", "plugin", "plugin_version", "capture_schema",
+                           "verified_hermes_commit", "sink_id", "created_at_utc"}
+
+
+def test_direct_sink_is_labelled_direct(tmp_path):
+    sink = capture.JsonlSink(tmp_path / "capture")
+    sink.on_post_tool_call(tool_name="x", duration_ms=1, status="ok")
+    (record_path,) = (tmp_path / "capture").glob("capture-provenance-*.json")
+    assert json.loads(record_path.read_text())["origin"] == "direct_jsonl_sink"

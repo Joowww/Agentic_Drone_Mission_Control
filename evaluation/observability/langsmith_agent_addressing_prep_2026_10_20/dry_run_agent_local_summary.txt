@@ -1,0 +1,6 @@
+destination: {'mode': 'agent', 'agent_id': 'tfg-synthetic', 'agent_environment': 'local', 'lrn': 'lrn:agents/tfg-synthetic/environments/local'} | project: None
+events: 6 | traces: 1 | runs: 4 | point events: 1 | synthetic traces: 1 | withheld: 2 | errors: []
+  chain a9b215b9-8ea1-52e0-84a4-e8acbacab2e3 SYNTHETIC · hermes_turn tags=['tfg-hermes-capture', 'schema:tfg.hermes.capture/3', 'synthetic']
+  llm   72923aae-a642-5880-a3f9-20d6f1e5d0fd SYNTHETIC · llm_call:SYNTHETIC-model tags=['tfg-hermes-capture', 'schema:tfg.hermes.capture/3', 'synthetic']
+  llm   cd77e897-c75d-5a36-b3c8-67e97920d1b4 SYNTHETIC · llm_call:SYNTHETIC-model tags=['tfg-hermes-capture', 'schema:tfg.hermes.capture/3', 'synthetic']
+  llm   dfa445c4-6ea1-5854-9b26-e39ebf068f98 SYNTHETIC · llm_error:SYNTHETIC-model tags=['tfg-hermes-capture', 'schema:tfg.hermes.capture/3', 'synthetic']

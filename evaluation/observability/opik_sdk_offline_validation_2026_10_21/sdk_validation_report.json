@@ -1,0 +1,71 @@
+{
+ "opik_version": "2.2.110",
+ "cases": {
+  "captured_llm_tool_error": {
+   "traces": 1,
+   "spans": 2,
+   "problems": [],
+   "rest_paths": [
+    "/api/v1/private/spans/batch",
+    "/api/v1/private/traces/batch"
+   ],
+   "time_strings_differ_only_in_format": [
+    "2026-10-20T12:40:00.000000Z vs 2026-10-20T12:40:00Z",
+    "2026-10-20T12:40:02.000000Z vs 2026-10-20T12:40:02Z"
+   ],
+   "sdk_path_requests": 2,
+   "sdk_path_differences": [
+    "{\"changed\": [], \"kind\": \"spans\", \"only_exporter\": [], \"only_sdk\": {\"source\": \"sdk\"}}",
+    "{\"changed\": [], \"kind\": \"traces\", \"only_exporter\": [], \"only_sdk\": {\"source\": \"sdk\"}}"
+   ]
+  },
+  "synthetic_evidence": {
+   "traces": 1,
+   "spans": 3,
+   "problems": [],
+   "rest_paths": [
+    "/api/v1/private/spans/batch",
+    "/api/v1/private/traces/batch"
+   ],
+   "time_strings_differ_only_in_format": [
+    "2026-10-17T14:11:38.000000Z vs 2026-10-17T14:11:38Z",
+    "2026-10-17T14:11:40.000000Z vs 2026-10-17T14:11:40Z"
+   ],
+   "sdk_path_requests": 2,
+   "sdk_path_differences": [
+    "{\"changed\": [], \"kind\": \"spans\", \"only_exporter\": [], \"only_sdk\": {\"source\": \"sdk\"}}",
+    "{\"changed\": [], \"kind\": \"traces\", \"only_exporter\": [], \"only_sdk\": {\"source\": \"sdk\"}}"
+   ]
+  },
+  "unknown_provenance": {
+   "traces": 1,
+   "spans": 1,
+   "problems": [],
+   "rest_paths": [
+    "/api/v1/private/spans/batch",
+    "/api/v1/private/traces/batch"
+   ],
+   "time_strings_differ_only_in_format": [
+    "2026-10-20T12:40:00.000000Z vs 2026-10-20T12:40:00Z"
+   ],
+   "sdk_path_requests": 2,
+   "sdk_path_differences": [
+    "{\"changed\": [], \"kind\": \"spans\", \"only_exporter\": [], \"only_sdk\": {\"source\": \"sdk\"}}",
+    "{\"changed\": [], \"kind\": \"traces\", \"only_exporter\": [], \"only_sdk\": {\"source\": \"sdk\"}}"
+   ]
+  },
+  "untimed_included": {
+   "traces": 1,
+   "spans": 0,
+   "problems": [],
+   "rest_paths": [
+    "/api/v1/private/traces/batch"
+   ],
+   "time_strings_differ_only_in_format": [],
+   "sdk_path_requests": 1,
+   "sdk_path_differences": [
+    "{\"changed\": [], \"kind\": \"traces\", \"only_exporter\": [], \"only_sdk\": {\"source\": \"sdk\"}}"
+   ]
+  }
+ }
+}

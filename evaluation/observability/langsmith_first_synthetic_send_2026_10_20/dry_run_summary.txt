@@ -1,0 +1,20 @@
+project: tfg-synthetic | events read: 6 | traces: 1 | runs: 4 | point events: 1 | synthetic traces: 1
+withheld (not sent): [('8a2a50b5-d223-5a2f-8dee-60812611f87c', 1, 'no_measured_interval'), ('5d214bbe-ff4c-5c61-8974-a6ea0447c551', 1, 'no_measured_interval')]
+errors: [] | warnings: [] | already in ledger: []
+  chain id=bec45370-184e-5b66-b211-6ad75481eb5e parent=- name='SYNTHETIC · hermes_turn'
+        start=2026-10-17T14:11:38+00:00 end=2026-10-20T16:11:00.475060+00:00 tags=['tfg-hermes-capture', 'schema:tfg.hermes.capture/3', 'synthetic']
+        event tfg.tool_call time=2026-10-20T16:11:00.476509+00:00 tool=mcp_tfg_get_mission_state
+  llm   id=d7d8d043-a1fc-51f0-9a9a-b17e2a684089 parent=bec45370 name='SYNTHETIC · llm_call:SYNTHETIC-model'
+        start=2026-10-17T14:11:38+00:00 end=2026-10-17T14:11:39.250000+00:00 tags=['tfg-hermes-capture', 'schema:tfg.hermes.capture/3', 'synthetic']
+  llm   id=1665c78e-84b2-5793-98a7-89f03254f189 parent=bec45370 name='SYNTHETIC · llm_call:SYNTHETIC-model'
+        start=2026-10-17T14:11:40+00:00 end=2026-10-17T14:11:40.500000+00:00 tags=['tfg-hermes-capture', 'schema:tfg.hermes.capture/3', 'synthetic']
+  llm   id=c875087f-df7a-52e8-9a8f-6fab97f540b0 parent=bec45370 name='SYNTHETIC · llm_error:SYNTHETIC-model'
+        start=2026-10-17T14:11:41+00:00 end=2026-10-20T16:11:00.475060+00:00 tags=['tfg-hermes-capture', 'schema:tfg.hermes.capture/3', 'synthetic']
+run top-level keys: ['dotted_order', 'end_time', 'error', 'events', 'extra', 'id', 'inputs', 'name', 'outputs', 'parent_run_id', 'run_type', 'start_time', 'tags', 'trace_id']
+inputs/outputs empty: True
+metadata keys (52): tfg_absent_fields, tfg_ambiguous_zero_fields, tfg_api_call_count, tfg_api_duration_s, tfg_api_mode, tfg_api_request_ref, tfg_assistant_tool_call_count, tfg_case_id, tfg_context_length, tfg_cost, tfg_data_kind, tfg_ended_at_epoch_s, tfg_error_type, tfg_event_id, tfg_event_type, tfg_exporter_version, tfg_finish_reason, tfg_first_chunk_offset_s, tfg_grouping, tfg_interval_derived, tfg_interval_status, tfg_latency_measured, tfg_max_retries, tfg_message_count, tfg_model, tfg_observed_event, tfg_point_event_time_basis, tfg_point_events, tfg_provider, tfg_reason, tfg_recorded_at_utc, tfg_redacted_fields, tfg_requested_tool_names, tfg_response_model, tfg_retry_count, tfg_retryable, tfg_run_id, tfg_schema, tfg_session_ref, tfg_started_at_epoch_s, tfg_status_code, tfg_task_ref, tfg_time_basis, tfg_timed_children, tfg_timing_scope, tfg_timing_source, tfg_turn_ref, tfg_units, tfg_upstream_provider, tfg_usage, tfg_usage_semantics, tfg_usage_source
+event kwargs keys (26): tfg_absent_fields, tfg_ambiguous_zero_fields, tfg_api_request_ref, tfg_case_id, tfg_cost, tfg_data_kind, tfg_duration_ms_measured, tfg_duration_ms_received, tfg_duration_source, tfg_error_type, tfg_event_id, tfg_event_type, tfg_exporter_version, tfg_latency_measured, tfg_recorded_at_utc, tfg_redacted_fields, tfg_run_id, tfg_schema, tfg_session_ref, tfg_status, tfg_task_ref, tfg_time_basis, tfg_tool_call_ref, tfg_tool_name, tfg_turn_ref, tfg_units
+content/secret/path sentinels present: none
+simulator-operational keywords: none
+strings containing 'mission': ['mcp_tfg_get_mission_state']
+usage_metadata / ls_model_name / cost fields: none

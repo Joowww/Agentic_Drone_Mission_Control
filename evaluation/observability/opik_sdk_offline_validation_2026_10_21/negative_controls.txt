@@ -1,0 +1,6 @@
+unknown_key: rc=1 span 01a15953-6500-71fa-b7c2-07caa5ef0161: keys not in SpanWrite: ['tfg_bogus']
+uuid4_id: rc=1 span id not UUIDv7
+bad_type: rc=1 span type 'agent' not in SpanWriteType
+empty_body: rc=1 spans body shape/size ['spans'] 0
+no_traceback: rc=1 pydantic_core._pydantic_core.ValidationError: 1 validation error for SpanWrite
+sdk_batcher_split_1001_spans: [1000, 1]

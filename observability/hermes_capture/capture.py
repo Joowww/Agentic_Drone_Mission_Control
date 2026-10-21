@@ -257,22 +257,65 @@ def tool_call_event(kwargs, environ=os.environ):
     return b.finish("tool_call", environ)
 
 
-class JsonlSink:
-    """Append-only, one event per line; directory 0700, files 0600, no symlinks."""
+PROVENANCE_SCHEMA = "tfg.hermes.capture-provenance/1"
+PLUGIN_VERSION = "0.3.0"
+HERMES_CONTEXT = "hermes_cli.plugins.PluginContext"
 
-    def __init__(self, directory: Path, environ=os.environ):
+
+def _context_origin(ctx):
+    """How the sink came to exist; a type name is evidence, not an attestation."""
+    if ctx is None:
+        return "direct_jsonl_sink", None
+    name = f"{type(ctx).__module__}.{type(ctx).__qualname__}"
+    return ("hermes_plugin_context" if name == HERMES_CONTEXT else "non_hermes_context"), name
+
+
+class JsonlSink:
+    """Append-only, one event per line; directory 0700, files 0600, no symlinks.
+
+    Before its first event the sink writes ``capture-provenance-<sink_id>.json`` (once, O_EXCL)
+    saying how it was created. The exporter uses it, together with an explicit operator
+    declaration, to accept a file as a real capture; events never carry it themselves.
+    """
+
+    def __init__(self, directory: Path, environ=os.environ, *, ctx=None):
         self.directory = directory
         self.environ = environ
         self.failures = 0
         self._lock = threading.Lock()
+        self.sink_id = str(uuid.uuid4())
+        self.origin, self.context_type = _context_origin(ctx)
+        self._provenance_written = False
+
+    def _open(self, path, flags):
+        return os.open(path, flags | getattr(os, "O_NOFOLLOW", 0), 0o600)
+
+    def _write_provenance(self):
+        record = {"schema": PROVENANCE_SCHEMA, "origin": self.origin, "context_type": self.context_type,
+                  "plugin": "tfg-observability-capture", "plugin_version": PLUGIN_VERSION,
+                  "capture_schema": SCHEMA, "verified_hermes_commit": VERIFIED_HERMES_COMMIT,
+                  "sink_id": self.sink_id, "created_at_utc": datetime.now(timezone.utc).isoformat()}
+        path = self.directory / f"capture-provenance-{self.sink_id}.json"
+        descriptor = self._open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL)
+        try:
+            os.write(descriptor, (json.dumps(record, sort_keys=True) + "\n").encode("utf-8"))
+        finally:
+            os.close(descriptor)
+        self._provenance_written = True
+
+    def _ensure_provenance(self):
+        # Before the event is built, so the record's time precedes every event's recorded_at.
+        with self._lock:
+            if not self._provenance_written:
+                self.directory.mkdir(mode=0o700, parents=True, exist_ok=True)
+                self._write_provenance()
 
     def _write(self, event):
+        self._ensure_provenance()
         line = json.dumps(event, ensure_ascii=False, allow_nan=False, sort_keys=True) + "\n"
-        self.directory.mkdir(mode=0o700, parents=True, exist_ok=True)
         path = self.directory / f"hermes-events-{event['recorded_at_utc'][:10]}.jsonl"
-        flags = os.O_WRONLY | os.O_CREAT | os.O_APPEND | getattr(os, "O_NOFOLLOW", 0)
         with self._lock:
-            descriptor = os.open(path, flags, 0o600)
+            descriptor = self._open(path, os.O_WRONLY | os.O_CREAT | os.O_APPEND)
             try:
                 os.write(descriptor, line.encode("utf-8"))
             finally:
@@ -282,6 +325,7 @@ class JsonlSink:
         # Count only: no logging or printing, since a payload could surface in the message
         # and stdout may be an MCP stdio channel.
         try:
+            self._ensure_provenance()
             self._write(build(kwargs, self.environ))
         except Exception:
             self.failures += 1
@@ -302,7 +346,7 @@ def register(ctx, environ=os.environ):
     directory = _enabled_directory(environ)
     if directory is None:
         return None
-    sink = JsonlSink(directory, environ)
+    sink = JsonlSink(directory, environ, ctx=ctx)
     ctx.register_hook("post_api_request", sink.on_post_api_request)
     ctx.register_hook("api_request_error", sink.on_api_request_error)
     ctx.register_hook("post_tool_call", sink.on_post_tool_call)

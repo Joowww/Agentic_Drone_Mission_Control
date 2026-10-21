@@ -1,13 +1,21 @@
 # Captura local de observabilidad de Hermes (prototipo)
 
-Fecha: 20/10/2026. **Prototipo offline. No instalado ni activado en ningún perfil; no cargado
-en un proceso Hermes real.** Esquema de eventos: `tfg.hermes.capture/3`.
+Fecha: 20/10/2026. **Prototipo. Carga, registro y dispatch reales demostrados con el loader
+de Hermes y fixtures sintéticos**
+([integración loader/hooks](#integración-real-loaderhooks-con-fixtures-sintéticos-20102026)).
+**Inferencia y tokens reales de un proveedor no demostrados:** la única conversación quedó
+[bloqueada antes de inferencia](#prueba-real-con-ollama-local-bloqueada-antes-de-inferencia-20102026).
+Esquema de eventos: `tfg.hermes.capture/3`.
 
 Plugin opcional que convierte tres hooks de observación de Hermes en eventos JSONL
 locales con sólo metadatos: uso de tokens si el proveedor lo entrega, modelo/proveedor,
 tiempos que Hermes mide y nombres de herramientas. Es la capa de captura común prevista
-para comparar después LangSmith y Opik sobre los mismos registros; **no incluye SDK de
-ninguna plataforma ni exporta datos**.
+para comparar después LangSmith y Opik sobre los mismos registros; **el plugin no incluye
+SDK de ninguna plataforma ni exporta datos**. La exportación es un paso aparte y explícito:
+[exportador a LangSmith](langsmith-export.md), en dry-run por defecto y con envíos históricos
+autorizados de fixtures sintéticos documentados por separado. Para Opik hay un
+[exportador](opik-export.md) en dry-run por defecto, con envío explícito probado mediante
+transporte falso y payload contrastado offline con el SDK; sin envío a Opik.
 
 Código: [observability/hermes_capture/](../observability/hermes_capture/) ·
 esquema: [event.schema.json](../observability/hermes_capture/event.schema.json) ·
@@ -37,9 +45,12 @@ ser el canal stdio de MCP).
 
 ### Qué no queda demostrado
 
-- **Carga real dentro de Hermes.** No se ha ejecutado discovery, `register(ctx)` con un
-  `PluginContext` auténtico ni un dispatch real: el `FakeContext` de los tests sólo registra
-  llamadas y **no es una prueba de carga**.
+- **Eventos de una inferencia real.** Carga, `register(ctx)` con `PluginContext` auténtico y
+  dispatch real están demostrados sólo con fixtures sintéticos
+  ([integración loader/hooks](#integración-real-loaderhooks-con-fixtures-sintéticos-20102026)).
+  Siguen sin observar los kwargs que produce un turno real: tokens de un proveedor, tiempos
+  medidos, `first_chunk_at` y `context_length`. El `FakeContext` de los tests unitarios
+  sólo registra llamadas y no es una prueba de carga.
 - Modo `plugins.isolation: host`, en el que los plugins no bundled corren en otro proceso
   y los kwargs viajan serializados.
 - Ruta asíncrona `ainvoke_hook`, límites de timeout de hooks y su efecto en la latencia de la sesión.
@@ -61,6 +72,95 @@ del proyecto ni de conversaciones. No se ejecutaron modelos, MCP ni herramientas
 no se ha repetido. Conclusión: un `HERMES_HOME` suelto no se puede aislar sin red con
 garantías; por eso la verificación es el contrato estático anterior.
 
+### Prueba real con Ollama local: bloqueada antes de inferencia (20/10/2026)
+
+**Resultado: PRUEBA BLOQUEADA ANTES DE INFERENCIA.** Intento único, autorizado, cerrado sin
+repetir la conversación, sin aumentar el contexto y sin reiniciar Ollama. Evidencia con
+manifiesto SHA-256: [evaluation/observability/hermes_capture_blocked_2026_10_20/](../evaluation/observability/hermes_capture_blocked_2026_10_20/).
+
+Preparación (hechos):
+
+- Ollama 0.34.2 ya en marcha y `qwen3:4b` instalado; no se arrancaron servicios ni se
+  descargaron modelos. Hermes admite el endpoint con el proveedor `custom` y clave
+  `no-key-required` en loopback.
+- Perfil `~/.hermes/profiles/tfg-capture-test` creado con
+  `hermes profile create --no-skills --no-alias`, sin clonar, bajo `env -i` y
+  `HERMES_DISABLE_LAZY_INSTALLS=1`. Un perfil bajo `~/.hermes` usa el estado de dependencias
+  del root propietario: no hubo preparación de dependencias; el registro de arranque del
+  perfil sólo muestra pasos `ok`/`skipped`. Sin `auth.json`; `.env` sin valores.
+- Config del perfil: `custom` → `127.0.0.1:11434/v1`, `qwen3:4b`, `platform_toolsets.cli: []`,
+  `mcp_servers: {}`, memoria, curator y comprobación de actualizaciones desactivados,
+  `security.allow_lazy_installs: false` y `plugins.enabled: [tfg-observability-capture]`.
+- Introspección previa, sin modelo: las 24 toolsets integradas y `a2a` desactivadas para `cli`;
+  sin MCP. La skill `hermes-agent` es esencial y Hermes no permite desactivarla, pero sin el
+  toolset `skills` no puede abrirse. Los plugins bundled de backend y plataforma se cargan
+  por diseño; sólo sirven a toolsets desactivadas o al modo gateway.
+- Perfil habitual y almacenes de credenciales: tamaño y mtime idénticos antes y después
+  (sólo `stat`, sin leer su contenido).
+
+Qué quedó demostrado y qué no:
+
+- **Descubrimiento del plugin: demostrado.** `hermes plugins list` del perfil muestra
+  `tfg-observability-capture` como `enabled` con origen `user`, es decir, encontrado en
+  `plugins/` y aceptado por el filtro `plugins.enabled`.
+- **Importación del módulo: observada.** La copia del plugin tiene bytecode de CPython 3.14
+  (el intérprete de Hermes) creado durante la introspección previa, antes del turno. Es un
+  indicio de que el loader ejecutó el paquete y llamó a `register(ctx)`, no una prueba.
+- **Registro y dispatch de hooks: no demostrados.** Ningún hook llegó a dispararse.
+- **Rechazo por contexto antes de cualquier llamada API.** `hermes -z` (un turno,
+  `--reasoning none`) terminó con rc=1 en la inicialización del agente: Hermes exige
+  `MINIMUM_CONTEXT_LENGTH = 64_000` (`agent/model_metadata.py:273`, sin override) y el perfil
+  declaraba 8 192. El `--usage-file` de Hermes registra `failed: true` y `api_calls: null`;
+  Ollama no cargó el modelo y la respuesta está vacía.
+- **Directorio de captura vacío.** Es el resultado esperado cuando no hay ninguna llamada a
+  la API ni a herramientas, porque no se disparan `post_api_request`, `api_request_error` ni
+  `post_tool_call`. No es una prueba de fallo del capturador, y tampoco de que funcione.
+- **Memoria: estimación, no medición.** Con `ollama_num_ctx ≥ 64k`, qwen3-4B (36 capas, 8 cabezas
+  KV, dim 128) necesitaría del orden de 9 GiB de caché KV en fp16 más unos 2,5 GiB de pesos,
+  frente a unos 7,2 GiB disponibles en ese momento según `free`. Depende de la configuración
+  de Ollama (tipo y cuantización de la caché KV, flash attention, reparto CPU/GPU) y no se ha
+  medido.
+
+Estado residual: el perfil `tfg-capture-test` se conserva para una prueba posterior, con el
+plugin desactivado (`plugins.enabled: []`; una lista vacía explícita evita que una migración
+de config vuelva a habilitar plugins de usuario) y la copia del plugin intacta. Se conservan
+también `/tmp/tfg-capture-20261020T155401Z/` y el temporal de la incidencia anterior.
+
+### Integración real loader/hooks con fixtures sintéticos (20/10/2026)
+
+**Resultado: PASS de integración loader/hooks, sin ninguna llamada a un modelo.** Evidencia,
+scripts y manifiesto SHA-256:
+[evaluation/observability/hermes_loader_hooks_synthetic_2026_10_20/](../evaluation/observability/hermes_loader_hooks_synthetic_2026_10_20/),
+separada de la prueba bloqueada y de cualquier captura futura de proveedor.
+
+Vía sin agente LLM (leída en el código antes de ejecutar): `hermes_cli.plugins.discover_plugins()`
+hace descubrimiento, gate y `_load_plugin` → `register(ctx)` con `PluginContext`, y
+`hermes_cli.lifecycle.invoke_hook` / `ainvoke_hook` hace el dispatch. Ninguna de las dos
+construye `AIAgent`. Se ejecutó en el intérprete de Hermes tras su bootstrap real (como su
+lanzador), con `HERMES_HOME` apuntando al perfil `tfg-capture-test`, `HERMES_DISABLE_LAZY_INSTALLS=1`,
+`-I -B`, entorno limpio y un bloqueo de sockets no-loopback instalado antes de importar Hermes.
+Los payloads los construyeron los emisores reales de Hermes; sólo el objeto «agente» del que leen
+atributos es un stub sintético sin cliente LLM. El plugin se activó en ese perfil únicamente
+durante la ejecución y un `trap` restauró la config byte a byte, con `plugins.enabled: []`.
+
+- **Carga:** `hermes_plugins.tfg_observability_capture` desde el perfil, `source=user`,
+  sin error, con hashes iguales a los de `HEAD`.
+- **Registro:** `hooks_registered` igual a `provides_hooks` (los tres hooks); `has_hook` falso
+  para `pre_tool_call` y `pre_api_request`.
+- **Dispatch síncrono real** (el que Hermes usa para estos hooks) y **`ainvoke_hook`** como
+  comprobación adicional, ya que Hermes no despacha estos hooks por la vía asíncrona.
+  Ambos devuelven `[]`; `failures=0`.
+- **JSONL:** 6 eventos válidos contra el esquema, permisos 0600, sin contenido, rutas,
+  coordenadas, ids en claro, `base_url` ni la clave falsa. `run_id` y `case_id` los marcan como `SYNTHETIC`.
+- **Normalización real de Hermes** sobre contadores sintéticos: `prompt_tokens` llega como `input_tokens`
+  `nonzero_normalized`; un 0 llega como `zero_unconfirmed`; una respuesta sin `usage` llega como `usage=null`.
+- **`api_request_error`:** Hermes calcula la duración como `time.time() − api_start_time`. Con un
+  inicio sintético pasado da unas 266 359 s, que es un artefacto del fixture.
+- **Red:** ningún intento no-loopback interceptado. Perfil habitual sin cambios (`stat`),
+  sin telemetría nueva y sin `.pyc` nuevos.
+
+Esto demuestra la integración con el loader y los hooks, **no** inferencia, tokens reales ni latencias reales.
+
 ## Activación (desactivado por defecto)
 
 Doble condición; en cualquier otro caso `register(ctx)` no registra ningún hook:
@@ -80,6 +180,20 @@ archivo se solicitan permisos 0700/0600; `O_APPEND` y `O_NOFOLLOW` en el archivo
 Los permisos de rutas preexistentes no se corrigen y los componentes padre pueden
 ser enlaces simbólicos: usar una carpeta privada nueva bajo un padre confiable,
 no una ruta compartida o controlada por terceros. No es un aislamiento del filesystem.
+
+**Registro de procedencia del sink** (plugin 0.3.0, 21/10/2026). Antes de construir su primer
+evento, cada sink escribe una sola vez (`O_EXCL`, 0600) `capture-provenance-<sink_id>.json` con
+`schema`, `origin`, `context_type`, `plugin`, `plugin_version`, `capture_schema`,
+`verified_hermes_commit`, `sink_id` y `created_at_utc`. Sólo son metadatos: sin rutas, contenido
+ni credenciales. `origin` puede ser:
+- `hermes_plugin_context`: `register(ctx)` con un contexto cuyo tipo es `hermes_cli.plugins.PluginContext`;
+- `non_hermes_context`: cualquier otro contexto, por ejemplo el de los tests;
+- `direct_jsonl_sink`: un sink creado directamente.
+
+Es evidencia de cómo se creó el sink, no una certificación, porque un nombre de tipo se puede
+imitar. El [exportador](langsmith-export.md) sólo acepta `--provenance captured` si estos registros
+verifican. Las capturas anteriores a esta versión no tienen registro: sin declaración se tratan
+como de procedencia desconocida, y las sintéticas siguen identificadas por sus marcas.
 
 - **Comunes:** `event_type` (`llm_call`, `llm_error`, `tool_call`), `event_id`, `recorded_at_utc`,
   `run_id`, `case_id`, referencias `session_ref`, `task_ref`, `turn_ref`, `api_request_ref`,
@@ -180,9 +294,13 @@ aparecer. Un fallo de escritura sólo incrementa `failures`: no se registra ni s
   impresión en fallo, reintento inventado): todas detectadas en la versión `/2`; no se han
   repetido tras el cambio a `/3`.
 
-## Prueba manual mínima (preparada, no ejecutada; requiere autorización)
+## Prueba manual mínima (ejecutada una vez y bloqueada; requiere nueva autorización)
 
 Objetivo: comprobar la carga real y qué campos entrega el proveedor, sin simulación ni control.
+Los pasos 1–4 ya se ejecutaron con el perfil `tfg-capture-test` (ver la sección de la prueba
+bloqueada). Para repetir el 5 hace falta un modelo y una configuración de Ollama que sirvan
+al menos 64 000 tokens de contexto con la memoria disponible, y volver a habilitar el plugin
+en `plugins.enabled`. Ambas cosas requieren autorización aparte.
 
 1. **Perfil temporal de Hermes**, no el personal y no un `HERMES_HOME` suelto (este dispara
    la preparación de dependencias descrita arriba). Los perfiles viven en
@@ -210,7 +328,9 @@ Objetivo: comprobar la carga real y qué campos entrega el proveedor, sin simula
 
 ## Límites y pendientes
 
-- Falta la prueba manual anterior para demostrar la carga y el dispatch reales.
+- El registro y el dispatch reales están demostrados sólo con fixtures sintéticos. Falta un turno
+  de inferencia real: la única conversación quedó bloqueada antes de inferencia por el contexto
+  mínimo de 64 000 tokens de Hermes.
 - Si una versión de Hermes renombra kwargs, los campos afectados aparecerán como ausentes,
   no inventados; el contrato estático debería detectarlo.
 - La rotación es diaria por UTC; no hay borrado ni límite de tamaño automáticos.

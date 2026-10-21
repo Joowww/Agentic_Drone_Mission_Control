@@ -1,0 +1,5 @@
+# Optional observability tooling (observability/): capture validation and LangSmith export.
+# Not needed to run missions or the simulator. Versions are the ones verified offline.
+jsonschema>=4.18,<5          # Draft 2020-12 validation of tfg.hermes.capture/3 (verified 4.26.0)
+rfc3339-validator>=0.1.4     # lets jsonschema's FormatChecker enforce "date-time"; the exporter also parses timestamps itself
+langsmith>=0.14.9,<0.15      # agent addressing needs >=0.14.9 (official docs); contract verified against 0.14.11; review on upgrade

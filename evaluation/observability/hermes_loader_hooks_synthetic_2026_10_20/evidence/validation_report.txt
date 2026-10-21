@@ -1,0 +1,15 @@
+files: ['hermes-events-2026-10-20.jsonl'] events: 6
+schema errors: none
+sentinels present: none
+secret-like patterns: none
+run_id/case_id: [('SYNTHETIC-loader-hooks-20261020', 'SYNTHETIC-fixtures')]
+llm_call: {'provider': 'custom', 'upstream_provider': 'SYNTHETIC-upstream', 'model': 'SYNTHETIC-model', 'response_model': 'SYNTHETIC-response-model', 'api_mode': 'chat_completions', 'finish_reason': 'tool_calls', 'api_duration_s': 1.25, 'first_chunk_offset_s': 0.40000009536743164, 'timing_source': 'hermes_hook_wall_clock', 'timing_scope': 'api_call_from_first_attempt', 'requested_tool_names': ['mcp_tfg_get_mission_state'], 'assistant_tool_call_count': 1, 'usage_source': 'hermes_normalized_summary', 'retry_count': None}
+   usage: {'cache_read_tokens': (0, 'zero_unconfirmed'), 'cache_write_tokens': (0, 'zero_unconfirmed'), 'input_tokens': (1200, 'nonzero_normalized'), 'output_tokens': (0, 'zero_unconfirmed'), 'prompt_tokens': (1200, 'derived_nonzero'), 'reasoning_tokens': (0, 'zero_unconfirmed'), 'total_tokens': (1200, 'derived_nonzero')}
+   absent: ['context_length', 'retry_count'] redacted: [] ambiguous: ['usage.cache_read_tokens', 'usage.cache_write_tokens', 'usage.output_tokens', 'usage.reasoning_tokens']
+llm_call: {'provider': 'custom', 'upstream_provider': None, 'model': 'SYNTHETIC-model', 'response_model': 'SYNTHETIC-response-model', 'api_mode': 'chat_completions', 'finish_reason': 'stop', 'api_duration_s': 0.5, 'first_chunk_offset_s': None, 'timing_source': 'hermes_hook_wall_clock', 'timing_scope': 'api_call_from_first_attempt', 'requested_tool_names': ['mcp_tfg_get_mission_state'], 'assistant_tool_call_count': 1, 'usage_source': 'absent', 'retry_count': None}
+   usage: None
+   absent: ['context_length', 'first_chunk_offset_s', 'retry_count', 'upstream_provider', 'usage'] redacted: [] ambiguous: []
+llm_error: {'provider': 'custom', 'model': 'SYNTHETIC-model', 'status_code': 429, 'retry_count': 1, 'max_retries': 3, 'retryable': True, 'reason': 'rate_limited', 'error_type': 'SyntheticRateLimitError', 'api_duration_s': 266359.4750595093}
+tool_call: {'tool_name': 'mcp_tfg_get_mission_state', 'status': 'ok', 'duration_ms_received': 742, 'duration_ms_measured': 742, 'duration_source': 'hermes_reported_ms'} refs: True True
+tool_call: {'tool_name': 'SYNTHETIC_terminal', 'status': 'blocked', 'duration_ms_received': 0, 'duration_ms_measured': None, 'duration_source': 'zero_default_or_below_1ms'} refs: False False
+tool_call: {'tool_name': 'SYNTHETIC_async_extra', 'status': 'timeout', 'duration_ms_received': 30000, 'duration_ms_measured': None, 'duration_source': 'timeout_configured_not_measured'} refs: False False
