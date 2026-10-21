@@ -298,3 +298,136 @@ se rechaza una devolución fuera del presupuesto, pero no se puede interrumpir l
 API si se bloquea. Las pruebas usan nodos falsos sin APIs de control y no prueban
 la disponibilidad de ningún dato real. La conexión no modifica la barrera ni
 resuelve la asociación pendiente XRCE/SYSID/SITL v3/bridge/modelo.
+
+
+### Alternativa rclcpp: evidencia local y bloqueo de compatibilidad — 2026-10-21
+
+Inspección offline, sin ROS, Docker, builds ni red. En el workspace hermano
+`/home/joelm/TFG/ardupilot_ros2_ws` existen estas fuentes de consumidor:
+
+- `src/ros_gz/ros_gz_bridge/src/factory.hpp:115–136` declara un callback
+  `std::function<void(std::shared_ptr<const ROS_T>, const rclcpp::MessageInfo &)>`
+  para `Node::create_subscription`. Obtiene el GID de **esa recepción** mediante
+  `msg_info.get_rmw_message_info().publisher_gid`; después lo compara con los
+  candidatos del grafo para filtrar bucles. La atribución no procede del grafo.
+  SHA-256: `da15f04887c2393c69851b1e9579c3231e8a2d084cb8505e18a0ec66f46c4d31`.
+- `src/ros_gz/ros_gz_bridge/test/test_gid_filtering.cpp:139–160` usa ese contrato
+  con dos publicadores. Es código de test disponible, **no un test ejecutado en
+  esta revisión ni prueba de funcionamiento del rover**.
+  SHA-256: `ed019ff4eda1959ed614890db14ea407b2ab1baff67860f6582b1acfeb71c5c4`.
+- `build/ros_gz_bridge/CMakeCache.txt:566–608` referencia rcl/rclcpp/rmw en
+  `/opt/ros/humble` y paquetes Fast RTPS. SHA-256:
+  `efa603ebfd996df38358b4f5b55f8e539e43629ba960bed4793877a08d554f53`.
+  `CMakeFiles/ros_gz_bridge.dir/flags.make:5` contiene
+  `DEFAULT_RMW_IMPLEMENTATION=rmw_fastrtps_cpp`. Es una configuración de build
+  conservada, no el identificador RMW del proceso actual. No demuestra que esas
+  fuentes sean los bytes compilados/desplegados ni que un override no cambie RMW.
+
+A diferencia del callback de rclpy conservado, rclcpp ofrece así una vía pública
+candidata con mensaje y metadatos juntos. La alternativa inferior rcl/rmw requiere
+contrastar `rcl_take`/`rmw_take_with_info` y `rmw_message_info_t` con los headers y
+la implementación exactos; no se adapta el handle privado de rclpy. En los árboles
+locales inspeccionados (`/opt`, `/usr/include` y el workspace hermano) no están los
+headers nativos `rclcpp/message_info.hpp`, suscripción y rmw/types.h correspondientes
+al entorno. `/opt/ros/humble` no está disponible en este host. El repositorio hermano
+rechazó consultas Git por ownership dudoso; no se cambió safe.directory ni ninguna
+configuración. Los hashes anteriores identifican los archivos leídos, no su commit
+upstream o la revisión instalada.
+
+**Resultado: BLOCKED; no se implementa prototipo conectado ni se declara
+compatibilidad instalada.** El mínimo para resolver este bloqueo es obtener, en una
+recogida futura autorizada de sólo lectura, versiones/paquetes y headers nativos
+exactos de rclcpp/rcl/rmw/RMW del entorno, identidad del RMW cargado y procedencia
+del bridge instalado. Debe comprobarse el contrato MessageInfo, GID/tamaño e
+identificador de implementación y el comportamiento inter/intra-proceso aplicable.
+Sólo después procede preparar un suscriptor C++ pasivo aislado, sin controles ni
+cambios de gates, con pruebas de dos publicadores sobre el mismo topic, metadatos
+ausentes/no válidos, recepción y frescura separadas y ausencia de atribución por
+unicidad del grafo. Un doble sin esos headers no demostraría ABI ni compatibilidad.
+Incluso un GID válido por muestra no acredita por sí solo XRCE/SYSID/SITL v3 ni
+bridge/modelo: esas correlaciones siguen pendientes. Los colectores Python actuales
+conservan GID None, identidad no verificada y movimiento bloqueado.
+
+
+### Prototipo rclcpp pasivo aislado — 2026-10-21
+
+[Observer C++](../tools/rover_passive_rclcpp/observer.hpp) y
+[método/límites](../tools/rover_passive_rclcpp/README.md): componente sin ejecutable,
+CLI/MCP ni conexión a lifecycle o control. Usa el callback público con MessageInfo
+respaldado por los headers instalados observados (rclcpp 16.0.19, rmw 6.1.3).
+Copia GID e identificador RMW por muestra, conservando aparte candidatos del grafo,
+recepción system/steady y mensaje tipado con timestamp/frame originales. Un GID
+cero, identificador ausente o recepción intra-proceso no se acredita. La atribución
+final permanece ausente incluso con GID observado, sin comparación temporal entre
+dominios ni inferencia de procedencia por nombre/unicidad del topic.
+
+Siempre devuelve registros BLOCKED, sin identidad verificada ni autoridad de
+movimiento. El worker/adaptador Python no se modifican y su GID sigue None.
+Las pruebas C++17 compilan únicamente contra dobles de headers/nodo; no son un
+build ROS ni una prueba de ABI/DDS. Falta prueba pasiva autorizada con múltiples
+publicadores y RMW efectivo identificado, además de procedencia binaria/YAML del
+bridge y correlación XRCE/SYSID/SITL v3/bridge/modelo. No se creó ningún receptor
+operativo ni se modificaron gates o reservas.
+
+
+### Comprobación real de compilación, sin ejecución — 2026-10-21
+
+El [probe compile_contract.cpp](../tools/rover_passive_rclcpp/compile_contract.cpp)
+y el observador completo pasaron `c++ -std=c++17 -Wall -Wextra -Wpedantic -Werror
+-fsyntax-only` contra los headers y mensajes realmente instalados en el contenedor
+ya activo e identificado. Resultado 0, stdout/stderr vacíos; fuente por stdin,
+sin binario, link, nodo, spin, servicios o ejecución del observador. El
+[README del prototipo](../tools/rover_passive_rclcpp/README.md) conserva la receta
+exacta de compilación y sus límites. Se comprobaron las dos suscripciones públicas,
+MessageInfo/get_rmw_message_info/publisher_gid/from_intra_process y los tipos
+Status/Odometry. Esto supera el bloqueo de compatibilidad de headers descrito en
+la investigación previa, pero no acredita ABI, RMW cargado, recepción de muestras
+ni asociación XRCE/SITL/bridge/modelo. Identidad y movimiento permanecen BLOCKED.
+
+
+### Fuente del colector rclcpp aislado — 2026-10-21
+
+Preparados [collector.cpp y contrato](../tools/rover_passive_rclcpp/COLLECTOR.md),
+sin ejecutar el programa ni integrarlo en lifecycle, worker Python, control,
+misiones o MCP. Límites explícitos de muestras/duración, output nuevo absoluto
+0600 en padre privado, JSONL con recepción/header/GID de MessageInfo y candidatos
+del grafo separados. No se serializa identidad atribuida; todos los registros
+siguen BLOCKED. Errores de datos/escritura/fsync/cierre o ausencia de confirmación
+final no permiten declarar captura completa ni repetir automáticamente.
+
+El límite de duración cubre atascos mediante un watchdog que sólo termina el
+proceso del propio colector, sin controlar vehículos ni otros procesos. Un corte
+puede dejar datos parciales sin footer; deben conservarse como UNCERTAIN. El
+estado de completitud del archivo es null hasta confirmación externa de cierre,
+recibo stdout y rc=0; incluso esa completitud de datos no acredita asociación.
+
+Tests offline con dobles compilan helpers y comprueban límites, datos incompletos,
+persistencia/permisos y sintaxis del programa con declaraciones ROS falsas. El
+colector no se ejecuta en ellos. No se compiló contra headers ROS reales en este
+turno: no están disponibles en el host y no se usa Docker bajo su restricción.
+La compilación real previa del Observer no acredita las nuevas APIs Context,
+NodeOptions ni executor del colector. Falta ese contraste/link autorizado y,
+separadamente, una futura captura pasiva y la cadena XRCE/SITL/bridge/modelo.
+No se habilitó movimiento ni se cambiaron gates o reservas.
+
+
+### Cierre posterior de compilación y robustez del colector — 2026-10-21
+
+Tras la preparación anterior se autorizó una comprobación distinta: se confirmó
+que el contenedor ya estaba activo y coincidían ID completo, imagen y motor;
+el colector completo y sus headers pasaron `c++ -std=c++17 -pthread -Wall -Wextra
+-Wpedantic -Werror -fsyntax-only` contra los headers instalados. Resultado 0,
+stdout/stderr vacíos. No se enlazó ni ejecutó el programa ni se crearon nodos,
+servicios, publicaciones o simulaciones. El bloqueo previo por falta de headers
+para este nuevo programa queda superado **sólo en sintaxis/tipos**, no en enlace,
+ABI, comportamiento de recepción ni acreditación de fuentes.
+
+Las nuevas regresiones offline ejercitan fronteras temporales/metadatos y el
+código real del journal con inyección POSIX de escritura parcial, errores de
+write/fsync/cierre, además de creación exclusiva, permisos y symlinks. El módulo
+del colector pasó 27 tests y la tanda combinada 79 (incluye esos 27, no se suman).
+[COLLECTOR.md](../tools/rover_passive_rclcpp/COLLECTOR.md) distingue compilación
+real de dobles y deja el procedimiento futuro acotado con autorización separada,
+inspección inicial de sólo lectura y condiciones de parada. Se conservan salida
+BLOCKED y la falta de vínculo publicador/XRCE/SYSID/SITL v3/bridge/modelo; no se
+autoriza recepción ni movimiento con estas comprobaciones.

@@ -2664,3 +2664,24 @@ el diagnóstico 204 y el envío real 204+204. La visibilidad en interfaz es una
 observación atribuida a Joel, no demostración automática de almacenamiento ni
 entrega exactamente una vez. No se repiten envíos; no se calcula coste facturado.
 Los resultados antiguos de simulación quedan expresamente fuera de este cierre.
+
+
+## 2026-10-21 — Cierre del observador y colector pasivo C++ del rover
+
+Se versiona tools/rover_passive_rclcpp, dos módulos de tests y la ampliación
+cronológica de rover-control.md. El callback público rclcpp::MessageInfo permite
+recoger publisher_gid por muestra, separado de candidatos del grafo, recepción
+y header. El colector independiente limita duración/muestras y usa journal
+exclusivo 0600 con tratamiento de errores parciales y cierre incierto. No está
+conectado a lifecycle, worker Python, executor, MCP ni misiones.
+
+Resultados ya obtenidos en esta sesión: 79 tests offline pasados en la tanda
+pasiva/identidad (incluye 27 del colector; no sumar ambos recuentos). Los helpers
+usan dobles ROS y temporales; el colector real no se ejecutó. Una comprobación
+previamente autorizada contra headers instalados en el contenedor ya activo
+pasó syntax-only del programa completo (rc=0, salida vacía), sin enlace ni
+recepción. No se repite Docker ni compilación operativa durante este cierre.
+AST Python, whitespace de archivos nuevos y diff staged revisados. Permanecen
+pendientes enlace/ABI, recepción real, RMW efectivo y acreditación de la cadena
+publicador/XRCE/SYSID/SITL v3/bridge/modelo. GID de muestra no prueba esa cadena;
+identidad sigue BLOCKED y no se habilita movimiento. Evidencias previas intactas.
