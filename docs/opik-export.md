@@ -1,8 +1,15 @@
 # Exportador a Opik (dry-run por defecto, envío explícito)
 
-Fecha: 21/10/2026. **Implementado y probado offline. La ruta `--send` existe, pero sólo se ha
-probado con transportes HTTP falsos: nunca se ha ejecutado y no se ha enviado nada a Opik.** No es
-una captura real de proveedor ni un baseline de rendimiento o gasto.
+Fecha: 21/10/2026. **Implementado y probado offline.** La ruta `--send` se ha ejecutado **tres
+veces**, cada una con autorización explícita y lanzada por Joel. El detalle está en
+[Evidencia existente](#evidencia-existente-y-lo-que-falta).
+
+1. Fixture sintético: **HTTP 400** en el batch de trazas.
+2. Diagnóstico sintético de un batch: **204**, y Joel ve la traza en la interfaz.
+3. **Captura real de Hermes** (nous / laguna): **204 + 204**, y Joel ve la traza y el span con los
+   datos esperados.
+
+No es un baseline de rendimiento ni de gasto.
 
 Código: [observability/opik_export.py](../observability/opik_export.py) ·
 tests: [test_opik_export.py](../tests/test_opik_export.py) ·
@@ -81,7 +88,7 @@ reglas compartidas con el [exportador LangSmith](langsmith-export.md).
 .venv/bin/python -m observability.opik_export CAPTURE.jsonl --project NOMBRE \
     --workspace WORKSPACE --send --record NUEVO-registro.jsonl \
     [--provenance captured] [--endpoint https://…/api] [--timeout 30] \
-    [--allow-synthetic] [--allow-unknown-provenance]
+    [--allow-synthetic] [--allow-unknown-provenance] [--error-body-file NUEVO-cuerpo-error.bin]
 ```
 
 El dry-run no importa ningún SDK, no lee variables de entorno, no abre conexiones ni escribe ningún
@@ -166,7 +173,48 @@ con `fsync` tras cada línea:
 **Nada del texto que envía el servidor se registra ni se muestra**: ni la razón HTTP, ni cabeceras,
 ni cuerpo, ni mensajes de excepción. Sólo se aceptan un código entero entre 100 y 599 y un recuento
 de bytes; cualquier otra respuesta del transporte se clasifica como inválida. La clave no aparece
-en el registro ni en la salida. La salida JSON repite el resultado de cada batch.
+en el registro ni en la salida. La salida JSON repite el resultado de cada batch. La única excepción
+es la opción explícita `--error-body-file` (siguiente apartado), y ni siquiera ella lleva texto del
+servidor a la salida o al registro.
+
+**Cuerpo de error opcional (`--error-body-file PATH`).** Por defecto no está activo y el
+comportamiento no cambia. Sólo es válido con `--send`.
+
+- **Antes de leer la clave**, `main()` exige que `PATH` no exista, que su directorio exista y que no
+  coincida con `--record`. `send()` repite la misma comprobación antes de crear el registro.
+- Ante la **primera** respuesta HTTP no 2xx (el envío se detiene ahí), se guardan como mucho los
+  primeros **4096 bytes** del cuerpo en un archivo **nuevo**: `O_CREAT|O_EXCL|O_NOFOLLOW`, permisos
+  **0600** y `fsync`. Nunca se sobrescribe un archivo existente ni se sigue un symlink, aunque
+  aparezca entre la comprobación y la escritura.
+- **Lectura acotada:** ante una respuesta no 2xx, el transporte urllib hace **una sola lectura de
+  como mucho 4097 bytes** (nunca `read()` sin límite). Conserva los primeros 4096 e informa
+  `response_body_bytes_captured` y `response_body_truncated`. `response_body_bytes` (el total)
+  sólo se da cuando la lectura terminó antes del límite; si se truncó, el total es desconocido y
+  queda `null`. Un fallo de lectura o de cierre del flujo conserva el código HTTP (el batch sigue
+  `http_not_accepted` y el envío `UNCERTAIN`) y deja sólo el tipo de error
+  (`response_body_read_error`, `response_body_close_error`), nunca su mensaje. De las respuestas
+  2xx no se conserva el cuerpo, pero sus bytes se cuentan con una lectura **sin límite**. Es un
+  límite conocido; la especificación documenta 204, que no lleva cuerpo. Sin redirecciones y sin
+  reintentos.
+- La salida y el `batch_result` del registro reciben sólo metadatos en `error_body_file`: estado,
+  bytes guardados, tamaño de la respuesta, `truncated`, SHA-256 del prefijo guardado y, si falló, el
+  tipo de error. **Nunca el texto**, que tampoco va a stderr.
+- Estados posibles:
+  - `saved`;
+  - `no_body_received`: respuesta no 2xx sin cuerpo; no se crea archivo;
+  - `not_needed_no_non_2xx_response`;
+  - `failed_not_created`: por ejemplo, el archivo apareció entretanto;
+  - `failed_partial_file_may_exist`: fallo de `write`, `fsync` o `close`, o una escritura que no
+    avanza (0 bytes), con el archivo ya creado. Ninguno de esos fallos escapa como excepción ni
+    deja el envío colgado.
+
+  Un fallo al guardar el cuerpo no cambia el estado del envío (sigue `UNCERTAIN` por el no-2xx) ni
+  el registro.
+
+**Advertencia:** el archivo contiene **texto arbitrario del servidor**. Puede repetir partes del
+payload o incluir datos de la cuenta o el workspace. Hay que revisarlo localmente antes de citarlo,
+**no añadirlo a Git** y no compartirlo sin inspección. Si se convierte en evidencia, conviene
+conservar sólo un extracto revisado junto con el SHA-256 del informe.
 
 **Fallos del propio registro** (escritura o `fsync`). Nunca escapan como excepción y la salida los
 indica con `record_complete: false` y `record_failure` (etapa y tipo de error):
@@ -221,11 +269,31 @@ ids; cambiarlo cambiaría todos los ids.
 
 ## Pruebas offline
 
-`tests/test_opik_export.py` (96 tests). Cubren:
+`tests/test_opik_export.py` (123 tests). Cubren:
+- **lectura acotada del cuerpo de error:** un flujo falso que falla ante cualquier `read()` sin
+  límite o de más de 4097 bytes. Casos: cuerpo vacío, 57 bytes, exactamente 4096, 4097 y 1 MiB,
+  con una sola lectura y el flujo cerrado, y el total sólo cuando se conoce. Además, fallo de
+  lectura (se conserva el código HTTP) y fallo de cierre. De extremo a extremo con `main()` y el
+  transporte urllib real sobre un opener falso: `UNCERTAIN`, un solo POST, sin reintentos, y el
+  cuerpo ausente de stdout, stderr, informe y registro;
 - **texto del servidor:** un transporte que devuelve un centinela sensible en la razón, las
   cabeceras, el cuerpo, el mensaje de excepción y un estado no entero. El centinela no aparece en
   la salida ni en el registro, y cada batch sólo tiene campos acotados. El transporte urllib real,
-  con un opener falso, sólo devuelve código y tamaño, también ante un `HTTPError`;
+  con un opener falso, devuelve código y tamaño, y sólo ante un `HTTPError` un prefijo del cuerpo de
+  como mucho 4096 bytes; nunca la razón ni las cabeceras;
+- **`--error-body-file`**, con transporte falso:
+  - cuerpo guardado en un archivo 0600 y ausente de stdout, stderr, informe y registro;
+  - truncado a 4096 bytes;
+  - sin cuerpo o con todos los batches aceptados, no se crea archivo;
+  - sin la opción, el cuerpo no se escribe ni se informa;
+  - un archivo preexistente se rechaza antes de leer la clave o crear el registro;
+  - un archivo que aparece entretanto o un symlink no se sobrescriben ni se siguen;
+  - fallos de escritura, `fsync` y `close`, y una escritura de 0 bytes, conservan `UNCERTAIN`
+    sin mostrar el cuerpo ni colgarse. El de `close` y el de 0 bytes eran defectos reales:
+    antes escapaba un `OSError` o el bucle no terminaba;
+  - permisos 0600 también con `umask 0`;
+  - opción rechazada sin `--send`, y ruta validada por el propio `send()`;
+  - una única llamada al transporte, sin reintentos;
 - **fallos del registro:** `fsync` fallando en cada una de las 6 escrituras, `write` fallando tras
   un POST y `close()` fallando tras todos los POST:
   - ninguna excepción escapa;
@@ -281,7 +349,11 @@ ignora las trazas retenidas, un reintento automático tras una excepción (3 tes
 razón HTTP al resultado (4 tests fallan), quitar las validaciones propias de `send()` (20 tests
 fallan), dejar escapar la excepción del registro (6 tests fallan), mantener
 `ALL_BATCHES_HTTP_ACCEPTED` tras un fallo de `send_finished` o `close()` (2 tests fallan) y quitar
-la comprobación de derivación de ids (5 tests fallan). Todas se detectan.
+la comprobación de derivación de ids (5 tests fallan). Para `--error-body-file`: llevar el cuerpo al
+informe (2 tests fallan), permisos 0644 (1 test falla), apertura sin `O_EXCL`/`O_NOFOLLOW` y con
+truncado (2 tests fallan) y quitar el límite de 4096 bytes (1 test falla). En la lectura acotada:
+`read()` sin límite o de más de 4097 bytes (10 tests fallan) y afirmar el total tras truncar
+(3 tests fallan). Todas se detectan.
 
 Dry-run real sobre la [evidencia sintética del loader](../evaluation/observability/hermes_loader_hooks_synthetic_2026_10_20/):
 rc=0, 6 eventos, 1 traza `SYNTHETIC` con 3 spans `llm` (uno con `error_info`) y 1 evento puntual,
@@ -291,15 +363,33 @@ rc=0, 6 eventos, 1 traza `SYNTHETIC` con 3 spans `llm` (uno con `error_info`) y 
 
 - **Existe:** evidencia sintética del loader real de Hermes, sintética por sus marcas y sin
   registros de procedencia, porque es anterior al plugin 0.3.0, y los tests offline anteriores.
-- **Falta, para una prueba real futura:**
-  1. una captura real de un turno con un proveedor, hecha con el plugin 0.3.0 para que tenga
-     registro de procedencia, sin forzar el contexto ni copiar credenciales (pendiente, igual que en
-     [LangSmith](langsmith-export.md#prueba-de-tokens-reales-pendiente));
-  2. comprobar contra un servicio lo que el SDK no puede confirmar offline: que acepte el payload,
-     cómo trata los ids repetidos y los ids v7 derivados de un hash, y los límites de tamaño del
-     backend. La forma ya está validada offline contra el SDK 2.2.110;
-  3. revisar la ruta `--send` implementada (sin reintentos, con registro por batch y estado
-     incierto) y obtener la autorización explícita de Joel para un único envío, preferiblemente de
-     una captura verificada. Hoy no hay ledger entre ejecuciones;
-  4. una cuenta, workspace y proyecto de Opik dedicados, con su región y retención, y la confirmación
-     de que la clave corresponde al endpoint Cloud por defecto o a uno explícito.
+- **Primer intento de envío (21/10/2026, autorizado):** está en
+  `evaluation/observability/opik_first_synthetic_send_2026_10_21/` (`send_report.json`,
+  `send_record.jsonl`, `send.stderr` vacío y `send.rc`=2), sin versionar.
+  - Destino: workspace `joowww`, proyecto `tfg-opik-synthetic-20261021`, `--allow-synthetic`.
+  - Se intentó sólo el batch de trazas (1 traza, body sha256 `5a27aa64…59b96`, idéntico al
+    preparado). Respuesta **HTTP 400** con 177 bytes de cuerpo, **descartado** por diseño.
+  - El batch de spans no se intentó. Estado `UNCERTAIN` (`http_status_400`), registro completo.
+  - Según Joel, la interfaz no muestra trazas ni logs en los últimos 60 días.
+  - **La causa del 400 no se conoce.** El body cumple la especificación y los modelos del SDK
+    2.2.110. Ese cuerpo perdido motivó `--error-body-file`.
+- **Diagnóstico de un solo batch:**
+  - Preparación: [opik_diag_single_batch_2026_10_21](../evaluation/observability/opik_diag_single_batch_2026_10_21/README.md).
+  - Envío: [opik_diag_single_batch_send_2026_10_21](../evaluation/observability/opik_diag_single_batch_send_2026_10_21/README.md).
+  - Mismo destino que el primer intento y una entrada sintética nueva (1 traza sin spans):
+    **HTTP 204**, y Joel ve la traza en la interfaz.
+  - Como el destino y la autenticación funcionan, la hipótesis principal del 400 apunta a los
+    valores temporales de la traza original (intervalo de unas 74 h o inicio de hace unas 100 h).
+    No está confirmada.
+- **Captura real de Hermes y su envío:**
+  - Captura: [hermes_real_capture_nous_2026_10_21](../evaluation/observability/hermes_real_capture_nous_2026_10_21/README.md),
+    plugin 0.3.0, perfil `default`, `poolside/laguna-s-2.1:free` vía `nous`, registro de
+    procedencia verificado.
+  - Envío: [opik_hermes_real_send_2026_10_21](../evaluation/observability/opik_hermes_real_send_2026_10_21/README.md),
+    workspace `joowww`, proyecto `tfg-opik-hermes-real-20261021`, `--provenance captured`.
+  - Resultado: **204 + 204** (1 traza y 1 span `llm`), y Joel confirma visualmente la traza y el span
+    con los datos esperados.
+  - La captura cubre **sólo el turno principal**: la generación auxiliar del título usa otros hooks.
+- **Sigue sin comprobar:** cómo trata Opik los ids repetidos, los límites de tamaño del backend,
+  la causa exacta del primer 400 y el coste (no se calcula). No hay ledger entre ejecuciones:
+  **no reenviar** los envíos ya hechos.

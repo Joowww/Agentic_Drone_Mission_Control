@@ -2638,3 +2638,29 @@ de código/documentación sin avisos; el diff del archivo de evidencia conserva 
 avisos brutos indicados. No se repiten tests: tras los 691 pasados sólo se ajustan
 documentación y registro, y se archivan copias existentes. Commits separados de
 perfiles, captura y este archivo documental; sin push ni operaciones de runtime.
+
+
+## 2026-10-21 — Cierre de observabilidad y evidencia nativa de Hermes
+
+Se revisan y versionan los cambios de Opik (captura opcional y acotada de cuerpo
+no-2xx en archivo privado, sin texto del servidor en informe/registro), tests y
+guías, junto con las seis carpetas de evidencia expresamente seleccionadas.
+Se conservan originales: 31 entradas de manifiestos/SHA256SUMS verificadas,
+con tamaños cuando el manifiesto los aporta; dos carpetas no tenían manifiesto
+previo y se calculan sus hashes sin modificar sus bytes. Revisión acotada de
+secretos: no se detectan claves, tokens de autenticación ni cuerpos privados.
+Los 218 tests offline de observabilidad son el resultado comunicado por Claude,
+no una nueva ejecución independiente de este cierre. AST Python y whitespace
+se verifican localmente; no se ejecuta proveedor, Hermes ni exportador.
+
+La evidencia nativa a8fe21d9 registra respuesta OK de
+poolside/laguna-s-2.1:free vía nous: principal 796 tokens normalizados y agregado
+843 con título; no son tokens facturados ni recuento HTTP. Es distinta de la
+captura posterior del plugin: principal 796, agregado nativo 848; el plugin sólo
+cubre el principal, sin hooks auxiliares. Se conserva la incidencia previa del
+bootstrap/contexto local y sus incertidumbres, sin convertirla en inferencia.
+Los registros de Opik distinguen el primer 400 UNCERTAIN (causa desconocida),
+el diagnóstico 204 y el envío real 204+204. La visibilidad en interfaz es una
+observación atribuida a Joel, no demostración automática de almacenamiento ni
+entrega exactamente una vez. No se repiten envíos; no se calcula coste facturado.
+Los resultados antiguos de simulación quedan expresamente fuera de este cierre.

@@ -62,6 +62,7 @@ BATCH_PATHS = {"traces": "/v1/private/traces/batch", "spans": "/v1/private/spans
 API_KEY_ENV = "OPIK_API_KEY"
 SEND_BODY_MAX_BYTES = 5 * 1024 * 1024  # opik 2.2.110 MAX_BATCH_SIZE_MB; no server limit is documented
 SEND_TIMEOUT_MAX_S = 120
+ERROR_BODY_MAX_BYTES = 4096  # --error-body-file keeps at most this prefix of a non-2xx response body
 PROJECT_PATTERN = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,99}")
 WORKSPACE_PATTERN = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]{0,99}")
 _ISO = "%Y-%m-%dT%H:%M:%S.%fZ"
@@ -267,18 +268,45 @@ class _NoRedirect(urllib.request.HTTPRedirectHandler):
         return None  # reported as the HTTP response; never followed (it would carry the key elsewhere)
 
 
+def _read_error_body(stream):
+    """Bounded read of a non-2xx body: one read of at most ERROR_BODY_MAX_BYTES + 1 bytes.
+
+    The total size is reported only when the read ended before the limit; a truncated body's real
+    size is unknown. Read and close failures keep only the exception type."""
+    result = {"body_bytes": None, "body_bytes_captured": 0, "body_truncated": None,
+              "body_read_error": None, "body_close_error": None, "error_body": b""}
+    try:
+        data = stream.read(ERROR_BODY_MAX_BYTES + 1) or b""
+        if not isinstance(data, (bytes, bytearray)):
+            raise TypeError("non-bytes body")
+        data = bytes(data[:ERROR_BODY_MAX_BYTES + 1])
+        truncated = len(data) > ERROR_BODY_MAX_BYTES
+        result.update(error_body=data[:ERROR_BODY_MAX_BYTES], body_truncated=truncated,
+                      body_bytes_captured=min(len(data), ERROR_BODY_MAX_BYTES),
+                      body_bytes=None if truncated else len(data))
+    except Exception as exc:  # the status is still known; the body is not
+        result["body_read_error"] = type(exc).__name__
+    finally:
+        try:
+            stream.close()
+        except Exception as exc:
+            result["body_close_error"] = type(exc).__name__
+    return result
+
+
 def urllib_transport(url, headers, body, timeout):
-    """One POST, no retry, no redirect, no proxy from the environment. Returns only the HTTP status
-    code and the response size (never its reason phrase, headers or body); raises on timeout or a
-    lost/absent response."""
+    """One POST, no retry, no redirect, no proxy from the environment. Returns the HTTP status code
+    and response size, never its reason phrase or headers. For a non-2xx response the body is read
+    at most once and to ERROR_BODY_MAX_BYTES + 1 bytes; its first ERROR_BODY_MAX_BYTES come back as
+    ``error_body``, which send() only writes to an explicit --error-body-file and never reports.
+    Raises on timeout or a lost/absent response."""
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), _NoRedirect)
     request = urllib.request.Request(url, data=body, headers=headers, method="POST")
     try:
         with opener.open(request, timeout=timeout) as response:
             return {"status": response.status, "body_bytes": len(response.read())}
     except urllib.error.HTTPError as exc:
-        with exc:
-            return {"status": exc.code, "body_bytes": len(exc.read() or b"")}
+        return {"status": exc.code, **_read_error_body(exc)}
 
 
 class _SendRecord:
@@ -311,8 +339,19 @@ def _response_result(response):
         return {"outcome": "invalid_transport_response_delivery_unknown", "http_status": None}
     if isinstance(body_bytes, bool) or not isinstance(body_bytes, int) or body_bytes < 0:
         body_bytes = None
-    return {"outcome": "http_accepted" if 200 <= status < 300 else "http_not_accepted",
-            "http_status": status, "response_body_bytes": body_bytes}
+    result = {"outcome": "http_accepted" if 200 <= status < 300 else "http_not_accepted",
+              "http_status": status, "response_body_bytes": body_bytes}
+    # Bounded-read facts, only when the transport supplies them with the right types.
+    captured = response.get("body_bytes_captured")
+    if isinstance(captured, int) and not isinstance(captured, bool) and 0 <= captured <= ERROR_BODY_MAX_BYTES:
+        result["response_body_bytes_captured"] = captured
+    if isinstance(response.get("body_truncated"), bool):
+        result["response_body_truncated"] = response["body_truncated"]
+    for key in ("body_read_error", "body_close_error"):
+        name = response.get(key)
+        if isinstance(name, str) and name:
+            result[f"response_{key}"] = name if _ERROR_TYPE.fullmatch(name) else "unrecognized"
+    return result
 
 
 def _check_payload_matches_destination(plan):
@@ -354,6 +393,61 @@ def _check_payload_matches_destination(plan):
         raise ExportError("plan contains a span whose trace is not in the plan")
 
 
+def _check_error_body_path(path, record_path):
+    """--error-body-file must name a new file in an existing directory, distinct from the record."""
+    try:
+        path = os.fspath(path)
+    except TypeError:
+        raise ExportError("error body file must be a path") from None
+    if not isinstance(path, str) or not path:
+        raise ExportError("error body file must be a path")
+    if os.path.lexists(path):
+        raise ExportError("error body file already exists; it is never overwritten")
+    if not os.path.isdir(os.path.dirname(os.path.abspath(path))):
+        raise ExportError("error body file directory does not exist")
+    if os.path.abspath(path) == os.path.abspath(os.fspath(record_path)):
+        raise ExportError("error body file must differ from the record")
+    return path
+
+
+def _save_error_body(path, body, body_bytes, truncated=None):
+    """Write at most ERROR_BODY_MAX_BYTES to a new 0600 file (exclusive, no symlink follow, fsynced).
+    Returns metadata only; the body itself never reaches the report, record, stdout or stderr."""
+    data = bytes(body[:ERROR_BODY_MAX_BYTES])
+    meta = {"status": None, "bytes_saved": 0, "response_body_bytes": body_bytes,
+            "truncated": None, "sha256": None, "error_type": None}
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_CLOEXEC", 0)
+    try:
+        fd = os.open(path, flags, 0o600)
+    except OSError as exc:
+        meta.update(status="failed_not_created", error_type=type(exc).__name__)
+        return meta
+    failure = None
+    try:
+        os.fchmod(fd, 0o600)
+        view = memoryview(data)
+        while view:
+            written = os.write(fd, view)
+            if written <= 0:  # never loop forever on a file that accepts nothing
+                raise OSError("write made no progress")
+            view = view[written:]
+        os.fsync(fd)
+    except OSError as exc:
+        failure = exc
+    finally:
+        try:
+            os.close(fd)
+        except OSError as exc:  # a failed close cannot confirm the file; it must not escape send()
+            failure = failure or exc
+    if failure is not None:
+        meta.update(status="failed_partial_file_may_exist", error_type=type(failure).__name__)
+        return meta
+    meta.update(status="saved", bytes_saved=len(data), sha256=hashlib.sha256(data).hexdigest(),
+                truncated=truncated if isinstance(truncated, bool)
+                else (body_bytes > len(data)) if isinstance(body_bytes, int) else None)
+    return meta
+
+
 def _check_send_arguments(endpoint, api_key, timeout):
     endpoint = validate_endpoint(endpoint)
     if (isinstance(timeout, bool) or not isinstance(timeout, (int, float)) or not math.isfinite(timeout)
@@ -368,7 +462,7 @@ def _check_send_arguments(endpoint, api_key, timeout):
 
 
 def send(plan, *, endpoint, api_key, record_path, timeout, transport=urllib_transport,
-         allow_synthetic=False, allow_unknown_provenance=False):
+         allow_synthetic=False, allow_unknown_provenance=False, error_body_path=None):
     """Send the plan's bodies once, in order, stopping at the first batch without a 2xx response.
 
     The caller supplies the key; ``send`` itself re-checks provenance, endpoint, timeout, key
@@ -377,10 +471,14 @@ def send(plan, *, endpoint, api_key, record_path, timeout, transport=urllib_tran
     storage or exactly-once delivery. ``UNCERTAIN`` covers a timeout or lost response, a non-2xx
     (possibly after partial processing), a partial send, and a record that could not be written
     after a POST. A batch whose intent could not be recorded is not sent. Nothing is resent
-    automatically. Only the HTTP status code and response size are kept from the server."""
+    automatically. Only the HTTP status code and response size are kept from the server, except
+    that with ``error_body_path`` the first non-2xx body (at most ERROR_BODY_MAX_BYTES) is written
+    to that new 0600 file; the report and record get only its status, size and SHA-256."""
     check_export_allowed(plan, allow_synthetic=allow_synthetic, allow_unknown_provenance=allow_unknown_provenance)
     _check_payload_matches_destination(plan)
     endpoint = _check_send_arguments(endpoint, api_key, timeout)
+    if error_body_path is not None:
+        error_body_path = _check_error_body_path(error_body_path, record_path)
     requests = send_requests(plan)
     if not requests:
         raise ExportError("nothing to send")
@@ -397,6 +495,8 @@ def send(plan, *, endpoint, api_key, record_path, timeout, transport=urllib_tran
               "traces": len(plan.traces), "spans": len(plan.spans), "batches_planned": len(requests),
               "batches": [], "status": None, "uncertain_reason": None, "not_attempted_batches": 0,
               "record_complete": True, "record_failure": None,
+              "error_body_file": None if error_body_path is None else {
+                  "path": error_body_path, "status": "not_needed_no_non_2xx_response"},
               "note": "No automatic retry. HTTP 2xx is not proof of storage or of exactly-once delivery; "
                       "ids are deterministic, and how Opik treats a repeated id is not verified."}
 
@@ -432,14 +532,26 @@ def send(plan, *, endpoint, api_key, record_path, timeout, transport=urllib_tran
                 stop(index, "record_unwritable_batch_not_sent", attempted=False)
                 break
             started = time.monotonic()
+            response = None
             try:
-                result = _response_result(transport(endpoint + path, dict(headers), data, timeout))
+                response = transport(endpoint + path, dict(headers), data, timeout)
+                result = _response_result(response)
             except Exception as exc:  # timeout, reset, lost response: delivery unknown
                 name = type(exc).__name__  # type only: messages may echo request or server details
                 result = {"outcome": "no_response_delivery_unknown", "http_status": None,
                           "error_type": name if _ERROR_TYPE.fullmatch(name) else "unrecognized"}
             result.update(index=index, kind=kind, items=len(item_ids),
                           elapsed_wall_s=round(time.monotonic() - started, 3))
+            if error_body_path is not None and result["outcome"] == "http_not_accepted":
+                body = response.get("error_body") if isinstance(response, dict) else None
+                if isinstance(body, (bytes, bytearray)) and body:
+                    meta = _save_error_body(error_body_path, body, result.get("response_body_bytes"),
+                                            result.get("response_body_truncated"))
+                else:
+                    meta = {"status": "no_body_received"}
+                report["error_body_file"].update(meta)
+                result["error_body_file"] = {k: v for k, v in meta.items() if v is not None}
+            response = body = None  # drop any server text held in memory
             result["recorded"] = write({"entry": "batch_result", "at_utc": _utc_now(), **result},
                                        f"batch_result_{index}")
             report["batches"].append(result)
@@ -492,8 +604,12 @@ def main(argv=None, *, out=None, transport=urllib_transport, environ=None):
     send_group.add_argument("--allow-synthetic", action="store_true", help="authorize sending synthetic traces")
     send_group.add_argument("--allow-unknown-provenance", action="store_true",
                             help="authorize sending traces whose origin is not declared")
+    send_group.add_argument("--error-body-file",
+                            help=f"new file (0600) for the first non-2xx response body, at most "
+                                 f"{ERROR_BODY_MAX_BYTES} bytes; arbitrary server text: review locally, never commit")
     args = parser.parse_args(argv)
-    send_only = [name for name in ("record", "endpoint", "timeout", "allow_synthetic", "allow_unknown_provenance")
+    send_only = [name for name in ("record", "endpoint", "timeout", "allow_synthetic", "allow_unknown_provenance",
+                                   "error_body_file")
                  if getattr(args, name) not in (None, False)]
     if send_only and not args.send:
         parser.error(f"--{send_only[0].replace('_', '-')} is only valid with --send")
@@ -529,10 +645,12 @@ def main(argv=None, *, out=None, transport=urllib_transport, environ=None):
         return 0
     if os.path.lexists(args.record):
         raise ExportError("--record already exists; a send record is never reused or appended")
+    if args.error_body_file is not None:
+        _check_error_body_path(args.error_body_file, args.record)
     api_key = (os.environ if environ is None else environ).get(API_KEY_ENV)
     report = send(plan, endpoint=endpoint, api_key=api_key, record_path=args.record,
                   timeout=args.timeout or 30.0, transport=transport, allow_synthetic=args.allow_synthetic,
-                  allow_unknown_provenance=args.allow_unknown_provenance)
+                  allow_unknown_provenance=args.allow_unknown_provenance, error_body_path=args.error_body_file)
     json.dump(report, out, indent=2, ensure_ascii=False)
     out.write("\n")
     return 0 if report["status"] == "ALL_BATCHES_HTTP_ACCEPTED" and report["record_complete"] else 2

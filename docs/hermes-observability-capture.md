@@ -161,6 +161,88 @@ durante la ejecución y un `trap` restauró la config byte a byte, con `plugins.
 
 Esto demuestra la integración con el loader y los hooks, **no** inferencia, tokens reales ni latencias reales.
 
+### Viabilidad revisada de una captura real (21/10/2026, sólo lectura)
+
+Inspección offline sin cargar modelos, sin tocar configuraciones, sin leer `.env` ni
+`auth.json`, sin llamar al proveedor y sin ejecutar Hermes.
+
+**Hechos:**
+
+- **Perfil `tfg-capture-test`, igual que el 20/10:** `custom` → `127.0.0.1:11434/v1`, modelo
+  `qwen3:4b`, `context_length: 8192`, `ollama_num_ctx: 8192` y `plugins.enabled: []`.
+- **Mínimo de Hermes**, en el código instalado de `~/.hermes/hermes-agent`:
+  - `MINIMUM_CONTEXT_LENGTH = 64_000` (`agent/model_metadata.py:273`), aplicado en
+    `agent_init._enforce_minimum_context`;
+  - con un endpoint local, la ventana efectiva es `max(context_length, model.ollama_num_ctx)`;
+  - la única excepción por debajo del mínimo es el proveedor `lmstudio` con un `context_length`
+    explícito.
+- **`num_ctx` por petición:** el proveedor `custom` envía `extra_body.options.num_ctx = ollama_num_ctx`
+  en cada petición (`plugins/model-providers/custom/__init__.py:61-62`).
+- **Único modelo local:** `qwen3:4b`, «Qwen3 4B Thinking 2507», Q4_K_M, pesos de 2,50 GB
+  (2,33 GiB), según el manifiesto y la cabecera GGUF del blob, leídos sin cargarlo.
+  - Ventana nativa: `qwen3.context_length = 262144`. **El modelo no limita.**
+  - 36 capas, 8 cabezas KV de dimensión 128, es decir, 147 456 bytes por token de caché KV en fp16.
+  - Los parámetros del Modelfile no fijan `num_ctx`.
+- **Ollama 0.34.2 (servicio systemd, log de arranque del 21/10):**
+  - GPU CUDA **RTX 3070 Laptop, 8,0 GiB, 6,9 GiB disponibles** al arrancar;
+  - `OLLAMA_FLASH_ATTENTION:false`, `OLLAMA_KV_CACHE_TYPE` vacío (f16),
+    `OLLAMA_CONTEXT_LENGTH:0` (contexto por defecto 4096) y `OLLAMA_NUM_PARALLEL:1`.
+- **Memoria del sistema (WSL):** 15,5 GiB de RAM, 8,4 GiB disponibles en el momento de la
+  inspección y 4 GiB de swap. No hay `.wslconfig`.
+
+**Estimación, sin medir (no incluye buffers de cómputo):**
+
+| Contexto | Caché KV f16 | KV q8_0 | KV q4_0 | Total con pesos (f16 / q8_0 / q4_0) |
+| --- | --- | --- | --- | --- |
+| 64 000 | 8,79 GiB | 4,67 GiB | 2,47 GiB | 11,1 / 7,0 / 4,8 GiB |
+| 65 536 | 9,00 GiB | 4,78 GiB | 2,53 GiB | 11,3 / 7,1 / 4,9 GiB |
+
+La estimación del 20/10 sólo comparaba con la RAM libre y no tenía en cuenta la GPU.
+
+**Conclusión:** con la configuración actual **no hay vía de captura real**. La condición que falta
+es una ventana servida de **64 000 tokens o más**: el perfil declara 8192, así que Hermes rechaza
+el turno antes de llamar al modelo, y Ollama sirve 4096 por defecto. El modelo admite esa ventana,
+pero no se ha medido que quepa:
+
+- con KV f16, unos 11,1 GiB superan los 6,9 GiB de VRAM, así que obligaría a repartir capas entre
+  GPU y RAM, más lento y sin medir;
+- con flash attention y KV q8_0, unos 7,0 GiB más buffers quedan **al límite** de la VRAM.
+
+**Alternativas seguras a evaluar, cada una con su propia autorización:**
+
+1. **Sólo cambiar el perfil temporal** a `ollama_num_ctx` y `context_length` de 65 536, sin tocar
+   el servicio.
+   - Antes, una carga controlada de `qwen3:4b` con ese `num_ctx`, con la simulación parada, para
+     **medir** el reparto GPU/CPU y la memoria.
+   - Falta confirmar que el endpoint `/v1` de Ollama respeta `options.num_ctx` (hipótesis).
+2. **Ajustar el servicio Ollama** con un drop-in de systemd (`OLLAMA_FLASH_ATTENTION=1`,
+   `OLLAMA_KV_CACHE_TYPE=q8_0`) y reiniciarlo. Afecta a todo el uso de Ollama en el equipo.
+3. **Un proveedor alojado** con contexto suficiente: necesita credenciales, tiene coste y envía el
+   contenido fuera del equipo.
+
+**Descartado:** declarar `provider: lmstudio` para aprovechar la excepción. Sería falsear el
+proveedor para saltarse el mínimo de seguridad de Hermes. También se descarta cualquier ventana
+inferior a 64 000.
+
+### Captura real con el proveedor habitual (21/10/2026)
+
+La conclusión anterior se refiere sólo a Ollama local. Con el perfil habitual `default`
+(`poolside/laguna-s-2.1:free` vía `nous`, autenticación normal) **sí se obtuvo una captura real**:
+[hermes_real_capture_nous_2026_10_21](../evaluation/observability/hermes_real_capture_nous_2026_10_21/README.md).
+
+- **Activación temporal:** el plugin se activó para una sola ejecución con
+  `plugins.enabled: [tfg-observability-capture]`. Hermes no ofrece una opción temporal, así que el
+  config se restauró byte a byte y la copia del plugin se retiró al terminar; ambas cosas se
+  comprobaron.
+- **Comprobado:** carga y registro (registro de procedencia `hermes_plugin_context`, verificado) y
+  la emisión real de **un** `llm_call` por `post_api_request`, válido contra el esquema.
+- **Coincidencia con el informe nativo** `--usage-file` en el turno principal: 538 / 2 / 256 /
+  total 796.
+- **No cubierto:** la generación auxiliar del título, porque Hermes emite `pre/post_auxiliary_call`
+  y el plugin no registra esos hooks.
+- **Exportación:** se exportó a Opik una vez, con 204 + 204 y la confirmación visual de Joel; ver
+  [opik-export.md](opik-export.md#evidencia-existente-y-lo-que-falta).
+
 ## Activación (desactivado por defecto)
 
 Doble condición; en cualquier otro caso `register(ctx)` no registra ningún hook:

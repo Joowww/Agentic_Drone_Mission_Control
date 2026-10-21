@@ -1,5 +1,7 @@
 """Offline tests for the Opik dry-run exporter: fixtures only, no SDK, network or credentials."""
+import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -626,26 +628,133 @@ def test_server_text_never_reaches_output_or_record(tmp_path, capsys, script, ou
                               "items", "elapsed_wall_s", "recorded"}
 
 
-def test_default_transport_returns_only_status_and_size(monkeypatch):
+def test_default_transport_returns_status_size_and_only_a_bounded_error_body(monkeypatch):
     import io
 
     class Response(io.BytesIO):
         status, reason, headers = 204, SERVER_SENTINEL, {"x": SERVER_SENTINEL}
 
     class Opener:
-        def __init__(self, behaviour):
-            self.behaviour = behaviour
+        def __init__(self, behaviour, body):
+            self.behaviour, self.body = behaviour, body
 
         def open(self, request, timeout):
             if self.behaviour == "error":
                 raise export.urllib.error.HTTPError(request.full_url, 418, SERVER_SENTINEL,
-                                                    {"x": SERVER_SENTINEL}, io.BytesIO(SERVER_SENTINEL.encode()))
-            return Response(SERVER_SENTINEL.encode())
+                                                    {"x": SERVER_SENTINEL}, io.BytesIO(self.body))
+            return Response(self.body)
 
-    for behaviour, status in (("ok", 204), ("error", 418)):
-        monkeypatch.setattr(export.urllib.request, "build_opener", lambda *handlers: Opener(behaviour))
-        result = export.urllib_transport("https://opik.invalid/api/v1/private/traces/batch", {}, b"{}", 1)
-        assert result == {"status": status, "body_bytes": len(SERVER_SENTINEL.encode())}
+    small = SERVER_SENTINEL.encode()
+    url = "https://opik.invalid/api/v1/private/traces/batch"
+    monkeypatch.setattr(export.urllib.request, "build_opener", lambda *handlers: Opener("ok", small))
+    assert export.urllib_transport(url, {}, b"{}", 1) == {"status": 204, "body_bytes": len(small)}  # 2xx: no body
+    monkeypatch.setattr(export.urllib.request, "build_opener", lambda *handlers: Opener("error", small))
+    result = export.urllib_transport(url, {}, b"{}", 1)
+    assert result["status"] == 418 and result["error_body"] == small and result["body_bytes"] == len(small)
+    assert "reason" not in result and "headers" not in result
+
+
+LIMIT = export.ERROR_BODY_MAX_BYTES + 1  # 4097: the most the transport may ever request
+
+
+class BoundedStream:
+    """Fake error-response stream that fails any unbounded or over-limit read."""
+
+    def __init__(self, data=b"", read_error=None, close_error=None):
+        self.data, self.read_error, self.close_error = data, read_error, close_error
+        self.reads, self.closed = [], False
+
+    def read(self, amt=None):
+        assert amt is not None and amt >= 0, "unbounded read of an error body"
+        assert amt <= LIMIT, f"read of {amt} bytes exceeds {LIMIT}"
+        self.reads.append(amt)
+        if self.read_error:
+            raise self.read_error("reset while reading " + SERVER_SENTINEL)
+        chunk, self.data = self.data[:amt], self.data[amt:]
+        return chunk
+
+    def close(self):
+        self.closed = True
+        if self.close_error:
+            raise self.close_error("close failed " + SERVER_SENTINEL)
+
+
+def _error_opener(monkeypatch, stream, status=400):
+    opens = []
+
+    class Opener:
+        def open(self, request, timeout):
+            opens.append(request.full_url)
+            raise export.urllib.error.HTTPError(request.full_url, status, SERVER_SENTINEL, {"x": SERVER_SENTINEL},
+                                                stream)
+
+    monkeypatch.setattr(export.urllib.request, "build_opener", lambda *handlers: Opener())
+    return opens
+
+
+@pytest.mark.parametrize("size, captured, truncated, total", [
+    (0, 0, False, 0),
+    (57, 57, False, 57),
+    (export.ERROR_BODY_MAX_BYTES, export.ERROR_BODY_MAX_BYTES, False, export.ERROR_BODY_MAX_BYTES),
+    (export.ERROR_BODY_MAX_BYTES + 1, export.ERROR_BODY_MAX_BYTES, True, None),
+    (1024 * 1024, export.ERROR_BODY_MAX_BYTES, True, None),  # never read beyond the limit
+])
+def test_error_body_read_is_bounded_and_size_claims_are_exact(monkeypatch, size, captured, truncated, total):
+    stream = BoundedStream(b"E" * size)
+    _error_opener(monkeypatch, stream)
+    result = export.urllib_transport("https://opik.invalid/api/v1/private/traces/batch", {}, b"{}", 1)
+    assert stream.reads == [LIMIT] and stream.closed  # one bounded read, stream closed
+    assert result["status"] == 400 and result["body_bytes_captured"] == captured
+    assert result["body_truncated"] is truncated and result["body_bytes"] == total  # total only when known
+    assert result["error_body"] == b"E" * captured
+    assert result["body_read_error"] is None and result["body_close_error"] is None
+
+
+def test_error_body_read_failure_keeps_the_status_and_no_body(monkeypatch):
+    stream = BoundedStream(b"E" * 100, read_error=ConnectionResetError)
+    _error_opener(monkeypatch, stream)
+    result = export.urllib_transport("https://opik.invalid/api/v1/private/traces/batch", {}, b"{}", 1)
+    assert result["status"] == 400 and result["body_read_error"] == "ConnectionResetError"
+    assert result["error_body"] == b"" and result["body_bytes"] is None and result["body_truncated"] is None
+    assert stream.closed and "SRV-SENTINEL" not in json.dumps({k: v for k, v in result.items() if k != "error_body"})
+
+
+def test_error_body_close_failure_keeps_what_was_read(monkeypatch):
+    stream = BoundedStream(b"E" * 10, close_error=OSError)
+    _error_opener(monkeypatch, stream)
+    result = export.urllib_transport("https://opik.invalid/api/v1/private/traces/batch", {}, b"{}", 1)
+    assert result["status"] == 400 and result["error_body"] == b"E" * 10
+    assert result["body_close_error"] == "OSError" and result["body_read_error"] is None
+
+
+@pytest.mark.parametrize("stream_kwargs, file_status, extra", [
+    ({"data": b"ERRBODY-SENTINEL" * 1000}, "saved", {"response_body_truncated": True,
+                                                    "response_body_bytes_captured": 4096}),
+    ({"data": b"ERRBODY-SENTINEL", "read_error": ConnectionResetError}, "no_body_received",
+     {"response_body_read_error": "ConnectionResetError"}),
+    ({"data": b"ERRBODY-SENTINEL", "close_error": OSError}, "saved", {"response_body_close_error": "OSError"}),
+])
+def test_real_transport_error_body_end_to_end_is_uncertain_and_private(tmp_path, capsys, monkeypatch,
+                                                                       stream_kwargs, file_status, extra):
+    stream = BoundedStream(**stream_kwargs)
+    opens = _error_opener(monkeypatch, stream)
+    path = capture_with(tmp_path, hermes_like_context(), error=True)
+    rc = export.main(send_argv(path, tmp_path) + ["--error-body-file", str(tmp_path / "error-body.bin")],
+                     environ={export.API_KEY_ENV: KEY})  # real urllib_transport, fake opener
+    captured = capsys.readouterr()
+    report = json.loads(captured.out)
+    assert rc == 2 and report["status"] == "UNCERTAIN" and report["uncertain_reason"] == "http_status_400"
+    assert len(opens) == 1 and stream.reads == [LIMIT]  # one POST, one bounded read, no retry
+    batch = report["batches"][0]
+    assert batch["http_status"] == 400 and all(batch[k] == v for k, v in extra.items())
+    assert report["error_body_file"]["status"] == file_status
+    if "data" in stream_kwargs and file_status == "saved" and len(stream_kwargs["data"]) > 4096:
+        assert len((tmp_path / "error-body.bin").read_bytes()) == 4096
+        assert report["error_body_file"]["truncated"] is True
+        assert report["error_body_file"]["response_body_bytes"] is None  # total unknown, not invented
+    record_text = (tmp_path / "send-record.jsonl").read_text()
+    for text in (captured.out, captured.err, record_text):
+        assert "ERRBODY-SENTINEL" not in text and "SRV-SENTINEL" not in text
 
 
 def _fail_on_fsync(monkeypatch, failing_call):
@@ -867,6 +976,248 @@ def test_send_applies_provenance_gate_itself(tmp_path):
     assert transport.calls == [] and not (tmp_path / "direct.jsonl").exists()
     report = export.send(plan, transport=transport, allow_unknown_provenance=True, **_send_kwargs(tmp_path))
     assert report["status"] == "ALL_BATCHES_HTTP_ACCEPTED" and report["record_complete"] is True
+
+
+# --- optional --error-body-file (fake transport only) ---------------------------------------
+
+ERROR_BODY_SENTINEL = b'{"code":400,"message":"ERRBODY-SENTINEL-91c2 field rejected","details":"x"}'
+
+
+class ErrorBodyTransport:
+    """Scripted (status, error_body) pairs; records every call so retries would be visible."""
+
+    def __init__(self, *script):
+        self.script, self.calls = list(script), 0
+
+    def __call__(self, url, headers, body, timeout):
+        self.calls += 1
+        status, error_body = self.script.pop(0)
+        response = {"status": status, "body_bytes": len(error_body or b"")}
+        if error_body is not None:
+            response["error_body"] = error_body
+        return response
+
+
+def _error_body_run(tmp_path, capsys, transport, *extra, error_body=True):
+    path = capture_with(tmp_path, hermes_like_context(), error=True)
+    argv = send_argv(path, tmp_path, *extra)
+    if error_body:
+        argv += ["--error-body-file", str(tmp_path / "error-body.bin")]
+    rc = export.main(argv, transport=transport, environ={export.API_KEY_ENV: KEY})
+    captured = capsys.readouterr()
+    return rc, captured, json.loads(captured.out)
+
+
+def _assert_body_nowhere(tmp_path, captured, needle=b"ERRBODY-SENTINEL"):
+    text = needle.decode()
+    assert text not in captured.out and text not in captured.err
+    assert text not in (tmp_path / "send-record.jsonl").read_text()
+
+
+def test_error_body_is_saved_privately_and_never_reported(tmp_path, capsys):
+    transport = ErrorBodyTransport((400, ERROR_BODY_SENTINEL))
+    rc, captured, report = _error_body_run(tmp_path, capsys, transport)
+    target = tmp_path / "error-body.bin"
+    assert rc == 2 and report["status"] == "UNCERTAIN" and transport.calls == 1  # no retry, spans not sent
+    assert target.read_bytes() == ERROR_BODY_SENTINEL
+    assert (target.stat().st_mode & 0o777) == 0o600
+    meta = report["error_body_file"]
+    assert meta["status"] == "saved" and meta["bytes_saved"] == len(ERROR_BODY_SENTINEL)
+    assert meta["truncated"] is False and meta["sha256"] == hashlib.sha256(ERROR_BODY_SENTINEL).hexdigest()
+    assert records(tmp_path)[2]["error_body_file"]["status"] == "saved"
+    _assert_body_nowhere(tmp_path, captured)
+
+
+def test_error_body_is_truncated_to_the_limit(tmp_path, capsys):
+    body = b"ERRBODY-SENTINEL" + b"x" * (2 * export.ERROR_BODY_MAX_BYTES)
+    rc, captured, report = _error_body_run(tmp_path, capsys, ErrorBodyTransport((413, body)))
+    saved = (tmp_path / "error-body.bin").read_bytes()
+    assert saved == body[:export.ERROR_BODY_MAX_BYTES] and len(saved) == 4096
+    assert report["error_body_file"]["truncated"] is True
+    assert report["error_body_file"]["response_body_bytes"] == len(body)
+    _assert_body_nowhere(tmp_path, captured)
+
+
+@pytest.mark.parametrize("error_body", [None, b""])
+def test_absent_error_body_creates_no_file(tmp_path, capsys, error_body):
+    rc, captured, report = _error_body_run(tmp_path, capsys, ErrorBodyTransport((400, error_body)))
+    assert rc == 2 and report["error_body_file"]["status"] == "no_body_received"
+    assert not (tmp_path / "error-body.bin").exists()
+
+
+def test_error_body_file_untouched_when_every_batch_is_accepted(tmp_path, capsys):
+    transport = ErrorBodyTransport((204, None), (204, None))
+    rc, captured, report = _error_body_run(tmp_path, capsys, transport)
+    assert rc == 0 and report["error_body_file"]["status"] == "not_needed_no_non_2xx_response"
+    assert not (tmp_path / "error-body.bin").exists()
+
+
+def test_without_the_option_an_error_body_is_never_written_or_reported(tmp_path, capsys):
+    before = sorted(p.name for p in tmp_path.rglob("*"))
+    rc, captured, report = _error_body_run(tmp_path, capsys, ErrorBodyTransport((400, ERROR_BODY_SENTINEL)),
+                                           error_body=False)
+    assert rc == 2 and report["error_body_file"] is None and "error_body_file" not in report["batches"][0]
+    created = set(p.name for p in tmp_path.rglob("*")) - set(before)
+    assert "error-body.bin" not in created
+    _assert_body_nowhere(tmp_path, captured)
+
+
+def test_existing_error_body_file_is_refused_before_anything_is_sent(tmp_path, capsys):
+    (tmp_path / "error-body.bin").write_bytes(b"earlier")
+    transport = ErrorBodyTransport((400, ERROR_BODY_SENTINEL))
+    path = capture_with(tmp_path, hermes_like_context(), error=True)
+    reads = []
+
+    class Env(dict):
+        def get(self, key, default=None):
+            reads.append(key)
+            return super().get(key, default)
+
+    with pytest.raises(ls_export.ExportError, match="never overwritten"):
+        export.main(send_argv(path, tmp_path) + ["--error-body-file", str(tmp_path / "error-body.bin")],
+                    transport=transport, environ=Env({export.API_KEY_ENV: KEY}))
+    assert transport.calls == 0 and reads == [] and not (tmp_path / "send-record.jsonl").exists()
+    assert (tmp_path / "error-body.bin").read_bytes() == b"earlier"
+
+
+def test_error_body_file_created_meanwhile_is_not_overwritten(tmp_path, capsys):
+    target = tmp_path / "error-body.bin"
+
+    def transport(url, headers, body, timeout):
+        target.write_bytes(b"appeared")  # raced into existence after the pre-checks
+        return {"status": 400, "body_bytes": len(ERROR_BODY_SENTINEL), "error_body": ERROR_BODY_SENTINEL}
+
+    path = capture_with(tmp_path, hermes_like_context(), error=True)
+    rc = export.main(send_argv(path, tmp_path) + ["--error-body-file", str(target)], transport=transport,
+                     environ={export.API_KEY_ENV: KEY})
+    captured = capsys.readouterr()
+    report = json.loads(captured.out)
+    assert rc == 2 and report["status"] == "UNCERTAIN"
+    assert report["error_body_file"]["status"] == "failed_not_created"
+    assert report["error_body_file"]["error_type"] == "FileExistsError"
+    assert target.read_bytes() == b"appeared"
+    _assert_body_nowhere(tmp_path, captured)
+
+
+def test_error_body_symlink_is_never_followed(tmp_path, capsys):
+    outside = tmp_path / "outside.txt"
+    outside.write_bytes(b"keep")
+    target = tmp_path / "error-body.bin"
+
+    def transport(url, headers, body, timeout):
+        target.symlink_to(outside)
+        return {"status": 400, "body_bytes": len(ERROR_BODY_SENTINEL), "error_body": ERROR_BODY_SENTINEL}
+
+    path = capture_with(tmp_path, hermes_like_context(), error=True)
+    export.main(send_argv(path, tmp_path) + ["--error-body-file", str(target)], transport=transport,
+                environ={export.API_KEY_ENV: KEY})
+    report = json.loads(capsys.readouterr().out)
+    assert report["error_body_file"]["status"] == "failed_not_created" and outside.read_bytes() == b"keep"
+
+
+def test_error_body_write_failure_keeps_uncertain_without_showing_the_body(tmp_path, capsys, monkeypatch):
+    real_write = export.os.write
+
+    def failing_write(fd, data):
+        if b"ERRBODY-SENTINEL" in bytes(data):
+            raise OSError(28, "No space left on device")
+        return real_write(fd, data)
+
+    monkeypatch.setattr(export.os, "write", failing_write)
+    rc, captured, report = _error_body_run(tmp_path, capsys, ErrorBodyTransport((400, ERROR_BODY_SENTINEL)))
+    assert rc == 2 and report["status"] == "UNCERTAIN" and report["uncertain_reason"] == "http_status_400"
+    meta = report["error_body_file"]
+    assert meta["status"] == "failed_partial_file_may_exist" and meta["error_type"] == "OSError"
+    assert meta["sha256"] is None and meta["bytes_saved"] == 0
+    assert report["record_complete"] is True  # the record itself is unaffected
+    _assert_body_nowhere(tmp_path, captured)
+
+
+def _is_error_body_fd(fd):
+    try:
+        return os.readlink(f"/proc/self/fd/{fd}").endswith("error-body.bin")
+    except OSError:
+        return False
+
+
+def test_error_body_fsync_failure_keeps_uncertain_without_showing_the_body(tmp_path, capsys, monkeypatch):
+    real_fsync = export.os.fsync
+
+    def fsync(fd):
+        if _is_error_body_fd(fd):
+            raise OSError(5, "Input/output error")
+        return real_fsync(fd)  # the send record keeps working
+
+    monkeypatch.setattr(export.os, "fsync", fsync)
+    rc, captured, report = _error_body_run(tmp_path, capsys, ErrorBodyTransport((400, ERROR_BODY_SENTINEL)))
+    assert rc == 2 and report["status"] == "UNCERTAIN" and report["record_complete"] is True
+    assert report["error_body_file"]["status"] == "failed_partial_file_may_exist"
+    assert report["error_body_file"]["sha256"] is None
+    _assert_body_nowhere(tmp_path, captured)
+
+
+def test_error_body_close_failure_never_escapes(tmp_path, capsys, monkeypatch):
+    real_close = export.os.close
+
+    def close(fd):
+        is_body = _is_error_body_fd(fd)
+        real_close(fd)  # really closed; only the reported result fails
+        if is_body:
+            raise OSError(5, "Input/output error on close")
+
+    monkeypatch.setattr(export.os, "close", close)
+    rc, captured, report = _error_body_run(tmp_path, capsys, ErrorBodyTransport((400, ERROR_BODY_SENTINEL)))
+    assert rc == 2 and report["status"] == "UNCERTAIN" and report["record_complete"] is True
+    meta = report["error_body_file"]
+    assert meta["status"] == "failed_partial_file_may_exist" and meta["error_type"] == "OSError"
+    assert meta["sha256"] is None and meta["bytes_saved"] == 0
+    _assert_body_nowhere(tmp_path, captured)
+
+
+def test_error_body_zero_byte_write_fails_instead_of_looping(tmp_path, capsys, monkeypatch):
+    real_write = export.os.write
+
+    def write(fd, data):
+        return 0 if _is_error_body_fd(fd) else real_write(fd, data)
+
+    monkeypatch.setattr(export.os, "write", write)
+    rc, captured, report = _error_body_run(tmp_path, capsys, ErrorBodyTransport((400, ERROR_BODY_SENTINEL)))
+    assert rc == 2 and report["error_body_file"]["status"] == "failed_partial_file_may_exist"
+    _assert_body_nowhere(tmp_path, captured)
+
+
+def test_error_body_file_is_0600_even_with_a_permissive_umask(tmp_path, capsys):
+    previous = os.umask(0)
+    try:
+        _error_body_run(tmp_path, capsys, ErrorBodyTransport((400, ERROR_BODY_SENTINEL)))
+    finally:
+        os.umask(previous)
+    assert ((tmp_path / "error-body.bin").stat().st_mode & 0o777) == 0o600
+
+
+@pytest.mark.parametrize("argv_extra, message", [
+    (("--error-body-file", "e.bin"), "only valid with --send"),
+])
+def test_error_body_option_requires_send(tmp_path, capsys, argv_extra, message):
+    path = capture_with(tmp_path, hermes_like_context())
+    with pytest.raises(SystemExit):
+        export.main([str(path), "--project", "tfg-opik", *argv_extra], transport=FakeTransport())
+    assert message in capsys.readouterr().err
+    assert not (tmp_path / "e.bin").exists()
+
+
+@pytest.mark.parametrize("make_path, match", [
+    (lambda tmp: tmp / "missing-dir" / "e.bin", "directory does not exist"),
+    (lambda tmp: tmp / "send-record.jsonl", "already exists|differ from the record"),
+])
+def test_error_body_path_is_validated_by_send_itself(tmp_path, make_path, match):
+    plan = plan_from(capture_with(tmp_path, hermes_like_context(), error=True), provenance="captured",
+                     workspace="tfg-ws")
+    transport = FakeTransport()
+    with pytest.raises(ls_export.ExportError, match=match):
+        export.send(plan, transport=transport, error_body_path=make_path(tmp_path),
+                    **_send_kwargs(tmp_path, record_path=tmp_path / "send-record.jsonl"))
+    assert transport.calls == [] and not (tmp_path / "send-record.jsonl").exists()
 
 
 def test_default_transport_never_follows_redirects():
