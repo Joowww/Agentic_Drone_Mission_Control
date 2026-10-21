@@ -1,9 +1,9 @@
-"""Trusted two-drone settings consumed by lifecycle, backend and readiness.
+"""Trusted infrastructure settings consumed by lifecycle, backend and readiness.
 
-No operations on import. Only the built-in profile is selectable; this module
+No operations on import. Only built-in profiles are selectable; this module
 never accepts launch paths, commands or vehicle definitions from the caller.
 Robot topology/world construction still lives in the ROS launch and is checked
-for drift offline. Rover support requires a separate safety/integration review.
+for drift offline. Infrastructure selection never grants movement authority.
 """
 from dataclasses import dataclass
 
@@ -15,6 +15,7 @@ class ProfileVehicle:
     robot_name: str  # Gazebo model/ROS namespace in the launch file
     launch_model: str  # Vehicle enum member in the launch file
     sitl_executable: str
+    mission_executor_supported: bool = True
 
 
 @dataclass(frozen=True)
@@ -66,7 +67,23 @@ TWO_DRONES = SimulationProfile(
     ),
 )
 
-PROFILES = {TWO_DRONES.name: TWO_DRONES}
+TWO_DRONES_ROVER = SimulationProfile(
+    name="two_drones_rover",
+    launch_package=TWO_DRONES.launch_package,
+    launch_file="tfg_demo.launch.py",
+    fixed_launch_arguments=TWO_DRONES.fixed_launch_arguments,
+    world="runway",
+    vehicles=(*TWO_DRONES.vehicles,
+              ProfileVehicle("rover_01", "v3", "rover1", "WILD_THUMPER", "ardurover", False)),
+    # Expected base 5760 + 10*instance; not observed sockets or an executor binding.
+    sitl_ports_awaited_before_start=(5760, 5770, 5780),
+    expected_process_counts=(("arducopter", 2), ("ardurover", 1)),
+    unverified_offline=(*TWO_DRONES.unverified_offline,
+        "rover: v3/defaults and port 5780 depend on installed child launch, "
+        "DDS_USE_NS and SITL instance handling; no rover motion executor exists"),
+)
+
+PROFILES = {p.name: p for p in (TWO_DRONES, TWO_DRONES_ROVER)}
 ACTIVE_PROFILE = TWO_DRONES
 
 
@@ -76,7 +93,7 @@ class UnknownSimulationProfile(ValueError):
 
 def get_profile(name: str = "two_drones") -> SimulationProfile:
     if not isinstance(name, str) or name not in PROFILES:
-        raise UnknownSimulationProfile(f"Unknown simulation profile: {name!r}; expected two_drones")
+        raise UnknownSimulationProfile(f"Unknown simulation profile: {name!r}; expected {', '.join(PROFILES)}")
     return PROFILES[name]
 
 
@@ -99,7 +116,7 @@ def main():
         'ports-json': json.dumps(profile.sitl_ports_awaited_before_start),
         'status-topics': '\n'.join(profile.status_topics),
         'prearm-services': '\n'.join(profile.prearm_services),
-        'process-check': ' '.join(str(v) for v in profile.expected_process_counts[0]),
+        'process-check': '\n'.join(f'{name} {count}' for name, count in profile.expected_process_counts),
         'world': profile.world,
     }
     print(values[args.field])

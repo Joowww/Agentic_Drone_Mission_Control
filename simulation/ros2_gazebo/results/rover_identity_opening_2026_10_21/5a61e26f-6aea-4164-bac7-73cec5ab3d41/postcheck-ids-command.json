@@ -1,0 +1,18 @@
+{
+  "command": [
+    "docker",
+    "ps",
+    "--all",
+    "--no-trunc",
+    "--filter",
+    "name=^/tfg-ardupilot-gazebo$",
+    "--format",
+    "{{.ID}}"
+  ],
+  "timeout_s": 5,
+  "started_at_utc": "2026-10-21T08:35:53.817854+00:00",
+  "started_monotonic_s": 8200.521386161,
+  "return_code": 0,
+  "duration_wall_s": 0.06061070700161508,
+  "finished_at_utc": "2026-10-21T08:35:53.878466+00:00"
+}

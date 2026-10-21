@@ -108,11 +108,13 @@ if 'pgrep -f' in command:
     sys.exit(0 if os.environ.get('OFFLINE_GAZEBO', '1') == '1' else 1)
 if 'pgrep -x' in command and params == ['arducopter']:
     print(os.environ.get('OFFLINE_COUNT', '2')); sys.exit(0)
+if 'pgrep -x' in command and params == ['ardurover']:
+    print(os.environ.get('OFFLINE_ROVER_COUNT', '1')); sys.exit(0)
 if 'ros2 topic list' in command:
     print(os.environ.get('OFFLINE_TOPICS', '/ap/v1/status\n/ap/v2/status')); sys.exit(0)
 if 'ros2 service call' in command:
     assert len(params)==1
-    print('success=' + ('False' if params[0] == os.environ.get('OFFLINE_BAD_SERVICE') else 'True'))
+    print('response:\nstd_srvs.srv.Trigger_Response(success=' + ('False' if params[0] == os.environ.get('OFFLINE_BAD_SERVICE') else 'True') + ", message='synthetic response')")
     sys.exit(0)
 if payload == ['python3', '-']:
     Path(os.environ['OFFLINE_PORTS_LOG']).write_text(json.dumps({
@@ -134,13 +136,15 @@ def _run_shell(tmp_path, source, *, start=False, gui=True, catalog_source=None, 
     root = Path(tempfile.mkdtemp(dir=tmp_path))
     scripts = root/'simulation/ros2_gazebo/scripts'
     scripts.mkdir(parents=True)
-    launch = root/'simulation/ros2_gazebo/launch'/TWO_DRONES.launch_file
+    chosen = PROFILES.get(settings.get('TFG_SIM_PROFILE'), TWO_DRONES)
+    launch = root/'simulation/ros2_gazebo/launch'/chosen.launch_file
     launch.parent.mkdir(); launch.write_text('offline placeholder, never executed')
     script = scripts/('start_sim_backend.sh' if start else 'check_sim.sh')
     source = source.replace('/tmp/tfg_simulation_control.lock', str(root/'lifecycle.lock'))
     script.write_text(source)
     tools = root/'tools'; tools.mkdir()
     (tools/'__init__.py').touch()
+    (tools/'prearm_diagnostics.py').write_bytes((ROOT/'tools/prearm_diagnostics.py').read_bytes())
     (tools/'simulation_profiles.py').write_text(
         catalog_source if catalog_source is not None else (ROOT/'tools/simulation_profiles.py').read_text())
     bin_dir = root/'bin'; bin_dir.mkdir()
@@ -154,6 +158,7 @@ def _run_shell(tmp_path, source, *, start=False, gui=True, catalog_source=None, 
     log = root/'calls.jsonl'
     # Minimal environment: no personal Docker settings or Python startup paths.
     env = {'PATH': str(bin_dir) + ':/usr/bin:/bin', 'OFFLINE_CALLS': str(log),
+           'TFG_SIM_START_CONTEXT': json.dumps({'synthetic': 'offline backend propagation only'}),
            'TFG_SIM_GUI': 'true' if gui else 'false', 'OFFLINE_PORTS_LOG': str(root/'ports.json'), **settings}
     result = subprocess.run(['bash', str(script)], cwd=root, env=env,
                             capture_output=True, text=True, timeout=30)
@@ -233,7 +238,7 @@ def _assert_readiness(source, tmp_path):
             assert 'ros2 service call' not in text
 
 
-def _assert_launch(source):
+def _assert_launch(source, profile=TWO_DRONES):
     for gui in (False, True):
         def include(location, **kwargs):
             return dict(kind='include', location=location,
@@ -263,23 +268,23 @@ def _assert_launch(source):
         server = next(a for a in gz if '-s' in shlex.split(a['arguments']['gz_args']))
         client = next(a for a in gz if '-g' in shlex.split(a['arguments']['gz_args']))
         assert shlex.split(server['arguments']['gz_args']) == [
-            '-v4', '-s', '-r', '/catalog/ardupilot_gz_gazebo/worlds/'+TWO_DRONES.world+'.sdf']
+            '-v4', '-s', '-r', '/catalog/ardupilot_gz_gazebo/worlds/'+profile.world+'.sdf']
         assert server['enabled'] is True
         assert shlex.split(client['arguments']['gz_args']) == ['-v1', '-g']
         assert client['enabled'] is gui
         robots = [a for a in includes if a not in gz]
         assert [(a['arguments']['robot_name'], a['arguments']['namespace'], a['arguments']['world_name'])
-                for a in robots] == [(v.robot_name, v.robot_name, TWO_DRONES.world) for v in TWO_DRONES.vehicles]
-        assert [(a['arguments']['instance'], a['arguments']['sysid']) for a in robots] == [('0', '1'), ('1', '2')]
-        for action, vehicle in zip(robots, TWO_DRONES.vehicles):
+                for a in robots] == [(v.robot_name, v.robot_name, profile.world) for v in profile.vehicles]
+        assert [(a['arguments']['instance'], a['arguments']['sysid']) for a in robots] == [(str(i), str(i+1)) for i in range(len(profile.vehicles))]
+        for action, vehicle in zip(robots, profile.vehicles):
             model = getattr(namespace['Vehicle'], vehicle.launch_model)
             child = namespace['VEHICLE_PATHS'][model]['launch']
-            assert action['location'] == [f'/catalog/{TWO_DRONES.launch_package}/launch/robots/{child}']
+            assert action['location'] == [f'/catalog/{profile.launch_package}/launch/robots/{child}']
         assert all(a.get('condition') is False for a in actions if a.get('kind') == 'node')
 
 
 def test_reference_catalog_and_bindings():
-    assert set(PROFILES) == {'two_drones'} and ACTIVE_PROFILE is TWO_DRONES
+    assert set(PROFILES) == {'two_drones', 'two_drones_rover'} and ACTIVE_PROFILE is TWO_DRONES
     assert {v.sitl_executable for v in TWO_DRONES.vehicles} == dict(TWO_DRONES.expected_process_counts).keys()
     assert dict(TWO_DRONES.expected_process_counts) == {'arducopter': len(TWO_DRONES.vehicles)}
     for vehicle_id, interface in TWO_DRONES.bindings:
@@ -556,3 +561,123 @@ def test_lifecycle_cli_unknown_profile_does_not_create_locks(monkeypatch):
     monkeypatch.setattr(sys, 'argv', ['lifecycle', 'start', '--headless', '--profile', 'rover'])
     assert lifecycle.main() == 1
     enter.assert_not_called()
+
+
+def test_rover_catalog_matches_historical_launch_and_is_infrastructure_only():
+    profile = profiles.TWO_DRONES_ROVER
+    assert dict(profile.expected_process_counts) == {'arducopter': 2, 'ardurover': 1}
+    assert profile.sitl_ports_awaited_before_start == (5760, 5770, 5780)  # expected, not observed sockets
+    assert profile.vehicles[-1].interface == 'v3'
+    assert profile.vehicles[-1].mission_executor_supported is False
+    _assert_launch((SIM/'launch'/profile.launch_file).read_text(), profile)
+    for value in ['rover_01', 'rover1']:
+        with pytest.raises(selection.VehicleSelectionError):
+            selection.resolve_vehicle(value)
+    with pytest.raises(selection.VehicleSelectionError):
+        selection.validate_interface('v3')
+
+
+@pytest.mark.parametrize('gui', [False,True])
+def test_rover_backend_selects_copies_ports_and_all_topics(tmp_path, gui):
+    result,calls,root = _run_shell(tmp_path, START_BACKEND.read_text(), start=True,gui=gui,
+        TFG_SIM_PROFILE='two_drones_rover',OFFLINE_TOPICS='/ap/v1/status\n/ap/v2/status\n/ap/v3/status')
+    assert result.returncode == 0, result.stdout+result.stderr
+    copies=[c for c in calls if c[0]=='cp']
+    assert sum(c[1].endswith('/tfg_demo.launch.py') for c in copies)==2
+    assert any(c[2].endswith('/launch/tfg_demo.launch.py') for c in copies)
+    assert json.loads((root/'ports.json').read_text())['ports']==[5760,5770,5780]
+    start=[c for c in calls if 'exec python3 /tmp/tfg_sim_processes.py start' in ' '.join(c)]
+    assert len(start)==1 and 'TFG_SIM_PROFILE=two_drones_rover' in start[0]
+    assert 'TFG_SIM_GUI='+str(gui).lower() in start[0]
+    failed,_,_=_run_shell(tmp_path,START_BACKEND.read_text(),start=True,TFG_SIM_PROFILE='two_drones_rover')
+    assert failed.returncode != 0  # v1/v2 alone cannot complete a rover-profile start
+
+
+@pytest.mark.parametrize('settings,passes',[
+    ({},True),({'OFFLINE_ROVER_COUNT':'0'},False),({'OFFLINE_ROVER_COUNT':'2'},False),
+    ({'OFFLINE_COUNT':'1'},False),({'OFFLINE_TOPICS':'/ap/v1/status\n/ap/v2/status'},False),
+    ({'OFFLINE_BAD_SERVICE':'/ap/v3/prearm_check'},False),
+])
+def test_rover_readiness_effective_checks_and_structured_per_vehicle(tmp_path,settings,passes):
+    from tools.simulation_status import _vehicle_checks
+    opts={'TFG_SIM_PROFILE':'two_drones_rover','OFFLINE_TOPICS':'/ap/v1/status\n/ap/v2/status\n/ap/v3/status',**settings}
+    result,calls,_=_run_shell(tmp_path,CHECK_SIM.read_text(),**opts)
+    assert (result.returncode==0) is passes, result.stdout+result.stderr
+    vehicles=_vehicle_checks(profiles.TWO_DRONES_ROVER,result.stdout)
+    assert [v['interface'] for v in vehicles]==['v1','v2','v3']
+    assert vehicles[2]['mission_executor_supported'] is False
+    if passes:
+        assert all(v['status_last_observed']==v['prearm_last_observed']=='PASS' for v in vehicles)
+        assert any(c[-1]=='ardurover' for c in calls)
+        assert any(c[-1]=='/ap/v3/prearm_check' for c in calls)
+    if settings.get('OFFLINE_BAD_SERVICE'):
+        assert vehicles[0]['prearm_last_observed']=='PASS'
+        assert vehicles[2]['prearm_last_observed']=='FAIL'
+
+
+def test_rover_profile_consumed_by_supervisor_and_protected_lifecycle(tmp_path,monkeypatch):
+    import simulation.ros2_gazebo.scripts.sim_processes as supervisor
+    from tools import simulation_lifecycle as lifecycle
+    from tools import vehicle_execution_lock as locks
+    monkeypatch.setattr(supervisor,'snapshot',lambda:{})
+    monkeypatch.setattr(supervisor,'remembered_identities',set)
+    monkeypatch.setattr(supervisor,'LOG_FILE',tmp_path/'launch.log')
+    monkeypatch.setattr(supervisor,'PID_FILE',tmp_path/'pid')
+    monkeypatch.setattr(supervisor,'save_state',Mock())
+    monkeypatch.setattr(supervisor.signal,'signal',Mock())
+    popen=Mock(return_value=SimpleNamespace(pid=900))
+    monkeypatch.setattr(supervisor.subprocess,'Popen',popen)
+    monkeypatch.setattr(supervisor,'read_process',lambda p:SimpleNamespace(identity=(p,88),start_ticks=88))
+    passive = Mock(return_value={'scope':'READ_ONLY_IDENTITY_NOT_MOVEMENT'})
+    monkeypatch.setattr(supervisor,'start_rover_identity',passive)
+    supervisor.start('two_drones_rover')
+    passive.assert_called_once()
+    assert popen.call_args.args[0][:4]==['ros2','launch','ardupilot_gz_bringup','tfg_demo.launch.py']
+    phases=[]
+    def backend(action,gui,fd,process,log):
+        lease=json.loads((locks.LOCK_ROOT/'lifecycle.json').read_text())
+        assert lease['profile']=='two_drones_rover' and lease['movement_authorized'] is False
+        with pytest.raises(locks.VehicleBusy):locks.reserve('foreign','fixture','v1')
+        phases.append(action);return 0
+    monkeypatch.setattr(lifecycle,'_backend',backend)
+    assert lifecycle.run_lifecycle('start',profile='two_drones_rover')['success']
+    assert lifecycle.run_lifecycle('stop',profile='two_drones_rover')['success']
+    assert phases==['start','stop'] and locks.restriction() is None
+
+
+def test_rover_mission_is_blocked_before_any_executor_or_reservation(monkeypatch):
+    from tools import simulation_mission_executor as executor
+    mission=SimpleNamespace(vehicle=SimpleNamespace(vehicle_id='rover_01'))
+    monkeypatch.setattr(executor,'load_mission_json',lambda path:mission)
+    control=Mock(side_effect=AssertionError('No rover execution'))
+    monkeypatch.setattr(executor,'_execute_resolved_mission',control)
+    result=executor.execute_approved_mission('offline-rover.json',vehicle='v3')
+    assert result['status']=='BLOCKED' and result['stage']=='VEHICLE_SELECTION'
+    control.assert_not_called()
+
+
+def test_rover_timeout_retains_only_explicit_per_vehicle_observations(monkeypatch):
+    from tools import simulation_status as status
+    run=Mock(side_effect=subprocess.TimeoutExpired('fake',180,output=
+        b'TFG_READINESS_VEHICLE /ap/v1 status PASS\nTFG_READINESS_VEHICLE /ap/v2 status PASS\n[5/5] Pre-arm checks...\n'))
+    monkeypatch.setattr(status.subprocess,'run',run)
+    result=status.check_simulation_ready('two_drones_rover')
+    assert result['ready'] is False and result['timed_out']
+    assert result['vehicles'][2]['status_last_observed']=='NOT_OBSERVED'
+    assert all(v['prearm_last_observed']=='NOT_OBSERVED' for v in result['vehicles'])
+    assert result['movement_authorized'] is False
+    assert run.call_args.kwargs['env']['TFG_SIM_PROFILE']=='two_drones_rover'
+
+
+def test_rover_lifecycle_cannot_bypass_uncertain_drone_reservation(monkeypatch):
+    from tools import simulation_lifecycle as lifecycle
+    from tools import vehicle_execution_lock as locks
+    locks.reserve('uncertain-owner','fixture','v2')
+    record=json.loads((locks.LOCK_ROOT/'v2.json').read_text())
+    locks.atomic_json(locks.LOCK_ROOT/'v2.json',{**record,'state':'UNCONFIRMED'})
+    backend=Mock(side_effect=AssertionError('Do not touch simulator'))
+    monkeypatch.setattr(lifecycle,'_backend',backend)
+    for action in ('start','stop','restart'):
+        assert lifecycle.run_lifecycle(action,profile='two_drones_rover')['status']=='BLOCKED'
+    backend.assert_not_called()
+    assert json.loads((locks.LOCK_ROOT/'v2.json').read_text())['state']=='UNCONFIRMED'

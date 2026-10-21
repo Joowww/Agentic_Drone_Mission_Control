@@ -4,6 +4,7 @@ Only explicit calls run this module. A crash/timeout retains a durable restricti
 The backend scripts require a live inherited lease; no environment-only bypass.
 """
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -40,6 +41,20 @@ def _backend(action, gui, descriptor, process, log_path):
     selected = get_profile(json.loads((locks.LOCK_ROOT / "lifecycle.json").read_text())["profile"])
     env = {**os.environ, "TFG_SIM_PROFILE": selected.name, "TFG_LIFECYCLE_PROCESS": json.dumps(process),
            "TFG_LIFECYCLE_FD": str(descriptor), "TFG_SIM_GUI": "true" if gui else "false"}
+    if action == "start" and selected.name == "two_drones_rover":
+        # Bounded metadata reads, under the existing lifecycle exclusion. A failed
+        # identity read cannot be replaced by a container name or a guessed ID.
+        from tools.reconciliation_environment import inspect_environment
+        observed = inspect_environment()
+        if observed.get("status") not in {"ACTIVE", "STOPPED"}:
+            raise locks.VehicleBusy("Rover identity bootstrap: environment metadata unavailable or ambiguous")
+        lease = json.loads((locks.LOCK_ROOT / "lifecycle.json").read_text())
+        identity = {key: observed[key] for key in ("engine_id", "container_id", "name", "created_at", "image_id")}
+        context = {"lifecycle_id": lease["owner_id"], "profile": selected.name,
+                   "environment": identity, "pre_start_state": observed["state"],
+                   "launch_sha256": hashlib.sha256((SCRIPTS.parent/"launch"/selected.launch_file).read_bytes()).hexdigest()}
+        locks.atomic_json(log_path.parent / "rover_environment_reference.json", context)
+        env["TFG_SIM_START_CONTEXT"] = json.dumps(context)
     with log_path.open("ab") as log:
         return subprocess.run(["bash", str(SCRIPTS / f"{action}_sim_backend.sh")],
                               cwd=locks.PROJECT_ROOT, env=env, pass_fds=(descriptor,),
@@ -66,6 +81,7 @@ def run_lifecycle(action, *, gui=True, profile="two_drones"):
             root.mkdir(parents=True)
             record = {"kind": "SIMULATION_LIFECYCLE", "owner_id": owner_id,
                       "state": "EXECUTING", "action": action, "gui": gui, "profile": selected.name,
+                      "scope": "SIMULATION_INFRASTRUCTURE_ONLY", "movement_authorized": False,
                       "process": locks.process_identity(), "started_at": locks.utc_now(),
                       "log_path": str(root / "backend.log")}
             locks.atomic_json(locks.LOCK_ROOT / "lifecycle.json", record)

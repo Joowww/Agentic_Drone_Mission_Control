@@ -31,6 +31,15 @@ HOST_LAUNCH="$SIM_DIR/launch/$LAUNCH_FILE"
 CONTAINER_SOURCE_LAUNCH="/root/ardu_ws/src/ardupilot_gz/$LAUNCH_PACKAGE/launch/$LAUNCH_FILE"
 CONTAINER_INSTALL_LAUNCH="/root/ardu_ws/install/$LAUNCH_PACKAGE/share/$LAUNCH_PACKAGE/launch/$LAUNCH_FILE"
 
+ROVER_CONTEXT_ENV=()
+if [[ "$PROFILE" == "two_drones_rover" && -z "${TFG_SIM_START_CONTEXT:-}" ]]; then
+    echo "[ERROR] Missing protected rover environment reference."
+    exit 1
+fi
+if [[ "$PROFILE" == "two_drones_rover" ]]; then
+    ROVER_CONTEXT_ENV=(-e "TFG_SIM_START_CONTEXT=$TFG_SIM_START_CONTEXT")
+fi
+
 echo "========================================"
 echo " TFG - Start Drone Simulation"
 echo "========================================"
@@ -54,9 +63,13 @@ echo "[2/6] Stopping previous simulation processes..."
 
 docker cp "$PROJECT_DIR/tools/simulation_profiles.py" "$CONTAINER:/tmp/tfg_simulation_profiles.py" >/dev/null
 docker cp "$SCRIPT_DIR/sim_processes.py" "$CONTAINER:/tmp/tfg_sim_processes.py" >/dev/null
+if [[ "$PROFILE" == "two_drones_rover" ]]; then
+    docker cp "$PROJECT_DIR/tools/rover_environment_identity.py" "$CONTAINER:/tmp/tfg_rover_environment_identity.py" >/dev/null
+    docker cp "$PROJECT_DIR/tools/rover_identity_worker.py" "$CONTAINER:/tmp/tfg_rover_identity_worker.py" >/dev/null
+fi
 docker exec -e TFG_SIM_PROFILE="${TFG_SIM_PROFILE-two_drones}" "$CONTAINER" python3 /tmp/tfg_sim_processes.py stop
 
-echo "      Waiting for SITL ports 5760 and 5770 to be released..."
+echo "      Waiting for expected SITL ports $PORTS_JSON to be released..."
 
 for i in $(seq 1 30); do
 
@@ -141,7 +154,7 @@ docker cp \
 
 echo "[5/6] Starting Gazebo + ArduPilot..."
 
-docker exec -e TFG_SIM_GUI="${TFG_SIM_GUI:-true}" -e TFG_SIM_PROFILE="$PROFILE" "$CONTAINER" bash -lc '
+docker exec -e TFG_SIM_GUI="${TFG_SIM_GUI:-true}" -e TFG_SIM_PROFILE="$PROFILE" "${ROVER_CONTEXT_ENV[@]}" "$CONTAINER" bash -lc '
 source /opt/ros/humble/setup.bash
 source /root/ardu_ws/install/setup.bash
 exec python3 /tmp/tfg_sim_processes.py start
@@ -170,8 +183,8 @@ for i in $(seq 1 60); do
         echo " SIMULATION READY"
         echo "========================================"
         echo
-        echo "Drone 1 -> /ap/v1"
-        echo "Drone 2 -> /ap/v2"
+        for TOPIC in "${STATUS_TOPICS[@]}"; do echo "Infrastructure interface expected: ${TOPIC%/status}"; done
+        echo "No movement authorization; rover mission execution unsupported."
         echo
         echo "Gazebo GUI requested: ${TFG_SIM_GUI:-true} (visual confirmation required)"
         echo "RViz:       OFF"

@@ -50,7 +50,7 @@ class LegacyEnvironmentConfirmation(BaseModel):
 
 INSPECTION_ROOT = locks.PROJECT_ROOT / "missions/generated/reconciliation_inspections"
 EVIDENCE_TTL_SECONDS = 120
-GUARD_NAMES = ("sequence.json", "v1.json", "v2.json", "lifecycle.json")
+GUARD_NAMES = ("sequence.json", "v1.json", "v2.json", "v3.json", "lifecycle.json")
 
 
 def digest(data):
@@ -94,6 +94,12 @@ def capture(target_id):
         value = _file(locks.LOCK_ROOT, name, files, required=False)
         if value is not None:
             guards[name] = value
+        elif name == "v3.json":
+            # Preserve legacy snapshot/version contracts when no rover guard exists.
+            # A later rover admission is still caught by recapture under exclusion.
+            files.pop(str(locks.LOCK_ROOT / name), None)
+    if "v3.json" in guards:
+        raise ValueError("Rover reservation present: drone ground/landing reconciliation is incompatible; retain restrictions")
     if not guards or target_id not in {v.get("owner_id") for v in guards.values()}:
         raise ValueError("Target does not own a current reservation; no reconstruction")
     if 'lifecycle.json' in guards and any(name in guards for name in ('v1.json','v2.json','sequence.json')):

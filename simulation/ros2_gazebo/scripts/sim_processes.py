@@ -7,6 +7,7 @@ trust in a PID file without a process identity. Imported by offline tests.
 from __future__ import annotations
 
 import argparse
+import hashlib
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 import json
@@ -15,7 +16,7 @@ from pathlib import Path
 import signal
 import subprocess
 import time
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 try:
     from tools.simulation_profiles import get_profile
@@ -30,6 +31,8 @@ MARKER = "TFG_SIM_PROJECT"
 STATE = Path("/tmp/tfg_demo.processes.json")
 PID_FILE = Path("/tmp/tfg_demo.pid")
 LOG_FILE = Path("/tmp/tfg_demo.log")
+ROVER_IDENTITY_ROOT = Path('/tmp/tfg_rover_identity')
+INSTALLED_ROVER_LAUNCH = Path('/root/ardu_ws/install/ardupilot_gz_bringup/share/ardupilot_gz_bringup/launch/tfg_demo.launch.py')
 LAUNCHES = {"tfg_demo.launch.py", "tfg_demo_2drones.launch.py"}
 
 
@@ -108,7 +111,12 @@ def unattributed_auxiliaries(table, owned):
         sitl = name in {"arducopter", "ardurover"} and any(
             "/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/" in arg for arg in args
         )
-        if namespaced or sitl:
+        rover_defaults = name == "ardurover" and any(
+            item.endswith("/ardupilot_sitl/config/default_params/" + default)
+            for arg in args for item in arg.split(",")
+            for default in ("rover.parm", "rover-skid.parm")
+        )
+        if namespaced or sitl or rover_defaults:
             candidates.append(process)
     return candidates
 
@@ -217,9 +225,45 @@ def start(profile="two_drones") -> dict:
         raise RuntimeError("Launch exited before its identity could be saved; inspect /tmp/tfg_demo.log")
     save_state({process.identity})
     PID_FILE.write_text(str(child.pid))  # compatibility only; never used to select a victim
+    rover_identity = start_rover_identity(process, environment) if selected.name == "two_drones_rover" else None
     return {"success": True, "pid": child.pid, "start_ticks": process.start_ticks,
-            "log_path": str(LOG_FILE)}
+            "log_path": str(LOG_FILE), "rover_identity_worker": rover_identity}
 
+
+
+def start_rover_identity(launch_process, environment):
+    """Start ONE passive child. It owns no execution reservation or command API."""
+    try:
+        from tools.rover_identity_worker import publish_record
+    except ModuleNotFoundError as exc:
+        if exc.name not in {"tools", "tools.rover_identity_worker"}:
+            raise
+        from tfg_rover_identity_worker import publish_record
+    context = json.loads(environment.get("TFG_SIM_START_CONTEXT", "{}"))
+    identifier = context["lifecycle_id"]
+    if str(UUID(identifier)) != identifier or context["profile"] != "two_drones_rover":
+        raise ValueError("Wrong protected lifecycle/profile context")
+    installed = INSTALLED_ROVER_LAUNCH
+    if hashlib.sha256(installed.read_bytes()).hexdigest() != context['launch_sha256']:
+        raise ValueError('Installed launch differs from protected host launch')
+    root = ROVER_IDENTITY_ROOT / identifier
+    root.mkdir(parents=True, exist_ok=False)  # never overwrite/restart a previous worker
+    context.update(vehicle_id='rover_01', interface='v3', namespace='/rover1',
+                   launch_process={'pid': launch_process.pid, 'start_ticks': launch_process.start_ticks,
+                                   'boot_id': Path('/proc/sys/kernel/random/boot_id').read_text().strip()})
+    context_path = root/'context.json'
+    publish_record(context_path, context)
+    with (root/'worker.log').open('xb') as log:
+        worker = subprocess.Popen(['python3', '/tmp/tfg_rover_identity_worker.py', '--context', str(context_path)],
+            env=environment, cwd='/', start_new_session=True, stdin=subprocess.DEVNULL,
+            stdout=log, stderr=subprocess.STDOUT)
+    identity = read_process(worker.pid)
+    if identity is None:
+        raise RuntimeError('Passive worker disappeared at start; no automatic restart')
+    save_state({launch_process.identity, identity.identity})
+    return {'pid': identity.pid, 'start_ticks': identity.start_ticks,
+            'context_path': str(context_path), 'record_path': str(root/'worker.json'),
+            'log_path': str(root/'worker.log'), 'scope': 'READ_ONLY_IDENTITY_NOT_MOVEMENT'}
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)

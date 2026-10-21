@@ -1,0 +1,132 @@
+[
+  {
+    "operation": "context",
+    "command": [
+      "docker",
+      "context",
+      "show"
+    ],
+    "started_at_utc": "2026-10-21T08:01:05.704638+00:00",
+    "started_monotonic_s": 6117.734940209,
+    "timeout_s": 5,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-21T08:01:05.740079+00:00",
+    "duration_wall_s": 0.03546189400003641,
+    "stdout_path": "metadata_authorized-context.stdout.bin",
+    "stderr_path": "metadata_authorized-context.stderr.bin"
+  },
+  {
+    "operation": "endpoint",
+    "command": [
+      "docker",
+      "context",
+      "inspect",
+      "--format",
+      "{{.Name}} {{json .Endpoints.docker.Host}}"
+    ],
+    "started_at_utc": "2026-10-21T08:01:05.740610+00:00",
+    "started_monotonic_s": 6117.770915793,
+    "timeout_s": 5,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-21T08:01:05.769008+00:00",
+    "duration_wall_s": 0.028416151999408612,
+    "stdout_path": "metadata_authorized-endpoint.stdout.bin",
+    "stderr_path": "metadata_authorized-endpoint.stderr.bin"
+  },
+  {
+    "operation": "engine",
+    "command": [
+      "docker",
+      "info",
+      "--format",
+      "{\"engine_id\":{{json .ID}},\"name\":{{json .Name}},\"operating_system\":{{json .OperatingSystem}}}"
+    ],
+    "started_at_utc": "2026-10-21T08:01:05.769581+00:00",
+    "started_monotonic_s": 6117.799887482,
+    "timeout_s": 5,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-21T08:01:06.217583+00:00",
+    "duration_wall_s": 0.44801812400055496,
+    "stdout_path": "metadata_authorized-engine.stdout.bin",
+    "stderr_path": "metadata_authorized-engine.stderr.bin"
+  },
+  {
+    "operation": "container_ids",
+    "command": [
+      "docker",
+      "ps",
+      "--all",
+      "--no-trunc",
+      "--filter",
+      "name=^/tfg-ardupilot-gazebo$",
+      "--format",
+      "{{.ID}}"
+    ],
+    "started_at_utc": "2026-10-21T08:01:06.218349+00:00",
+    "started_monotonic_s": 6118.248654348,
+    "timeout_s": 5,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-21T08:01:06.284468+00:00",
+    "duration_wall_s": 0.06613650700001017,
+    "stdout_path": "metadata_authorized-container_ids.stdout.bin",
+    "stderr_path": "metadata_authorized-container_ids.stderr.bin"
+  },
+  {
+    "operation": "container",
+    "command": [
+      "docker",
+      "inspect",
+      "--type",
+      "container",
+      "--format",
+      "{\"container_id\":{{json .Id}},\"name\":{{json .Name}},\"created_at\":{{json .Created}},\"image_id\":{{json .Image}},\"state\":{{json .State}}}",
+      "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f"
+    ],
+    "started_at_utc": "2026-10-21T08:01:06.285041+00:00",
+    "started_monotonic_s": 6118.315346896,
+    "timeout_s": 5,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-21T08:01:06.327896+00:00",
+    "duration_wall_s": 0.04287917700003163,
+    "stdout_path": "metadata_authorized-container.stdout.bin",
+    "stderr_path": "metadata_authorized-container.stderr.bin"
+  },
+  {
+    "operation": "engine_recheck",
+    "command": [
+      "docker",
+      "info",
+      "--format",
+      "{\"engine_id\":{{json .ID}}}"
+    ],
+    "started_at_utc": "2026-10-21T08:01:06.328645+00:00",
+    "started_monotonic_s": 6118.358950765,
+    "timeout_s": 5,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-21T08:01:06.743088+00:00",
+    "duration_wall_s": 0.4144695499999216,
+    "stdout_path": "metadata_authorized-engine_recheck.stdout.bin",
+    "stderr_path": "metadata_authorized-engine_recheck.stderr.bin"
+  },
+  {
+    "operation": "container_ids_recheck",
+    "command": [
+      "docker",
+      "ps",
+      "--all",
+      "--no-trunc",
+      "--filter",
+      "name=^/tfg-ardupilot-gazebo$",
+      "--format",
+      "{{.ID}}"
+    ],
+    "started_at_utc": "2026-10-21T08:01:06.743900+00:00",
+    "started_monotonic_s": 6118.774205033,
+    "timeout_s": 5,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-21T08:01:06.810601+00:00",
+    "duration_wall_s": 0.06672325799991086,
+    "stdout_path": "metadata_authorized-container_ids_recheck.stdout.bin",
+    "stderr_path": "metadata_authorized-container_ids_recheck.stderr.bin"
+  }
+]

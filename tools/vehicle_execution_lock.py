@@ -18,7 +18,21 @@ from pathlib import Path
 from threading import Lock
 from uuid import uuid4
 
-from tools.simulated_vehicle import validate_interface, logical_vehicle_for_interface
+from tools.simulated_vehicle import validate_interface as drone_interface, logical_vehicle_for_interface as drone_logical_vehicle
+
+# Reservation topology is broader than the PUBLIC drone executor topology.
+RESERVATION_INTERFACES = ("v1", "v2", "v3")
+
+
+def validate_interface(vehicle):
+    if vehicle == "v3":
+        return vehicle
+    return drone_interface(vehicle)
+
+
+def logical_vehicle_for_interface(vehicle):
+    return "rover_01" if vehicle == "v3" else drone_logical_vehicle(vehicle)
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LOCK_ROOT = PROJECT_ROOT / "missions/generated/vehicle_locks"
@@ -127,7 +141,7 @@ def restriction(vehicle=None):
     barrier = infrastructure_restriction()
     if barrier is not None:
         return barrier
-    records = [record for v in ("v1", "v2") if (record := _restriction(v)) is not None]
+    records = [record for v in RESERVATION_INTERFACES if (record := _restriction(v)) is not None]
     if len(records) > 1:
         raise VehicleBusy("Conflicting vehicle reservations; operator reconciliation required")
     sequence = sequence_restriction()
@@ -205,7 +219,7 @@ def reserve_sequence_child(owner_id, plan_sha256, index):
         current = _sequence_owner(owner_id, plan_sha256)
         if (current["next_index"] != index or current["completed_count"] != index
                 or current["active_child"] is not None
-                or any(_restriction(v) is not None for v in ("v1", "v2"))):
+                or any(_restriction(v) is not None for v in RESERVATION_INTERFACES)):
             raise VehicleBusy("Child is out of order, already consumed or previous outcome uncertain")
         child = current["children"][index]
         validate_interface(child["vehicle"])
@@ -225,7 +239,7 @@ def complete_sequence_child(owner_id, plan_sha256, index):
         current = _sequence_owner(owner_id, plan_sha256)
         if (current["next_index"] != index + 1 or current["completed_count"] != index
                 or current["active_child"] != current["children"][index]
-                or any(_restriction(v) is not None for v in ("v1", "v2"))):
+                or any(_restriction(v) is not None for v in RESERVATION_INTERFACES)):
             raise VehicleBusy("Child completion/reservations are inconsistent")
         atomic_json(LOCK_ROOT / "sequence.json", {
             **current, "completed_count": index + 1, "active_child": None, "updated_at": utc_now(),
@@ -245,12 +259,12 @@ def end_sequence(owner_id, plan_sha256, *, uncertain=False, unspawned=False):
                 raise VehicleBusy("Coordinator may have started; cannot discard guard")
         else:
             _sequence_owner(owner_id, plan_sha256)
-        if any(_restriction(v) is not None for v in ("v1", "v2")):
+        if any(_restriction(v) is not None for v in RESERVATION_INTERFACES):
             raise VehicleBusy("Child reservation remains; cannot release sequence")
         (LOCK_ROOT / "sequence.json").unlink()
 
 
-def reserve(owner_id: str, actor: str, vehicle="v1"):
+def reserve(owner_id: str, actor: str, vehicle="v1", *, input_sha256=None):
     validate_interface(vehicle)
     with file_mutex(LOCK_ROOT / "registry.lock", blocking=False):
         current = restriction()
@@ -260,6 +274,7 @@ def reserve(owner_id: str, actor: str, vehicle="v1"):
             "owner_id": owner_id, "actor": actor, "state": "RESERVED",
             "vehicle": vehicle,
             "vehicle_id": logical_vehicle_for_interface(vehicle),
+            **({"input_sha256": input_sha256} if input_sha256 is not None else {}),
             "created_at": utc_now(), "process": process_identity(),
         })
 
@@ -347,7 +362,7 @@ def assert_execution_authority(vehicle):
 def serialized_execution(fn):
     @wraps(fn)
     def wrapped(mission_path, *, vehicle="v1", progress=True):
-        validate_interface(vehicle)
+        drone_interface(vehicle)
         def blocked(message):
             return {"success": False, "status": "BLOCKED", "stage": "VEHICLE_EXCLUSION",
                     "vehicle": vehicle, "message": message}

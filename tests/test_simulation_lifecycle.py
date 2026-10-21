@@ -254,3 +254,26 @@ def test_permission_error_does_not_claim_a_successful_shutdown():
     result = env.stop()
     assert not result["success"]
     assert result["remaining"] and result["errors"]
+
+
+def test_rover_tree_cleanup_preserves_foreign_and_recycled_identity(monkeypatch):
+    # Keep the real test runner PID outside this synthetic process namespace.
+    monkeypatch.setattr(lifecycle.os, "getpid", lambda: 5000)
+    root=launch(10,'tfg_demo.launch.py')
+    env=FakeProcesses([root,proc(11,10,'arducopter'),proc(12,10,'arducopter'),
+                       proc(13,10,'ardurover'),proc(14,13,'mavproxy.py'),proc(99,name='ardurover')])
+    assert env.stop()['success']
+    assert set(env.table)=={99}  # executable name is never ownership proof
+    assert env.sent==[(10,signal.SIGINT)]
+
+
+def test_rover_orphan_defaults_block_without_becoming_signal_target():
+    orphan=replace(proc(42),argv=('ardurover','--defaults',
+        '/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,'
+        '/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm',
+        '--instance','2','--sysid','3'))
+    env=FakeProcesses([orphan])
+    result=env.stop()
+    assert not result['success'] and not env.sent
+    assert [p['pid'] for p in result['unattributed_auxiliaries']]==[42]
+    assert lifecycle.STATE.exists()  # uncertainty retained, no stale-pid cleanup shortcut

@@ -1,0 +1,53 @@
+[
+  {
+    "operation": "context",
+    "command": [
+      "docker",
+      "context",
+      "show"
+    ],
+    "started_at_utc": "2026-10-21T07:56:07.099656+00:00",
+    "started_monotonic_s": 5820.023194943,
+    "timeout_s": 5,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-21T07:56:07.205694+00:00",
+    "duration_wall_s": 0.1060620750004091,
+    "stdout_path": "metadata_sandbox-context.stdout.bin",
+    "stderr_path": "metadata_sandbox-context.stderr.bin"
+  },
+  {
+    "operation": "endpoint",
+    "command": [
+      "docker",
+      "context",
+      "inspect",
+      "--format",
+      "{{.Name}} {{json .Endpoints.docker.Host}}"
+    ],
+    "started_at_utc": "2026-10-21T07:56:07.206352+00:00",
+    "started_monotonic_s": 5820.129897996,
+    "timeout_s": 5,
+    "return_code": 0,
+    "finished_at_utc": "2026-10-21T07:56:07.232847+00:00",
+    "duration_wall_s": 0.02651365600013378,
+    "stdout_path": "metadata_sandbox-endpoint.stdout.bin",
+    "stderr_path": "metadata_sandbox-endpoint.stderr.bin"
+  },
+  {
+    "operation": "engine",
+    "command": [
+      "docker",
+      "info",
+      "--format",
+      "{\"engine_id\":{{json .ID}},\"name\":{{json .Name}},\"operating_system\":{{json .OperatingSystem}}}"
+    ],
+    "started_at_utc": "2026-10-21T07:56:07.233493+00:00",
+    "started_monotonic_s": 5820.157039715,
+    "timeout_s": 5,
+    "return_code": 1,
+    "finished_at_utc": "2026-10-21T07:56:11.744748+00:00",
+    "duration_wall_s": 4.511277706000328,
+    "stdout_path": "metadata_sandbox-engine.stdout.bin",
+    "stderr_path": "metadata_sandbox-engine.stderr.bin"
+  }
+]

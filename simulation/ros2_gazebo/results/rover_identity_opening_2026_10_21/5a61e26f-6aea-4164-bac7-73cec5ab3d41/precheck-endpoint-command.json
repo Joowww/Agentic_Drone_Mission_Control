@@ -1,0 +1,15 @@
+{
+  "command": [
+    "docker",
+    "context",
+    "inspect",
+    "--format",
+    "{{.Name}} {{json .Endpoints.docker.Host}}"
+  ],
+  "timeout_s": 5,
+  "started_at_utc": "2026-10-21T08:23:56.550661+00:00",
+  "started_monotonic_s": 7484.898329108,
+  "return_code": 0,
+  "duration_wall_s": 0.021833036999851174,
+  "finished_at_utc": "2026-10-21T08:23:56.572496+00:00"
+}
