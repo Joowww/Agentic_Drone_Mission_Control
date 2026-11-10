@@ -1,0 +1,46 @@
+{
+  "review": {
+    "note": "Hermes --usage-file, allowlisted; normalized counters, not raw provider usage; api_calls is not an HTTP request count; cost is an estimate, not a billed amount.",
+    "omitted_fields": [
+      "session_id"
+    ],
+    "raw_native_report_retained_in_evidence": false,
+    "raw_native_report_sha256": "0065650cf8f28e79858078be5da9ffff36b04e88e82fd253b5b6fd51031b9ad1"
+  },
+  "reviewed": {
+    "api_calls": 2,
+    "auxiliary": {
+      "api_calls": 0,
+      "by_task": {},
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "estimated_cost_usd": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "reasoning_tokens": 0,
+      "total_tokens": 0
+    },
+    "cache_read_tokens": 11809,
+    "cache_write_tokens": 0,
+    "completed": true,
+    "cost_source": "none",
+    "cost_status": "unknown",
+    "estimated_cost_usd": 0.0,
+    "failed": false,
+    "input_tokens": 312,
+    "interrupted": false,
+    "model": "qwen3-4b-instruct-64k",
+    "output_tokens": 218,
+    "partial": false,
+    "provider": "custom",
+    "reasoning_tokens": 0,
+    "service_tier": null,
+    "total_including_auxiliary": {
+      "api_calls": 2,
+      "estimated_cost_usd": 0.0,
+      "total_tokens": 12339
+    },
+    "total_tokens": 12339,
+    "turn_exit_reason": "text_response(finish_reason=stop)"
+  }
+}

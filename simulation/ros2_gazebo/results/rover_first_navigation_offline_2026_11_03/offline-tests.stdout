@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0
+rootdir: /home/joelm/TFG/Agentic_Drone_Mission_Control
+configfile: pytest.ini
+plugins: langsmith-0.14.11, anyio-4.15.1, cov-7.1.0
+collected 29 items
+
+tests/test_rover_first_navigation.py ............................x       [100%]
+
+=========================== short test summary info ============================
+XFAIL tests/test_rover_first_navigation.py::test_native_exchange_alarm_between_loop_and_cancel_still_cancels_the_future - Known race (Codex review): an alarm-raised TimeoutError between the end of the wait loop and future.cancel() skips the local cancellation. Fix proposed in docs/rover-first-navigation-sitl.md; this test turns XPASS when it is applied.
+======================== 28 passed, 1 xfailed in 4.22s =========================

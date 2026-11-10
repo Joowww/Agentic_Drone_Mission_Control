@@ -1,0 +1,11 @@
+step	rc	result	detail
+00_outside_repo	0	PASS	/tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_r2_2026_10_28/bundle
+01_sha256sum	0	PASS	imagenes/tfg-app-2026.10.28.tar: OK
+02_load_app_and_ids	0	PASS	MATCH tfg/app:2026.10.28
+03_compose_config_app_qgc_hermes_only	0	PASS	SERVICES_OK
+04_no_ollama_usage	0	PASS	no ollama/planner-menu in compose, LEEME or resolved config
+05_offline_menu	0	PASS	4 NOT AVAILABLE, option 5 present, Hermes named, no ollama
+06_offline_scenario_query	0	PASS	Escenario: AERIAL_COMPLETED_GROUND_PENDING
+07_hermes_check_two_tools	0	PASS	PLANNING_SAFE
+08_hermes_filter_in_config	0	PASS	'include': ['update_mission_draft', 'finalize_mission_draft']
+10_persistence_after_down	0	PASS	config kept in volume, no login, results kept

@@ -1,0 +1,110 @@
+{
+  "scenario_id": "agri_demo_001",
+  "status": "AERIAL_COMPLETED_GROUND_PENDING",
+  "scenario_complete": false,
+  "sequence": {
+    "sequence_id": "6628bc51-e232-45f5-901e-f5fdeb05c6f4",
+    "job_state": "FINISHED",
+    "result_status": "PASSED",
+    "reasons": []
+  },
+  "binding": {
+    "drone_01": {
+      "mission_id": "agri_demo_001_h1_sector_a",
+      "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+      "waypoint_by_point": {
+        "POI_A1": "WP1",
+        "POI_A2": "WP2"
+      }
+    },
+    "drone_02": {
+      "mission_id": "agri_demo_001_h1_sector_b",
+      "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+      "waypoint_by_point": {
+        "POI_B1": "WP1",
+        "POI_B2": "WP2"
+      }
+    }
+  },
+  "missions": [
+    {
+      "vehicle_id": "drone_01",
+      "simulated_vehicle": "v1",
+      "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+      "sequence_state": "FINISHED",
+      "result_status": "PASSED",
+      "status": "COMPLETED",
+      "reasons": [],
+      "mission_id": "agri_demo_001_h1_sector_a",
+      "sector": "A",
+      "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+      "points": {
+        "POI_A1": "REACHED",
+        "POI_A2": "REACHED"
+      },
+      "return_home": "CONFIRMED",
+      "landing": "MISSION_LANDING_CONFIRMED"
+    },
+    {
+      "vehicle_id": "drone_02",
+      "simulated_vehicle": "v2",
+      "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+      "sequence_state": "FINISHED",
+      "result_status": "PASSED",
+      "status": "COMPLETED",
+      "reasons": [],
+      "mission_id": "agri_demo_001_h1_sector_b",
+      "sector": "B",
+      "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+      "points": {
+        "POI_B1": "REACHED",
+        "POI_B2": "REACHED"
+      },
+      "return_home": "CONFIRMED",
+      "landing": "MISSION_LANDING_CONFIRMED"
+    }
+  ],
+  "points": {
+    "POI_A1": {
+      "vehicle_id": "drone_01",
+      "status": "REACHED"
+    },
+    "POI_A2": {
+      "vehicle_id": "drone_01",
+      "status": "REACHED"
+    },
+    "POI_B1": {
+      "vehicle_id": "drone_02",
+      "status": "REACHED"
+    },
+    "POI_B2": {
+      "vehicle_id": "drone_02",
+      "status": "REACHED"
+    }
+  },
+  "ground_task": {
+    "task_id": "R1",
+    "vehicle_id": "rover_01",
+    "target_point": "POI_A1",
+    "description": "Ground verification at a declared point of interest",
+    "depends_on": "Sequence COMPLETED and POI_A1 REACHED by drone_01",
+    "status": "BLOCKED_PENDING",
+    "dependency": "MET",
+    "barriers": [
+      "Rover identity chain (XRCE client to SITL instance/SYSID and bridge/model) not established",
+      "No public rover entry point with authorization and reservations",
+      "No navigation to a position: rover control offers bounded velocity/turn only",
+      "Execution gate covers the two_drones profile only"
+    ],
+    "commands_sent": false
+  },
+  "reasons": [],
+  "scope": {
+    "record": "historical",
+    "environment": "SITL",
+    "current_availability": "NOT_CHECKED",
+    "operational_authorization": false,
+    "points_of_interest": "operator-declared scenario inputs, not detections; no imagery captured",
+    "coordinates": "offsets relative to each vehicle's own launch position"
+  }
+}

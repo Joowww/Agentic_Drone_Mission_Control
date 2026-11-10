@@ -1,0 +1,31 @@
+{
+  "status": "READY_FOR_OPERATOR_DECISION",
+  "reasons": [],
+  "flight_authorization": "NOT_GRANTED",
+  "admission_created": false,
+  "fallback_to_h0": false,
+  "request_key": "agri-demo-001-h2-r01",
+  "ordered_missions": [
+    {
+      "vehicle_id": "drone_01",
+      "simulated_vehicle": "v1",
+      "mission_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/8658f6f2-6ba4-41bb-ab7f-f58a80f652ce/a4f7db20-2da2-46b4-8279-0e0dfb5eeff5/mission.json",
+      "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+      "waypoint_by_point": {
+        "POI_A1": "WP1",
+        "POI_A2": "WP2"
+      }
+    },
+    {
+      "vehicle_id": "drone_02",
+      "simulated_vehicle": "v2",
+      "mission_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/4707cbd6-3dd4-42e3-a1e2-a175d12a62a6/f505f7ad-df2e-42cb-90d6-6420929fe3e6/mission.json",
+      "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+      "waypoint_by_point": {
+        "POI_B1": "WP1",
+        "POI_B2": "WP2"
+      }
+    }
+  ],
+  "prepared_start_call_NOT_EXECUTED": ".venv/bin/python -c \"import json; from tools.preflight_sequences import start_preflight_sequence as start; print(json.dumps(start(['/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/8658f6f2-6ba4-41bb-ab7f-f58a80f652ce/a4f7db20-2da2-46b4-8279-0e0dfb5eeff5/mission.json', '/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/4707cbd6-3dd4-42e3-a1e2-a175d12a62a6/f505f7ad-df2e-42cb-90d6-6420929fe3e6/mission.json'], 'agri-demo-001-h2-r01', '<DECLARACION_DEL_OPERADOR>'), indent=2))\""
+}

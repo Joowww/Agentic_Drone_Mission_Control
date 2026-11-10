@@ -1,0 +1,258 @@
+{
+ "qwen": {
+  "destination": {
+   "endpoint": "https://www.comet.com/opik/api",
+   "project": "tfg-multiagent-benchmarks",
+   "workspace": "joowww"
+  },
+  "egress_findings": [],
+  "leaves_the_computer": {
+   "deterministic_spans": [
+    "recorded redacted inputs/outputs and status"
+   ],
+   "llm_span": [
+    "full prompt text (synthetic site points + request)",
+    "full raw model reply",
+    "parsed brief",
+    "usage, finish reason, generation"
+   ],
+   "never": [
+    "credentials",
+    "local absolute paths",
+    "anything not in the sealed record"
+   ],
+   "trace": [
+    "operator_text (synthetic benchmark request)",
+    "mission output summary",
+    "metadata: experiment, case, dataset id/version/sha256, model+digest, prompt id+sha256, generation parameters, result, criteria, safety, failure class, latency, tokens, stages not executed, source paths (repo-relative) and hashes",
+    "tags"
+   ]
+  },
+  "plan_errors": [],
+  "requests": [
+   {
+    "body_sha256": "3693e59325d549d04f40c50807c18b2888f83b08be7989dddaf19edfe5ed972d",
+    "bytes": 36683,
+    "kind": "traces",
+    "path": "/v1/private/traces/batch"
+   },
+   {
+    "body_sha256": "2887411b3c09263788436d5841bc2f0384b75587d1898821da9117772815c748",
+    "bytes": 89323,
+    "kind": "spans",
+    "path": "/v1/private/spans/batch"
+   }
+  ],
+  "schema": "tfg.multiagent.opik-import-manifest/1",
+  "source": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+  "status": "DRY_RUN_NOT_SENT",
+  "traces": [
+   {
+    "already_in_ledger": null,
+    "case_id": "E01",
+    "id": "01a1a76e-42f9-72ce-8408-9907fcd429f3",
+    "real_llm_spans": 1,
+    "spans": 3
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E04",
+    "id": "01a1a76e-a08b-722f-8911-a00f50bff938",
+    "real_llm_spans": 1,
+    "spans": 3
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E07",
+    "id": "01a1a76e-e360-7b24-9ca0-f4088fe20e36",
+    "real_llm_spans": 1,
+    "spans": 12
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E11",
+    "id": "01a1a76f-0c63-718d-bd1f-d55a5cb9e22b",
+    "real_llm_spans": 1,
+    "spans": 9
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E12",
+    "id": "01a1a76f-3630-79b4-9798-92f88ae04807",
+    "real_llm_spans": 1,
+    "spans": 8
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E18",
+    "id": "01a1a76f-69e4-7514-b592-8f9f3ea093c1",
+    "real_llm_spans": 1,
+    "spans": 12
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E19",
+    "id": "01a1a76f-c706-70f5-8cd1-47152266139e",
+    "real_llm_spans": 1,
+    "spans": 3
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E20",
+    "id": "01a1a76f-f369-7833-a0b3-ea9b12f37707",
+    "real_llm_spans": 1,
+    "spans": 9
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E21",
+    "id": "01a1a770-3262-7a3b-b518-5f07a4317d0a",
+    "real_llm_spans": 1,
+    "spans": 3
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E22",
+    "id": "01a1a770-6e4e-7fb9-b1b1-791fb61c13d7",
+    "real_llm_spans": 1,
+    "spans": 9
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E27",
+    "id": "01a1a770-9a63-7a14-8048-ce0dc1ab9488",
+    "real_llm_spans": 1,
+    "spans": 3
+   }
+  ]
+ },
+ "rules": {
+  "destination": {
+   "endpoint": "https://www.comet.com/opik/api",
+   "project": "tfg-multiagent-benchmarks",
+   "workspace": "joowww"
+  },
+  "egress_findings": [],
+  "leaves_the_computer": {
+   "deterministic_spans": [
+    "recorded redacted inputs/outputs and status"
+   ],
+   "llm_span": [
+    "full prompt text (synthetic site points + request)",
+    "full raw model reply",
+    "parsed brief",
+    "usage, finish reason, generation"
+   ],
+   "never": [
+    "credentials",
+    "local absolute paths",
+    "anything not in the sealed record"
+   ],
+   "trace": [
+    "operator_text (synthetic benchmark request)",
+    "mission output summary",
+    "metadata: experiment, case, dataset id/version/sha256, model+digest, prompt id+sha256, generation parameters, result, criteria, safety, failure class, latency, tokens, stages not executed, source paths (repo-relative) and hashes",
+    "tags"
+   ]
+  },
+  "plan_errors": [],
+  "requests": [
+   {
+    "body_sha256": "972f3c45e15e65a418f8beece4692a96c819b82429096d1749a9c04e907659a2",
+    "bytes": 30454,
+    "kind": "traces",
+    "path": "/v1/private/traces/batch"
+   },
+   {
+    "body_sha256": "ef501f06bf86edf70b4294f92ccab1751130afea7ca98ffb9888e001e77503e6",
+    "bytes": 102449,
+    "kind": "spans",
+    "path": "/v1/private/spans/batch"
+   }
+  ],
+  "schema": "tfg.multiagent.opik-import-manifest/1",
+  "source": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+  "status": "DRY_RUN_NOT_SENT",
+  "traces": [
+   {
+    "already_in_ledger": null,
+    "case_id": "E01",
+    "id": "01a1a76e-3ab2-7eaa-ad7e-557b4dd5dd57",
+    "real_llm_spans": 0,
+    "spans": 12
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E04",
+    "id": "01a1a76e-3ad9-756b-8678-087a8f8874ea",
+    "real_llm_spans": 0,
+    "spans": 13
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E07",
+    "id": "01a1a76e-3b13-7ef8-9d0a-5abe81b4db8c",
+    "real_llm_spans": 0,
+    "spans": 5
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E11",
+    "id": "01a1a76e-3b32-7d18-9d73-d739f1831b28",
+    "real_llm_spans": 0,
+    "spans": 9
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E12",
+    "id": "01a1a76e-3b53-7760-96ec-2cd4465ed650",
+    "real_llm_spans": 0,
+    "spans": 8
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E18",
+    "id": "01a1a76e-3bba-7b66-8512-03f3b1ac6bcb",
+    "real_llm_spans": 0,
+    "spans": 13
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E19",
+    "id": "01a1a76e-3c6a-7b18-8ac7-196dee5838ba",
+    "real_llm_spans": 0,
+    "spans": 12
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E20",
+    "id": "01a1a76e-3cab-7b59-9069-8d6d81738d8e",
+    "real_llm_spans": 0,
+    "spans": 12
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E21",
+    "id": "01a1a76e-3ce9-7c9f-be58-c8395ee765bf",
+    "real_llm_spans": 0,
+    "spans": 13
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E22",
+    "id": "01a1a76e-3d0a-7d48-bf6c-6e5ce4844fb1",
+    "real_llm_spans": 0,
+    "spans": 9
+   },
+   {
+    "already_in_ledger": null,
+    "case_id": "E27",
+    "id": "01a1a76e-3d47-7612-b863-dd96f133b6b4",
+    "real_llm_spans": 0,
+    "spans": 13
+   }
+  ]
+ },
+ "schema": "tfg.multiagent.opik-import-manifest-set/1",
+ "status": "DRY_RUN_NOT_SENT"
+}

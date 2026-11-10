@@ -1,0 +1,40 @@
+```{json}
+{
+  "scenario_status": "COMPLETED",
+  "scenario_complete": true,
+  "sequence_order": null,
+  "order_basis": "NOT_ACCREDITED",
+  "runs": [
+    {
+      "run_id": "agri-demo-001-h2-r01",
+      "vehicle_id": "drone_001",
+      "simulated_vehicle": true,
+      "mission_id": "mission_agri_001",
+      "status": "COMPLETED",
+      "result_status": "SUCCESS",
+      "reached_points": [
+        {"point_id": "POI-01", "value": "REACHED"}
+      ],
+      "return_home": false,
+      "landing": false,
+      "executor_started_at": null,
+      "executor_finished_at": null
+    }
+  ],
+  "r1_status": null,
+  "r1_dependency": null,
+  "r1_commands_sent": null,
+  "r1_movement_authorized": null,
+  "claims": {
+    "images_captured": false,
+    "detections_made": false,
+    "speed_commanded": false,
+    "speed_measured": false,
+    "simultaneous_flight": false,
+    "common_frame_validated": false,
+    "current_permissions_checked": false
+  },
+  "evidence_source": "Historical H1 binding record and scenario summary",
+  "explanation": "Los drones no realizaron movimientos autorizados ni regreso ni aterrizaje validado. La secuencia no está acreditada por timestamps de ejecución. El escenario se marca como completo, pero no hay evidencia de acciones de vuelo autorizadas ni de cumplimiento de dependencias de tareas terrestres. Los límites del histórico impiden afirmar detalles operativos actuales."
+}
+```

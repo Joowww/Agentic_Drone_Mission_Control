@@ -1,0 +1,36 @@
+{
+  "fingerprint": "50016d3e83513d4860c153520f5b5f205cb98ddec052982b828327778118e0d1",
+  "result": {
+    "status": "PROPOSED",
+    "proposal": {
+      "proposal_id": "727082c5-4008-4bf2-a61e-87b48eed35a8",
+      "version": 1,
+      "created_at": "2026-10-18T07:18:23.352931+00:00",
+      "run_id": "0844c190-59c8-40cf-991e-93cebbd3cf02",
+      "mission_sha256": "851c4226b53fac6cc91e7048214c62367afac42a785201b21c2761324c1195cc",
+      "report_sha256": "63e5c46c7abd2f0bbb75780e0c3cc25f490de6f4864971022f5a2b5fe090c8c1",
+      "mission_id": "prueba_hermes_001_bateria_baja",
+      "category": "PLANNING_REVIEW",
+      "source_report_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/0844c190-59c8-40cf-991e-93cebbd3cf02/report.json",
+      "source_mission_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/0844c190-59c8-40cf-991e-93cebbd3cf02/mission.json",
+      "reasons": [
+        "Deterministic validation did not approve the mission.",
+        "The vehicle would finish the mission below the required battery reserve."
+      ],
+      "proposed_changes": [
+        "Recharge or replace the battery so the mission starts with at least 20.1% battery."
+      ],
+      "pending_conditions": [
+        "Recharge/replace battery physically, then explicitly declare its new level; no telemetry measurement is implied."
+      ],
+      "automatic_patch": null,
+      "diagnostic": null,
+      "execution_evidence": null,
+      "replanner_scope": "Text recommendations only; no generated route, no guaranteed battery solution.",
+      "flight_consent": "NOT_INHERITED"
+    },
+    "proposal_id": "727082c5-4008-4bf2-a61e-87b48eed35a8",
+    "proposal_sha256": "245a45144c15a3b03e5f5598342326b17f4f55249af2b04d50c1192f8b3db2e8",
+    "proposal_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/727082c5-4008-4bf2-a61e-87b48eed35a8/proposal.json"
+  }
+}

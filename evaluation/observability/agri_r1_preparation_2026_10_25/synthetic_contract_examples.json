@@ -1,0 +1,860 @@
+{
+  "label": "SYNTHETIC FIXTURES — no rover moved; values are test doubles (TEST_FRAME, zero mission hash). Generated from tests/test_agri_scenario.py builders.",
+  "proposal_parameters": {
+    "status": "PROPOSED_NOT_APPROVED",
+    "arrival_tolerance_m": 2.0,
+    "dwell_s": 5.0,
+    "min_dwell_samples": 3,
+    "stopped_linear_mps": 0.05,
+    "stopped_angular_rad_s": 0.05,
+    "max_sample_gap_s": 1.0,
+    "max_decision_age_s": 1.0
+  },
+  "candidate_from_test_doubles": {
+    "task_id": "R1",
+    "vehicle_id": "rover_01",
+    "target_point": "POI_A1",
+    "target_in_rover_frame": {
+      "value": {
+        "x_m": 0.0,
+        "y_m": 0.0,
+        "frame": "TEST_FRAME"
+      },
+      "source": "TEST_DOUBLE target"
+    },
+    "ground_tolerance_m": {
+      "value": 0.5,
+      "source": "TEST_DOUBLE tolerance"
+    },
+    "rover_mission": {
+      "value": {
+        "path": "test.json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "source": "TEST_DOUBLE mission"
+    },
+    "completion_evidence": {
+      "value": "TEST pose source",
+      "source": "TEST_DOUBLE evidence"
+    },
+    "depends_on_sequence": "6628bc51-e232-45f5-901e-f5fdeb05c6f4",
+    "depends_on_binding": {
+      "path": "evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json",
+      "sha256": "b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf"
+    }
+  },
+  "candidate_sha256": "b9e8efc8b8ac7f0c0324770040cb476c9bcef81c589614e93dfefa43f23161c5",
+  "expected_binding": {
+    "session_id": "TEST-SESSION",
+    "authorization_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "ground_run_id": "TEST-RUN"
+  },
+  "examples": {
+    "arrival_dwell_stop": {
+      "result": {
+        "schema": "tfg.agri-r1-ground-result/1",
+        "task_id": "R1",
+        "origin": "SYNTHETIC_FIXTURE",
+        "binding": {
+          "candidate_sha256": "b9e8efc8b8ac7f0c0324770040cb476c9bcef81c589614e93dfefa43f23161c5",
+          "mission_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "vehicle_id": "rover_01",
+          "simulated_vehicle": "v3",
+          "session_id": "TEST-SESSION",
+          "authorization_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "ground_run_id": "TEST-RUN"
+        },
+        "job_status": "PASSED",
+        "commands": {
+          "attempted": true,
+          "sent": true
+        },
+        "frame": {
+          "name": "TEST_FRAME",
+          "transform_status": "VERIFIED"
+        },
+        "samples": [
+          {
+            "received_monotonic_s": 100.0,
+            "source_stamp_ns": 1000,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 100.5,
+            "source_stamp_ns": 1001,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 101.0,
+            "source_stamp_ns": 1002,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 101.5,
+            "source_stamp_ns": 1003,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 102.0,
+            "source_stamp_ns": 1004,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 102.5,
+            "source_stamp_ns": 1005,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 103.0,
+            "source_stamp_ns": 1006,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 103.5,
+            "source_stamp_ns": 1007,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 104.0,
+            "source_stamp_ns": 1008,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 104.5,
+            "source_stamp_ns": 1009,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 105.0,
+            "source_stamp_ns": 1010,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 105.5,
+            "source_stamp_ns": 1011,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 106.0,
+            "source_stamp_ns": 1012,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 106.5,
+            "source_stamp_ns": 1013,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 107.0,
+            "source_stamp_ns": 1014,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 107.5,
+            "source_stamp_ns": 1015,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 108.0,
+            "source_stamp_ns": 1016,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          }
+        ],
+        "decision_monotonic_s": 108.2,
+        "stop": {
+          "status": "STATIONARY_OBSERVED"
+        }
+      },
+      "evaluation": {
+        "schema": "tfg.agri-r1-ground-result/1",
+        "origin": "SYNTHETIC_FIXTURE",
+        "job_status": "PASSED",
+        "commands_attempted": true,
+        "commands_sent": true,
+        "arrival_observed": true,
+        "min_error_m": 0.361,
+        "dwell_observed_s": 8.0,
+        "stop_confirmed": true,
+        "observation_lost": false,
+        "tolerance_m": 2.0,
+        "dwell_required_s": 5.0,
+        "outcome": "VERIFIED",
+        "reasons": []
+      }
+    },
+    "pass_through_no_dwell": {
+      "result": {
+        "schema": "tfg.agri-r1-ground-result/1",
+        "task_id": "R1",
+        "origin": "SYNTHETIC_FIXTURE",
+        "binding": {
+          "candidate_sha256": "b9e8efc8b8ac7f0c0324770040cb476c9bcef81c589614e93dfefa43f23161c5",
+          "mission_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "vehicle_id": "rover_01",
+          "simulated_vehicle": "v3",
+          "session_id": "TEST-SESSION",
+          "authorization_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "ground_run_id": "TEST-RUN"
+        },
+        "job_status": "PASSED",
+        "commands": {
+          "attempted": true,
+          "sent": true
+        },
+        "frame": {
+          "name": "TEST_FRAME",
+          "transform_status": "VERIFIED"
+        },
+        "samples": [
+          {
+            "received_monotonic_s": 100.0,
+            "source_stamp_ns": 1000,
+            "frame": "TEST_FRAME",
+            "x_m": -2.0,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 100.5,
+            "source_stamp_ns": 1001,
+            "frame": "TEST_FRAME",
+            "x_m": -1.75,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 101.0,
+            "source_stamp_ns": 1002,
+            "frame": "TEST_FRAME",
+            "x_m": -1.5,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 101.5,
+            "source_stamp_ns": 1003,
+            "frame": "TEST_FRAME",
+            "x_m": -1.25,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 102.0,
+            "source_stamp_ns": 1004,
+            "frame": "TEST_FRAME",
+            "x_m": -1.0,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 102.5,
+            "source_stamp_ns": 1005,
+            "frame": "TEST_FRAME",
+            "x_m": -0.75,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 103.0,
+            "source_stamp_ns": 1006,
+            "frame": "TEST_FRAME",
+            "x_m": -0.5,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 103.5,
+            "source_stamp_ns": 1007,
+            "frame": "TEST_FRAME",
+            "x_m": -0.25,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 104.0,
+            "source_stamp_ns": 1008,
+            "frame": "TEST_FRAME",
+            "x_m": 0.0,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 104.5,
+            "source_stamp_ns": 1009,
+            "frame": "TEST_FRAME",
+            "x_m": 0.25,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 105.0,
+            "source_stamp_ns": 1010,
+            "frame": "TEST_FRAME",
+            "x_m": 0.5,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 105.5,
+            "source_stamp_ns": 1011,
+            "frame": "TEST_FRAME",
+            "x_m": 0.75,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 106.0,
+            "source_stamp_ns": 1012,
+            "frame": "TEST_FRAME",
+            "x_m": 1.0,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 106.5,
+            "source_stamp_ns": 1013,
+            "frame": "TEST_FRAME",
+            "x_m": 1.25,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 107.0,
+            "source_stamp_ns": 1014,
+            "frame": "TEST_FRAME",
+            "x_m": 1.5,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 107.5,
+            "source_stamp_ns": 1015,
+            "frame": "TEST_FRAME",
+            "x_m": 1.75,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 108.0,
+            "source_stamp_ns": 1016,
+            "frame": "TEST_FRAME",
+            "x_m": 2.0,
+            "y_m": 0.0,
+            "linear_mps": 0.5,
+            "angular_rad_s": 0.0
+          }
+        ],
+        "decision_monotonic_s": 108.2,
+        "stop": {
+          "status": "STATIONARY_OBSERVED"
+        }
+      },
+      "evaluation": {
+        "schema": "tfg.agri-r1-ground-result/1",
+        "origin": "SYNTHETIC_FIXTURE",
+        "job_status": "PASSED",
+        "commands_attempted": true,
+        "commands_sent": true,
+        "arrival_observed": true,
+        "min_error_m": 0.0,
+        "dwell_observed_s": 0.0,
+        "stop_confirmed": true,
+        "observation_lost": false,
+        "tolerance_m": 2.0,
+        "dwell_required_s": 5.0,
+        "outcome": "FAILED",
+        "reasons": [
+          "PASSED_THROUGH_NO_DWELL"
+        ]
+      }
+    },
+    "stop_unconfirmed": {
+      "result": {
+        "schema": "tfg.agri-r1-ground-result/1",
+        "task_id": "R1",
+        "origin": "SYNTHETIC_FIXTURE",
+        "binding": {
+          "candidate_sha256": "b9e8efc8b8ac7f0c0324770040cb476c9bcef81c589614e93dfefa43f23161c5",
+          "mission_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "vehicle_id": "rover_01",
+          "simulated_vehicle": "v3",
+          "session_id": "TEST-SESSION",
+          "authorization_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "ground_run_id": "TEST-RUN"
+        },
+        "job_status": "PASSED",
+        "commands": {
+          "attempted": true,
+          "sent": true
+        },
+        "frame": {
+          "name": "TEST_FRAME",
+          "transform_status": "VERIFIED"
+        },
+        "samples": [
+          {
+            "received_monotonic_s": 100.0,
+            "source_stamp_ns": 1000,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 100.5,
+            "source_stamp_ns": 1001,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 101.0,
+            "source_stamp_ns": 1002,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 101.5,
+            "source_stamp_ns": 1003,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 102.0,
+            "source_stamp_ns": 1004,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 102.5,
+            "source_stamp_ns": 1005,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 103.0,
+            "source_stamp_ns": 1006,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 103.5,
+            "source_stamp_ns": 1007,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 104.0,
+            "source_stamp_ns": 1008,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 104.5,
+            "source_stamp_ns": 1009,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 105.0,
+            "source_stamp_ns": 1010,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 105.5,
+            "source_stamp_ns": 1011,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 106.0,
+            "source_stamp_ns": 1012,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 106.5,
+            "source_stamp_ns": 1013,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 107.0,
+            "source_stamp_ns": 1014,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 107.5,
+            "source_stamp_ns": 1015,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 108.0,
+            "source_stamp_ns": 1016,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          }
+        ],
+        "decision_monotonic_s": 108.2,
+        "stop": {
+          "status": "UNCONFIRMED"
+        }
+      },
+      "evaluation": {
+        "schema": "tfg.agri-r1-ground-result/1",
+        "origin": "SYNTHETIC_FIXTURE",
+        "job_status": "PASSED",
+        "commands_attempted": true,
+        "commands_sent": true,
+        "arrival_observed": true,
+        "min_error_m": 0.361,
+        "dwell_observed_s": 8.0,
+        "stop_confirmed": false,
+        "observation_lost": false,
+        "tolerance_m": 2.0,
+        "dwell_required_s": 5.0,
+        "outcome": "UNCERTAIN",
+        "reasons": [
+          "STOP_UNCONFIRMED"
+        ]
+      }
+    },
+    "other_session": {
+      "result": {
+        "schema": "tfg.agri-r1-ground-result/1",
+        "task_id": "R1",
+        "origin": "SYNTHETIC_FIXTURE",
+        "binding": {
+          "candidate_sha256": "b9e8efc8b8ac7f0c0324770040cb476c9bcef81c589614e93dfefa43f23161c5",
+          "mission_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "vehicle_id": "rover_01",
+          "simulated_vehicle": "v3",
+          "session_id": "OTHER-SESSION",
+          "authorization_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "ground_run_id": "TEST-RUN"
+        },
+        "job_status": "PASSED",
+        "commands": {
+          "attempted": true,
+          "sent": true
+        },
+        "frame": {
+          "name": "TEST_FRAME",
+          "transform_status": "VERIFIED"
+        },
+        "samples": [
+          {
+            "received_monotonic_s": 100.0,
+            "source_stamp_ns": 1000,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 100.5,
+            "source_stamp_ns": 1001,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 101.0,
+            "source_stamp_ns": 1002,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 101.5,
+            "source_stamp_ns": 1003,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 102.0,
+            "source_stamp_ns": 1004,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 102.5,
+            "source_stamp_ns": 1005,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 103.0,
+            "source_stamp_ns": 1006,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 103.5,
+            "source_stamp_ns": 1007,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 104.0,
+            "source_stamp_ns": 1008,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 104.5,
+            "source_stamp_ns": 1009,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 105.0,
+            "source_stamp_ns": 1010,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 105.5,
+            "source_stamp_ns": 1011,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 106.0,
+            "source_stamp_ns": 1012,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 106.5,
+            "source_stamp_ns": 1013,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 107.0,
+            "source_stamp_ns": 1014,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 107.5,
+            "source_stamp_ns": 1015,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          },
+          {
+            "received_monotonic_s": 108.0,
+            "source_stamp_ns": 1016,
+            "frame": "TEST_FRAME",
+            "x_m": 0.3,
+            "y_m": 0.2,
+            "linear_mps": 0.0,
+            "angular_rad_s": 0.0
+          }
+        ],
+        "decision_monotonic_s": 108.2,
+        "stop": {
+          "status": "STATIONARY_OBSERVED"
+        }
+      },
+      "evaluation": {
+        "schema": "tfg.agri-r1-ground-result/1",
+        "origin": "SYNTHETIC_FIXTURE",
+        "job_status": "PASSED",
+        "commands_attempted": true,
+        "commands_sent": true,
+        "arrival_observed": false,
+        "min_error_m": null,
+        "dwell_observed_s": 0.0,
+        "stop_confirmed": false,
+        "observation_lost": null,
+        "tolerance_m": 2.0,
+        "dwell_required_s": 5.0,
+        "outcome": "REJECTED",
+        "reasons": [
+          "BINDING_MISMATCH:session_id"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,564 @@
+{
+ "schema": "tfg.multiagent.experiment-plan/1",
+ "plan_id": "plan_v1",
+ "created": "2026-11-04",
+ "status": "NOTHING_RUN",
+ "note": "Configurations only. No duration or cost is estimated: the only measured references are the qwen3:4b pilot figures quoted where they apply.",
+ "experiments": [
+  {
+   "id": "EXP-01-qwen3-4b-think-off-eval_v2-full",
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "INTERPRET_BRIEF",
+   "candidate": "ollama:qwen3:4b",
+   "model": {
+    "name": "qwen3:4b",
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+   },
+   "dataset": "eval_v2",
+   "cases": "ALL",
+   "prompt_id": "interpret_brief/1",
+   "pipeline": "v1",
+   "generation": {
+    "temperature": 0.0,
+    "seed": 7,
+    "num_predict": 1024,
+    "think": false,
+    "num_ctx": 8192,
+    "timeout_s": 120.0
+   },
+   "runs_per_case": 1,
+   "comparable_with": [
+    "pilot_qwen3_4b_v1 (subset)",
+    "v2 sealed rules on eval_v2"
+   ],
+   "expected_resources": {
+    "source": "pilot_qwen3_4b_v1_2026-11-04_c00b737d3 (11 calls, think=false)",
+    "per_call_s": [
+     10.2,
+     23.7
+    ],
+    "gpu_memory_mib_max": 3865,
+    "tokens_per_call": {
+     "prompt": [
+      490,
+      666
+     ],
+     "completion": [
+      134,
+      315
+     ]
+    },
+    "note": "observed reference only; total duration and cost NOT estimated"
+   },
+   "requires": [
+    "pilot preconditions",
+    "--allow-model-calls",
+    "the rover side not measuring SITL"
+   ],
+   "results_dir": "multiagent/benchmark/results/exp01_qwen3_4b_think_off_eval_v2_<date>_<commit>",
+   "metrics": [
+    "case_pass (Wilson 95 %)",
+    "status_match",
+    "extraction_accuracy",
+    "structural_validity",
+    "safety (missed / false refusals)",
+    "coverage_match",
+    "conflicts_ok",
+    "failure taxonomy (accuracy vs safety axes)",
+    "latency",
+    "tokens",
+    "consistency (runs > 1)",
+    "cost or UNKNOWN"
+   ],
+   "finish_when": [
+    "every selected case run",
+    "3 consecutive INFRASTRUCTURE errors",
+    "GPU memory above 7500 MiB",
+    "any precondition failing"
+   ]
+  },
+  {
+   "id": "EXP-02-qwen3-4b-think-on-eval_v2-full",
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "INTERPRET_BRIEF",
+   "candidate": "ollama:qwen3:4b",
+   "model": {
+    "name": "qwen3:4b",
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+   },
+   "dataset": "eval_v2",
+   "cases": "ALL",
+   "prompt_id": "interpret_brief/1",
+   "pipeline": "v1",
+   "generation": {
+    "temperature": 0.0,
+    "seed": 7,
+    "num_predict": 4096,
+    "think": true,
+    "num_ctx": 8192,
+    "timeout_s": 300.0
+   },
+   "runs_per_case": 1,
+   "comparable_with": [
+    "EXP-01 (only think and its token budget differ)"
+   ],
+   "expected_resources": {
+    "per_call_s": "UNKNOWN (reasoning not measured)",
+    "gpu_memory_mib_max": "UNKNOWN (expected similar weights; context larger)",
+    "note": "num_predict raised because reasoning tokens count against it; a TRUNCATED reply is a model failure"
+   },
+   "requires": [
+    "pilot preconditions",
+    "--allow-model-calls"
+   ],
+   "results_dir": "multiagent/benchmark/results/exp02_qwen3_4b_think_on_eval_v2_<date>_<commit>",
+   "metrics": [
+    "case_pass (Wilson 95 %)",
+    "status_match",
+    "extraction_accuracy",
+    "structural_validity",
+    "safety (missed / false refusals)",
+    "coverage_match",
+    "conflicts_ok",
+    "failure taxonomy (accuracy vs safety axes)",
+    "latency",
+    "tokens",
+    "consistency (runs > 1)",
+    "cost or UNKNOWN"
+   ],
+   "finish_when": [
+    "every selected case run",
+    "3 consecutive INFRASTRUCTURE errors",
+    "GPU memory above 7500 MiB",
+    "any precondition failing"
+   ]
+  },
+  {
+   "id": "EXP-03-qwen3-4b-repetitions-eval_v2",
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "INTERPRET_BRIEF",
+   "candidate": "ollama:qwen3:4b",
+   "model": {
+    "name": "qwen3:4b",
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+   },
+   "dataset": "eval_v2",
+   "cases": "ALL",
+   "prompt_id": "interpret_brief/1",
+   "pipeline": "v1",
+   "generation": {
+    "temperature": 0.7,
+    "seed": 7,
+    "num_predict": 1024,
+    "think": false,
+    "num_ctx": 8192,
+    "timeout_s": 120.0,
+    "seeds": [
+     7,
+     11,
+     13
+    ]
+   },
+   "runs_per_case": 3,
+   "comparable_with": [
+    "EXP-01 (temperature 0)"
+   ],
+   "expected_resources": {
+    "source": "pilot_qwen3_4b_v1_2026-11-04_c00b737d3 (11 calls, think=false)",
+    "per_call_s": [
+     10.2,
+     23.7
+    ],
+    "gpu_memory_mib_max": 3865,
+    "tokens_per_call": {
+     "prompt": [
+      490,
+      666
+     ],
+     "completion": [
+      134,
+      315
+     ]
+    },
+    "note": "observed reference only; total duration and cost NOT estimated"
+   },
+   "note": "temperature 0.7 with three seeds measures variability; at temperature 0 repetitions only check determinism",
+   "requires": [
+    "pilot preconditions",
+    "--allow-model-calls"
+   ],
+   "results_dir": "multiagent/benchmark/results/exp03_qwen3_4b_repetitions_eval_v2_<date>_<commit>",
+   "metrics": [
+    "case_pass (Wilson 95 %)",
+    "status_match",
+    "extraction_accuracy",
+    "structural_validity",
+    "safety (missed / false refusals)",
+    "coverage_match",
+    "conflicts_ok",
+    "failure taxonomy (accuracy vs safety axes)",
+    "latency",
+    "tokens",
+    "consistency (runs > 1)",
+    "cost or UNKNOWN"
+   ],
+   "finish_when": [
+    "every selected case run",
+    "3 consecutive INFRASTRUCTURE errors",
+    "GPU memory above 7500 MiB",
+    "any precondition failing"
+   ]
+  },
+  {
+   "id": "EXP-04-qwen3-4b-prompt-v2-eval_v3",
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "INTERPRET_BRIEF",
+   "candidate": "ollama:qwen3:4b",
+   "model": {
+    "name": "qwen3:4b",
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+   },
+   "dataset": "eval_v3",
+   "cases": "ALL",
+   "prompt_id": "interpret_brief/2",
+   "pipeline": "v2",
+   "generation": {
+    "temperature": 0.0,
+    "seed": 7,
+    "num_predict": 1024,
+    "think": false,
+    "num_ctx": 8192,
+    "timeout_s": 120.0
+   },
+   "runs_per_case": 1,
+   "also": {
+    "dataset": "adversarial_v3",
+    "same_parameters": true
+   },
+   "comparable_with": [
+    "EXP-04b (prompt /1 on the same sets)",
+    "v3 sealed rules baseline"
+   ],
+   "expected_resources": {
+    "source": "pilot_qwen3_4b_v1_2026-11-04_c00b737d3 (11 calls, think=false)",
+    "per_call_s": [
+     10.2,
+     23.7
+    ],
+    "gpu_memory_mib_max": 3865,
+    "tokens_per_call": {
+     "prompt": [
+      490,
+      666
+     ],
+     "completion": [
+      134,
+      315
+     ]
+    },
+    "note": "observed reference only; total duration and cost NOT estimated"
+   },
+   "requires": [
+    "pilot preconditions",
+    "--allow-model-calls"
+   ],
+   "results_dir": "multiagent/benchmark/results/exp04_qwen3_4b_prompt_v2_eval_v3_<date>_<commit>",
+   "metrics": [
+    "case_pass (Wilson 95 %)",
+    "status_match",
+    "extraction_accuracy",
+    "structural_validity",
+    "safety (missed / false refusals)",
+    "coverage_match",
+    "conflicts_ok",
+    "failure taxonomy (accuracy vs safety axes)",
+    "latency",
+    "tokens",
+    "consistency (runs > 1)",
+    "cost or UNKNOWN"
+   ],
+   "finish_when": [
+    "every selected case run",
+    "3 consecutive INFRASTRUCTURE errors",
+    "GPU memory above 7500 MiB",
+    "any precondition failing"
+   ]
+  },
+  {
+   "id": "EXP-04b-qwen3-4b-prompt-v1-eval_v3",
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "INTERPRET_BRIEF",
+   "candidate": "ollama:qwen3:4b",
+   "model": {
+    "name": "qwen3:4b",
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+   },
+   "dataset": "eval_v3",
+   "cases": "ALL",
+   "prompt_id": "interpret_brief/1",
+   "pipeline": "v2",
+   "generation": {
+    "temperature": 0.0,
+    "seed": 7,
+    "num_predict": 1024,
+    "think": false,
+    "num_ctx": 8192,
+    "timeout_s": 120.0
+   },
+   "runs_per_case": 1,
+   "also": {
+    "dataset": "adversarial_v3",
+    "same_parameters": true
+   },
+   "comparable_with": [
+    "EXP-04 (only the prompt differs; prompt /1 cannot report availability)"
+   ],
+   "expected_resources": {
+    "source": "pilot_qwen3_4b_v1_2026-11-04_c00b737d3 (11 calls, think=false)",
+    "per_call_s": [
+     10.2,
+     23.7
+    ],
+    "gpu_memory_mib_max": 3865,
+    "tokens_per_call": {
+     "prompt": [
+      490,
+      666
+     ],
+     "completion": [
+      134,
+      315
+     ]
+    },
+    "note": "observed reference only; total duration and cost NOT estimated"
+   },
+   "requires": [
+    "pilot preconditions",
+    "--allow-model-calls"
+   ],
+   "results_dir": "multiagent/benchmark/results/exp04b_qwen3_4b_prompt_v1_eval_v3_<date>_<commit>",
+   "metrics": [
+    "case_pass (Wilson 95 %)",
+    "status_match",
+    "extraction_accuracy",
+    "structural_validity",
+    "safety (missed / false refusals)",
+    "coverage_match",
+    "conflicts_ok",
+    "failure taxonomy (accuracy vs safety axes)",
+    "latency",
+    "tokens",
+    "consistency (runs > 1)",
+    "cost or UNKNOWN"
+   ],
+   "finish_when": [
+    "every selected case run",
+    "3 consecutive INFRASTRUCTURE errors",
+    "GPU memory above 7500 MiB",
+    "any precondition failing"
+   ]
+  },
+  {
+   "id": "EXP-05-aida-qwen-prompt-v2-eval_v3",
+   "status": "BLOCKED_NEEDS_VPN_AND_CREDENTIAL",
+   "task": "INTERPRET_BRIEF",
+   "candidate": "aida-qwen",
+   "model": {
+    "name": "AIDA_QWEN_MODEL (default qwen)",
+    "digest": "UNKNOWN until the first reply"
+   },
+   "dataset": "eval_v3",
+   "cases": "ALL",
+   "prompt_id": "interpret_brief/2",
+   "pipeline": "v2",
+   "generation": {
+    "temperature": 0.0,
+    "json_mode": false
+   },
+   "runs_per_case": 1,
+   "also": {
+    "dataset": "adversarial_v3",
+    "same_parameters": true
+   },
+   "comparable_with": [
+    "EXP-04"
+   ],
+   "expected_resources": {
+    "per_call_s": "UNKNOWN",
+    "cost": "UNKNOWN (quota or price to be obtained from AIDA)"
+   },
+   "requires": [
+    "VPN",
+    "AIDA_HPC_API_KEY",
+    "--allow-model-calls --allow-remote",
+    "explicit authorization",
+    "verify_on_first_real_reply in pilots/aida_pilot_v1.json"
+   ],
+   "results_dir": "multiagent/benchmark/results/exp05_aida_qwen_eval_v3_<date>_<commit>",
+   "metrics": [
+    "case_pass (Wilson 95 %)",
+    "status_match",
+    "extraction_accuracy",
+    "structural_validity",
+    "safety (missed / false refusals)",
+    "coverage_match",
+    "conflicts_ok",
+    "failure taxonomy (accuracy vs safety axes)",
+    "latency",
+    "tokens",
+    "consistency (runs > 1)",
+    "cost or UNKNOWN"
+   ],
+   "finish_when": [
+    "every selected case run",
+    "any infrastructure error persists",
+    "authorization withdrawn"
+   ]
+  },
+  {
+   "id": "EXP-06-aida-clef-classify-and-select",
+   "status": "BLOCKED_NEEDS_VPN_AND_CREDENTIAL",
+   "task": [
+    "CLASSIFY_REQUEST",
+    "SELECT_ALLOCATION"
+   ],
+   "candidate": "aida-clef",
+   "model": {
+    "name": "AIDA_CLEF_MODEL (default clef)",
+    "digest": "UNKNOWN"
+   },
+   "dataset": "eval_v3",
+   "cases": "ALL",
+   "prompt_id": null,
+   "pipeline": "v2",
+   "generation": {},
+   "runs_per_case": 1,
+   "select_allocation_scenarios": "pilots/aida_pilot_v1.json tasks[2]",
+   "metrics_override": [
+    "top-label accuracy",
+    "Brier score",
+    "chosen-option rank"
+   ],
+   "expected_resources": {
+    "per_call_s": "UNKNOWN",
+    "cost": "UNKNOWN"
+   },
+   "never": [
+    "INTERPRET_BRIEF",
+    "ALLOCATE"
+   ],
+   "requires": [
+    "VPN",
+    "AIDA_HPC_API_KEY",
+    "confirmed /v1/systemone request and reply shape",
+    "explicit authorization"
+   ],
+   "results_dir": "multiagent/benchmark/results/exp06_aida_clef_<date>_<commit>",
+   "metrics": [
+    "top-label accuracy",
+    "Brier score",
+    "chosen-option rank"
+   ],
+   "finish_when": [
+    "every selected case run",
+    "any infrastructure error persists",
+    "authorization withdrawn"
+   ]
+  },
+  {
+   "id": "EXP-07-hermes-provider-prompt-v2-eval_v3",
+   "status": "BLOCKED_NEEDS_ENDPOINT_AND_CREDENTIAL",
+   "task": "INTERPRET_BRIEF",
+   "candidate": "hermes",
+   "model": {
+    "name": "poolside/laguna-s-2.1:free (deploy/planner/hermes-config.base.yaml)",
+    "provider": "nous",
+    "digest": "UNKNOWN"
+   },
+   "dataset": "eval_v3",
+   "cases": "ALL",
+   "prompt_id": "interpret_brief/2",
+   "pipeline": "v2",
+   "generation": {
+    "temperature": 0.0,
+    "json_mode": false
+   },
+   "runs_per_case": 1,
+   "comparable_with": [
+    "EXP-04",
+    "EXP-05"
+   ],
+   "expected_resources": {
+    "per_call_s": "UNKNOWN",
+    "cost": "UNKNOWN (free tier availability not verified)"
+   },
+   "requires": [
+    "TFG_HERMES_PROVIDER_BASE_URL",
+    "provider key variable",
+    "OpenAI compatibility not assumed: verify first reply",
+    "explicit authorization"
+   ],
+   "results_dir": "multiagent/benchmark/results/exp07_hermes_provider_eval_v3_<date>_<commit>",
+   "metrics": [
+    "case_pass (Wilson 95 %)",
+    "status_match",
+    "extraction_accuracy",
+    "structural_validity",
+    "safety (missed / false refusals)",
+    "coverage_match",
+    "conflicts_ok",
+    "failure taxonomy (accuracy vs safety axes)",
+    "latency",
+    "tokens",
+    "consistency (runs > 1)",
+    "cost or UNKNOWN"
+   ],
+   "finish_when": [
+    "every selected case run",
+    "any infrastructure error persists",
+    "authorization withdrawn"
+   ]
+  },
+  {
+   "id": "EXP-08-opik-export-of-a-completed-experiment",
+   "status": "BLOCKED_NEEDS_AUTHORIZATION",
+   "task": "EXPORT",
+   "source": "the results_dir of a completed experiment (traces/*.jsonl, opik_payload.dry_run.json)",
+   "steps": [
+    "regenerate the dry-run payload and compare it with the sealed one",
+    "verify the payload shape against the Opik service (one synthetic trace, separately authorized)",
+    "send with observability.opik_export.send and its gate (unknown_provenance needs explicit consent)",
+    "record the per-batch send result; a trace is SENT only after a confirmed response"
+   ],
+   "never": [
+    "mark a locally generated trace as sent",
+    "send credentials or secrets (redaction re-checked before sending)"
+   ],
+   "requires": [
+    "OPIK_API_KEY",
+    "Opik project/workspace",
+    "explicit authorization per send"
+   ],
+   "results_dir": "<source results_dir>/opik_send_<date>/",
+   "metrics": [
+    "case_pass (Wilson 95 %)",
+    "status_match",
+    "extraction_accuracy",
+    "structural_validity",
+    "safety (missed / false refusals)",
+    "coverage_match",
+    "conflicts_ok",
+    "failure taxonomy (accuracy vs safety axes)",
+    "latency",
+    "tokens",
+    "consistency (runs > 1)",
+    "cost or UNKNOWN"
+   ],
+   "finish_when": [
+    "every selected case run",
+    "any infrastructure error persists",
+    "authorization withdrawn"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+# Local derivative of qwen3:4b (Qwen3 4B Thinking 2507, Q4_K_M) for the Hermes demo on an 8 GiB GPU.
+# Same weights (`ollama create` downloads nothing). Two changes, both measured on 2026-11-08:
+#  - num_ctx 65536: Hermes Agent refuses models with less than 64000 tokens of context;
+#  - the assistant turn starts with an EMPTY, already closed reasoning block. The original template opens
+#    <think> and the model wrote >2350 reasoning tokens (10 min at ~4 tokens/s with half of the layers on
+#    the CPU) without reaching a tool call. This variant answers or calls a tool directly. It is a
+#    deliberate behaviour change of the same model, not a different model, and is declared as such.
+# Thinking-related template fields are removed so Ollama does not parse the output as reasoning.
+FROM qwen3:4b
+PARAMETER num_ctx 65536
+TEMPLATE """{{- if or .System .Tools }}<|im_start|>system
+{{ if .System }}{{ .System }}
+
+{{ end }}
+{{- if .Tools }}# Tools
+
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{{- range .Tools }}
+{"type": "function", "function": {{ .Function }}}
+{{- end }}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call>
+{{- end -}}
+<|im_end|>
+{{ end }}
+{{- range $i, $_ := .Messages }}
+{{- $last := eq (len (slice $.Messages $i)) 1 -}}
+{{- if eq .Role "user" }}<|im_start|>user
+{{ .Content }}<|im_end|>
+{{ else if eq .Role "assistant" }}<|im_start|>assistant
+{{ if .Content }}{{ .Content }}{{ end }}
+{{- if .ToolCalls }}
+{{- range .ToolCalls }}
+<tool_call>
+{"name": "{{ .Function.Name }}", "arguments": {{ .Function.Arguments }}}
+</tool_call>
+{{- end }}
+{{- end }}{{ if not $last }}<|im_end|>
+{{ end }}
+{{- else if eq .Role "tool" }}<|im_start|>user
+<tool_response>
+{{ .Content }}
+</tool_response><|im_end|>
+{{ end }}
+{{- if and (ne .Role "assistant") $last }}<|im_start|>assistant
+<think>
+
+</think>
+
+{{ end }}
+{{- end }}"""

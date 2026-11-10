@@ -1,0 +1,12 @@
+Package e71e57b89734ef9e [HERMES_FINALIZED_ON_SYNTHETIC, SITL_REHEARSAL]: PARTIAL, deployment_ready=False, approval ABSENT
+  HERMES_drone_01 drone_01: GENERATED -> plans/drone_01.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  HERMES_drone_02 drone_02: BLOCKED_VALIDATION_FAILED | exclusion TREE_ROW_1 WP1 -> WP2: crosses or touches exclusion TREE_ROW_1; exclusion TREE_ROW_1 WP2 -> TAKEOFF_B (return): crosses or touches exclusion TREE_ROW_1
+  R1 rover_01: line PASS, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: HERMES_drone_01 -> HERMES_drone_02 -> R1
+  PENDING: operator approval ABSENT
+  PENDING: HERMES_drone_01: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)
+  PENDING: HERMES_drone_02: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)
+  PENDING: conditioned or not in the .plan: failsafe actions, planning inputs, return coordinate, speed, takeoff, waypoint acceptance, yaw
+  PENDING: autopilot parameters not read: WP_RADIUS_M (waypoint acceptance), WP_YAW_BEHAVIOR (yaw), WP_SPD (default speed), FS_* (failsafe actions), LAND_SPD_MS / descent (landing rate)
+  PENDING: QGroundControl version unknown; imported_in_qgroundcontrol: NOT_DONE, uploaded_to_vehicle: NOT_DONE, read_back_from_vehicle: NOT_DONE, executed: NOT_DONE
+rc=0

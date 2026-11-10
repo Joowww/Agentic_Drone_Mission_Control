@@ -1,0 +1,6 @@
+ Container tfg-entrega-r2-prueba-hermes-run-81f05b99b769 Creating 
+ Container tfg-entrega-r2-prueba-hermes-run-81f05b99b769 Created 
+provider nous model poolside/laguna-s-2.1:free
+server /opt/tfg/.venv/bin/python ['-m', 'tools.hermes_mcp_server'] tools {'include': ['update_mission_draft', 'finalize_mission_draft'], 'resources': False, 'prompts': False}
+tool_search {'enabled': 'off'}
+other_servers []

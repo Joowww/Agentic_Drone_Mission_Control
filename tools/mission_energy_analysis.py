@@ -28,9 +28,10 @@ def analyze_mission_energy(
             ),
         }
 
+    # The exact sum, not the rounded value shown in reports.
     total_flight_time_minutes = (
         flight_analysis[
-            "total_flight_time_minutes"
+            "total_flight_time_minutes_exact"
         ]
     )
 

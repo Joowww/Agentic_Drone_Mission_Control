@@ -1,0 +1,530 @@
+{
+  "schema": "tfg.agri-scenario-distribution/1",
+  "set": "agri_flow_site_export",
+  "base": "git HEAD contents",
+  "entries": [
+    {
+      "path": "main.py",
+      "kind": "entry",
+      "purpose": "main menu option 5 opens the scenario flow",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 12168,
+      "sha256": "18c0e5f33ee562f843653f0c7776298cdefb6de7cf7a5433a54a70fc8bbe959a"
+    },
+    {
+      "path": "tools/agri_scenario_flow.py",
+      "kind": "code",
+      "purpose": "scenario entry: query, demo, menu, resume checks, outputs manifest",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 33128,
+      "sha256": "08285731f431e6ac089e538e38723c938077784c3151d25e40ded575b149018c"
+    },
+    {
+      "path": "graph/agri_scenario_graph.py",
+      "kind": "code",
+      "purpose": "LangGraph scenario flow: stages, transitions, report",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 13507,
+      "sha256": "051f843c59360855d7832446bb7dec168b12eabb720eacd75cf1e51fb212c5b2"
+    },
+    {
+      "path": "reporting/agri_scenario_summary.py",
+      "kind": "code",
+      "purpose": "binding, validation, scenario view, R1 preparation and dimensions, report",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 142063,
+      "sha256": "6958f2331ac792e77156356a9ef93f7a089ff2df850fbab406dbc02f689e85e4"
+    },
+    {
+      "path": "tools/agri_ground_coordinator.py",
+      "kind": "code",
+      "purpose": "R1 coordinator: durable records, idempotency, acceptance",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 36741,
+      "sha256": "b0f5b8407b77ae0d760c8e0d35b0b31943f2686ead9b8dddf264423be5a323f8"
+    },
+    {
+      "path": "tools/agri_ground_demo.py",
+      "kind": "code",
+      "purpose": "TEST_DOUBLE ground executor and demo inputs (synthetic only)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 11259,
+      "sha256": "a52b89b5f52dbc0fb5e04fc15fe82ec60aee80eae79bdd129a796dd1947007d4"
+    },
+    {
+      "path": "observability/hermes_capture_run.py",
+      "kind": "code",
+      "purpose": "SHA256SUMS verification of the evidence directories",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 97390,
+      "sha256": "50e4c5148b3ea577e94e5d9bbbe0252cb0e62eb2958c51413e1a853e63765f40"
+    },
+    {
+      "path": "observability/mission_query_cases.py",
+      "kind": "code",
+      "purpose": "imported by the scenario summary (answer parsing)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 14744,
+      "sha256": "84cae2a0f3c01700cb3e1009ab63da96d2284e50bb4f7a15f21f8bf98f263210"
+    },
+    {
+      "path": "tools/rover_passive_journal.py",
+      "kind": "code",
+      "purpose": "measured facts from a finished /3 capture (query --capture-*)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 37972,
+      "sha256": "ea4582ff722079a08e13e2a1fa79780899278b9e1713eddb4ff8f2ecad4c1810"
+    },
+    {
+      "path": "tools/agri_scenario_distribution.py",
+      "kind": "code",
+      "purpose": "this inventory and its check",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 13643,
+      "sha256": "53a43c540326d3116b7e6b4da57d162dab6b5be54642694129a76da6fc1bdaf8"
+    },
+    {
+      "path": "reporting/rover_identity_facts.py",
+      "kind": "code",
+      "purpose": "facts of a closed rover identity session (query --identity-trial-root)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 10286,
+      "sha256": "96b6d6637f6ce0feb78f0a356fbe020f2132f466e58c5c7afb1d28a2a7ea8934"
+    },
+    {
+      "path": "tools/rover_ground_executor.py",
+      "kind": "code_codex_uncommitted",
+      "purpose": "executor facts read by the R1 preparation; the HEAD version reports navigation unsupported (owner: Codex)",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 36518,
+      "sha256": "ab94c075ea38d246992c9ea6435680afa2551ea172c6ccca80f663862eb1ae3a"
+    },
+    {
+      "path": "tools/rover_control.py",
+      "kind": "code_codex_uncommitted",
+      "purpose": "NavigationGoal/limits used by the coordinator; the HEAD version is incompatible (owner: Codex)",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 37487,
+      "sha256": "a22d5de7faca8f6c76d1c9c9e3f8bf7496c6257efe3c30cbaa32f26fb1c64a30"
+    },
+    {
+      "path": "tests/test_agri_scenario_flow.py",
+      "kind": "test",
+      "purpose": "stage boundaries, capability separation, resume and recovery",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 20363,
+      "sha256": "f43b2f30bfbb99476c19c0d39c974475aedc2ccdc6d6273774c51cffac2e01f9"
+    },
+    {
+      "path": "requirements.txt",
+      "kind": "dependencies",
+      "purpose": "direct runtime dependencies (pydantic and PyYAML declared)",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 645,
+      "sha256": "13cad67c39fbe75d3b855ec5964f6a43422fe58288b63d9058dce0a8810d1009"
+    },
+    {
+      "path": "constraints-verified.txt",
+      "kind": "dependencies",
+      "purpose": "exact versions verified in a clean isolated install",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2026,
+      "sha256": "157d76fc0623d3af47225a604b3dcbf8ed15e2b93b35da4d8fc43d344b923cad"
+    },
+    {
+      "path": "missions/examples/agri_demo_001_sector_a.json",
+      "kind": "reference",
+      "purpose": "H0 reference of drone_01 (geometry check)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1653,
+      "sha256": "82ce067c7c83f1b50517e87f904aeb19cfcfadcc6a1063726cfe955367fbe156"
+    },
+    {
+      "path": "missions/examples/agri_demo_001_sector_b.json",
+      "kind": "reference",
+      "purpose": "H0 reference of drone_02 (geometry check)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1653,
+      "sha256": "722c66b9c9e8c0d2e862beceda9c196e7c1b8354ff9576e85632d93997c584af"
+    },
+    {
+      "path": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24",
+      "kind": "evidence",
+      "purpose": "conserved H2 copies (archive source)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "ad580948a471b1fd4b03c796f6b757002412303c1e33cd1d924f98fb5cc7431d",
+      "files": 27,
+      "size_bytes": 351420
+    },
+    {
+      "path": "evaluation/observability/agri_planning_h1_nous_2026_10_24",
+      "kind": "evidence",
+      "purpose": "H1 binding record (BOUND)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "c897e431ca9f30f6ab3cb282e8ec5f41d721cf24f3389d68e56ab0e926e004b8",
+      "files": 10,
+      "size_bytes": 39838
+    },
+    {
+      "path": "evaluation/observability/agri_scenario_h3b_nous_2026_10_24",
+      "kind": "evidence",
+      "purpose": "recorded H3b capture: view received and acceptance (no inference)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "24594730c039357128d7ee4868f5189e558f4f05e60b9c85a3635053583ec5ef",
+      "files": 14,
+      "size_bytes": 52728
+    },
+    {
+      "path": "evaluation/observability/agri_scenario_view_h2_2026_10_24",
+      "kind": "evidence",
+      "purpose": "saved H2 view (regression)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "0c397f3fd066e2ea8278f77115b320d69f98a00c39290f1900e378d8db339ccf",
+      "files": 3,
+      "size_bytes": 11200
+    },
+    {
+      "path": "simulation/ros2_gazebo/results/rover_worker_lifecycle_2026_10_25/4ac58516-8fad-457e-918e-253483a2d728",
+      "kind": "optional_evidence",
+      "purpose": "closed /3 capture for the measured facts (owner: Codex). Without it the query and the demo run unchanged and requested metrics are NOT_AVAILABLE",
+      "git": "untracked",
+      "required": false,
+      "type": "directory",
+      "manifest": "manifest.json",
+      "manifest_sha256": "a88a09f9cfcce654709a6524eb30da3867408e8c48b8e7631dd7b8c7d9bdf8a5",
+      "files": 120,
+      "size_bytes": 6153318
+    },
+    {
+      "path": "simulation/ros2_gazebo/results/rover_identity_trial_2026_10_26/1cb9d86a-659b-4aa8-b7b1-214d2202210f",
+      "kind": "optional_evidence",
+      "purpose": "closed rover identity session (owner: Codex). Without it the identity facts are NOT_AVAILABLE and nothing else changes",
+      "git": "untracked",
+      "required": false,
+      "type": "directory",
+      "manifest": "manifest.json",
+      "manifest_sha256": "4d9558a2e31b9ea2ec42eca6d8b18cc007ce2cf4049bab011fa561ad59e34faf",
+      "files": 165,
+      "size_bytes": 2282937
+    },
+    {
+      "path": "inputs/qgc_plan_export.py",
+      "kind": "code",
+      "purpose": "strict QGC_PLAN_ARDUCOPTER_V2 exporter, MAVLink expectations, verifier",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 21157,
+      "sha256": "57c854f5255e0bb94b2990343a74da9071d50d16ae0a9e8988d5cbf00d8f47cf"
+    },
+    {
+      "path": "inputs/qgroundcontrol_exporter.py",
+      "kind": "code",
+      "purpose": "session/Hermes export entry, delegates to the strict exporter",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2093,
+      "sha256": "a714627830f84c87f4113c2e43ec9c38206b9159a2cfb2b9cccf752fb96b2a4f"
+    },
+    {
+      "path": "sessions/structured_mission_session.py",
+      "kind": "code",
+      "purpose": "session export: REFUSED/EXPORTED with reasons",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 9898,
+      "sha256": "3869a1e6a4f574f952f5350bbc7639b8e8056ea8bc03f001d06daaabd8938dcb"
+    },
+    {
+      "path": "tools/hermes_mission_validation.py",
+      "kind": "code",
+      "purpose": "validation result carries qgc_export",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 7150,
+      "sha256": "a4720d052aa3885fdcf23ed66e1f34aa3cb45bc7f07bc6d6d0439ba5d2298d26"
+    },
+    {
+      "path": "models/site.py",
+      "kind": "code",
+      "purpose": "site.json model",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6287,
+      "sha256": "9de6203ca17e14cc845600168926b0a946c6e0543abb0a1005808857d764f97c"
+    },
+    {
+      "path": "models/fleet.py",
+      "kind": "code",
+      "purpose": "fleet.json model",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3648,
+      "sha256": "849b38d37ae1321f12e723cf31f1796d41df5b489edafb97f951d463f223c9eb"
+    },
+    {
+      "path": "models/scenario_template.py",
+      "kind": "code",
+      "purpose": "scenario template model",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2649,
+      "sha256": "56eeda6aa82b6f789e2d7d0f94309bf1c238e6a7736a8238a6326ed70157c586"
+    },
+    {
+      "path": "planning/site_geometry.py",
+      "kind": "code",
+      "purpose": "geometry and local frame conversion",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 9024,
+      "sha256": "c6c062a3cc29b5aa03ef15a4ce21e951211841c7a60eedfc0a2d29bd310066e0"
+    },
+    {
+      "path": "planning/site_validation.py",
+      "kind": "code",
+      "purpose": "site and route checks",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 15848,
+      "sha256": "c80a7214076a14cbca5a87a946da7f8a41f2871e8dc873431573e848d2e9f8b9"
+    },
+    {
+      "path": "planning/scenario_instance.py",
+      "kind": "code",
+      "purpose": "instantiation, historical H2 rebase, approval binding",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 23711,
+      "sha256": "07fc8db10bbc6c73805cf363142b94cb46e1d51d911e4b9a6fad77554a13bf8a"
+    },
+    {
+      "path": "tools/scenario_package.py",
+      "kind": "code",
+      "purpose": "package/verify/summary CLI",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 24471,
+      "sha256": "8f4c114a92a20d2df5765963ba4d768617386651cf7157947e41572428fad98a"
+    },
+    {
+      "path": "missions/sites/synthetic_orchard_v1.site.json",
+      "kind": "example",
+      "purpose": "SYNTHETIC site",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6680,
+      "sha256": "0db007e872c8c9d04ae4cc24b733d7753dfbd7e814fe3ab725ee580785e3eb05"
+    },
+    {
+      "path": "missions/sites/synthetic_orchard_v2.site.json",
+      "kind": "example",
+      "purpose": "SYNTHETIC site, POI_1 moved",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6708,
+      "sha256": "7b27b00719dd1e6a7c309dff3b4b1b129a9a8b699e21e7b0d94e059e35356d14"
+    },
+    {
+      "path": "missions/sites/dronelab.template.site.json",
+      "kind": "example",
+      "purpose": "DroneLab template pending measurement",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4348,
+      "sha256": "10c6ee168ab4fe6473d01101f9494b97bd934ba6da85776b0996e0117800d8a7"
+    },
+    {
+      "path": "missions/fleets/agri_demo_fleet.json",
+      "kind": "example",
+      "purpose": "logical fleet",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3074,
+      "sha256": "9a2ffcfa2539a17c7e4b746ed485e949e0a905096c936b7b2ffaf0c938ce41c1"
+    },
+    {
+      "path": "missions/templates/agri_poi_visit_v1.json",
+      "kind": "example",
+      "purpose": "scenario template",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2173,
+      "sha256": "62dd9c06a8520d76d9e6d0bc16c75f1fbb635a97fbef5454fdb0540ab827d314"
+    },
+    {
+      "path": "missions/templates/agri_poi_visit_crossing_v1.json",
+      "kind": "example",
+      "purpose": "test variant: exclusion crossing",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2160,
+      "sha256": "84f2e4ce6bddbeda386ba13c137173e0d8247fe991c0d1c922cfca9ec3740c79"
+    },
+    {
+      "path": "missions/templates/agri_poi_visit_unresolved_fleet_v1.json",
+      "kind": "example",
+      "purpose": "test variant: unresolved fleet",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2504,
+      "sha256": "6435f1a2cf905d471297f8bfe5058e21a6069f08a40cd8dadc888c05db9bd659"
+    },
+    {
+      "path": "tests/test_site_geometry.py",
+      "kind": "test",
+      "purpose": "geometry, site, fleet",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 10496,
+      "sha256": "ca6ba270c72ac2452dffb2d8f2f616d8bd5aa2a897338cdcfc6512bd6cf5f734"
+    },
+    {
+      "path": "tests/test_scenario_package.py",
+      "kind": "test",
+      "purpose": "packages a-f, exporter expectations, layers, menu",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 17527,
+      "sha256": "d25d7e00068281a072a415b03ee096f4140d26954c6873077f936e0fbf267c9c"
+    },
+    {
+      "path": "tests/test_qgroundcontrol_exporter.py",
+      "kind": "test",
+      "purpose": "session entry refusals and strict bytes",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 5261,
+      "sha256": "c81bb1f83bbeb40de6cf1e9d5d4ccb81321179525199a1b9006b6cd663050e2b"
+    },
+    {
+      "path": "tests/test_hermes_mission_validation.py",
+      "kind": "test",
+      "purpose": "validation export result",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 10019,
+      "sha256": "33b3543bb987a2df90861e05387f87f532f9d4f2001a1bf823c1a7be92980812"
+    },
+    {
+      "path": "docs/site-fleet-export.md",
+      "kind": "doc",
+      "purpose": "site, fleet and export documentation",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 28677,
+      "sha256": "223793a6db766a886a0f1bb6a46b4125b199edc3e48b092d99533a27c937b2f8"
+    },
+    {
+      "path": "docs/integrated-trial-protocol.md",
+      "kind": "doc",
+      "purpose": "integrated trial protocol (not executed)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 7132,
+      "sha256": "30be479313607ae70cb5c7191ab1984df46b38453233f127cf11d3ac872bbaaa"
+    },
+    {
+      "path": "docs/qgc-first-import-procedure.md",
+      "kind": "doc",
+      "purpose": "procedure for the first QGroundControl import",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4459,
+      "sha256": "a44046f9524bce783cd49f0d78c4d08f985f3528a85c1ac3f7aaeb0b9f93d109"
+    },
+    {
+      "path": "evaluation/observability/agri_site_fleet_export_2026_10_27",
+      "kind": "optional_evidence",
+      "purpose": "first packages (profile V1, superseded): verify reports PROFILE_SUPERSEDED after integrity",
+      "git": "untracked",
+      "required": false,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "08e9320e3388c96e99b5dd76f19e1de4f01cc05e45493dbe16b7d377669cbc70",
+      "files": 84,
+      "size_bytes": 385382
+    }
+  ],
+  "total_size_bytes": 10037223,
+  "required_size_bytes": 1215586,
+  "not_needed": [
+    "missions/generated (local stores)",
+    "private Hermes sessions (~/.hermes)",
+    "credentials or API keys",
+    "live container temporaries",
+    ".venv (use the requirements)"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+ "schema": "tfg.multiagent.agents-config/1",
+ "config_id": "simulated_demo_v1",
+ "data_kind": "SIMULATED_MODELS",
+ "mission_orchestrator": {
+  "mode": "llm",
+  "candidate": "scripted:demo_orchestrator",
+  "prompt_id": "interpret_brief/2"
+ },
+ "drone_swarm_agent": {
+  "mode": "llm",
+  "candidate": "scripted:demo_drone",
+  "max_revisions": 2
+ },
+ "rover_agent": {
+  "mode": "llm",
+  "candidate": "scripted:demo_rover"
+ }
+}

@@ -1,0 +1,5 @@
+{
+  "turn_reasons": [],
+  "final_answer": "Antes de crear la misión, detecto algunas contradicciones e incertidumbres que debo aclarar. Te las planteo:\n\n1. **Contradicción en `return_to_home`**: El texto dice \"volver al HOME al terminar\" (return_to_home = true), pero luego el \"Ojo\" dice explícitamente \"al terminar no regreses al HOME\". ¿Debo usar `return_to_home = false` (según el \"Ojo\", que parece la instrucción correctiva final)?\n\n2. **Acciones de los waypoints**: No especificas qué acción realizará cada POI (navigate, inspect, take_photo, survey, loiter). Para *precision_agriculture*, ¿debo asumir `inspect` para ambos puntos, o alguna otra acción?\n\n3. **Velocidad en los waypoints**: Solo mencionas velocidad de crucero (35 km/h). ¿los waypoints usan la misma velocidad, o quieres especificar otra?\n\n4. **¿Son exactamente 2 waypoints** (POI_B1 y POI_B2), sin waypoint adicional de retorno al HOME?\n\n5. **Nombre de los waypoints**: Usaré `POI_B1` y `POI_B2` como IDs, ¿confirmado?\n\nUna vez que me respondas, creo el borrador sin finalizarlo (solo guardo el borrador para que revises antes de la validación/exportación definitiva).",
+  "calls": []
+}

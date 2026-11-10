@@ -1,0 +1,185 @@
+{
+ "status": "BLOCKED",
+ "raw": {
+  "discovery": {
+   "complete": true,
+   "missing": [],
+   "deadline_s": 15.0,
+   "elapsed_s": 3.4439872251823545e-06,
+   "first_seen_s": {
+    "/rover1/odometry": 3.4439872251823545e-06,
+    "/ap/v3/status": 3.4439872251823545e-06
+   }
+  },
+  "collected_wall_unix_ns": 1793727208875508456,
+  "before": {
+   "/rover1/odometry": [
+    {
+     "node": "_NODE_NAME_UNKNOWN_",
+     "namespace": "_NODE_NAMESPACE_UNKNOWN_",
+     "type": "nav_msgs/msg/Odometry",
+     "gid": "010feb7d5125902700000000000014030000000000000000",
+     "reliability": "RELIABLE"
+    }
+   ],
+   "/ap/v3/status": [
+    {
+     "node": "_CREATED_BY_BARE_DDS_APP_",
+     "namespace": "_CREATED_BY_BARE_DDS_APP_",
+     "type": "ardupilot_msgs/msg/Status",
+     "gid": "010feb7d4c2576c00000000000000f030000000000000000",
+     "reliability": "RELIABLE"
+    }
+   ]
+  },
+  "after": {
+   "/rover1/odometry": [
+    {
+     "node": "ros_gz_bridge",
+     "namespace": "/rover1",
+     "type": "nav_msgs/msg/Odometry",
+     "gid": "010feb7d5125902700000000000014030000000000000000",
+     "reliability": "RELIABLE"
+    }
+   ],
+   "/ap/v3/status": [
+    {
+     "node": "ap_v3",
+     "namespace": "/",
+     "type": "ardupilot_msgs/msg/Status",
+     "gid": "010feb7d4c2576c00000000000000f030000000000000000",
+     "reliability": "RELIABLE"
+    }
+   ]
+  },
+  "samples": [
+   {
+    "stamp_ns": 14800000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     1.9778945837372193e-15,
+     -3.0,
+     0.09584259132635085
+    ],
+    "orientation_xyzw": [
+     2.419121432215474e-16,
+     1.2028849061956835e-16,
+     0.7071080798595151,
+     0.7071054825111949
+    ],
+    "received_wall_unix_ns": 1793727207596951250
+   },
+   {
+    "stamp_ns": 14820000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     1.9778945837372193e-15,
+     -3.0,
+     0.09584259132635085
+    ],
+    "orientation_xyzw": [
+     2.419121432215474e-16,
+     1.2028849061956835e-16,
+     0.7071080798595151,
+     0.7071054825111949
+    ],
+    "received_wall_unix_ns": 1793727207628450481
+   },
+   {
+    "stamp_ns": 14840000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     1.9778945837372193e-15,
+     -3.0,
+     0.09584259132635085
+    ],
+    "orientation_xyzw": [
+     2.419121432215474e-16,
+     1.2028849061956835e-16,
+     0.7071080798595151,
+     0.7071054825111949
+    ],
+    "received_wall_unix_ns": 1793727207659660534
+   },
+   {
+    "stamp_ns": 14860000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     1.9778945837372193e-15,
+     -3.0,
+     0.09584259132635085
+    ],
+    "orientation_xyzw": [
+     2.419121432215474e-16,
+     1.2028849061956835e-16,
+     0.7071080798595151,
+     0.7071054825111949
+    ],
+    "received_wall_unix_ns": 1793727207690966388
+   },
+   {
+    "stamp_ns": 14880000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     1.9778945837372193e-15,
+     -3.0,
+     0.09584259132635085
+    ],
+    "orientation_xyzw": [
+     2.419121432215474e-16,
+     1.2028849061956835e-16,
+     0.7071080798595151,
+     0.7071054825111949
+    ],
+    "received_wall_unix_ns": 1793727207726278262
+   }
+  ],
+  "bridge": [
+   {
+    "pid": 9553,
+    "argv": [
+     "/root/ardu_ws/install/ros_gz_bridge/lib/ros_gz_bridge/parameter_bridge",
+     "--ros-args",
+     "-r",
+     "__ns:=/rover1",
+     "--params-file",
+     "/tmp/launch_params_r6v0585w"
+    ],
+    "params": [
+     {
+      "path": "/tmp/launch_params_r6v0585w",
+      "sha256": "9027ac3e807dfd39a189617daf985ff4220feb73daa2f27db4f32754f8cdef98",
+      "text": "/**:\n  ros__parameters:\n    config_file: /tmp/tmptp05ve11.yaml\n    qos_overrides./tf_static.publisher.durability: transient_local\n"
+     }
+    ],
+    "configs": [
+     {
+      "path": "/tmp/tmptp05ve11.yaml",
+      "sha256": "db97010c73c389d1d8e3fbb4712d4e565f94442a478f15429895b35cfe77b093",
+      "text": "---\n- ros_topic_name: \"clock\"\n  gz_topic_name: \"/clock\"\n  ros_type_name: \"rosgraph_msgs/msg/Clock\"\n  gz_type_name: \"gz.msgs.Clock\"\n  direction: GZ_TO_ROS\n- ros_topic_name: \"joint_states\"\n  gz_topic_name: \"/world/runway/model/rover1/joint_state\"\n  ros_type_name: \"sensor_msgs/msg/JointState\"\n  gz_type_name: \"gz.msgs.Model\"\n  direction: GZ_TO_ROS\n- ros_topic_name: \"odometry\"\n  gz_topic_name: \"/model/rover1/odometry\"\n  ros_type_name: \"nav_msgs/msg/Odometry\"\n  gz_type_name: \"gz.msgs.Odometry\"\n  direction: GZ_TO_ROS\n- ros_topic_name: \"gz/tf\"\n  gz_topic_name: \"/model/rover1/pose\"\n  ros_type_name: \"tf2_msgs/msg/TFMessage\"\n  gz_type_name: \"gz.msgs.Pose_V\"\n  direction: GZ_TO_ROS\n- ros_topic_name: \"gz/tf_static\"\n  gz_topic_name: \"/model/rover1/pose_static\"\n  ros_type_name: \"tf2_msgs/msg/TFMessage\"\n  gz_type_name: \"gz.msgs.Pose_V\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"imu\"\n  gz_topic_name: \"/world/runway/model/rover1/link/imu_link/sensor/imu_sensor/imu\"\n  ros_type_name: \"sensor_msgs/msg/Imu\"\n  gz_type_name: \"gz.msgs.IMU\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"magnetometer\"\n  gz_topic_name: \"/world/runway/model/rover1/link/base_link/sensor/magnetometer_sensor/magnetometer\"\n  ros_type_name: \"sensor_msgs/msg/MagneticField\"\n  gz_type_name: \"gz.msgs.Magnetometer\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"navsat\"\n  gz_topic_name: \"/world/runway/model/rover1/link/base_link/sensor/navsat_sensor/navsat\"\n  ros_type_name: \"sensor_msgs/msg/NavSatFix\"\n  gz_type_name: \"gz.msgs.NavSat\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"gpsfix\"\n  gz_topic_name: \"/world/runway/model/rover1/link/base_link/sensor/navsat_sensor/navsat\" \n  ros_type_name: \"gps_msgs/msg/GPSFix\"\n  gz_type_name: \"gz.msgs.NavSat\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"battery\"\n  gz_topic_name: \"/model/rover1/battery/linear_battery/state\"\n  ros_type_name: \"sensor_msgs/msg/BatteryState\"\n  gz_type_name: \"gz.msgs.BatteryState\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"scan\"\n  gz_topic_name: \"/lidar\"\n  ros_type_name: \"sensor_msgs/msg/LaserScan\"\n  gz_type_name: \"gz.msgs.LaserScan\"\n  direction: GZ_TO_ROS\n"
+     }
+    ]
+   }
+  ],
+  "gz_model_pose_stdout": "\nRequesting state for world [runway]...\n\nModel: [11]\n  - Name: rover1\n  - Pose [ XYZ (m) ] [ RPY (rad) ]:\n    [0.000000 -3.000000 0.095843]\n    [0.000000 -0.000000 1.570800]\n",
+  "gz_return_code": 0,
+  "boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b",
+  "namespaces": {
+   "net": "net:[4026533327]",
+   "pid": "pid:[4026533325]",
+   "time": "time:[4026533397]"
+  }
+ },
+ "binding": null,
+ "evidence": null,
+ "reason": "RoverControlError: odometry before: exactly one publisher from ('ros_gz_bridge', '/rover1') required",
+ "collector": {
+  "return_code": 0,
+  "stderr_tail": ""
+ }
+}

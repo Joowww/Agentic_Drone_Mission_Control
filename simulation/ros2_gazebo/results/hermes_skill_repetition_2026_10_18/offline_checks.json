@@ -1,0 +1,102 @@
+{
+  "scope": "Offline closeout; no functional or skill edits, no operational MCP/LLM/container/flight",
+  "suite": {
+    "command": ".venv/bin/python -m pytest -q",
+    "result": "346 passed in 8.72s",
+    "meaning": "Deterministic tests, not proof of LLM fidelity"
+  },
+  "records_schema": "Four TRANSCRIPT_ONLY / INSUFFICIENT_EVIDENCE records valid under current schema",
+  "original_inventory_checked": 212,
+  "original_files_unchanged": 210,
+  "only_changes_since_turn_start": [
+    "docs/hermes-domain-evaluation.md",
+    "documentation/development_log.md"
+  ],
+  "skill_code_tests_evaluation_pack": "Unchanged from turn start",
+  "previous_document_history": "Unchanged prefixes for guide and development_log",
+  "previous_archives_exact_copy_counts": {
+    "hermes_conversational_2026_10_18": 37,
+    "hermes_skill_evaluation_2026_10_18": 17
+  },
+  "new_exact_original_copies": 12,
+  "new_exact_copies_originals_and_hashes": "all match",
+  "tracked_diff_check": "clean",
+  "new_file_checks_clean": [
+    ".hermes/skills/tfg-mission-control/SKILL.md",
+    "docs/hermes-domain-evaluation.md",
+    "documentation/verification/hermes_domain_context_2026_10_18.json",
+    "evaluation/hermes_conversation/run.schema.json",
+    "evaluation/hermes_conversation/run.template.json",
+    "evaluation/hermes_conversation/scenarios.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/README.md",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifact_verification.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/docs/hermes-domain-evaluation.md",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/evaluation/hermes_conversation/run.schema.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/evaluation/hermes_conversation/run.template.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/evaluation/hermes_conversation/scenarios.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/finalization.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/mission.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/parcela_loma_001.plan",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/source_draft.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/source_draft_state.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/draft.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/draft_state.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/finalization.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/mission.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/parcela_loma_001.plan",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/preflights/4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4/job.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/preflights/4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4/mission.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/preflights/4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4/report.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/assessment.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/context/skill_before_1.0.0.md",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/manifest.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/offline_checks.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/run_record.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/transcript_selected_excerpts.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/README.md",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifact_verification.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/.hermes/skills/tfg-mission-control/SKILL.md",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/evaluation/hermes_conversation/run.schema.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/evaluation/hermes_conversation/run.template.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/evaluation/hermes_conversation/scenarios.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/finalization.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/mission.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/parcela_loma_repeticion_001.plan",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/source_draft.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/source_draft_state.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/draft.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/draft_state.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/assessment.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/early_transcript_excerpts.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/manifest.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/offline_checks.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/operator_route_output.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/run_record_S1.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/run_record_S2.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/run_record_S3.json",
+    "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/run_record_S4.json",
+    "tests/test_hermes_attribution_contract.py",
+    "tests/test_hermes_conversation_contracts.py"
+  ],
+  "new_raw_evidence_whitespace_warnings": [
+    {
+      "path": "simulation/ros2_gazebo/results/hermes_skill_repetition_2026_10_18/transcripts/finalization_raw.txt",
+      "return_code": 3,
+      "trailing_whitespace_warnings": 214,
+      "blank_eof_warnings": 1,
+      "action": "Preserved original raw bytes; no normalization or global whitespace configuration change",
+      "sha256": "279dd265fd40a8c6ccf349c7e62dd2bdbac4f9f7b7139068ebdbc12625c99d6a"
+    }
+  ],
+  "review_findings": {
+    "artifact_geometry": "verified coherent, no new generator defect reproduced",
+    "conversational": "Clarification and nonredundant visible finalization, retained invocation/summary/provenance uncertainties; no global PASS or statistical inference",
+    "rtl": "Plan command 20 confirmed; executor uses navigation+LAND; do not conflate representations"
+  },
+  "source_capture_limits": [
+    "Exact finalization attachment copied; early pasted transcript archived only as selected literal excerpts",
+    "No full structured MCP arguments/results or revisions 1-3 snapshots",
+    "Model UI label visible, provider/session settings not verified",
+    "No current readiness, locks, flight or operation checked"
+  ]
+}

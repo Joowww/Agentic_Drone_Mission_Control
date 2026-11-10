@@ -1,0 +1,328 @@
+{
+ "classification": "BLOCKED_BEFORE_SUBMISSION",
+ "codex_commit": "57a0e303a",
+ "codex_snapshot": "57a0e303a",
+ "commands": [],
+ "conversion_owner": "CODEX_ADAPTER",
+ "coordinator_events": [
+  {
+   "detail": [
+    "request: NO_NAVIGATION_PLAN: speed and timeout were not set by a human",
+    "authorization: NO_HUMAN_AUTHORIZATION_RECORD",
+    "codex_bridge: NAVIGATION_PLAN_PENDING",
+    "frames: NO_FRAME_GRAPH",
+    "frames: ROVER_LOCALIZATION_NOT_ACCREDITED",
+    "codex_v2: NAVIGATION_PLAN_PENDING",
+    "executor_request: CONVERSION_DELEGATED_TO_CODEX_ADAPTER: no rover-frame goal is built on this side",
+    "executor_request: CODEX_ADAPTER_NOT_IN_SNAPSHOT: 57a0e303a has no tools/rover_payload_executor_adapter.py (not promoted)",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "reasons": [
+    "request: NO_NAVIGATION_PLAN",
+    "authorization: NO_HUMAN_AUTHORIZATION_RECORD",
+    "codex_bridge: NAVIGATION_PLAN_PENDING",
+    "frames: NO_FRAME_GRAPH",
+    "NO_POSITION: frames: ROVER_LOCALIZATION_NOT_ACCREDITED",
+    "codex_v2: NAVIGATION_PLAN_PENDING",
+    "executor_request: CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+    "executor_request: CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "envelope": null,
+ "error_categories": [
+  "AUTHORIZATION",
+  "CONVERSION",
+  "EXECUTOR_POLICY",
+  "FRAMES",
+  "LOCALIZATION",
+  "PLAN"
+ ],
+ "errors": [
+  {
+   "category": "PLAN",
+   "code": "NO_NAVIGATION_PLAN",
+   "detail": "NO_NAVIGATION_PLAN: speed and timeout were not set by a human",
+   "stage": "request"
+  },
+  {
+   "category": "AUTHORIZATION",
+   "code": "NO_HUMAN_AUTHORIZATION_RECORD",
+   "detail": "NO_HUMAN_AUTHORIZATION_RECORD",
+   "stage": "authorization"
+  },
+  {
+   "category": "PLAN",
+   "code": "NAVIGATION_PLAN_PENDING",
+   "detail": "NAVIGATION_PLAN_PENDING",
+   "stage": "codex_bridge"
+  },
+  {
+   "category": "FRAMES",
+   "code": "NO_FRAME_GRAPH",
+   "detail": "NO_FRAME_GRAPH",
+   "stage": "frames"
+  },
+  {
+   "category": "LOCALIZATION",
+   "code": "ROVER_LOCALIZATION_NOT_ACCREDITED",
+   "detail": "ROVER_LOCALIZATION_NOT_ACCREDITED",
+   "stage": "frames"
+  },
+  {
+   "category": "PLAN",
+   "code": "NAVIGATION_PLAN_PENDING",
+   "detail": "NAVIGATION_PLAN_PENDING",
+   "stage": "codex_v2"
+  },
+  {
+   "category": "CONVERSION",
+   "code": "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "detail": "CONVERSION_DELEGATED_TO_CODEX_ADAPTER: no rover-frame goal is built on this side",
+   "stage": "executor_request"
+  },
+  {
+   "category": "CONVERSION",
+   "code": "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "detail": "CODEX_ADAPTER_NOT_IN_SNAPSHOT: 57a0e303a has no tools/rover_payload_executor_adapter.py (not promoted)",
+   "stage": "executor_request"
+  },
+  {
+   "category": "EXECUTOR_POLICY",
+   "code": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "detail": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "stage": "executor_admit"
+  }
+ ],
+ "mode": "OFFLINE_TEST",
+ "movement_executed": false,
+ "provenance": {
+  "aerial_assignments": {
+   "drone_01": [
+    "POI_1"
+   ],
+   "drone_02": [
+    "POI_3"
+   ]
+  },
+  "agents_recorded_as": "REAL_LOCAL_LLM",
+  "coordinator_ground": {
+   "observation_id": "red_target-obs-1",
+   "state": "READY_FOR_AUTHORIZATION",
+   "target": "POI_3",
+   "waits_for_task": "AIR_drone_02"
+  },
+  "dependencies": [
+   {
+    "after": "AIR_drone_02",
+    "condition": "POI_REACHED",
+    "point": "POI_3",
+    "task_id": "GROUND_rover_01"
+   },
+   {
+    "after": "AIR_drone_01",
+    "condition": "COMPLETED",
+    "task_id": "GROUND_rover_01"
+   }
+  ],
+  "drone_gate_accepted": true,
+  "evidence": "m4c_r1_integrated_v1_2026-11-07_f1ec396c9",
+  "ground_target": {
+   "map_frame": "synthetic_orchard_local",
+   "matched_poi": "POI_3",
+   "object_class": "red_card",
+   "point_from": "BACK_PROJECTED_GROUND_PLANE_ASSUMPTION",
+   "sigma_m": 0.12,
+   "target_id": "red_card_1",
+   "x_m": 8.0,
+   "y_m": 4.0,
+   "z_m": 0.0
+  },
+  "kind": "SEALED_REAL_RUN_READ_ONLY",
+  "new_llm_calls": 0,
+  "request_problems": [
+   "NO_NAVIGATION_PLAN: speed and timeout were not set by a human"
+  ],
+  "result_sha256": "f8480c4197eb7cbd76a53679e86b768247cf307f5da646bf0d6f865464ed1852",
+  "rover_gate_accepted": true,
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "supervisor": {
+   "final": "PROPOSED_PENDING_AUTHORIZATION",
+   "phase_a": "PROPOSED_PENDING_AUTHORIZATION",
+   "safety_policy": "safety/4"
+  }
+ },
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [
+    "NO_NAVIGATION_PLAN: speed and timeout were not set by a human"
+   ],
+   "stage": "request",
+   "status": "WAITING"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [
+    "NO_HUMAN_AUTHORIZATION_RECORD"
+   ],
+   "stage": "authorization",
+   "status": "BLOCKED"
+  },
+  {
+   "reasons": [
+    "NAVIGATION_PLAN_PENDING"
+   ],
+   "stage": "codex_bridge",
+   "status": "WAITING"
+  },
+  {
+   "conversion": {
+    "applied_here": false,
+    "delegated_checks": [],
+    "owner": "CODEX_ADAPTER",
+    "reasons": [
+     "NO_FRAME_GRAPH",
+     "ROVER_LOCALIZATION_NOT_ACCREDITED"
+    ],
+    "site_goal": {
+     "frame": "synthetic_orchard_local",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "transform": null,
+    "transform_reference": null
+   },
+   "goal_base_link": null,
+   "goal_handoff": {
+    "applied_conversions": [],
+    "constraints": {
+     "authorized_area_site_frame": null,
+     "human": {
+      "max_speed_mps": null,
+      "timeout_s": null
+     },
+     "operator": {}
+    },
+    "conversion_owner": "CODEX_ADAPTER",
+    "delegated_checks": [],
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     },
+     {
+      "after": "AIR_drone_01",
+      "condition": "COMPLETED",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "frame_identity": {
+     "rover_frame_expected": "odom",
+     "site_frame": "synthetic_orchard_local"
+    },
+    "goal_rover": null,
+    "goal_site": {
+     "frame": "synthetic_orchard_local",
+     "point_id": "POI_3",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "boot_id": null,
+     "frame": null,
+     "observed_at": null,
+     "sigma_m": null,
+     "source": null,
+     "source_sha256": null,
+     "state": "NO_POSITION",
+     "vehicle_id": null
+    },
+    "observation": {
+     "data_kind": "image SYNTHETIC_TEST, camera DECLARED_VIRTUAL",
+     "observation_id": "red_target-obs-1",
+     "original_pose": {
+      "calibration": "DECLARED_VIRTUAL",
+      "chain": [
+       "synthetic_orchard_local",
+       "drone_02/base_link",
+       "cam_down_fixture_optical"
+      ],
+      "depth_source": "GROUND_PLANE_ASSUMPTION",
+      "extrinsics_source": "DECLARED_VIRTUAL",
+      "ground_plane_z": 0.0,
+      "pose_source": "TEST_FIXTURE",
+      "sigma_detection_m": 0.0667
+     },
+     "point_from": "BACK_PROJECTED_GROUND_PLANE_ASSUMPTION",
+     "sha256": null,
+     "source": "perception gate",
+     "uncertainty_m": 0.12
+    },
+    "schema": "tfg.multiagent.rover-goal-handoff/1",
+    "transform_required": {
+     "from": "synthetic_orchard_local",
+     "reference": null,
+     "status": "REQUIRED_NOT_APPLIED",
+     "to": "odom"
+    },
+    "vehicle": null
+   },
+   "goal_rover": null,
+   "reasons": [
+    "NO_FRAME_GRAPH",
+    "ROVER_LOCALIZATION_NOT_ACCREDITED"
+   ],
+   "stage": "frames",
+   "status": "REFUSED"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [
+    "NAVIGATION_PLAN_PENDING"
+   ],
+   "schema_errors": null,
+   "stage": "codex_v2",
+   "status": "WAITING"
+  },
+  {
+   "reasons": [
+    "CONVERSION_DELEGATED_TO_CODEX_ADAPTER: no rover-frame goal is built on this side",
+    "CODEX_ADAPTER_NOT_IN_SNAPSHOT: 57a0e303a has no tools/rover_payload_executor_adapter.py (not promoted)"
+   ],
+   "stage": "executor_request",
+   "status": "NOT_REACHED"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

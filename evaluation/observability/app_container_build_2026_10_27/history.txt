@@ -1,0 +1,17 @@
+0B | CMD ["main.py"]
+0B | ENTRYPOINT ["python3"]
+0B | USER 1000:1000
+4.1kB | WORKDIR /opt/tfg
+0B | ENV PATH=/opt/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin LANG=C.UTF-8 PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HOME=/tmp/home
+0B | LABEL org.opencontainers.image.title=tfg-app org.opencontainers.image.version=2026.10.27 org.opencontainers.image.description=Offline agri_demo_001 scenario tools (no simulator, no LLM provider) tfg.apt.snapshot=20261024T000000Z tfg.python.constraints=constraints-verified.txt
+655kB | RUN /bin/sh -c cd /opt/tfg && find . -type f -print0 | sort -z | xargs -0 sha256sum > /opt/tfg-provenance/files.sha256     && chmod -R a+rX,go-w /opt/tfg /opt/tfg-provenance # buildkit
+4.32MB | COPY . /opt/tfg/ # buildkit
+659kB | COPY /opt/tfg-build/pip-install-report.json /opt/tfg-build/pip-freeze.txt /opt/tfg-provenance/ # buildkit
+122MB | COPY /opt/venv /opt/venv # buildkit
+49.2MB | RUN |1 APT_SNAPSHOT=20261024T000000Z /bin/sh -c sed -i -E "s#^URIs: .*#URIs: https://snapshot.ubuntu.com/ubuntu/${APT_SNAPSHOT}/#"         /etc/apt/sources.list.d/ubuntu.sources     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt -o APT::Update::Error-Mode=any update     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt install -y --no-install-recommends         python3 python3-venv     && rm -rf /var/lib/apt/lists/* # buildkit
+0B | ARG APT_SNAPSHOT=20261024T000000Z
+0B | /bin/sh -c #(nop)  CMD ["/bin/bash"]
+87.6MB | /bin/sh -c #(nop) ADD file:eed88e94d6aa7c9da62836e137f889e03988c1a6b237b0cedb6ca666dfaa98ea in / 
+0B | /bin/sh -c #(nop)  LABEL org.opencontainers.image.version=24.04
+0B | /bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH
+0B | /bin/sh -c #(nop)  ARG RELEASE

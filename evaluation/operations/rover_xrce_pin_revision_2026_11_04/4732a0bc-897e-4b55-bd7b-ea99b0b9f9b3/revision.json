@@ -1,0 +1,127 @@
+{
+ "authorization": "NOT_PROVIDED",
+ "binary_sha256": "bdd8aa75a325db8320f4e905b320d0595e02e9f014c726e3e134e11ecacea580",
+ "changed_pins": [
+  {
+   "changed_lines": 175,
+   "commits_since_preparation": [
+    "f3af4cd5c 2026-11-04 feat(rover): require ArduRover's GUID_TIMEOUT as the independent stop layer",
+    "15ded906f 2026-11-04 fix(rover): bind trial control envelope and conservatively bound stale-pose travel",
+    "076a56798 2026-11-03 feat(rover): integrate navigation preparation, rover_only readiness and the SITL gate",
+    "e1135281c 2026-11-02 chore: preserve rover transport and protected lifecycle work"
+   ],
+   "current_sha256": "a5db83999263790c7e7d34e5fe6952b91f339d0883facb6e965c462a06c7958d",
+   "diff": "diffs/tools__rover_ground_executor.py.patch",
+   "historical_copy": "evaluation/operations/rover_clock_path_preparation_2026_10_31/54b7adc8-690b-4da1-98fa-eacdc78e9e0e/frozen-host-sources/tools/rover_ground_executor.py",
+   "historical_sha256": "902859a7b8cc617585f106965a449630fb3652677be7e7ffe7049dd193274284",
+   "path": "tools/rover_ground_executor.py",
+   "review": "PENDING_HUMAN_REVIEW"
+  },
+  {
+   "changed_lines": 52,
+   "commits_since_preparation": [
+    "1ad8435fc 2026-11-04 fix(rover): cancel native futures across deadline races and reject lost scope",
+    "076a56798 2026-11-03 feat(rover): integrate navigation preparation, rover_only readiness and the SITL gate",
+    "e1135281c 2026-11-02 chore: preserve rover transport and protected lifecycle work"
+   ],
+   "current_sha256": "82df2b790d30cb01b218856943b24fbbedc7910cc895dbdc8c4c79e179611305",
+   "diff": "diffs/tools__rover_ros2_adapter.py.patch",
+   "historical_copy": "evaluation/operations/rover_clock_path_preparation_2026_10_31/54b7adc8-690b-4da1-98fa-eacdc78e9e0e/frozen-host-sources/tools/rover_ros2_adapter.py",
+   "historical_sha256": "be7e87f0bfd0c05fa2776957b212b945ac50ca7c731d4aa80255eb534f1dff02",
+   "path": "tools/rover_ros2_adapter.py",
+   "review": "PENDING_HUMAN_REVIEW"
+  },
+  {
+   "changed_lines": 254,
+   "commits_since_preparation": [
+    "e1135281c 2026-11-02 chore: preserve rover transport and protected lifecycle work"
+   ],
+   "current_sha256": "f197f77c46e869ee3de14aff36b3d7697491ed4a1ab21762f7392715d243aa3b",
+   "diff": "diffs/tools__rover_xrce_trace__session_precheck.py.patch",
+   "historical_copy": "evaluation/operations/rover_clock_path_preparation_2026_10_31/54b7adc8-690b-4da1-98fa-eacdc78e9e0e/frozen-host-sources/tools/rover_xrce_trace/session_precheck.py",
+   "historical_sha256": "1570a8541eed107f85d0cf9778f78a84e46265fba325ca0ca90e84f8ada469f3",
+   "path": "tools/rover_xrce_trace/session_precheck.py",
+   "review": "PENDING_HUMAN_REVIEW"
+  },
+  {
+   "changed_lines": 251,
+   "commits_since_preparation": [
+    "05c91efd3 2026-11-03 feat(sim): add protected close for ordinary UNCONFIRMED lifecycle starts",
+    "e1135281c 2026-11-02 chore: preserve rover transport and protected lifecycle work"
+   ],
+   "current_sha256": "98e013b1c2f1468ad3023edaff21f2458099513c0bdb70b1fe76271d81190877",
+   "diff": "diffs/tools__simulation_lifecycle.py.patch",
+   "historical_copy": "evaluation/operations/rover_clock_path_preparation_2026_10_31/54b7adc8-690b-4da1-98fa-eacdc78e9e0e/frozen-host-sources/tools/simulation_lifecycle.py",
+   "historical_sha256": "7aa197838cd9f4421249a6ccf4b52b57da64fb57eb32a3aaf5661f30423bf931",
+   "path": "tools/simulation_lifecycle.py",
+   "review": "PENDING_HUMAN_REVIEW"
+  }
+ ],
+ "host_source_review": "host-source-review.pending.json (PENDING, not a review)",
+ "operational_actions_performed": false,
+ "pending": [
+  "Human review of each diff (Joel; Codex owns these files)",
+  "Exact authorization by Joel naming this descriptor digest before any use",
+  "Current host/container/lifecycle facts in a separately authorized procedure",
+  "Precheck at the time of use; any later change of a pinned file blocks selection again"
+ ],
+ "predecessor": {
+  "files_sha256": {
+   "agent.prepared.json": "ef77d8cc61003c50db2316d8099c6fd29edeecd0d05decd4beffe65648318401",
+   "reader.prepared.json": "21529a76e22c3eb32f7a489ff671aa20bb6b0e0ba1fb131894f6e77d4fa11563",
+   "receiver-build-review.json": "1296cc0dae7f54cf081403489382b44bac98b5101bf587fc7970dce9fef1ac3e",
+   "socket-helper-review.json": "b5f9c2d3037bd774497b6c41ded09c8815ef2ffea97f1cccac7427e9f689f4c4"
+  },
+  "preparation": "evaluation/operations/rover_clock_path_preparation_2026_10_31/54b7adc8-690b-4da1-98fa-eacdc78e9e0e/preparation",
+  "seal_sha256": "ea4e5384773547438dd528b66abce4923149e236b863d3343473726fdf7196db"
+ },
+ "prepared_at_head": "85d0bdcc9947377fc09fa7f050bade586845098e",
+ "schema": "tfg.rover.xrce-pin-revision/1",
+ "selection_dry_run": {
+  "historical_reader": {
+   "executed": false,
+   "movement_authorized": false,
+   "reason": "Receiver/helper source differs from reviewed preparation",
+   "selection_files_valid": false,
+   "status": "BLOCKED"
+  },
+  "hypothetical_after_host_review_accepted": {
+   "basis": "COMPUTED_IN_TEMPORARY_DIRECTORY_NOT_PERSISTED",
+   "executed": false,
+   "movement_authorized": false,
+   "reason": "Runtime artifacts/dependencies and fresh authorization not checked",
+   "selection_files_valid": true,
+   "status": "BLOCKED"
+  },
+  "revised_reader": {
+   "executed": false,
+   "movement_authorized": false,
+   "reason": "Host lifecycle helper review missing/contradictory",
+   "selection_files_valid": false,
+   "status": "BLOCKED"
+  }
+ },
+ "status": "PREPARED_FOR_REVIEW_NOT_AUTHORIZED_NOT_APPLIED",
+ "supersedes_draft": "Codex xrce-pin-review-proposal.json (base 8067f8b03)",
+ "unchanged_fields": [
+  "agent_selection_sha256",
+  "binary",
+  "duration_s",
+  "executed",
+  "gaps",
+  "helper_review",
+  "max_samples",
+  "max_wire_bytes",
+  "movement_authorized",
+  "native_dependencies",
+  "prepared",
+  "provenance",
+  "provenance_sha256",
+  "schema",
+  "socket_helper_review_sha256",
+  "status",
+  "status_window"
+ ],
+ "unchanged_pins": 32,
+ "valid_only_while_current_sources_match": true
+}

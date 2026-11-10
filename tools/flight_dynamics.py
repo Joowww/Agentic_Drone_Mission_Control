@@ -99,10 +99,13 @@ def calculate_flight_time(
 
     return {
         "status": "success",
+        # Rounded for presentation only; sums and decisions use the exact value.
         "flight_time_minutes": round(
             flight_time_minutes,
             2,
         ),
+        "flight_time_minutes_exact":
+            flight_time_minutes,
         "ground_speed_kmh": round(
             ground_speed_kmh,
             2,

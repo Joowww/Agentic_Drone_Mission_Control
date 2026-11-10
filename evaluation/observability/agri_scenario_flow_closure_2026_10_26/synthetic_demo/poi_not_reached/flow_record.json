@@ -1,0 +1,169 @@
+{
+  "schema": "tfg.agri-scenario-flow/1",
+  "scenario_id": "agri_demo_001",
+  "mode": "demo",
+  "source": "synthetic",
+  "origin": "SYNTHETIC",
+  "variant": "poi_not_reached",
+  "resume": {
+    "resumed": false
+  },
+  "status": "COMPLETED_FLOW",
+  "stage": "report",
+  "reasons": [],
+  "artifacts": {
+    "binding_record": {
+      "path": "evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json",
+      "sha256": "b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf"
+    },
+    "missions": {
+      "drone_01": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24/sequence/mission_1.json",
+      "drone_02": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24/sequence/mission_2.json"
+    }
+  },
+  "sequence": {
+    "sequence_id": "0df8dec9-6b2f-5a18-be4a-4a5221389a82",
+    "job_state": "FINISHED",
+    "result_status": "PASSED",
+    "plan_sha256": "a1821ce7c0d16620af683759049737ace1096d3a18a2202b571567c3ee245e30",
+    "created_at": "2026-10-24T12:51:18.386453+00:00",
+    "finished_at": "2026-10-24T12:59:51.127955+00:00"
+  },
+  "view_sha256": "5b7715c579eb5b28b116825535f8a378f9e5263fdca9230c6a9769696267e810",
+  "hermes": {
+    "origin": "SUBSTITUTED",
+    "inference_performed": false,
+    "summary": "model provider substituted: no call; the conserved H1 finalizations are the inputs"
+  },
+  "r1": {
+    "request_key": "synthetic-r1-poi_not_reached",
+    "stages": {
+      "dependency": "NOT_MET",
+      "eligibility": "NOT_ELIGIBLE",
+      "authorization": "ABSENT",
+      "admission": "NOT_REQUESTED",
+      "execution": "NOT_STARTED"
+    },
+    "blockers": [
+      "target_reached_by_drone_01",
+      "dependency_met"
+    ],
+    "candidate_sha256": null,
+    "state": "NOT_REQUESTED",
+    "run_id": null,
+    "acceptance": null,
+    "admit_calls": 0,
+    "request_status": "BLOCKED",
+    "repeat_request_status": "BLOCKED",
+    "reason": "DEPENDENCY_NOT_MET"
+  },
+  "r1_dimensions": {
+    "dependency": "NOT_MET",
+    "eligibility": {
+      "historical_view": {
+        "status": "BLOCKED_PENDING",
+        "barriers": [
+          "Rover identity chain (XRCE client to SITL instance/SYSID and bridge/model) not established",
+          "No public rover entry point with authorization and reservations",
+          "No navigation to a position: rover control offers bounded velocity/turn only",
+          "Execution gate covers the two_drones profile only"
+        ]
+      },
+      "this_preparation": {
+        "eligibility": "NOT_ELIGIBLE",
+        "blockers": [
+          "target_reached_by_drone_01",
+          "dependency_met"
+        ]
+      }
+    },
+    "authorization": "ABSENT",
+    "request": {
+      "status": "NOT_REQUESTED_VIA_THIS_COORDINATOR",
+      "meaning": "no R1 record: it was not requested through this coordinator; this proves no eligibility and removes no blocker"
+    },
+    "execution": {
+      "status": "NOT_STARTED"
+    },
+    "completeness": {
+      "scenario_status": "AERIAL_COMPLETED_R1_DEPENDENCY_NOT_MET",
+      "scenario_complete": false,
+      "synthetic_complete": false
+    }
+  },
+  "scenario": {
+    "scenario_status": "AERIAL_COMPLETED_R1_DEPENDENCY_NOT_MET",
+    "scenario_complete": false,
+    "synthetic_complete": false,
+    "r1_state": "NOT_REQUESTED"
+  },
+  "report_path": "evaluation/observability/agri_scenario_flow_closure_2026_10_26/synthetic_demo/poi_not_reached/scenario_report.md",
+  "previous_report_kept": null,
+  "transitions": [
+    {
+      "node": "load_artifacts",
+      "started_at": "2026-10-26T18:34:46.637392+00:00",
+      "finished_at": "2026-10-26T18:34:46.638701+00:00",
+      "waiting_on": "conserved H1/H2 artifacts, verified by their manifests",
+      "result": "LOADED",
+      "reason": "2 missions; binding record SYNTHETIC_DE"
+    },
+    {
+      "node": "bind_and_validate",
+      "started_at": "2026-10-26T18:34:46.639741+00:00",
+      "finished_at": "2026-10-26T18:34:46.644103+00:00",
+      "waiting_on": "deterministic validation, execution compatibility and H0 geometry of each mission",
+      "result": "BOUND",
+      "reason": "drone_01 321ad647ab9c, drone_02 079e25a30242"
+    },
+    {
+      "node": "aerial_sequence",
+      "started_at": "2026-10-26T18:34:46.645022+00:00",
+      "finished_at": "2026-10-26T18:34:46.654403+00:00",
+      "waiting_on": "the sequence coordinator's record (read-only; no admission or launch)",
+      "result": "FINISHED/PASSED",
+      "reason": "SYNTHETIC copy of the conserved H2 record, re-identified as 0df8dec9"
+    },
+    {
+      "node": "scenario_view",
+      "started_at": "2026-10-26T18:34:46.655456+00:00",
+      "finished_at": "2026-10-26T18:34:46.655747+00:00",
+      "waiting_on": "the scenario interpretation of the sequence against the binding",
+      "result": "OK",
+      "reason": "scenario AERIAL_COMPLETED_GROUND_PENDING; R1 dependency NOT_MET"
+    },
+    {
+      "node": "hermes_evidence",
+      "started_at": "2026-10-26T18:34:46.656779+00:00",
+      "finished_at": "2026-10-26T18:34:46.656788+00:00",
+      "waiting_on": "recorded Hermes captures (no inference)",
+      "result": "SUBSTITUTED",
+      "reason": "model provider substituted: no call; the conserved H1 finalizations are the inputs"
+    },
+    {
+      "node": "r1_prepare",
+      "started_at": "2026-10-26T18:34:46.657787+00:00",
+      "finished_at": "2026-10-26T18:34:46.657853+00:00",
+      "waiting_on": "R1 inputs, current executor facts and measured facts (dry-run)",
+      "result": "NOT_MET/NOT_ELIGIBLE",
+      "reason": "blockers: target_reached_by_drone_01, dependency_met"
+    },
+    {
+      "node": "r1_coordinate",
+      "started_at": "2026-10-26T18:34:46.658924+00:00",
+      "finished_at": "2026-10-26T18:34:46.660451+00:00",
+      "waiting_on": "the ground coordinator's record (query: read-only; demo: TEST_DOUBLE executor)",
+      "result": "NOT_REQUESTED",
+      "reason": "DEPENDENCY_NOT_MET"
+    },
+    {
+      "node": "report",
+      "started_at": "2026-10-26T18:34:46.661546+00:00",
+      "finished_at": "2026-10-26T18:34:46.661962+00:00",
+      "waiting_on": "deterministic rendering of the view, the R1 preparation and the R1 record",
+      "result": "AERIAL_COMPLETED_R1_DEPENDENCY_NOT_MET",
+      "reason": "scenario complete: False"
+    }
+  ],
+  "movement_authorized": false
+}

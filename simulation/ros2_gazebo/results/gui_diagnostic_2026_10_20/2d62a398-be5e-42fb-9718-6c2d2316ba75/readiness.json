@@ -1,0 +1,11 @@
+{
+  "started_at": "2026-10-20T08:55:53.470975+00:00",
+  "finished_at": "2026-10-20T08:57:27.562168+00:00",
+  "result": {
+    "ready": true,
+    "status": "READY",
+    "return_code": 0,
+    "message": "Simulation is healthy and both drones are ready.",
+    "output": "========================================\n TFG - Simulation Check\n========================================\n\n[1/5] Docker container...\n[PASS] Container running.\n\n[2/5] Gazebo server...\n[PASS] Gazebo runway world running.\n\n[3/5] ArduPilot processes...\n[PASS] 2 ArduCopter processes running.\n\n[4/5] ROS 2 vehicle interfaces...\n\n[PASS] /ap/v1/status\n[PASS] /ap/v2/status\n\n[5/5] Pre-arm checks...\n........\n[PASS] /ap/v1 - Vehicle is Armable\n[PASS] /ap/v2 - Vehicle is Armable\n\n========================================\n SIMULATION HEALTHY\n========================================\n\nDrone 1 -> READY\nDrone 2 -> READY"
+  }
+}

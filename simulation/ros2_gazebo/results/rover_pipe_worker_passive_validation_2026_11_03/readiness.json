@@ -1,0 +1,65 @@
+{
+  "profile": "rover_only",
+  "ready": true,
+  "status": "READY",
+  "return_code": 0,
+  "message": "Simulation infrastructure checks passed; no movement authorized.",
+  "output": "========================================\n TFG - Simulation Check\n========================================\n\n[1/5] Docker container...\n[PASS] Container running.\n\n[2/5] Gazebo server...\n[PASS] Gazebo runway world running.\n\n[3/5] ArduPilot processes...\n[PASS] 1 ardurover processes running.\n\n[4/5] ROS 2 vehicle interfaces...\nTFG_READINESS_VEHICLE /ap/v3 status PASS\n\n[PASS] /ap/v3/status\n\n[5/5] Pre-arm checks...\nTFG_PREARM_EVENT {\"service\": \"/ap/v3/prearm_check\", \"interface\": \"v3\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v3/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-11-03T18:31:35.274434+00:00\", \"started_monotonic_s\": 73679.626028663, \"event\": \"started\"}\nTFG_PREARM_EVENT {\"service\": \"/ap/v3/prearm_check\", \"interface\": \"v3\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v3/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-11-03T18:31:35.274434+00:00\", \"started_monotonic_s\": 73679.626028663, \"event\": \"output\", \"stream\": \"stdout\", \"text\": \"waiting for service to become available...\\n\", \"received_monotonic_s\": 73680.966037833}\nTFG_PREARM_EVENT {\"service\": \"/ap/v3/prearm_check\", \"interface\": \"v3\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v3/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-11-03T18:31:35.274434+00:00\", \"started_monotonic_s\": 73679.626028663, \"event\": \"output\", \"stream\": \"stdout\", \"text\": \"requester: making request: std_srvs.srv.Trigger_Request()\\n\\n\", \"received_monotonic_s\": 73681.216597508}\nTFG_PREARM_EVENT {\"service\": \"/ap/v3/prearm_check\", \"interface\": \"v3\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v3/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-11-03T18:31:35.274434+00:00\", \"started_monotonic_s\": 73679.626028663, \"event\": \"output\", \"stream\": \"stdout\", \"text\": \"response:\\nstd_srvs.srv.Trigger_Response(success=True, message='Vehicle is Armable')\\n\\n\", \"received_monotonic_s\": 73681.221360179}\nTFG_PREARM_EVENT {\"service\": \"/ap/v3/prearm_check\", \"interface\": \"v3\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v3/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-11-03T18:31:35.274434+00:00\", \"started_monotonic_s\": 73679.626028663, \"event\": \"completed\", \"return_code\": 0, \"stdout\": \"waiting for service to become available...\\nrequester: making request: std_srvs.srv.Trigger_Request()\\n\\nresponse:\\nstd_srvs.srv.Trigger_Response(success=True, message='Vehicle is Armable')\\n\\n\", \"stderr\": \"\", \"execution_error\": null, \"streams_closed\": {\"stdout\": true, \"stderr\": true}, \"finished_at_utc\": \"2026-11-03T18:31:37.096604+00:00\", \"duration_wall_s\": 1.8222020219982369, \"outcome\": \"ACCEPTED\", \"response\": {\"success\": true, \"message\": \"Vehicle is Armable\"}, \"timed_out\": false, \"timeout_basis\": null, \"waiting_for_service_observed\": true}\nTFG_READINESS_VEHICLE /ap/v3 prearm PASS\n\n[PASS] /ap/v3 - Vehicle is Armable\n\n========================================\n SIMULATION HEALTHY\n========================================\n\n/ap/v3 -> READY (infrastructure only; no movement authorization)",
+  "vehicles": [
+    {
+      "vehicle_id": "rover_01",
+      "interface": "v3",
+      "robot_name": "rover1",
+      "sitl_executable": "ardurover",
+      "mission_executor_supported": false,
+      "status_topic": "/ap/v3/status",
+      "prearm_service": "/ap/v3/prearm_check",
+      "status_last_observed": "PASS",
+      "prearm_last_observed": "PASS",
+      "prearm_attempts": [
+        {
+          "interface": "v3",
+          "service": "/ap/v3/prearm_check",
+          "service_type": "std_srvs/srv/Trigger",
+          "attempt": 1,
+          "stdout": "waiting for service to become available...\nrequester: making request: std_srvs.srv.Trigger_Request()\n\nresponse:\nstd_srvs.srv.Trigger_Response(success=True, message='Vehicle is Armable')\n\n",
+          "stderr": "",
+          "return_code": 0,
+          "timeout_s": 30,
+          "duration_wall_s": 1.8222020219982369,
+          "outcome": "ACCEPTED",
+          "response": {
+            "success": true,
+            "message": "Vehicle is Armable"
+          },
+          "started_at_utc": "2026-11-03T18:31:35.274434+00:00",
+          "started_monotonic_s": 73679.626028663,
+          "timed_out": false,
+          "completed": true,
+          "last_output_received_monotonic_s": 73681.221360179,
+          "request": "{}",
+          "command": [
+            "docker",
+            "exec",
+            "tfg-ardupilot-gazebo",
+            "bash",
+            "-lc",
+            "source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \"$1\" std_srvs/srv/Trigger \"{}\"",
+            "bash",
+            "/ap/v3/prearm_check"
+          ],
+          "event": "completed",
+          "execution_error": null,
+          "streams_closed": {
+            "stdout": true,
+            "stderr": true
+          },
+          "finished_at_utc": "2026-11-03T18:31:37.096604+00:00",
+          "timeout_basis": null,
+          "waiting_for_service_observed": true
+        }
+      ]
+    }
+  ],
+  "movement_authorized": false
+}

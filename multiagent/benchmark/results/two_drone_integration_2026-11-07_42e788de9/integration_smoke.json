@@ -1,0 +1,196 @@
+{
+ "schema": "tfg.multiagent.integration-smoke/1",
+ "areas": [
+  {
+   "area": "hermes",
+   "what": "Hermes MCP tools, mission planning/validation, deterministic parser, structured session",
+   "pytest_exit": 0,
+   "summary": "49 passed in 7.77s",
+   "missing": [],
+   "commands": [],
+   "seconds": 9.3,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "plan_input",
+   "what": "QGC .plan export, import, comparison; georeference; mission-input/1 contract",
+   "pytest_exit": 0,
+   "summary": "112 passed in 2.31s",
+   "missing": [],
+   "commands": [],
+   "seconds": 3.6,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "preflight",
+   "what": "preflight sequences and virtual preflight (process doubles only)",
+   "pytest_exit": 0,
+   "summary": "134 passed in 10.10s",
+   "missing": [],
+   "commands": [],
+   "seconds": 11.7,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "langgraph",
+   "what": "the agri scenario graph and partial-geometry planning (main.py, graph/)",
+   "pytest_exit": 0,
+   "summary": "224 passed, 1 skipped, 4 deselected in 17.08s",
+   "missing": [],
+   "commands": [],
+   "seconds": 18.8,
+   "not_run_data_absent": {
+    "simulation/ros2_gazebo/results/rover_worker_lifecycle_2026_10_25/4ac58516-8fad-457e-918e-253483a2d728": "tests matching ['REAL_VIEW_measured_facts', 'ground_report_keeps_measured_facts'] NOT RUN: untracked data absent here"
+   },
+   "passed": true
+  },
+  {
+   "area": "supervisor",
+   "what": "Mission Orchestrator, brief provenance /4, supervisor v3, safety policies",
+   "pytest_exit": 0,
+   "summary": "136 passed in 14.98s",
+   "missing": [],
+   "commands": [],
+   "seconds": 16.4,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "drone_agent",
+   "what": "Drone/Swarm Agent, deconfliction, swarm",
+   "pytest_exit": 0,
+   "summary": "52 passed in 7.07s",
+   "missing": [],
+   "commands": [],
+   "seconds": 8.3,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "rover_agent",
+   "what": "Rover Agent gate and UAV-UGV cases",
+   "pytest_exit": 0,
+   "summary": "89 passed in 8.31s",
+   "missing": [],
+   "commands": [],
+   "seconds": 9.5,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "perception",
+   "what": "card detector, geometry, observation gate",
+   "pytest_exit": 0,
+   "summary": "78 passed in 17.64s",
+   "missing": [],
+   "commands": [],
+   "seconds": 18.9,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "coordination",
+   "what": "mission coordinator, coordination matrix, SITL event contract",
+   "pytest_exit": 0,
+   "summary": "66 passed in 7.10s",
+   "missing": [],
+   "commands": [],
+   "seconds": 8.3,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "opik_offline",
+   "what": "Opik export/bridge offline (fake transports; nothing published)",
+   "pytest_exit": 0,
+   "summary": "154 passed in 8.19s",
+   "missing": [],
+   "commands": [],
+   "seconds": 9.4,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "simulator",
+   "what": "simulated vehicle selection and mission mapping (no simulator started)",
+   "pytest_exit": 0,
+   "summary": "45 passed in 3.01s",
+   "missing": [],
+   "commands": [],
+   "seconds": 4.4,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "rover_bridge",
+   "what": "bridge, v1/v2 contracts against Codex snapshots, hand-off, CODEX_ADAPTER, frames",
+   "pytest_exit": 0,
+   "summary": "213 passed, 2 skipped in 31.57s",
+   "missing": [],
+   "commands": [],
+   "seconds": 32.9,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "two_drones",
+   "what": "drone plan -> Hermes missions -> H2 request (no effects), schedule, camera, end-to-end demo",
+   "pytest_exit": 0,
+   "summary": "55 passed in 20.40s",
+   "missing": [],
+   "commands": [
+    {
+     "argv": [
+      "-m",
+      "multiagent.demo",
+      "--two-drones"
+     ],
+     "exit": 0
+    }
+   ],
+   "seconds": 21.6,
+   "not_run_data_absent": {},
+   "passed": true
+  },
+  {
+   "area": "cli_replay",
+   "what": "demo CLI scenarios and the sealed M4c-r1 replay",
+   "pytest_exit": 0,
+   "summary": "38 passed in 23.64s",
+   "missing": [],
+   "commands": [
+    {
+     "argv": [
+      "-m",
+      "multiagent.demo",
+      "--list-scenarios"
+     ],
+     "exit": 0
+    },
+    {
+     "argv": [
+      "-m",
+      "multiagent.demo",
+      "--all-scenarios"
+     ],
+     "exit": 0
+    },
+    {
+     "argv": [
+      "-m",
+      "multiagent.demo",
+      "--replay",
+      "multiagent/benchmark/results/m4c_r1_integrated_v1_2026-11-07_f1ec396c9"
+     ],
+     "exit": 0
+    }
+   ],
+   "seconds": 24.9,
+   "not_run_data_absent": {},
+   "passed": true
+  }
+ ]
+}

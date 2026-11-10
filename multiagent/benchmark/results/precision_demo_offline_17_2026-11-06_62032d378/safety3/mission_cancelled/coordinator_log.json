@@ -1,0 +1,137 @@
+[
+ {
+  "event": {
+   "at": "2026-11-06T20:28:52.579042+00:00",
+   "phase": "INTERPRETED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "INTERPRETED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:52.579042+00:00",
+   "phase": "AERIAL_PLANNED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AERIAL_PLANNED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:52.579042+00:00",
+   "phase": "VALIDATED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:53.079042+00:00",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "HEARTBEAT"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:53.579042+00:00",
+   "reason": "operator cancelled",
+   "source": "TEST_FIXTURE",
+   "type": "CANCEL"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CANCELLED",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "CANCELLED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:54.579042+00:00",
+   "event_id": "obs-event-1",
+   "observation_id": "mission_cancelled-obs-1",
+   "source": "TEST_FIXTURE",
+   "type": "OBSERVATION"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CANCELLED",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "CANCELLED",
+  "outcome": "REFUSED",
+  "reason": "MISSION_CANCELLED: nothing reactivates a cancelled mission"
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:55.579042+00:00",
+   "point": "POI_3",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "AERIAL_POINT_REACHED"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CANCELLED",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "CANCELLED",
+  "outcome": "REFUSED",
+  "reason": "MISSION_CANCELLED: nothing reactivates a cancelled mission"
+ }
+]

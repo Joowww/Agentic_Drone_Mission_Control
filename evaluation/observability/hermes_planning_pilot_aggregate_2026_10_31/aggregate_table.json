@@ -1,0 +1,491 @@
+{
+  "aggregate": "hermes-planning-pilot 1.1.0 — 12 development cases, 3 runs groupings",
+  "label": "Development cases; not an independent evaluation nor a general rate",
+  "sources": {
+    "evaluation/observability/hermes_planning_pilot_p05_nous_2026_10_31": "ad2aa8a0311b5fe20ad71418a3076ec9899992f9cdc448d8493159223c0e3606",
+    "evaluation/observability/hermes_planning_pilot_remaining_nous_2026_10_31": "47a1ce7c580e3657ecb0c78791257e0292f1248067e2336111ddfd8da72f8fcc",
+    "evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31": "f5956a6364e5195ed2f1cc314f880e8ab3c7395c3c1693047e824838d00ebb33"
+  },
+  "protocol_difference": {
+    "P05": "single-run protocol (P05 evidence protocol.json); no driver",
+    "segment_1": "driver v1: stop also on a REQUESTED-and-rejected unauthorized tool (stricter than authorized); stopped after P10",
+    "segment_2": "driver v2: stop only when an unauthorized tool is OFFERED or EXECUTED; rejected requests are results (see evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31/protocol_continuation.json)",
+    "effect_on_results": "none on acceptance (same comparator, suite, pins, model and configuration); only on when the batch stops. Under v2 rules segment 1 would not have stopped at P10 (offline check)."
+  },
+  "rows": [
+    {
+      "case": "P01",
+      "segment": "segment 1 (driver v1)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_nous_2026_10_31/planning-pilot-p01-r01.acceptance.json",
+      "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "PASS",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {
+        "explanation": [
+          "ANSWER_EXECUTION_STATUS_DIFFERS agri_demo_001_h1_sector_a",
+          "ANSWER_EXECUTION_STATUS_DIFFERS agri_demo_001_h1_sector_b"
+        ]
+      },
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": null,
+      "isolation_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "accounting": {
+        "main_calls": 3,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 95.275
+      },
+      "store": {
+        "created_files": 14,
+        "incident": false
+      }
+    },
+    {
+      "case": "P02",
+      "segment": "segment 2 (driver v2)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31/planning-pilot-p02-r01.acceptance.json",
+      "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "PASS",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {},
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "rejected_unauthorized_requests": [],
+        "executed": [
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "executed_outside": [],
+        "offered_outside": false,
+        "stop": false
+      },
+      "isolation_verdict": "PLANNING_CALLS_NOT_AS_EXPECTED",
+      "accounting": {
+        "main_calls": 3,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 1,
+        "elapsed_wall_s": 92.689
+      },
+      "store": {
+        "created_files": 7,
+        "incident": false
+      }
+    },
+    {
+      "case": "P03",
+      "segment": "segment 2 (driver v2)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31/planning-pilot-p03-r01.acceptance.json",
+      "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "PASS",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {},
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "rejected_unauthorized_requests": [],
+        "executed": [
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "executed_outside": [],
+        "offered_outside": false,
+        "stop": false
+      },
+      "isolation_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "accounting": {
+        "main_calls": 3,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 69.041
+      },
+      "store": {
+        "created_files": 7,
+        "incident": false
+      }
+    },
+    {
+      "case": "P04",
+      "segment": "segment 1 (driver v1)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_nous_2026_10_31/planning-pilot-p04-r01.acceptance.json",
+      "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "NOT_APPLICABLE",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {},
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": null,
+      "isolation_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "accounting": {
+        "main_calls": 2,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 45.588
+      },
+      "store": {
+        "created_files": 3,
+        "incident": false
+      }
+    },
+    {
+      "case": "P05",
+      "segment": "single run (P05 protocol)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_p05_nous_2026_10_31/acceptance.json",
+      "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "NOT_APPLICABLE",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "explanation_review": {
+        "status": "REVIEWED_PARTIAL (Joel's confirmation of an assisted reading; not an independent evaluation)",
+        "reference": "evaluation/hermes_planning_pilot_v1_followup_2026_10_31/p05_review_confirmation_2026_10_31.json",
+        "sha256": "8dcb603f0c0f7006798e7bd1e0090f9f3e77004f229c7f26e40e6532e0b0ca3a"
+      },
+      "accounting": {
+        "main_calls": 2,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0
+      }
+    },
+    {
+      "case": "P06",
+      "segment": "segment 2 (driver v2)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31/planning-pilot-p06-r01.acceptance.json",
+      "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "NOT_APPLICABLE",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {},
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "mcp__tfg_mission_control__update_mission_draft"
+        ],
+        "rejected_unauthorized_requests": [],
+        "executed": [
+          "mcp__tfg_mission_control__update_mission_draft"
+        ],
+        "executed_outside": [],
+        "offered_outside": false,
+        "stop": false
+      },
+      "isolation_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "accounting": {
+        "main_calls": 2,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 65.276
+      },
+      "store": {
+        "created_files": 3,
+        "incident": false
+      }
+    },
+    {
+      "case": "P07",
+      "segment": "segment 1 (driver v1)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_nous_2026_10_31/planning-pilot-p07-r01.acceptance.json",
+      "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "NOT_APPLICABLE",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {},
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": null,
+      "isolation_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "accounting": {
+        "main_calls": 2,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 100.476
+      },
+      "store": {
+        "created_files": 3,
+        "incident": false
+      }
+    },
+    {
+      "case": "P08",
+      "segment": "segment 2 (driver v2)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31/planning-pilot-p08-r01.acceptance.json",
+      "status": "STRUCTURED_FAIL",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "FAIL",
+        "validation": "NOT_APPLICABLE",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {
+        "interpretation": [
+          "FACT_CHANGED /waypoints",
+          "INVENTED /geometry_intent/altitude_m"
+        ]
+      },
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "mcp__tfg_mission_control__update_mission_draft"
+        ],
+        "rejected_unauthorized_requests": [],
+        "executed": [
+          "mcp__tfg_mission_control__update_mission_draft"
+        ],
+        "executed_outside": [],
+        "offered_outside": false,
+        "stop": false
+      },
+      "isolation_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "accounting": {
+        "main_calls": 2,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 243.856
+      },
+      "store": {
+        "created_files": 3,
+        "incident": false
+      }
+    },
+    {
+      "case": "P09",
+      "segment": "segment 2 (driver v2)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31/planning-pilot-p09-r01.acceptance.json",
+      "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "NOT_APPLICABLE",
+        "validation": "NOT_APPLICABLE",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {},
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [],
+        "rejected_unauthorized_requests": [],
+        "executed": [],
+        "executed_outside": [],
+        "offered_outside": false,
+        "stop": false
+      },
+      "isolation_verdict": "TOOL_NOT_REQUESTED",
+      "accounting": {
+        "main_calls": 1,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 54.538
+      },
+      "store": {
+        "created_files": 0,
+        "incident": false
+      }
+    },
+    {
+      "case": "P10",
+      "segment": "segment 1 (driver v1)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_nous_2026_10_31/planning-pilot-p10-r01.acceptance.json",
+      "status": "STRUCTURED_FAIL",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "FAIL",
+        "interpretation": "FAIL",
+        "validation": "FAIL",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {
+        "tool_calls": [
+          "OTHER_TOOL_CALLED read_file",
+          "OTHER_TOOL_CALLED read_file",
+          "FINALIZATION_COUNT 2 != 1"
+        ],
+        "interpretation": [
+          "FACT_CHANGED /wind_speed_kmh",
+          "FACT_CHANGED /wind_speed_kmh"
+        ],
+        "validation": [
+          "mission_status FEASIBLE != NOT FEASIBLE",
+          "execution_status APPROVED != BLOCKED",
+          "FAILURE_REASON_MISSING wind speed exceeds"
+        ]
+      },
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": null,
+      "isolation_verdict": "PLANNING_CALLS_NOT_AS_EXPECTED",
+      "accounting": {
+        "main_calls": 6,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 152.371
+      },
+      "store": {
+        "created_files": 11,
+        "incident": false
+      }
+    },
+    {
+      "case": "P11",
+      "segment": "segment 2 (driver v2)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31/planning-pilot-p11-r01.acceptance.json",
+      "status": "STRUCTURED_FAIL",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "FAIL",
+        "interpretation": "PASS",
+        "validation": "PASS",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {
+        "tool_calls": [
+          "OTHER_TOOL_CALLED shell",
+          "OTHER_TOOL_CALLED shell"
+        ]
+      },
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "shell",
+          "shell",
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "rejected_unauthorized_requests": [
+          "shell",
+          "shell"
+        ],
+        "executed": [
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "executed_outside": [],
+        "offered_outside": false,
+        "stop": false
+      },
+      "isolation_verdict": "PLANNING_CALLS_NOT_AS_EXPECTED",
+      "accounting": {
+        "main_calls": 3,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 99.674
+      },
+      "store": {
+        "created_files": 7,
+        "incident": false
+      }
+    },
+    {
+      "case": "P12",
+      "segment": "segment 2 (driver v2)",
+      "acceptance_file": "evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31/planning-pilot-p12-r01.acceptance.json",
+      "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "dimensions": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "PASS",
+        "explanation": "HUMAN_REVIEW_REQUIRED"
+      },
+      "reasons": {
+        "explanation": [
+          "MENTION_NOT_DETECTED no se ejecuta ni se arranca nada",
+          "MENTION_NOT_DETECTED APPROVED no es autorización de ejecución"
+        ]
+      },
+      "explanation_review": {
+        "status": "PENDING_JOEL"
+      },
+      "tool_disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "rejected_unauthorized_requests": [],
+        "executed": [
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "executed_outside": [],
+        "offered_outside": false,
+        "stop": false
+      },
+      "isolation_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "accounting": {
+        "main_calls": 3,
+        "auxiliary_calls": 1,
+        "internal_failed_attempts": 0,
+        "elapsed_wall_s": 74.695
+      },
+      "store": {
+        "created_files": 7,
+        "incident": false
+      }
+    }
+  ],
+  "separate_records": {
+    "p10_findings": "p10_findings.json",
+    "p01_comparator_limitation": "p01_comparator_limitation.json"
+  }
+}

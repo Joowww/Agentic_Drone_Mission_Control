@@ -1,0 +1,562 @@
+{
+  "schema": "tfg.agri-r1-task/2",
+  "request_key": "r1-report-goal_failed",
+  "task_id": "R1",
+  "created_at": "2026-10-25T19:18:09.545812+00:00",
+  "view": {
+    "view": "scenario",
+    "view_schema": "tfg.agri-scenario-view/1",
+    "scenario_id": "agri_demo_001",
+    "scope": {
+      "record": "historical",
+      "as_of": "2026-10-24T12:59:51.127955+00:00",
+      "current_availability": "NOT_CHECKED",
+      "current_restrictions": "NOT_CHECKED",
+      "operational_authorization": false,
+      "hardware_authorized": false,
+      "note": "describes a finished historical record; it is not a current safety or permission query"
+    },
+    "limitations": {
+      "perception": "NONE: points of interest are operator-declared scenario inputs; no imagery, detection or crop analysis",
+      "speed": {
+        "planning_estimate": "waypoint speed_kmh, or cruise_speed_kmh when null, used only to estimate time/battery",
+        "commanded": false,
+        "measured": false,
+        "note": "position-only targets (type_mask 3576); actual speed is ArduPilot's configuration"
+      },
+      "common_frame": {
+        "validated": false,
+        "note": "each mission is offset from its own vehicle's launch position; launch geoposes are float32"
+      },
+      "telemetry_source": "executor observations via AP_DDS, not independent telemetry",
+      "simultaneous_flight": false
+    },
+    "sources": {
+      "binding_record": {
+        "path": null,
+        "sha256": "SYNTHETIC_DEMO"
+      }
+    },
+    "status": "OK",
+    "reasons": [],
+    "scenario": {
+      "status": "AERIAL_COMPLETED_GROUND_PENDING",
+      "scenario_complete": false,
+      "sequence": {
+        "sequence_id": "0df8dec9-6b2f-5a18-be4a-4a5221389a82",
+        "job_state": "FINISHED",
+        "result_status": "PASSED",
+        "plan_sha256": "a1821ce7c0d16620af683759049737ace1096d3a18a2202b571567c3ee245e30",
+        "created_at": "2026-10-24T12:51:18.386453+00:00",
+        "finished_at": "2026-10-24T12:59:51.127955+00:00"
+      },
+      "authorization_recorded": {
+        "source": "OPERATOR_DECLARED_VIA_AGENT",
+        "scope": "These two ordered snapshots only; SITL; no further flights or hardware",
+        "statement_sha256": "6340051d67c496e757e68a836308528a99293bfa126cd2ec9b3ae4a4f90bc7cb",
+        "authenticated": false,
+        "meaning": "operator declaration passed as text and recorded for these two snapshots only"
+      },
+      "order": {
+        "status": "ACCREDITED_BY_EXECUTION_TIMESTAMPS",
+        "vehicle_order": [
+          "drone_01",
+          "drone_02"
+        ],
+        "checks": {
+          "executor_windows_disjoint": true,
+          "coordinator_dispatch_after_first_result": true,
+          "first_land_command_before_second_arm_command": true
+        },
+        "rule": "tools/preflight_sequence_worker.run_coordinator dispatches child 2 only after verifying child 1's final PASSED report",
+        "admission_times_are_order_evidence": false
+      },
+      "runs": [
+        {
+          "index": 1,
+          "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+          "vehicle_id": "drone_01",
+          "simulated_vehicle": "v1",
+          "mission_id": "agri_demo_001_h1_sector_a",
+          "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+          "report_sha256": "183a68b92db7c03543066f0ddbb6de5524870866a854ca237b69ed92d4088864",
+          "status": "COMPLETED",
+          "result_status": "PASSED",
+          "points": {
+            "POI_A1": "REACHED",
+            "POI_A2": "REACHED"
+          },
+          "return_home": "CONFIRMED",
+          "landing": "MISSION_LANDING_CONFIRMED",
+          "position_errors_m": {
+            "TAKEOFF_REACHED": {
+              "horizontal": null,
+              "altitude": 0.07000732421875
+            },
+            "WP1": {
+              "horizontal": 0.1698126280190736,
+              "altitude": 0.0
+            },
+            "WP2": {
+              "horizontal": 0.20696954242378213,
+              "altitude": 0.02996826171875
+            },
+            "SIMULATION_HOME": {
+              "horizontal": 0.0,
+              "altitude": 0.010009765625
+            }
+          },
+          "timeline": {
+            "job_admitted_at": "2026-10-24T12:51:18.368178+00:00",
+            "coordinator_dispatched_at": "2026-10-24T12:51:20.085388+00:00",
+            "executor_started_at": "2026-10-24T12:51:28.380152+00:00",
+            "commands_started_at": {
+              "guided": "2026-10-24T12:51:43.282975+00:00",
+              "arm": "2026-10-24T12:51:46.399698+00:00",
+              "takeoff": "2026-10-24T12:51:48.210970+00:00",
+              "return_home": "2026-10-24T12:53:36.872824+00:00",
+              "land": "2026-10-24T12:54:22.338276+00:00"
+            },
+            "commands_basis": "COMPLETE_OPERATION_RECORD",
+            "executor_finished_at": "2026-10-24T12:55:42.138208+00:00",
+            "coordinator_accepted_result_at": "2026-10-24T12:55:42.177521+00:00",
+            "time_basis": "host wall clock (UTC) of the project processes; not simulated time"
+          },
+          "reasons": []
+        },
+        {
+          "index": 2,
+          "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+          "vehicle_id": "drone_02",
+          "simulated_vehicle": "v2",
+          "mission_id": "agri_demo_001_h1_sector_b",
+          "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+          "report_sha256": "f7884a1c52341d5cb5c7e9cda62695bbbf3e3e7fc1d7e9d68bc4ee92b2785850",
+          "status": "COMPLETED",
+          "result_status": "PASSED",
+          "points": {
+            "POI_B1": "REACHED",
+            "POI_B2": "REACHED"
+          },
+          "return_home": "CONFIRMED",
+          "landing": "MISSION_LANDING_CONFIRMED",
+          "position_errors_m": {
+            "TAKEOFF_REACHED": {
+              "horizontal": null,
+              "altitude": 0.54998779296875
+            },
+            "WP1": {
+              "horizontal": 0.38833924185528407,
+              "altitude": 0.02996826171875
+            },
+            "WP2": {
+              "horizontal": 0.20696954242378213,
+              "altitude": 0.0
+            },
+            "SIMULATION_HOME": {
+              "horizontal": 0.8483499652447414,
+              "altitude": 0.02996826171875
+            }
+          },
+          "timeline": {
+            "job_admitted_at": "2026-10-24T12:51:18.376933+00:00",
+            "coordinator_dispatched_at": "2026-10-24T12:55:42.215580+00:00",
+            "executor_started_at": "2026-10-24T12:55:50.243976+00:00",
+            "commands_started_at": {
+              "guided": "2026-10-24T12:56:11.086499+00:00",
+              "arm": "2026-10-24T12:56:14.114079+00:00",
+              "takeoff": "2026-10-24T12:56:17.245529+00:00",
+              "return_home": "2026-10-24T12:57:57.612589+00:00",
+              "land": "2026-10-24T12:58:31.661938+00:00"
+            },
+            "commands_basis": "COMPLETE_OPERATION_RECORD",
+            "executor_finished_at": "2026-10-24T12:59:50.905810+00:00",
+            "coordinator_accepted_result_at": "2026-10-24T12:59:51.089683+00:00",
+            "time_basis": "host wall clock (UTC) of the project processes; not simulated time"
+          },
+          "reasons": []
+        }
+      ],
+      "points": {
+        "POI_A1": {
+          "vehicle_id": "drone_01",
+          "status": "REACHED"
+        },
+        "POI_A2": {
+          "vehicle_id": "drone_01",
+          "status": "REACHED"
+        },
+        "POI_B1": {
+          "vehicle_id": "drone_02",
+          "status": "REACHED"
+        },
+        "POI_B2": {
+          "vehicle_id": "drone_02",
+          "status": "REACHED"
+        }
+      },
+      "tolerances": {
+        "horizontal_m": 1.0,
+        "altitude_m": 0.75
+      },
+      "ground_task": {
+        "task_id": "R1",
+        "vehicle_id": "rover_01",
+        "target_point": "POI_A1",
+        "description": "Ground verification at a declared point of interest",
+        "depends_on": "Sequence COMPLETED and POI_A1 REACHED by drone_01",
+        "status": "BLOCKED_PENDING",
+        "dependency": "MET",
+        "barriers": [
+          "Rover identity chain (XRCE client to SITL instance/SYSID and bridge/model) not established",
+          "No public rover entry point with authorization and reservations",
+          "No navigation to a position: rover control offers bounded velocity/turn only",
+          "Execution gate covers the two_drones profile only"
+        ],
+        "commands_sent": false,
+        "movement_authorized": false,
+        "dependency_meaning": "MET only states that the declared precondition holds in this record; it never authorizes rover movement"
+      }
+    }
+  },
+  "view_sha256": "3173f822da7b99f99d02a9468bd6f47b937bf5d8af9127a79b5da4c25be6c043",
+  "candidate": {
+    "task_id": "R1",
+    "vehicle_id": "rover_01",
+    "target_point": "POI_A1",
+    "visit_parameters": {
+      "status": "PROPOSED_NOT_APPROVED",
+      "arrival_tolerance_m": 2.0,
+      "dwell_s": 5.0,
+      "max_sample_gap_s": 1.0,
+      "min_dwell_samples": 6,
+      "stopped_linear_mps": 0.05,
+      "stopped_angular_rad_s": 0.05,
+      "max_decision_age_s": 1.0,
+      "global_timeout_s": 120.0,
+      "no_progress_window_s": 10.0,
+      "min_progress_m": 0.5
+    },
+    "target_in_rover_frame": {
+      "value": {
+        "x_m": 0.8,
+        "y_m": 0.4,
+        "frame": "odom"
+      },
+      "source": "TEST_DOUBLE joint"
+    },
+    "ground_tolerance_m": {
+      "value": 0.05,
+      "source": "TEST_DOUBLE joint"
+    },
+    "rover_mission": {
+      "value": {
+        "path": "<pytest-tmp>/mission.json",
+        "sha256": "0fbf13ec87e8561e332763d50a7d0cffd564e36b7a567db8e1bb161b175686ba"
+      },
+      "source": "TEST_DOUBLE joint"
+    },
+    "completion_evidence": {
+      "value": "executor r1_ground_result samples (synthetic kinematic session)",
+      "source": "TEST_DOUBLE joint"
+    },
+    "frame_transform": {
+      "value": {
+        "status": "VERIFIED",
+        "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+        "from_frame": "SYNTHETIC_POI_FRAME",
+        "to_frame": "odom"
+      },
+      "source": "TEST_DOUBLE joint"
+    },
+    "execution_limits": {
+      "value": {
+        "rover_limits": {
+          "max_forward_mps": 0.4,
+          "max_yaw_rate_rad_s": 1.0,
+          "max_duration_s": 130.0,
+          "call_timeout_s": 1.0,
+          "stop_timeout_s": 3.0,
+          "observation_max_age_s": 0.5,
+          "stopped_linear_mps": 0.03,
+          "stopped_angular_rad_s": 0.03
+        },
+        "controller": {
+          "yaw_rad": 0.2,
+          "yaw_tolerance_rad": 3.141592653589793,
+          "command_hz": 10.0,
+          "max_samples": 256,
+          "progress_rad": 0.01
+        }
+      },
+      "source": "TEST_DOUBLE joint"
+    },
+    "finalization_policy": {
+      "value": {
+        "kind": "DISARM_AFTER_OBSERVED_STOP_V1",
+        "timeout_s": 5.0
+      },
+      "source": "TEST_DOUBLE joint"
+    },
+    "depends_on_sequence": "0df8dec9-6b2f-5a18-be4a-4a5221389a82",
+    "depends_on_binding": {
+      "path": null,
+      "sha256": "SYNTHETIC_DEMO"
+    }
+  },
+  "candidate_sha256": "a06ff7c4447fc64603bbdd8eb8c2d07307fd4c2bdb29ff3ac290894290fc125a",
+  "authorization": {
+    "source": "OPERATOR_DECLARED",
+    "statement": "TEST_DOUBLE declaration, joint offline test only",
+    "candidate_sha256": "a06ff7c4447fc64603bbdd8eb8c2d07307fd4c2bdb29ff3ac290894290fc125a",
+    "mission_sha256": "0fbf13ec87e8561e332763d50a7d0cffd564e36b7a567db8e1bb161b175686ba",
+    "session_id": "00000000-0000-4000-8000-00000000c0de"
+  },
+  "authorization_sha256": "a13b597b25510e0760900e6bfd5ce7eed6fdf83482d162455209eea4f48d6ff4",
+  "task": {
+    "request_key": "r1-report-goal_failed",
+    "task_id": "R1",
+    "mission_path": "<pytest-tmp>/mission.json",
+    "mission_sha256": "0fbf13ec87e8561e332763d50a7d0cffd564e36b7a567db8e1bb161b175686ba",
+    "request": {
+      "kind": "ROVER_NAVIGATE_V1",
+      "limits": {
+        "max_forward_mps": 0.4,
+        "max_yaw_rate_rad_s": 1.0,
+        "max_duration_s": 130.0,
+        "call_timeout_s": 1.0,
+        "stop_timeout_s": 3.0,
+        "observation_max_age_s": 0.5,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "goal": {
+        "x_m": 0.8,
+        "y_m": 0.4,
+        "yaw_rad": 0.2,
+        "frame": "odom",
+        "unit": "m",
+        "transform": "IDENTITY_SAME_ACCREDITED_FRAME",
+        "tolerance_m": 0.05,
+        "yaw_tolerance_rad": 3.141592653589793,
+        "dwell_s": 5.0,
+        "command_hz": 10.0,
+        "timeout_s": 120.0,
+        "no_progress_s": 10.0,
+        "progress_m": 0.5,
+        "progress_rad": 0.01,
+        "max_samples": 256
+      },
+      "finalization": {
+        "kind": "DISARM_AFTER_OBSERVED_STOP_V1",
+        "timeout_s": 5.0
+      }
+    },
+    "executor_authorization": {
+      "mission_sha256": "0fbf13ec87e8561e332763d50a7d0cffd564e36b7a567db8e1bb161b175686ba",
+      "request_fingerprint": "e4f8280ce848ae8c9137dcf07fc608960c2ac9d12f712d413a775b78c145d2ba",
+      "statement": "TEST_DOUBLE declaration, joint offline test only | R1 candidate a06ff7c4447fc64603bbdd8eb8c2d07307fd4c2bdb29ff3ac290894290fc125a | coordinator authorization a13b597b25510e0760900e6bfd5ce7eed6fdf83482d162455209eea4f48d6ff4 | session 00000000-0000-4000-8000-00000000c0de"
+    },
+    "coordination_context": {
+      "candidate": {
+        "task_id": "R1",
+        "vehicle_id": "rover_01",
+        "target_point": "POI_A1",
+        "visit_parameters": {
+          "status": "PROPOSED_NOT_APPROVED",
+          "arrival_tolerance_m": 2.0,
+          "dwell_s": 5.0,
+          "max_sample_gap_s": 1.0,
+          "min_dwell_samples": 6,
+          "stopped_linear_mps": 0.05,
+          "stopped_angular_rad_s": 0.05,
+          "max_decision_age_s": 1.0,
+          "global_timeout_s": 120.0,
+          "no_progress_window_s": 10.0,
+          "min_progress_m": 0.5
+        },
+        "target_in_rover_frame": {
+          "value": {
+            "x_m": 0.8,
+            "y_m": 0.4,
+            "frame": "odom"
+          },
+          "source": "TEST_DOUBLE joint"
+        },
+        "ground_tolerance_m": {
+          "value": 0.05,
+          "source": "TEST_DOUBLE joint"
+        },
+        "rover_mission": {
+          "value": {
+            "path": "<pytest-tmp>/mission.json",
+            "sha256": "0fbf13ec87e8561e332763d50a7d0cffd564e36b7a567db8e1bb161b175686ba"
+          },
+          "source": "TEST_DOUBLE joint"
+        },
+        "completion_evidence": {
+          "value": "executor r1_ground_result samples (synthetic kinematic session)",
+          "source": "TEST_DOUBLE joint"
+        },
+        "frame_transform": {
+          "value": {
+            "status": "VERIFIED",
+            "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+            "from_frame": "SYNTHETIC_POI_FRAME",
+            "to_frame": "odom"
+          },
+          "source": "TEST_DOUBLE joint"
+        },
+        "execution_limits": {
+          "value": {
+            "rover_limits": {
+              "max_forward_mps": 0.4,
+              "max_yaw_rate_rad_s": 1.0,
+              "max_duration_s": 130.0,
+              "call_timeout_s": 1.0,
+              "stop_timeout_s": 3.0,
+              "observation_max_age_s": 0.5,
+              "stopped_linear_mps": 0.03,
+              "stopped_angular_rad_s": 0.03
+            },
+            "controller": {
+              "yaw_rad": 0.2,
+              "yaw_tolerance_rad": 3.141592653589793,
+              "command_hz": 10.0,
+              "max_samples": 256,
+              "progress_rad": 0.01
+            }
+          },
+          "source": "TEST_DOUBLE joint"
+        },
+        "finalization_policy": {
+          "value": {
+            "kind": "DISARM_AFTER_OBSERVED_STOP_V1",
+            "timeout_s": 5.0
+          },
+          "source": "TEST_DOUBLE joint"
+        },
+        "depends_on_sequence": "0df8dec9-6b2f-5a18-be4a-4a5221389a82",
+        "depends_on_binding": {
+          "path": null,
+          "sha256": "SYNTHETIC_DEMO"
+        }
+      },
+      "authorization": {
+        "source": "OPERATOR_DECLARED",
+        "statement": "TEST_DOUBLE declaration, joint offline test only",
+        "candidate_sha256": "a06ff7c4447fc64603bbdd8eb8c2d07307fd4c2bdb29ff3ac290894290fc125a",
+        "mission_sha256": "0fbf13ec87e8561e332763d50a7d0cffd564e36b7a567db8e1bb161b175686ba",
+        "session_id": "00000000-0000-4000-8000-00000000c0de"
+      }
+    },
+    "candidate_sha256": "a06ff7c4447fc64603bbdd8eb8c2d07307fd4c2bdb29ff3ac290894290fc125a",
+    "authorization_sha256": "a13b597b25510e0760900e6bfd5ce7eed6fdf83482d162455209eea4f48d6ff4",
+    "result_schema": "tfg.agri-r1-ground-result/1"
+  },
+  "task_sha256": "db29e22e2f0a1a06b0117929e117acb0b3a3f4ce55c7e69fef4331fae9278e08",
+  "executor_scope": "3a83124ebb3644e9bb28020b14a4769eefa5af43609934995436580b6fabf73b",
+  "executor_kind": "ROVER_GROUND_EXECUTOR",
+  "inputs_include_test_doubles": [
+    "completion_evidence",
+    "execution_limits",
+    "finalization_policy",
+    "frame_transform",
+    "ground_tolerance_m",
+    "rover_mission",
+    "target_in_rover_frame"
+  ],
+  "sequence_id": "0df8dec9-6b2f-5a18-be4a-4a5221389a82",
+  "run_id": "253dd56b-3925-4975-8a80-b5482c65116a",
+  "executor_session_id": "00000000-0000-4000-8000-00000000c0de",
+  "acceptance": {
+    "schema": "tfg.agri-r1-ground-result/1",
+    "origin": "SYNTHETIC_TEST_DOUBLE",
+    "job_status": "UNCONFIRMED",
+    "commands_attempted": true,
+    "commands_sent": 100,
+    "arrival_observed": false,
+    "min_error_m": 0.894,
+    "dwell_observed_s": 0.0,
+    "dwell_clock": "simulation",
+    "stop_confirmed": true,
+    "observation_lost": false,
+    "invalid_samples": 0,
+    "tolerance_m": 0.05,
+    "dwell_required_s": 5.0,
+    "elapsed_observation_s": 10.202,
+    "outcome": "FAILED",
+    "reasons": [
+      "NO_PROGRESS",
+      "NOT_REACHED_OUT_OF_TOLERANCE"
+    ],
+    "provenance": "EXECUTOR_LOCAL_RECORDS_MATCHED",
+    "unresolved_contract": [],
+    "frame_basis": "CANDIDATE_TRANSFORM_VERIFIED_INPUT+EXECUTOR_BOUND_POSE_REFERENCE_DIGEST",
+    "executor_frame_label": "DECLARED_ADAPTER_BINDING_NOT_INDEPENDENTLY_VERIFIED",
+    "declared_origin": "SYNTHETIC_TEST_DOUBLE",
+    "binding_basis": "EXPLICIT_SNAPSHOTS_PLUS_CURRENT_TRANSPORT_SESSION_NOT_HUMAN_AUTHENTICATION",
+    "executor_goal_outcome": "GOAL_FAILED",
+    "armed_after_stop": [
+      true,
+      true
+    ],
+    "closure": {
+      "goal_outcome": "GOAL_FAILED",
+      "stop_observed": true,
+      "armed_observed": false,
+      "job_close": "COMMIT_ELIGIBLE",
+      "vehicle_close": "DISARMED_STATIONARY_OBSERVED",
+      "reservation_release": "ELIGIBLE_AFTER_DURABLE_RESULT"
+    },
+    "finalization": {
+      "policy": "DISARM_AFTER_OBSERVED_STOP_V1",
+      "status": "DISARMED_STATIONARY_OBSERVED",
+      "disarm_attempted": true,
+      "disarm_acknowledged": true,
+      "disarmed_observed": true
+    },
+    "authorized_finalization": {
+      "kind": "DISARM_AFTER_OBSERVED_STOP_V1",
+      "timeout_s": 5.0
+    },
+    "synthetic": true,
+    "executor_closure": "FINISHED",
+    "authorized_parameters": {
+      "target": {
+        "x_m": 0.8,
+        "y_m": 0.4,
+        "frame": "odom"
+      },
+      "transform_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "arrival_tolerance_m": 0.05,
+      "dwell_s": 5.0,
+      "global_timeout_s": 120.0
+    },
+    "executor_job_status": "FINISHED"
+  },
+  "movement_authorized": false,
+  "fingerprint": "15c9eec6ae50a44245c14eeddab367166345ad6a525121fedfe651cd2bb8ddb6",
+  "state": "FAILED",
+  "history": [
+    {
+      "at": "2026-10-25T19:18:09.546364+00:00",
+      "state": "ADMISSION_REQUESTED"
+    },
+    {
+      "at": "2026-10-25T19:18:09.574360+00:00",
+      "state": "ADMITTED"
+    },
+    {
+      "at": "2026-10-25T19:18:09.579889+00:00",
+      "state": "START_REQUESTED"
+    },
+    {
+      "at": "2026-10-25T19:18:14.583279+00:00",
+      "state": "FAILED",
+      "reason": "NO_PROGRESS,NOT_REACHED_OUT_OF_TOLERANCE"
+    }
+  ],
+  "executor_status": "FINISHED",
+  "reason": "NO_PROGRESS,NOT_REACHED_OUT_OF_TOLERANCE"
+}

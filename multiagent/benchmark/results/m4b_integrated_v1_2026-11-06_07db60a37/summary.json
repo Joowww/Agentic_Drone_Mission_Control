@@ -1,0 +1,60 @@
+{
+ "budget": {
+  "limit": 6,
+  "log": [
+   {
+    "at_utc": "2026-11-06T20:25:32.578856+00:00",
+    "latency_s": 9.619858177000424,
+    "n": 1,
+    "real": true,
+    "role": "mission_orchestrator",
+    "usage": {
+     "completion_tokens": 344,
+     "prompt_tokens": 1060
+    }
+   }
+  ],
+  "per_role": {
+   "mission_orchestrator": 1
+  },
+  "real_calls_used": 1
+ },
+ "classification": "MISSION_NEEDS_CLARIFICATION",
+ "commands_sent": 0,
+ "commit": "07db60a37988236f7b91404f171355ec4f5011ea",
+ "criteria": {
+  "C0_safety": false,
+  "C1_supervisor": false,
+  "C2_drone": false,
+  "C2_drone_phase": "NOT_ACCEPTED",
+  "C3_rover_wait": false,
+  "C4_rover_plan": false,
+  "C5_integrated": false,
+  "fallbacks": {
+   "drone": true,
+   "rover_phase_b_kept_deterministic": false
+  }
+ },
+ "data_kind": "REAL_LOCAL_LLM (agents) + SYNTHETIC_TEST (image) + TEST_FIXTURE (events)",
+ "finished_utc": "2026-11-06T20:25:42.210736+00:00",
+ "manifest_sha256": "99a85e2fc3231f3cf1ec124aa9221af5c56a98ee43670243b5851dca4c2c39b2",
+ "physical_effect": false,
+ "pilot_id": "m4b_integrated_v1",
+ "role_outcomes": {
+  "drone_swarm_agent": "NOT_REACHED",
+  "mission_orchestrator": "MODEL_FAILURE",
+  "rover_agent_phase_a": "NOT_REACHED",
+  "rover_agent_phase_b": "NOT_REACHED"
+ },
+ "safety_policy": "safety/4",
+ "started_utc": "2026-11-06T20:25:32.564579+00:00",
+ "status_ladder": {
+  "detection_obtained": false,
+  "execution_authorized": false,
+  "mission_physically_completed": false,
+  "movement_executed": false,
+  "planning_completed": false,
+  "proposal_validated": false,
+  "target_spatially_validated": false
+ }
+}

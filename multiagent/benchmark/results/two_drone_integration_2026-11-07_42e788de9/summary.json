@@ -1,0 +1,69 @@
+{
+ "data_kinds": [
+  "REPLAY of REAL_LOCAL_LLM (sealed)",
+  "OFFLINE_DETERMINISTIC agents",
+  "SYNTHETIC images",
+  "TEST_FIXTURE events and statements"
+ ],
+ "metrics": {
+  "commands": 0,
+  "delays_introduced_s": [
+   45.0
+  ],
+  "missions_transformed_to_hermes": 33,
+  "observation_refusal_kinds": {
+   "CAMERA_NOT_CALIBRATED": 2,
+   "DETECTION_AMBIGUOUS": 1,
+   "FRAME_INCOMPATIBLE": 1,
+   "IMAGE_STALE": 1,
+   "MISSION_CANCELLED": 1,
+   "OTHER_DRONE": 1,
+   "POSE_IMAGE_DESYNCHRONISED": 1,
+   "POSE_NOT_ACCREDITED": 1,
+   "UNCERTAINTY_TOO_HIGH": 1
+  },
+  "observations_refused": 10,
+  "observations_valid": 1,
+  "plans_planning_valid": 17,
+  "plans_rejected_or_pending": 10,
+  "plans_with_initial_conflicts": 16,
+  "rejection_kinds": {
+   "DUPLICATE_OBJECTIVE": 1,
+   "DUPLICATE_POINT": 1,
+   "GEOREFERENCE_MISSING": 1,
+   "MISSION_CANCELLED": 1,
+   "PLAN_MODIFIED_AFTER_VALIDATION": 3,
+   "PROPOSAL_NOT_PLANNED": 2,
+   "ROUTE_NOT_FEASIBLE": 1,
+   "SCHEDULE_INCONSISTENT": 1,
+   "SENSOR_NOT_AVAILABLE": 2,
+   "UNASSIGNED_OBJECTIVE": 1,
+   "UNMET_DEPENDENCY": 2
+  },
+  "requests_pending_without_statement": 17,
+  "requests_submitted": 0,
+  "rover_objectives_assigned": 2,
+  "rover_requests_blocked": 2,
+  "sitl_geometry_same_delays": true,
+  "two_drone_plans": 16,
+  "unmet_dependencies": 2
+ },
+ "not_done": [
+  "no model call",
+  "no SITL/Gazebo",
+  "no vehicle",
+  "no submission",
+  "no Opik"
+ ],
+ "schema": "tfg.multiagent.two-drone-eval/1",
+ "spawn_xy": {
+  "drone_01": [
+   -2.0,
+   0.0
+  ],
+  "drone_02": [
+   2.0,
+   0.0
+  ]
+ }
+}

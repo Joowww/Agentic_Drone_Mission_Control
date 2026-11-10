@@ -1,0 +1,69 @@
+{
+  "geometry_intent": {
+    "mode": "offsets",
+    "home_latitude": 41.275,
+    "home_longitude": 1.987,
+    "home_altitude_m": 0.0,
+    "altitude_reference": "relative_to_home",
+    "altitude_m": 5.0,
+    "return_to_home": true,
+    "close_route": false,
+    "offsets": [
+      {
+        "north_m": 8.0,
+        "east_m": 4.0
+      },
+      {
+        "north_m": 16.0,
+        "east_m": 4.0
+      }
+    ],
+    "length_m": null,
+    "width_m": null,
+    "orientation_deg": null,
+    "traversal": null,
+    "home_position": null
+  },
+  "mission_id": "agri_demo_001_h1_sector_b",
+  "name": "agri_demo_001 H1 sector B",
+  "vehicle_id": "drone_02",
+  "vehicle_type": "multirotor",
+  "autopilot": "ArduPilot",
+  "cruise_speed_kmh": 35.0,
+  "battery_percent": 100.0,
+  "battery_consumption_percent_per_minute": 0.8,
+  "objective_type": "precision_agriculture",
+  "objective_target": "agri_demo_001_sector_b",
+  "objective_description": null,
+  "home_latitude": 41.275,
+  "home_longitude": 1.987,
+  "home_altitude_m": 0.0,
+  "waypoints": [
+    {
+      "waypoint_id": "WP1",
+      "latitude": 41.275071864893995,
+      "longitude": 1.9870478109897785,
+      "altitude_m": 5.0,
+      "speed_kmh": null,
+      "action": "navigate"
+    },
+    {
+      "waypoint_id": "WP2",
+      "latitude": 41.275143729788,
+      "longitude": 1.9870478109897785,
+      "altitude_m": 5.0,
+      "speed_kmh": null,
+      "action": "navigate"
+    }
+  ],
+  "return_to_home": true,
+  "wind_speed_kmh": 0.0,
+  "wind_direction_from": null,
+  "wind_direction_from_deg": 0.0,
+  "minimum_battery_reserve_percent": 20.0,
+  "maximum_wind_speed_kmh": 30.0,
+  "maximum_altitude_m": 120.0,
+  "low_battery_action": "RETURN_TO_HOME",
+  "unsafe_wind_action": "RETURN_TO_HOME",
+  "communication_loss_action": "RETURN_TO_HOME"
+}

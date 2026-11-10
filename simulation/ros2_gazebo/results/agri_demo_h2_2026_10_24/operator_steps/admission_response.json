@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "sequence_id": "6628bc51-e232-45f5-901e-f5fdeb05c6f4",
+  "request_key": "agri-demo-001-h2-r01",
+  "plan_sha256": "a1821ce7c0d16620af683759049737ace1096d3a18a2202b571567c3ee245e30",
+  "created_at": "2026-10-24T12:51:18.386453+00:00",
+  "admission_status": "ACCEPTED",
+  "job_state": "STARTING",
+  "phase": "coordinator_starting",
+  "coordinator": {
+    "pid": 582485,
+    "start_ticks": 16253919,
+    "boot_id": "51f3835d-91d2-4044-a115-2dcb8c14768a"
+  },
+  "launch_token_sha256": "867e6822cb18ff780df38c50879028652de50642cb8d45d1890860a43f7824f3",
+  "result_status": null,
+  "reasons": [],
+  "children": [
+    {
+      "state": "NOT_STARTED",
+      "result_status": null
+    },
+    {
+      "state": "NOT_STARTED",
+      "result_status": null
+    }
+  ],
+  "paths": {
+    "directory": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/6628bc51-e232-45f5-901e-f5fdeb05c6f4",
+    "plan_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/6628bc51-e232-45f5-901e-f5fdeb05c6f4/plan.json",
+    "operation_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/6628bc51-e232-45f5-901e-f5fdeb05c6f4/operation.json",
+    "coordinator_log_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflight_sequences/6628bc51-e232-45f5-901e-f5fdeb05c6f4/coordinator.log"
+  },
+  "plan": {
+    "schema_version": 1,
+    "sequence_id": "6628bc51-e232-45f5-901e-f5fdeb05c6f4",
+    "request_key": "agri-demo-001-h2-r01",
+    "authorization": {
+      "source": "OPERATOR_DECLARED_VIA_AGENT",
+      "statement": "Joel autoriza en el chat del 24/10/2026 un unico ensayo SITL agri_demo_001 H2 con clave agri-demo-001-h2-r01 y perfil two_drones: primero drone_01 v1 snapshot 321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d y despues drone_02 v2 snapshot 079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472; el coordinador puede armar, despegar, navegar, regresar y aterrizar cada dron por las rutas protegidas; el segundo solo tras PASSED verificado del primero; sin reintentos, hardware real, rover, H3 ni Opik",
+      "scope": "These two ordered snapshots only; SITL; no further flights or hardware"
+    },
+    "children": [
+      {
+        "index": 0,
+        "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+        "request_key": "sequence-6628bc51-e232-45f5-901e-f5fdeb05c6f4-1",
+        "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+        "vehicle_selection": {
+          "vehicle_id": "drone_01",
+          "simulated_vehicle": "v1"
+        },
+        "original_source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/8658f6f2-6ba4-41bb-ab7f-f58a80f652ce/a4f7db20-2da2-46b4-8279-0e0dfb5eeff5/mission.json",
+        "source_artifact": {
+          "kind": "finalization",
+          "artifact_id": "a4f7db20-2da2-46b4-8279-0e0dfb5eeff5",
+          "draft_id": "8658f6f2-6ba4-41bb-ab7f-f58a80f652ce",
+          "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+          "record_sha256": "95206448443779d5fab360cb82e6a6971da25ff411bb7c1e3d46245ca21aba14"
+        }
+      },
+      {
+        "index": 1,
+        "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+        "request_key": "sequence-6628bc51-e232-45f5-901e-f5fdeb05c6f4-2",
+        "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+        "vehicle_selection": {
+          "vehicle_id": "drone_02",
+          "simulated_vehicle": "v2"
+        },
+        "original_source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/4707cbd6-3dd4-42e3-a1e2-a175d12a62a6/f505f7ad-df2e-42cb-90d6-6420929fe3e6/mission.json",
+        "source_artifact": {
+          "kind": "finalization",
+          "artifact_id": "f505f7ad-df2e-42cb-90d6-6420929fe3e6",
+          "draft_id": "4707cbd6-3dd4-42e3-a1e2-a175d12a62a6",
+          "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+          "record_sha256": "fcf2a28961483eda14793d4897a712d69e545e8df24604f0bbd8e4a820f159e4"
+        }
+      }
+    ]
+  },
+  "spawned": true,
+  "message": "Admission only, not validation/PASSED. Query the same sequence; never retry flights."
+}

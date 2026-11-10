@@ -1,0 +1,16 @@
+{
+  "status": "BLOCKED",
+  "stage": "DOCKER_METADATA",
+  "observed": {
+    "docker_context": "default",
+    "endpoint": "default \"unix:///var/run/docker.sock\""
+  },
+  "uncollected": [
+    "worker",
+    "ROS_GIDs_and_samples",
+    "active_bridge_YAML",
+    "effective_DDS_parameters_and_XRCE_session"
+  ],
+  "reason": "RuntimeError: engine: permission denied while trying to connect to the docker API at unix:///var/run/docker.sock\n",
+  "finished_at_utc": "2026-10-21T07:56:11.745641+00:00"
+}

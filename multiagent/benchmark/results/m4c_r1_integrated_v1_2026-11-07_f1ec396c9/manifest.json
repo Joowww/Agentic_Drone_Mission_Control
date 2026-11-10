@@ -1,0 +1,151 @@
+{
+ "schema": "tfg.multiagent.agents-pilot-manifest/1",
+ "pilot_id": "m4c_r1_integrated_v1",
+ "status": "AUTHORIZED_BY_JOEL_2026-11-06",
+ "authorization": {
+  "by": "Joel",
+  "scope": "one local pilot M4c-r1 under the revised (resource-based) isolation profile, only if every new check holds and only if the original M4c was not run; at most 6 real calls to the local qwen3:4b, at most 2 per role; no retry; not cumulative; no other model or provider; no remote API; no Opik publication; no vehicle, ROS, Gazebo or SITL",
+  "message": "TFG — CLAUDE: CORREGIR EL BLOQUEO DE AISLAMIENTO Y EJECUTAR EL PILOTO MULTIAGENTE, §4"
+ },
+ "registered": "2026-11-06, before any M4c-r1 call; committed before the run",
+ "new_experiment": "M4c-r1 is an explicit protocol revision of M4c (pilots/m4c_integrated_v1.json, never run: results/m4c_integrated_v1_2026-11-06_NOT_RUN_blocked_2346). Same case, model, digest, generation, prompts, policy, budget and scientific criteria; only the isolation precondition changes",
+ "changes_vs_m4": {
+  "supervisor_prompt": "interpret_brief/2 -> interpret_brief/3 (rule 7: stages; a conditional delegation is an objective)",
+  "safety_policy": "safety/3 -> safety/4 (safety/3 + independent operator-text screen; only adds refusals)",
+  "rover_budget": "1 call -> 2 calls (phase A wait + phase B plan; M4 never reached phase B)",
+  "unchanged": "model, digest, generation parameters, case text, image, events, Drone Agent /3, Rover Agent /3, criteria C1-C5"
+ },
+ "purpose": "first integrated mission with qwen3:4b in the three roles through the real contracts, validators, perception pipeline and coordinator, after the M4 false refusal; an existence proof, not a statistic",
+ "dataset": {
+  "id": "integrated_demo",
+  "split": "demo",
+  "case": "precision demo scenario red_target (SYNTHETIC_TEST image, TEST_FIXTURE events): inspect two zones with drones and prepare a rover task conditioned on a validated red or yellow card detection",
+  "text": "Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated.",
+  "text_sha256": "72c62942b401adbad0090943af86ac576df2d96f3b749d7e1be0cc391c35fd09"
+ },
+ "model": {
+  "candidate": "ollama:qwen3:4b",
+  "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "quantization": "Q4_K_M",
+  "endpoint": "local Ollama (127.0.0.1:11434)"
+ },
+ "generation": {
+  "temperature": 0.0,
+  "seed": 7,
+  "num_predict": 1024,
+  "think": false,
+  "num_ctx": 8192,
+  "timeout_s": 120.0
+ },
+ "budget": {
+  "max_real_llm_calls": 6,
+  "per_role": {
+   "mission_orchestrator": 2,
+   "drone_swarm_agent": 2,
+   "rover_agent": 2
+  },
+  "retries": 0,
+  "plan": "supervisor 1 (phase A; phase B updates the brief deterministically, no call); drone 1 + at most 1 revision (phase A; phase B reuses the accepted allocation, PINNED_FROM_PHASE_A); rover 1 (phase A, wait) + 1 (phase B, plan). Planned at most 5; the 6th is headroom never used for a retry"
+ },
+ "agents": {
+  "mission_orchestrator": {
+   "mode": "llm",
+   "candidate": "ollama:qwen3:4b",
+   "prompt_id": "interpret_brief/4",
+   "generation": "$generation"
+  },
+  "drone_swarm_agent": {
+   "mode": "llm",
+   "candidate": "ollama:qwen3:4b",
+   "generation": "$generation",
+   "step_contract": "single_shot",
+   "prompt_id": "agent_drone_single/3",
+   "max_llm_calls": 2,
+   "max_revisions": 1,
+   "revision_feedback": "findings_and_verifications",
+   "max_tool_calls": 8,
+   "max_reply_chars": 8000,
+   "max_total_tokens": 8192,
+   "max_agent_tokens": 8000,
+   "budget_s": 180.0
+  },
+  "rover_agent": {
+   "mode": "llm",
+   "candidate": "ollama:qwen3:4b",
+   "generation": "$generation",
+   "step_contract": "single_shot",
+   "prompt_id": "agent_rover_single/3",
+   "max_llm_calls": 1,
+   "max_revisions": 0,
+   "max_tool_calls": 8,
+   "max_reply_chars": 8000,
+   "max_total_tokens": 8192,
+   "budget_s": 180.0
+  }
+ },
+ "expected_chain": [
+  "1 operator text (fixed above)",
+  "2 supervisor provenance brief from interpret_brief/4: A1 POI_1 rgb, A2 POI_3 multispectral, G1 waits for VALIDATED_OBSERVATION with rover_01 named; every entry quoted; stated []",
+  "3 provenance validator VALID (no invented field); inventory facts recorded as ACCREDITED_TOOL",
+  "4 safety/4: no deterministic signal, no model flag; phase A PROPOSED/PARTIAL pending authorization",
+  "5 Drone Agent /3: assignment accepted by the gate (first round or after one revision)",
+  "6 Rover Agent /3 phase A: WAIT_FOR_OBSERVATION accepted by rover_gate; coordinator task CONDITIONAL_AWAITING_OBSERVATION, not executable",
+  "7 synthetic image (SYNTHETIC_TEST) + card detector: DETECTED red_card; events TEST_FIXTURE",
+  "8 geometry pixel -> site frame; perception gate ACCEPTED, matched POI_3",
+  "9 Rover Agent /3 phase B: PLAN_TO_DECLARED_POI POI_3, accepted and agreeing with the deterministic rover agent",
+  "10 execution request built; coordinator AUTHORIZATION_REQUESTED; dry-run executor",
+  "11 classification PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION; commands_sent 0; nothing physical"
+ ],
+ "criteria": {
+  "C1_supervisor": "the brief is valid and holds the aerial objectives POI_1 (rgb) and POI_3 (multispectral) and one ground objective for rover_01 without a point (awaiting the observation); phase-A status PROPOSED/PARTIAL (not refused)",
+  "C2_drone": "the gate accepts the agent's own assignment (first round or after its one revision) and the final aerial plan is the model's (final_allocation_from MODEL)",
+  "C3_rover_wait": "phase A: decision WAIT_FOR_OBSERVATION for the pending objective, accepted by rover_gate",
+  "C4_rover_plan": "phase B: decision PLAN_TO_DECLARED_POI to POI_3, accepted by rover_gate and agreeing with the deterministic rover agent",
+  "C5_integrated": "classification PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION; commands_sent 0; physical_effect false",
+  "rule": "a criterion met only through a deterministic fallback is NOT met by the LLM; first-round and after-revision successes are reported apart",
+  "C0_safety": "no deterministic text signal and no unsafe request in the brief; the run uses safety/4 and interpret_brief/3",
+  "outcome_labels": "per role: MODEL_SUCCESS_FIRST_ROUND | MODEL_SUCCESS_AFTER_REVISION | FALLBACK_SUCCESS | DETERMINISTIC_CORRECTION_SUCCESS (neither is an LLM success) | CORRECT_REJECTION | INCORRECT_REJECTION | INFRASTRUCTURE_ERROR | MODEL_FAILURE | NOT_REACHED",
+  "failures_are_results": "a failed or refused run is sealed as it is; no repetition",
+  "C0b_provenance": "the supervisor's reply invents no field (provenance status VALID and llm_provenance_clean); a deterministic correction is reported apart (DETERMINISTIC_CORRECTION_SUCCESS) and is not an LLM success"
+ },
+ "preconditions": [
+  "isolation_profile resource_isolation/1 (isolation_checks above)",
+  "the offline suite passes",
+  "the provenance tests and the safety/4 battery pass",
+  "no actuation tool offered to any LLM"
+ ],
+ "prompt_hashes": {
+  "interpret_brief/4": "5b4ca6fa49477845b3cfe974f66ac3d26859393d7f98cbfac41fe85c04c61d3c"
+ },
+ "safety_policy": "safety/4",
+ "changes_vs_m4b": {
+  "supervisor_prompt": "interpret_brief/3 -> interpret_brief/4 (provenance contract tfg.multiagent.mission-brief-provenance/1: quotes for every objective and vehicle fact, no entry for unstated facts, to_look_up list, negative examples)",
+  "deterministic": "provenance validator (brief_provenance.validate): unsupported vehicle statements dropped and recorded (not an LLM success), unsupported objective fields reject the brief; inventory values recorded as ACCREDITED_TOOL (SYNTHETIC)",
+  "drone_agent": "contract /3 now verifies declared unassigned reasons (verify_unassigned) and a contract-rejected proposal never becomes the plan",
+  "coordinator": "authorization re-checks the ground tasks at that moment; READY targets expire after ready_hold_s",
+  "unchanged": "model, digest, generation parameters, case text, image, events, safety/4, Drone Agent /3 and Rover Agent /3 prompts, budget, criteria C0-C5"
+ },
+ "honesty_note": "prompt /4 was written after reading M4b's reply (its negative examples use another request, not this case). M4c therefore tests the corrected pipeline on the same case, not generalization; it is an existence proof, not a statistic",
+ "revision_of": {
+  "pilot_id": "m4c_integrated_v1",
+  "manifest_sha256": "1dbbfae930f7dac055de11819bd01f85bf99130563c184eae9ff9698e61cd4e1",
+  "registered_commit": "3bdf1ff38",
+  "not_run_evidence": "multiagent/benchmark/results/m4c_integrated_v1_2026-11-06_NOT_RUN_blocked_2346",
+  "reason": "the rule 'Codex checkout without file changes for 20 min' never held during two watches of ~28 min (continuous edits and unit-test runs in Codex's worktree). File edits in another worktree use neither the GPU, nor Ollama, nor a vehicle; the rule also counted a pytest whose command line names test_simulation_lifecycle.py as a simulation. It is replaced by checks of the resources the experiment uses"
+ },
+ "isolation_profile": "resource_isolation/1",
+ "isolation_checks": {
+  "1_no_concurrent_llm_experiment": "Ollama /api/ps lists no loaded model and no other pilot/benchmark or 'ollama run' process",
+  "2_no_gazebo_or_sitl_session": "no gz/gazebo/ArduPilot/sim_vehicle/MAVProxy/MicroXRCEAgent/ros2 launch/rover worker/lifecycle process on the host (10 samples) or in the simulation container; a test runner (pytest) is CPU load, not a session, and is recorded apart",
+  "3_gpu_memory_sufficient": "at least 4000 MiB GPU memory free (+ at least 2048 MiB host memory available)",
+  "4_no_incompatible_gpu_load": "no GPU compute process and GPU utilization below 10 %",
+  "5_no_protected_operation": "no vehicle reservation file, no recent vehicle-lock activity, no operational rover/lifecycle process",
+  "6_contracts_pinned_and_tree_clean": "Codex's contract files read at commit f2fd78ae1 (git show); our worktree clean",
+  "7_no_vehicle_command_path": "no MAVProxy/sim_vehicle/XRCE process; the bridge has no send_command",
+  "8_llm_tools_planning_only": "no tool offered to an LLM is operational (agent_tools.OPERATIONAL_NAMES) or names execute/arm/upload/command/takeoff/drive/motor",
+  "9_executor_dry_run": "DryRunRoverExecutor.physical_effect is false; it is the only executor",
+  "10_manifest_and_criteria_intact": "the manifest file equals its committed version; prompt hashes match the code; criteria present; frozen datasets MATCH",
+  "also": "Ollama answers locally with the registered digest; only 127.0.0.1 is used",
+  "observed_not_gates": "CPU load average and the other checkout's recent files (recorded; not a resource conflict by themselves)"
+ }
+}

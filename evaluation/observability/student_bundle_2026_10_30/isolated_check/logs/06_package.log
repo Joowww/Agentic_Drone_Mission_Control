@@ -1,0 +1,16 @@
+ Container tfg-entrega-2030-prueba-app-run-93d57d43ffa2 Creating 
+ Container tfg-entrega-2030-prueba-app-run-93d57d43ffa2 Created 
+Package 0565d470cf1c0ff6 [HERMES_FINALIZED_ON_SYNTHETIC, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval ABSENT
+  HERMES_drone_01 drone_01: GENERATED -> plans/drone_01.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  HERMES_drone_02 drone_02: GENERATED -> plans/drone_02.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  dependency structure PASS (structural only: not artifact availability, approval or execution readiness): HERMES_drone_01 -> HERMES_drone_02
+  deployment_ready=False; blockers: operator approval ABSENT; imported_in_qgroundcontrol: NOT_DONE; uploaded_to_vehicle: NOT_DONE; read_back_from_vehicle: NOT_DONE; executed: NOT_DONE
+  PENDING: operator approval ABSENT
+  PENDING: HERMES_drone_01: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)
+  PENDING: HERMES_drone_02: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)
+  PENDING: conditioned or not in the .plan: failsafe actions, planning inputs, return coordinate, speed, takeoff, waypoint acceptance, yaw
+  PENDING: autopilot parameters not read: WP_RADIUS_M (waypoint acceptance), WP_YAW_BEHAVIOR (yaw), WP_SPD (default speed), FS_* (failsafe actions), LAND_SPD_MS / descent (landing rate)
+  PENDING: QGroundControl version unknown; imported_in_qgroundcontrol: NOT_DONE, uploaded_to_vehicle: NOT_DONE, read_back_from_vehicle: NOT_DONE, executed: NOT_DONE
+total 8
+-rw-r--r-- 1 joelm joelm 2742 Oct 30 11:56 drone_01.plan
+-rw-r--r-- 1 joelm joelm 2742 Oct 30 11:56 drone_02.plan

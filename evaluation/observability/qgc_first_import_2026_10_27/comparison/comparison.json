@@ -1,0 +1,66 @@
+{
+  "schema": "tfg.qgc-plan-comparison/1",
+  "original_sha256": "692c8075133ef62bdb4a051892387ce62213fb2c8ae3a905904d2f157d142c8d",
+  "saved_sha256": "256f5a5229aeb7633ee5138e1b95239b94714e0a312f9046d06f970bf6f8748e",
+  "verdict_scope": "comparison of two files only; not a QGroundControl or vehicle compatibility verdict",
+  "status": "NO_SEMANTIC_DIFFERENCES",
+  "differences": [
+    {
+      "category": "PRESENTATION",
+      "path": "/mission/plannedHomePosition/2",
+      "original": 584.0,
+      "saved": 584,
+      "detail": "planned home AMSL altitude: same number, different literal"
+    },
+    {
+      "category": "PRESENTATION",
+      "path": "/mission/items/0/params/6",
+      "original": 5.0,
+      "saved": 5,
+      "detail": "NAV_TAKEOFF param7 (altitude): same number, different literal"
+    },
+    {
+      "category": "QGC_METADATA",
+      "path": "/mission/items/1/Altitude",
+      "original": 0,
+      "saved": null,
+      "detail": "Altitude not written by QGC for this item"
+    },
+    {
+      "category": "QGC_METADATA",
+      "path": "/mission/items/1/AltitudeMode",
+      "original": 1,
+      "saved": null,
+      "detail": "AltitudeMode not written by QGC for this item"
+    },
+    {
+      "category": "QGC_METADATA",
+      "path": "/mission/items/1/AMSLAltAboveTerrain",
+      "original": null,
+      "saved": null,
+      "detail": "field removed"
+    },
+    {
+      "category": "PRESENTATION",
+      "path": "/mission/items/2/params/6",
+      "original": 5.0,
+      "saved": 5,
+      "detail": "NAV_WAYPOINT param7 (altitude): same number, different literal"
+    },
+    {
+      "category": "PRESENTATION",
+      "path": "/mission/items/3/params/6",
+      "original": 5.0,
+      "saved": 5,
+      "detail": "NAV_WAYPOINT param7 (altitude): same number, different literal"
+    }
+  ],
+  "counts": {
+    "PRESENTATION": 4,
+    "QGC_METADATA": 3,
+    "SEMANTIC_CHANGE": 0,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}

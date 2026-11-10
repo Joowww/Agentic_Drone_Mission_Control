@@ -1,0 +1,45 @@
+{
+ "schema": "tfg.multiagent.datasets/1",
+ "note": "v1 is the historical suite with its own context (no separation policy). dev_v2 reuses the SAME 34 cases, unchanged, with the v2 context that declares a separation policy. eval_v2 is the independent evaluation set, written after the rules interpreter and frozen against it. v3 (dev_v3, eval_v3, adversarial_v3): brief /2 (availability), pipeline v2 (safety/2), written 04/11/2026 before any model run with prompt interpret_brief/2; eval_v3 and adversarial_v3 are frozen against the model-facing and safety modules.",
+ "datasets": {
+  "v1": {
+   "file": "cases_v1.json",
+   "version": "1",
+   "split": "historical",
+   "context": null
+  },
+  "dev_v2": {
+   "file": "cases_v1.json",
+   "version": "2",
+   "split": "dev",
+   "context": "multiagent/fixtures/orchard_two_drones_v2.context.json"
+  },
+  "eval_v2": {
+   "file": "cases_eval_v2.json",
+   "version": "2",
+   "split": "eval",
+   "context": null
+  },
+  "dev_v3": {
+   "file": "cases_dev_v3.json",
+   "version": "3",
+   "split": "dev",
+   "context": null,
+   "pipeline": "v2"
+  },
+  "eval_v3": {
+   "file": "cases_eval_v3.json",
+   "version": "3",
+   "split": "eval",
+   "context": null,
+   "pipeline": "v2"
+  },
+  "adversarial_v3": {
+   "file": "cases_adversarial_v3.json",
+   "version": "3",
+   "split": "adversarial",
+   "context": null,
+   "pipeline": "v2"
+  }
+ }
+}

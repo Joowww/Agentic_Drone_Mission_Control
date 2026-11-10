@@ -1,7 +1,10 @@
 from typing import Literal
 
+from planning.relative_routes import RelativeRouteRequest
+
 from pydantic import (
     BaseModel,
+    ConfigDict,
     Field,
 )
 
@@ -59,20 +62,26 @@ FailsafeAction = Literal[
 
 
 class PlannedWaypointDraft(BaseModel):
+    model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
+
     waypoint_id: str
 
-    latitude: float | None = None
+    latitude: float | None = Field(default=None, ge=-90, le=90)
 
-    longitude: float | None = None
+    longitude: float | None = Field(default=None, ge=-180, le=180)
 
-    altitude_m: float | None = None
+    altitude_m: float | None = Field(default=None, ge=0)
 
-    speed_kmh: float | None = None
+    speed_kmh: float | None = Field(default=None, gt=0)
 
     action: WaypointAction | None = None
 
 
 class MissionPlanDraft(BaseModel):
+    model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
+
+    geometry_intent: RelativeRouteRequest | None = None
+
     mission_id: str | None = None
 
     name: str | None = None
@@ -83,13 +92,13 @@ class MissionPlanDraft(BaseModel):
 
     autopilot: AutopilotType | None = None
 
-    cruise_speed_kmh: float | None = None
+    cruise_speed_kmh: float | None = Field(default=None, gt=0)
 
-    battery_percent: float | None = None
+    battery_percent: float | None = Field(default=None, ge=0, le=100)
 
     battery_consumption_percent_per_minute: (
         float | None
-    ) = None
+    ) = Field(default=None, gt=0)
 
     objective_type: ObjectiveType | None = None
 
@@ -97,11 +106,11 @@ class MissionPlanDraft(BaseModel):
 
     objective_description: str | None = None
 
-    home_latitude: float | None = None
+    home_latitude: float | None = Field(default=None, ge=-90, le=90)
 
-    home_longitude: float | None = None
+    home_longitude: float | None = Field(default=None, ge=-180, le=180)
 
-    home_altitude_m: float | None = None
+    home_altitude_m: float | None = Field(default=None, ge=0)
 
     waypoints: list[
         PlannedWaypointDraft
@@ -111,19 +120,19 @@ class MissionPlanDraft(BaseModel):
 
     return_to_home: bool | None = None
 
-    wind_speed_kmh: float | None = None
+    wind_speed_kmh: float | None = Field(default=None, ge=0)
 
     wind_direction_from: Direction | None = None
 
-    wind_direction_from_deg: float | None = None
+    wind_direction_from_deg: float | None = Field(default=None, ge=0, lt=360)
 
     minimum_battery_reserve_percent: (
         float | None
-    ) = None
+    ) = Field(default=None, ge=0, le=100)
 
-    maximum_wind_speed_kmh: float | None = None
+    maximum_wind_speed_kmh: float | None = Field(default=None, gt=0)
 
-    maximum_altitude_m: float | None = None
+    maximum_altitude_m: float | None = Field(default=None, gt=0)
 
     low_battery_action: FailsafeAction | None = None
 

@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "archive_date_local": "2026-10-18",
+  "timezone": "Europe/Madrid",
+  "scope": "Selected conversational artifacts; no new simulation, flights or operational MCP calls",
+  "operator_observations": "Conversation execution and compactions are reported by operator; files do not prove dialogue fidelity",
+  "verification": [
+    {
+      "kind": "finalization",
+      "id": "8be78baa-4cf4-4f65-8531-9388d030c3ed",
+      "draft_id": "1f84f808-c688-48c9-b7da-1b1c4b29c094",
+      "draft_revision": 4,
+      "geometry_revision": 3,
+      "mission_sha256": "fee5185407a7f63810a62f652062454f83790aa2b8a7234f869a7d93eda3a936",
+      "record_sha256": "fc660719c2c1f520fccc5385ffbcbc930c734d70fe1f760b53f6784d729698be",
+      "execution_status": "APPROVED",
+      "checks": "existing load_finalization and read_draft_record; no operational checks"
+    },
+    {
+      "kind": "revision",
+      "id": "b880d6c3-4557-42c7-ada4-5a04db5e9237",
+      "proposal_id": "727082c5-4008-4bf2-a61e-87b48eed35a8",
+      "mission_sha256": "73d03781ecf6d070676cc0031c3bd5b4bb7f644d635d50ef546c9e1bb6010286",
+      "record_sha256": "04c8d3008851e2670fb494705d5da10c85d49f8a7a9ec86d982fdaf0d8a9b18d",
+      "execution_status": "APPROVED",
+      "battery_percent": 95.0
+    },
+    {
+      "kind": "revision",
+      "id": "89c3da7d-bc20-42ae-baeb-21d4e839355a",
+      "proposal_id": "727082c5-4008-4bf2-a61e-87b48eed35a8",
+      "mission_sha256": "365c646349ea1b74b33a429e3db976281be6cd52ab06af31bdb5459f2e9e8b7b",
+      "record_sha256": "13d23fdccc250ca3d7df9bbfb87bdf10523f1587e16e40c9d22b111079a2b6a6",
+      "execution_status": "BLOCKED",
+      "battery_percent": 11.0
+    },
+    {
+      "kind": "proposal",
+      "id": "727082c5-4008-4bf2-a61e-87b48eed35a8",
+      "run_id": "0844c190-59c8-40cf-991e-93cebbd3cf02",
+      "category": "PLANNING_REVIEW",
+      "mission_sha256": "851c4226b53fac6cc91e7048214c62367afac42a785201b21c2761324c1195cc",
+      "report_sha256": "63e5c46c7abd2f0bbb75780e0c3cc25f490de6f4864971022f5a2b5fe090c8c1",
+      "proposal_sha256": "245a45144c15a3b03e5f5598342326b17f4f55249af2b04d50c1192f8b3db2e8",
+      "checks": "source copies plus verified_source reanalysis/validation, offline"
+    },
+    {
+      "kind": "proposal",
+      "id": "e44903a2-0405-4ea5-99c7-7233ce0ea333",
+      "run_id": "d4519cab-ebd1-4359-b547-44be38294a6a",
+      "category": "INVESTIGATE_EXECUTION",
+      "mission_sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+      "report_sha256": "f265cf77fef275c4f0cc600a546dc6a4e339b80116dc3ba97caf0e25c92777a2",
+      "proposal_sha256": "0ead23d6ad149bdfb07eb206592961edf8a1402c270b902cdb05ad2cbe11f99e",
+      "checks": "source copies plus verified_source reanalysis/validation, offline"
+    },
+    {
+      "kind": "proposal",
+      "id": "ae3bf4c2-3a56-4402-89b9-020e6232d5cf",
+      "run_id": "f5f55084-5af6-4e58-ab1a-ce30a13832b3",
+      "category": "NO_CORRECTION_REQUIRED",
+      "mission_sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+      "report_sha256": "9d4920a894f17d125918757d527f99560111a3dc3c37cbea508875d4fd2abc1a",
+      "proposal_sha256": "cf9b6ad7beee8f4f1de0922b9da4a965b3f6ecd8b9c3c0101b9c674b28f7cfe7",
+      "checks": "source copies plus verified_source reanalysis/validation, offline"
+    },
+    {
+      "kind": "proposal",
+      "id": "4bff56e2-48c9-421f-b8b6-1969aa5ddf74",
+      "run_id": "d7717942-9b43-45c7-bf3a-65b02bb1155a",
+      "category": "INFRASTRUCTURE_PENDING",
+      "mission_sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+      "report_sha256": "2cdb2b9a8baa9dffe543aab67f61b89c7aaed49a0dba37a20972edcafcc00c02",
+      "proposal_sha256": "e4aa42e058e3f3dcc9174b0d4047cd3ddc2541df7817f791320469d1369f87fa",
+      "checks": "source copies plus verified_source reanalysis/validation, offline"
+    }
+  ],
+  "files": [
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/circuito_relativo_nuevo_001.plan",
+      "copy_path": "artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/circuito_relativo_nuevo_001.plan",
+      "sha256": "ad488c661f3892f1a305048392d97116df693536de9dcf86075ad570bc6d1b83",
+      "bytes": 4376
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/finalization.json",
+      "copy_path": "artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/finalization.json",
+      "sha256": "fc660719c2c1f520fccc5385ffbcbc930c734d70fe1f760b53f6784d729698be",
+      "bytes": 20308
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/mission.json",
+      "copy_path": "artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/mission.json",
+      "sha256": "fee5185407a7f63810a62f652062454f83790aa2b8a7234f869a7d93eda3a936",
+      "bytes": 2192
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/source_draft.json",
+      "copy_path": "artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/source_draft.json",
+      "sha256": "514d2bdd216349123455db46ac92ed897cc4f00fbdc30829cf955762706e9b89",
+      "bytes": 2233
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/source_draft_state.json",
+      "copy_path": "artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/source_draft_state.json",
+      "sha256": "69185cfa7d38a2fcf6fe7c1991f491958658fa9e0e77b7d630ea27de2194c735",
+      "bytes": 18555
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/draft.json",
+      "copy_path": "artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/draft.json",
+      "sha256": "514d2bdd216349123455db46ac92ed897cc4f00fbdc30829cf955762706e9b89",
+      "bytes": 2233
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/draft_state.json",
+      "copy_path": "artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/draft_state.json",
+      "sha256": "69185cfa7d38a2fcf6fe7c1991f491958658fa9e0e77b7d630ea27de2194c735",
+      "bytes": 18555
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/missions/89c3da7d-bc20-42ae-baeb-21d4e839355a/mission.json",
+      "copy_path": "artifacts/missions/generated/revisions/missions/89c3da7d-bc20-42ae-baeb-21d4e839355a/mission.json",
+      "sha256": "365c646349ea1b74b33a429e3db976281be6cd52ab06af31bdb5459f2e9e8b7b",
+      "bytes": 1709
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/missions/89c3da7d-bc20-42ae-baeb-21d4e839355a/prueba_hermes_001_bateria_baja_candidate.plan",
+      "copy_path": "artifacts/missions/generated/revisions/missions/89c3da7d-bc20-42ae-baeb-21d4e839355a/prueba_hermes_001_bateria_baja_candidate.plan",
+      "sha256": "a1464d923c07d8f773f75eb3eb9e62c6e485258029e72ff06a8f390922dcc70c",
+      "bytes": 3250
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/missions/89c3da7d-bc20-42ae-baeb-21d4e839355a/revision.json",
+      "copy_path": "artifacts/missions/generated/revisions/missions/89c3da7d-bc20-42ae-baeb-21d4e839355a/revision.json",
+      "sha256": "13d23fdccc250ca3d7df9bbfb87bdf10523f1587e16e40c9d22b111079a2b6a6",
+      "bytes": 2984
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/missions/b880d6c3-4557-42c7-ada4-5a04db5e9237/mission.json",
+      "copy_path": "artifacts/missions/generated/revisions/missions/b880d6c3-4557-42c7-ada4-5a04db5e9237/mission.json",
+      "sha256": "73d03781ecf6d070676cc0031c3bd5b4bb7f644d635d50ef546c9e1bb6010286",
+      "bytes": 1709
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/missions/b880d6c3-4557-42c7-ada4-5a04db5e9237/prueba_hermes_001_bateria_baja.plan",
+      "copy_path": "artifacts/missions/generated/revisions/missions/b880d6c3-4557-42c7-ada4-5a04db5e9237/prueba_hermes_001_bateria_baja.plan",
+      "sha256": "a1464d923c07d8f773f75eb3eb9e62c6e485258029e72ff06a8f390922dcc70c",
+      "bytes": 3250
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/missions/b880d6c3-4557-42c7-ada4-5a04db5e9237/revision.json",
+      "copy_path": "artifacts/missions/generated/revisions/missions/b880d6c3-4557-42c7-ada4-5a04db5e9237/revision.json",
+      "sha256": "04c8d3008851e2670fb494705d5da10c85d49f8a7a9ec86d982fdaf0d8a9b18d",
+      "bytes": 2961
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/4bff56e2-48c9-421f-b8b6-1969aa5ddf74/proposal.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/4bff56e2-48c9-421f-b8b6-1969aa5ddf74/proposal.json",
+      "sha256": "e4aa42e058e3f3dcc9174b0d4047cd3ddc2541df7817f791320469d1369f87fa",
+      "bytes": 1217
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/4bff56e2-48c9-421f-b8b6-1969aa5ddf74/source_mission.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/4bff56e2-48c9-421f-b8b6-1969aa5ddf74/source_mission.json",
+      "sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+      "bytes": 1675
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/4bff56e2-48c9-421f-b8b6-1969aa5ddf74/source_report.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/4bff56e2-48c9-421f-b8b6-1969aa5ddf74/source_report.json",
+      "sha256": "2cdb2b9a8baa9dffe543aab67f61b89c7aaed49a0dba37a20972edcafcc00c02",
+      "bytes": 2856
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/727082c5-4008-4bf2-a61e-87b48eed35a8/proposal.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/727082c5-4008-4bf2-a61e-87b48eed35a8/proposal.json",
+      "sha256": "245a45144c15a3b03e5f5598342326b17f4f55249af2b04d50c1192f8b3db2e8",
+      "bytes": 1390
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/727082c5-4008-4bf2-a61e-87b48eed35a8/source_mission.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/727082c5-4008-4bf2-a61e-87b48eed35a8/source_mission.json",
+      "sha256": "851c4226b53fac6cc91e7048214c62367afac42a785201b21c2761324c1195cc",
+      "bytes": 1709
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/727082c5-4008-4bf2-a61e-87b48eed35a8/source_report.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/727082c5-4008-4bf2-a61e-87b48eed35a8/source_report.json",
+      "sha256": "63e5c46c7abd2f0bbb75780e0c3cc25f490de6f4864971022f5a2b5fe090c8c1",
+      "bytes": 2693
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/ae3bf4c2-3a56-4402-89b9-020e6232d5cf/proposal.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/ae3bf4c2-3a56-4402-89b9-020e6232d5cf/proposal.json",
+      "sha256": "cf9b6ad7beee8f4f1de0922b9da4a965b3f6ecd8b9c3c0101b9c674b28f7cfe7",
+      "bytes": 4438
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/ae3bf4c2-3a56-4402-89b9-020e6232d5cf/source_mission.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/ae3bf4c2-3a56-4402-89b9-020e6232d5cf/source_mission.json",
+      "sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+      "bytes": 1675
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/ae3bf4c2-3a56-4402-89b9-020e6232d5cf/source_report.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/ae3bf4c2-3a56-4402-89b9-020e6232d5cf/source_report.json",
+      "sha256": "9d4920a894f17d125918757d527f99560111a3dc3c37cbea508875d4fd2abc1a",
+      "bytes": 8004
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/e44903a2-0405-4ea5-99c7-7233ce0ea333/proposal.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/e44903a2-0405-4ea5-99c7-7233ce0ea333/proposal.json",
+      "sha256": "0ead23d6ad149bdfb07eb206592961edf8a1402c270b902cdb05ad2cbe11f99e",
+      "bytes": 3762
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/e44903a2-0405-4ea5-99c7-7233ce0ea333/source_mission.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/e44903a2-0405-4ea5-99c7-7233ce0ea333/source_mission.json",
+      "sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+      "bytes": 1675
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/e44903a2-0405-4ea5-99c7-7233ce0ea333/source_report.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/e44903a2-0405-4ea5-99c7-7233ce0ea333/source_report.json",
+      "sha256": "f265cf77fef275c4f0cc600a546dc6a4e339b80116dc3ba97caf0e25c92777a2",
+      "bytes": 7645
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/requests/398d87378bef5c272189828160e34346cca7789d50a2a72e86321ea547353324.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/requests/398d87378bef5c272189828160e34346cca7789d50a2a72e86321ea547353324.json",
+      "sha256": "def5d86de33c143f6e53b09e8dda9a0831965465a40d2c73fe866e37f526bd8e",
+      "bytes": 1772
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/requests/4ca447ef6795a6e460656c9e0b0ff74a9e3e050175ae40c8f281754b24de5ac6.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/requests/4ca447ef6795a6e460656c9e0b0ff74a9e3e050175ae40c8f281754b24de5ac6.json",
+      "sha256": "92038d991f527a7a9b15930d3d1b5815b07feff09e281140d248af0b4cc7708a",
+      "bytes": 4673
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/requests/cd43f64ce8c713b8a01f14e5d3dd9b1258a664ff2e872a1c1b8332a5fd29b0e2.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/requests/cd43f64ce8c713b8a01f14e5d3dd9b1258a664ff2e872a1c1b8332a5fd29b0e2.json",
+      "sha256": "f366dc41ab861af8fa3d8da5003546cf8533425861b4b37d9475529cd9b5a3eb",
+      "bytes": 1953
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/proposals/requests/f9a58e6d16ffb0bc84312fbd0539fb33e75820bed7ead7084536d03ccc5a2d5f.json",
+      "copy_path": "artifacts/missions/generated/revisions/proposals/requests/f9a58e6d16ffb0bc84312fbd0539fb33e75820bed7ead7084536d03ccc5a2d5f.json",
+      "sha256": "ef0f07ee668b0b6feff10ffd1b733bb4dce52f0d039ff83c0fe4eba1c6ae8ba1",
+      "bytes": 5485
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/revisions/requests/d59981c7ce975512ed7fd3268dca5c3a1ebd56e74bef9294eeff0a31dbeb7cc4.json",
+      "copy_path": "artifacts/missions/generated/revisions/revisions/requests/d59981c7ce975512ed7fd3268dca5c3a1ebd56e74bef9294eeff0a31dbeb7cc4.json",
+      "sha256": "34f2675728a8861947d3ab25e481bfb510281e7dff09c80f0591e83fae4456ec",
+      "bytes": 3192
+    },
+    {
+      "original_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/revisions/revisions/requests/d604e43feeb68d04f35e64298e25bcae14e2b0aaee2d2f4f397b9fbd4ddfc048.json",
+      "copy_path": "artifacts/missions/generated/revisions/revisions/requests/d604e43feeb68d04f35e64298e25bcae14e2b0aaee2d2f4f397b9fbd4ddfc048.json",
+      "sha256": "e890f9bf28d52947502d12ffc61c39f69a493170af4834c641a6ed37ea931497",
+      "bytes": 3223
+    }
+  ],
+  "limits": [
+    "Hashes verify local bytes, not authenticated conversation or physical telemetry",
+    "Copied JSON retains original embedded absolute paths; this is evidence, not a relocated operational registry",
+    "Previous PASSED does not explain the earlier WP3 failure; no new flight was executed"
+  ]
+}

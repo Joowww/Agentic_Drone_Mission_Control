@@ -1,0 +1,51 @@
+```json
+{
+  "scenario_status": "AERIAL_COMPLETED_GROUND_PENDING",
+  "scenario_complete": false,
+  "sequence_order": ["drone_01", "drone_02"],
+  "order_basis": "EXECUTION_TIMESTAMPS",
+  "runs": [
+    {
+      "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+      "vehicle_id": "drone_01",
+      "simulated_vehicle": "v1",
+      "mission_id": "agri_demo_001_h1_sector_a",
+      "status": "COMPLETED",
+      "result_status": "PASSED",
+      "reached_points": ["POI_A1", "POI_A2"],
+      "return_home": "CONFIRMED",
+      "landing": "MISSION_LANDING_CONFIRMED",
+      "executor_started_at": "2026-10-24T12:51:28.380152+00:00",
+      "executor_finished_at": "2026-10-24T12:55:42.138208+00:00"
+    },
+    {
+      "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+      "vehicle_id": "drone_02",
+      "simulated_vehicle": "v2",
+      "mission_id": "agri_demo_001_h1_sector_b",
+      "status": "COMPLETED",
+      "result_status": "PASSED",
+      "reached_points": ["POI_B1", "POI_B2"],
+      "return_home": "CONFIRMED",
+      "landing": "MISSION_LANDING_CONFIRMED",
+      "executor_started_at": "2026-10-24T12:55:50.243976+00:00",
+      "executor_finished_at": "2026-10-24T12:59:50.905810+00:00"
+    }
+  ],
+  "r1_status": "BLOCKED_PENDING",
+  "r1_dependency": "MET",
+  "r1_commands_sent": false,
+  "r1_movement_authorized": false,
+  "claims": {
+    "images_captured": false,
+    "detections_made": false,
+    "speed_commanded": false,
+    "speed_measured": false,
+    "simultaneous_flight": false,
+    "common_frame_validated": false,
+    "current_permissions_checked": false
+  },
+  "evidence_source": "historical scenario view agri_demo_001, request_key agri-demo-001-h2-r01, scope=historical",
+  "explanation": "Drone_01 (sector A) voló primero: tomó empuje a las 12:51:48, alcanzó POI_A1 y POI_A2, ejecutó retorno a casa a las 12:53:36 y aterrizó en misión a las 12:54:22, finalizando el executor a las 12:55:42 con resultado PASSED. El coordinador verificó ese resultado exitoso antes de despachar drone_02. Drone_02 (sector B) voló en ventana disjunta: tomó empuje a las 12:56:17, alcanzó POI_B1 y POI_B2, regresó a casa a las 12:57:57 y aterrizó a las 12:58:31, finalizando a las 12:59:50. El orden de ejecución está acreditado por marcas de tiempo (status ACCREDITED_BY_EXECUTION_TIMESTAMPS) porque las ventanas de ejecución son disjuntas, el despacho del coordinador ocurrió después del primer resultado y el primer comando de aterrizaje precedió al primer comando de armado del segundo dron. El regreso y aterrizaje de ambos drones están respaldados por comandos confirmados (return_home CONFIRMED, landing MISSION_LANDING_CONFIRMED) y sus POI alcanzados se registran como REACHED. El escenario no está completo (scenario_complete=false) porque la tarea de tierra R1 (verificación rover en POI_A1) sigue BLOQUEADA; aunque su dependencia está MET (la secuencia terminó y drone_01 alcanzó POI_A1), eso no autoriza movimiento del rover. Los límites que impiden afirmar más: la dependencia MET no autoriza movimiento; el rover está bloqueado por la cadena de identidad XRCE no establecida, no hay punto de entrada público con autorización y reservas, el control del rover solo ofrece velocidad/torno limitada sin navegación a posición, y el registro es histórico sin verificación de disponibilidad, restricciones o permisos actuales. Además no se capturaron imágenes ni detecciones (percepción declarada como NONE), la velocidad no fue ni comandada ni medida (comandos tipo position-only, type_mask 3576), el marco común no fue validado y no hubo vuelo simultáneo."
+}
+```

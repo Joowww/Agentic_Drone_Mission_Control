@@ -1,0 +1,258 @@
+Nov 08 14:40:36 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:36 | 200 |    3.028946ms |       127.0.0.1 | HEAD     "/"
+Nov 08 14:40:36 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:36 | 200 |    3.136988ms |       127.0.0.1 | GET      "/api/ps"
+Nov 08 14:40:36 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:36 | 200 |      34.757µs |       127.0.0.1 | HEAD     "/"
+Nov 08 14:40:36 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:36 | 200 |    5.665941ms |       127.0.0.1 | GET      "/api/tags"
+Nov 08 14:40:39 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:39 | 200 |      24.939µs |       127.0.0.1 | HEAD     "/"
+Nov 08 14:40:39 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:39 | 200 |   81.540989ms |       127.0.0.1 | POST     "/api/show"
+Nov 08 14:40:58 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:58 | 200 |      61.832µs |       127.0.0.1 | HEAD     "/"
+Nov 08 14:40:58 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:58 | 200 |   58.394469ms |       127.0.0.1 | POST     "/api/create"
+Nov 08 14:40:59 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:59 | 200 |      57.942µs |       127.0.0.1 | HEAD     "/"
+Nov 08 14:40:59 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:59 | 200 |    1.817688ms |       127.0.0.1 | GET      "/api/tags"
+Nov 08 14:40:59 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:59 | 200 |      39.755µs |       127.0.0.1 | HEAD     "/"
+Nov 08 14:40:59 MSI ollama[227]: [GIN] 2026/11/08 - 14:40:59 | 200 |   53.861553ms |       127.0.0.1 | POST     "/api/show"
+Nov 08 14:41:11 MSI ollama[227]: [GIN] 2026/11/08 - 14:41:11 | 200 |      24.835µs |       127.0.0.1 | HEAD     "/"
+Nov 08 14:41:11 MSI ollama[227]: [GIN] 2026/11/08 - 14:41:11 | 200 |      13.427µs |       127.0.0.1 | GET      "/api/ps"
+Nov 08 14:41:14 MSI ollama[227]: time=2026-11-08T14:41:14.883+01:00 level=WARN source=runner.go:584 msg="llama-server GPU discovery watchdog timed out" OLLAMA_LIBRARY_PATH="[/usr/local/lib/ollama /usr/local/lib/ollama/cuda_v13]" extra_envs=map[CUDA_VISIBLE_DEVICES:0] error="context deadline exceeded
+Nov 08 14:41:14 MSI ollama[227]: time=2026-11-08T14:41:14.884+01:00 level=INFO source=runner.go:522 msg="failure during llama-server GPU discovery" OLLAMA_LIBRARY_PATH="[/usr/local/lib/ollama /usr/local/lib/ollama/cuda_v13]" extra_envs=map[CUDA_VISIBLE_DEVICES:0] error="context deadline exceeded" de
+Nov 08 14:41:17 MSI ollama[227]: srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+Nov 08 14:41:17 MSI ollama[227]: srv  llama_server: this can be a security risk (cross-origin attacks)
+Nov 08 14:41:21 MSI ollama[227]: load: 0 unused tokens
+Nov 08 14:41:21 MSI ollama[227]: load: printing all EOG tokens:
+Nov 08 14:41:21 MSI ollama[227]: load: special tokens cache size = 27
+Nov 08 14:42:09 MSI ollama[227]: srv    load_model: initializing, n_slots = 1, n_ctx_slot = 65536, kv_unified = 'false'
+Nov 08 14:42:09 MSI ollama[227]: slot   load_model: id  0 | task -1 | new slot, n_ctx = 65536
+Nov 08 14:42:09 MSI ollama[227]: srv    load_model: prompt cache is enabled, size limit: 8192 MiB
+Nov 08 14:42:09 MSI ollama[227]: srv    load_model: use `--cache-ram 0` to disable the prompt cache
+Nov 08 14:42:09 MSI ollama[227]: srv          init: idle slots will be saved to prompt cache upon starting a new task
+Nov 08 14:42:09 MSI ollama[227]: srv  update_slots: all slots are idle
+Nov 08 14:42:09 MSI ollama[227]: slot get_availabl: id  0 | task -1 |  - skipping, slot is empty
+Nov 08 14:42:09 MSI ollama[227]: slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+Nov 08 14:42:09 MSI ollama[227]: srv  get_availabl: updating prompt cache
+Nov 08 14:42:09 MSI ollama[227]: srv          load:  - looking for better prompt, base f_keep = -1.000, f_sim = 0.000
+Nov 08 14:42:09 MSI ollama[227]: srv        update:  - cache state: 0 prompts, 0.000 MiB (limits: 8192.000 MiB, 65536 tokens, 8589934592 est)
+Nov 08 14:42:09 MSI ollama[227]: srv  get_availabl: prompt cache update took 0.09 ms
+Nov 08 14:42:09 MSI ollama[227]: slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> dist
+Nov 08 14:42:09 MSI ollama[227]: slot launch_slot_: id  0 | task -1 | sampler params:
+Nov 08 14:42:09 MSI ollama[227]: slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+Nov 08 14:42:09 MSI ollama[227]: slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 65536, n_keep = 4, task.n_tokens = 15
+Nov 08 14:42:09 MSI ollama[227]: slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
+Nov 08 14:42:09 MSI ollama[227]: slot init_sampler: id  0 | task 0 | init sampler, took 0.01 ms, tokens: text = 15, total = 15
+Nov 08 14:42:27 MSI ollama[227]: slot print_timing: id  0 | task 0 | n_gen =    100, tg =   5.90 t/s, tg_3s =   5.96 t/s
+Nov 08 14:42:27 MSI ollama[227]: slot print_timing: id  0 | task 0 | prompt eval time =    1451.63 ms /    15 tokens (   96.78 ms per token,    10.33 tokens per second)
+Nov 08 14:42:27 MSI ollama[227]: slot print_timing: id  0 | task 0 |        eval time =   16965.53 ms /   101 tokens (  169.66 ms per token,     5.89 tokens per second)
+Nov 08 14:42:27 MSI ollama[227]: slot print_timing: id  0 | task 0 |       total time =   18417.16 ms /   116 tokens
+Nov 08 14:42:27 MSI ollama[227]: slot print_timing: id  0 | task 0 |    graphs reused =        100
+Nov 08 14:42:27 MSI ollama[227]: slot      release: id  0 | task 0 | stop processing: n_tokens = 115, truncated = 0
+Nov 08 14:42:27 MSI ollama[227]: srv  update_slots: all slots are idle
+Nov 08 14:42:27 MSI ollama[227]: [GIN] 2026/11/08 - 14:42:27 | 200 |         1m15s |       127.0.0.1 | POST     "/api/chat"
+Nov 08 14:42:29 MSI ollama[227]: [GIN] 2026/11/08 - 14:42:29 | 200 |      52.486µs |       127.0.0.1 | HEAD     "/"
+Nov 08 14:42:29 MSI ollama[227]: [GIN] 2026/11/08 - 14:42:29 | 200 |    1.536894ms |       127.0.0.1 | GET      "/api/ps"
+Nov 08 14:43:27 MSI ollama[227]: slot get_availabl: id  0 | task -1 |  - checking sim = 0.000 (1/2556) > 0.100
+Nov 08 14:43:27 MSI ollama[227]: slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = 15765964320
+Nov 08 14:43:27 MSI ollama[227]: srv  get_availabl: updating prompt cache
+Nov 08 14:43:27 MSI ollama[227]: srv   prompt_save:  - saving prompt with length 115, total state size = 16.174 MiB (draft: 0.000 MiB)
+Nov 08 14:43:27 MSI ollama[227]: srv          load:  - looking for better prompt, base f_keep = 0.009, f_sim = 0.000
+Nov 08 14:43:27 MSI ollama[227]: srv          load:    - prompt with length     115, lcp =       1, f_keep = 0.009, f_sim = 0.000
+Nov 08 14:43:27 MSI ollama[227]: srv        update:  - cache state: 1 prompts, 16.174 MiB (limits: 8192.000 MiB, 65536 tokens, 65536 est)
+Nov 08 14:43:27 MSI ollama[227]: srv        update:    - prompt 0x1e503f30:     115 tokens, checkpoints:  0,    16.174 MiB
+Nov 08 14:43:27 MSI ollama[227]: srv  get_availabl: prompt cache update took 171.04 ms
+Nov 08 14:43:27 MSI ollama[227]: slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> ?top-p -> ?min-p -> ?xtc -> ?temp-ext -> dist
+Nov 08 14:43:27 MSI ollama[227]: slot launch_slot_: id  0 | task -1 | sampler params:
+Nov 08 14:43:27 MSI ollama[227]: slot launch_slot_: id  0 | task 102 | processing task, is_child = 0
+Nov 08 14:43:27 MSI ollama[227]: slot   operator(): id  0 | task 102 | new prompt, n_ctx_slot = 65536, n_keep = 4, task.n_tokens = 2556
+Nov 08 14:43:27 MSI ollama[227]: slot   operator(): id  0 | task 102 | cached n_tokens = 1, memory_seq_rm [1, end)
+Nov 08 14:43:29 MSI ollama[227]: slot   operator(): id  0 | task 102 | cached n_tokens = 513, memory_seq_rm [513, end)
+Nov 08 14:43:29 MSI ollama[227]: slot   operator(): id  0 | task 102 | cached n_tokens = 1025, memory_seq_rm [1025, end)
+Nov 08 14:43:30 MSI ollama[227]: slot   operator(): id  0 | task 102 | cached n_tokens = 1537, memory_seq_rm [1537, end)
+Nov 08 14:43:30 MSI ollama[227]: slot print_timing: id  0 | task 102 | prompt processing, n_tokens =   2048, progress = 0.80, t =   3.49 s / 587.41 tokens per second
+Nov 08 14:43:30 MSI ollama[227]: slot   operator(): id  0 | task 102 | cached n_tokens = 2049, memory_seq_rm [2049, end)
+Nov 08 14:43:30 MSI ollama[227]: slot init_sampler: id  0 | task 102 | init sampler, took 0.65 ms, tokens: text = 2556, total = 2556
+Nov 08 14:43:53 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    100, tg =   4.55 t/s, tg_3s =   4.60 t/s
+Nov 08 14:43:56 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    112, tg =   4.46 t/s, tg_3s =   3.81 t/s
+Nov 08 14:43:59 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    128, tg =   4.52 t/s, tg_3s =   5.04 t/s
+Nov 08 14:44:02 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    141, tg =   4.49 t/s, tg_3s =   4.15 t/s
+Nov 08 14:44:05 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    154, tg =   4.47 t/s, tg_3s =   4.26 t/s
+Nov 08 14:44:08 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    167, tg =   4.45 t/s, tg_3s =   4.28 t/s
+Nov 08 14:44:11 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    181, tg =   4.45 t/s, tg_3s =   4.46 t/s
+Nov 08 14:44:15 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    195, tg =   4.43 t/s, tg_3s =   4.23 t/s
+Nov 08 14:44:18 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    206, tg =   4.38 t/s, tg_3s =   3.62 t/s
+Nov 08 14:44:21 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    217, tg =   4.34 t/s, tg_3s =   3.64 t/s
+Nov 08 14:44:24 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    229, tg =   4.32 t/s, tg_3s =   3.96 t/s
+Nov 08 14:44:27 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    242, tg =   4.31 t/s, tg_3s =   4.27 t/s
+Nov 08 14:44:30 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    258, tg =   4.35 t/s, tg_3s =   5.04 t/s
+Nov 08 14:44:33 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    273, tg =   4.38 t/s, tg_3s =   4.88 t/s
+Nov 08 14:44:36 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    286, tg =   4.36 t/s, tg_3s =   4.08 t/s
+Nov 08 14:44:40 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    299, tg =   4.35 t/s, tg_3s =   4.11 t/s
+Nov 08 14:44:43 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    312, tg =   4.34 t/s, tg_3s =   4.16 t/s
+Nov 08 14:44:46 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    323, tg =   4.31 t/s, tg_3s =   3.49 t/s
+Nov 08 14:44:49 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    336, tg =   4.30 t/s, tg_3s =   4.17 t/s
+Nov 08 14:44:52 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    346, tg =   4.27 t/s, tg_3s =   3.33 t/s
+Nov 08 14:44:55 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    351, tg =   4.17 t/s, tg_3s =   1.63 t/s
+Nov 08 14:44:58 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    361, tg =   4.13 t/s, tg_3s =   3.08 t/s
+Nov 08 14:45:02 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    371, tg =   4.07 t/s, tg_3s =   2.77 t/s
+Nov 08 14:45:05 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    381, tg =   4.04 t/s, tg_3s =   3.17 t/s
+Nov 08 14:45:08 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    393, tg =   4.04 t/s, tg_3s =   3.86 t/s
+Nov 08 14:45:11 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    404, tg =   4.02 t/s, tg_3s =   3.38 t/s
+Nov 08 14:45:15 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    416, tg =   4.00 t/s, tg_3s =   3.57 t/s
+Nov 08 14:45:18 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    426, tg =   3.98 t/s, tg_3s =   3.21 t/s
+Nov 08 14:45:21 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    436, tg =   3.95 t/s, tg_3s =   3.13 t/s
+Nov 08 14:45:24 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    447, tg =   3.94 t/s, tg_3s =   3.54 t/s
+Nov 08 14:45:27 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    458, tg =   3.93 t/s, tg_3s =   3.44 t/s
+Nov 08 14:45:30 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    470, tg =   3.93 t/s, tg_3s =   3.98 t/s
+Nov 08 14:45:34 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    483, tg =   3.93 t/s, tg_3s =   4.05 t/s
+Nov 08 14:45:37 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    495, tg =   3.93 t/s, tg_3s =   3.83 t/s
+Nov 08 14:45:40 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    507, tg =   3.93 t/s, tg_3s =   3.79 t/s
+Nov 08 14:45:43 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    519, tg =   3.93 t/s, tg_3s =   3.82 t/s
+Nov 08 14:45:46 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    530, tg =   3.91 t/s, tg_3s =   3.44 t/s
+Nov 08 14:45:50 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    541, tg =   3.90 t/s, tg_3s =   3.39 t/s
+Nov 08 14:45:53 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    553, tg =   3.90 t/s, tg_3s =   3.67 t/s
+Nov 08 14:45:56 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    564, tg =   3.88 t/s, tg_3s =   3.37 t/s
+Nov 08 14:45:59 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    576, tg =   3.88 t/s, tg_3s =   3.91 t/s
+Nov 08 14:46:02 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    588, tg =   3.89 t/s, tg_3s =   3.92 t/s
+Nov 08 14:46:05 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    600, tg =   3.88 t/s, tg_3s =   3.82 t/s
+Nov 08 14:46:08 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    612, tg =   3.88 t/s, tg_3s =   3.92 t/s
+Nov 08 14:46:12 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    624, tg =   3.88 t/s, tg_3s =   3.81 t/s
+Nov 08 14:46:15 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    636, tg =   3.88 t/s, tg_3s =   3.69 t/s
+Nov 08 14:46:18 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    647, tg =   3.87 t/s, tg_3s =   3.53 t/s
+Nov 08 14:46:21 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    657, tg =   3.86 t/s, tg_3s =   3.19 t/s
+Nov 08 14:46:24 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    668, tg =   3.86 t/s, tg_3s =   3.60 t/s
+Nov 08 14:46:27 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    679, tg =   3.85 t/s, tg_3s =   3.42 t/s
+Nov 08 14:46:31 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    691, tg =   3.85 t/s, tg_3s =   3.89 t/s
+Nov 08 14:46:34 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    702, tg =   3.84 t/s, tg_3s =   3.59 t/s
+Nov 08 14:46:37 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    713, tg =   3.84 t/s, tg_3s =   3.65 t/s
+Nov 08 14:46:40 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    721, tg =   3.82 t/s, tg_3s =   2.64 t/s
+Nov 08 14:46:43 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    732, tg =   3.82 t/s, tg_3s =   3.47 t/s
+Nov 08 14:46:46 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    742, tg =   3.81 t/s, tg_3s =   3.18 t/s
+Nov 08 14:46:49 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    752, tg =   3.80 t/s, tg_3s =   3.32 t/s
+Nov 08 14:46:52 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    763, tg =   3.79 t/s, tg_3s =   3.55 t/s
+Nov 08 14:46:55 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    774, tg =   3.79 t/s, tg_3s =   3.48 t/s
+Nov 08 14:46:59 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    786, tg =   3.79 t/s, tg_3s =   3.74 t/s
+Nov 08 14:47:02 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    797, tg =   3.79 t/s, tg_3s =   3.54 t/s
+Nov 08 14:47:05 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    811, tg =   3.80 t/s, tg_3s =   4.64 t/s
+Nov 08 14:47:08 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    826, tg =   3.81 t/s, tg_3s =   4.76 t/s
+Nov 08 14:47:11 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    840, tg =   3.82 t/s, tg_3s =   4.48 t/s
+Nov 08 14:47:14 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    853, tg =   3.83 t/s, tg_3s =   4.17 t/s
+Nov 08 14:47:17 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    866, tg =   3.83 t/s, tg_3s =   4.11 t/s
+Nov 08 14:47:20 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    880, tg =   3.84 t/s, tg_3s =   4.45 t/s
+Nov 08 14:47:24 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    895, tg =   3.85 t/s, tg_3s =   4.81 t/s
+Nov 08 14:47:27 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    909, tg =   3.86 t/s, tg_3s =   4.64 t/s
+Nov 08 14:47:30 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    923, tg =   3.87 t/s, tg_3s =   4.66 t/s
+Nov 08 14:47:33 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    937, tg =   3.88 t/s, tg_3s =   4.64 t/s
+Nov 08 14:47:36 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    952, tg =   3.89 t/s, tg_3s =   4.69 t/s
+Nov 08 14:47:39 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    966, tg =   3.90 t/s, tg_3s =   4.66 t/s
+Nov 08 14:47:42 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    981, tg =   3.91 t/s, tg_3s =   4.72 t/s
+Nov 08 14:47:45 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =    994, tg =   3.91 t/s, tg_3s =   4.21 t/s
+Nov 08 14:47:48 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1007, tg =   3.92 t/s, tg_3s =   4.31 t/s
+Nov 08 14:47:51 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1020, tg =   3.92 t/s, tg_3s =   4.07 t/s
+Nov 08 14:47:54 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1033, tg =   3.93 t/s, tg_3s =   4.33 t/s
+Nov 08 14:47:57 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1047, tg =   3.93 t/s, tg_3s =   4.52 t/s
+Nov 08 14:48:00 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1061, tg =   3.94 t/s, tg_3s =   4.66 t/s
+Nov 08 14:48:04 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1075, tg =   3.95 t/s, tg_3s =   4.51 t/s
+Nov 08 14:48:07 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1089, tg =   3.95 t/s, tg_3s =   4.36 t/s
+Nov 08 14:48:10 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1103, tg =   3.96 t/s, tg_3s =   4.44 t/s
+Nov 08 14:48:13 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1116, tg =   3.96 t/s, tg_3s =   4.30 t/s
+Nov 08 14:48:16 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1129, tg =   3.96 t/s, tg_3s =   4.07 t/s
+Nov 08 14:48:19 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1142, tg =   3.97 t/s, tg_3s =   4.30 t/s
+Nov 08 14:48:22 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1156, tg =   3.97 t/s, tg_3s =   4.59 t/s
+Nov 08 14:48:25 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1170, tg =   3.98 t/s, tg_3s =   4.39 t/s
+Nov 08 14:48:28 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1184, tg =   3.98 t/s, tg_3s =   4.58 t/s
+Nov 08 14:48:32 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1198, tg =   3.99 t/s, tg_3s =   4.46 t/s
+Nov 08 14:48:35 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1211, tg =   3.99 t/s, tg_3s =   4.08 t/s
+Nov 08 14:48:38 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1225, tg =   3.99 t/s, tg_3s =   4.43 t/s
+Nov 08 14:48:41 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1239, tg =   4.00 t/s, tg_3s =   4.32 t/s
+Nov 08 14:48:44 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1252, tg =   4.00 t/s, tg_3s =   4.08 t/s
+Nov 08 14:48:48 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1265, tg =   4.00 t/s, tg_3s =   4.00 t/s
+Nov 08 14:48:51 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1278, tg =   4.00 t/s, tg_3s =   4.31 t/s
+Nov 08 14:48:54 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1292, tg =   4.01 t/s, tg_3s =   4.55 t/s
+Nov 08 14:48:57 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1306, tg =   4.01 t/s, tg_3s =   4.37 t/s
+Nov 08 14:49:00 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1319, tg =   4.01 t/s, tg_3s =   4.26 t/s
+Nov 08 14:49:03 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1332, tg =   4.02 t/s, tg_3s =   4.32 t/s
+Nov 08 14:49:06 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1345, tg =   4.02 t/s, tg_3s =   4.27 t/s
+Nov 08 14:49:09 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1359, tg =   4.02 t/s, tg_3s =   4.41 t/s
+Nov 08 14:49:13 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1373, tg =   4.03 t/s, tg_3s =   4.44 t/s
+Nov 08 14:49:16 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1385, tg =   4.02 t/s, tg_3s =   3.95 t/s
+Nov 08 14:49:19 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1397, tg =   4.02 t/s, tg_3s =   3.95 t/s
+Nov 08 14:49:22 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1411, tg =   4.03 t/s, tg_3s =   4.39 t/s
+Nov 08 14:49:25 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1424, tg =   4.03 t/s, tg_3s =   4.11 t/s
+Nov 08 14:49:28 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1438, tg =   4.03 t/s, tg_3s =   4.36 t/s
+Nov 08 14:49:31 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1451, tg =   4.03 t/s, tg_3s =   4.28 t/s
+Nov 08 14:49:34 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1464, tg =   4.03 t/s, tg_3s =   4.22 t/s
+Nov 08 14:49:37 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1477, tg =   4.04 t/s, tg_3s =   4.30 t/s
+Nov 08 14:49:40 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1490, tg =   4.04 t/s, tg_3s =   4.31 t/s
+Nov 08 14:49:43 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1503, tg =   4.04 t/s, tg_3s =   4.22 t/s
+Nov 08 14:49:47 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1515, tg =   4.04 t/s, tg_3s =   3.90 t/s
+Nov 08 14:49:50 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1527, tg =   4.04 t/s, tg_3s =   3.90 t/s
+Nov 08 14:49:53 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1540, tg =   4.04 t/s, tg_3s =   4.15 t/s
+Nov 08 14:49:56 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1553, tg =   4.04 t/s, tg_3s =   4.13 t/s
+Nov 08 14:49:59 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1566, tg =   4.04 t/s, tg_3s =   4.32 t/s
+Nov 08 14:50:02 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1578, tg =   4.04 t/s, tg_3s =   4.00 t/s
+Nov 08 14:50:05 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1589, tg =   4.04 t/s, tg_3s =   3.54 t/s
+Nov 08 14:50:09 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1601, tg =   4.03 t/s, tg_3s =   3.24 t/s
+Nov 08 14:50:12 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1613, tg =   4.03 t/s, tg_3s =   3.77 t/s
+Nov 08 14:50:15 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1625, tg =   4.03 t/s, tg_3s =   3.82 t/s
+Nov 08 14:50:18 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1638, tg =   4.03 t/s, tg_3s =   4.06 t/s
+Nov 08 14:50:21 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1650, tg =   4.03 t/s, tg_3s =   4.00 t/s
+Nov 08 14:50:25 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1663, tg =   4.03 t/s, tg_3s =   4.02 t/s
+Nov 08 14:50:28 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1676, tg =   4.03 t/s, tg_3s =   4.06 t/s
+Nov 08 14:50:31 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1689, tg =   4.03 t/s, tg_3s =   4.15 t/s
+Nov 08 14:50:34 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1702, tg =   4.03 t/s, tg_3s =   4.25 t/s
+Nov 08 14:50:37 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1715, tg =   4.03 t/s, tg_3s =   4.24 t/s
+Nov 08 14:50:40 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1727, tg =   4.03 t/s, tg_3s =   3.99 t/s
+Nov 08 14:50:43 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1739, tg =   4.03 t/s, tg_3s =   3.99 t/s
+Nov 08 14:50:46 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1751, tg =   4.03 t/s, tg_3s =   3.68 t/s
+Nov 08 14:50:50 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1763, tg =   4.03 t/s, tg_3s =   3.79 t/s
+Nov 08 14:50:53 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1776, tg =   4.03 t/s, tg_3s =   4.06 t/s
+Nov 08 14:50:56 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1788, tg =   4.03 t/s, tg_3s =   3.99 t/s
+Nov 08 14:50:59 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1801, tg =   4.03 t/s, tg_3s =   4.05 t/s
+Nov 08 14:51:02 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1814, tg =   4.03 t/s, tg_3s =   4.04 t/s
+Nov 08 14:51:05 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1826, tg =   4.03 t/s, tg_3s =   3.91 t/s
+Nov 08 14:51:08 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1838, tg =   4.02 t/s, tg_3s =   3.77 t/s
+Nov 08 14:51:12 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1850, tg =   4.02 t/s, tg_3s =   3.84 t/s
+Nov 08 14:51:15 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1862, tg =   4.02 t/s, tg_3s =   3.70 t/s
+Nov 08 14:51:18 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1873, tg =   4.02 t/s, tg_3s =   3.61 t/s
+Nov 08 14:51:21 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1885, tg =   4.02 t/s, tg_3s =   3.87 t/s
+Nov 08 14:51:24 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1898, tg =   4.02 t/s, tg_3s =   4.04 t/s
+Nov 08 14:51:27 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1910, tg =   4.02 t/s, tg_3s =   3.95 t/s
+Nov 08 14:51:31 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1923, tg =   4.02 t/s, tg_3s =   3.96 t/s
+Nov 08 14:51:34 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1936, tg =   4.02 t/s, tg_3s =   4.00 t/s
+Nov 08 14:51:37 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1948, tg =   4.02 t/s, tg_3s =   3.94 t/s
+Nov 08 14:51:40 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1960, tg =   4.02 t/s, tg_3s =   4.00 t/s
+Nov 08 14:51:43 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1972, tg =   4.01 t/s, tg_3s =   3.85 t/s
+Nov 08 14:51:46 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1984, tg =   4.01 t/s, tg_3s =   3.75 t/s
+Nov 08 14:51:49 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   1996, tg =   4.01 t/s, tg_3s =   3.74 t/s
+Nov 08 14:51:53 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2008, tg =   4.01 t/s, tg_3s =   3.84 t/s
+Nov 08 14:51:56 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2020, tg =   4.01 t/s, tg_3s =   3.78 t/s
+Nov 08 14:51:59 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2032, tg =   4.01 t/s, tg_3s =   3.86 t/s
+Nov 08 14:52:02 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2044, tg =   4.01 t/s, tg_3s =   3.89 t/s
+Nov 08 14:52:05 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2056, tg =   4.01 t/s, tg_3s =   3.80 t/s
+Nov 08 14:52:08 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2069, tg =   4.01 t/s, tg_3s =   4.11 t/s
+Nov 08 14:52:11 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2081, tg =   4.01 t/s, tg_3s =   3.87 t/s
+Nov 08 14:52:15 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2093, tg =   4.00 t/s, tg_3s =   3.74 t/s
+Nov 08 14:52:18 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2105, tg =   4.00 t/s, tg_3s =   3.70 t/s
+Nov 08 14:52:21 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2117, tg =   4.00 t/s, tg_3s =   3.80 t/s
+Nov 08 14:52:24 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2129, tg =   4.00 t/s, tg_3s =   3.78 t/s
+Nov 08 14:52:27 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2141, tg =   4.00 t/s, tg_3s =   3.71 t/s
+Nov 08 14:52:31 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2153, tg =   4.00 t/s, tg_3s =   3.86 t/s
+Nov 08 14:52:34 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2165, tg =   4.00 t/s, tg_3s =   3.97 t/s
+Nov 08 14:52:37 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2177, tg =   4.00 t/s, tg_3s =   3.80 t/s
+Nov 08 14:52:40 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2189, tg =   3.99 t/s, tg_3s =   3.87 t/s
+Nov 08 14:52:43 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2201, tg =   3.99 t/s, tg_3s =   3.84 t/s
+Nov 08 14:52:46 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2212, tg =   3.99 t/s, tg_3s =   3.53 t/s
+Nov 08 14:52:49 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2223, tg =   3.99 t/s, tg_3s =   3.64 t/s
+Nov 08 14:52:52 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2235, tg =   3.99 t/s, tg_3s =   3.67 t/s
+Nov 08 14:52:55 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2247, tg =   3.99 t/s, tg_3s =   3.91 t/s
+Nov 08 14:52:59 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2260, tg =   3.99 t/s, tg_3s =   4.03 t/s
+Nov 08 14:53:02 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2272, tg =   3.99 t/s, tg_3s =   3.72 t/s
+Nov 08 14:53:05 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2284, tg =   3.98 t/s, tg_3s =   3.85 t/s
+Nov 08 14:53:08 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2296, tg =   3.98 t/s, tg_3s =   3.79 t/s
+Nov 08 14:53:12 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2308, tg =   3.98 t/s, tg_3s =   3.80 t/s
+Nov 08 14:53:15 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2319, tg =   3.98 t/s, tg_3s =   3.64 t/s
+Nov 08 14:53:18 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2330, tg =   3.98 t/s, tg_3s =   3.47 t/s
+Nov 08 14:53:21 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2341, tg =   3.98 t/s, tg_3s =   3.60 t/s
+Nov 08 14:53:24 MSI ollama[227]: slot print_timing: id  0 | task 102 | n_gen =   2353, tg =   3.98 t/s, tg_3s =   3.92 t/s
+Nov 08 14:53:26 MSI ollama[227]: [GIN] 2026/11/08 - 14:53:26 | 500 |         9m58s |       127.0.0.1 | POST     "/v1/chat/completions"
+Nov 08 14:53:26 MSI ollama[227]: srv          stop: cancel task, id_task = 102
+Nov 08 14:53:26 MSI ollama[227]: [GIN] 2026/11/08 - 14:53:26 | 200 |       88.06µs |       127.0.0.1 | HEAD     "/"
+Nov 08 14:53:26 MSI ollama[227]: [GIN] 2026/11/08 - 14:53:26 | 200 |     129.254µs |       127.0.0.1 | GET      "/api/ps"
+Nov 08 14:53:26 MSI ollama[227]: slot      release: id  0 | task 102 | stop processing: n_tokens = 4916, truncated = 0
+Nov 08 14:53:26 MSI ollama[227]: srv  update_slots: all slots are idle

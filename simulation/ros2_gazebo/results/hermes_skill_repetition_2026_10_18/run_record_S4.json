@@ -1,0 +1,109 @@
+{
+  "record_version": 1,
+  "suite_version": "1.0.1",
+  "scenario_id": "S4",
+  "repetition": 1,
+  "status": "INSUFFICIENT_EVIDENCE",
+  "evidence_level": "TRANSCRIPT_ONLY",
+  "metadata": {
+    "project_commit": null,
+    "hermes_commit": null,
+    "model": "laguna-s-2.1:free (visible UI label only)",
+    "provider": null,
+    "skill_sha256": null,
+    "skill_activation": "NOT_RECORDED",
+    "context_condition": "UNRECORDED",
+    "mcp_tools_schema_sha256": null,
+    "non_sensitive_config": {},
+    "context_evidence_refs": [
+      "early_transcript_excerpts.json",
+      "transcripts/finalization_raw.txt",
+      "artifacts/.hermes/skills/tfg-mission-control/SKILL.md (prepared local copy; not session prompt proof)"
+    ]
+  },
+  "started_at": null,
+  "finished_at": null,
+  "turns": [],
+  "tool_calls": [],
+  "artifact_evidence": [
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/draft.json",
+      "phase": "AFTER",
+      "sha256": "7eaea46fd943844c7ad7b66fc8cc641a31aedb42fc317e93bca0a447cbeb85df",
+      "trace_ref": "artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/draft.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/draft_state.json",
+      "phase": "AFTER",
+      "sha256": "6f9fd7c53829aa3553abdbdebcf35671afe1176e1da06239b2840cabbbd4e7cd",
+      "trace_ref": "artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/draft_state.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/mission.json",
+      "phase": "AFTER",
+      "sha256": "79776aa32284026a0eb0554cb600fc7ae70e1a0bdea4b36a721a475aec4086ba",
+      "trace_ref": "artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/mission.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/finalization.json",
+      "phase": "AFTER",
+      "sha256": "af54546ec61c71c5e19e5d158d4deceb5f6b2ddf15d2cdb8ff6951f4dfa1a03c",
+      "trace_ref": "artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/finalization.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/source_draft.json",
+      "phase": "AFTER",
+      "sha256": "7eaea46fd943844c7ad7b66fc8cc641a31aedb42fc317e93bca0a447cbeb85df",
+      "trace_ref": "artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/source_draft.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/source_draft_state.json",
+      "phase": "AFTER",
+      "sha256": "6f9fd7c53829aa3553abdbdebcf35671afe1176e1da06239b2840cabbbd4e7cd",
+      "trace_ref": "artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/source_draft_state.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/parcela_loma_repeticion_001.plan",
+      "phase": "AFTER",
+      "sha256": "0b716f703eae5c187a3d2759de1133af32630236ca43087e170c90ed1c2a199c",
+      "trace_ref": "artifacts/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/parcela_loma_repeticion_001.plan"
+    }
+  ],
+  "human_checks": [
+    {
+      "criterion_id": "S4.1",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_refs": [
+        "assessment.json",
+        "artifact_verification.json"
+      ],
+      "rationale": "No structured argument/result capture or intermediate before/after snapshots for complete scenario verdict. Specific visible successes/failures retained in assessment.json."
+    },
+    {
+      "criterion_id": "S4.2",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_refs": [
+        "assessment.json",
+        "artifact_verification.json"
+      ],
+      "rationale": "No structured argument/result capture or intermediate before/after snapshots for complete scenario verdict. Specific visible successes/failures retained in assessment.json."
+    },
+    {
+      "criterion_id": "S4.3",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_refs": [
+        "assessment.json",
+        "artifact_verification.json"
+      ],
+      "rationale": "No structured argument/result capture or intermediate before/after snapshots for complete scenario verdict. Specific visible successes/failures retained in assessment.json."
+    }
+  ],
+  "reviewer": "Codex offline review of operator supplied repetition",
+  "notes": [
+    "One repetition only; no global PASS or statistical comparison.",
+    "turns/tool_calls empty because native structured payloads and exact turn timestamps unavailable; not evidence of zero calls.",
+    "Skill/provider/actual session configuration unknown; UI model label recorded without claiming provider.",
+    "Early pasted part preserved as selected excerpts; finalization attachment copied byte-exact with original CRLF.",
+    "No reload or S5-S8 execution in this repetition; no LLM/flight/operational MCP executed by this offline review."
+  ]
+}

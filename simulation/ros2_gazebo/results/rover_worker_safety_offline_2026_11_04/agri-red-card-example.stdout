@@ -1,0 +1,8 @@
+[SYNTHETIC] drone_01 observation example-red-card-001 (red card, no camera)
+  validate: ACCEPTED
+  propose: PROPOSED_PENDING_VALIDATION
+  prepare: {'dependency': 'MET', 'eligibility': 'ELIGIBLE', 'authorization': 'ABSENT', 'admission': 'NOT_REQUESTED', 'execution': 'NOT_STARTED'}
+  request_without_authorization: BLOCKED · AUTHORIZATION_ABSENT_OR_MALFORMED
+  target in rover odom: {'x_m': 1.0, 'y_m': 0.0, 'frame': 'odom'}
+  with the real executor adapter: NOT_ELIGIBLE, blockers ['operational_rover_policy_enabled']
+DECISION: ROVER_TASK_PENDING_AUTHORIZATION · movement_authorized: False · evidence: simulation/ros2_gazebo/results/rover_worker_safety_offline_2026_11_04/agri-red-card-example

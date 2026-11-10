@@ -1,0 +1,105 @@
+{
+  "label": "Claude (asistida, preliminar), 25/10/2026: lectura contra la vista recibida. NO es revisión humana, no cambia ningún estado y no sustituye a explanation_observations_assisted.json (24/10/2026), que se conserva.",
+  "criteria": {
+    "secuencia": "Secuencia y prueba del orden (order.checks; no horas de admisión)",
+    "armado": "Armado/despegue (orden correcto; sin comprobaciones inexistentes)",
+    "r1_dependencia": "Dependencia completa de R1 (secuencia COMPLETED y POI_A1 REACHED por drone_01)",
+    "rover": "Autorización y órdenes al rover (no autorizado, sin órdenes; MET no autoriza)",
+    "completitud": "Completitud del escenario (incompleto por R1)",
+    "capacidades": "Capacidades inventadas (imágenes, detecciones, velocidad, marco común, simultaneidad, permisos)",
+    "alcance": "Alcance histórico (registro único; no reejecución ni estado actual)",
+    "contradicciones": "Contradicciones con sus propios campos estructurados"
+  },
+  "observations": {
+    "pilot-real-r01": {
+      "secuencia": "Atribuye el orden a executor_started/finished y descarta la admisión; no cita las tres comprobaciones de order.checks.",
+      "armado": "No menciona armado ni despegue.",
+      "r1_dependencia": "«drone_01 alcanzó POI_A1 y la secuencia PASÓ»: cubre las dos condiciones; «PASÓ» por COMPLETED es impreciso.",
+      "rover": "Coherente: no autorizado y cita barreras de la vista.",
+      "completitud": "Coherente: incompleto por R1.",
+      "capacidades": "«vuelo simultáneo no validado»: ambiguo; la vista registra simultaneous_flight: false y ventanas disjuntas.",
+      "alcance": "Indica registro histórico, no consulta de seguridad actual.",
+      "contradicciones": "Ninguna observada."
+    },
+    "pilot-real-r03": {
+      "secuencia": "«no está acreditada por timestamps de ejecución»: contrario a la vista, que el modelo no consultó.",
+      "armado": "No menciona.",
+      "r1_dependencia": "«no hay evidencia de … dependencias de tareas terrestres»: contrario a MET.",
+      "rover": "No menciona autorización ni órdenes.",
+      "completitud": "«El escenario se marca como completo»: contrario a la vista.",
+      "capacidades": "«no realizaron … regreso ni aterrizaje validado»: contrario a la vista (CONFIRMED / MISSION_LANDING_CONFIRMED).",
+      "alcance": "Menciona límites del histórico.",
+      "contradicciones": "El JSON no se pudo analizar (bloque {json}); usa identificadores inexistentes (drone_001, POI-01, mission_agri_001)."
+    },
+    "pilot-real-r04": {
+      "secuencia": "Cita las tres comprobaciones de order.checks. Horas citadas coinciden con la vista.",
+      "armado": "«tomó empuje a las 12:51:48» corresponde a takeoff; no menciona arm. Sin error observado.",
+      "r1_dependencia": "«la secuencia terminó y drone_01 alcanzó POI_A1»: completa.",
+      "rover": "Coherente. «velocidad/torno» parece errata de «giro».",
+      "completitud": "Coherente.",
+      "capacidades": "Coherente: percepción NONE, velocidad no comandada ni medida, marco común no validado, sin vuelo simultáneo.",
+      "alcance": "Coherente: histórico, sin verificación actual.",
+      "contradicciones": "Ninguna observada."
+    },
+    "pilot-real-r05": {
+      "secuencia": "CONTRADICCIÓN: dice «no por tiempos de admisión» pero enumera job_admitted_at entre las marcas que acreditan el orden.",
+      "armado": "«se armó, despegó»: orden correcto.",
+      "r1_dependencia": "Completa (secuencia terminada y POI_A1).",
+      "rover": "Coherente: commands_sent=false y movement_authorized=false.",
+      "completitud": "Coherente.",
+      "capacidades": "Coherente; añade que la telemetría procede del ejecutor vía AP_DDS.",
+      "alcance": "Coherente: autorización y restricciones actuales no verificadas.",
+      "contradicciones": "Su campo order_basis es EXECUTION_TIMESTAMPS, mientras la explicación incluye la admisión."
+    },
+    "pilot-real-r06": {
+      "secuencia": "Coherente: despacho tras aceptar el PASSED; aterrizaje 12:54:22 anterior; cita las tres comprobaciones.",
+      "armado": "Coherente («armao» es errata).",
+      "r1_dependencia": "Completa (POI_A1 REACHED y secuencia COMPLETED).",
+      "rover": "Coherente; reproduce el significado de MET de la vista.",
+      "completitud": "Coherente.",
+      "capacidades": "Coherente; cita tolerancias 1,0/0,75 m presentes en la vista.",
+      "alcance": "Coherente: NOT_CHECKED y declaración del operador limitada a dos capturas.",
+      "contradicciones": "Ninguna en la explicación. El rechazo estructurado es por el formato de reached_points."
+    },
+    "pilot-real-r07": {
+      "secuencia": "Cita las tres comprobaciones de order.checks.",
+      "armado": "«comando de armamento» del segundo: coherente.",
+      "r1_dependencia": "Completa.",
+      "rover": "Coherente.",
+      "completitud": "Coherente.",
+      "capacidades": "«vuelo simultáneo no validado»: ambiguo. «sin velocidad ni frame común validado»: mezcla velocidad no comandada/medida con validación.",
+      "alcance": "No dice explícitamente que es histórico; sí que la autorización es una declaración sin autenticar.",
+      "contradicciones": "Ninguna observada."
+    },
+    "pilot-real-r08": {
+      "secuencia": "Horas del ejecutor y despacho (12:55:42.21580 tras PASSED 12:55:42.177521) coinciden con la vista.",
+      "armado": "No menciona.",
+      "r1_dependencia": "Completa.",
+      "rover": "Coherente.",
+      "completitud": "Coherente.",
+      "capacidades": "Niega correctamente imágenes, detecciones y velocidad. El aviso heurístico de velocidad es un falso positivo (negación).",
+      "alcance": "Coherente: histórico, NOT_CHECKED.",
+      "contradicciones": "CONTRADICCIÓN con sus campos: la explicación niega esas capacidades, pero cinco claims son null (rechazo crítico)."
+    },
+    "pilot-real-r09": {
+      "secuencia": "Despacho tras aceptar el PASSED y land 12:54:22 antes del arm 12:56:14: coherente; no cita ventanas disjuntas.",
+      "armado": "Coherente.",
+      "r1_dependencia": "Completa.",
+      "rover": "Coherente.",
+      "completitud": "Coherente.",
+      "capacidades": "Coherente.",
+      "alcance": "Coherente.",
+      "contradicciones": "Ninguna observada."
+    },
+    "pilot-real-r10": {
+      "secuencia": "Solo cita el despacho del coordinador: correcto pero parcial.",
+      "armado": "No menciona.",
+      "r1_dependencia": "«drone_01 alcanzó POI_A1 tras la secuencia completada»: completa.",
+      "rover": "Coherente.",
+      "completitud": "Coherente.",
+      "capacidades": "«marco común no validado (posiciones flotantes)»: impreciso; la vista lo atribuye a offsets desde lanzamientos distintos.",
+      "alcance": "Coherente.",
+      "contradicciones": "Ninguna observada."
+    }
+  }
+}

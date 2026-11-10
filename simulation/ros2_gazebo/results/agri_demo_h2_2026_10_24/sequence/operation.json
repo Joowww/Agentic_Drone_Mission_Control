@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "sequence_id": "6628bc51-e232-45f5-901e-f5fdeb05c6f4",
+  "request_key": "agri-demo-001-h2-r01",
+  "plan_sha256": "a1821ce7c0d16620af683759049737ace1096d3a18a2202b571567c3ee245e30",
+  "created_at": "2026-10-24T12:51:18.386453+00:00",
+  "admission_status": "ACCEPTED",
+  "job_state": "FINISHED",
+  "phase": "finish",
+  "coordinator": {
+    "pid": 582485,
+    "start_ticks": 16253919,
+    "boot_id": "51f3835d-91d2-4044-a115-2dcb8c14768a"
+  },
+  "launch_token_sha256": "867e6822cb18ff780df38c50879028652de50642cb8d45d1890860a43f7824f3",
+  "result_status": "PASSED",
+  "reasons": [],
+  "children": [
+    {
+      "state": "FINISHED",
+      "result_status": "PASSED",
+      "started_at": "2026-10-24T12:51:20.085388+00:00",
+      "report_sha256": "183a68b92db7c03543066f0ddbb6de5524870866a854ca237b69ed92d4088864",
+      "finished_at": "2026-10-24T12:55:42.177521+00:00",
+      "reasons": []
+    },
+    {
+      "state": "FINISHED",
+      "result_status": "PASSED",
+      "started_at": "2026-10-24T12:55:42.215580+00:00",
+      "report_sha256": "f7884a1c52341d5cb5c7e9cda62695bbbf3e3e7fc1d7e9d68bc4ee92b2785850",
+      "finished_at": "2026-10-24T12:59:51.089683+00:00",
+      "reasons": []
+    }
+  ],
+  "started_at": "2026-10-24T12:51:20.049210+00:00",
+  "prevalidation": [
+    {
+      "validation": {
+        "mission_id": "agri_demo_001_h1_sector_a",
+        "mission_status": "FEASIBLE",
+        "execution_status": "APPROVED",
+        "qgc_plan_path": null,
+        "failure_reasons": [],
+        "errors": [],
+        "replan_status": "",
+        "replan_actions": []
+      },
+      "compatibility_errors": []
+    },
+    {
+      "validation": {
+        "mission_id": "agri_demo_001_h1_sector_b",
+        "mission_status": "FEASIBLE",
+        "execution_status": "APPROVED",
+        "qgc_plan_path": null,
+        "failure_reasons": [],
+        "errors": [],
+        "replan_status": "",
+        "replan_actions": []
+      },
+      "compatibility_errors": []
+    }
+  ],
+  "proposed_result": "PASSED",
+  "finished_at": "2026-10-24T12:59:51.127955+00:00"
+}

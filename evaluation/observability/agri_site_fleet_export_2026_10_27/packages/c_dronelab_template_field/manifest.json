@@ -1,0 +1,162 @@
+{
+  "approval": {
+    "mismatches": [],
+    "status": "ABSENT"
+  },
+  "artifacts": [
+    {
+      "mission_id": null,
+      "mission_sha256": null,
+      "profile": null,
+      "reasons": [
+        "site INCOMPLETE"
+      ],
+      "state": "BLOCKED_MISSING_DATA",
+      "task_id": "A1",
+      "vehicle_id": "drone_01"
+    },
+    {
+      "mission_id": null,
+      "mission_sha256": null,
+      "profile": null,
+      "reasons": [
+        "site INCOMPLETE"
+      ],
+      "state": "BLOCKED_MISSING_DATA",
+      "task_id": "A2",
+      "vehicle_id": "drone_02"
+    }
+  ],
+  "coordination": {
+    "dependencies": [
+      {
+        "after": "A1",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "A2"
+      },
+      {
+        "after": "A1",
+        "condition": "POI_REACHED",
+        "point": "POI_1",
+        "task_id": "R1"
+      },
+      {
+        "after": "A2",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "R1"
+      }
+    ],
+    "errors": [],
+    "mode": "SEQUENTIAL",
+    "note": "dependencies are conditions on OBSERVED outcomes held by the coordinator; never a time wait. Individual .plan files do not coordinate vehicles.",
+    "order": [
+      "A1",
+      "A2",
+      "R1"
+    ],
+    "status": "PASS"
+  },
+  "deployment_blockers": [
+    "PARTIAL package",
+    "operator approval ABSENT",
+    "imported_in_qgroundcontrol: NOT_DONE",
+    "uploaded_to_vehicle: NOT_DONE",
+    "read_back_from_vehicle: NOT_DONE",
+    "executed: NOT_DONE"
+  ],
+  "deployment_ready": false,
+  "files": {
+    "export_report.md": "bfbcb14af100a7fbcc40116dc54f0b5769879204bda458bcfda98e638eb18d34",
+    "fleet.json": "45b09915aa95e48726e27bd5e3fb33c3018bb40e42593712f34a4068655a296c",
+    "instance.json": "68ed37db929a65aca6832d9d4bbdc7503c2530b121c6994c30544203271c34f4",
+    "site.json": "10c6ee168ab4fe6473d01101f9494b97bd934ba6da85776b0996e0117800d8a7",
+    "template.json": "62dd9c06a8520d76d9e6d0bc16c75f1fbb635a97fbef5454fdb0540ab827d314"
+  },
+  "ground_tasks": [
+    {
+      "execution": "outside this package: R1 coordinator gates unchanged",
+      "export": "FORMAT_PENDING: no rover exporter; a .plan is not assumed",
+      "frame_transform_to_rover": "NOT_ACCREDITED (site frame -> rover odometry frame)",
+      "kind": "VISIT_AND_STOP",
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "drivable area",
+            "detail": "no measured drivable area or points",
+            "status": "NOT_CHECKABLE"
+          }
+        ],
+        "status": "NOT_CHECKABLE"
+      },
+      "start_point": "ROVER_START",
+      "target_point": "POI_1",
+      "task_id": "R1",
+      "vehicle_id": "rover_01"
+    }
+  ],
+  "inputs": {
+    "fleet": {
+      "id": "agri_demo_fleet",
+      "sha256": "45b09915aa95e48726e27bd5e3fb33c3018bb40e42593712f34a4068655a296c",
+      "version": 1
+    },
+    "site": {
+      "id": "dronelab",
+      "sha256": "10c6ee168ab4fe6473d01101f9494b97bd934ba6da85776b0996e0117800d8a7",
+      "status": "TEMPLATE_PENDING_MEASUREMENT",
+      "version": 1
+    },
+    "template": {
+      "id": "agri_poi_visit",
+      "sha256": "62dd9c06a8520d76d9e6d0bc16c75f1fbb635a97fbef5454fdb0540ab827d314",
+      "version": 1
+    }
+  },
+  "instance_id": "5c73dd4dbb413cab",
+  "joint_spatial": {
+    "frame": "dronelab_local",
+    "pairs": []
+  },
+  "lifecycle": {
+    "executed": "NOT_DONE",
+    "exported": "NOT_DONE",
+    "imported_in_qgroundcontrol": "NOT_DONE",
+    "read_back_from_vehicle": "NOT_DONE",
+    "uploaded_to_vehicle": "NOT_DONE",
+    "verified_offline": "NOT_APPLICABLE"
+  },
+  "limitations": [
+    "checks cover planned straight lines, not flown trajectories, unknown obstacles or collisions",
+    "relative altitudes refer to the EFFECTIVE home set at arming, not to plannedHomePosition",
+    "requested speeds are DO_CHANGE_SPEED requests, not validated speeds",
+    "landing after RTL depends on RTL_ALT_FINAL(_M) = 0; RTL first climbs to RTL_ALT(_M); not verified",
+    "no geofence exported; ArduPilot version of the SITL image not recorded",
+    "individual .plan files do not coordinate vehicles; order and dependencies live in the coordinator"
+  ],
+  "package_status": "PARTIAL",
+  "provenance": "TEMPLATE",
+  "references": {
+    "effective_home": "NOT_OBSERVED (ArduPilot sets it at arming)",
+    "estimator_origin": "NOT_OBSERVED",
+    "gazebo_spawn": "not related to the site frame (no accredited transform)",
+    "planned_takeoff": "site points of kind planned_takeoff",
+    "rover_start": "site points of kind rover_start",
+    "site_origin": "ORIGIN"
+  },
+  "schema": "tfg.scenario-package/1",
+  "site": {
+    "id": "dronelab",
+    "sha256": "10c6ee168ab4fe6473d01101f9494b97bd934ba6da85776b0996e0117800d8a7",
+    "status": "TEMPLATE_PENDING_MEASUREMENT",
+    "validation": "INCOMPLETE",
+    "version": 1
+  },
+  "target": "FIELD",
+  "vehicles": [
+    "drone_01",
+    "drone_02",
+    "rover_01"
+  ]
+}

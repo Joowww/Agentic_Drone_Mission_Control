@@ -1,0 +1,73 @@
+[
+ {
+  "case": "valid",
+  "reason": "",
+  "status": "OBSERVED",
+  "target": {
+   "matched_poi": "POI_3",
+   "sigma_m": 0.12,
+   "x_m": 8.0,
+   "y_m": 4.0
+  }
+ },
+ {
+  "case": "uncalibrated",
+  "reason": "CAMERA_NOT_CALIBRATED",
+  "status": "REFUSED",
+  "target": null
+ },
+ {
+  "case": "virtual_camera_operational",
+  "reason": "CAMERA_NOT_CALIBRATED",
+  "status": "REFUSED",
+  "target": null
+ },
+ {
+  "case": "pose_not_accredited",
+  "reason": "POSE_NOT_ACCREDITED",
+  "status": "REFUSED",
+  "target": null
+ },
+ {
+  "case": "image_stale",
+  "reason": "IMAGE_STALE",
+  "status": "REFUSED",
+  "target": null
+ },
+ {
+  "case": "desynchronised",
+  "reason": "POSE_IMAGE_DESYNCHRONISED",
+  "status": "REFUSED",
+  "target": null
+ },
+ {
+  "case": "other_drone",
+  "reason": "OTHER_DRONE",
+  "status": "REFUSED",
+  "target": null
+ },
+ {
+  "case": "frame_incompatible",
+  "reason": "FRAME_INCOMPATIBLE",
+  "status": "REFUSED",
+  "target": null
+ },
+ {
+  "case": "ambiguous",
+  "reason": "DETECTION_AMBIGUOUS",
+  "status": "REFUSED",
+  "target": null
+ },
+ {
+  "case": "uncertainty_too_high",
+  "reason": "UNCERTAINTY_TOO_HIGH",
+  "status": "REFUSED",
+  "target": null
+ },
+ {
+  "case": "cancelled",
+  "reason": "MISSION_CANCELLED",
+  "status": "REFUSED",
+  "target": null
+ }
+]

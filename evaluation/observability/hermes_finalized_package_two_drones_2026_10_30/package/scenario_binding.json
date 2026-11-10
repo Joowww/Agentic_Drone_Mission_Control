@@ -1,0 +1,83 @@
+{
+  "schema": "tfg.agri-demo-h1-binding/1",
+  "scenario_id": "agri_demo_001",
+  "status": "BOUND",
+  "reasons": [],
+  "association_basis": "POI order of the H1 request; geometry verified against H0",
+  "flight_authorization": "NOT_GRANTED",
+  "fallback_to_h0": false,
+  "authorizes_h2": false,
+  "artifacts": {
+    "drone_01": {
+      "mission_path": "missions/generated/drafts/8658f6f2-6ba4-41bb-ab7f-f58a80f652ce/a4f7db20-2da2-46b4-8279-0e0dfb5eeff5/mission.json",
+      "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+      "mission_id": "agri_demo_001_h1_sector_a",
+      "waypoint_by_point": {
+        "POI_A1": "WP1",
+        "POI_A2": "WP2"
+      },
+      "validation": {
+        "mission_status": "FEASIBLE",
+        "execution_status": "APPROVED"
+      },
+      "finalization_files_sha256": {
+        "missions/generated/drafts/8658f6f2-6ba4-41bb-ab7f-f58a80f652ce/a4f7db20-2da2-46b4-8279-0e0dfb5eeff5/agri_demo_001_h1_sector_a.plan": "44e629ebb1f26ce137d0641d8a7bdb2ef96150d32bd0f5e6550a98aba2194c82",
+        "missions/generated/drafts/8658f6f2-6ba4-41bb-ab7f-f58a80f652ce/a4f7db20-2da2-46b4-8279-0e0dfb5eeff5/finalization.json": "95206448443779d5fab360cb82e6a6971da25ff411bb7c1e3d46245ca21aba14",
+        "missions/generated/drafts/8658f6f2-6ba4-41bb-ab7f-f58a80f652ce/a4f7db20-2da2-46b4-8279-0e0dfb5eeff5/mission.json": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+        "missions/generated/drafts/8658f6f2-6ba4-41bb-ab7f-f58a80f652ce/a4f7db20-2da2-46b4-8279-0e0dfb5eeff5/source_draft.json": "b676f5cd9e0a57278027e6d13b7a0def26935d3531cdf697d274991931cf46c4",
+        "missions/generated/drafts/8658f6f2-6ba4-41bb-ab7f-f58a80f652ce/a4f7db20-2da2-46b4-8279-0e0dfb5eeff5/source_draft_state.json": "a1c2a391f97e5131f192d5cd8e05a06f59cd7f3ed336a9c46780cb46116e5d99"
+      }
+    },
+    "drone_02": {
+      "mission_path": "missions/generated/drafts/4707cbd6-3dd4-42e3-a1e2-a175d12a62a6/f505f7ad-df2e-42cb-90d6-6420929fe3e6/mission.json",
+      "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+      "mission_id": "agri_demo_001_h1_sector_b",
+      "waypoint_by_point": {
+        "POI_B1": "WP1",
+        "POI_B2": "WP2"
+      },
+      "validation": {
+        "mission_status": "FEASIBLE",
+        "execution_status": "APPROVED"
+      },
+      "finalization_files_sha256": {
+        "missions/generated/drafts/4707cbd6-3dd4-42e3-a1e2-a175d12a62a6/f505f7ad-df2e-42cb-90d6-6420929fe3e6/agri_demo_001_h1_sector_b.plan": "efcd5a06f9ad3a83f9923635277b8da64e832bd9918640997d5801a81fb4be74",
+        "missions/generated/drafts/4707cbd6-3dd4-42e3-a1e2-a175d12a62a6/f505f7ad-df2e-42cb-90d6-6420929fe3e6/finalization.json": "fcf2a28961483eda14793d4897a712d69e545e8df24604f0bbd8e4a820f159e4",
+        "missions/generated/drafts/4707cbd6-3dd4-42e3-a1e2-a175d12a62a6/f505f7ad-df2e-42cb-90d6-6420929fe3e6/mission.json": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+        "missions/generated/drafts/4707cbd6-3dd4-42e3-a1e2-a175d12a62a6/f505f7ad-df2e-42cb-90d6-6420929fe3e6/source_draft.json": "e37077dc8c238b376f1af63183d28d27a7e2bd16d0201098c583671ea95f4d4e",
+        "missions/generated/drafts/4707cbd6-3dd4-42e3-a1e2-a175d12a62a6/f505f7ad-df2e-42cb-90d6-6420929fe3e6/source_draft_state.json": "0681518c3d90225cf99a7a9c36214981f0faef44f814df001f121f034b4481bb"
+      }
+    }
+  },
+  "tools_executed_in_order": [
+    "update_mission_draft",
+    "update_mission_draft",
+    "finalize_mission_draft",
+    "finalize_mission_draft"
+  ],
+  "differences_from_h0": {
+    "geometry": "none: offsets N/E and altitude equal to H0 (tolerance 0.01 m), return_to_home true",
+    "fields": [
+      "mission_id (agri_demo_001_h1_sector_*)",
+      "name",
+      "objective.description absent (null)",
+      "waypoint_id WP1/WP2 instead of POI_*",
+      "waypoint speed_kmh null instead of 10.0",
+      "source natural_language instead of json",
+      "route.distance_km/bearing_deg written as null"
+    ]
+  },
+  "first_binding_attempt": {
+    "status": "NOT_BOUND",
+    "reasons": [
+      "drone_01: 0 validated finalizations; exactly one required",
+      "drone_02: 0 validated finalizations; exactly one required"
+    ],
+    "cause": "finalized_artifacts read the Hermes MCP envelope {\"result\": \"<tool JSON>\"} as the tool result. Fixed by reusing observability.mission_report_acceptance._result_document; the same real session was then bound again, read-only, without a new Hermes invocation."
+  },
+  "scope": {
+    "environment": "planning only; no simulation, flight or reservation",
+    "session_id_recorded": false,
+    "absolute_paths_recorded": false
+  }
+}

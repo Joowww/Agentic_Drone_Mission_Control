@@ -1,0 +1,121 @@
+{
+ "brief": {
+  "aerial_objectives": [
+   {
+    "coordinates": [
+     -4.0,
+     5.0
+    ],
+    "description": "navigate at waypoint QGC_WP1",
+    "objective_id": "A1",
+    "point_id": null,
+    "required_sensor": null
+   },
+   {
+    "coordinates": [
+     8.0,
+     4.0
+    ],
+    "description": "navigate at waypoint QGC_WP2",
+    "objective_id": "A2",
+    "point_id": null,
+    "required_sensor": null
+   }
+  ],
+  "altitude_m": null,
+  "ambiguities": [],
+  "battery_percent": {},
+  "contradictions": [],
+  "drones": [],
+  "ground_objectives": [],
+  "rover": null,
+  "schema": "tfg.multiagent.mission-brief/2",
+  "unsafe_requests": [],
+  "vehicle_availability": [],
+  "wind_speed_kmh": null
+ },
+ "findings": [
+  {
+   "action": "KEPT_UNSTATED",
+   "detail": "waypoint action 'navigate' names no sensor",
+   "field": "aerial_objectives.A1",
+   "kind": "SENSOR_NOT_STATED"
+  },
+  {
+   "action": "KEPT_UNSTATED",
+   "detail": "waypoint action 'navigate' names no sensor",
+   "field": "aerial_objectives.A2",
+   "kind": "SENSOR_NOT_STATED"
+  },
+  {
+   "action": "NOT_USED",
+   "detail": "qgc_vehicle",
+   "field": "drones",
+   "kind": "VEHICLE_NOT_IN_FLEET"
+  }
+ ],
+ "provenance": {
+  "aerial_objectives.A1": {
+   "frame": "synthetic_orchard_local",
+   "geo": [
+    -35.36321708,
+    149.16519294
+   ],
+   "georeference": "SYNTHETIC",
+   "local": [
+    -4.0,
+    5.0
+   ],
+   "sensor": "NOT_STATED_IN_INPUT",
+   "source": "QGC_PLAN",
+   "waypoint_id": "QGC_WP1"
+  },
+  "aerial_objectives.A2": {
+   "frame": "synthetic_orchard_local",
+   "geo": [
+    -35.36322607,
+    149.16532512
+   ],
+   "georeference": "SYNTHETIC",
+   "local": [
+    8.0,
+    4.0
+   ],
+   "sensor": "NOT_STATED_IN_INPUT",
+   "source": "QGC_PLAN",
+   "waypoint_id": "QGC_WP2"
+  },
+  "drones": {
+   "note": "plan vehicle 'qgc_vehicle' is not a declared drone; the drone agent proposes the assignment",
+   "source": "OMITTED"
+  },
+  "import_context": {
+   "battery_percent": 90.0,
+   "source": "IMPORT_CONTEXT (not an operator statement; not used)",
+   "wind_speed_kmh": 0.0
+  }
+ },
+ "schema": "tfg.multiagent.mission-input/1",
+ "source": {
+  "importer": "inputs.qgroundcontrol_adapter.load_qgroundcontrol_plan (Hermes)",
+  "importer_warnings": [
+   "MAV_CMD_NAV_TAKEOFF was not converted into a horizontal waypoint. Vertical takeoff dynamics are not modelled yet.",
+   "MAV_CMD_NAV_LAND was converted to a navigation endpoint. Landing dynamics are not modelled yet."
+  ],
+  "kind": "QGC_PLAN",
+  "path": "multiagent/benchmark/results/codex_integration_v2_2026-11-07_0dab97317/mission_inputs/poi1_poi3.plan",
+  "sha256": "155dbd3664ce0e326153f81e8aab93a46fff829f1862255efe655353e704c705",
+  "source_item_count": 5
+ },
+ "status": "OK",
+ "transit_waypoints": [
+  {
+   "local": [
+    4.0,
+    -6.0
+   ],
+   "role": "RETURN_ENDPOINT",
+   "waypoint_id": "QGC_WP3"
+  }
+ ]
+}

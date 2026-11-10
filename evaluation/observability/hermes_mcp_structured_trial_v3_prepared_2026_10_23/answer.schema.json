@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tfg.mission-answer/v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "historical_status",
+    "mission_id",
+    "vehicle_id",
+    "simulated_vehicle",
+    "planned_waypoint_ids",
+    "reached_waypoint_ids",
+    "return_to_home",
+    "mission_landed_event_recorded",
+    "recovery_landing_completed",
+    "current_availability"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "historical_status": {
+      "type": "string"
+    },
+    "mission_id": {
+      "type": "string"
+    },
+    "vehicle_id": {
+      "type": "string"
+    },
+    "simulated_vehicle": {
+      "type": "string"
+    },
+    "planned_waypoint_ids": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "enum": [
+            "UNKNOWN"
+          ]
+        }
+      ]
+    },
+    "reached_waypoint_ids": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "enum": [
+            "UNKNOWN"
+          ]
+        }
+      ]
+    },
+    "return_to_home": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "mission_landed_event_recorded": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "enum": [
+            "UNKNOWN"
+          ]
+        }
+      ]
+    },
+    "recovery_landing_completed": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "enum": [
+            "UNKNOWN"
+          ]
+        }
+      ]
+    },
+    "current_availability": {
+      "type": "string"
+    }
+  }
+}

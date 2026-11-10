@@ -1,0 +1,368 @@
+{
+ "aerial": {
+  "agent": "drone_swarm_agent",
+  "clarifications": [],
+  "evidence": {
+   "allocation_source": "DETERMINISTIC_REFERENCE",
+   "battery_percent_declared": {},
+   "coordination": null,
+   "coordination_attempts": [],
+   "drones_considered": [
+    "drone_01",
+    "drone_02"
+   ],
+   "model_proposal_check": null,
+   "note": "allocation is offline planning; no coordination in flight is implied",
+   "reference": null,
+   "replanned_for_coordination": false,
+   "wind_speed_kmh": 0.0
+  },
+  "incompatible": [],
+  "movement_authorized": false,
+  "pending_authorization": true,
+  "proposals": [],
+  "schema": "tfg.multiagent.agent-result/1",
+  "status": "NO_TASKS"
+ },
+ "authorization": {
+  "by": null,
+  "granted": false,
+  "how": "each task separately through the existing entries and gates",
+  "required": true
+ },
+ "brief": {
+  "aerial_objectives": [],
+  "altitude_m": null,
+  "ambiguities": [],
+  "battery_percent": {},
+  "contradictions": [],
+  "drones": [],
+  "ground_objectives": [
+   {
+    "after_aerial": true,
+    "coordinates": null,
+    "description": null,
+    "objective_id": "G1",
+    "point_id": "POI_1"
+   }
+  ],
+  "rover": "rover_01",
+  "schema": "tfg.multiagent.mission-brief/2",
+  "site_id": null,
+  "unsafe_requests": [],
+  "vehicle_availability": [],
+  "wind_speed_kmh": null
+ },
+ "commands_sent": 0,
+ "context": {
+  "context_id": "orchard_two_drones_v2",
+  "fleet": "agri_demo_fleet v2",
+  "provenance": "SYNTHETIC",
+  "site": "synthetic_orchard v2"
+ },
+ "coordination": null,
+ "data_kind": "SYNTHETIC",
+ "elapsed_s": 2.689059101016028,
+ "ground": {
+  "agent": "rover_agent",
+  "clarifications": [],
+  "evidence": {
+   "availability_basis": "declared in the operating context; not a readiness check",
+   "llm_review": {
+    "accepted_by_gate": true,
+    "agent": "rover_agent",
+    "agent_tokens": 2415,
+    "agreement": "DISAGREES_DETERMINISTIC_KEPT",
+    "base_url": "http://127.0.0.1:11434",
+    "contract": "v3",
+    "credential_env": null,
+    "data_kind": "MODEL_OUTPUT",
+    "decision_record": {
+     "accepted_after_revision": true,
+     "accepted_first_round": false,
+     "accepted_round": 1,
+     "llm_proposals": [
+      {
+       "accepted": false,
+       "findings": [
+        "DEPENDENCY_UNSATISFIED_TASK_PROPOSED at decisions[0].decision: no proposed drone task reaches POI_1"
+       ],
+       "proposal": {
+        "decisions": [
+         {
+          "decision": "PLAN_TO_DECLARED_POI",
+          "objective_id": "G1",
+          "reason": null,
+          "target_point": "POI_1"
+         }
+        ]
+       },
+       "reason": null,
+       "round": 0,
+       "status": "FINAL"
+      },
+      {
+       "accepted": true,
+       "findings": [],
+       "proposal": {
+        "decisions": [
+         {
+          "decision": "CANNOT_PLAN",
+          "objective_id": "G1",
+          "reason": "NO_DRONE_TASK_REACHES_WAIT_POINT",
+          "target_point": null
+         }
+        ]
+       },
+       "reason": null,
+       "round": 1,
+       "status": "FINAL"
+      }
+     ]
+    },
+    "evidence": [
+     3
+    ],
+    "explanation": "Drone task does not reach wait point POI_1",
+    "llm_calls": 2,
+    "model": "qwen3:4b",
+    "normalized_proposal": {
+     "conditional_tasks": [],
+     "infeasible": [
+      {
+       "objective_id": "G1",
+       "reason": "NO_DRONE_TASK_REACHES_WAIT_POINT"
+      }
+     ],
+     "insufficient_information": [],
+     "tasks": []
+    },
+    "parse_error": null,
+    "proposal": {
+     "decisions": [
+      {
+       "decision": "CANNOT_PLAN",
+       "objective_id": "G1",
+       "reason": "NO_DRONE_TASK_REACHES_WAIT_POINT",
+       "target_point": null
+      }
+     ]
+    },
+    "provider": "ollama",
+    "reason": null,
+    "rounds": [
+     {
+      "accepted": false,
+      "explanation": "Rover is available, POI_1 is declared, and drone task reaches wait point",
+      "findings": [
+       "DEPENDENCY_UNSATISFIED_TASK_PROPOSED at decisions[0].decision: no proposed drone task reaches POI_1"
+      ],
+      "normalized": null,
+      "parse_error": null,
+      "proposal": {
+       "decisions": [
+        {
+         "decision": "PLAN_TO_DECLARED_POI",
+         "objective_id": "G1",
+         "reason": null,
+         "target_point": "POI_1"
+        }
+       ]
+      },
+      "reason": null,
+      "status": "FINAL",
+      "verifications": [
+       {
+        "data": {
+         "available": true,
+         "failed_checks": [],
+         "start_point": "ROVER_START",
+         "status": "PASS"
+        },
+        "status": "OK",
+        "tool": "validate_ground_target",
+        "tool_call": 2
+       }
+      ]
+     },
+     {
+      "accepted": true,
+      "explanation": "Drone task does not reach wait point POI_1",
+      "findings": [],
+      "normalized": {
+       "conditional_tasks": [],
+       "infeasible": [
+        {
+         "objective_id": "G1",
+         "reason": "NO_DRONE_TASK_REACHES_WAIT_POINT"
+        }
+       ],
+       "insufficient_information": [],
+       "tasks": []
+      },
+      "parse_error": null,
+      "proposal": {
+       "decisions": [
+        {
+         "decision": "CANNOT_PLAN",
+         "objective_id": "G1",
+         "reason": "NO_DRONE_TASK_REACHES_WAIT_POINT",
+         "target_point": null
+        }
+       ]
+      },
+      "reason": null,
+      "status": "FINAL",
+      "verifications": [
+       {
+        "data": {
+         "available": true,
+         "failed_checks": [],
+         "start_point": "ROVER_START",
+         "status": "PASS"
+        },
+        "status": "OK",
+        "tool": "validate_ground_target",
+        "tool_call": 3
+       }
+      ]
+     }
+    ],
+    "status": "FINAL",
+    "tool_calls": 3,
+    "tool_log": [
+     {
+      "index": 1,
+      "status": "OK",
+      "tool": "rover_capabilities"
+     },
+     {
+      "index": 2,
+      "status": "OK",
+      "tool": "validate_ground_target"
+     },
+     {
+      "index": 3,
+      "status": "OK",
+      "tool": "validate_ground_target"
+     }
+    ],
+    "verifications": [
+     {
+      "data": {
+       "available": true,
+       "failed_checks": [],
+       "start_point": "ROVER_START",
+       "status": "PASS"
+      },
+      "status": "OK",
+      "tool": "validate_ground_target",
+      "tool_call": 3
+     }
+    ],
+    "version": null
+   },
+   "rover": "rover_01"
+  },
+  "incompatible": [
+   {
+    "objective_id": "G1",
+    "reasons": [
+     "DEPENDENCY_UNSATISFIED: no drone task reaches POI_1, so the rover cannot wait for it"
+    ]
+   }
+  ],
+  "movement_authorized": false,
+  "pending_authorization": true,
+  "proposals": [],
+  "schema": "tfg.multiagent.agent-result/1",
+  "status": "PROPOSED_PENDING_AUTHORIZATION"
+ },
+ "interpretation": {
+  "availability": {
+   "clarifications": [],
+   "excluded_from_planning": [],
+   "levels": [
+    "DECLARED_TEXT",
+    "INVENTORY",
+    "OPERATIONAL (not established here)"
+   ],
+   "operational_availability": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+   "schema": "tfg.multiagent.availability/1",
+   "vehicles": [
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "drone_01"
+    },
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "drone_02"
+    },
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "rover_01"
+    }
+   ]
+  },
+  "contract_valid": true,
+  "final_reason": "INCOMPATIBLE G1: DEPENDENCY_UNSATISFIED: no drone task reaches POI_1, so the rover cannot wait for it",
+  "final_status": "INFEASIBLE",
+  "json_valid": null,
+  "model_reply_sha256": null,
+  "operator_text": "Send the rover to POI_1 after a drone has inspected it.",
+  "operator_text_sha256": "f6468689d5c986f3b4270b4e68ab9b16659379e627b72e682cc6ef9b68023b28",
+  "parse_error": null,
+  "risk_signals": [],
+  "safety_decision": {
+   "authority_granted": false,
+   "decided_by": "deterministic orchestrator policy",
+   "decision": "NO_UNSAFE_SIGNAL",
+   "policy": "safety/2"
+  }
+ },
+ "interpreter": {
+  "data_kind": "DETERMINISTIC",
+  "latency_s": 0.0,
+  "model": "hand-written-gold-brief",
+  "provider": "gold",
+  "version": "cases_v1"
+ },
+ "joint_spatial": [],
+ "mission_id": "M-2d1889a0bde9405a",
+ "movement_authorized": false,
+ "pipeline": "v2",
+ "proposal_sha256": "6d717b7b1e700c40f4146822b8a9899a8b25424dc9eb4feccde8465cf3129151",
+ "reasons": [
+  "INCOMPATIBLE G1: DEPENDENCY_UNSATISFIED: no drone task reaches POI_1, so the rover cannot wait for it"
+ ],
+ "schema": "tfg.multiagent.global-proposal/1",
+ "status": "INFEASIBLE",
+ "swarm_coordination": null,
+ "tasks": [],
+ "template": null,
+ "vehicles_contacted": 0
+}

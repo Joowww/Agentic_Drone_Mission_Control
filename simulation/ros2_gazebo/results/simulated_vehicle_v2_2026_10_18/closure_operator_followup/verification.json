@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "run_id": "7162bce5-3635-4a76-bf02-6a5a22612aab",
+  "evidence_kind": "OPERATOR_MESSAGE_SUMMARY_OF_COMPLETED_OPERATIONS",
+  "source": "Follow-up user message in this Codex conversation; text retained in operator_statement.txt",
+  "capture_format": "UTF-8 transcription of received message with a final newline; not a raw MCP response",
+  "operation_timestamps": null,
+  "raw_mcp_arguments_and_results_available": false,
+  "operator_reported_sequence": [
+    {
+      "operation": "stop_simulation",
+      "reported_status": "SUCCESS",
+      "reported_project_processes": "No attributable remaining processes reported; raw process inventory not supplied"
+    },
+    {
+      "operation": "check_simulation_ready",
+      "reported_status": "NOT READY",
+      "interpreted_checks": [
+        {
+          "control": "Docker container",
+          "outcome": "PASS",
+          "basis": "Operator reports Docker still active"
+        },
+        {
+          "control": "Gazebo server",
+          "outcome": "FAIL",
+          "basis": "Operator reports Gazebo check failed"
+        },
+        {
+          "control": "ArduPilot processes",
+          "outcome": "NOT_EXECUTED"
+        },
+        {
+          "control": "ROS 2 vehicle interfaces",
+          "outcome": "NOT_EXECUTED"
+        },
+        {
+          "control": "Pre-arm checks",
+          "outcome": "NOT_EXECUTED"
+        }
+      ]
+    }
+  ],
+  "interpreted_checks_contract": "Derived classification of operator report; NOT_EXECUTED does not mean FAIL, PASS or absent interfaces",
+  "offline_source_inspection": {
+    "path": "simulation/ros2_gazebo/scripts/check_sim.sh",
+    "sha256": "b6b4c7045b70e181c68433826c5c0f8b1a9e65b349be6601d6f64051b7b48833",
+    "finding": "Gazebo check exits before subsequent controls when it fails; source inspected, not executed"
+  },
+  "previous_archive_manifest": {
+    "path": "../manifest.json",
+    "sha256": "676e8c2dfcd17f37832ff60ed3d0199efa451af6fa373c300f5a58e9b5b10ed6",
+    "modified": false
+  },
+  "offline_reverification": {
+    "original_copies_sha256_and_bytes_verified": 8,
+    "original_derived_files_sha256_verified": 2,
+    "previous_conversational_archive_copies_verified": 37,
+    "strict_analysis_equals_saved": true,
+    "acceptance_checks_true": 11,
+    "persisted_status": "PASSED",
+    "pure_validation_equals_saved": true
+  },
+  "limits": [
+    "Reported post-stop readiness, not current operational verification",
+    "No raw remaining=[] field or per-PID inventory invented",
+    "Docker running does not imply project simulation running",
+    "Post-stop NOT READY does not alter historical rehearsal PASSED/readiness",
+    "No evidence added about vehicle reservation release or v1 motion",
+    "No causal claim about black GUI",
+    "No operational calls initiated"
+  ],
+  "new_test_run": false,
+  "previous_test_result": {
+    "command": ".venv/bin/python -m pytest -q",
+    "actual_result": "388 passed in 10.11s",
+    "scope": "Previous review, not rerun for this documentation/evidence-only addendum"
+  }
+}

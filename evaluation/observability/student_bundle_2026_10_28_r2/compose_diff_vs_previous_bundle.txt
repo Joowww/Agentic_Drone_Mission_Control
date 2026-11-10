@@ -1,0 +1,67 @@
+--- /home/joelm/TFG/entregas/tfg-entrega-estudiantes-2026.10.28/compose.yaml	2026-10-28 09:20:11.435208611 +0100
++++ /home/joelm/TFG/entregas/tfg-entrega-estudiantes-2026.10.28-r2/compose.yaml	2026-10-28 09:47:08.335105354 +0100
+@@ -1,12 +1,13 @@
+-# Student bundle 2026.10.28: the services of the project's deploy/compose.yaml for the delivered images, with the
+-# same restrictions, but without build sections, the development profile (sources mounted over the image) or the
+-# test doubles. Paths are relative to this directory; nothing refers to a source repository.
++# Student bundle 2026.10.28-r2 (PARTIAL: no simulator yet): the services of the project's deploy/compose.yaml for the
++# delivered images, with the same restrictions, but without build sections, the development profile (sources mounted
++# over the image), the test doubles or the development-only local-LLM menu. AI planning is Hermes only.
++# Paths are relative to this directory; nothing refers to a source repository.
+ #
+ # Project name tfg-estudiante: its hermes-home volume belongs to whoever uses this bundle on that computer; it never
+ # reuses another project's volume, sessions or provider login.
+ #
+ # Every host directory below must exist before starting (nothing is created for you) and is chosen by the student:
+-#   TFG_WORK_DIR        results of app (and /work of the planning services)
++#   TFG_WORK_DIR        results of app (and /work of the hermes service)
+ #   QGC_PLAN_DIR        plans QGC opens, read-only (e.g. $TFG_WORK_DIR/paquete_1/plans)
+ #   QGC_SAVE_DIR        where QGC saves its copy
+ #   TFG_PLANNING_STORE  drafts, finalizations, missions and reports of the planning profile
+@@ -15,13 +16,13 @@
+ # Profiles:
+ #   app       offline tools: no network, read-only root, writes only to /work.
+ #   qgc       QGroundControl 5.1.5 for the offline .plan import: no network, no devices, read-only plans.
+-#   planning  hermes (needs the student's own provider account and network to it), planner-menu and ollama
+-#             (Ollama image and model NOT included in this bundle; optional).
++#   planning  hermes: the project's MCP server restricted to update_mission_draft and finalize_mission_draft; needs
++#             the student's own provider account and network to the provider.
+ #   (no simulator: not distributed yet.)
+ name: tfg-estudiante
+ 
+ x-app: &app
+-  image: tfg/app:2026.10.27-r2
++  image: tfg/app:2026.10.28
+   # No network namespace: no LLM provider, Opik, simulator or vehicle is reachable.
+   network_mode: none
+   user: "${TFG_UID:-1000}:${TFG_GID:-1000}"
+@@ -106,29 +107,8 @@
+     networks: [provider]
+     command: ["/opt/tfg/deploy/planner/hermes_home.py", "run"]
+ 
+-  planner-menu:
+-    <<: *planner
+-    profiles: ["planning"]
+-    networks: [local-llm]
+-    environment:
+-      OLLAMA_HOST: http://ollama:11434
+-    command: ["main.py"]
+-
+-  ollama:
+-    profiles: ["planning"]
+-    # NOT included in this bundle: pulled from Docker Hub only if the student starts it.
+-    image: ollama/ollama:0.34.2@sha256:da6e0dc5651df159e45686fd663c4dbe1624a52c44d7280eeac1551d8f865532
+-    # local-llm serves the menu; provider is only needed to pull a model into the volume.
+-    networks: [local-llm, provider]
+-    security_opt: ["no-new-privileges:true"]
+-    volumes:
+-      - ollama-models:/root/.ollama
+-
+ volumes:
+   hermes-home:
+-  ollama-models:
+ 
+ networks:
+   provider: {}
+-  local-llm:
+-    internal: true

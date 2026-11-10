@@ -1,0 +1,41 @@
+{
+  "proposal": "agri-scenario-query protocol v2",
+  "status": "PROPOSED_NOT_IMPLEMENTED_NOT_AUTHORIZED",
+  "prepared_at": "2026-10-25",
+  "supersedes_nothing": "the pilot contract (agri-scenario-pilot-real, prompt v1) stays closed and unchanged",
+  "question": "With every claim mapped to an explicit view field and Hermes-level retries disabled, are the remaining failures separable into (a) provider/infrastructure, (b) no tool call, (c) format, (d) reading errors, with null-instead-of-false no longer arising from an ambiguous instruction?",
+  "prompt_v1_sha256": "663b63a06958b0418535452c3bc62094b6a77dedd20e23671ce5f8f20d498784",
+  "prompt_v2_sha256": "70184b39461f47da2c45c9580c23e2c4729534af4d7639087a7b622a5132f06c",
+  "prompt_v2": "Paso 1: llama a mcp__tfg_mission_control__get_scenario_view con scenario_id=\"agri_demo_001\" y request_key=\"agri-demo-001-h2-r01\". No respondas antes de tener su resultado.\nPaso 2: responde solo un objeto JSON. Toma cada valor únicamente del resultado de la herramienta. Escribe null solo si el campo indicado no existe en el resultado; si existe, copia su valor (true o false) aunque sea false. Claves:\nscenario_status <- scenario.status (o status si scenario es null); scenario_complete <- scenario.scenario_complete; sequence_order <- scenario.order.vehicle_order (null si scenario.order.status no es ACCREDITED_BY_EXECUTION_TIMESTAMPS); order_basis: \"EXECUTION_TIMESTAMPS\" si scenario.order.status es ACCREDITED_BY_EXECUTION_TIMESTAMPS, si no \"NOT_ACCREDITED\"; runs: una entrada por scenario.runs con run_id, vehicle_id, simulated_vehicle, mission_id, status, result_status, reached_points (POI con valor REACHED en points), return_home, landing, executor_started_at y executor_finished_at (de timeline); r1_status, r1_dependency, r1_commands_sent, r1_movement_authorized <- scenario.ground_task (status, dependency, commands_sent, movement_authorized); claims: objeto con images_captured y detections_made <- false si limitations.perception empieza por NONE, si no null; speed_commanded <- limitations.speed.commanded; speed_measured <- limitations.speed.measured; simultaneous_flight <- limitations.simultaneous_flight; common_frame_validated <- limitations.common_frame.validated; current_permissions_checked <- false si scope.current_restrictions es NOT_CHECKED, si no null; evidence_source (texto breve); explanation (texto en español: qué hicieron los drones y en qué orden, qué lo acredita, qué POI se alcanzaron, qué respalda regreso y aterrizaje, por qué el escenario está o no completo, qué significa la dependencia de R1 y qué límites impiden afirmar más).\ntimeline.job_admitted_at es la admisión del trabajo, no el despegue.",
+  "prompt_changes": [
+    {
+      "from": "Toma cada valor únicamente del resultado de la herramienta; si un dato no figura, escribe null.",
+      "to": "Toma cada valor únicamente del resultado de la herramienta. Escribe null solo si el campo indicado no existe en el resultado; si existe, copia su valor (true o false) aunque sea false."
+    },
+    {
+      "from": "claims: objeto con images_captured, detections_made, speed_commanded, speed_measured, simultaneous_flight, common_frame_validated y current_permissions_checked, cada uno true solo si el resultado lo registra (ver limitations y scope);",
+      "to": "claims: objeto con images_captured y detections_made <- false si limitations.perception empieza por NONE, si no null; speed_commanded <- limitations.speed.commanded; speed_measured <- limitations.speed.measured; simultaneous_flight <- limitations.simultaneous_flight; common_frame_validated <- limitations.common_frame.validated; current_permissions_checked <- false si scope.current_restrictions es NOT_CHECKED, si no null;"
+    }
+  ],
+  "why": "v1 says both 'if a datum does not appear, write null' and 'true only if the result records it'; the evaluator expects false. Pilot r08 answered null for five claims (rejected); the instruction was ambiguous.",
+  "hermes_retries": {
+    "observed": "pilot r02: one logical request with 4 failed attempts (1 timeout + 3 x 429 overloaded) recorded as llm_error, retry_count 0,1,2,0 and max_retries 3, then a successful attempt at 285 s. Interpretation, NOT confirmed by the capture: the reset of retry_count to 0 is consistent with an auto-recovery cycle after api_max_retries was spent.",
+    "source_facts_d923a5eb": [
+      "agent.api_max_retries (default 3; minimum 1 = single attempt), agent/agent_init.py",
+      "agent.auto_recovery_cycles (default 5; 0 disables), agent/turn_recovery_autorecover.py",
+      "main request client sets the OpenAI SDK max_retries=0 (agent/client_lifecycle.py): retries are Hermes-level and appear as llm_error capture events"
+    ],
+    "proposal": "add agent.api_max_retries: 1 and agent.auto_recovery_cycles: 0 to the temporary isolated config edit of the trial case (today it adds only plugins.enabled, the tool include filter and tool_search off); record both values in run.json; count every llm_error as a failed attempt (pilot-report already does)",
+    "consequence": "a provider error ends the invocation; it is reported as a technical failure, never retried by the pilot",
+    "requires": "code change in observability/hermes_capture_run.py (config edit + preflight check + tests), then review"
+  },
+  "evaluator": "unchanged accept_scenario_view_answer with the 2026-10-25 malformed-input hardening; claims expected from the view (all false in the H2 record)",
+  "separate_counts": [
+    "technical (no answer)",
+    "tool not called",
+    "unparseable / schema",
+    "critical",
+    "explanation (human)"
+  ],
+  "sample": "not proposed until the explanation review and these two decisions are made; no further inference is authorized"
+}

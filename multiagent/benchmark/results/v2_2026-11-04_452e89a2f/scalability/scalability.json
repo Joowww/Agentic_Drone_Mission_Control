@@ -1,0 +1,329 @@
+{
+ "data_kind": "SYNTHETIC",
+ "note": "planning-time allocation and separation over declared synthetic profiles; no flight, no physical swarm",
+ "optimality_gap": [
+  {
+   "coverage_gap": 0,
+   "drones": 2,
+   "exhaustive": {
+    "assignment": {
+     "drone_01": [
+      "O1",
+      "O4",
+      "O5"
+     ],
+     "drone_02": [
+      "O2",
+      "O6"
+     ]
+    },
+    "covered": 5,
+    "makespan_min": 0.639282182,
+    "total_distance_m": 294.333867195
+   },
+   "greedy": {
+    "assignment": {
+     "drone_01": [
+      "O1",
+      "O4",
+      "O5"
+     ],
+     "drone_02": [
+      "O2",
+      "O6"
+     ]
+    },
+    "covered": 5,
+    "makespan_min": 0.639282182,
+    "total_distance_m": 294.333867195
+   },
+   "makespan_ratio_greedy_over_exhaustive": 1.0,
+   "objectives": 6
+  },
+  {
+   "coverage_gap": 0,
+   "drones": 3,
+   "exhaustive": {
+    "assignment": {
+     "drone_01": [
+      "O1"
+     ],
+     "drone_02": [
+      "O2",
+      "O6"
+     ],
+     "drone_03": [
+      "O3",
+      "O4",
+      "O5"
+     ]
+    },
+    "covered": 6,
+    "makespan_min": 0.639282182,
+    "total_distance_m": 277.678289356
+   },
+   "greedy": {
+    "assignment": {
+     "drone_01": [
+      "O1"
+     ],
+     "drone_02": [
+      "O2",
+      "O6"
+     ],
+     "drone_03": [
+      "O3",
+      "O4",
+      "O5"
+     ]
+    },
+    "covered": 6,
+    "makespan_min": 0.639282182,
+    "total_distance_m": 277.678289356
+   },
+   "makespan_ratio_greedy_over_exhaustive": 1.0,
+   "objectives": 6
+  }
+ ],
+ "rows": [
+  {
+   "assigned": [
+    "O1",
+    "O4",
+    "O5",
+    "O7"
+   ],
+   "assignments_evaluated": null,
+   "conflicts_initial": 0,
+   "conflicts_residual": 0,
+   "context": "swarm_1_drones_v1",
+   "coordination": "NOT_APPLICABLE",
+   "coverage_ratio": 0.5,
+   "drones_available": 1,
+   "drones_declared": 1,
+   "elapsed_s": 0.125,
+   "exhaustive_assignments": 32,
+   "flight_sum_min": 0.893,
+   "load_jain_available": 1.0,
+   "load_jain_used": 1.0,
+   "makespan_s": 78.6,
+   "objectives": 8,
+   "optimality": "NOT_GUARANTEED",
+   "per_drone": {
+    "drone_01": {
+     "export": "GENERATED",
+     "flight_min": 0.893,
+     "sequence": [
+      "POI_5",
+      "POI_4",
+      "POI_1",
+      "POI_7"
+     ],
+     "start_delay_s": 0.0
+    }
+   },
+   "rejected": {
+    "O2": "drone_01: SENSOR_MISSING: drone_01 has no multispectral sensor",
+    "O3": "drone_01: SENSOR_MISSING: drone_01 has no thermal sensor",
+    "O6": "drone_01: SENSOR_MISSING: drone_01 has no multispectral sensor",
+    "O8": "drone_01: exclusion TREE_ROW TAKEOFF_1 -> POI_8: crosses or touches exclusion TREE_ROW"
+   },
+   "replanned": false,
+   "routes_validated": 6,
+   "search_mode": "GREEDY",
+   "status": "PARTIAL_PENDING_AUTHORIZATION"
+  },
+  {
+   "assigned": [
+    "O1",
+    "O2",
+    "O4",
+    "O5",
+    "O6",
+    "O7"
+   ],
+   "assignments_evaluated": null,
+   "conflicts_initial": 10,
+   "conflicts_residual": 0,
+   "context": "swarm_2_drones_v1",
+   "coordination": "DECONFLICTED_BY_START_DELAY",
+   "coverage_ratio": 0.75,
+   "drones_available": 2,
+   "drones_declared": 2,
+   "elapsed_s": 0.152,
+   "exhaustive_assignments": 432,
+   "flight_sum_min": 1.533,
+   "load_jain_available": 0.9732673540227893,
+   "load_jain_used": 0.9732673540227893,
+   "makespan_s": 138.36,
+   "objectives": 8,
+   "optimality": "NOT_GUARANTEED",
+   "per_drone": {
+    "drone_01": {
+     "export": "GENERATED",
+     "flight_min": 0.893,
+     "sequence": [
+      "POI_5",
+      "POI_4",
+      "POI_1",
+      "POI_7"
+     ],
+     "start_delay_s": 0.0
+    },
+    "drone_02": {
+     "export": "GENERATED",
+     "flight_min": 0.639,
+     "sequence": [
+      "POI_2",
+      "POI_6"
+     ],
+     "start_delay_s": 75.0
+    }
+   },
+   "rejected": {
+    "O3": "drone_01: SENSOR_MISSING: drone_01 has no thermal sensor",
+    "O8": "drone_01: exclusion TREE_ROW TAKEOFF_1 -> POI_8: crosses or touches exclusion TREE_ROW"
+   },
+   "replanned": false,
+   "routes_validated": 12,
+   "search_mode": "GREEDY",
+   "status": "PARTIAL_PENDING_AUTHORIZATION"
+  },
+  {
+   "assigned": [
+    "O1",
+    "O2",
+    "O3",
+    "O4",
+    "O5",
+    "O6",
+    "O7"
+   ],
+   "assignments_evaluated": null,
+   "conflicts_initial": 8,
+   "conflicts_residual": 0,
+   "context": "swarm_3_drones_v1",
+   "coordination": "DECONFLICTED_BY_START_DELAY",
+   "coverage_ratio": 0.875,
+   "drones_available": 3,
+   "drones_declared": 3,
+   "elapsed_s": 0.837,
+   "exhaustive_assignments": 4608,
+   "flight_sum_min": 1.247,
+   "load_jain_available": 0.796187277060895,
+   "load_jain_used": 0.796187277060895,
+   "makespan_s": 118.39,
+   "objectives": 8,
+   "optimality": "NOT_GUARANTEED",
+   "per_drone": {
+    "drone_01": {
+     "export": "GENERATED",
+     "flight_min": 0.134,
+     "sequence": [
+      "POI_1"
+     ],
+     "start_delay_s": 0.0
+    },
+    "drone_02": {
+     "export": "GENERATED",
+     "flight_min": 0.639,
+     "sequence": [
+      "POI_2",
+      "POI_6"
+     ],
+     "start_delay_s": 0.0
+    },
+    "drone_03": {
+     "export": "NOT_EXPORTED",
+     "flight_min": 0.473,
+     "sequence": [
+      "POI_5",
+      "POI_4",
+      "POI_3",
+      "POI_7"
+     ],
+     "start_delay_s": 65.0
+    }
+   },
+   "rejected": {
+    "O8": "drone_01: exclusion TREE_ROW TAKEOFF_1 -> POI_8: crosses or touches exclusion TREE_ROW"
+   },
+   "replanned": false,
+   "routes_validated": 19,
+   "search_mode": "GREEDY",
+   "status": "PARTIAL_PENDING_AUTHORIZATION"
+  },
+  {
+   "assigned": [
+    "O1",
+    "O2",
+    "O3",
+    "O4",
+    "O5",
+    "O6",
+    "O7"
+   ],
+   "assignments_evaluated": null,
+   "conflicts_initial": 8,
+   "conflicts_residual": 0,
+   "context": "swarm_5_drones_v1",
+   "coordination": "DECONFLICTED_BY_START_DELAY",
+   "coverage_ratio": 0.875,
+   "drones_available": 4,
+   "drones_declared": 5,
+   "elapsed_s": 0.349,
+   "exhaustive_assignments": 36000,
+   "flight_sum_min": 1.218,
+   "load_jain_available": 0.9388560209051303,
+   "load_jain_used": 0.9388560209051303,
+   "makespan_s": 90.62,
+   "objectives": 8,
+   "optimality": "NOT_GUARANTEED",
+   "per_drone": {
+    "drone_01": {
+     "export": "GENERATED",
+     "flight_min": 0.372,
+     "sequence": [
+      "POI_1",
+      "POI_7"
+     ],
+     "start_delay_s": 0.0
+    },
+    "drone_02": {
+     "export": "GENERATED",
+     "flight_min": 0.2,
+     "sequence": [
+      "POI_2"
+     ],
+     "start_delay_s": 40.0
+    },
+    "drone_03": {
+     "export": "NOT_EXPORTED",
+     "flight_min": 0.26,
+     "sequence": [
+      "POI_3",
+      "POI_4",
+      "POI_5"
+     ],
+     "start_delay_s": 50.0
+    },
+    "drone_04": {
+     "export": "NOT_EXPORTED",
+     "flight_min": 0.386,
+     "sequence": [
+      "POI_6"
+     ],
+     "start_delay_s": 0.0
+    }
+   },
+   "rejected": {
+    "O8": "drone_05: NOT_AVAILABLE: drone_05 declared unavailable"
+   },
+   "replanned": false,
+   "routes_validated": 27,
+   "search_mode": "GREEDY",
+   "status": "PARTIAL_PENDING_AUTHORIZATION"
+  }
+ ],
+ "schema": "tfg.multiagent.scalability/1"
+}

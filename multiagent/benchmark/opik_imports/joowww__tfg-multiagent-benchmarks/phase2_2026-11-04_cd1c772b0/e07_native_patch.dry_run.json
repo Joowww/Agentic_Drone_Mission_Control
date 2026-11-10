@@ -1,0 +1,19 @@
+{
+ "body": {
+  "model": "qwen3:4b",
+  "project_name": "tfg-multiagent-benchmarks",
+  "provider": "ollama",
+  "trace_id": "01a1a76e-e360-7b24-9ca0-f4088fe20e36",
+  "usage": {
+   "completion_tokens": 134,
+   "prompt_tokens": 494,
+   "total_tokens": 628
+  }
+ },
+ "case_id": "E07",
+ "effect": "adds native model/provider/usage to the remote span; input, output, metadata, times and tags unchanged; no cost is set; the sealed local record is not modified",
+ "method": "PATCH",
+ "path": "/v1/private/spans/01a1a76e-e362-7a07-8e04-d5e753b9091b",
+ "span_id": "01a1a76e-e362-7a07-8e04-d5e753b9091b",
+ "trace_id": "01a1a76e-e360-7b24-9ca0-f4088fe20e36"
+}

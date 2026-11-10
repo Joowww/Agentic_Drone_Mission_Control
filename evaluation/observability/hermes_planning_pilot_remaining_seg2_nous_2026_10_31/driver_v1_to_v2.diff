@@ -1,0 +1,113 @@
+--- evaluation/observability/hermes_planning_pilot_remaining_nous_2026_10_31/scripts/driver.py	2026-10-31 02:35:35.682246176 +0100
++++ evaluation/observability/hermes_planning_pilot_remaining_seg2_nous_2026_10_31/scripts/driver_v2.py	2026-10-31 09:30:02.810527619 +0100
+@@ -1,8 +1,11 @@
+-"""Sequential driver for the 11 remaining cases of hermes-planning-pilot 1.1.0 (authorized by Joel, 31/10/2026).
++"""Continuation (segment 2) of the batch driver of hermes-planning-pilot 1.1.0 (authorized by Joel, 31/10/2026).
+ 
+-One capture per key, in the frozen order, no relaunch; the stop conditions of
+-evaluation/hermes_planning_pilot_v1_followup_2026_10_31/README.md plus: stop if a tool outside the two authorized ones
+-is offered or executed. A failed acceptance inside the permitted environment is a RESULT and the batch continues.
++Copy of segment 1's scripts/driver.py with exactly these differences (see ../protocol_continuation.json):
++1. AUTHORIZED CHANGE - tool stop condition: tools are classified as offered / requested / rejected / executed
++   (tool_disposition). The batch stops only when a tool outside the two authorized ones is OFFERED or EXECUTED. A
++   request that Hermes rejected ("Tool '<name>' does not exist") is kept as a result, never treated as execution.
++2. OPERATIONAL - key selection: only the 7 pending keys, in Joel's order, and a key with evidence in segment 1 is
++   refused.
+ Run from the repository root with the project venv: .venv/bin/python -B <this file>
+ """
+ import hashlib
+@@ -30,6 +33,32 @@
+ FIXED = PLAN["fixed_configuration"]
+ PAUSE_S = FIXED["pause_between_invocations_s"]
+ ALLOWED = {"mcp__tfg_mission_control__update_mission_draft", "mcp__tfg_mission_control__finalize_mission_draft"}
++SEGMENT1 = E.parent / "hermes_planning_pilot_remaining_nous_2026_10_31"
++PENDING = ("P02", "P06", "P08", "P11", "P03", "P09", "P12")
++
++
++def _refused(content) -> bool:
++    """Hermes' reply to a call of a tool that is not registered (observed in segment 1, P10)."""
++    return isinstance(content, str) and content.startswith("Tool '") and "does not exist" in content
++
++
++def tool_disposition(trial_summary: dict, session_calls: list) -> dict:
++    """offered / requested / rejected / executed, and whether the batch must stop.
++
++    offered: the capture plugin's verdict over every request body; requested: tool calls in the model's responses;
++    executed: Hermes' post_tool_call events, plus any unauthorized call in the session whose result is NOT a refusal
++    (conservative: an unknown outcome counts as executed); rejected: unauthorized requests answered with a refusal."""
++    plugin_executed = [c.get("tool_name") for c in trial_summary.get("tool_calls") or []]
++    unauthorized = [c for c in session_calls if c.get("tool_name") not in ALLOWED]
++    rejected = [c.get("tool_name") for c in unauthorized if _refused(c.get("result"))]
++    executed = plugin_executed + [c.get("tool_name") for c in unauthorized if not _refused(c.get("result"))]
++    offered = trial_summary.get("offered")
++    offered_outside = offered not in ("ONLY_TRIAL_TOOL_OFFERED", None)
++    executed_outside = sorted({n for n in executed if n not in ALLOWED})
++    return {"offered": offered, "requested": trial_summary.get("requested_tool_names") or [],
++            "rejected_unauthorized_requests": rejected, "executed": executed,
++            "executed_outside": executed_outside, "offered_outside": offered_outside,
++            "stop": offered_outside or bool(executed_outside)}
+ 
+ 
+ def sha(path):
+@@ -79,7 +108,7 @@
+                                   "result": _document(c["result"])} for c in calls]}, indent=2, ensure_ascii=False)
+     text = text.replace(str(ROOT), "<repo>")  # finalize results carry absolute mission paths
+     assert "/home/" not in text, "personal path in tool data"
+-    return text, answer, reasons
++    return text, answer, reasons, calls
+ 
+ 
+ def one(item):
+@@ -89,6 +118,8 @@
+     rec = {"key": key, "case_id": case, "order": item["order"], "started_at_utc": now()}
+     if run_dir.exists() or (E / f"{key}.capture_output.json").exists():
+         return rec, "evidence for the key already exists"
++    if (SEGMENT1 / key).exists() or (SEGMENT1 / f"{key}.capture_output.json").exists():
++        return rec, "the key was already run in segment 1"
+     problems = frozen_ok()
+     if problems:
+         rec["frozen_problems"] = problems
+@@ -154,9 +185,7 @@
+     rec["isolation_verdict"] = trial_summary.get("verdict")
+     rec["offered"], rec["executed"] = trial_summary.get("offered"), trial_summary.get("executed")
+     rec["requested_tool_names"] = trial_summary.get("requested_tool_names")
+-    executed_names = [c.get("tool_name") for c in trial_summary.get("tool_calls") or []]
+-    outside = (trial_summary.get("offered") not in ("ONLY_TRIAL_TOOL_OFFERED", None)
+-               or any(n not in ALLOWED for n in executed_names))
++    session_calls = None
+     usage = private / "native-usage.json"
+     answer, reasons = "", ["NO_USAGE_FILE"]
+     if usage.exists():
+@@ -166,10 +195,8 @@
+         acceptance = json.loads(acc.stdout) if acc.stdout.strip() else {}
+         rec["acceptance_status"] = acceptance.get("status")
+         rec["dimensions"] = {d: v.get("status") for d, v in (acceptance.get("dimensions") or {}).items()}
+-        tool_reasons = ((acceptance.get("dimensions") or {}).get("tool_calls") or {}).get("reasons") or []
+-        outside = outside or any(r.startswith("OTHER_TOOL_CALLED") for r in tool_reasons)
+         try:
+-            text, answer, reasons = observed_calls(usage)
++            text, answer, reasons, session_calls = observed_calls(usage)
+             (E / f"{key}.tool_calls_observed.json").write_text(text + "\n")
+         except Exception as exc:  # conserved as a result, never retried
+             rec["observed_calls_error"] = f"{type(exc).__name__}: {exc}"
+@@ -188,14 +215,18 @@
+                                        "client_retries": (requests or {}).get("client_retries")}}
+     rec["final_answer_present"] = bool(answer.strip())
+     rec["provider_failure_without_answer"] = (not answer.strip()) and bool(rec["timed_out"] or trial_summary.get("llm_errors"))
+-    if outside:
++    if session_calls is None:  # without the session an unauthorized call cannot be shown to be a refusal
++        session_calls = [{"tool_name": n, "result": None} for n in rec["requested_tool_names"] or [] if n not in ALLOWED]
++    rec["tool_disposition"] = disposition = tool_disposition(trial_summary, session_calls)
++    if disposition["stop"]:
+         infra = infra or "a tool outside the two authorized ones was offered or executed"
+     rec["finished_at_utc"] = now()
+     return rec, infra
+ 
+ 
+ def main():
+-    order = PLAN["runs"]
++    by_case = {r["case_id"]: r for r in PLAN["runs"]}
++    order = [by_case[case] for case in PENDING]
+     log({"event": "batch_start", "at_utc": now(), "keys": [r["run_id"] for r in order]})
+     consecutive, results, stop = 0, [], None
+     for index, item in enumerate(order):

@@ -1,0 +1,88 @@
+--- historical/tools/rover_ros2_adapter.py
++++ current/tools/rover_ros2_adapter.py
+@@ -178,11 +178,18 @@
+ def _assert_preparation_scope():
+     assert_execution_authority('v3')
+     from tools import rover_ground_executor as ground,vehicle_execution_lock as locks
+-    owner=locks.restriction('v3');job,_,request,_=ground._checked(ground.directory(owner['owner_id']))
+-    if (request.get('kind')!='ROVER_PULSE_V1' or request.get('preparation',{}).get('kind')!='GUIDED_ARM_AFTER_STATIONARY_V1'
++    owner=locks.restriction('v3')
++    if not isinstance(owner,dict) or not owner.get('owner_id'):
++        raise RoverControlError('Preparation reservation disappeared before scope validation')
++    job,_,request,_=ground._checked(ground.directory(owner['owner_id']))
++    kind=request.get('kind')
++    session_ok=(kind=='ROVER_PULSE_V1' and job.get('session_id')==request['context']['lifecycle_id']
++                or kind=='ROVER_NAVIGATE_V1' and job.get('session_id') is not None
++                and job.get('session_id')==(job.get('coordination_binding') or {}).get('session_id'))
++    if (not session_ok or request.get('preparation',{}).get('kind')!='GUIDED_ARM_AFTER_STATIONARY_V1'
+             or job['job_state']!='PREPARING' or job['worker']!=locks.process_identity()
+-            or job.get('session_id')!=request['context']['lifecycle_id'] or owner.get('input_sha256')!=job['input_sha256']):
+-        raise RoverControlError('Mode/arm requires exact explicit PREPARING pulse job')
++            or owner.get('input_sha256')!=job['input_sha256']):
++        raise RoverControlError('Mode/arm requires an exact explicit PREPARING pulse or navigation job')
+ 
+ 
+ def _assert_disarm_scope():
+@@ -190,6 +197,8 @@
+     assert_execution_authority('v3')
+     from tools import rover_ground_executor as ground, vehicle_execution_lock as locks
+     guard=locks.restriction('v3')
++    if not isinstance(guard,dict) or not guard.get('owner_id'):
++        raise RoverControlError('Disarm reservation disappeared before scope validation')
+     job,_,request,_=ground._checked(ground.directory(guard['owner_id']))
+     if (request.get('finalization',{}).get('kind')!='DISARM_AFTER_OBSERVED_STOP_V1'
+             or job['job_state']!='FINALIZING' or job['worker']!=locks.process_identity()
+@@ -475,33 +484,38 @@
+             raise
+ 
+     def _exchange(self, command, *, timeout_s):
+-        deadline = time.monotonic() + number(timeout_s, 'timeout', positive=True)
++        timeout = number(timeout_s, 'timeout', positive=True)
++        deadline = time.monotonic() + timeout - min(0.05, timeout * 0.1)
+         if command['kind'] == 'service':
+             disarm=command['endpoint']==DISARM
+             stopping=command['endpoint']==MODE and command['payload']['mode']==4
+             request=self.disarm_type.Request() if disarm else self.mode_type.Request()
+             if disarm:request.arm=command['payload']['arm']
+             else:request.mode=command['payload']['mode']
+-            future=(self.disarm_client if disarm else self.client).call_async(request)
++            future = None
++            completed = False
+             try:
++                future=(self.disarm_client if disarm else self.client).call_async(request)
+                 while not future.done() and time.monotonic()<deadline:
+                     if not stopping and not (disarm and not request.arm):self._check_cancelled()
+                     self.rclpy.spin_until_future_complete(self.node, future,
+                         timeout_sec=min(.05,max(0.,deadline-time.monotonic())))
+                 if not stopping and not (disarm and not request.arm):self._check_cancelled()
+-            except BaseException:
+-                if not future.done():future.cancel()  # local cancellation does not undo effects
+-                raise
+-            if not future.done():
+-                future.cancel()  # cancelling the local future does NOT undo a possibly received request
+-                exc = TimeoutError((('ArmMotors arm' if request.arm else 'ArmMotors disarm') if disarm else 'ModeSwitch')+' response absent; request effects unconfirmed')
+-                exc.diagnostic = {'service':command['endpoint'],'type':command['type'],
+-                                  'request': command['payload'], 'timeout_s': timeout_s,
+-                                  'response_received': False, 'effects': 'UNCONFIRMED'}
+-                raise exc
+-            response = future.result()
+-            return Reply(True,None,{'result':response.result} if disarm else
+-                         {'status':response.status,'curr_mode':response.curr_mode},native_api_completed=True)
++                if not future.done():
++                    exc = TimeoutError((('ArmMotors arm' if request.arm else 'ArmMotors disarm') if disarm else 'ModeSwitch')+' response absent; request effects unconfirmed')
++                    exc.diagnostic = {'service':command['endpoint'],'type':command['type'],
++                                      'request': command['payload'], 'timeout_s': timeout_s,
++                                      'response_received': False, 'effects': 'UNCONFIRMED'}
++                    raise exc
++                response = future.result()
++                completed = True
++                return Reply(True,None,{'result':response.result} if disarm else
++                             {'status':response.status,'curr_mode':response.curr_mode},native_api_completed=True)
++            finally:
++                if future is not None and not completed:
++                    # No second done() race outside the protected region. Cancelling
++                    # this local future never retracts an already delivered command.
++                    future.cancel()
+         message = self.velocity_type()
+         message.header.stamp = self.node.get_clock().now().to_msg()
+         message.header.frame_id = 'base_link'

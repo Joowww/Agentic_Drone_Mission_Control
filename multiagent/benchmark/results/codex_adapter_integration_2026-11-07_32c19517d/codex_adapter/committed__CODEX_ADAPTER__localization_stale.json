@@ -1,0 +1,359 @@
+{
+ "classification": "BLOCKED_BEFORE_SUBMISSION",
+ "codex_commit": "57a0e303a",
+ "codex_snapshot": "57a0e303a",
+ "commands": [],
+ "conversion_owner": "CODEX_ADAPTER",
+ "coordinator_events": [
+  {
+   "detail": [
+    "frames: ROVER_LOCALIZATION_STALE",
+    "codex_v2: LOCALIZATION_STALE",
+    "executor_request: CONVERSION_DELEGATED_TO_CODEX_ADAPTER: no rover-frame goal is built on this side",
+    "executor_request: CODEX_ADAPTER_NOT_IN_SNAPSHOT: 57a0e303a has no tools/rover_payload_executor_adapter.py (not promoted)",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "reasons": [
+    "NO_POSITION: frames: ROVER_LOCALIZATION_STALE",
+    "NO_POSITION: codex_v2: LOCALIZATION_STALE",
+    "executor_request: CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+    "executor_request: CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "envelope": null,
+ "error_categories": [
+  "CONVERSION",
+  "EXECUTOR_POLICY",
+  "LOCALIZATION"
+ ],
+ "errors": [
+  {
+   "category": "LOCALIZATION",
+   "code": "ROVER_LOCALIZATION_STALE",
+   "detail": "ROVER_LOCALIZATION_STALE",
+   "stage": "frames"
+  },
+  {
+   "category": "LOCALIZATION",
+   "code": "LOCALIZATION_STALE",
+   "detail": "LOCALIZATION_STALE",
+   "stage": "codex_v2"
+  },
+  {
+   "category": "CONVERSION",
+   "code": "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "detail": "CONVERSION_DELEGATED_TO_CODEX_ADAPTER: no rover-frame goal is built on this side",
+   "stage": "executor_request"
+  },
+  {
+   "category": "CONVERSION",
+   "code": "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "detail": "CODEX_ADAPTER_NOT_IN_SNAPSHOT: 57a0e303a has no tools/rover_payload_executor_adapter.py (not promoted)",
+   "stage": "executor_request"
+  },
+  {
+   "category": "EXECUTOR_POLICY",
+   "code": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "detail": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "stage": "executor_admit"
+  }
+ ],
+ "mode": "OFFLINE_TEST",
+ "movement_executed": false,
+ "provenance": null,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [],
+   "stage": "request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "authorization",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "codex_bridge",
+   "status": "PASS"
+  },
+  {
+   "conversion": {
+    "applied_here": false,
+    "delegated_checks": [
+     "GOAL_DISTANCE_FROM_ROVER: needs the converted goal"
+    ],
+    "owner": "CODEX_ADAPTER",
+    "reasons": [
+     "ROVER_LOCALIZATION_STALE"
+    ],
+    "site_goal": {
+     "frame": "synthetic_orchard_local",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "transform": {
+     "expires_at_utc": "2026-11-07T17:08:07.368540+00:00",
+     "matrix": [
+      [
+       6.123233995736766e-17,
+       1.0,
+       1.5
+      ],
+      [
+       -1.0,
+       6.123233995736766e-17,
+       1.0
+      ],
+      [
+       0.0,
+       0.0,
+       1.0
+      ]
+     ],
+     "not_before_utc": "2026-11-07T15:08:07.368540+00:00",
+     "source": "TEST_FIXTURE_SURVEY",
+     "source_frame": "synthetic_orchard_local",
+     "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+     "target_frame": "odom",
+     "uncertainty_m": 0.0200810856280232,
+     "uncertainty_rad": 0.001,
+     "validated": true
+    },
+    "transform_reference": {
+     "accredited": true,
+     "chain": [
+      "inverse(synthetic_orchard_local<-odom)"
+     ],
+     "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+     "codex_matrix": {
+      "expires_at_utc": "2026-11-07T17:08:07.368540+00:00",
+      "matrix": [
+       [
+        6.123233995736766e-17,
+        1.0,
+        1.5
+       ],
+       [
+        -1.0,
+        6.123233995736766e-17,
+        1.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ],
+      "not_before_utc": "2026-11-07T15:08:07.368540+00:00",
+      "source": "TEST_FIXTURE_SURVEY",
+      "source_frame": "synthetic_orchard_local",
+      "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "target_frame": "odom",
+      "uncertainty_m": 0.0200810856280232,
+      "uncertainty_rad": 0.001,
+      "validated": true
+     },
+     "goal_sigma_after_transform_m": 0.12199692619078564,
+     "sigma_m": 0.0200810856280232,
+     "sigma_rad": 0.001,
+     "source_frame": "synthetic_orchard_local",
+     "target_frame": "odom",
+     "valid_until": "2026-11-07T17:08:07.368540+00:00"
+    }
+   },
+   "goal_base_link": null,
+   "goal_handoff": {
+    "applied_conversions": [],
+    "constraints": {
+     "authorized_area_site_frame": [
+      [
+       -10.0,
+       -10.0
+      ],
+      [
+       30.0,
+       -10.0
+      ],
+      [
+       30.0,
+       30.0
+      ],
+      [
+       -10.0,
+       30.0
+      ]
+     ],
+     "human": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 60.0
+     },
+     "operator": {
+      "localization_max_age_s": 2.0,
+      "localization_max_uncertainty_m": 0.3,
+      "max_distance_m": 5.0,
+      "max_total_sigma_m": 0.5
+     }
+    },
+    "conversion_owner": "CODEX_ADAPTER",
+    "delegated_checks": [
+     "GOAL_DISTANCE_FROM_ROVER: needs the converted goal"
+    ],
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "frame_identity": {
+     "rover_frame_expected": "odom",
+     "site_frame": "synthetic_orchard_local"
+    },
+    "goal_rover": null,
+    "goal_site": {
+     "frame": "synthetic_orchard_local",
+     "point_id": "POI_3",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "boot_id": "rover-boot-1",
+     "frame": "odom",
+     "observed_at": "2026-11-07T16:07:37.368472+00:00",
+     "sigma_m": 0.05,
+     "source": "TEST_FIXTURE_LOCALIZATION",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "state": "ACCREDITED",
+     "vehicle_id": "rover_01"
+    },
+    "observation": {
+     "data_kind": "TEST_FIXTURE observation from a SYNTHETIC_TEST image",
+     "observation_id": "red_target-obs-1",
+     "observed_at": "2026-11-07T16:08:05.368540+00:00",
+     "original_pose": {
+      "chain": [
+       "synthetic_orchard_local",
+       "drone_02/base_link",
+       "cam_down_fixture_optical"
+      ],
+      "frame": "synthetic_orchard_local",
+      "pose_source": "TEST_FIXTURE"
+     },
+     "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+     "source": "perception gate (detector on a SYNTHETIC_TEST image)",
+     "uncertainty_m": 0.12
+    },
+    "schema": "tfg.multiagent.rover-goal-handoff/1",
+    "transform_required": {
+     "from": "synthetic_orchard_local",
+     "reference": {
+      "accredited": true,
+      "chain": [
+       "inverse(synthetic_orchard_local<-odom)"
+      ],
+      "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "codex_matrix": {
+       "expires_at_utc": "2026-11-07T17:08:07.368540+00:00",
+       "matrix": [
+        [
+         6.123233995736766e-17,
+         1.0,
+         1.5
+        ],
+        [
+         -1.0,
+         6.123233995736766e-17,
+         1.0
+        ],
+        [
+         0.0,
+         0.0,
+         1.0
+        ]
+       ],
+       "not_before_utc": "2026-11-07T15:08:07.368540+00:00",
+       "source": "TEST_FIXTURE_SURVEY",
+       "source_frame": "synthetic_orchard_local",
+       "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+       "target_frame": "odom",
+       "uncertainty_m": 0.0200810856280232,
+       "uncertainty_rad": 0.001,
+       "validated": true
+      },
+      "goal_sigma_after_transform_m": 0.12199692619078564,
+      "sigma_m": 0.0200810856280232,
+      "sigma_rad": 0.001,
+      "source_frame": "synthetic_orchard_local",
+      "target_frame": "odom",
+      "valid_until": "2026-11-07T17:08:07.368540+00:00"
+     },
+     "status": "REQUIRED_NOT_APPLIED",
+     "to": "odom"
+    },
+    "vehicle": {
+     "boot_id": "rover-boot-1",
+     "vehicle_id": "rover_01"
+    }
+   },
+   "goal_rover": null,
+   "reasons": [
+    "ROVER_LOCALIZATION_STALE"
+   ],
+   "stage": "frames",
+   "status": "REFUSED"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [
+    "LOCALIZATION_STALE"
+   ],
+   "schema_errors": [
+    "['authorization']: {'bridge_scope_sha256': '43a9e4c756800ca8535b1978b755eb48a164f66478b12207e9f74fba0e6677af', 'human_authorized': True, 'operator_id': 'TEST_FIXTURE_OPERATOR', 'o"
+   ],
+   "stage": "codex_v2",
+   "status": "REJECTED"
+  },
+  {
+   "reasons": [
+    "CONVERSION_DELEGATED_TO_CODEX_ADAPTER: no rover-frame goal is built on this side",
+    "CODEX_ADAPTER_NOT_IN_SNAPSHOT: 57a0e303a has no tools/rover_payload_executor_adapter.py (not promoted)"
+   ],
+   "stage": "executor_request",
+   "status": "NOT_REACHED"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

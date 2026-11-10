@@ -1,0 +1,46 @@
+== §2
+H1 BOUND {'drone_01': '321ad647ab9c', 'drone_02': '079e25a30242'} NOT_GRANTED
+== §3
+27
+start_preflight_sequence, get_preflight_sequence, propose_mission_revision, get_revision_proposal, build_mission_revision, start_virtual_preflight, get_virtual_preflight, run_virtual_preflight, update_mission_draft, get_mission_state, get_scenario_view, generate_draft_route, finalize_mission_draft, validate_mission, validate_and_export_qgc, check_simulation_ready, start_simulation, restart_simulation, inspect_execution_reconciliation, get_execution_reconciliation, apply_execution_reconciliation, prepare_legacy_sequence_retirement, get_legacy_sequence_retirement, apply_legacy_sequence_retirement, stop_simulation, check_mission_execution_ready, execute_approved_mission
+== §4a
+[NODE] evaluate_waypoint_mission
+[ROUTER] Waypoint mission does not require replanning.
+[NODE] waypoint_final_report
+RESULT FEASIBLE []
+== §4b
+[NODE] evaluate_waypoint_mission
+[ROUTER] Waypoint mission requires replanning.
+[NODE] waypoint_replanner
+[NODE] waypoint_final_report
+RESULT NOT FEASIBLE ['One or more route legs cannot be flown under the current conditions.', 'Current wind speed exceeds the mission safety limit.'] ['Delay mission execution until wind speed is at or below 30.0 km/h.', 'Review or redesign the following unflyable route legs: HOME -> WP1, WP1 -> WP2, WP3 -> HOME.']
+== §6a
+SIN AMSL: ['planned home AMSL altitude is required for plannedHomePosition; the mission only has altitudes relative to home and no placeholder is written']
+CON AMSL 584: 6 items; FILE_MATCHES_EXPECTATIONS
+== §6b
+{
+  "status": "NO_SEMANTIC_DIFFERENCES",
+  "counts": {
+    "PRESENTATION": 4,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 0,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}
+== §6c
+items 4 home AMSL 584.0 ['QGC_WP1', 'QGC_WP2', 'QGC_WP3']
+['MAV_CMD_NAV_TAKEOFF was not converted into a horizontal waypoint. Vertical takeoff dynamics are not modelled yet.', 'MAV_CMD_NAV_LAND was converted to a navigation endpoint. Landing dynamics are not modelled yet.']
+== §7
+Estado del flujo: COMPLETED_FLOW (última etapa report)
+Escenario: AERIAL_COMPLETED_GROUND_PENDING; completo: no
+R1 · dependencia: MET · elegibilidad (vista histórica): BLOCKED_PENDING · elegibilidad (esta preparación): NOT_ELIGIBLE [required_data_present, operational_rover_policy_enabled]
+R1 · autorización: ABSENT · solicitud: NOT_REQUESTED_VIA_THIS_COORDINATOR · ejecución: NOT_STARTED
+Coordinador R1: NOT_REQUESTED; aceptación: sin resultado; motivo: no R1 record under this key; a request needs an authorization and the ground coordinator's request entry with the real adapter (not reachable from here)
+Informe: /tmp/tmp.uJnvFCbEPH/query/scenario_report.md
+Registro del flujo: /tmp/tmp.uJnvFCbEPH/query/flow_record.json
+== §10
+20 passed, 73 deselected in 1.06s
+== §11
+35 passed, 3 xfailed in 6.62s

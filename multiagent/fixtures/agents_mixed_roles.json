@@ -1,0 +1,32 @@
+{
+ "schema": "tfg.multiagent.agents-config/1",
+ "config_id": "mixed_roles_v1",
+ "data_kind": "REAL_MODELS",
+ "mission_orchestrator": {
+  "mode": "llm",
+  "candidate": "aida-qwen",
+  "prompt_id": "interpret_brief/2",
+  "generation": {
+   "temperature": 0.0
+  }
+ },
+ "drone_swarm_agent": {
+  "mode": "llm",
+  "candidate": "ollama:qwen3:4b",
+  "generation": {
+   "temperature": 0.0,
+   "seed": 7,
+   "num_predict": 1024,
+   "think": false,
+   "num_ctx": 8192,
+   "timeout_s": 120.0
+  }
+ },
+ "rover_agent": {
+  "mode": "llm",
+  "candidate": "hermes",
+  "generation": {
+   "temperature": 0.0
+  }
+ }
+}

@@ -1,0 +1,129 @@
+{
+ "schema": "tfg.multiagent.pilot/1",
+ "pilot_id": "aida_pilot_v1",
+ "status": "PREPARED_NOT_RUN",
+ "requires": [
+  "VPN to aida-hpc.widening.eu",
+  "AIDA_HPC_API_KEY in the environment (never in Git)",
+  "explicit authorization per run",
+  "--allow-model-calls --allow-remote"
+ ],
+ "configuration_env": {
+  "AIDA_HPC_BASE_URL": "default https://aida-hpc.widening.eu",
+  "AIDA_QWEN_MODEL": "default qwen",
+  "AIDA_CLEF_MODEL": "default clef",
+  "AIDA_HPC_API_KEY": "credential, value never stored or logged"
+ },
+ "dataset": "eval_v2",
+ "dataset_sha256": "0bee0e32672c9b99a82c240a17cef050e650c0443268b54e23285ea0107c3cd7",
+ "tasks": [
+  {
+   "task": "INTERPRET_BRIEF",
+   "candidate": "aida-qwen",
+   "cases": [
+    "E07",
+    "E11",
+    "E20",
+    "E18",
+    "E19",
+    "E01",
+    "E04",
+    "E12",
+    "E27",
+    "E21",
+    "E22"
+   ],
+   "comparable_with": "qwen3_4b_pilot_v1 (same cases, same prompt template interpret_brief/1, same criteria)",
+   "generation": {
+    "temperature": 0.0,
+    "json_mode": false
+   }
+  },
+  {
+   "task": "CLASSIFY_REQUEST",
+   "candidate": "aida-clef",
+   "cases": [
+    "E07",
+    "E11",
+    "E20",
+    "E18",
+    "E19",
+    "E01",
+    "E04",
+    "E12",
+    "E27",
+    "E21",
+    "E22"
+   ],
+   "labels": [
+    "FEASIBLE",
+    "PARTIAL",
+    "NEEDS_CLARIFICATION",
+    "INFEASIBLE",
+    "UNSAFE"
+   ],
+   "scoring": "top label vs expected status class; Brier score when the label set matches",
+   "entry": "multiagent.benchmark.run.clef_benchmark (subset)"
+  },
+  {
+   "task": "SELECT_ALLOCATION",
+   "candidate": "aida-clef",
+   "scenarios": [
+    {
+     "context": "multiagent/fixtures/swarm_3.context.json",
+     "objectives": [
+      [
+       "POI_1",
+       "rgb"
+      ],
+      [
+       "POI_3",
+       "thermal"
+      ],
+      [
+       "POI_9",
+       "multispectral"
+      ]
+     ]
+    },
+    {
+     "context": "multiagent/fixtures/swarm_5.context.json",
+     "objectives": [
+      [
+       "POI_1",
+       null
+      ],
+      [
+       "POI_2",
+       "multispectral"
+      ],
+      [
+       "POI_3",
+       "thermal"
+      ],
+      [
+       "POI_6",
+       "multispectral"
+      ]
+     ]
+    }
+   ],
+   "scoring": "rank of the chosen option (A = reference best), Brier vs one-hot A",
+   "entry": "multiagent.evaluation.select_allocation_record"
+  }
+ ],
+ "verify_on_first_real_reply": [
+  "qwen: HTTP 200 with choices[0].message.content (OpenAI-compatible); usage fields; model name echoed",
+  "qwen: whether response_format json_object is supported (keep json_mode False until confirmed)",
+  "qwen: model size/version reported, rate limits, timeouts, max tokens parameter name",
+  "clef: exact request body of /v1/systemone (clef_request is an ASSUMPTION)",
+  "clef: reply shape: decisions/probabilities keys, label vocabulary, whether probabilities sum to 1",
+  "clef: whether arbitrary label sets can be supplied or Clef has fixed classes (then map them explicitly)",
+  "both: error bodies, authentication header format (Bearer assumed), cost or quota per call"
+ ],
+ "never": [
+  "Clef on INTERPRET_BRIEF or ALLOCATE",
+  "tokens in Git, logs or fixtures",
+  "sending traces to Opik without separate authorization"
+ ]
+}

@@ -1,0 +1,346 @@
+--- historical/tools/rover_xrce_trace/session_precheck.py
++++ current/tools/rover_xrce_trace/session_precheck.py
+@@ -124,6 +124,23 @@
+ PASSIVE_SESSION_LAYOUT = 'PASSIVE_SESSION_RECORDS_V1'
+ PROTECTED_FAILED_LAYOUT = 'PROTECTED_FAILED_START_CLOSE_V1'
+ OPERATIONAL_LAYOUT = 'OPERATIONAL_SESSION_RECORDS_V1'
++FUNCTION_SESSION_LAYOUT = 'SHA256SUMS_FUNCTION_SESSION_V1'
++# Exact paths emitted by the existing preserved-tree/function-result producer.
++# No suffix discovery, relabelling or reconstructed subprocess stdout.
++FUNCTION_SESSION_PATHS = {
++    'start-operation/operation.json':'preserved/start-lifecycle/operation.json',
++    'start-operation/rover_environment_reference.json':'preserved/start-lifecycle/rover_environment_reference.json',
++    'stop-operation/operation.json':'preserved/stop-lifecycle/operation.json',
++    'stop-command.json':'preserved/driver/stop-command.json',
++    'stop.stdout':'preserved/driver/stop.stdout',
++    'post-precheck.stdout':'preserved/driver/post-precheck.stdout',
++    'container-selection.json':'preserved/sdk/overlay/selection.json',
++    'container-launch.json':'preserved/sdk/overlay/launch.json',
++    'container-capture/monitor.json':'preserved/sdk/overlay/capture/monitor.json',
++    'closure-request.json':'preserved/sdk/overlay/capture/closure-request.json',
++    'cleanup-finished.json':'preserved/sdk/overlay/capture/cleanup-finished.json',
++    'monitor-exit.json':'preserved/sdk/overlay/capture/monitor_exit.json',
++}
+ PASSIVE_SESSION_MANIFEST = '4d9558a2e31b9ea2ec42eca6d8b18cc007ce2cf4049bab011fa561ad59e34faf'
+ PASSIVE_SESSION_PATHS = {
+     'stop-command.json':'passive-session/stop-command.json',
+@@ -142,6 +159,10 @@
+         return reference
+     root=Path(directory).resolve()
+     if Path(directory).is_symlink():raise ValueError('Unsafe closure archive root')
++    if not (root/'manifest.json').exists() and (root/'SHA256SUMS').exists():
++        return {'kind':'VERIFIED_CLOSURE_ARCHIVE_V2','directory':str(root),
++                'layout':FUNCTION_SESSION_LAYOUT,
++                'checksum_sha256':hashlib.sha256((root/'SHA256SUMS').read_bytes()).hexdigest()}
+     reference = {'kind':'VERIFIED_CLOSURE_ARCHIVE_V2','directory':str(root),
+                  'manifest_sha256':hashlib.sha256((root/'manifest.json').read_bytes()).hexdigest()}
+     # Exact reviewed archive, never suffix discovery or a lifecycle-ID exemption.
+@@ -221,7 +242,10 @@
+     """Shared original-byte verification; no file discovery or suffix matching."""
+     import stat
+     _require(isinstance(reference,dict) and reference.get('kind')=='VERIFIED_CLOSURE_ARCHIVE_V2','Unknown closure proof protocol')
+-    root=Path(reference['directory']);raw=(root/'manifest.json').read_bytes()
++    root=Path(reference['directory'])
++    if reference.get('layout')==FUNCTION_SESSION_LAYOUT:
++        return _checksum_data(reference)
++    raw=(root/'manifest.json').read_bytes()
+     _require(not root.is_symlink() and hashlib.sha256(raw).hexdigest()==reference['manifest_sha256'],'Closure manifest changed')
+     manifest=json.loads(raw);operational=manifest.get('schema')=='rover-operational-evidence/1'
+     _require(operational or manifest.get('schema')=='tfg.evidence-manifest/1','Unknown closure manifest')
+@@ -248,12 +272,36 @@
+     return data
+ 
+ 
++def _checksum_data(reference):
++    """GNU text SHA256SUMS: hashes/paths only, no invented sizes or modes."""
++    import re
++    root=Path(reference['directory']);seal=root/'SHA256SUMS'
++    _require(not any(p.is_symlink() for p in (seal,*seal.parents)), 'Unsafe checksum archive path')
++    raw=seal.read_bytes()
++    _require(len(raw)<=65536 and hashlib.sha256(raw).hexdigest()==reference.get('checksum_sha256'),
++             'Closure checksum manifest changed')
++    data={}
++    for line in raw.decode('utf-8').splitlines():
++        match=re.fullmatch(r'([0-9a-f]{64})  (.+)',line)
++        _require(match is not None,'Malformed closure checksum entry')
++        sha,name=match.groups();path=root/name
++        _require(name not in data and name!='SHA256SUMS' and str(Path(name))==name and name!='.'
++                 and not Path(name).is_absolute() and '..' not in Path(name).parts
++                 and not any(p.is_symlink() for p in (path,*path.parents)) and path.is_file()
++                 and path.resolve().is_relative_to(root.resolve()),'Unsafe/duplicate checksum original')
++        content=path.read_bytes()
++        _require(hashlib.sha256(content).hexdigest()==sha,'Closure original changed: '+name)
++        data[name]=content
++    _require(bool(data),'Empty closure checksum manifest')
++    return data
++
++
+ def _verified_closure_data(reference):
+     """Reviewed protocol facts, not stop SUCCESS alone or a process snapshot."""
+     layout = reference.get('layout')
+-    _require(layout in (None,PASSIVE_SESSION_LAYOUT,PROTECTED_FAILED_LAYOUT,OPERATIONAL_LAYOUT), 'Unknown closure archive layout')
++    _require(layout in (None,PASSIVE_SESSION_LAYOUT,PROTECTED_FAILED_LAYOUT,OPERATIONAL_LAYOUT,FUNCTION_SESSION_LAYOUT), 'Unknown closure archive layout')
+     data=_manifest_data(reference,require_mode=layout!=PROTECTED_FAILED_LAYOUT)
+-    paths={}
++    paths=FUNCTION_SESSION_PATHS if layout==FUNCTION_SESSION_LAYOUT else {}
+     if layout==OPERATIONAL_LAYOUT:
+         paths={'start-operation/operation.json':'start-lifecycle/operation.json',
+                'start-operation/rover_environment_reference.json':'start-lifecycle/rover_environment_reference.json',
+@@ -282,7 +330,7 @@
+             _require(len(matches)==1,'Operational SDK association missing: '+suffix)
+             paths[canonical]=matches[0]['archive_path']
+     def read(name):
+-        path = paths.get(name,name) if layout==OPERATIONAL_LAYOUT else PASSIVE_SESSION_PATHS.get(name,name) if layout else name
++        path = paths.get(name,name) if layout in (OPERATIONAL_LAYOUT,FUNCTION_SESSION_LAYOUT) else PASSIVE_SESSION_PATHS.get(name,name) if layout else name
+         _require(path in data, 'Closure original absent from manifest: '+path)
+         return json.loads(data[path])
+     return data,read
+@@ -415,7 +463,7 @@
+     """Historical V2 closure proof; its freshness requirement is unchanged."""
+     _require(reference.get('layout')!=PROTECTED_FAILED_LAYOUT,
+              'Protected failed-start archive records cleanup only; current-resource scope review required')
+-    _require(reference.get('layout')!=OPERATIONAL_LAYOUT,
++    _require(reference.get('layout') not in (OPERATIONAL_LAYOUT,FUNCTION_SESSION_LAYOUT),
+              'Recorded cleanup archive requires current-resource scope review; historical V2 freshness not asserted')
+     from datetime import datetime
+     data,read=_verified_closure_data(reference)
+@@ -488,7 +536,11 @@
+              monitor.get('phase') in {'INCOMPLETE','FAILED','CLOSED'}, 'Not an incomplete retained diagnostic')
+     _recorded(launch);_recorded(monitor)
+     operational=reference.get('layout')==OPERATIONAL_LAYOUT
+-    report=json.loads(data['stop-lifecycle/backend.log' if operational else 'stop-operation/backend.log'].decode().splitlines()[0])
++    function_session=reference.get('layout')==FUNCTION_SESSION_LAYOUT
++    report_path=('preserved/stop-lifecycle/backend.log' if function_session else
++                 'stop-lifecycle/backend.log' if operational else 'stop-operation/backend.log')
++    _require(report_path in data,'Closure original absent from manifest: '+report_path)
++    report=json.loads(data[report_path].decode().splitlines()[0])
+     _require(report.get('success') is True and all(report.get(k)==[] for k in
+              ('remaining','errors','unattributed_auxiliaries')), 'Recorded independent cleanup not verified')
+     response=read('stop.stdout')
+@@ -498,13 +550,135 @@
+     _require(any(v.get('pid')==root['pid'] and v.get('start_ticks')==root['start_ticks'] for v in report['signals']),
+              'Recorded cleanup not bound to original launch')
+     prior=read('post-precheck.stdout')
+-    if operational:
++    if operational or function_session:
+         _operational_closure_checks(reference,data,read,target,start,stop,environment,selection,launch,monitor,report)
+     return {'historical':{'target':target,'start_operation':start,'stop_operation':stop,
+             'environment_reference':environment,'selection':selection,'launch':launch,'monitor':monitor},
+             'limitations':{'historical_capture_complete':False,
+                 'historical_fresh_observation':prior.get('conditions',{}).get('fresh_observation'),
+                 'basis':'RECORDED_CLEANUP_NOT_HISTORICAL_RESOURCE_ABSENCE'}}
++
++
++def _function_session_inventory(data,read,historical,execution,at):
++    """Consume the two sealed function results as results, never as stdout.
++
++    Bind their metadata-only query payload to the archived source before-images.
++    Historical durations/conditions remain historical, not a current verdict.
++    """
++    pointer=historical['target']['descriptor'];prefix=pointer['prefix']
++    files=[prefix+'/'+n for n in ('selection.json','launch.json','capture/monitor.json')]
++    source_paths=[('/tmp/tfg_simulation_profiles.py','predeployment-originals/05-tfg_simulation_profiles.py','tools/simulation_profiles.py'),
++                  ('/tmp/tfg_sim_processes.py','predeployment-originals/06-tfg_sim_processes.py','simulation/ros2_gazebo/scripts/sim_processes.py'),
++                  ('/root/ardu_ws/src/ardupilot_gz/ardupilot_gz_bringup/launch/tfg_demo.launch.py',
++                   'predeployment-originals/09-tfg_demo.launch.py',None)]
++    index=read('predeployment-index.json')['rows'];sources=[]
++    _require(len({row['path'] for row in index})==len(index),'Duplicate function-result source association')
++    for path,name,key in source_paths:
++        rows=[row for row in index if row['path']==path]
++        _require(len(rows)==1 and name in data,'Function-result reader source missing')
++        row=rows[0];content=data[name]
++        _require(row.get('present') is True and row.get('stable') is True and row.get('type')=='regular'
++                 and row.get('size')==len(content) and row.get('sha256')==hashlib.sha256(content).hexdigest(),
++                 'Function-result reader source altered/incomplete')
++        sources.append((content,key))
++    final_time=None
++    for name in ('post-restoration-check.function.json','post-after-restoration.function.json'):
++        value=read(name)
++        _require(set(value)=={'records','current','observation_context','Path_serialized_fields'} and
++                 value['Path_serialized_fields']==['records.historical_evidence'],
++                 'Unknown function-result representation')
++        records=value['records'];current=value['current'];context=value['observation_context'];inventory=records['inventory']
++        _require(all(records.get(k)==v for k,v in historical.items()),'Function-result session/descriptor association contradiction')
++        _require(type(context.get('inventory_return_code')) is int and context['inventory_return_code']==0
++                 and current.get('complete') is True and current['sources']==context['sources'],
++                 'Function-result inventory read failed/incomplete')
++        resources=current['resources'];hashes=resources['reader_hashes']
++        from .present_resources import unpack, SCHEMA
++        from .budget import SOCKET
++        expanded=unpack(resources);reads=expanded.get('reads',[]);ids=expanded.get('table_reads',[])
++        expected_tables=['/proc/self/net/'+n for n in ('udp','udp6','tcp','tcp6')]*2
++        _require(expanded.get('schema')==SCHEMA and expanded.get('status')=='FREE' and
++                 expanded.get('occupied')==[] and expanded.get('reasons')==[] and
++                 expanded.get('budget')==SOCKET.record() and len(reads)<=SOCKET.reads and
++                 expanded.get('counts',{}).get('read_calls',SOCKET.reads+1)<=SOCKET.reads and
++                 len(ids)==8 and len(set(ids))==8 and
++                 all(type(i) is int and 0<=i<len(reads) for i in ids) and
++                 [reads[i].get('source') for i in ids]==expected_tables and
++                 all(reads[i].get('operation')=='bytes_to_eof' for i in ids) and
++                 all(row.get('state')=='OBSERVED' for row in reads),
++                 'Function-result resource inventory incomplete/occupied')
++        _require(inventory.get('resources')==resources and
++                 all(key is None or hashes.get(key)==hashlib.sha256(content).hexdigest() for content,key in sources),
++                 'Function-result reader provenance contradiction')
++        payload={'profiles':sources[0][0].decode(),'supervisor':sources[1][0].decode(),'files':files,
++                 'present':True,'reader_hashes':hashes,'host_launch':sources[2][0].decode()}
++        from .selection import digest
++        _require(context.get('inventory_source_sha256')==digest(payload),'Unknown function-result reader provenance')
++        _require(all(inventory.get(k)==[] for k in ('owned','ambiguous','agents')) and
++                 set(inventory.get('state_files',{}))=={POINTER} and
++                 _recorded(json.loads(inventory['state_files'][POINTER]))==pointer and
++                 set(inventory['files'])==set(files) and all(json.loads(inventory['files'][prefix+'/'+n])==historical[k]
++                     for k,n in [('selection','selection.json'),('launch','launch.json'),('monitor','capture/monitor.json')]),
++                 'Function-result inventory/retained files incomplete or contradictory')
++        before=inventory.get('query_context_before');after=inventory.get('query_context_after')
++        _require(isinstance(before,dict) and before==after and before.get('boot_id')==inventory['boot_id']==execution['container_boot_id']
++                 and all(resources['context'].get(k)==v for k,v in before.items()),'Function-result query context changed')
++        from tools.reconciliation_environment import active_execution_identity
++        _require(context['current_environment_execution']==execution and
++                 active_execution_identity(context['environment'],inventory['boot_id'])==execution and
++                 active_execution_identity(context['environment_recheck'],inventory['boot_id'])==execution and
++                 current['environment_observation']==context['environment'], 'Function-result environment/execution changed')
++        _require(current.get('restriction','UNKNOWN') is None and current.get('guards')=={} and
++                 current.get('host_processes')==[] and current.get('other_sessions')==[] and bool(current.get('host_boot_id')),
++                 'Function-result restrictions/reservations/sessions incomplete')
++        names=[row['source'] for row in context['sources']]
++        required=['sim_processes.readonly_inventory in exact container',
++                  'reconciliation_environment metadata/boot recheck after inventory',
++                  'host /proc relevant role inventory; vehicle_execution_lock.process_identity',
++                  'vehicle_locks/*.json and vehicle_execution_lock.restriction']
++        _require(all(names.count(n)==1 for n in required) and
++                 [names.index(n) for n in required]==sorted(names.index(n) for n in required),
++                 'Function-result observation sources absent/out of order')
++        times=[at(row['read_at_utc']) for row in context['sources']]
++        _require(bool(times) and times==sorted(times) and
++                 at(historical['stop_operation']['finished_at'])<=at(context['started_at_utc'])<=times[0]
++                 and (final_time is None or final_time<=times[0]),'Function-result closure chronology contradiction')
++        _require(at(context['environment']['finished_at_utc'])<=times[names.index(required[0])]
++                 <=at(context['environment_recheck']['started_at_utc'])
++                 <=at(context['environment_recheck']['finished_at_utc'])<=times[names.index(required[1])],
++                 'Function-result environment observation order unproven')
++        final_time=times[-1]
++    return final_time
++
++
++def _function_monitor_wait(data,read,pointer,monitor,receipt,finished,observed_at,at):
++    """Precision-aware chronology backed by the exact monitor implementation.
++
++    No epsilon: require its causal read/terminal snapshot/wait sequence, same
++    process incarnation and a seconds-resolution wall interval containing the
++    cleanup completion. Unknown producer versions remain blocked.
++    """
++    import math
++    from datetime import timedelta
++    name='preserved/sdk/overlay/monitor.py'
++    known={'d71be743ea66e76c61747309a84fd055f8d83873013c7f2ab7ddfe9d8f2cad3f',
++           'd53d166d8f3405110246a225376effcfcf9ace475ac8c9741ba2989bea7db5dd'}
++    _require(name in data and hashlib.sha256(data[name]).hexdigest()==pointer['helpers']['monitor.py'] in known,
++             'Unverified causal monitor implementation')
++    supervisor=read('preserved/sdk/overlay/capture/monitor_supervisor.json')
++    _recorded(supervisor)
++    _require(supervisor.get('phase')=='CHILD_REAPED' and type(supervisor.get('return_code')) is int
++             and supervisor['return_code']==receipt['return_code']
++             and supervisor.get('child')==monitor['monitor'],'Monitor parent wait association contradiction')
++    pair=(monitor.get('finished_monotonic'),receipt.get('observed_monotonic'))
++    _require(all(type(v) in (int,float) and math.isfinite(v) for v in pair) and 0<=pair[0]<=pair[1]
++             and monitor.get('cleanup_result')==finished and finished.get('infrastructure_cleanup_complete') is True,
++             'Monitor causal closure order unproven')
++    # The pinned producer uses strftime seconds, not a fractional timestamp.
++    stamp=receipt['observed_at_utc'];wall=at(stamp)
++    _require(wall.strftime('%Y-%m-%dT%H:%M:%SZ')==stamp and
++             at(finished['finished_at_utc'])<wall+timedelta(seconds=1) and wall<=observed_at,
++             'Monitor wait wall interval contradicts causal closure')
+ 
+ 
+ def _operational_closure_checks(reference,data,read,target,start,stop,environment,selection,launch,monitor,report):
+@@ -534,36 +708,48 @@
+                  v.get('process',{}).get('pid')==root['pid'] and v['process'].get('start_ticks')==root['start_ticks'] and
+                  v['process'].get('diagnostic_selection_sha256')==hashlib.sha256(json.dumps(pointer,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+                  for v in report['signals']),'Operational cleanup signal session contradiction')
+-    observed=read('post-current-observation.json');inventory=observed['inventory'];post=read('post-host-state.json')
+-    raw_observed=read('post-current-read.stdout')
+-    _require({k:v for k,v in raw_observed.items() if k!='files'}==observed,
+-             'Operational post-close original stdout/decoded record contradiction')
+-    originals={row['path']:row for row in raw_observed['files']}
+-    _require(len(originals)==len(raw_observed['files']),'Duplicate operational raw SDK source')
+-    for row in read('sdk-file-index.json'):
+-        source=originals.get(row['path'])
+-        _require(source is not None and all(source.get(k)==row.get(k) for k in ('sha256','bytes','stable_stat')),
+-                 'Operational SDK index/original stdout contradiction')
+-    ctx=observed['context_before']
+-    _require(ctx==observed['context_after'] and ctx['boot_id']==inventory['boot_id']==root['boot_id'] and
+-             all(inventory.get(k)==[] for k in ('owned','ambiguous','agents')) and
+-             set(inventory.get('state_files',{}))=={POINTER} and
+-             _recorded(json.loads(inventory['state_files'][POINTER]))==pointer and
+-             post.get('restriction','UNKNOWN') is None and post.get('guards')=={},'Operational post-close state/context incomplete')
+-    command=read('post-current-read-command.json')
+-    _require(command.get('return_code')==0 and command.get('error') is None,'Operational post-close query failed')
+-    for name in ('post-environment-before.json','post-environment-after.json'):
+-        _require(active_execution_identity(read(name),inventory['boot_id'])==execution,'Operational post-close environment changed')
+-    _require(observed['diagnostic_summary']['selection']=={**pointer,**FLAGS} and
+-             observed['diagnostic_summary']['monitor']==monitor,'Operational post-close monitor contradiction')
++    function_session=reference.get('layout')==FUNCTION_SESSION_LAYOUT
++    if function_session:
++        historical={'target':target,'start_operation':start,'stop_operation':stop,
++                    'environment_reference':environment,'selection':selection,'launch':launch,'monitor':monitor}
++        observed_at=_function_session_inventory(data,read,historical,execution,at)
++        post_at=observed_at
++    else:
++        observed=read('post-current-observation.json');inventory=observed['inventory'];post=read('post-host-state.json')
++        raw_observed=read('post-current-read.stdout')
++        _require({k:v for k,v in raw_observed.items() if k!='files'}==observed,
++                 'Operational post-close original stdout/decoded record contradiction')
++        originals={row['path']:row for row in raw_observed['files']}
++        _require(len(originals)==len(raw_observed['files']),'Duplicate operational raw SDK source')
++        for row in read('sdk-file-index.json'):
++            source=originals.get(row['path'])
++            _require(source is not None and all(source.get(k)==row.get(k) for k in ('sha256','bytes','stable_stat')),
++                     'Operational SDK index/original stdout contradiction')
++        ctx=observed['context_before']
++        _require(ctx==observed['context_after'] and ctx['boot_id']==inventory['boot_id']==root['boot_id'] and
++                 all(inventory.get(k)==[] for k in ('owned','ambiguous','agents')) and
++                 set(inventory.get('state_files',{}))=={POINTER} and
++                 _recorded(json.loads(inventory['state_files'][POINTER]))==pointer and
++                 post.get('restriction','UNKNOWN') is None and post.get('guards')=={},'Operational post-close state/context incomplete')
++        command=read('post-current-read-command.json')
++        _require(command.get('return_code')==0 and command.get('error') is None,'Operational post-close query failed')
++        for name in ('post-environment-before.json','post-environment-after.json'):
++            _require(active_execution_identity(read(name),inventory['boot_id'])==execution,'Operational post-close environment changed')
++        _require(observed['diagnostic_summary']['selection']=={**pointer,**FLAGS} and
++                 observed['diagnostic_summary']['monitor']==monitor,'Operational post-close monitor contradiction')
++        observed_at=at(observed['at_utc']);post_at=at(post['read_at_utc'])
+     receipt=read('monitor-exit.json');watcher=_process(monitor['monitor'])
+-    _require(receipt==observed['diagnostic_summary']['monitor_exit']==report['diagnostic_agent']['monitor_exit'] and
++    _require(receipt==report['diagnostic_agent']['monitor_exit'] and
++             (function_session or receipt==observed['diagnostic_summary']['monitor_exit']) and
+              receipt.get('state')=='PARENT_WAIT_STATUS_OBSERVED' and receipt.get('source')=='RETAINED_MONITOR_PARENT_POPEN_WAIT' and
+              type(receipt.get('return_code')) is int and receipt['return_code']==1 and
+              all(receipt.get(k)==watcher[k] for k in ('pid','start_ticks','boot_id')),
+              'Operational actual monitor wait missing/contradictory')
+-    _require(at(finished['finished_at_utc'])<=at(receipt['observed_at_utc'])<=at(observed['at_utc']),
+-             'Operational monitor wait chronology contradiction')
++    if function_session:
++        _function_monitor_wait(data,read,pointer,monitor,receipt,{**finished,**FLAGS},observed_at,at)
++    else:
++        _require(at(finished['finished_at_utc'])<=at(receipt['observed_at_utc'])<=observed_at,
++                 'Operational monitor wait chronology contradiction')
+     # Infrastructure closure is established by the bound cleanup, post-close
+     # inventory and actual monitor wait above, not by diagnostic completeness.
+     # Preserve the terminal state emitted by monitor.run, including its errors;
+@@ -579,13 +765,13 @@
+              'Operational separate-channel closure contradiction')
+     start_bound=start['started_at'] if start.get('state')=='UNCONFIRMED' else start['finished_at']
+     _require(at(start['started_at'])<=at(start_bound)<=at(stop['started_at'])<=at(request['requested_at_utc'])<=
+-             at(finished['finished_at_utc'])<=at(stop['finished_at'])<=at(observed['at_utc'])<=at(post['read_at_utc']),
++             at(finished['finished_at_utc'])<=at(stop['finished_at'])<=observed_at<=post_at,
+              'Operational closure chronology contradiction')
+ 
+ 
+ def _generic_closure_proof(proof_reference,**supplied):
+     originals=(recorded_cleanup_archive(proof_reference)['historical']
+-               if proof_reference.get('layout')==OPERATIONAL_LAYOUT else verified_closure_archive(proof_reference))
++               if proof_reference.get('layout') in (OPERATIONAL_LAYOUT,FUNCTION_SESSION_LAYOUT) else verified_closure_archive(proof_reference))
+     names={'start':'start_operation','stop':'stop_operation','reference':'environment_reference'}
+     for name,value in supplied.items():
+         _require(originals[names.get(name,name)]==value,'Current retained record differs from reviewed closure original: '+name)

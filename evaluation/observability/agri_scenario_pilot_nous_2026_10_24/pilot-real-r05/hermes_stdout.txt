@@ -1,0 +1,49 @@
+{
+  "scenario_status": "AERIAL_COMPLETED_GROUND_PENDING",
+  "scenario_complete": false,
+  "sequence_order": ["drone_01", "drone_02"],
+  "order_basis": "EXECUTION_TIMESTAMPS",
+  "runs": [
+    {
+      "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+      "vehicle_id": "drone_01",
+      "simulated_vehicle": "v1",
+      "mission_id": "agri_demo_001_h1_sector_a",
+      "status": "COMPLETED",
+      "result_status": "PASSED",
+      "reached_points": ["POI_A1", "POI_A2"],
+      "return_home": "CONFIRMED",
+      "landing": "MISSION_LANDING_CONFIRMED",
+      "executor_started_at": "2026-10-24T12:51:28.380152+00:00",
+      "executor_finished_at": "2026-10-24T12:55:42.138208+00:00"
+    },
+    {
+      "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+      "vehicle_id": "drone_02",
+      "simulated_vehicle": "v2",
+      "mission_id": "agri_demo_001_h1_sector_b",
+      "status": "COMPLETED",
+      "result_status": "PASSED",
+      "reached_points": ["POI_B1", "POI_B2"],
+      "return_home": "CONFIRMED",
+      "landing": "MISSION_LANDING_CONFIRMED",
+      "executor_started_at": "2026-10-24T12:55:50.243976+00:00",
+      "executor_finished_at": "2026-10-24T12:59:50.905810+00:00"
+    }
+  ],
+  "r1_status": "BLOCKED_PENDING",
+  "r1_dependency": "MET",
+  "r1_commands_sent": false,
+  "r1_movement_authorized": false,
+  "claims": {
+    "images_captured": false,
+    "detections_made": false,
+    "speed_commanded": false,
+    "speed_measured": false,
+    "simultaneous_flight": false,
+    "common_frame_validated": false,
+    "current_permissions_checked": false
+  },
+  "evidence_source": "H1 binding record (evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json, sha256 b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf) con secuencia acreditada por timestamps de ejecución y reportes PASSED por cada ejecución.",
+  "explanation": "El escenario ejecutó dos drones en secuencia ordenada. drone_01 (sector A) tomó primero: se armó, despegó, alcanzó POI_A1 y POI_A2, regresó a casa (CONFIRMED) y aterrizó (MISSION_LANDING_CONFIRMED), culminando con PASSED. drone_02 (sector B) se despegó solo después de que drone_01 reportara PASSED (coordinador despachó el hijo 2 tras verificar el reporte final del hijo 1; el primer comando de aterrizaje de drone_01 precedió al comando de armado de drone_02). drone_02 alcanzó POI_B1 y POI_B2, regresó a casa y aterrizó, también con PASSED. El orden están acreditado por timestamps de ejecución (executor_started_at/at, job_admitted_at y coordinator_accepted_result_at), no por tiempos de admisión. Los POI alcanzados son POI_A1, POI_A2, POI_B1 y POI_B2, todos REACHED. El retorno y aterrizaje están respaldados por return_home CONFIRMED y landing MISSION_LANDING_CONFIRMED. El escenario NO está completo (scenario_complete=false) porque la tarea terrestre R1 sigue en BLOCKED_PENDING: su dependencia está MET (la secuencia terminó y drone_01 alcanzó POI_A1), pero R1 no avanzó. Esto no autoriza el movimiento del rover: commands_sent=false y movement_authorized=false. Las barras que mantienen R1 bloqueada son la cadena de identidad del rover (XRCE client-to-SITL/SYSID/puente/modelo no establecida), la ausencia de un punto de entrada público con autorización y reservas, el hecho de que el control del rover ofrece solo velocidad/curva limitada (sin navegación a posición), y que la puerta de ejecución cubre solo el perfil two_drones. Los límites impiden afirmar más: la percepción es NONE (POI son declaraciones operativas; no hay imágenes, detecciones ni análisis de cultivo), la velocidad no está comandada ni medida (objetivos de posición con type_mask 3576), el frame común no está validado (cada misión es offset de la posición de despegue de su propio vehículo; geoposes de lanzamiento son float32), la telemetría proviene de observaciones del ejecutor vía AP_DDS y no de una fuente independiente, y no hubo vuelo simultáneo (los drones volaron de forma disjunta). La autorización actual y las restricciones no fueron verificadas contra el estado actual."
+}

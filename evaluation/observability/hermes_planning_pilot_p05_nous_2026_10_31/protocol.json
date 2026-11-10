@@ -1,0 +1,51 @@
+{
+  "protocol": "hermes-planning-pilot P05, single authorized run",
+  "frozen_at_utc": "2026-10-31T00:34:39.469352+00:00",
+  "authorization": "Joel, 31/10/2026: ONE real execution of case P05 of suite 1.1.0; timeout 300 s; no automatic relaunch; no other case, no repetition; no Opik, simulation, SDK, controls, Codex changes, images. Store: the project's normal drafts store (missions/generated/drafts) authorized explicitly for this single run, with before/after inventory; a new draft_id; no previous draft or finalization may change (any change is an incident).",
+  "suite_version": "1.1.0",
+  "case_id": "P05",
+  "trial_case": "planning-pilot-p05",
+  "capture_case_id": "mcp-planning-pilot-p05",
+  "run_id": "planning-pilot-p05-r01",
+  "timeout_s": 300,
+  "relaunch": "none (one Hermes process invocation; Hermes internal provider attempts are recorded apart)",
+  "provider": "nous",
+  "model": "poolside/laguna-s-2.1:free",
+  "config_sha256": "c99d1a88cb3cf578973d50e84b12d605b7b2ec28225ff55a034282d6fe08f4fb",
+  "hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
+  "hermes_home": "~/.hermes (HERMES_HOME unset)",
+  "tools_offered": [
+    "update_mission_draft",
+    "finalize_mission_draft"
+  ],
+  "tool_search": "off",
+  "prompt_sha256": "29710ecce2ba92df0a3b1d55fce0f4be2fe0e1f35f23ba6de48ecc91a6dab7ab",
+  "files_sha256": {
+    "evaluation/hermes_planning_pilot_v1/cases.json": "d6f37c10f40a64831748e0ba40305f338eaea0bb667638a20688cbc7e9ffb4a1",
+    "evaluation/hermes_planning_pilot_v1/fixed_hashes.json": "6dd102aa05c8ee11d8d57b3dde4a033e11fc5526bb7242bbb53c1387c4763baf",
+    "evaluation/hermes_planning_pilot_v1/SHA256SUMS": "ba4e7c80e670541474d2b07b776414ee6535a8ed644df71276dffdfd3701b221",
+    "reporting/hermes_planning_pilot.py": "79a95ff8889b00ee30bd2479d95f20e10c2aa91dd0787f930af8b5209aaaeb00",
+    "observability/hermes_capture_run.py": "c8dac954ed01e92034354a330ffe281b707a22c0045abeded673cd9e33982ab4"
+  },
+  "pinned_sources": {
+    "tools/hermes_mcp_server.py": "7083b65763f8279e6a9641ed83241685698745278e1af61fd5976f4817a9ad7e",
+    "tools/hermes_mission_planning.py": "63f47b38a08e67f529ac6da6e49181c20cc1fced2bd7529e74c64e175f378a54",
+    "planning/relative_routes.py": "d3847791d340a2abc31b49fae3f6bf3eda7012ae55b30b9d5edbf2e403673573",
+    "planning/mission_plan_service.py": "11d8f1f03c3e2b589c568304b3aefe2bb50b3bfd4307a3af7695701373352a5e",
+    "planning/draft_provenance.py": "d66e2fe8292c8105b1b7b14562c72c8c2739d746e4e3d0a9a918bc3bd06847fb",
+    "tools/hermes_mission_validation.py": "a4720d052aa3885fdcf23ed66e1f34aa3cb45bc7f07bc6d6d0439ba5d2298d26",
+    "sessions/structured_mission_session.py": "3869a1e6a4f574f952f5350bbc7639b8e8056ea8bc03f001d06daaabd8938dcb",
+    "safety/mission_safety_analysis.py": "1b61f52ba02377f5ba460ac539a7bd6326b750197526c2ae23a9245648668b69",
+    "tools/route_flight_analysis.py": "e29eeec82364d540c02c3b339775244405b4bfccb5cffa3f49f389f957d60edb",
+    "tools/route_geometry.py": "c88478f676aea5e58d6e9d581275c90f9306909a611c9636cd005f62ed5e165d",
+    "tools/flight_dynamics.py": "91159c813ca83a938ee954ae218b47e16b37275ed7b3fb7e283ce3ceb2146cca",
+    "tools/mission_energy_analysis.py": "6d7d58eb9ed44b4aa5d6f43d08fbfe0454d062a917f910640640580aaf92c30f",
+    "replanning/waypoint_mission_replanner.py": "4a5dcb7864e4525d1c590c8f30a8702e1843550b85bfc25469a74cf4d768e4bb",
+    "inputs/qgc_plan_export.py": "35d5ec346c796ca1e94f446884b03696ca6ae97f0452e64c1fe67c92e3c3e280",
+    "models/mission_plan_draft.py": "efde7b17209124d1911b3822be3b2f4c80825d4d53835f58ec1892450beb1008"
+  },
+  "store_before": {
+    "files": 68,
+    "directories": 11
+  }
+}

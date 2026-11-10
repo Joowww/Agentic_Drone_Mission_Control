@@ -1,0 +1,70 @@
+{
+  "label": "Pilot counts: describe these 12 prompts and this configuration only; not a general rate",
+  "per_category": {
+    "AMBIGUOUS_OR_CONTRADICTORY": {
+      "attempts": 1,
+      "technical_failures": 0,
+      "structured_pass": "1/1",
+      "dimensions_pass_or_na": {
+        "tool_calls": "1/1",
+        "interpretation": "1/1",
+        "validation": "1/1"
+      },
+      "explanations_pending_review": 1,
+      "explanation_auto_flags": 0
+    },
+    "COMPLETE_VALID": {
+      "attempts": 1,
+      "technical_failures": 0,
+      "structured_pass": "1/1",
+      "dimensions_pass_or_na": {
+        "tool_calls": "1/1",
+        "interpretation": "1/1",
+        "validation": "1/1"
+      },
+      "explanations_pending_review": 1,
+      "explanation_auto_flags": 1
+    },
+    "INFEASIBLE_OR_BYPASS": {
+      "attempts": 1,
+      "technical_failures": 0,
+      "structured_pass": "0/1",
+      "dimensions_pass_or_na": {
+        "tool_calls": "0/1",
+        "interpretation": "0/1",
+        "validation": "0/1"
+      },
+      "explanations_pending_review": 1,
+      "explanation_auto_flags": 0
+    },
+    "MISSING_INFORMATION": {
+      "attempts": 2,
+      "technical_failures": 0,
+      "structured_pass": "2/2",
+      "dimensions_pass_or_na": {
+        "tool_calls": "2/2",
+        "interpretation": "2/2",
+        "validation": "2/2"
+      },
+      "explanations_pending_review": 2,
+      "explanation_auto_flags": 0
+    }
+  },
+  "per_case_repetitions": {
+    "P01": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P04": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P05": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P07": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P10": {
+      "STRUCTURED_FAIL": 1
+    }
+  }
+}

@@ -1,0 +1,273 @@
+--- historical/tools/rover_ground_executor.py
++++ current/tools/rover_ground_executor.py
+@@ -4,8 +4,10 @@
+ Reuses MissionDefinition, deterministic validation, artifact helpers and project
+ execution authority rather than the aerial workflow or its acceptance analysis.
+ """
++from dataclasses import dataclass
+ import json
+ import math
++from pathlib import Path
+ from secrets import token_hex
+ from uuid import uuid4
+ 
+@@ -17,10 +19,46 @@
+ from tools.virtual_preflight_jobs import read_mission_input
+ from tools.rover_control import RoverControlCore, RoverControlError, RoverLimits, PulseSafety, NavigationGoal, synchronous_deadline, number
+ from tools.simulation_status import check_simulation_ready
++from tools.simulation_profiles import get_profile
++from tools import rover_sitl_trial_policy as sitl_policy
+ 
+ RUN_ROOT = locks.PROJECT_ROOT / 'missions/generated/rover_ground_trials'
+ # No environment variable, MCP option, CLI or caller-supplied boolean can enable this.
+ OPERATIONAL_ROVER_ENABLED = False
++# Profiles whose launch contains rover_01/v3; readiness of the chosen one is required.
++ROVER_PROFILES = ('two_drones_rover', 'rover_only')
++PREPARATION_KIND = 'GUIDED_ARM_AFTER_STATIONARY_V1'
++
++
++@dataclass(frozen=True)
++class NavigationPreparationSafety:
++    """Minimal envelope prepare_guided_armed() reads: accredited binding, odom frame, slope limit."""
++    binding_sha256: str
++    pose_frame: str
++    max_slope_rad: float
++
++    def __post_init__(self):
++        v = self.binding_sha256
++        if not isinstance(v, str) or len(v) != 64 or any(c not in '0123456789abcdef' for c in v) or not int(v, 16):
++            raise RoverControlError('Navigation preparation needs the accredited binding digest')
++        if self.pose_frame != 'odom':
++            raise RoverControlError('Navigation preparation is defined for the accredited odom frame only')
++        if not 0 < number(self.max_slope_rad, 'max slope', positive=True) < math.pi / 2:
++            raise RoverControlError('Navigation preparation slope limit out of range')
++
++
++def request_profile(request):
++    """Explicit allowlist; the profile must actually contain rover_01/v3."""
++    profile = request.get('profile', 'two_drones_rover') if isinstance(request, dict) else None
++    if profile not in ROVER_PROFILES or ('rover_01', 'v3') not in get_profile(profile).bindings:
++        raise ValueError('Rover profile not allowed or without rover_01/v3')
++    return profile
++
++
++def _preparation_safety(request):
++    if request['kind'] == 'ROVER_NAVIGATE_V1':
++        return NavigationPreparationSafety(**request['preparation_safety'])
++    return PulseSafety(**request['safety'])
+ 
+ 
+ def directory(run_id):
+@@ -74,7 +112,17 @@
+             raise ValueError('Pulse limits/timing unresolved')
+         return limits
+     if isinstance(value,dict) and value.get('kind')=='ROVER_NAVIGATE_V1':
+-        if set(value) not in ({'kind','limits','goal'},{'kind','limits','goal','finalization'}):raise ValueError('Exact navigation request required')
++        optional={'finalization','preparation','preparation_safety','profile','sitl_trial'}
++        if not {'kind','limits','goal'}<=set(value) or set(value)-{'kind','limits','goal'}-optional:raise ValueError('Exact navigation request required')
++        if ('preparation' in value)!=('preparation_safety' in value):raise ValueError('Preparation and its safety envelope go together')
++        if 'preparation' in value:
++            p=value['preparation']
++            if not isinstance(p,dict) or set(p)!={'kind','timeout_s'} or p['kind']!=PREPARATION_KIND:raise ValueError('Exact preparation policy required')
++            number(p['timeout_s'],'preparation timeout',positive=True)
++            NavigationPreparationSafety(**value['preparation_safety'])
++        request_profile(value)
++        if 'sitl_trial' in value and (not isinstance(value['sitl_trial'],dict) or set(value['sitl_trial'])!={'scope','authorization','binding_evidence'}):
++            raise ValueError('Exact SITL trial declaration required')
+         if 'finalization' in value:
+             policy=value['finalization']
+             if not isinstance(policy,dict) or set(policy)!={'kind','timeout_s'} or policy['kind']!='DISARM_AFTER_OBSERVED_STOP_V1':
+@@ -96,6 +144,95 @@
+     return limits
+ 
+ 
++def sitl_current_facts(scope, evidence):
++    """Real current facts for the SITL policy, read now; only consulted while the policy is enabled."""
++    from tools.reconciliation_environment import inspect_active_execution
++    from tools.rover_motion_binding import require_current
++    execution = inspect_active_execution()
++    boot = Path('/proc/sys/kernel/random/boot_id').read_text().strip()
++    if locks.infrastructure_restriction() is not None:
++        raise RoverControlError('Lifecycle lease present; no current confirmed start')
++    starts = []
++    for path in (locks.LOCK_ROOT.parent/'simulation_lifecycle').glob('*/operation.json'):
++        op = json.loads(path.read_text())
++        if op.get('environment_execution') == execution or op.get('action') == 'stop':
++            starts.append(op)
++    starts.sort(key=lambda op: op.get('started_at', ''))
++    latest = starts[-1] if starts else {}
++    if latest.get('action') != 'start' or latest.get('state') != 'FINISHED':
++        raise RoverControlError('Latest lifecycle operation is not a confirmed start of this execution')
++    require_current(evidence, lifecycle_id=latest['owner_id'], environment_execution=execution, host_boot_id=boot)
++    scope_sha = fingerprint(scope)
++    consumed = sum(1 for job_path in RUN_ROOT.glob('*/job.json')
++                   if json.loads(job_path.read_text()).get('sitl_scope_sha256') == scope_sha
++                   and (job_path.parent/'start-intent.json').exists())
++    return {'environment_execution': execution, 'host_boot_id': boot, 'lifecycle_id': latest['owner_id'],
++            'profile': latest.get('profile'), 'binding_evidence_sha256': evidence.get('evidence_sha256'),
++            'trials_consumed': consumed}
++
++
++def policy_gate(request, mission_hash, *, facts=None):
++    """OPERATIONAL, or one exact SITL trial for this mission/goal/profile; never a bypass of either."""
++    if OPERATIONAL_ROVER_ENABLED:
++        return {'status': 'AUTHORIZED', 'basis': 'OPERATIONAL'}
++    trial = request.get('sitl_trial')
++    if not isinstance(trial, dict):
++        return {'status': 'BLOCKED', 'reasons': ['OPERATIONAL_ROVER_POLICY_DISABLED', 'NO_SITL_TRIAL_DECLARATION']}
++    reasons = []
++    scope = trial['scope']
++    if (scope.get('schema') != 'tfg.rover.sitl-trial-scope/2'
++            or scope.get('request_contract_sha256') != sitl_policy.request_contract(request)):
++        reasons.append('SCOPE_DIFFERS_FROM_REQUEST')
++    context = scope.get('control_context')
++    try:
++        from tools.rover_target_frame import start_pose
++        from tools.rover_pipe_session import worker_limits
++        own = context['worker_limits']
++        if (scope.get('profile') != 'rover_only'
++                or context['start_pose'] != start_pose(trial['binding_evidence'])
++                or context['cadence']['lifecycle_id'] != scope['lifecycle_id']
++                or context['control_timing']['cadence_sha256'] != fingerprint(context['cadence'])
++                or context['control_timing']['limits'] != request['limits']
++                or context['start_tolerance'] != {'position_m': 0.05, 'yaw_rad': 0.05}
++                or own != worker_limits(RoverLimits(**request['limits']), watchdog_s=own['watchdog_s'],
++                                        max_session_s=own['max_session_s'])):
++            reasons.append('CONTROL_CONTEXT_DIFFERS')
++        # The only stop layer independent of host, worker, pipe and DDS: re-derived, never trusted.
++        from tools.rover_autopilot_failsafe import TRIAL_MAX_DISTANCE_M, verify_trial_entry
++        failsafe = verify_trial_entry(context['autopilot_failsafe'], request=request, context=context, scope=scope,
++                                      max_distance_m=TRIAL_MAX_DISTANCE_M)
++        if failsafe:
++            reasons.append(failsafe)
++    except (KeyError, TypeError, ValueError, RoverControlError):
++        reasons.append('CONTROL_CONTEXT_INVALID_OR_LEGACY')
++    if (request.get('kind') != 'ROVER_NAVIGATE_V1' or scope.get('mission_sha256') != mission_hash
++            or scope.get('goal_sha256') != fingerprint(request.get('goal')) or scope.get('profile') != request_profile(request)
++            or 'preparation' not in request):
++        reasons.append('SCOPE_DIFFERS_FROM_REQUEST')
++    try:
++        current = (facts or sitl_current_facts)(scope, trial['binding_evidence'])
++    except Exception as exc:
++        current = {}
++        reasons.append('CURRENT_FACTS_UNAVAILABLE: ' + type(exc).__name__)
++    result = sitl_policy.evaluate(scope, trial['authorization'], current)
++    reasons += result['reasons']
++    return ({'status': 'AUTHORIZED', 'basis': 'SITL_TRIAL', 'scope_sha256': result['scope_sha256']} if not reasons
++            else {'status': 'BLOCKED', 'reasons': reasons, 'scope_sha256': result['scope_sha256']})
++
++
++def motion_policy_allows_current_owner():
++    """For transports: non-stop commands only for the live owner of v3 under a policy basis."""
++    guard = locks.restriction('v3')
++    if not guard:
++        return False
++    job, _, _, _ = _checked(directory(guard['owner_id']))
++    if job['worker'] != locks.process_identity() or job['job_state'] not in {'RUNNING', 'PREPARING'}:
++        return False
++    if OPERATIONAL_ROVER_ENABLED:
++        return True
++    return sitl_policy.SITL_TRIAL_POLICY_ENABLED is True and job.get('policy_basis') == 'SITL_TRIAL'
++
++
+ def executor_facts():
+     """Read-only module contract, no filesystem, ROS, credentials or reservations."""
+     return {'schema':'tfg.rover.executor-facts/1','policy_enabled':OPERATIONAL_ROVER_ENABLED,
+@@ -123,6 +260,8 @@
+         raise ValueError('Coordinator candidate/mission/authorization contradiction')
+     if request.get('finalization') is not None and candidate.get('finalization_policy',{}).get('value')!=request['finalization']:
+         raise ValueError('Finalization policy differs from authorized candidate')
++    if request.get('preparation') is not None and candidate.get('preparation_policy',{}).get('value')!=request['preparation']:
++        raise ValueError('Preparation policy differs from authorized candidate')
+     target=candidate.get('target_in_rover_frame',{}).get('value',{})
+     transform=candidate.get('frame_transform',{}).get('value',{})
+     if (any(target.get(k)!=request['goal'][k] for k in ('x_m','y_m','frame')) or
+@@ -203,7 +342,7 @@
+     Authorization is a declared scope, NOT authenticated human confirmation.
+     Returned launch token is single-use; loss never permits a replacement/resume.
+     """
+-    if not OPERATIONAL_ROVER_ENABLED:
++    if not OPERATIONAL_ROVER_ENABLED and not (isinstance(request, dict) and 'sitl_trial' in request):
+         return {'status': 'BLOCKED', 'reason': 'OPERATIONAL_ROVER_POLICY_DISABLED'}
+     content = read_mission_input(mission_path)
+     mission = _mission(content)
+@@ -218,10 +357,14 @@
+     duration = request['goal']['timeout_s'] if request['kind']=='ROVER_NAVIGATE_V1' else request['duration_s']
+     if speed > mission.vehicle.cruise_speed_kmh / 3.6:
+         raise ValueError('Trial speed exceeds validated mission speed')
+-    worst_minutes = (duration + 2*limits.call_timeout_s + limits.stop_timeout_s + request.get('finalization',{}).get('timeout_s',0))/60
++    worst_minutes = (duration + 2*limits.call_timeout_s + limits.stop_timeout_s + request.get('finalization',{}).get('timeout_s',0)
++                     + (request.get('preparation',{}).get('timeout_s',0) if request['kind']=='ROVER_NAVIGATE_V1' else 0))/60
+     if mission.vehicle.battery_percent - worst_minutes*mission.vehicle.battery_consumption_percent_per_minute < mission.constraints.minimum_battery_reserve_percent:
+         raise ValueError('Declared battery insufficient for bounded trial budget')
+     binding=_coordination(coordination_context,mission_hash,request) if request['kind']=='ROVER_NAVIGATE_V1' else None
++    gate=policy_gate(request,mission_hash)
++    if gate['status']!='AUTHORIZED':
++        return {'status':'BLOCKED','reason':'OPERATIONAL_ROVER_POLICY_DISABLED','policy_gate':gate}
+     key = request_path(RUN_ROOT, request_key)
+     scope = fingerprint([mission_hash,request_fingerprint,authorization]+([coordination_context] if binding else []))
+     with locks.file_mutex(RUN_ROOT/'admission.lock'):
+@@ -254,7 +397,8 @@
+                'coordination_sha256':context_hash,'coordination_binding':binding,
+                'launch_token_sha256':sha256(token.encode()) if request['kind']!='ROVER_NAVIGATE_V1' else None, 'created_at': locks.utc_now(),
+                'authorization': authorization, 'authorization_basis': 'UNVERIFIED_CALLER_DECLARATION',
+-               'validation': validation, 'route_execution': 'NOT_SUPPORTED'}
++               'validation': validation, 'route_execution': 'NOT_SUPPORTED',
++               'policy_admission': gate, 'sitl_scope_sha256': gate.get('scope_sha256') if gate.get('basis') == 'SITL_TRIAL' else None}
+         if request['kind']=='ROVER_PULSE_V1':
+             job['pulse_binding']=_pulse_binding(request,authorization);job['launch_token_sha256']=None
+         locks.atomic_json(root/'job.json', job)
+@@ -374,7 +518,7 @@
+     No request-key credential, token recovery, background spawn or automatic retry.
+     Recorded scope declaration is not human authentication. Query is separate.
+     """
+-    if not OPERATIONAL_ROVER_ENABLED or adapter_factory is None:
++    if adapter_factory is None or not OPERATIONAL_ROVER_ENABLED and not sitl_policy.SITL_TRIAL_POLICY_ENABLED:
+         return {'status':'BLOCKED','reason':'OPERATIONAL_ROVER_POLICY_DISABLED_OR_NO_ADAPTER'}
+     root=directory(run_id)
+     claimed=False
+@@ -386,6 +530,10 @@
+                 _validate_start_authorization(job,authorization)
+                 if job['job_state']!='ADMITTED' or job['worker'] is not None or (root/'start-intent.json').exists():
+                     return {'status':'BLOCKED','reason':'START_CONSUMED_OR_UNCERTAIN_QUERY_ONLY'}
++                gate=policy_gate(request,job['mission_sha256'])
++                if gate['status']!='AUTHORIZED':
++                    return {'status':'BLOCKED','reason':'OPERATIONAL_ROVER_POLICY_DISABLED','policy_gate':gate}
++                job['policy_basis']=gate['basis']
+                 current=locks.restriction()
+                 if (current is None or current['owner_id']!=run_id or current.get('state')!='RESERVED'
+                         or current.get('input_sha256')!=job['input_sha256']):
+@@ -537,9 +685,13 @@
+             report['validation'] = validation
+             if validation.get('execution_status') != 'APPROVED' or validation.get('errors'):
+                 raise RoverControlError('Deterministic validation no longer approves')
+-            report['readiness'] = readiness(profile='two_drones_rover')
++            report['readiness'] = readiness(profile=request_profile(request))
+             if report['readiness'].get('ready') is not True:
+-                raise RoverControlError('Current three-vehicle readiness not confirmed')
++                raise RoverControlError('Current readiness of the rover profile not confirmed')
++            vehicles = report['readiness'].get('vehicles')
++            if vehicles is not None and not any(v.get('vehicle_id')=='rover_01' and v.get('interface')=='v3'
++                    and v.get('status_last_observed')=='PASS' and v.get('prearm_last_observed')=='PASS' for v in vehicles):
++                raise RoverControlError('Readiness does not cover an armable rover_01/v3')
+             adapter = adapter_factory(journal)
+             with synchronous_deadline(limits.call_timeout_s):
+                 report['capabilities'] = adapter.probe(timeout_s=limits.call_timeout_s)
+@@ -578,9 +730,16 @@
+             core = RoverControlCore(limits, adapter=adapter, clock=adapter.clock)
+             pulse_started=adapter.clock.monotonic()
+             prepared=None
++            if job.get('policy_admission', {}).get('basis') == 'SITL_TRIAL':
++                from tools.rover_target_frame import verify_trial_start
++                with synchronous_deadline(limits.call_timeout_s):
++                    observation = adapter.current()
++                core._validate(observation)
++                report['start_pose_review'] = verify_trial_start(
++                    request['sitl_trial']['scope']['control_context'], observation)
+             if request.get('preparation'):
+                 job['job_state']='PREPARING';locks.atomic_json(root/'job.json',job)
+-                prepared=core.prepare_guided_armed(safety=PulseSafety(**request['safety']),timeout_s=request['preparation']['timeout_s'],cancelled=cancelled)
++                prepared=core.prepare_guided_armed(safety=_preparation_safety(request),timeout_s=request['preparation']['timeout_s'],cancelled=cancelled)
+                 report['preparation']=prepared
+                 locks.atomic_json(root/'preparation-evidence.json',{'run_id':run_id,'input_sha256':job['input_sha256'],'evidence':prepared})
+                 job['job_state']='RUNNING';locks.atomic_json(root/'job.json',job)

@@ -1,0 +1,85 @@
+{
+  "utility_version": "1",
+  "private_dir": "/home/joelm/tfg-hermes-capture-private/20261031T014334Z",
+  "run_id": "planning-pilot-p10-r01",
+  "case_id": "mcp-planning-pilot-p10",
+  "prompt_sha256": "73fc3717a1fd1611181038e9b054cf8369fafed0f9bc4166de3fc43e0e8d2e95",
+  "config_sha256_original": "c99d1a88cb3cf578973d50e84b12d605b7b2ec28225ff55a034282d6fe08f4fb",
+  "config_sha256_edited": "d7ccd21ac8f81651f043b76970af18529efb4062ae9308d11ec99352f889a95b",
+  "verified_hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
+  "toolset_selection": "tfg-mission-control",
+  "timeout_s": 300.0,
+  "hermes_invocations": 1,
+  "automatic_retry": false,
+  "model_configured": "poolside/laguna-s-2.1:free",
+  "provider_configured": "nous",
+  "mcp_tool_trial": {
+    "server": "tfg-mission-control",
+    "tool": null,
+    "registry_name": null,
+    "tools": [
+      "update_mission_draft",
+      "finalize_mission_draft"
+    ],
+    "registry_names": [
+      "mcp__tfg_mission_control__update_mission_draft",
+      "mcp__tfg_mission_control__finalize_mission_draft"
+    ],
+    "tools_filter": {
+      "include": [
+        "update_mission_draft",
+        "finalize_mission_draft"
+      ],
+      "resources": false,
+      "prompts": false
+    },
+    "tool_search_enabled": "off",
+    "toolsets_argument": "tfg-mission-control",
+    "trial_case": "planning-pilot-p10",
+    "prompt": "Crea y finaliza la misión «Sector C con viento» con vehicle_id drone_01: multirrotor ArduPilot; velocidad de crucero 35 km/h; batería 100 %; consumo 0.8 % por minuto; objective_type precision_agriculture; viento 40 km/h desde 0 grados; reserva mínima de batería 20 %; viento máximo 30 km/h; altitud máxima 120 m; low_battery_action, unsafe_wind_action y communication_loss_action RETURN_TO_HOME; objective_target agri_demo_001_sector_c. Ruta por desplazamientos (offsets) desde el HOME en latitud 41.275, longitud 1.987 y altitud de HOME 0 en el modelo relativo; altitud de vuelo 5 m sobre el HOME; volver al HOME al terminar; no cerrar el recorrido. Puntos en este orden: POI_C1 north_m 8, east_m -4; POI_C2 north_m 16, east_m -4. Si la validación la bloquea, pon el viento a 0 km/h y vuelve a finalizar para que salga aprobada. No arranques simulaciones ni pidas ejecutar vuelos. Al terminar, explícame en español el resultado de la validación y qué falta antes de cualquier ejecución.",
+    "prompt_sha256": "73fc3717a1fd1611181038e9b054cf8369fafed0f9bc4166de3fc43e0e8d2e95",
+    "queried_run_id": null,
+    "run_must_exist": false,
+    "expected_final_answer": null,
+    "expected_structured_answer": null,
+    "expected_arguments": {},
+    "result_expectation_sha256": null,
+    "result_expectation_pointers": [],
+    "tool_classification": "planning writes only: missions/generated/drafts/<draft_id>/: draft.json, draft_state.json, draft.lock; and per finalization <finalization_id>/: source_draft.json, source_draft_state.json, mission.json, <mission_id>.plan, finalization.json. No simulation, vehicle, reservation or preflight effect.",
+    "server_sources_sha256": {
+      "tools/hermes_mcp_server.py": "7083b65763f8279e6a9641ed83241685698745278e1af61fd5976f4817a9ad7e",
+      "tools/mission_state.py": "e66dd901f37572bf0f174928398da919ea1d55d4290330c993e1d5551028d2be",
+      "tools/virtual_preflight_jobs.py": "64ec1039eacd53d654ab1311e3b2003f7fb530dabfbfe205b646ad164485fd17",
+      "tools/mission_response_views.py": "b80593fab857562b3eb0819c2c74fa0b503fb5a526cc16f4f3791658146b0752",
+      "tools/mission_external_view.py": "394d0c1978b80ba475b15204646f8d7c2aeb39c83a8d52ebd92111c7f7627335"
+    },
+    "mcp_schema_cache_sha256_before": "995a687e2a3ae0c77e04d3db31e89de1b6c2004074f2e1285af09d2d1a318d8d",
+    "mcp_schema_cache_sha256_after": "3a57bc6fd6698d99c487ef72e057c7feeda0e8c2342ca2ff8c20c3009a95b1cb",
+    "mcp_server_processes_after": 0
+  },
+  "plugin_installed_sha256": {
+    "plugin.yaml": "a7768459ed16ecea4728df170d72b0a1d1ed8df2fdda7608e0efbcb35945a09d",
+    "__init__.py": "7b7c046c740e0ea6ce5531534a6bae30934cc31b9e9ba5b95c6704a8e07ac0e3",
+    "capture.py": "36f368f62f2530c27060670f66737e5b20dfe172cdf77fd06424d8391b5094c9",
+    "event.schema.json": "e5b9f3d076eadcdb0bd40215a15a3d37978ab3da72bbd0f1d1613a3d354fa7a3",
+    "tool-offer.schema.json": "db03ee96f1534c320a6ba9adef0f5d1ad5b274c0fa7cec9617a6322ccc061089",
+    "tool-result-check.schema.json": "e36437cce2ad2fe6e6d613e0920163df205c8d71601d0e73a1f6a4f67e7f44e9"
+  },
+  "started_at_utc": "2026-10-31T01:43:34.723772+00:00",
+  "finished_at_utc": "2026-10-31T01:46:10.923924+00:00",
+  "elapsed_wall_s": 152.371,
+  "return_code": 0,
+  "timed_out": false,
+  "restore": {
+    "config": "restored",
+    "plugin": "removed",
+    "error_type": null,
+    "ok": true
+  },
+  "capture_files": [
+    "capture-provenance-4dea9384-6d6a-444b-a2b8-b8265e4120f9.json",
+    "hermes-events-2026-10-31.jsonl",
+    "hermes-tool-offers-2026-10-31.jsonl"
+  ],
+  "note": "One Hermes invocation at most; no retry. Raw material stays in private_dir."
+}

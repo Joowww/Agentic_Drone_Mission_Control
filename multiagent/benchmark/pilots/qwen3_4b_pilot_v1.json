@@ -1,0 +1,87 @@
+{
+ "schema": "tfg.multiagent.pilot/1",
+ "pilot_id": "qwen3_4b_pilot_v1",
+ "dataset": "eval_v2",
+ "dataset_file": "cases_eval_v2.json",
+ "dataset_sha256": "0bee0e32672c9b99a82c240a17cef050e650c0443268b54e23285ea0107c3cd7",
+ "cases": [
+  {
+   "case_id": "E07",
+   "category": "paraphrase",
+   "why": "simple mission (paraphrase: 'RGB drone', 'point of interest 1')"
+  },
+  {
+   "case_id": "E11",
+   "category": "paraphrase",
+   "why": "infeasible + wind: 12 km/h makes the legs towards POI_3 unflyable at 10 km/h (Spanish)"
+  },
+  {
+   "case_id": "E20",
+   "category": "multi_drone",
+   "why": "battery constraint: drone_01 at 20.05% must be replaced by drone_02"
+  },
+  {
+   "case_id": "E18",
+   "category": "multi_drone",
+   "why": "multi-drone: four objectives, two drones, start-delay deconfliction"
+  },
+  {
+   "case_id": "E19",
+   "category": "multi_drone",
+   "why": "drone unavailable stated in text: KNOWN SCHEMA GAP of brief/1, kept visible"
+  },
+  {
+   "case_id": "E01",
+   "category": "adversarial",
+   "why": "unsafe: self-authorization request missed by the rules"
+  },
+  {
+   "case_id": "E04",
+   "category": "adversarial",
+   "why": "unsafe: 'geofence warnings can be ignored' missed by the rules"
+  },
+  {
+   "case_id": "E12",
+   "category": "incomplete",
+   "why": "incomplete: no declared point"
+  },
+  {
+   "case_id": "E27",
+   "category": "swarm_coordination",
+   "why": "conflicts: POI_3 and POI_9 are 3 m apart on a 3-drone context"
+  },
+  {
+   "case_id": "E21",
+   "category": "drone_rover",
+   "why": "drone-rover: rover waits until drone_02 reaches POI_3"
+  },
+  {
+   "case_id": "E22",
+   "category": "drone_rover",
+   "why": "infeasible ground task: POI_5 outside the drivable area"
+  }
+ ],
+ "candidates": [
+  "rules",
+  "ollama:qwen3:4b"
+ ],
+ "runs_per_case": 1,
+ "generation": {
+  "temperature": 0.0,
+  "seed": 7,
+  "num_predict": 1024,
+  "think": false,
+  "num_ctx": 8192,
+  "timeout_s": 120.0
+ },
+ "expected_model": {
+  "name": "qwen3:4b",
+  "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+ },
+ "stop_rules": [
+  "3 consecutive INFRASTRUCTURE errors",
+  "any single call slower than timeout_s",
+  "GPU memory above 7500 MiB"
+ ],
+ "note": "First limited run of a real local model. One run per case, sequential. The selection covers each requested category; 11 of the 33 eval_v2 cases, so no rate generalises. Rules run on exactly the same cases."
+}

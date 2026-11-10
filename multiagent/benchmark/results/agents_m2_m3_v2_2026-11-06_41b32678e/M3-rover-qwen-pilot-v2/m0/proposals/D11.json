@@ -1,0 +1,409 @@
+{
+ "aerial": {
+  "agent": "drone_swarm_agent",
+  "clarifications": [],
+  "evidence": {
+   "allocation_source": "DETERMINISTIC_REFERENCE",
+   "battery_percent_declared": {},
+   "coordination": {
+    "assumptions": [
+     "straight segments at the analysed ground speed; acceleration, turns, hover and climb profiles not modelled",
+     "takeoff climb and landing: declared durations above the pad",
+     "a delayed drone waits on its pad with motors off (no battery use while waiting)",
+     "vertical separation never credited (altitudes relative to each drone's own home)",
+     "ground segments are not checked, except a shared takeoff point",
+     "planning declarations only: not a physical separation guarantee"
+    ],
+    "initial_conflicts": [],
+    "makespan_s": 30.16,
+    "reason": "one drone or none",
+    "residual_conflicts": [],
+    "schedule": {
+     "drone_02": {
+      "start_delay_s": 0.0
+     }
+    },
+    "schema": "tfg.multiagent.deconfliction/1",
+    "status": "NOT_APPLICABLE",
+    "vehicles": [
+     "drone_02"
+    ]
+   },
+   "coordination_attempts": [
+    {
+     "assignment": {
+      "drone_02": [
+       "A1"
+      ]
+     },
+     "candidate": "CHOSEN",
+     "initial_conflicts": 0,
+     "reason": "one drone or none",
+     "status": "NOT_APPLICABLE"
+    }
+   ],
+   "drones_considered": [
+    "drone_01",
+    "drone_02"
+   ],
+   "model_proposal_check": null,
+   "note": "allocation is offline planning; no coordination in flight is implied",
+   "reference": {
+    "algorithm": "tfg.multiagent.swarm-reference/1 exhaustive(coverage desc, makespan asc, distance asc, ids)",
+    "assignments_evaluated": 2,
+    "assignments_rejected_infeasible": 0,
+    "bounds": {
+     "max_assignments": 20000,
+     "max_objectives_exhaustive": 6,
+     "max_route_points": 6,
+     "time_budget_s": 20.0
+    },
+    "chosen": {
+     "assignment": {
+      "drone_02": [
+       "A1"
+      ]
+     },
+     "covered": 1,
+     "makespan_min": 0.086065947,
+     "total_distance_m": 21.540659229
+    },
+    "eligibility": {
+     "A1": {
+      "drone_01": [
+       "SENSOR_MISSING: drone_01 has no multispectral sensor"
+      ],
+      "drone_02": [
+       "ELIGIBLE"
+      ]
+     }
+    },
+    "exhaustive_assignments": 2,
+    "inputs_sha256": "c9f0b219ab188d20f175d275b167fdba9082bdd58f2c82e0e73833f133c7b67a",
+    "mode": "EXHAUSTIVE",
+    "optimality": "OPTIMAL_WITHIN_MODEL",
+    "routes_validated": 1,
+    "runner_up": {
+     "assignment": {},
+     "covered": 0,
+     "makespan_min": 0.0,
+     "total_distance_m": 0
+    },
+    "search_truncated": false
+   },
+   "replanned_for_coordination": false,
+   "wind_speed_kmh": 0.0
+  },
+  "incompatible": [],
+  "movement_authorized": false,
+  "pending_authorization": true,
+  "proposals": [
+   {
+    "deterministic_validation": {
+     "errors": [],
+     "execution_status": "APPROVED",
+     "failure_reasons": [],
+     "mission_status": "FEASIBLE"
+    },
+    "export": {
+     "items": 4,
+     "plan_sha256": "4c0d7823aee25e63e77b936eae74d2aa9b4a358e6c25511a6ad211b7b9704e37",
+     "profile": "QGC_PLAN_ARDUCOPTER_V2",
+     "status": "GENERATED"
+    },
+    "flight_minutes": 0.0861,
+    "length_m": 21.541,
+    "mission_id": "multiagent_swarm_v1_synthetic_orchard_v2_AIR_drone_02",
+    "mission_sha256": "984df468a86b40fc6919aedc43523fce58a16615bf6d85763f9e6a6e2cb3a58b",
+    "objective_ids": [
+     "A1"
+    ],
+    "poi_sequence": [
+     "POI_3"
+    ],
+    "route_local": [
+     [
+      4.0,
+      -6.0
+     ],
+     [
+      8.0,
+      4.0
+     ],
+     [
+      4.0,
+      -6.0
+     ]
+    ],
+    "start_delay_s": 0.0,
+    "state": "PENDING_AUTHORIZATION",
+    "takeoff_point": "TAKEOFF_B",
+    "task_id": "AIR_drone_02",
+    "vehicle_id": "drone_02"
+   }
+  ],
+  "schema": "tfg.multiagent.agent-result/1",
+  "status": "PROPOSED_PENDING_AUTHORIZATION"
+ },
+ "authorization": {
+  "by": null,
+  "granted": false,
+  "how": "each task separately through the existing entries and gates",
+  "required": true
+ },
+ "brief": {
+  "aerial_objectives": [
+   {
+    "coordinates": null,
+    "description": null,
+    "objective_id": "A1",
+    "point_id": "POI_3",
+    "required_sensor": "multispectral"
+   }
+  ],
+  "altitude_m": null,
+  "ambiguities": [],
+  "battery_percent": {},
+  "contradictions": [],
+  "drones": [],
+  "ground_objectives": [
+   {
+    "after_aerial": true,
+    "coordinates": null,
+    "description": null,
+    "objective_id": "G1",
+    "point_id": "POI_3"
+   }
+  ],
+  "rover": "rover_01",
+  "schema": "tfg.multiagent.mission-brief/2",
+  "site_id": null,
+  "unsafe_requests": [],
+  "vehicle_availability": [],
+  "wind_speed_kmh": null
+ },
+ "commands_sent": 0,
+ "context": {
+  "context_id": "orchard_two_drones_v2",
+  "fleet": "agri_demo_fleet v2",
+  "provenance": "SYNTHETIC",
+  "site": "synthetic_orchard v2"
+ },
+ "coordination": {
+  "dependencies": [
+   {
+    "after": "AIR_drone_02",
+    "condition": "POI_REACHED",
+    "point": "POI_3",
+    "task_id": "GROUND_rover_01"
+   }
+  ],
+  "errors": [],
+  "mode": "SEQUENTIAL",
+  "note": "dependencies are conditions on OBSERVED outcomes held by the coordinator; never a time wait. Individual .plan files do not coordinate vehicles.",
+  "order": [
+   "AIR_drone_02",
+   "GROUND_rover_01"
+  ],
+  "status": "PASS"
+ },
+ "data_kind": "SYNTHETIC",
+ "elapsed_s": 0.010490526998182759,
+ "ground": {
+  "agent": "rover_agent",
+  "clarifications": [],
+  "evidence": {
+   "availability_basis": "declared in the operating context; not a readiness check",
+   "rover": "rover_01"
+  },
+  "incompatible": [],
+  "movement_authorized": false,
+  "pending_authorization": true,
+  "proposals": [
+   {
+    "after_aerial_point": "POI_3",
+    "availability": "DECLARED_SYNTHETIC",
+    "execution": "NOT_EXECUTED: R1 coordinator + operator authorization + executor gates",
+    "export": "FORMAT_PENDING: no rover exporter",
+    "frame_transform_to_rover": "NOT_ACCREDITED (site frame -> rover odometry)",
+    "kind": "VISIT_AND_STOP",
+    "objective_ids": [
+     "G1"
+    ],
+    "ros2_commands_sent": 0,
+    "spatial_status": "PASS",
+    "start_point": "ROVER_START",
+    "state": "PENDING_AUTHORIZATION",
+    "target_point": "POI_3",
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  ],
+  "schema": "tfg.multiagent.agent-result/1",
+  "status": "PROPOSED_PENDING_AUTHORIZATION"
+ },
+ "interpretation": {
+  "availability": {
+   "clarifications": [],
+   "excluded_from_planning": [],
+   "levels": [
+    "DECLARED_TEXT",
+    "INVENTORY",
+    "OPERATIONAL (not established here)"
+   ],
+   "operational_availability": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+   "schema": "tfg.multiagent.availability/1",
+   "vehicles": [
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "drone_01"
+    },
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "drone_02"
+    },
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "rover_01"
+    }
+   ]
+  },
+  "contract_valid": true,
+  "final_reason": null,
+  "final_status": "PROPOSED_PENDING_AUTHORIZATION",
+  "json_valid": null,
+  "model_reply_sha256": null,
+  "operator_text": "Take multispectral images of POI_3; once drone_02 has reached POI_3, send the rover there.",
+  "operator_text_sha256": "9ba85f91d2834913f2c75e5a4df0349df61d605f880ee9cb25129f63cb9fb9c0",
+  "parse_error": null,
+  "risk_signals": [],
+  "safety_decision": {
+   "authority_granted": false,
+   "decided_by": "deterministic orchestrator policy",
+   "decision": "NO_UNSAFE_SIGNAL",
+   "policy": "safety/2"
+  }
+ },
+ "interpreter": {
+  "data_kind": "DETERMINISTIC",
+  "latency_s": 0.0,
+  "model": "hand-written-gold-brief",
+  "provider": "gold",
+  "version": "cases_v1"
+ },
+ "joint_spatial": [],
+ "mission_id": "M-6addda4a3df289d1",
+ "movement_authorized": false,
+ "pipeline": "v2",
+ "proposal_sha256": "2ceda7f4ae44f6ff5ad26a475e968e7f3292470961e3bf46eb09bcc85d85561b",
+ "reasons": [],
+ "schema": "tfg.multiagent.global-proposal/1",
+ "status": "PROPOSED_PENDING_AUTHORIZATION",
+ "swarm_coordination": {
+  "attempts": 1,
+  "initial_conflicts": 0,
+  "makespan_s": 30.16,
+  "replanned": false,
+  "residual_conflicts": 0,
+  "schedule": {
+   "drone_02": {
+    "start_delay_s": 0.0
+   }
+  },
+  "scope": "planning-time check over declared inputs; not a physical separation guarantee",
+  "status": "NOT_APPLICABLE"
+ },
+ "tasks": [
+  {
+   "state": "PENDING_AUTHORIZATION",
+   "task_id": "AIR_drone_02",
+   "vehicle_id": "drone_02"
+  },
+  {
+   "state": "PENDING_AUTHORIZATION",
+   "task_id": "GROUND_rover_01",
+   "vehicle_id": "rover_01"
+  }
+ ],
+ "template": {
+  "aerial_tasks": [
+   {
+    "altitude_m": 5.0,
+    "poi_sequence": [
+     "POI_3"
+    ],
+    "requested_speed_kmh": 10.0,
+    "takeoff_point": "TAKEOFF_B",
+    "task_id": "AIR_drone_02",
+    "vehicle_id": "drone_02"
+   }
+  ],
+  "dependencies": [
+   {
+    "after": "AIR_drone_02",
+    "condition": "POI_REACHED",
+    "point": "POI_3",
+    "task_id": "GROUND_rover_01"
+   }
+  ],
+  "description": "global proposal of the Mission Orchestrator (multi-agent prototype)",
+  "execution_order": [
+   "AIR_drone_02",
+   "GROUND_rover_01"
+  ],
+  "ground_tasks": [
+   {
+    "start_point": "ROVER_START",
+    "target_point": "POI_3",
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  ],
+  "mission_defaults": {
+   "battery_consumption_percent_per_minute": 1.2,
+   "battery_percent": 60.0,
+   "cruise_speed_kmh": 30.0,
+   "failsafe": {
+    "communication_loss_action": "RETURN_TO_HOME",
+    "low_battery_action": "RETURN_TO_HOME",
+    "unsafe_wind_action": "RETURN_TO_HOME"
+   },
+   "maximum_altitude_m": 30.0,
+   "maximum_wind_speed_kmh": 20.0,
+   "minimum_battery_reserve_percent": 20.0,
+   "source": "conservative envelope of the declared drone profiles; each individual mission carries its own drone's profile",
+   "wind_direction_from_deg": 0.0,
+   "wind_speed_kmh": 0.0
+  },
+  "planning_margin_m": 1.0,
+  "provenance": "SYNTHETIC: multiagent prototype over a synthetic operating context",
+  "schema": "tfg.scenario-template/1",
+  "template_id": "multiagent_M-6addda4a3d",
+  "version": 1
+ },
+ "vehicles_contacted": 0
+}

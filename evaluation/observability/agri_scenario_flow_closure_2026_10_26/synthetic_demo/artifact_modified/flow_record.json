@@ -1,0 +1,74 @@
+{
+  "schema": "tfg.agri-scenario-flow/1",
+  "scenario_id": "agri_demo_001",
+  "mode": "demo",
+  "source": "synthetic",
+  "origin": "SYNTHETIC",
+  "variant": "artifact_modified",
+  "resume": {
+    "resumed": false
+  },
+  "status": "REJECTED",
+  "stage": "report",
+  "reasons": [
+    "ARTIFACT_REJECTED: Artifact content differs from the recorded hash: ['drone_02']"
+  ],
+  "artifacts": {
+    "binding_record": {
+      "path": "evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json",
+      "sha256": "b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf"
+    },
+    "missions": {
+      "drone_01": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24/sequence/mission_1.json",
+      "drone_02": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24/sequence/mission_2.json"
+    },
+    "synthetic_alteration": "drone_02 mission name edited after approval; geometry unchanged"
+  },
+  "sequence": null,
+  "view_sha256": null,
+  "hermes": null,
+  "r1": {
+    "request_key": "synthetic-r1-artifact_modified",
+    "stages": null,
+    "blockers": null,
+    "candidate_sha256": null,
+    "state": null,
+    "run_id": null,
+    "acceptance": null,
+    "admit_calls": null,
+    "request_status": null,
+    "repeat_request_status": null,
+    "reason": null
+  },
+  "r1_dimensions": null,
+  "scenario": null,
+  "report_path": null,
+  "previous_report_kept": null,
+  "transitions": [
+    {
+      "node": "load_artifacts",
+      "started_at": "2026-10-26T18:34:58.582530+00:00",
+      "finished_at": "2026-10-26T18:34:58.584282+00:00",
+      "waiting_on": "conserved H1/H2 artifacts, verified by their manifests",
+      "result": "LOADED",
+      "reason": "2 missions; binding record SYNTHETIC_DE"
+    },
+    {
+      "node": "bind_and_validate",
+      "started_at": "2026-10-26T18:34:58.585404+00:00",
+      "finished_at": "2026-10-26T18:34:58.590106+00:00",
+      "waiting_on": "deterministic validation, execution compatibility and H0 geometry of each mission",
+      "result": "REJECTED",
+      "reason": "Artifact content differs from the recorded hash: ['drone_02']"
+    },
+    {
+      "node": "report",
+      "started_at": "2026-10-26T18:34:58.591394+00:00",
+      "finished_at": "2026-10-26T18:34:58.591408+00:00",
+      "waiting_on": "deterministic rendering of the view, the R1 preparation and the R1 record",
+      "result": "REJECTED",
+      "reason": "scenario complete: False"
+    }
+  ],
+  "movement_authorized": false
+}

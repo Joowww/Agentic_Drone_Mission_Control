@@ -1,0 +1,75 @@
+[
+    {
+        "Id": "sha256:a2a49112131c43b3ae19231bc02a690b6eabb640fcedbb446df2d32e5df9afc7",
+        "RepoTags": [
+            "tfg/app:2026.10.30"
+        ],
+        "RepoDigests": [
+            "tfg/app@sha256:a2a49112131c43b3ae19231bc02a690b6eabb640fcedbb446df2d32e5df9afc7"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-30T10:53:26.696545408Z",
+        "Config": {
+            "User": "1000:1000",
+            "Env": [
+                "PATH=/opt/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONUNBUFFERED=1",
+                "HOME=/tmp/home",
+                "TFG_PROFILE=offline"
+            ],
+            "Entrypoint": [
+                "python3",
+                "/opt/tfg/deploy/app/entry.py"
+            ],
+            "Cmd": [
+                "main.py"
+            ],
+            "WorkingDir": "/opt/tfg",
+            "Labels": {
+                "org.opencontainers.image.description": "Offline agri_demo_001 scenario tools (no simulator, no LLM provider)",
+                "org.opencontainers.image.title": "tfg-app",
+                "org.opencontainers.image.version": "2026.10.30",
+                "tfg.apt.snapshot": "20261024T000000Z",
+                "tfg.python.constraints": "constraints-verified.txt"
+            },
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 343749185,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:bec87777bc2fb2edcdf9af11df1531469e7df911309c1413082b18fcb8610278",
+                "sha256:92e319e4e5c3b618a785c9536769f786d1ada26c5ede55fcc5a6451a0d8369e2",
+                "sha256:a5648e6758e8329317e25dba3e10858aada37dd3f2cd140036dfd9ffd3d01592",
+                "sha256:098c2a70938ac27237f75584478219dfac486f2319e0c299b5530e250f6ba7ec",
+                "sha256:85f6fc61d78d5da21a82f867390e6b935b8fa5f1abfd9f67b8dc6ba6af4e4101",
+                "sha256:5ccdc77fe9a7c91b33381c64c62b4b9bf063d4f7f1e70cf17fc90a9ec3b18a1c",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-30T10:56:29.646426588Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:a2a49112131c43b3ae19231bc02a690b6eabb640fcedbb446df2d32e5df9afc7",
+            "size": 856,
+            "annotations": {
+                "io.containerd.image.name": "docker.io/tfg/app:2026.10.30",
+                "org.opencontainers.image.ref.name": "2026.10.30"
+            }
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "n7b4am70c1de6hb4jlmds1zwg",
+                    "CreatedAt": "2026-10-30T10:53:27.220789321Z"
+                }
+            ]
+        }
+    }
+]

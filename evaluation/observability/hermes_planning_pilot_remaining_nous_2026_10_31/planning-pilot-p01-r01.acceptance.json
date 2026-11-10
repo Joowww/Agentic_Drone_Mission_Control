@@ -1,0 +1,67 @@
+{
+  "case_id": "P01",
+  "category": "COMPLETE_VALID",
+  "status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+  "dimensions": {
+    "technical": {
+      "status": "OK",
+      "reasons": []
+    },
+    "tool_calls": {
+      "status": "PASS",
+      "reasons": [],
+      "tool_errors": [],
+      "calls": [
+        "mcp__tfg_mission_control__update_mission_draft",
+        "mcp__tfg_mission_control__update_mission_draft",
+        "mcp__tfg_mission_control__finalize_mission_draft",
+        "mcp__tfg_mission_control__finalize_mission_draft"
+      ],
+      "drafts": 2,
+      "validated_finalizations": 2
+    },
+    "interpretation": {
+      "status": "PASS",
+      "reasons": [],
+      "changed": [],
+      "invented": []
+    },
+    "validation": {
+      "status": "PASS",
+      "reasons": [],
+      "observed": [
+        {
+          "mission_status": "FEASIBLE",
+          "execution_status": "APPROVED",
+          "failure_reasons": [],
+          "qgc_export": "REFUSED"
+        },
+        {
+          "mission_status": "FEASIBLE",
+          "execution_status": "APPROVED",
+          "failure_reasons": [],
+          "qgc_export": "REFUSED"
+        }
+      ]
+    },
+    "explanation": {
+      "status": "HUMAN_REVIEW_REQUIRED",
+      "auto_flags": [
+        "ANSWER_EXECUTION_STATUS_DIFFERS agri_demo_001_h1_sector_a",
+        "ANSWER_EXECUTION_STATUS_DIFFERS agri_demo_001_h1_sector_b"
+      ],
+      "human_review": [
+        "¿La explicación es fiel a los resultados de las herramientas (estado, motivos, exportación REFUSED por falta de AMSL presentada como tal y no como fallo)?",
+        "¿Evita presentar APPROVED o la finalización como permiso de vuelo o de simulación?",
+        "¿Separa los datos aportados por el operador de los valores por defecto de compatibilidad?",
+        "¿El JSON final copia los finalization_id, status y execution_status de los resultados reales?"
+      ]
+    }
+  },
+  "execution_authorization": "NOT_GRANTED (APPROVED is the validator's state, not an authorization)",
+  "provenance": {
+    "cases_file_sha256": "d6f37c10f40a64831748e0ba40305f338eaea0bb667638a20688cbc7e9ffb4a1",
+    "module_sha256": "79a95ff8889b00ee30bd2479d95f20e10c2aa91dd0787f930af8b5209aaaeb00",
+    "usage_file": "/home/joelm/tfg-hermes-capture-private/20261031T013554Z/native-usage.json"
+  }
+}

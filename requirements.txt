@@ -1,2 +1,7 @@
-langgraph
-langchain-ollama
+# Direct runtime dependencies (imported by the project's own modules). Ranges, not pins: the exact versions
+# verified in a clean isolated install are in constraints-verified.txt (use it with -c).
+langgraph                    # graph/*: StateGraph flows (verified 1.2.12)
+langchain-ollama             # agents/*: local LLM extraction (verified 1.1.0)
+mcp==2.3.0                   # tools/hermes_mcp_server.py
+pydantic>=2,<3               # models/*, planning/*, inputs/*: MissionDefinition and validation (verified 2.13.5)
+PyYAML>=6,<7                 # observability/hermes_capture_run.py (manifests used by the scenario flow) (verified 6.0.3)

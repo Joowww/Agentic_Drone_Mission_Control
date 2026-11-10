@@ -1,0 +1,147 @@
+{
+  "transport": {
+    "command": [
+      "docker",
+      "exec",
+      "tfg-ardupilot-gazebo",
+      "python3",
+      "-c",
+      "\nimport json,pathlib,base64,os,datetime\nR=pathlib.Path;out={'captured_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'processes':[],'files':[]}\nfor p in R('/proc').iterdir():\n if not p.name.isdigit():continue\n try:\n  a=[x.decode(errors='replace') for x in (p/'cmdline').read_bytes().split(b'\\0') if x];st=(p/'stat').read_text().rpartition(')')[2].split()\n  # cmdline split below supports actual null byte, not shell parsing.\n  a=[x.decode(errors='replace') for x in (p/'cmdline').read_bytes().split(bytes([0])) if x]\n  if a and (R(a[0]).name in ['gz','arducopter','ruby'] or ('ros2' in {R(x).name for x in a[:2]} and 'launch' in a)):\n   out['processes'].append({'pid':int(p.name),'start_ticks':int(st[19]),'state':st[0],'argv':a})\n except (FileNotFoundError,ProcessLookupError):continue\npaths=[R('/tmp/tfg_demo.log'),R('/root/.gz/auto_default.log'),R('/root/.gz/rendering/ogre2.log'),R('/root/.gz/sim/8/gui.config')]\nfor parent,pattern in [(R('/root/.ros/log'),'*/launch.log'),(R('/root/.gz/sim/log'),'*/server_console.log')]:\n files=sorted(parent.glob(pattern),key=lambda p:p.stat().st_mtime,reverse=True);paths.extend(files[:2])\nfor p in paths:\n try:\n  s=p.stat();raw=p.read_bytes()[:8000000];out['files'].append({'path':str(p),'size_at_stat':s.st_size,'mtime':s.st_mtime,'truncated':s.st_size>len(raw),'data':base64.b64encode(raw).decode()})\n except OSError as e:out['files'].append({'path':str(p),'error':str(e)})\nprint(json.dumps(out))\n"
+    ],
+    "started_at": "2026-10-20T08:57:27.562708+00:00",
+    "finished_at": "2026-10-20T08:57:27.903739+00:00",
+    "return_code": 0,
+    "stderr": ""
+  },
+  "captured_at": "2026-10-20T08:57:27.764380+00:00",
+  "processes": [
+    {
+      "pid": 97,
+      "start_ticks": 809918,
+      "state": "S",
+      "argv": [
+        "/usr/bin/python3",
+        "/opt/ros/humble/bin/ros2",
+        "launch",
+        "ardupilot_gz_bringup",
+        "tfg_demo_2drones.launch.py",
+        "rviz:=false",
+        "gui:=true"
+      ]
+    },
+    {
+      "pid": 164,
+      "start_ticks": 810067,
+      "state": "S",
+      "argv": [
+        "arducopter",
+        "--model",
+        "json",
+        "--speedup",
+        "1",
+        "--slave",
+        "0",
+        "--sim-address=127.0.0.1",
+        "--instance",
+        "0",
+        "--defaults",
+        "/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm",
+        "--use_sim_time",
+        "True",
+        "--synthetic-clock",
+        "--sysid",
+        "1"
+      ]
+    },
+    {
+      "pid": 174,
+      "start_ticks": 810068,
+      "state": "S",
+      "argv": [
+        "arducopter",
+        "--model",
+        "json",
+        "--speedup",
+        "1",
+        "--slave",
+        "0",
+        "--sim-address=127.0.0.1",
+        "--instance",
+        "1",
+        "--defaults",
+        "/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm",
+        "--use_sim_time",
+        "True",
+        "--synthetic-clock",
+        "--sysid",
+        "2"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "/tmp/tfg_demo.log",
+      "size_at_stat": 171192,
+      "mtime": 1792486616.968195,
+      "truncated": false,
+      "copy_path": "after/0/tfg_demo.log",
+      "sha256": "7f6c8f7c615aa3e75aaa6e30a5eb67e7a82aa05d32ff39afed112f24153f4a5d"
+    },
+    {
+      "path": "/root/.gz/auto_default.log",
+      "size_at_stat": 32712,
+      "mtime": 1792486542.8574605,
+      "truncated": false,
+      "copy_path": "after/1/auto_default.log",
+      "sha256": "d76de5d95b6f9b5cd063226c3576459db1724ed6a413940d3dbda535b3b53be5"
+    },
+    {
+      "path": "/root/.gz/rendering/ogre2.log",
+      "size_at_stat": 29981,
+      "mtime": 1792486552.7895393,
+      "truncated": false,
+      "copy_path": "after/2/ogre2.log",
+      "sha256": "653f834bebfac26f97717ff2aa2157c0d2fd8b0b1a7a6eb4486c1d3224a65ec6"
+    },
+    {
+      "path": "/root/.gz/sim/8/gui.config",
+      "size_at_stat": 8945,
+      "mtime": 1790930771.719198,
+      "truncated": false,
+      "copy_path": "after/3/gui.config",
+      "sha256": "2b2502d7826d50762b96cda492c8d884b9aa578b9a1365f9a9a8dd887b9c35de"
+    },
+    {
+      "path": "/root/.ros/log/2026-10-20-08-55-31-640585-tfg-gz-97/launch.log",
+      "size_at_stat": 82079,
+      "mtime": 1792486616.968195,
+      "truncated": false,
+      "copy_path": "after/4/launch.log",
+      "sha256": "2766af6a7cb34e2a66474e14264ef66c69a0ad15ac8eb1b8e7d5caa182c355e1"
+    },
+    {
+      "path": "/root/.ros/log/2026-10-18-21-12-11-013468-tfg-gz-46687/launch.log",
+      "size_at_stat": 2259491,
+      "mtime": 1792432564.9444196,
+      "truncated": false,
+      "copy_path": "after/5/launch.log",
+      "sha256": "213eb4e3a8ced17693b14435ac1b3aee51eee8187f23da46b867c69d52148f19"
+    },
+    {
+      "path": "/root/.gz/sim/log/2026-10-20T08:55:34.125383118/server_console.log",
+      "size_at_stat": 73156,
+      "mtime": 1792486541.3804634,
+      "truncated": false,
+      "copy_path": "after/6/server_console.log",
+      "sha256": "e6fad8bf87454ed5a6f02c261d090d649d1955006271d4ea07dbc7dfe99ebfd5"
+    },
+    {
+      "path": "/root/.gz/sim/log/2026-10-18T21:12:11.979078160/server_console.log",
+      "size_at_stat": 358529,
+      "mtime": 1792432556.1520162,
+      "truncated": false,
+      "copy_path": "after/7/server_console.log",
+      "sha256": "1556515ce3b82a4b7a654541969c0659249d6b8f375053f6c1726c2454ae04be"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "widget": "W2",
+    "title": "Latència LLM — P50/P90/P99",
+    "file": "sql/W2.sql",
+    "sha256": "52056afc54d3e2393685b910cf22436a0f6b1c2a6f16274a97c48c865f788f96",
+    "status": "PROPOSED_BY_OLLIE_NOT_DEPLOYED",
+    "textual_checks": {
+      "explicit_project_id_filters": 1,
+      "base_table_reads": 1,
+      "tag_captured": 1,
+      "excl_synthetic": 1,
+      "excl_unknown": 1,
+      "type_llm": true,
+      "limit_clause": false,
+      "window_functions": false,
+      "derived_fields_used": [],
+      "excludes_error_spans_from_latency": false,
+      "quantile_function": "quantile"
+    }
+  },
+  {
+    "widget": "W3",
+    "title": "Errors per data i tipus",
+    "file": "sql/W3.sql",
+    "sha256": "50d05dbac9db011a2410613670f8f4ef031bd6e1bfdc25f1e9dd26837c74fc27",
+    "status": "PROPOSED_BY_OLLIE_NOT_DEPLOYED",
+    "textual_checks": {
+      "explicit_project_id_filters": 1,
+      "base_table_reads": 1,
+      "tag_captured": 1,
+      "excl_synthetic": 1,
+      "excl_unknown": 1,
+      "type_llm": true,
+      "limit_clause": false,
+      "window_functions": false,
+      "derived_fields_used": [],
+      "excludes_error_spans_from_latency": null,
+      "quantile_function": null
+    }
+  },
+  {
+    "widget": "W4",
+    "title": "Tokens d’entrada, sortida i memòria cau per execució",
+    "file": "sql/W4.sql",
+    "sha256": "25ca13d58303c001ddb622ee9d03f2f7161fc4d4c7d1288612ef2df407e01940",
+    "status": "PROPOSED_BY_OLLIE_NOT_DEPLOYED",
+    "textual_checks": {
+      "explicit_project_id_filters": 1,
+      "base_table_reads": 1,
+      "tag_captured": 1,
+      "excl_synthetic": 1,
+      "excl_unknown": 1,
+      "type_llm": true,
+      "limit_clause": false,
+      "window_functions": true,
+      "derived_fields_used": [],
+      "excludes_error_spans_from_latency": null,
+      "quantile_function": null
+    }
+  },
+  {
+    "widget": "W5",
+    "title": "Detall dels tokens — valor i estat",
+    "file": "sql/W5.sql",
+    "sha256": "38d7431394ba01b138fdbffe086df21629b122b9d3d18b935ca2c98cda6cd0c0",
+    "status": "PROPOSED_BY_OLLIE_NOT_DEPLOYED",
+    "textual_checks": {
+      "explicit_project_id_filters": 1,
+      "base_table_reads": 1,
+      "tag_captured": 1,
+      "excl_synthetic": 1,
+      "excl_unknown": 1,
+      "type_llm": true,
+      "limit_clause": false,
+      "window_functions": true,
+      "derived_fields_used": [],
+      "excludes_error_spans_from_latency": null,
+      "quantile_function": null
+    }
+  }
+]

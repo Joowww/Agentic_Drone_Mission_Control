@@ -1,0 +1,495 @@
+{
+  "aerial": [
+    {
+      "blocks": [],
+      "derivation": [
+        {
+          "frame": "synthetic_orchard_local",
+          "latitude": -35.3633158986705,
+          "local_xy_m": [
+            -4.0,
+            -6.0
+          ],
+          "longitude": 149.16519293808915,
+          "method": "enu_rotated_local_linear_111320_cos_origin_v1",
+          "site_point": "TAKEOFF_A"
+        },
+        {
+          "frame": "synthetic_orchard_local",
+          "latitude": -35.36321708444125,
+          "local_xy_m": [
+            -4.0,
+            5.0
+          ],
+          "longitude": 149.16519293808915,
+          "method": "enu_rotated_local_linear_111320_cos_origin_v1",
+          "site_point": "POI_1"
+        },
+        {
+          "frame": "synthetic_orchard_local",
+          "latitude": -35.3631003039885,
+          "local_xy_m": [
+            -4.0,
+            18.0
+          ],
+          "longitude": 149.16519293808915,
+          "method": "enu_rotated_local_linear_111320_cos_origin_v1",
+          "site_point": "POI_2"
+        }
+      ],
+      "deterministic_validation": {
+        "errors": [],
+        "execution_status": "APPROVED",
+        "failure_reasons": [],
+        "mission_status": "FEASIBLE",
+        "sitl_executor_compatibility_errors": []
+      },
+      "mission_id": "agri_poi_visit_v1_synthetic_orchard_v2_A1",
+      "mission_sha256": "5847127dc98a1e36c035a9f53858add70aa50e6c5087a5549f33f44039c83fda",
+      "planned_home": {
+        "amsl_m": 584.0,
+        "amsl_source": "site vertical_reference.origin_ground_amsl_m (DECLARED_FLAT); not the effective home",
+        "latitude": -35.3633158986705,
+        "longitude": 149.16519293808915
+      },
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "perimeter TAKEOFF_A -> POI_1",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion TREE_ROW_1 TAKEOFF_A -> POI_1",
+            "detail": "clearance 6.403 m to TREE_ROW_1 vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion SHED TAKEOFF_A -> POI_1",
+            "detail": "clearance 16.155 m to SHED vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "perimeter POI_1 -> POI_2",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion TREE_ROW_1 POI_1 -> POI_2",
+            "detail": "clearance 4.000 m to TREE_ROW_1 vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion SHED POI_1 -> POI_2",
+            "detail": "clearance 6.325 m to SHED vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "perimeter POI_2 -> TAKEOFF_A (RTL)",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion TREE_ROW_1 POI_2 -> TAKEOFF_A (RTL)",
+            "detail": "clearance 4.000 m to TREE_ROW_1 vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion SHED POI_2 -> TAKEOFF_A (RTL)",
+            "detail": "clearance 6.325 m to SHED vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "takeoff in takeoff/landing zone",
+            "detail": "PAD_A",
+            "status": "PASS"
+          },
+          {
+            "check": "vertical limit",
+            "detail": "5.0 m above effective home vs 30.0 m above origin ground (declared flat)",
+            "status": "PASS"
+          },
+          {
+            "check": "RTL climb vs vertical limit",
+            "detail": "RTL climbs to RTL_ALT(_M) when lower (documented default 15.0 m); the vehicle parameter is not verified",
+            "status": "NOT_CHECKABLE"
+          }
+        ],
+        "labels": [
+          "TAKEOFF_A",
+          "POI_1",
+          "POI_2",
+          "TAKEOFF_A (RTL)"
+        ],
+        "margin": {
+          "kind": "DECLARED_PLANNING_MARGIN",
+          "missing_inputs": [
+            "point POI_1.uncertainty_m",
+            "point POI_2.uncertainty_m",
+            "point TAKEOFF_A.uncertainty_m",
+            "vehicle.horizontal_position_uncertainty_m",
+            "vehicle.max_horizontal_extent_m",
+            "zone PERIMETER.uncertainty_m",
+            "zone SHED.uncertainty_m",
+            "zone TREE_ROW_1.uncertainty_m"
+          ],
+          "planning_margin_m": 1.0,
+          "status": "NOT_ACCREDITED"
+        },
+        "route_local": [
+          [
+            -4.0,
+            -6.0
+          ],
+          [
+            -4.0,
+            5.0
+          ],
+          [
+            -4.0,
+            18.0
+          ],
+          [
+            -4.0,
+            -6.0
+          ]
+        ],
+        "scope": "planned straight lines (RTL assumed straight to the effective home, no rally points); not the flown trajectory",
+        "status": "PASS",
+        "unchecked": [
+          "RTL climb vs vertical limit"
+        ]
+      },
+      "task_id": "A1",
+      "vehicle_id": "drone_01"
+    },
+    {
+      "blocks": [],
+      "derivation": [
+        {
+          "frame": "synthetic_orchard_local",
+          "latitude": -35.3633158986705,
+          "local_xy_m": [
+            4.0,
+            -6.0
+          ],
+          "longitude": 149.16528106191083,
+          "method": "enu_rotated_local_linear_111320_cos_origin_v1",
+          "site_point": "TAKEOFF_B"
+        },
+        {
+          "frame": "synthetic_orchard_local",
+          "latitude": -35.363226067553,
+          "local_xy_m": [
+            8.0,
+            4.0
+          ],
+          "longitude": 149.1653251238217,
+          "method": "enu_rotated_local_linear_111320_cos_origin_v1",
+          "site_point": "POI_3"
+        },
+        {
+          "frame": "synthetic_orchard_local",
+          "latitude": -35.363226067553,
+          "local_xy_m": [
+            25.0,
+            4.0
+          ],
+          "longitude": 149.16551238694282,
+          "method": "enu_rotated_local_linear_111320_cos_origin_v1",
+          "site_point": "POI_4"
+        }
+      ],
+      "deterministic_validation": {
+        "errors": [],
+        "execution_status": "APPROVED",
+        "failure_reasons": [],
+        "mission_status": "FEASIBLE",
+        "sitl_executor_compatibility_errors": []
+      },
+      "mission_id": "agri_poi_visit_v1_synthetic_orchard_v2_A2",
+      "mission_sha256": "0e0ec73d27af72a66118b7b4e19c59c6884e5e3384c84a8cd686286c896fb5c3",
+      "planned_home": {
+        "amsl_m": 584.0,
+        "amsl_source": "site vertical_reference.origin_ground_amsl_m (DECLARED_FLAT); not the effective home",
+        "latitude": -35.3633158986705,
+        "longitude": 149.16528106191083
+      },
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "perimeter TAKEOFF_B -> POI_3",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion TREE_ROW_1 TAKEOFF_B -> POI_3",
+            "detail": "clearance 6.000 m to TREE_ROW_1 vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion SHED TAKEOFF_B -> POI_3",
+            "detail": "clearance 24.083 m to SHED vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "perimeter POI_3 -> POI_4",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion TREE_ROW_1 POI_3 -> POI_4",
+            "detail": "clearance 6.000 m to TREE_ROW_1 vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion SHED POI_3 -> POI_4",
+            "detail": "clearance 24.083 m to SHED vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "perimeter POI_4 -> TAKEOFF_B (RTL)",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion TREE_ROW_1 POI_4 -> TAKEOFF_B (RTL)",
+            "detail": "clearance 6.000 m to TREE_ROW_1 vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion SHED POI_4 -> TAKEOFF_B (RTL)",
+            "detail": "clearance 29.530 m to SHED vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "takeoff in takeoff/landing zone",
+            "detail": "PAD_B",
+            "status": "PASS"
+          },
+          {
+            "check": "vertical limit",
+            "detail": "5.0 m above effective home vs 30.0 m above origin ground (declared flat)",
+            "status": "PASS"
+          },
+          {
+            "check": "RTL climb vs vertical limit",
+            "detail": "RTL climbs to RTL_ALT(_M) when lower (documented default 15.0 m); the vehicle parameter is not verified",
+            "status": "NOT_CHECKABLE"
+          }
+        ],
+        "labels": [
+          "TAKEOFF_B",
+          "POI_3",
+          "POI_4",
+          "TAKEOFF_B (RTL)"
+        ],
+        "margin": {
+          "kind": "DECLARED_PLANNING_MARGIN",
+          "missing_inputs": [
+            "point POI_3.uncertainty_m",
+            "point POI_4.uncertainty_m",
+            "point TAKEOFF_B.uncertainty_m",
+            "vehicle.horizontal_position_uncertainty_m",
+            "vehicle.max_horizontal_extent_m",
+            "zone PERIMETER.uncertainty_m",
+            "zone SHED.uncertainty_m",
+            "zone TREE_ROW_1.uncertainty_m"
+          ],
+          "planning_margin_m": 1.0,
+          "status": "NOT_ACCREDITED"
+        },
+        "route_local": [
+          [
+            4.0,
+            -6.0
+          ],
+          [
+            8.0,
+            4.0
+          ],
+          [
+            25.0,
+            4.0
+          ],
+          [
+            4.0,
+            -6.0
+          ]
+        ],
+        "scope": "planned straight lines (RTL assumed straight to the effective home, no rally points); not the flown trajectory",
+        "status": "PASS",
+        "unchecked": [
+          "RTL climb vs vertical limit"
+        ]
+      },
+      "task_id": "A2",
+      "vehicle_id": "drone_02"
+    }
+  ],
+  "coordination": {
+    "dependencies": [
+      {
+        "after": "A1",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "A2"
+      },
+      {
+        "after": "A1",
+        "condition": "POI_REACHED",
+        "point": "POI_1",
+        "task_id": "R1"
+      },
+      {
+        "after": "A2",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "R1"
+      }
+    ],
+    "errors": [],
+    "mode": "SEQUENTIAL",
+    "note": "dependencies are conditions on OBSERVED outcomes held by the coordinator; never a time wait. Individual .plan files do not coordinate vehicles.",
+    "order": [
+      "A1",
+      "A2",
+      "R1"
+    ],
+    "status": "PASS"
+  },
+  "ground": [
+    {
+      "execution": "outside this package: R1 coordinator gates unchanged",
+      "export": "FORMAT_PENDING: no rover exporter; a .plan is not assumed",
+      "frame_transform_to_rover": "NOT_ACCREDITED (site frame -> rover odometry frame)",
+      "kind": "VISIT_AND_STOP",
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "target in drivable area",
+            "detail": "DRIVABLE",
+            "status": "PASS"
+          },
+          {
+            "check": "straight line within drivable area",
+            "detail": "the aerial perimeter is never used for the rover",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion TREE_ROW_1",
+            "detail": "clearance 6.403 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion SHED",
+            "detail": "clearance 16.155 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion DITCH",
+            "detail": "clearance 14.000 m vs margin 1.0 m",
+            "status": "PASS"
+          }
+        ],
+        "line_local": [
+          [
+            1.0,
+            -1.5
+          ],
+          [
+            -4.0,
+            5.0
+          ]
+        ],
+        "margin": {
+          "kind": "DECLARED_PLANNING_MARGIN",
+          "missing_inputs": [
+            "point POI_1.uncertainty_m",
+            "point ROVER_START.uncertainty_m",
+            "vehicle.horizontal_position_uncertainty_m",
+            "vehicle.max_horizontal_extent_m",
+            "zone DRIVABLE.uncertainty_m"
+          ],
+          "planning_margin_m": 1.0,
+          "status": "NOT_ACCREDITED"
+        },
+        "scope": "straight planned line only; no path planner; rover frame transform not accredited",
+        "status": "PASS"
+      },
+      "start_point": "ROVER_START",
+      "target_point": "POI_1",
+      "task_id": "R1",
+      "vehicle_id": "rover_01"
+    }
+  ],
+  "inputs": {
+    "fleet": {
+      "id": "agri_demo_fleet",
+      "sha256": "45b09915aa95e48726e27bd5e3fb33c3018bb40e42593712f34a4068655a296c",
+      "version": 1
+    },
+    "site": {
+      "id": "synthetic_orchard",
+      "sha256": "7b27b00719dd1e6a7c309dff3b4b1b129a9a8b699e21e7b0d94e059e35356d14",
+      "status": "SYNTHETIC",
+      "version": 2
+    },
+    "template": {
+      "id": "agri_poi_visit",
+      "sha256": "62dd9c06a8520d76d9e6d0bc16c75f1fbb635a97fbef5454fdb0540ab827d314",
+      "version": 1
+    }
+  },
+  "instance_id": "9a4c1823960be7ed",
+  "joint_spatial": {
+    "frame": "synthetic_orchard_local",
+    "pairs": [
+      {
+        "min_horizontal_distance_m": 8.0,
+        "pair": [
+          "A1",
+          "A2"
+        ],
+        "simultaneous_execution": "NOT_CLEARED",
+        "temporal_deconfliction": "NOT_EVALUATED"
+      }
+    ]
+  },
+  "provenance": "SYNTHETIC",
+  "references": {
+    "effective_home": "NOT_OBSERVED (ArduPilot sets it at arming)",
+    "estimator_origin": "NOT_OBSERVED",
+    "gazebo_spawn": "not related to the site frame (no accredited transform)",
+    "planned_takeoff": "site points of kind planned_takeoff",
+    "rover_start": "site points of kind rover_start",
+    "site_origin": "ORIGIN"
+  },
+  "schema": "tfg.scenario-instance/1",
+  "site_validation": {
+    "capabilities": {
+      "field_export": false,
+      "local_design": true,
+      "sitl_geographic_export": true
+    },
+    "errors": [],
+    "export_blocks": {
+      "field": [
+        "SYNTHETIC site: never a proposal for hardware"
+      ],
+      "sitl": []
+    },
+    "geographic_references": {
+      "complete": true,
+      "field_verified_declared": false,
+      "missing": []
+    },
+    "missing": [],
+    "note": "VERIFIED_DECLARED is a declaration in the file, not an authentication",
+    "site_id": "synthetic_orchard",
+    "site_status": "SYNTHETIC",
+    "status": "VALID",
+    "version": 2,
+    "warnings": []
+  }
+}

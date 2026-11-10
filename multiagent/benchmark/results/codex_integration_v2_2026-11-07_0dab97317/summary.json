@@ -1,0 +1,60 @@
+{
+ "results": {
+  "battery_committed": {
+   "as_expected": 18,
+   "commands": 0,
+   "missions": 18
+  },
+  "battery_reviewed": {
+   "as_expected": 18,
+   "commands": 0,
+   "missions": 18
+  },
+  "handoff_committed": {
+   "all_as_expected": true,
+   "cases": 18,
+   "no_command": true
+  },
+  "handoff_extra": {
+   "committed/conversion_owner_codex_adapter": "V2_READY_EXECUTOR_REQUEST_INCOMPLETE",
+   "reviewed/codex_ledger_fixture_grant": "BLOCKED_BEFORE_SUBMISSION",
+   "reviewed/codex_ledger_revoked_grant": "BLOCKED_BEFORE_SUBMISSION",
+   "reviewed/conversion_owner_codex_adapter": "V2_READY_EXECUTOR_REQUEST_INCOMPLETE"
+  },
+  "handoff_reviewed": {
+   "all_as_expected": true,
+   "cases": 18,
+   "no_command": true
+  },
+  "mission_inputs": {
+   "as_expected": true,
+   "foreign_finding": "OUTSIDE_SITE_GEOREFERENCE",
+   "foreign_site": "REJECTED",
+   "natural_language": "TO_INTERPRET",
+   "qgc_findings": [
+    "SENSOR_NOT_STATED",
+    "VEHICLE_NOT_IN_FLEET"
+   ],
+   "qgc_plan": {
+    "commands_sent": 0,
+    "poi": [
+     "POI_1",
+     "POI_3"
+    ],
+    "status": "PROPOSED_PENDING_AUTHORIZATION"
+   },
+   "qgc_status": "OK"
+  },
+  "scenarios_safety/3": {
+   "as_expected": 17,
+   "commands": 0,
+   "scenarios": 17
+  },
+  "scenarios_safety/4": {
+   "as_expected": 17,
+   "commands": 0,
+   "scenarios": 17
+  }
+ },
+ "schema": "tfg.multiagent.integration-v2-evidence-summary/1"
+}

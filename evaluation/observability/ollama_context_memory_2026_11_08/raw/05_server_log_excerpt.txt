@@ -1,0 +1,55 @@
+Nov 08 14:41:14 MSI ollama[227]: time=2026-11-08T14:41:14.883+01:00 level=WARN source=runner.go:584 msg="llama-server GPU discovery watchdog timed out" OLLAMA_LIBRARY_PATH="[/usr/local/lib/ollama /usr/local/lib/ollama/cuda_v13]" extra_envs=map[CUDA_VISIBLE_DEVICES:0] error="context deadline exceeded"
+Nov 08 14:41:14 MSI ollama[227]: time=2026-11-08T14:41:14.884+01:00 level=INFO source=runner.go:522 msg="failure during llama-server GPU discovery" OLLAMA_LIBRARY_PATH="[/usr/local/lib/ollama /usr/local/lib/ollama/cuda_v13]" extra_envs=map[CUDA_VISIBLE_DEVICES:0] error="context deadline exceeded" detail=""
+Nov 08 14:41:14 MSI ollama[227]: time=2026-11-08T14:41:14.884+01:00 level=WARN source=runner.go:364 msg="unable to refresh free memory, using old values"
+Nov 08 14:41:14 MSI ollama[227]: time=2026-11-08T14:41:14.952+01:00 level=INFO source=llama_server.go:434 msg="starting llama-server" cmd="/usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-3e4cb14174460404e7a233e531675303b2fbf7749c02f91864fe311ab6344e4f --port 33711 --host 127.0.0.1 --no-webui --offline -c 65536 -np 1 --log-verbosity 4 --no-log-prefix --no-lo
+Nov 08 14:41:14 MSI ollama[227]: time=2026-11-08T14:41:14.952+01:00 level=INFO source=sched.go:618 msg="system memory" total="15.5 GiB" free="8.5 GiB" free_swap="4.0 GiB"
+Nov 08 14:41:14 MSI ollama[227]: time=2026-11-08T14:41:14.952+01:00 level=INFO source=sched.go:625 msg="gpu memory" id=0 library=CUDA available="6.5 GiB" free="6.9 GiB" minimum="457.0 MiB" overhead="0 B"
+Nov 08 14:41:17 MSI ollama[227]: cmn  common_param:   - CUDA0   : NVIDIA GeForce RTX 3070 Laptop GPU (8191 MiB, 7114 MiB free)
+Nov 08 14:41:17 MSI ollama[227]: cmn  common_init_: fitting params to device memory ...
+Nov 08 14:41:17 MSI ollama[227]: common_params_fit_impl: getting device memory data for initial parameters:
+Nov 08 14:41:18 MSI ollama[227]: common_memory_breakdown_print: | memory breakdown [MiB]          | total   free     self   model   context   compute    unaccounted |
+Nov 08 14:41:18 MSI ollama[227]: common_memory_breakdown_print: |   - CUDA0 (RTX 3070 Laptop GPU) |  8191 = 7114 + (11730 =  2375 +    9216 +     139) +      -10653 |
+Nov 08 14:41:18 MSI ollama[227]: common_memory_breakdown_print: |   - Host                        |                   378 =   304 +       0 +      74                |
+Nov 08 14:41:18 MSI ollama[227]: common_params_fit_impl: projected to use 11730 MiB of device memory vs. 7114 MiB of free device memory
+Nov 08 14:41:18 MSI ollama[227]: common_params_fit_impl: cannot meet free memory target of 1024 MiB, need to reduce device memory by 5640 MiB
+Nov 08 14:41:18 MSI ollama[227]: common_params_fit_impl: context size set by user to 65536 -> no change
+Nov 08 14:41:19 MSI ollama[227]: common_memory_breakdown_print: | memory breakdown [MiB]          | total   free     self   model   context   compute    unaccounted |
+Nov 08 14:41:19 MSI ollama[227]: common_memory_breakdown_print: |   - CUDA0 (RTX 3070 Laptop GPU) |  8191 = 7114 + (  479 =     0 +       0 +     479) +         597 |
+Nov 08 14:41:19 MSI ollama[227]: common_memory_breakdown_print: |   - Host                        |                 11665 =  2375 +    9216 +      74                |
+Nov 08 14:41:19 MSI ollama[227]: common_params_fit_impl: memory for test allocation by device:
+Nov 08 14:41:19 MSI ollama[227]: common_params_fit_impl: filling dense layers back-to-front:
+Nov 08 14:41:19 MSI ollama[227]: common_memory_breakdown_print: | memory breakdown [MiB]          | total   free     self   model   context   compute    unaccounted |
+Nov 08 14:41:19 MSI ollama[227]: common_memory_breakdown_print: |   - CUDA0 (RTX 3070 Laptop GPU) |  8191 = 7114 + (11730 =  2375 +    9216 +     139) +      -10653 |
+Nov 08 14:41:19 MSI ollama[227]: common_memory_breakdown_print: |   - Host                        |                   378 =   304 +       0 +      74                |
+Nov 08 14:41:19 MSI ollama[227]: common_params_fit_impl: memory for test allocation by device:
+Nov 08 14:41:20 MSI ollama[227]: common_memory_breakdown_print: | memory breakdown [MiB]          | total   free    self   model   context   compute    unaccounted |
+Nov 08 14:41:20 MSI ollama[227]: common_memory_breakdown_print: |   - CUDA0 (RTX 3070 Laptop GPU) |  8191 = 7114 + (6117 =  1285 +    4352 +     479) +       -5040 |
+Nov 08 14:41:20 MSI ollama[227]: common_memory_breakdown_print: |   - Host                        |                 6332 =  1394 +    4864 +      74                |
+Nov 08 14:41:20 MSI ollama[227]: common_params_fit_impl: memory for test allocation by device:
+Nov 08 14:41:21 MSI ollama[227]: common_memory_breakdown_print: | memory breakdown [MiB]          | total   free    self   model   context   compute    unaccounted |
+Nov 08 14:41:21 MSI ollama[227]: common_memory_breakdown_print: |   - CUDA0 (RTX 3070 Laptop GPU) |  8191 = 7114 + (5807 =  1231 +    4096 +     479) +       -4729 |
+Nov 08 14:41:21 MSI ollama[227]: common_memory_breakdown_print: |   - Host                        |                 6642 =  1448 +    5120 +      74                |
+Nov 08 14:41:21 MSI ollama[227]: common_params_fit_impl: memory for test allocation by device:
+Nov 08 14:41:21 MSI ollama[227]: common_params_fit_impl:   - CUDA0 (NVIDIA GeForce RTX 3070 Laptop GPU): 17 layers,   5807 MiB used,   1306 MiB free
+Nov 08 14:41:21 MSI ollama[227]: common_fit_params: successfully fit params to free device memory
+Nov 08 14:41:21 MSI ollama[227]: common_fit_params: fitting params to free memory took 3.64 seconds
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   0:                       general.architecture str              = qwen3
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   1:                           general.basename str              = Qwen3
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   2:                          general.file_type u32              = 15
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   3:                           general.finetune str              = Thinking
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   4:                            general.license str              = apache-2.0
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   5:                       general.license.link str              = https://huggingface.co/Qwen/Qwen3-4B-...
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   6:                               general.name str              = Qwen3 4B Thinking 2507
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   7:                    general.parameter_count u64              = 4022468096
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   8:               general.quantization_version u32              = 2
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv   9:                         general.size_label str              = 4B
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv  10:                               general.tags arr[str,1]       = ["text-generation"]
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv  11:                               general.type str              = model
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv  12:                            general.version str              = 2507
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv  13:                 qwen3.attention.head_count u32              = 32
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv  14:              qwen3.attention.head_count_kv u32              = 8
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv  15:                 qwen3.attention.key_length u32              = 128
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv  16:     qwen3.attention.layer_norm_rms_epsilon f32              = 0.000001
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv  17:               qwen3.attention.value_length u32              = 128
+Nov 08 14:41:21 MSI ollama[227]: llama_model_loader: - kv  18:                 

@@ -1,0 +1,256 @@
+{
+ "aerial_tasks": [
+  {
+   "points": [
+    "POI_1"
+   ],
+   "vehicle_id": "drone_01"
+  },
+  {
+   "points": [
+    "POI_3"
+   ],
+   "vehicle_id": "drone_02"
+  }
+ ],
+ "agent_records": {
+  "drone": {
+   "accepted_by_gate": true,
+   "decision_record": {
+    "accepted_after_revision": false,
+    "accepted_first_round": true,
+    "accepted_round": 0,
+    "llm_proposals": [
+     {
+      "accepted": true,
+      "findings": [],
+      "proposal": {
+       "assignments": {
+        "drone_01": [
+         "A1"
+        ],
+        "drone_02": [
+         "A2"
+        ]
+       }
+      },
+      "reason": null,
+      "round": 0,
+      "status": "FINAL"
+     }
+    ]
+   },
+   "final_allocation_from": "MODEL",
+   "llm_calls": 1,
+   "violations": []
+  },
+  "phase_b_aerial": null,
+  "rover_phase_a": {
+   "accepted_by_gate": true,
+   "contract": "v3",
+   "decision_record": {
+    "accepted_after_revision": false,
+    "accepted_first_round": true,
+    "accepted_round": 0,
+    "llm_proposals": [
+     {
+      "accepted": true,
+      "findings": [],
+      "proposal": {
+       "decisions": [
+        {
+         "decision": "WAIT_FOR_OBSERVATION",
+         "objective_id": "G1",
+         "reason": null,
+         "target_point": null
+        }
+       ]
+      },
+      "reason": null,
+      "round": 0,
+      "status": "FINAL"
+     }
+    ]
+   },
+   "llm_calls": 1,
+   "proposal": {
+    "decisions": [
+     {
+      "decision": "WAIT_FOR_OBSERVATION",
+      "objective_id": "G1",
+      "reason": null,
+      "target_point": null
+     }
+    ]
+   },
+   "reason": null,
+   "status": "FINAL"
+  },
+  "rover_phase_b": {
+   "accepted_by_gate": null,
+   "agreement": null,
+   "contract": null,
+   "decision_record": null,
+   "llm_calls": null,
+   "proposal": null,
+   "reason": null,
+   "status": null
+  },
+  "supervisor": {
+   "brief": {
+    "aerial_objectives": [
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "required_sensor": "rgb"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "required_sensor": "multispectral"
+     }
+    ],
+    "altitude_m": null,
+    "ambiguities": [],
+    "battery_percent": {},
+    "contradictions": [],
+    "drones": [],
+    "ground_objectives": [
+     {
+      "after_aerial": true,
+      "coordinates": null,
+      "description": "point indicated by a validated card observation",
+      "objective_id": "G1",
+      "point_id": null
+     }
+    ],
+    "rover": "rover_01",
+    "schema": "tfg.multiagent.mission-brief/2",
+    "site_id": null,
+    "unsafe_requests": [],
+    "vehicle_availability": [],
+    "wind_speed_kmh": null
+   },
+   "brief_planned_in_phase_a": {
+    "aerial_objectives": [
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "required_sensor": "rgb"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "required_sensor": "multispectral"
+     }
+    ],
+    "altitude_m": null,
+    "ambiguities": [],
+    "battery_percent": {},
+    "contradictions": [],
+    "drones": [],
+    "ground_objectives": [],
+    "rover": "rover_01",
+    "schema": "tfg.multiagent.mission-brief/2",
+    "site_id": null,
+    "unsafe_requests": [],
+    "vehicle_availability": [],
+    "wind_speed_kmh": null
+   },
+   "data_kind": "SYNTHETIC",
+   "json_valid": true,
+   "model": "scripted:integrated_orchestrator",
+   "parse_error": null,
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION"
+  }
+ },
+ "as_expected": true,
+ "classification": "NO_DETECTION_ROVER_KEEPS_WAITING",
+ "commands_sent": 0,
+ "console": [
+  "[  0.00s] operator      mission: Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated.",
+  "[  0.00s] supervisor    ... interpreting and delegating (agents: SIMULATED_MODELS)",
+  "[  0.09s] supervisor    status PROPOSED_PENDING_AUTHORIZATION (safety/3); 2 aerial task(s); ground objectives waiting: ['G1']",
+  "[  0.09s] drone_agent   drone_01 -> ['POI_1'] (0.1 min, start delay 45.0)",
+  "[  0.09s] drone_agent   drone_02 -> ['POI_3'] (0.1 min, start delay 0.0)",
+  "[  0.09s] rover_agent   phase A decision: [{'objective_id': 'G1', 'decision': 'WAIT_FOR_OBSERVATION', 'target_point': None, 'reason': None}] (gate ACCEPTED)",
+  "[  0.09s] perception    ... rendering SYNTHETIC_TEST image and detecting cards",
+  "[  0.66s] perception    detector: NONE []",
+  "[  0.66s] coordinator   mission AWAITING_DETECTION; ground {'G1': {'state': 'CONDITIONAL_AWAITING_OBSERVATION', 'target': None, 'observation_id': None, 'waits_for_task': None}}",
+  "[  0.66s] result        NO_DETECTION_ROVER_KEEPS_WAITING (as expected); ladder ['planning_completed']; commands sent 0"
+ ],
+ "coordinator": {
+  "aerial": {
+   "AIR_drone_01": "PENDING_AUTHORIZATION",
+   "AIR_drone_02": "PENDING_AUTHORIZATION"
+  },
+  "commands_sent": 0,
+  "events": 5,
+  "executing": [],
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "mission_reason": null,
+  "note": "offline coordination states only; nothing here moves a vehicle",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "unassigned_objectives": []
+ },
+ "detection": {
+  "ambiguous": [],
+  "detections": [],
+  "rejected": [],
+  "status": "NONE"
+ },
+ "execution_request": null,
+ "executor": [],
+ "expected": "NO_DETECTION_ROVER_KEEPS_WAITING",
+ "geometry": null,
+ "geometry_refusal": null,
+ "observation_gate": {
+  "reasons": null,
+  "status": null,
+  "target": null
+ },
+ "physical_effect": false,
+ "provenance": {
+  "agents": "DETERMINISTIC_AGENT (scripted test doubles)",
+  "camera": "DECLARED_VIRTUAL",
+  "events": "TEST_FIXTURE",
+  "image": "SYNTHETIC_TEST",
+  "simulation": "OFFLINE_SIMULATION (no SITL, no sensor)"
+ },
+ "request_problems": [],
+ "scenario": "disallowed_color",
+ "schema": "tfg.multiagent.precision-demo/1",
+ "status_ladder": {
+  "detection_obtained": false,
+  "execution_authorized": false,
+  "mission_physically_completed": false,
+  "movement_executed": false,
+  "planning_completed": true,
+  "proposal_validated": false,
+  "target_spatially_validated": false
+ },
+ "supervisor": {
+  "final": null,
+  "phase_a": "PROPOSED_PENDING_AUTHORIZATION",
+  "safety_policy": "safety/3"
+ },
+ "unassigned": [],
+ "what": "a blue card (not an allowed class)"
+}

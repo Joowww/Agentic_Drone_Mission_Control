@@ -1,0 +1,302 @@
+{
+ "batches": [
+  {
+   "elapsed_wall_s": 1.537,
+   "http_status": 400,
+   "items": 10,
+   "kind": "traces",
+   "outcome": "http_not_accepted"
+  }
+ ],
+ "http_statuses": [
+  400
+ ],
+ "preflight": {
+  "at_utc": "2026-11-06T10:30:48.688284+00:00",
+  "checks": {
+   "cases": {
+    "detail": [
+     "E01",
+     "E04",
+     "E11",
+     "E12",
+     "E18",
+     "E19",
+     "E20",
+     "E21",
+     "E22",
+     "E27"
+    ],
+    "passed": true
+   },
+   "content": {
+    "detail": {
+     "executions": [
+      "DETERMINISTIC_COMPUTATION",
+      "REAL_LLM_CALL"
+     ],
+     "llm_spans": 10,
+     "span_types": [
+      "general",
+      "llm"
+     ],
+     "total_spans": 62,
+     "unexpected_keys": []
+    },
+    "passed": true
+   },
+   "correspondence": {
+    "detail": {
+     "E01": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 3,
+      "span_ids": [
+       "01a1a76e-42f9-799c-bd87-5eb5558b8d76",
+       "01a1a76e-42fa-71b7-a7b0-242195a108ef",
+       "01a1a76e-9e28-7c63-ae15-4fe428230c8e"
+      ],
+      "spans": 3,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a76e-42f9-72ce-8408-9907fcd429f3"
+     },
+     "E04": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 3,
+      "span_ids": [
+       "01a1a76e-a08b-787d-8a70-587a673a9aaf",
+       "01a1a76e-a08c-725b-ac07-d966b2d1829c",
+       "01a1a76e-e0e5-7f24-b905-fff0972303e1"
+      ],
+      "spans": 3,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a76e-a08b-722f-8911-a00f50bff938"
+     },
+     "E11": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 9,
+      "span_ids": [
+       "01a1a76f-0c63-7f96-89bd-72222c084304",
+       "01a1a76f-0c64-7058-98ce-7bb03f491f28",
+       "01a1a76f-34d9-7429-9be8-61bbda527bca",
+       "01a1a76f-34d9-7b82-b6da-a53811e13c87",
+       "01a1a76f-34da-7343-a78b-78e2068deae9",
+       "01a1a76f-34dc-7ad3-9532-4e257c9b0546",
+       "01a1a76f-34de-71c5-9eeb-a9b72a1a48e8",
+       "01a1a76f-34de-783c-ae12-de31191b485d",
+       "01a1a76f-34e0-7525-b793-70a729e312b1"
+      ],
+      "spans": 9,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a76f-0c63-718d-bd1f-d55a5cb9e22b"
+     },
+     "E12": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 8,
+      "span_ids": [
+       "01a1a76f-3630-7dc4-8492-18b31fcff0b3",
+       "01a1a76f-3632-7db5-9ce2-7efba72fd9a5",
+       "01a1a76f-6872-743c-8a77-98b6278410ea",
+       "01a1a76f-6872-78b6-8020-80f3b2cb01b0",
+       "01a1a76f-6872-7cd3-b722-81442c735a4c",
+       "01a1a76f-6877-7ac4-86fa-d8493f9a2d3f",
+       "01a1a76f-6878-7103-813f-bebb22cfb02e",
+       "01a1a76f-6878-7373-99f7-cf6cbe6b2b19"
+      ],
+      "spans": 8,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a76f-3630-79b4-9798-92f88ae04807"
+     },
+     "E18": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 12,
+      "span_ids": [
+       "01a1a76f-69e4-7a3d-bf7c-f3b1a044511e",
+       "01a1a76f-69e5-7ff3-9c81-3f34cf60a6ac",
+       "01a1a76f-c5d4-705a-acac-c0b80c8de7c2",
+       "01a1a76f-c5d4-71e2-982a-1e8c0d07ada1",
+       "01a1a76f-c5d4-77c1-97c6-a9f97bc3e433",
+       "01a1a76f-c5d6-75f5-a8ff-3155ef59fc3a",
+       "01a1a76f-c5d7-7869-ada1-ad6e02f042be",
+       "01a1a76f-c651-7dd4-8f10-164c86a25818",
+       "01a1a76f-c652-79b1-a879-9099dac0602a",
+       "01a1a76f-c653-7a4a-84d4-d658988f1817",
+       "01a1a76f-c654-7b53-b5ca-8542d0f7c9ca",
+       "01a1a76f-c654-7ce4-80c0-1da6428c3dae"
+      ],
+      "spans": 12,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a76f-69e4-7514-b592-8f9f3ea093c1"
+     },
+     "E19": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 3,
+      "span_ids": [
+       "01a1a76f-c706-7854-97b5-e32b1abd1c2b",
+       "01a1a76f-c707-7222-b7e7-63f7c1bb4961",
+       "01a1a76f-f2a0-73e5-aa35-5f248c47eb48"
+      ],
+      "spans": 3,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a76f-c706-70f5-8cd1-47152266139e"
+     },
+     "E20": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 9,
+      "span_ids": [
+       "01a1a76f-f369-7cba-83b5-e4fe31b5fea7",
+       "01a1a76f-f36a-7d96-b269-75353a93b5ed",
+       "01a1a770-3188-7138-bb67-49ed6b7f102d",
+       "01a1a770-3188-7e83-82ee-b6a511e4e8f4",
+       "01a1a770-3188-7f0b-8741-9876b04b6e30",
+       "01a1a770-3189-75ee-b6d5-09f1f873b698",
+       "01a1a770-318a-7757-878b-118ca12015e2",
+       "01a1a770-31a5-7c58-ad3a-317ecded938b",
+       "01a1a770-31a6-77c6-90d3-cb31bb6d64a2"
+      ],
+      "spans": 9,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a76f-f369-7833-a0b3-ea9b12f37707"
+     },
+     "E21": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 3,
+      "span_ids": [
+       "01a1a770-3262-7e1f-b79a-cdd908bcd82b",
+       "01a1a770-3264-79ee-ba8d-1d29bc280720",
+       "01a1a770-6d85-785f-b522-7d655aa732c5"
+      ],
+      "spans": 3,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a770-3262-7a3b-b518-5f07a4317d0a"
+     },
+     "E22": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 9,
+      "span_ids": [
+       "01a1a770-6e4e-7ade-81ce-8fba90e87578",
+       "01a1a770-6e4f-7a55-b69d-8f65b842cdb1",
+       "01a1a770-98af-790f-a5ce-d33fbf5ef636",
+       "01a1a770-98af-7af2-bea6-bc7c270c0dcb",
+       "01a1a770-98af-7cea-b0fb-790b7a984cf9",
+       "01a1a770-98b1-7db2-a275-85c23b43cbd4",
+       "01a1a770-98b2-7d1d-a508-fc52de9b95f3",
+       "01a1a770-98b4-7858-85f8-05d475eae247",
+       "01a1a770-98b4-7bd6-95ac-9ad6c1046f78"
+      ],
+      "spans": 9,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a770-6e4e-7fb9-b1b1-791fb61c13d7"
+     },
+     "E27": {
+      "llm_spans": 1,
+      "matches_phase2_table": true,
+      "sealed_records": 3,
+      "span_ids": [
+       "01a1a770-9a63-7599-813d-38e67a0dfa8d",
+       "01a1a770-9a65-72e1-97e5-81c8458e1c42",
+       "01a1a770-c4d6-7de4-89cc-2838ebb8f65e"
+      ],
+      "spans": 3,
+      "trace_file_sha256_matches": true,
+      "trace_id": "01a1a770-9a63-7a14-8048-ce0dc1ab9488"
+     }
+    },
+    "passed": true
+   },
+   "destination": {
+    "detail": "opik:joowww/tfg-multiagent-benchmarks",
+    "passed": true
+   },
+   "e07_excluded": {
+    "detail": "no E07 trace or span",
+    "passed": true
+   },
+   "egress": {
+    "detail": [],
+    "passed": true
+   },
+   "hashes": {
+    "detail": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "passed": true
+   },
+   "not_in_ledger": {
+    "detail": [
+     "01a1a76e-e360-7b24-9ca0-f4088fe20e36"
+    ],
+    "passed": true
+   },
+   "privacy": {
+    "detail": {
+     "api key value": false,
+     "bearer": false,
+     "email": false,
+     "home dir": false,
+     "local path": false,
+     "loopback host": false,
+     "opik config": false,
+     "private ip": false,
+     "sk- key": false,
+     "ssh/key material": false,
+     "user name": false
+    },
+    "passed": true
+   },
+   "project": {
+    "detail": {
+     "http": 200,
+     "id": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+     "name": "tfg-multiagent-benchmarks"
+    },
+    "passed": true
+   },
+   "seal": {
+    "detail": "pilot SHA256SUMS verified and equal to the sealed digest",
+    "passed": true
+   },
+   "traces_absent_remotely": {
+    "detail": {
+     "E01": 404,
+     "E04": 404,
+     "E11": 404,
+     "E12": 404,
+     "E18": 404,
+     "E19": 404,
+     "E20": 404,
+     "E21": 404,
+     "E22": 404,
+     "E27": 404
+    },
+    "passed": true
+   }
+  },
+  "passed": true
+ },
+ "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+ "send_status": "UNCERTAIN",
+ "status": "UNCERTAIN",
+ "trace_ids": [
+  "01a1a76e-42f9-72ce-8408-9907fcd429f3",
+  "01a1a76e-a08b-722f-8911-a00f50bff938",
+  "01a1a76f-0c63-718d-bd1f-d55a5cb9e22b",
+  "01a1a76f-3630-79b4-9798-92f88ae04807",
+  "01a1a76f-69e4-7514-b592-8f9f3ea093c1",
+  "01a1a76f-c706-70f5-8cd1-47152266139e",
+  "01a1a76f-f369-7833-a0b3-ea9b12f37707",
+  "01a1a770-3262-7a3b-b518-5f07a4317d0a",
+  "01a1a770-6e4e-7fb9-b1b1-791fb61c13d7",
+  "01a1a770-9a63-7a14-8048-ce0dc1ab9488"
+ ],
+ "uncertain_reason": "http_status_400"
+}

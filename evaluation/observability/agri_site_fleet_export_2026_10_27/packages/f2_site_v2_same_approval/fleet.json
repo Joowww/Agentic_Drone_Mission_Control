@@ -1,0 +1,88 @@
+{
+  "schema": "tfg.fleet/1",
+  "fleet_id": "agri_demo_fleet",
+  "version": 1,
+  "provenance": "logical fleet of the repository's SITL profiles plus availability references; no physical identity",
+  "vehicles": [
+    {
+      "vehicle_id": "drone_01",
+      "category": "sitl_multirotor",
+      "vehicle_type": "multirotor",
+      "autopilot": "ArduPilot",
+      "platform": "ArduCopter SITL, Gazebo IRIS model (tfg_demo launch)",
+      "provenance": "SITL",
+      "export_profile": "QGC_PLAN_ARDUCOPTER_V1",
+      "compatibility": "DOCUMENTED_SITL",
+      "sim_binding": "drone_01",
+      "start_zone_id": null,
+      "capabilities": [
+        "GUIDED via AP_DDS (executed in H2)",
+        "mission .plan (documented, not loaded)"
+      ],
+      "limitations": [
+        "no physical airframe bound",
+        "ArduPilot version not recorded in VERSIONS.md"
+      ]
+    },
+    {
+      "vehicle_id": "drone_02",
+      "category": "sitl_multirotor",
+      "vehicle_type": "multirotor",
+      "autopilot": "ArduPilot",
+      "platform": "ArduCopter SITL, Gazebo IRIS model (tfg_demo launch)",
+      "provenance": "SITL",
+      "export_profile": "QGC_PLAN_ARDUCOPTER_V1",
+      "compatibility": "DOCUMENTED_SITL",
+      "sim_binding": "drone_02",
+      "start_zone_id": null,
+      "capabilities": [
+        "GUIDED via AP_DDS (executed in H2)",
+        "mission .plan (documented, not loaded)"
+      ],
+      "limitations": [
+        "no physical airframe bound",
+        "ArduPilot version not recorded in VERSIONS.md"
+      ]
+    },
+    {
+      "vehicle_id": "large_drone_01",
+      "category": "large_drone",
+      "vehicle_type": "unknown",
+      "autopilot": "unknown",
+      "platform": "large drone available at the DroneLab (availability reference only)",
+      "provenance": "AVAILABILITY_REFERENCE",
+      "export_profile": "NONE",
+      "compatibility": "UNRESOLVED_COMPATIBILITY",
+      "limitations": [
+        "firmware, ground station and frame not confirmed: no export assumed"
+      ]
+    },
+    {
+      "vehicle_id": "mini_drone_01",
+      "category": "mini_drone",
+      "vehicle_type": "unknown",
+      "autopilot": "unknown",
+      "platform": "future mini drone (unknown)",
+      "provenance": "SYNTHETIC_PLACEHOLDER",
+      "export_profile": "NONE",
+      "compatibility": "UNRESOLVED_COMPATIBILITY",
+      "limitations": [
+        "platform unknown: ArduPilot/.plan not assumed"
+      ]
+    },
+    {
+      "vehicle_id": "rover_01",
+      "category": "rover",
+      "vehicle_type": "ugv",
+      "autopilot": "ArduPilot",
+      "platform": "ArduRover SITL, Gazebo WILD_THUMPER model (two_drones_rover profile)",
+      "provenance": "SITL",
+      "export_profile": "NONE",
+      "compatibility": "NOT_APPLICABLE",
+      "sim_binding": "rover_01",
+      "limitations": [
+        "no rover exporter; ground execution belongs to the R1 coordinator and its gates"
+      ]
+    }
+  ]
+}

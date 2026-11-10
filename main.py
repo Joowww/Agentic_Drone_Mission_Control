@@ -1,9 +1,7 @@
+import os
+
 from agents.mission_planner import (
     extract_mission_plan_draft,
-)
-from graph.mission_graph import (
-    memory,
-    mission_graph,
 )
 from inputs.json_loader import (
     load_mission_json,
@@ -25,18 +23,39 @@ from planning.mission_plan_service import (
 from sessions.structured_mission_session import (
     run_structured_mission_session,
 )
-
-NATURAL_LANGUAGE_THREAD_ID = (
-    "natural-language-mission-session"
+from tools.agri_scenario_flow import (
+    run_interactive as run_agri_scenario,
 )
 
 
-NATURAL_LANGUAGE_CONFIG = {
-    "configurable": {
-        "thread_id":
-            NATURAL_LANGUAGE_THREAD_ID,
-    }
+# The offline distribution image (deploy/app) sets TFG_PROFILE=offline:
+# no LLM provider, no network and a read-only image without
+# missions/generated. The development menu (any other value) is unchanged.
+OFFLINE_UNAVAILABLE = {
+    "1": "not part of the student distribution; AI planning there is the separate Hermes service",
+    "2": "saves the session under missions/generated, which this read-only offline image does not provide",
+    "3": "not part of the student distribution; AI planning there is the separate Hermes service",
+    "4": "saves the session under missions/generated, which this read-only offline image does not provide",
 }
+
+
+def unavailable_options() -> dict[str, str]:
+    if os.environ.get("TFG_PROFILE") == "offline":
+        return OFFLINE_UNAVAILABLE
+
+    return {}
+
+
+def _menu_line(
+    option: str,
+    label: str,
+) -> str:
+    reason = unavailable_options().get(option)
+
+    if reason is None:
+        return f"{option}. {label}"
+
+    return f"{option}. {label}  [NOT AVAILABLE: {reason}]"
 
 
 def print_main_menu() -> None:
@@ -44,51 +63,64 @@ def print_main_menu() -> None:
         "\nAGENTIC DRONE MISSION CONTROL"
     )
 
+    if unavailable_options():
+        print(
+            "\nOffline distribution profile: scenario, export and comparison"
+            " only. AI planning is the separate Hermes service; the simulator"
+            " is not distributed yet."
+        )
+
     print(
         "\nChoose mission input:"
     )
 
     print(
-        "\n1. Natural language mission"
+        "\n" + _menu_line("1", "Natural language mission")
     )
 
     print(
-        "2. JSON mission"
+        _menu_line("2", "JSON mission")
     )
 
     print(
-        "3. AI Mission Planner"
+        _menu_line("3", "AI Mission Planner")
     )
 
     print(
-        "4. QGroundControl .plan"
+        _menu_line("4", "QGroundControl .plan")
     )
 
     print(
-        "5. Exit"
+        "5. Agricultural scenario (agri_demo_001)"
+    )
+
+    print(
+        "6. Exit"
     )
 
 
 def run_natural_language_mission() -> bool:
-    memory.delete_thread(
-        NATURAL_LANGUAGE_THREAD_ID
-    )
-
     print(
         "\nNATURAL LANGUAGE MISSION"
     )
 
     print(
-        "\nDescribe the drone mission."
+        "\nDescribe the waypoint mission "
+        "you want the system to create."
     )
 
     print(
-        "You can update mission parameters "
-        "in later messages."
+        "The AI extracts mission information, "
+        "but does not decide mission safety."
     )
 
     print(
-        "Write 'reset' to start a new mission."
+        "Missing operational information "
+        "will be requested explicitly."
+    )
+
+    print(
+        "\nWrite 'reset' to start a new mission."
     )
 
     print(
@@ -98,6 +130,8 @@ def run_natural_language_mission() -> bool:
     print(
         "Write 'exit' to close the program."
     )
+
+    draft = MissionPlanDraft()
 
     while True:
         try:
@@ -127,37 +161,69 @@ def run_natural_language_mission() -> bool:
             return True
 
         if command == "reset":
-            memory.delete_thread(
-                NATURAL_LANGUAGE_THREAD_ID
-            )
+            draft = MissionPlanDraft()
 
             print(
-                "\nMission reset."
+                "\nMission draft reset."
             )
 
             continue
 
-        print(
-            "\n[LANGGRAPH] Running "
-            "mission graph..."
-        )
-
         try:
-            final_state = (
-                mission_graph.invoke(
-                    {
-                        "user_input":
-                            user_input,
-                    },
-                    config=(
-                        NATURAL_LANGUAGE_CONFIG
-                    ),
+            new_draft = (
+                extract_mission_plan_draft(
+                    user_input=user_input,
+                    current_draft=draft,
+                )
+            )
+
+            draft = (
+                merge_mission_plan_drafts(
+                    current=draft,
+                    new=new_draft,
                 )
             )
 
         except Exception as error:  # noqa: BLE001
             print(
-                "\n[ERROR]"
+                "\n[NATURAL LANGUAGE ERROR]"
+            )
+
+            print(
+                error
+            )
+
+            continue
+
+        missing = (
+            get_missing_planning_fields(
+                draft
+            )
+        )
+
+        if missing:
+            print(
+                "\n[NATURAL LANGUAGE] "
+                "Additional information required:"
+            )
+
+            for field in missing:
+                print(
+                    f"- {field}"
+                )
+
+            continue
+
+        try:
+            mission = (
+                build_mission_from_draft(
+                    draft
+                )
+            )
+
+        except Exception as error:  # noqa: BLE001
+            print(
+                "\n[MISSION PLAN REJECTED]"
             )
 
             print(
@@ -167,13 +233,35 @@ def run_natural_language_mission() -> bool:
             continue
 
         print(
-            "\nAGENT:"
+            "\n[NATURAL LANGUAGE] "
+            "MissionDefinition created."
         )
 
         print(
-            final_state[
-                "final_report"
-            ]
+            f"Mission ID: "
+            f"{mission.mission_id}"
+        )
+
+        print(
+            f"Mission name: "
+            f"{mission.name}"
+        )
+
+        print(
+            f"Waypoints: "
+            f"{len(mission.route.waypoints)}"
+        )
+
+        print(
+            "\n[NATURAL LANGUAGE] "
+            "Starting deterministic "
+            "mission validation..."
+        )
+
+        return (
+            run_structured_mission_session(
+                mission
+            )
         )
 
 
@@ -529,42 +617,73 @@ def main() -> None:
         ):
             break
 
-        if option == "1":
-            keep_running = (
-                run_natural_language_mission()
-            )
-
-        elif option == "2":
-            keep_running = (
-                run_json_mission()
-            )
-
-        elif option == "3":
-            keep_running = (
-                run_ai_mission_planner()
-            )
-
-        elif option == "4":
-            keep_running = (
-                run_qgroundcontrol_mission()
-            )
-
-        elif option == "5":
-            break
-
-        else:
+        if option in unavailable_options():
             print(
-                "\nInvalid option."
+                f"\nOption {option} is not available here: "
+                f"{unavailable_options()[option]}."
             )
 
             continue
 
-        if not keep_running:
+        if option == "1":
+            continue_program = (
+                run_natural_language_mission()
+            )
+
+            if not continue_program:
+                break
+
+            continue
+
+        if option == "2":
+            continue_program = (
+                run_json_mission()
+            )
+
+            if not continue_program:
+                break
+
+            continue
+
+        if option == "3":
+            continue_program = (
+                run_ai_mission_planner()
+            )
+
+            if not continue_program:
+                break
+
+            continue
+
+        if option == "4":
+            continue_program = (
+                run_qgroundcontrol_mission()
+            )
+
+            if not continue_program:
+                break
+
+            continue
+
+        if option == "5":
+            continue_program = (
+                run_agri_scenario()
+            )
+
+            if not continue_program:
+                break
+
+            continue
+
+        if option == "6":
             break
 
+        print(
+            "\nInvalid option."
+        )
+
     print(
-        "\nClosing Agentic Drone "
-        "Mission Control..."
+        "\nClosing Agentic Drone Mission Control..."
     )
 
 

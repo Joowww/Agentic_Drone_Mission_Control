@@ -1,0 +1,31 @@
+{
+  "schema": "tfg.qgc-plan-comparison/1",
+  "original_sha256": "692c8075133ef62bdb4a051892387ce62213fb2c8ae3a905904d2f157d142c8d",
+  "saved_sha256": "99c9ed2baa63bbd227bd122017f6ba00bfc7b0b0ba3596744de34133adb0a276",
+  "verdict_scope": "comparison of two files only; not a QGroundControl or vehicle compatibility verdict",
+  "status": "SEMANTIC_DIFFERENCES",
+  "differences": [
+    {
+      "category": "SEMANTIC_CHANGE",
+      "path": "/mission/items/2/params/6",
+      "original": 5.0,
+      "saved": 15.0,
+      "detail": "NAV_WAYPOINT param7 (altitude): value changed (Δ=10)"
+    },
+    {
+      "category": "UNDETERMINED",
+      "path": "/mission/items/2/Altitude",
+      "original": null,
+      "saved": 5.0,
+      "detail": "QGC Altitude disagrees with param7"
+    }
+  ],
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 1,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 1
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tfg.rover.mavlink-parameter-capture/2",
+  "title": "Read-only MAVLink parameter capture with process provenance",
+  "type": "object",
+  "required": ["schema", "status", "reason", "rejection_reasons", "source_association", "host_boot_id", "lifecycle_id", "target_process", "connection_identity", "firmware_sha256", "target_system", "target_component", "values", "responses", "sequence_integrity", "late_message_check", "live_read", "movement_authorized", "capture_complete"],
+  "properties": {
+    "schema": {"const": "tfg.rover.mavlink-parameter-capture/2"},
+    "status": {"enum": ["COMPLETE", "INCOMPLETE"]},
+    "reason": {"type": ["string", "null"]},
+    "rejection_reasons": {"type": "array", "items": {"type": "string"}},
+    "source_association": {"enum": ["UNVERIFIED", "SOCKET_OWNER_AND_MAVLINK_TARGET_CORRELATED"]},
+    "host_boot_id": {"type": ["string", "null"]},
+    "lifecycle_id": {"type": ["string", "null"]},
+    "target_process": {"type": ["object", "null"]},
+    "connection_identity": {"type": ["object", "null"]},
+    "firmware_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "target_system": {"type": ["integer", "null"], "minimum": 1, "maximum": 255},
+    "target_component": {"type": ["integer", "null"], "minimum": 1, "maximum": 255},
+    "values": {"type": "object", "additionalProperties": {"type": "number"}},
+    "responses": {"type": "array", "items": {"type": "object", "required": ["name", "status"], "properties": {"name": {"type": "string"}, "status": {"enum": ["OBSERVED", "MISSING"]}, "value": {"type": "number"}, "packet_sequence": {"type": "integer", "minimum": 0, "maximum": 255}, "received_monotonic_s": {"type": "number"}}}},
+    "sequence_integrity": {"type": "string"},
+    "late_message_check": {"type": "string"},
+    "live_read": {"const": null},
+    "parameter_writes": {"const": 0},
+    "control_messages_sent": {"const": 0},
+    "movement_authorized": {"const": false},
+    "capture_complete": {"type": "boolean"}
+  }
+}

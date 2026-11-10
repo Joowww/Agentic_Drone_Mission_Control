@@ -1,0 +1,171 @@
+{
+  "schema": "tfg.site/1",
+  "site_id": "dronelab",
+  "version": 1,
+  "name": "PLANTILLA DroneLab - PENDIENTE DE MEDICIÓN (no apta para vuelo)",
+  "status": "TEMPLATE_PENDING_MEASUREMENT",
+  "provenance": {
+    "kind": "TEMPLATE",
+    "source": null,
+    "measured_by": null,
+    "measured_on": null,
+    "method": null,
+    "notes": "Fill from measurements; see docs/site-fleet-export.md. Do not copy values from the synthetic site."
+  },
+  "units": {
+    "length": "m",
+    "angle": "deg"
+  },
+  "local_frame": {
+    "frame_id": "dronelab_local",
+    "convention": "ENU_ROTATED",
+    "origin_point_id": "ORIGIN",
+    "y_axis_bearing_deg": null,
+    "orientation_verification": "PENDING_MEASUREMENT",
+    "orientation_source": null
+  },
+  "geo_reference": {
+    "latitude": null,
+    "longitude": null,
+    "horizontal_datum": "WGS84",
+    "source": null,
+    "uncertainty_m": null,
+    "verification": "PENDING_MEASUREMENT"
+  },
+  "vertical_reference": {
+    "origin_ground_amsl_m": null,
+    "vertical_datum": null,
+    "terrain": "UNKNOWN",
+    "source": null,
+    "uncertainty_m": null,
+    "verification": "PENDING_MEASUREMENT"
+  },
+  "vertical_limits": {
+    "max_altitude_m": null,
+    "reference": "above_site_origin_ground",
+    "source": null
+  },
+  "operation_perimeter": {
+    "zone_id": "PERIMETER",
+    "polygon": null,
+    "verification": "PENDING_MEASUREMENT",
+    "uncertainty_m": null,
+    "description": "operation perimeter: one vertex per corner, in order"
+  },
+  "exclusions": [
+    {
+      "zone_id": "EXCLUSION_1",
+      "polygon": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "each obstacle/no-fly area as its own polygon",
+      "kind": "obstacle",
+      "applies_to": [
+        "air",
+        "ground"
+      ]
+    }
+  ],
+  "takeoff_landing_zones": [
+    {
+      "zone_id": "PAD_1",
+      "polygon": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "allowed takeoff/landing area"
+    }
+  ],
+  "rover_start_zones": [
+    {
+      "zone_id": "ROVER_BAY",
+      "polygon": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "allowed rover start area"
+    }
+  ],
+  "rover_drivable_area": {
+    "zone_id": "DRIVABLE",
+    "polygon": null,
+    "verification": "PENDING_MEASUREMENT",
+    "uncertainty_m": null,
+    "description": "area the rover may drive (not the aerial perimeter)"
+  },
+  "points": [
+    {
+      "point_id": "ORIGIN",
+      "kind": "reference",
+      "x_m": null,
+      "y_m": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "local origin: a marked, re-findable point"
+    },
+    {
+      "point_id": "TAKEOFF_A",
+      "kind": "planned_takeoff",
+      "x_m": null,
+      "y_m": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "planned takeoff",
+      "zone_id": "PAD_1"
+    },
+    {
+      "point_id": "TAKEOFF_B",
+      "kind": "planned_takeoff",
+      "x_m": null,
+      "y_m": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "planned takeoff",
+      "zone_id": "PAD_1"
+    },
+    {
+      "point_id": "ROVER_START",
+      "kind": "rover_start",
+      "x_m": null,
+      "y_m": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "rover start",
+      "zone_id": "ROVER_BAY"
+    },
+    {
+      "point_id": "POI_1",
+      "kind": "poi",
+      "x_m": null,
+      "y_m": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "point of interest"
+    },
+    {
+      "point_id": "POI_2",
+      "kind": "poi",
+      "x_m": null,
+      "y_m": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "point of interest"
+    },
+    {
+      "point_id": "POI_3",
+      "kind": "poi",
+      "x_m": null,
+      "y_m": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "point of interest"
+    },
+    {
+      "point_id": "POI_4",
+      "kind": "poi",
+      "x_m": null,
+      "y_m": null,
+      "verification": "PENDING_MEASUREMENT",
+      "uncertainty_m": null,
+      "description": "point of interest"
+    }
+  ]
+}

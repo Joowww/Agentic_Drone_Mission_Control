@@ -1,0 +1,324 @@
+{
+  "correlation_with_native": null,
+  "limits": [
+    "covers Hermes' main turn only; auxiliary title generation is not captured",
+    "token counters are Hermes-normalized; zeros may be unconfirmed",
+    "first_chunk_offset_s is not a verified TTFT",
+    "billed cost unknown; no cost is computed",
+    "one capture is not a representative sample"
+  ],
+  "mcp_tool_trial": {
+    "api_requests_with_offer_record": 6,
+    "executed": "EXECUTED_NO_ERROR_DETECTED_BY_HERMES",
+    "final_response": "NOT_EVALUATED_ANSWER_JUDGED_BY_ACCEPT_H3",
+    "limits": [
+      "offered = tool names in each request body (pre_api_request), not a provider-side check",
+      "status 'ok' means Hermes detected no error in a result, not that a mission is valid",
+      "acceptance = bind-h1 (missions) or accept-h3 (scenario answer) on this session's data"
+    ],
+    "llm_calls": 1,
+    "llm_errors": 4,
+    "offered": "ONLY_TRIAL_TOOL_OFFERED",
+    "requested": "TRIAL_TOOL_REQUESTED",
+    "requested_tool_names": [
+      "mcp__tfg_mission_control__get_scenario_view"
+    ],
+    "result_check": "NOT_APPLICABLE",
+    "tool_calls": [
+      {
+        "duration_ms_measured": 79,
+        "error_type": null,
+        "status": "ok",
+        "tool_name": "mcp__tfg_mission_control__get_scenario_view"
+      }
+    ],
+    "trial_case": "agri-scenario-pilot-real",
+    "verdict": "QUERY_CALLS_NOT_AS_EXPECTED"
+  },
+  "provenance_check": {
+    "files": [
+      {
+        "file": "hermes-events-2026-10-24.jsonl",
+        "problems": [],
+        "records": 1
+      }
+    ],
+    "ok": true
+  },
+  "summary": {
+    "comparative": {
+      "data_kinds": {
+        "captured_hermes_metadata": 6
+      },
+      "groups": [
+        {
+          "case_id": "mcp-agri-scenario-pilot-real",
+          "cost": {
+            "computed": false,
+            "reason": "no declared tariffs"
+          },
+          "experiment": "pilot-real-r02",
+          "failures": {
+            "calls_sharing_api_request_with_an_error": 1,
+            "error_types": {
+              "APIConnectionError": 1,
+              "RateLimitError": 3
+            },
+            "llm_error_count": 4,
+            "status_codes": {
+              "429": 3,
+              "None": 1
+            }
+          },
+          "first_chunk_offset_s": {
+            "caveat": "equals time-to-first-chunk only when the call had no retry",
+            "stats": {
+              "max": 284.88163352012634,
+              "mean": 284.88163352012634,
+              "median": 284.88163352012634,
+              "min": 284.88163352012634,
+              "n": 1,
+              "sum": 284.88163352012634
+            }
+          },
+          "latency_s": {
+            "basis": "hermes_hook_wall_clock",
+            "excluded": {},
+            "scope": "api_call_from_first_attempt (includes retries)",
+            "stats": {
+              "max": 285.52727246284485,
+              "mean": 285.52727246284485,
+              "median": 285.52727246284485,
+              "min": 285.52727246284485,
+              "n": 1,
+              "sum": 285.52727246284485
+            }
+          },
+          "model": "nous/poolside/laguna-s-2.1:free",
+          "sample_size": {
+            "calls_with_measured_latency": 1,
+            "calls_with_usage": 1,
+            "calls_without_measured_latency": 0,
+            "calls_without_usage": 0,
+            "llm_calls": 1,
+            "llm_errors": 4
+          },
+          "tokens": {
+            "derived_sums_not_additive_with_counters": {
+              "prompt_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "derived_sum_computed_by_hermes",
+                "nonzero_values": {
+                  "max": 2691,
+                  "mean": 2691.0,
+                  "median": 2691,
+                  "min": 2691,
+                  "n": 1,
+                  "sum": 2691
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 2691,
+                  "mean": 2691.0,
+                  "median": 2691,
+                  "min": 2691,
+                  "n": 1,
+                  "sum": 2691
+                },
+                "status_counts": {
+                  "derived_nonzero": 1
+                }
+              },
+              "total_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "derived_sum_computed_by_hermes",
+                "nonzero_values": {
+                  "max": 2759,
+                  "mean": 2759.0,
+                  "median": 2759,
+                  "min": 2759,
+                  "n": 1,
+                  "sum": 2759
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 2759,
+                  "mean": 2759.0,
+                  "median": 2759,
+                  "min": 2759,
+                  "n": 1,
+                  "sum": 2759
+                },
+                "status_counts": {
+                  "derived_nonzero": 1
+                }
+              }
+            },
+            "normalized_counters": {
+              "cache_read_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 672,
+                  "mean": 672.0,
+                  "median": 672,
+                  "min": 672,
+                  "n": 1,
+                  "sum": 672
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 672,
+                  "mean": 672.0,
+                  "median": 672,
+                  "min": 672,
+                  "n": 1,
+                  "sum": 672
+                },
+                "status_counts": {
+                  "nonzero_normalized": 1
+                }
+              },
+              "cache_write_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": null,
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 0,
+                  "mean": 0.0,
+                  "median": 0,
+                  "min": 0,
+                  "n": 1,
+                  "sum": 0
+                },
+                "status_counts": {
+                  "zero_unconfirmed": 1
+                }
+              },
+              "input_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 2019,
+                  "mean": 2019.0,
+                  "median": 2019,
+                  "min": 2019,
+                  "n": 1,
+                  "sum": 2019
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 2019,
+                  "mean": 2019.0,
+                  "median": 2019,
+                  "min": 2019,
+                  "n": 1,
+                  "sum": 2019
+                },
+                "status_counts": {
+                  "nonzero_normalized": 1
+                }
+              },
+              "output_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 68,
+                  "mean": 68.0,
+                  "median": 68,
+                  "min": 68,
+                  "n": 1,
+                  "sum": 68
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 68,
+                  "mean": 68.0,
+                  "median": 68,
+                  "min": 68,
+                  "n": 1,
+                  "sum": 68
+                },
+                "status_counts": {
+                  "nonzero_normalized": 1
+                }
+              },
+              "reasoning_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": null,
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 0,
+                  "mean": 0.0,
+                  "median": 0,
+                  "min": 0,
+                  "n": 1,
+                  "sum": 0
+                },
+                "status_counts": {
+                  "zero_unconfirmed": 1
+                }
+              }
+            },
+            "semantics": "Hermes-normalised summaries, not raw provider usage"
+          }
+        }
+      ],
+      "tools": [
+        {
+          "case_id": "mcp-agri-scenario-pilot-real",
+          "duration_source_counts": {
+            "hermes_reported_ms": 1
+          },
+          "experiment": "pilot-real-r02",
+          "measured_duration_ms": {
+            "max": 79,
+            "mean": 79.0,
+            "median": 79,
+            "min": 79,
+            "n": 1,
+            "sum": 79
+          },
+          "note": "only duration_source=hermes_reported_ms counts as measured; 0 and timeout values are not",
+          "status_counts": {
+            "ok": 1
+          },
+          "tool_calls": 1
+        }
+      ]
+    },
+    "comparative_kinds": [
+      "captured_hermes_metadata"
+    ],
+    "events_read": 6,
+    "excluded_from_comparison": {},
+    "summary_version": "1"
+  },
+  "tool_offers": {
+    "offered_tool_names": [
+      [
+        "mcp__tfg_mission_control__get_scenario_view"
+      ],
+      [
+        "mcp__tfg_mission_control__get_scenario_view"
+      ],
+      [
+        "mcp__tfg_mission_control__get_scenario_view"
+      ],
+      [
+        "mcp__tfg_mission_control__get_scenario_view"
+      ],
+      [
+        "mcp__tfg_mission_control__get_scenario_view"
+      ],
+      [
+        "mcp__tfg_mission_control__get_scenario_view"
+      ]
+    ],
+    "records": 6,
+    "tool_count": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "utility_version": "1"
+}

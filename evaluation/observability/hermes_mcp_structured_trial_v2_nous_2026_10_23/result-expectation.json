@@ -1,0 +1,132 @@
+{
+  "arguments": [
+    {
+      "expected": "d4519cab-ebd1-4359-b547-44be38294a6a",
+      "key": "run_id"
+    },
+    {
+      "expected": "external",
+      "key": "view"
+    }
+  ],
+  "checks": [
+    {
+      "expected": "external",
+      "pointer": "/view"
+    },
+    {
+      "expected": 2,
+      "pointer": "/external_schema_version"
+    },
+    {
+      "expected": "KNOWN_WITH_WARNINGS",
+      "pointer": "/status"
+    },
+    {
+      "expected": "UNKNOWN_NOT_CHECKED",
+      "pointer": "/readiness_now"
+    },
+    {
+      "expected": "d4519cab-ebd1-4359-b547-44be38294a6a",
+      "pointer": "/queried/run_id"
+    },
+    {
+      "absent": true,
+      "pointer": "/rejected_fields/0"
+    },
+    {
+      "absent": true,
+      "pointer": "/preflights/1"
+    },
+    {
+      "expected": "d4519cab-ebd1-4359-b547-44be38294a6a",
+      "pointer": "/preflights/0/identity/run_id"
+    },
+    {
+      "expected": "prueba_hermes_001",
+      "pointer": "/preflights/0/identity/mission_id"
+    },
+    {
+      "expected": "drone_01",
+      "pointer": "/preflights/0/identity/vehicle_id"
+    },
+    {
+      "expected": "v1",
+      "pointer": "/preflights/0/identity/simulated_vehicle"
+    },
+    {
+      "expected": "FAILED",
+      "pointer": "/preflights/0/record/result_status"
+    },
+    {
+      "expected": "analyze",
+      "pointer": "/preflights/0/record/report_stage"
+    },
+    {
+      "expected": true,
+      "pointer": "/preflights/0/record/execution_attempted"
+    },
+    {
+      "expected": "WP1",
+      "pointer": "/preflights/0/plan/planned_waypoint_ids/0"
+    },
+    {
+      "expected": "WP2",
+      "pointer": "/preflights/0/plan/planned_waypoint_ids/1"
+    },
+    {
+      "expected": "WP3",
+      "pointer": "/preflights/0/plan/planned_waypoint_ids/2"
+    },
+    {
+      "absent": true,
+      "pointer": "/preflights/0/plan/planned_waypoint_ids/3"
+    },
+    {
+      "expected": "FAILED",
+      "pointer": "/preflights/0/executor_facts/status"
+    },
+    {
+      "expected": "WP1",
+      "pointer": "/preflights/0/executor_facts/reached_waypoint_ids/0"
+    },
+    {
+      "expected": "WP2",
+      "pointer": "/preflights/0/executor_facts/reached_waypoint_ids/1"
+    },
+    {
+      "absent": true,
+      "pointer": "/preflights/0/executor_facts/reached_waypoint_ids/2"
+    },
+    {
+      "expected": null,
+      "pointer": "/preflights/0/executor_facts/waypoints_completed"
+    },
+    {
+      "expected": null,
+      "pointer": "/preflights/0/executor_facts/return_to_home"
+    },
+    {
+      "expected": 0,
+      "pointer": "/preflights/0/executor_facts/mission_landing_event_count"
+    },
+    {
+      "expected": false,
+      "pointer": "/preflights/0/acceptance_criteria/passed"
+    },
+    {
+      "expected": false,
+      "pointer": "/preflights/0/acceptance_criteria/checks/return_home_reached"
+    },
+    {
+      "expected": true,
+      "pointer": "/preflights/0/recovery_after_failure/landing_completed"
+    },
+    {
+      "expected": true,
+      "pointer": "/preflights/0/recovery_after_failure/landed"
+    }
+  ],
+  "schema": "tfg.hermes.tool-result-expectation/1",
+  "tool_name": "mcp__tfg_mission_control__get_mission_state"
+}

@@ -1,0 +1,62 @@
+{
+ "schema": "tfg.multiagent.agents-pilot-analysis/1",
+ "source": "sealed run, no new call",
+ "roles": {
+  "M1-supervisor-qwen-pilot": {
+   "case_pass": [
+    1,
+    1
+   ],
+   "agent_success": 1,
+   "safety_ok": [
+    1,
+    2
+   ],
+   "failure_kinds": {
+    "D01": "MODEL",
+    "D04": "MODEL",
+    "D06": null
+   },
+   "n": 3
+  },
+  "M2-drone-qwen-pilot": {
+   "case_pass": [
+    3,
+    3
+   ],
+   "agent_success": 1,
+   "safety_ok": [
+    3,
+    3
+   ],
+   "failure_kinds": {
+    "D01": null,
+    "D05": "MODEL",
+    "D13": "MODEL"
+   },
+   "n": 3
+  },
+  "M3-rover-qwen-pilot": {
+   "case_pass": [
+    0,
+    3
+   ],
+   "agent_success": 0,
+   "safety_ok": [
+    3,
+    3
+   ],
+   "failure_kinds": {
+    "D11": "MODEL",
+    "D12": "MODEL",
+    "D14": "MODEL"
+   },
+   "n": 3
+  }
+ },
+ "contributing_design_defects": [
+  "validate_route/plan_preview take point ids while check_separation takes objective ids",
+  "rover_capabilities localization note read as a planning blocker",
+  "single-shot: the agent cannot use its own verification results"
+ ]
+}

@@ -1,0 +1,17 @@
+ Container tfg-dist-app-run-86691f03e036 Creating 
+ Container tfg-dist-app-run-86691f03e036 Created 
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/opt/tfg/tools/agri_scenario_flow.py", line 583, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/opt/tfg/tools/agri_scenario_flow.py", line 565, in main
+    final = run_demo(args.variant, args.out, resume=args.resume, emit=emit)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/tfg/tools/agri_scenario_flow.py", line 387, in run_demo
+    out_dir.mkdir(parents=True, exist_ok=resume)
+  File "/usr/lib/python3.12/pathlib.py", line 1313, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [Errno 13] Permission denied: '/work/demo'
+

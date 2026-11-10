@@ -1,0 +1,404 @@
+[
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "coordinator": true,
+   "demo": true,
+   "handoff": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "EXECUTION_BLOCKED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "red_target",
+  "detections": 1,
+  "expected": {
+   "coordinator": "EXECUTION_BLOCKED",
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED"
+  },
+  "ground_final": "READY_FOR_AUTHORIZATION",
+  "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+  "handoff_first_block": "executor_admit: ['OPERATIONAL_ROVER_POLICY_DISABLED']",
+  "scenario": "red_card",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "coordinator": true,
+   "demo": true,
+   "handoff": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "EXECUTION_BLOCKED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "yellow_target",
+  "detections": 1,
+  "expected": {
+   "coordinator": "EXECUTION_BLOCKED",
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED"
+  },
+  "ground_final": "READY_FOR_AUTHORIZATION",
+  "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+  "handoff_first_block": "executor_admit: ['OPERATIONAL_ROVER_POLICY_DISABLED']",
+  "scenario": "yellow_card",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "coordinator": true,
+   "demo": true,
+   "detections": true,
+   "handoff": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "EXECUTION_BLOCKED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "battery-only spec",
+  "detections": 2,
+  "expected": {
+   "coordinator": "EXECUTION_BLOCKED",
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "detections": 2,
+   "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED"
+  },
+  "ground_final": "READY_FOR_AUTHORIZATION",
+  "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+  "handoff_first_block": "executor_admit: ['OPERATIONAL_ROVER_POLICY_DISABLED']",
+  "scenario": "two_cards",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "demo": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AWAITING_DETECTION",
+  "demo_classification": "NO_DETECTION_ROVER_KEEPS_WAITING",
+  "demo_scenario": "no_target",
+  "detections": 0,
+  "expected": {
+   "demo": "NO_DETECTION_ROVER_KEEPS_WAITING"
+  },
+  "handoff": null,
+  "scenario": "no_detection",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "demo": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AWAITING_DETECTION",
+  "demo_classification": "DETECTION_AMBIGUOUS_ROVER_KEEPS_WAITING",
+  "demo_scenario": "ambiguous_detection",
+  "detections": 0,
+  "expected": {
+   "demo": "DETECTION_AMBIGUOUS_ROVER_KEEPS_WAITING"
+  },
+  "handoff": null,
+  "scenario": "ambiguous_detection",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "demo": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AWAITING_DETECTION",
+  "demo_classification": "TARGET_NOT_GEOREFERENCED",
+  "demo_scenario": "missing_depth",
+  "detections": 1,
+  "expected": {
+   "demo": "TARGET_NOT_GEOREFERENCED"
+  },
+  "handoff": null,
+  "scenario": "missing_depth",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "demo": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AWAITING_DETECTION",
+  "demo_classification": "TARGET_NOT_GEOREFERENCED",
+  "demo_scenario": "missing_camera_pose",
+  "detections": 1,
+  "expected": {
+   "demo": "TARGET_NOT_GEOREFERENCED"
+  },
+  "handoff": null,
+  "scenario": "missing_pose",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "coordinator": true,
+   "demo": true,
+   "ground": true,
+   "handoff": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AUTHORIZATION_REQUESTED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "red_target",
+  "detections": 1,
+  "expected": {
+   "coordinator": "AUTHORIZATION_REQUESTED",
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "ground": "WAITING_FOR_ROVER_LOCALIZATION",
+   "handoff": "BLOCKED_BEFORE_SUBMISSION"
+  },
+  "ground_final": "WAITING_FOR_ROVER_LOCALIZATION",
+  "handoff": "BLOCKED_BEFORE_SUBMISSION",
+  "handoff_first_block": "frames: ['ROVER_LOCALIZATION_NOT_ACCREDITED']",
+  "scenario": "rover_without_localization",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "coordinator": true,
+   "demo": true,
+   "handoff": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AUTHORIZATION_REQUESTED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "red_target",
+  "detections": 1,
+  "expected": {
+   "coordinator": "AUTHORIZATION_REQUESTED",
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "handoff": "BLOCKED_BEFORE_SUBMISSION"
+  },
+  "ground_final": "WAITING_FOR_ROVER_LOCALIZATION",
+  "handoff": "BLOCKED_BEFORE_SUBMISSION",
+  "handoff_first_block": "frames: ['CHAIN_NOT_USABLE: synthetic_orchard_local<-odom: EXPIRED_OR_NOT_YET_VALID']",
+  "scenario": "wrong_transform",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "demo": true,
+   "no_command": true,
+   "separation": true
+  },
+  "commands": 0,
+  "coordinator_final": "AUTHORIZATION_REQUESTED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "red_target",
+  "detections": 1,
+  "expected": {
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "separation": "DECONFLICTED_BY_START_DELAY"
+  },
+  "handoff": null,
+  "scenario": "separation_conflict_resolved_by_delay",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "demo": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AWAITING_DETECTION",
+  "demo_classification": "OBSERVATION_REFUSED",
+  "demo_scenario": "stale_observation",
+  "detections": 1,
+  "expected": {
+   "demo": "OBSERVATION_REFUSED"
+  },
+  "handoff": null,
+  "scenario": "stale_observation",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "demo": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AUTHORIZATION_REQUESTED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "duplicate_observation",
+  "detections": 1,
+  "expected": {
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION"
+  },
+  "handoff": null,
+  "scenario": "duplicate_target",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "demo": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AWAITING_DETECTION",
+  "demo_classification": "DEPENDENCY_IMPOSSIBLE",
+  "demo_scenario": "impossible_dependency",
+  "detections": 1,
+  "expected": {
+   "demo": "DEPENDENCY_IMPOSSIBLE"
+  },
+  "handoff": null,
+  "scenario": "aerial_dependency_failed",
+  "separation": "NOT_APPLICABLE"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "coordinator": true,
+   "demo": true,
+   "handoff": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AUTHORIZATION_REQUESTED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "red_target",
+  "detections": 1,
+  "expected": {
+   "coordinator": "AUTHORIZATION_REQUESTED",
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "handoff": "BLOCKED_BEFORE_SUBMISSION"
+  },
+  "ground_final": "READY_FOR_AUTHORIZATION",
+  "handoff": "BLOCKED_BEFORE_SUBMISSION",
+  "handoff_first_block": "authorization: ['NO_HUMAN_AUTHORIZATION_RECORD']",
+  "scenario": "no_authorization",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "coordinator": true,
+   "demo": true,
+   "handoff": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "AUTHORIZATION_REQUESTED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "red_target",
+  "detections": 1,
+  "expected": {
+   "coordinator": "AUTHORIZATION_REQUESTED",
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "handoff": "BLOCKED_BEFORE_SUBMISSION"
+  },
+  "ground_final": "READY_FOR_AUTHORIZATION",
+  "handoff": "BLOCKED_BEFORE_SUBMISSION",
+  "handoff_first_block": "authorization: ['OUTSIDE_VALIDITY_WINDOW']",
+  "scenario": "expired_plan",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "coordinator": true,
+   "demo": true,
+   "handoff": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "EXECUTION_BLOCKED",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "red_target",
+  "detections": 1,
+  "expected": {
+   "coordinator": "EXECUTION_BLOCKED",
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED"
+  },
+  "ground_final": "READY_FOR_AUTHORIZATION",
+  "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+  "handoff_first_block": "executor_admit: ['OPERATIONAL_ROVER_POLICY_DISABLED']",
+  "scenario": "executor_refuses",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "coordinator": true,
+   "demo": true,
+   "handoff": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "UNKNOWN",
+  "demo_classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+  "demo_scenario": "red_target",
+  "detections": 1,
+  "expected": {
+   "coordinator": "UNKNOWN",
+   "demo": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED"
+  },
+  "ground_final": "READY_FOR_AUTHORIZATION",
+  "handoff": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+  "handoff_first_block": "executor_admit: ['OPERATIONAL_ROVER_POLICY_DISABLED']",
+  "scenario": "uncertain_stop",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ },
+ {
+  "agents": "DETERMINISTIC_AGENT (scripted doubles through the real contracts; NOT Qwen)",
+  "as_expected": true,
+  "checks": {
+   "demo": true,
+   "no_command": true
+  },
+  "commands": 0,
+  "coordinator_final": "CANCELLED",
+  "demo_classification": "MISSION_CANCELLED",
+  "demo_scenario": "mission_cancelled",
+  "detections": 1,
+  "expected": {
+   "demo": "MISSION_CANCELLED"
+  },
+  "handoff": null,
+  "scenario": "mission_cancelled",
+  "separation": "DECONFLICTED_BY_START_DELAY"
+ }
+]

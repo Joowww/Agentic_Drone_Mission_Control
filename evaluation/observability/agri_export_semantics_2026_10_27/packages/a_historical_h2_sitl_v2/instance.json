@@ -1,0 +1,232 @@
+{
+  "aerial": [
+    {
+      "blocks": [],
+      "consistency_with_h2": [
+        {
+          "recomputed_error_m": 0.17,
+          "recorded_horizontal_error_m": 0.17,
+          "waypoint_id": "WP1"
+        },
+        {
+          "recomputed_error_m": 0.207,
+          "recorded_horizontal_error_m": 0.207,
+          "waypoint_id": "WP2"
+        }
+      ],
+      "derivation": {
+        "launch_position_source": "child_1_2f7db1f6/report.json executor_result.launch_position (observed, float32, historical session)",
+        "method": "tools.simulation_mission_mapper.map_mission_route_to_simulation (the executor's own mapping): offsets from the mission home placed on the launch position"
+      },
+      "deterministic_validation": {
+        "errors": [],
+        "execution_status": "APPROVED",
+        "failure_reasons": [],
+        "mission_status": "FEASIBLE",
+        "sitl_executor_compatibility_errors": []
+      },
+      "mission_id": "agri_demo_001_h1_sector_a_h2_sitl_rebased",
+      "mission_sha256": "56ef6d4da7e638de93d55fa847a66c6d39e4786d995d5ad9c8c8dc52d9dfc77f",
+      "planned_home": {
+        "amsl_m": 584.1900024414062,
+        "amsl_source": "observed launch altitude in H2 (float32); not the effective home",
+        "latitude": -35.36326217651367,
+        "longitude": 149.1652069091797,
+        "return_coordinate_is_observed_launch": true
+      },
+      "references": {
+        "declared_home_in_mission": {
+          "altitude_m": 0.0,
+          "latitude": 41.275,
+          "longitude": 1.987
+        },
+        "effective_home": "NOT_RECORDED (set by ArduPilot at arming)",
+        "estimator_origin": "NOT_RECORDED",
+        "gazebo_spawn_xyzrpy": [
+          "-2.0",
+          "0.0",
+          "0.195",
+          "0",
+          "0",
+          "1.5708"
+        ],
+        "gazebo_world_origin": {
+          "altitude_amsl_m": 584.0,
+          "latitude": -35.36326217651367,
+          "longitude": 149.1652374267578
+        },
+        "observed_launch_position": {
+          "altitude_amsl_m": 584.1900024414062,
+          "latitude": -35.36326217651367,
+          "longitude": 149.1652069091797
+        }
+      },
+      "source": "agri_demo_h2_2026_10_24/child_1_2f7db1f6/mission.json (executed snapshot, SHA256SUMS verified)",
+      "source_mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+      "spatial_validation": {
+        "checks": [],
+        "detail": "no site: H2 geometry is bound to each drone's own launch position",
+        "status": "NOT_CHECKABLE"
+      },
+      "task_id": "H2_drone_01",
+      "vehicle_id": "drone_01",
+      "waypoint_by_point": {
+        "POI_A1": "WP1",
+        "POI_A2": "WP2"
+      }
+    },
+    {
+      "blocks": [],
+      "consistency_with_h2": [
+        {
+          "recomputed_error_m": 0.389,
+          "recorded_horizontal_error_m": 0.388,
+          "waypoint_id": "WP1"
+        },
+        {
+          "recomputed_error_m": 0.207,
+          "recorded_horizontal_error_m": 0.207,
+          "waypoint_id": "WP2"
+        }
+      ],
+      "derivation": {
+        "launch_position_source": "child_2_febf7c4f/report.json executor_result.launch_position (observed, float32, historical session)",
+        "method": "tools.simulation_mission_mapper.map_mission_route_to_simulation (the executor's own mapping): offsets from the mission home placed on the launch position"
+      },
+      "deterministic_validation": {
+        "errors": [],
+        "execution_status": "APPROVED",
+        "failure_reasons": [],
+        "mission_status": "FEASIBLE",
+        "sitl_executor_compatibility_errors": []
+      },
+      "mission_id": "agri_demo_001_h1_sector_b_h2_sitl_rebased",
+      "mission_sha256": "ede25f88a8d4acf0b86d9ee0370200acec9cb8ec3b6445148c9e1fb316739766",
+      "planned_home": {
+        "amsl_m": 584.1900024414062,
+        "amsl_source": "observed launch altitude in H2 (float32); not the effective home",
+        "latitude": -35.36326217651367,
+        "longitude": 149.16526794433594,
+        "return_coordinate_is_observed_launch": true
+      },
+      "references": {
+        "declared_home_in_mission": {
+          "altitude_m": 0.0,
+          "latitude": 41.275,
+          "longitude": 1.987
+        },
+        "effective_home": "NOT_RECORDED (set by ArduPilot at arming)",
+        "estimator_origin": "NOT_RECORDED",
+        "gazebo_spawn_xyzrpy": [
+          "2.0",
+          "0.0",
+          "0.195",
+          "0",
+          "0",
+          "1.5708"
+        ],
+        "gazebo_world_origin": {
+          "altitude_amsl_m": 584.0,
+          "latitude": -35.36326217651367,
+          "longitude": 149.1652374267578
+        },
+        "observed_launch_position": {
+          "altitude_amsl_m": 584.1900024414062,
+          "latitude": -35.36326217651367,
+          "longitude": 149.16526794433594
+        }
+      },
+      "source": "agri_demo_h2_2026_10_24/child_2_febf7c4f/mission.json (executed snapshot, SHA256SUMS verified)",
+      "source_mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+      "spatial_validation": {
+        "checks": [],
+        "detail": "no site: H2 geometry is bound to each drone's own launch position",
+        "status": "NOT_CHECKABLE"
+      },
+      "task_id": "H2_drone_02",
+      "vehicle_id": "drone_02",
+      "waypoint_by_point": {
+        "POI_B1": "WP1",
+        "POI_B2": "WP2"
+      }
+    }
+  ],
+  "coordination": {
+    "dependencies": [
+      {
+        "after": "H2_drone_01",
+        "condition": "COMPLETED",
+        "task_id": "H2_drone_02"
+      },
+      {
+        "after": "H2_drone_01",
+        "condition": "POI_REACHED",
+        "point": "POI_A1",
+        "task_id": "R1"
+      }
+    ],
+    "errors": [],
+    "mode": "SEQUENTIAL",
+    "note": "the H1/H2 order is sequential (drone_01 then drone_02); no time waits",
+    "order": [
+      "H2_drone_01",
+      "H2_drone_02",
+      "R1"
+    ],
+    "status": "PASS"
+  },
+  "ground": [
+    {
+      "execution": "R1 coordinator: BLOCKED_PENDING per its own gates (unchanged)",
+      "export": "FORMAT_PENDING: no rover exporter; a .plan is not assumed",
+      "frame_transform_to_rover": "NOT_ACCREDITED",
+      "kind": "VISIT_AND_STOP",
+      "spatial_validation": {
+        "detail": "no site and no rover drivable area",
+        "status": "NOT_CHECKABLE"
+      },
+      "target_definition": "offset of drone_01's mission from ITS observed launch position",
+      "target_point": "POI_A1",
+      "task_id": "R1",
+      "vehicle_id": "rover_01"
+    }
+  ],
+  "inputs": {
+    "fleet": {
+      "id": "agri_demo_fleet",
+      "sha256": "9a2ffcfa2539a17c7e4b746ed485e949e0a905096c936b7b2ffaf0c938ce41c1",
+      "version": 2
+    },
+    "h2_record": {
+      "files_sha256": {
+        "child_1_2f7db1f6/mission.json": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+        "child_1_2f7db1f6/report.json": "183a68b92db7c03543066f0ddbb6de5524870866a854ca237b69ed92d4088864",
+        "child_2_febf7c4f/mission.json": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+        "child_2_febf7c4f/report.json": "f7884a1c52341d5cb5c7e9cda62695bbbf3e3e7fc1d7e9d68bc4ee92b2785850",
+        "scenario_summary.json": "d3aa4b22a0b17f3cc837427b184d8a899d944571d0159566da3e054ec9b4257a"
+      },
+      "path": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24",
+      "sequence_id": "6628bc51-e232-45f5-901e-f5fdeb05c6f4"
+    }
+  },
+  "instance_id": "da8fe142547421af",
+  "joint_spatial": {
+    "frame": "ENU metres from the recorded Gazebo world origin (local linear model)",
+    "pairs": [
+      {
+        "min_horizontal_distance_m": 5.54,
+        "pair": [
+          "drone_01",
+          "drone_02"
+        ],
+        "simultaneous_execution": "NOT_CLEARED",
+        "temporal_deconfliction": "NOT_EVALUATED"
+      }
+    ]
+  },
+  "provenance": "SITL_HISTORICAL",
+  "references": {
+    "site": "NONE (historical missions are not resolved against a site.json)"
+  },
+  "schema": "tfg.scenario-instance/1"
+}

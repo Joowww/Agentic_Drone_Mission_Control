@@ -1,0 +1,39 @@
+name: tfg-dist
+services:
+  qgc:
+    profiles:
+      - qgc
+    build:
+      context: /home/joelm/TFG/Agentic_Drone_Mission_Control/deploy/qgc
+      dockerfile: Dockerfile
+    cap_drop:
+      - ALL
+    environment:
+      DISPLAY: :0
+    image: tfg/qgroundcontrol:5.1.5
+    network_mode: none
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:mode=1777
+      - /home/qgc:uid=1000,gid=1000,mode=0700
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /home/joelm/TFG/Agentic_Drone_Mission_Control/evaluation/observability/agri_export_semantics_2026_10_27/packages/b_synthetic_orchard_v1_sitl_v2/plans
+        target: /data/plan
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/qgc_build/dummy_saved
+        target: /data/saved
+        bind:
+          create_host_path: false

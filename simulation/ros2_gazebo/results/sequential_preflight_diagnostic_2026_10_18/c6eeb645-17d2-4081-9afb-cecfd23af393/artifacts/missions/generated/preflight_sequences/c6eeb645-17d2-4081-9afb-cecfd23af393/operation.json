@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "sequence_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+  "request_key": "joel-secuencia-sitl-01",
+  "plan_sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436",
+  "created_at": "2026-10-18T21:14:36.491127+00:00",
+  "admission_status": "ACCEPTED",
+  "job_state": "UNCONFIRMED",
+  "phase": "reconciliation_required",
+  "coordinator": {
+    "pid": 133909,
+    "start_ticks": 8003617,
+    "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+  },
+  "launch_token_sha256": "2586f28437e5e5c3156c82b82aa8fba39ca910ab7d03e56434af2d4dfd6d58f4",
+  "result_status": null,
+  "reasons": [
+    "VehicleBusy: No consistent final child/landing/release evidence; sequence stays restricted"
+  ],
+  "children": [
+    {
+      "state": "FINISHED",
+      "result_status": "PASSED",
+      "started_at": "2026-10-18T21:14:38.204129+00:00",
+      "report_sha256": "d967bc138c2c9a9834ba0a845417139a491c01953bd9690b610a10ac7b155451",
+      "finished_at": "2026-10-18T21:18:42.196598+00:00",
+      "reasons": []
+    },
+    {
+      "state": "UNCONFIRMED",
+      "result_status": null,
+      "started_at": "2026-10-18T21:18:42.224986+00:00"
+    }
+  ],
+  "started_at": "2026-10-18T21:14:38.173651+00:00",
+  "prevalidation": [
+    {
+      "validation": {
+        "mission_id": "simulation_navigation_3waypoint_001",
+        "mission_status": "FEASIBLE",
+        "execution_status": "APPROVED",
+        "qgc_plan_path": null,
+        "failure_reasons": [],
+        "errors": [],
+        "replan_status": "",
+        "replan_actions": []
+      },
+      "compatibility_errors": []
+    },
+    {
+      "validation": {
+        "mission_id": "simulation_navigation_drone02",
+        "mission_status": "FEASIBLE",
+        "execution_status": "APPROVED",
+        "qgc_plan_path": null,
+        "failure_reasons": [],
+        "errors": [],
+        "replan_status": "",
+        "replan_actions": []
+      },
+      "compatibility_errors": []
+    }
+  ],
+  "interrupted_at": "2026-10-18T21:19:09.208803+00:00"
+}

@@ -1,0 +1,105 @@
+{
+  "record_version": 1,
+  "suite_version": "1.0.0",
+  "scenario_id": "S3",
+  "repetition": 1,
+  "status": "INSUFFICIENT_EVIDENCE",
+  "evidence_level": "TRANSCRIPT_ONLY",
+  "metadata": {
+    "project_commit": null,
+    "hermes_commit": null,
+    "model": null,
+    "provider": null,
+    "skill_sha256": null,
+    "skill_activation": "NOT_RECORDED",
+    "context_condition": "UNRECORDED",
+    "mcp_tools_schema_sha256": null,
+    "non_sensitive_config": {},
+    "context_evidence_refs": [
+      "transcript_selected_excerpts.json",
+      "context/skill_before_1.0.0.md (reference only; actual loaded hash unknown)"
+    ]
+  },
+  "started_at": null,
+  "finished_at": null,
+  "turns": [],
+  "tool_calls": [],
+  "artifact_evidence": [
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/draft.json",
+      "phase": "AFTER",
+      "sha256": "1a0be6460fd0bcc5b58fefa68daf553574f00a82025faa94638e3bc0798ef6a0",
+      "trace_ref": "artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/draft.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/draft_state.json",
+      "phase": "AFTER",
+      "sha256": "9f7cc404fd84c842dd26d3be05a633beb3f3296b6f133e71c599be8f37b04b4e",
+      "trace_ref": "artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/draft_state.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/mission.json",
+      "phase": "AFTER",
+      "sha256": "695d742261bb6ca52368a5fd498ea7c263d16d0a8e2f4162a160c0bc2fcd1b70",
+      "trace_ref": "artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/mission.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/finalization.json",
+      "phase": "AFTER",
+      "sha256": "55201ef69b279de880a5763ca7a8f2353d3b2e0b35204b009a21af7397a52610",
+      "trace_ref": "artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/finalization.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/source_draft.json",
+      "phase": "AFTER",
+      "sha256": "1a0be6460fd0bcc5b58fefa68daf553574f00a82025faa94638e3bc0798ef6a0",
+      "trace_ref": "artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/source_draft.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/source_draft_state.json",
+      "phase": "AFTER",
+      "sha256": "9f7cc404fd84c842dd26d3be05a633beb3f3296b6f133e71c599be8f37b04b4e",
+      "trace_ref": "artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/source_draft_state.json"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/parcela_loma_001.plan",
+      "phase": "AFTER",
+      "sha256": "0b716f703eae5c187a3d2759de1133af32630236ca43087e170c90ed1c2a199c",
+      "trace_ref": "artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/parcela_loma_001.plan"
+    },
+    {
+      "artifact_id": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/parcela_loma_001.plan",
+      "phase": "AFTER",
+      "sha256": "0b716f703eae5c187a3d2759de1133af32630236ca43087e170c90ed1c2a199c",
+      "trace_ref": "artifacts/missions/generated/parcela_loma_001.plan"
+    }
+  ],
+  "human_checks": [
+    {
+      "criterion_id": "S3.1",
+      "verdict": "FAIL",
+      "evidence_refs": [
+        "transcript_selected_excerpts.json#T3",
+        "transcript_selected_excerpts.json#T4"
+      ],
+      "rationale": "Orientation assigned before axis clarified; visible failure does not supply missing raw write arguments."
+    },
+    {
+      "criterion_id": "S3.2",
+      "verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_refs": [
+        "assessment.json#AXIS_AMBIGUITY"
+      ],
+      "rationale": "Actual prompt specified HOME height, unlike original 1.0.0 ambiguous-height variant. No complete intermediate payload/state to grade persistence for that original variant."
+    }
+  ],
+  "reviewer": "Codex offline review of operator-supplied transcript",
+  "notes": [
+    "Partial adaptation of S2-S5, not controlled execution of all eight scenarios.",
+    "Actual ambiguous-axis prompt supplied height relative to HOME; original 1.0.0 S3 also had ambiguous altitude reference. Do not grade an explicit HOME reference as a failure to ask its reference.",
+    "Empty turns/tool_calls mean native structured payloads and turn timestamps unavailable, not zero events.",
+    "Model, provider, skill activation method/hash and exact MCP schemas of session are not known; retain nulls.",
+    "Other definite visible failures/successes are recorded in assessment.json; no complete scenario PASS.",
+    "No live client, LLM, Docker, flight or operational MCP used in this review."
+  ]
+}

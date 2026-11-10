@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "mission_id": "agri_poi_visit_v1_synthetic_orchard_v1_A1",
+  "name": "agri_poi_visit A1 over synthetic_orchard v1",
+  "source": "json",
+  "vehicle": {
+    "vehicle_id": "drone_01",
+    "vehicle_type": "multirotor",
+    "autopilot": "ArduPilot",
+    "cruise_speed_kmh": 35.0,
+    "battery_percent": 100.0,
+    "battery_consumption_percent_per_minute": 0.8
+  },
+  "objective": {
+    "objective_type": "precision_agriculture",
+    "target": "synthetic_orchard:A1",
+    "description": "Navigate over site-declared points of interest. No imagery or crop detection."
+  },
+  "route": {
+    "mode": "waypoints",
+    "distance_km": null,
+    "bearing_deg": null,
+    "home": {
+      "latitude": -35.3633158986705,
+      "longitude": 149.16519293808915,
+      "altitude_m": 0.0
+    },
+    "waypoints": [
+      {
+        "waypoint_id": "POI_1",
+        "latitude": -35.363226067553,
+        "longitude": 149.16519293808915,
+        "altitude_m": 5.0,
+        "speed_kmh": 10.0,
+        "action": "navigate"
+      },
+      {
+        "waypoint_id": "POI_2",
+        "latitude": -35.3631003039885,
+        "longitude": 149.16519293808915,
+        "altitude_m": 5.0,
+        "speed_kmh": 10.0,
+        "action": "navigate"
+      }
+    ],
+    "return_to_home": true
+  },
+  "environment": {
+    "wind_speed_kmh": 0.0,
+    "wind_direction_from_deg": 0.0
+  },
+  "constraints": {
+    "minimum_battery_reserve_percent": 20.0,
+    "maximum_wind_speed_kmh": 30.0,
+    "maximum_altitude_m": 120.0
+  },
+  "failsafe": {
+    "low_battery_action": "RETURN_TO_HOME",
+    "unsafe_wind_action": "RETURN_TO_HOME",
+    "communication_loss_action": "RETURN_TO_HOME"
+  }
+}

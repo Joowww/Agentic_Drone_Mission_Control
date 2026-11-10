@@ -1,0 +1,274 @@
+{
+  "label": "OFFLINE SYNTHETIC DEMO: real coordinator, TEST_DOUBLE executor, no rover moved",
+  "sequence_id": "0df8dec9-6b2f-5a18-be4a-4a5221389a82",
+  "variants": [
+    {
+      "variant": "complete",
+      "aerial_view": "base",
+      "preparation": {
+        "dependency": "MET",
+        "eligibility": "ELIGIBLE",
+        "authorization": "ABSENT",
+        "admission": "NOT_REQUESTED",
+        "execution": "NOT_STARTED"
+      },
+      "request_status": "CREATED",
+      "request_reason": null,
+      "repeat_request_status": "EXISTING",
+      "admit_calls": 1,
+      "tracked_states": [
+        "RUNNING",
+        "VERIFIED_SYNTHETIC"
+      ],
+      "final_state": "VERIFIED_SYNTHETIC",
+      "acceptance": "VERIFIED",
+      "acceptance_reasons": [],
+      "executor_reservations_held": [
+        "7876d70e-0080-5e72-b2be-5d9316329a52"
+      ],
+      "scenario": {
+        "scenario_status": "SYNTHETIC_COMPLETE",
+        "scenario_complete": false,
+        "synthetic_complete": true,
+        "r1_state": "VERIFIED_SYNTHETIC"
+      }
+    },
+    {
+      "variant": "first_drone_failed",
+      "aerial_view": "first_drone_failed",
+      "preparation": {
+        "dependency": "NOT_MET",
+        "eligibility": "NOT_ELIGIBLE",
+        "authorization": "ABSENT",
+        "admission": "NOT_REQUESTED",
+        "execution": "NOT_STARTED"
+      },
+      "request_status": "BLOCKED",
+      "request_reason": "DEPENDENCY_NOT_MET",
+      "repeat_request_status": "BLOCKED",
+      "admit_calls": 0,
+      "tracked_states": [
+        "NOT_FOUND"
+      ],
+      "final_state": "NOT_FOUND",
+      "acceptance": null,
+      "acceptance_reasons": null,
+      "executor_reservations_held": [],
+      "scenario": {
+        "scenario_status": "FAILED",
+        "scenario_complete": false,
+        "synthetic_complete": false,
+        "r1_state": "NOT_REQUESTED"
+      }
+    },
+    {
+      "variant": "poi_not_reached",
+      "aerial_view": "poi_not_reached",
+      "preparation": {
+        "dependency": "NOT_MET",
+        "eligibility": "NOT_ELIGIBLE",
+        "authorization": "ABSENT",
+        "admission": "NOT_REQUESTED",
+        "execution": "NOT_STARTED"
+      },
+      "request_status": "BLOCKED",
+      "request_reason": "DEPENDENCY_NOT_MET",
+      "repeat_request_status": "BLOCKED",
+      "admit_calls": 0,
+      "tracked_states": [
+        "NOT_FOUND"
+      ],
+      "final_state": "NOT_FOUND",
+      "acceptance": null,
+      "acceptance_reasons": null,
+      "executor_reservations_held": [],
+      "scenario": {
+        "scenario_status": "AERIAL_COMPLETED_R1_DEPENDENCY_NOT_MET",
+        "scenario_complete": false,
+        "synthetic_complete": false,
+        "r1_state": "NOT_REQUESTED"
+      }
+    },
+    {
+      "variant": "transform_absent",
+      "aerial_view": "base",
+      "preparation": {
+        "dependency": "MET",
+        "eligibility": "NOT_ELIGIBLE",
+        "authorization": "ABSENT",
+        "admission": "NOT_REQUESTED",
+        "execution": "NOT_STARTED"
+      },
+      "request_status": "BLOCKED",
+      "request_reason": "NO_CANDIDATE",
+      "repeat_request_status": "BLOCKED",
+      "admit_calls": 0,
+      "tracked_states": [
+        "NOT_FOUND"
+      ],
+      "final_state": "NOT_FOUND",
+      "acceptance": null,
+      "acceptance_reasons": null,
+      "executor_reservations_held": [],
+      "scenario": {
+        "scenario_status": "AERIAL_COMPLETED_GROUND_NOT_REQUESTED",
+        "scenario_complete": false,
+        "synthetic_complete": false,
+        "r1_state": "NOT_REQUESTED"
+      }
+    },
+    {
+      "variant": "authorization_absent",
+      "aerial_view": "base",
+      "preparation": {
+        "dependency": "MET",
+        "eligibility": "ELIGIBLE",
+        "authorization": "ABSENT",
+        "admission": "NOT_REQUESTED",
+        "execution": "NOT_STARTED"
+      },
+      "request_status": "BLOCKED",
+      "request_reason": "AUTHORIZATION_ABSENT_OR_MALFORMED",
+      "repeat_request_status": "BLOCKED",
+      "admit_calls": 0,
+      "tracked_states": [
+        "NOT_FOUND"
+      ],
+      "final_state": "NOT_FOUND",
+      "acceptance": null,
+      "acceptance_reasons": null,
+      "executor_reservations_held": [],
+      "scenario": {
+        "scenario_status": "AERIAL_COMPLETED_GROUND_NOT_REQUESTED",
+        "scenario_complete": false,
+        "synthetic_complete": false,
+        "r1_state": "NOT_REQUESTED"
+      }
+    },
+    {
+      "variant": "executor_refuses",
+      "aerial_view": "base",
+      "preparation": {
+        "dependency": "MET",
+        "eligibility": "ELIGIBLE",
+        "authorization": "ABSENT",
+        "admission": "NOT_REQUESTED",
+        "execution": "NOT_STARTED"
+      },
+      "request_status": "CREATED",
+      "request_reason": "TEST_DOUBLE executor refusal",
+      "repeat_request_status": "EXISTING",
+      "admit_calls": 1,
+      "tracked_states": [
+        "REJECTED_BY_EXECUTOR"
+      ],
+      "final_state": "REJECTED_BY_EXECUTOR",
+      "acceptance": null,
+      "acceptance_reasons": null,
+      "executor_reservations_held": [],
+      "scenario": {
+        "scenario_status": "AERIAL_COMPLETED_GROUND_REJECTED_BY_EXECUTOR",
+        "scenario_complete": false,
+        "synthetic_complete": false,
+        "r1_state": "REJECTED_BY_EXECUTOR"
+      }
+    },
+    {
+      "variant": "insufficient_dwell",
+      "aerial_view": "base",
+      "preparation": {
+        "dependency": "MET",
+        "eligibility": "ELIGIBLE",
+        "authorization": "ABSENT",
+        "admission": "NOT_REQUESTED",
+        "execution": "NOT_STARTED"
+      },
+      "request_status": "CREATED",
+      "request_reason": null,
+      "repeat_request_status": "EXISTING",
+      "admit_calls": 1,
+      "tracked_states": [
+        "RUNNING",
+        "FAILED"
+      ],
+      "final_state": "FAILED",
+      "acceptance": "FAILED",
+      "acceptance_reasons": [
+        "PASSED_THROUGH_NO_DWELL"
+      ],
+      "executor_reservations_held": [
+        "e26e2f97-58b7-5e21-b801-4209fadd3b51"
+      ],
+      "scenario": {
+        "scenario_status": "AERIAL_COMPLETED_GROUND_FAILED",
+        "scenario_complete": false,
+        "synthetic_complete": false,
+        "r1_state": "FAILED"
+      }
+    },
+    {
+      "variant": "stop_uncertain",
+      "aerial_view": "base",
+      "preparation": {
+        "dependency": "MET",
+        "eligibility": "ELIGIBLE",
+        "authorization": "ABSENT",
+        "admission": "NOT_REQUESTED",
+        "execution": "NOT_STARTED"
+      },
+      "request_status": "CREATED",
+      "request_reason": null,
+      "repeat_request_status": "EXISTING",
+      "admit_calls": 1,
+      "tracked_states": [
+        "RUNNING",
+        "UNCERTAIN"
+      ],
+      "final_state": "UNCERTAIN",
+      "acceptance": "UNCERTAIN",
+      "acceptance_reasons": [
+        "STOP_UNCONFIRMED"
+      ],
+      "executor_reservations_held": [
+        "7e3d29cf-4b47-5f42-8208-c3e209abfb60"
+      ],
+      "scenario": {
+        "scenario_status": "AERIAL_COMPLETED_GROUND_UNCERTAIN",
+        "scenario_complete": false,
+        "synthetic_complete": false,
+        "r1_state": "UNCERTAIN"
+      }
+    },
+    {
+      "variant": "lost_admission_response",
+      "aerial_view": "base",
+      "preparation": {
+        "dependency": "MET",
+        "eligibility": "ELIGIBLE",
+        "authorization": "ABSENT",
+        "admission": "NOT_REQUESTED",
+        "execution": "NOT_STARTED"
+      },
+      "request_status": "UNCONFIRMED",
+      "request_reason": "TimeoutError: TEST_DOUBLE: admission reply lost after the job was created",
+      "repeat_request_status": "EXISTING",
+      "admit_calls": 1,
+      "tracked_states": [
+        "RUNNING",
+        "VERIFIED_SYNTHETIC"
+      ],
+      "final_state": "VERIFIED_SYNTHETIC",
+      "acceptance": "VERIFIED",
+      "acceptance_reasons": [],
+      "executor_reservations_held": [
+        "4bb2b463-fe8c-506a-8eba-75f9d236bc4f"
+      ],
+      "scenario": {
+        "scenario_status": "SYNTHETIC_COMPLETE",
+        "scenario_complete": false,
+        "synthetic_complete": true,
+        "r1_state": "VERIFIED_SYNTHETIC"
+      }
+    }
+  ]
+}

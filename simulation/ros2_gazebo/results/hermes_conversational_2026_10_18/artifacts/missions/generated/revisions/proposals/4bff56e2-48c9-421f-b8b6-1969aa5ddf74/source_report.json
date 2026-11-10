@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "report_persisted": true,
+  "source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/simulation/ros2_gazebo/results/hermes_conversational_2026_10_17/approved_mission.json",
+  "run_id": "d7717942-9b43-45c7-bf3a-65b02bb1155a",
+  "run_directory": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/d7717942-9b43-45c7-bf3a-65b02bb1155a",
+  "snapshot_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/d7717942-9b43-45c7-bf3a-65b02bb1155a/mission.json",
+  "report_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/d7717942-9b43-45c7-bf3a-65b02bb1155a/report.json",
+  "mission_sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+  "mission_identity": {
+    "mission_id": "prueba_hermes_001",
+    "name": "Prueba Hermes",
+    "vehicle_id": "drone_01",
+    "simulated_vehicle": "v1"
+  },
+  "status": "BLOCKED",
+  "stage": "check_readiness",
+  "reasons": [
+    "Simulation is not ready; no automatic start or restart.",
+    "Simulation is not ready."
+  ],
+  "validation": {
+    "mission_id": "prueba_hermes_001",
+    "mission_status": "FEASIBLE",
+    "execution_status": "APPROVED",
+    "qgc_plan_path": null,
+    "failure_reasons": [],
+    "errors": [],
+    "replan_status": "",
+    "replan_actions": []
+  },
+  "readiness": {
+    "ready": false,
+    "status": "NOT READY",
+    "return_code": 1,
+    "message": "Simulation is not ready.",
+    "output": "========================================\n TFG - Simulation Check\n========================================\n\n[1/5] Docker container...\n[PASS] Container running.\n\n[2/5] Gazebo server...\n[FAIL] Gazebo runway world is not running."
+  },
+  "compatibility_errors": [],
+  "executor_result": null,
+  "execution_attempted": false,
+  "analysis": null,
+  "started_at": "2026-10-17T13:39:20.409340+00:00",
+  "transitions": [
+    {
+      "node": "snapshot",
+      "started_at": "2026-10-17T13:39:20.413107+00:00",
+      "finished_at": "2026-10-17T13:39:20.413630+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "validate",
+      "started_at": "2026-10-17T13:39:20.414364+00:00",
+      "finished_at": "2026-10-17T13:39:20.416774+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "check_readiness",
+      "started_at": "2026-10-17T13:39:20.417302+00:00",
+      "finished_at": "2026-10-17T13:39:20.693997+00:00",
+      "status": "BLOCKED"
+    },
+    {
+      "node": "write_report",
+      "started_at": "2026-10-17T13:39:20.694823+00:00",
+      "finished_at": "2026-10-17T13:39:20.694823+00:00",
+      "status": "BLOCKED"
+    }
+  ],
+  "finished_at": "2026-10-17T13:39:20.694823+00:00",
+  "scope": "Gazebo/ArduPilot SITL, simulated v1 only",
+  "hardware_authorized": false,
+  "subsequent_execution_authorized": false,
+  "replan_proposals": []
+}

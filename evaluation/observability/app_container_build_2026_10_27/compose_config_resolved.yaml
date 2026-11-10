@@ -1,0 +1,100 @@
+name: tfg-dist
+services:
+  app:
+    profiles:
+      - app
+    build:
+      context: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final
+      dockerfile: deploy/app/Dockerfile
+    cap_drop:
+      - ALL
+    image: tfg/app:2026.10.27
+    init: true
+    network_mode: none
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:mode=1777
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work
+        target: /work
+        bind:
+          create_host_path: false
+  app-dev:
+    profiles:
+      - dev
+    cap_drop:
+      - ALL
+    image: tfg/app:2026.10.27
+    init: true
+    network_mode: none
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:mode=1777
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final
+        target: /opt/tfg
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work
+        target: /work
+        bind:
+          create_host_path: false
+  qgc:
+    profiles:
+      - qgc
+    build:
+      context: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/deploy/qgc
+      dockerfile: Dockerfile
+    cap_drop:
+      - ALL
+    environment:
+      DISPLAY: :0
+    image: tfg/qgroundcontrol:5.1.5
+    network_mode: none
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:mode=1777
+      - /home/qgc:uid=1000,gid=1000,mode=0700
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/f_package/plans
+        target: /data/plan
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work
+        target: /data/saved
+        bind:
+          create_host_path: false
+x-app:
+  cap_drop:
+    - ALL
+  image: tfg/app:2026.10.27
+  init: true
+  network_mode: none
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  tmpfs:
+    - /tmp:mode=1777
+  user: 1000:1000

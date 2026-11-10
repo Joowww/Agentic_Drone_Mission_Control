@@ -1,0 +1,118 @@
+........................................................................ [  2%]
+........................................................................ [  4%]
+........................................................................ [  6%]
+........................................................................ [  8%]
+........................................................................ [ 11%]
+........................................................................ [ 13%]
+........................................................................ [ 15%]
+........................................................................ [ 17%]
+........................................................................ [ 20%]
+........................................................................ [ 22%]
+........................................................................ [ 24%]
+........................................................................ [ 26%]
+........................................................................ [ 28%]
+........................................................................ [ 31%]
+........................................................................ [ 33%]
+........................................................................ [ 35%]
+........................................................................ [ 37%]
+........................................................................ [ 40%]
+........................................................................ [ 42%]
+........................................................................ [ 44%]
+........................................................................ [ 46%]
+........................................................................ [ 48%]
+........................................................................ [ 51%]
+...........ss.....ss.................................................... [ 53%]
+........................................................................ [ 55%]
+........................................................................ [ 57%]
+........................................................................ [ 60%]
+........................................................................ [ 62%]
+........................................................................ [ 64%]
+........................................................................ [ 66%]
+...............................FFF...F......F........................... [ 68%]
+........................................................................ [ 71%]
+........................................................................ [ 73%]
+........................................................................ [ 75%]
+........................................................................ [ 77%]
+........................................................................ [ 80%]
+........................................................................ [ 82%]
+........................................................................ [ 84%]
+........................................................................ [ 86%]
+........................................................................ [ 88%]
+........................................................................ [ 91%]
+........................................................................ [ 93%]
+........................................................................ [ 95%]
+........................................................................ [ 97%]
+....................................................................     [100%]
+=================================== FAILURES ===================================
+_ test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_050_authorized_capture_2026_10_30/e7fc9f9b-76d9-42a5-8276-e852a17451ad/sdk-evidence/18/journal.jsonl] _
+
+journal = 'simulation/ros2_gazebo/results/rover_050_authorized_capture_2026_10_30/e7fc9f9b-76d9-42a5-8276-e852a17451ad/sdk-evidence/18/journal.jsonl'
+
+    @pytest.mark.parametrize("journal", sorted(str(p.relative_to(ROOT)) for p in _pre_3_journals()))
+    def test_historical_captures_remain_readable_and_carry_no_odometry_fields(journal):
+        report = analyze_bytes((ROOT / journal).read_bytes())
+>       assert report["start"]["schema"] in ("tfg.rover.passive-capture/1", "tfg.rover.passive-capture/2")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/test_rover_passive_odometry_fields.py:205: TypeError
+_ test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_authorized_capture_2026_10_28/f15f176e-0710-42cc-9dd9-c0c5fa8448e1/sdk-evidence/18/journal.jsonl] _
+
+journal = 'simulation/ros2_gazebo/results/rover_authorized_capture_2026_10_28/f15f176e-0710-42cc-9dd9-c0c5fa8448e1/sdk-evidence/18/journal.jsonl'
+
+    @pytest.mark.parametrize("journal", sorted(str(p.relative_to(ROOT)) for p in _pre_3_journals()))
+    def test_historical_captures_remain_readable_and_carry_no_odometry_fields(journal):
+        report = analyze_bytes((ROOT / journal).read_bytes())
+>       assert report["start"]["schema"] in ("tfg.rover.passive-capture/1", "tfg.rover.passive-capture/2")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/test_rover_passive_odometry_fields.py:205: TypeError
+_ test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_identity_trial_2026_10_26/1cb9d86a-659b-4aa8-b7b1-214d2202210f/reader/journal.jsonl] _
+
+journal = 'simulation/ros2_gazebo/results/rover_identity_trial_2026_10_26/1cb9d86a-659b-4aa8-b7b1-214d2202210f/reader/journal.jsonl'
+
+    @pytest.mark.parametrize("journal", sorted(str(p.relative_to(ROOT)) for p in _pre_3_journals()))
+    def test_historical_captures_remain_readable_and_carry_no_odometry_fields(journal):
+        report = analyze_bytes((ROOT / journal).read_bytes())
+>       assert report["start"]["schema"] in ("tfg.rover.passive-capture/1", "tfg.rover.passive-capture/2")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/test_rover_passive_odometry_fields.py:205: TypeError
+_ test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_terminal_authorized_capture_2026_10_30/61282dad-fbbd-4256-bc8a-79739c182dba/sdk-evidence/18/journal.jsonl] _
+
+journal = 'simulation/ros2_gazebo/results/rover_terminal_authorized_capture_2026_10_30/61282dad-fbbd-4256-bc8a-79739c182dba/sdk-evidence/18/journal.jsonl'
+
+    @pytest.mark.parametrize("journal", sorted(str(p.relative_to(ROOT)) for p in _pre_3_journals()))
+    def test_historical_captures_remain_readable_and_carry_no_odometry_fields(journal):
+        report = analyze_bytes((ROOT / journal).read_bytes())
+>       assert report["start"]["schema"] in ("tfg.rover.passive-capture/1", "tfg.rover.passive-capture/2")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/test_rover_passive_odometry_fields.py:205: TypeError
+_______ test_historical_captures_have_no_fields_and_are_always_selected ________
+
+    def test_historical_captures_have_no_fields_and_are_always_selected():
+        paths = _pre_3_journals()
+>       assert len(paths) == 5  # the five pre-/3 captures, unchanged
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert 9 == 5
+E        +  where 9 = len([PosixPath('/home/joelm/TFG/Agentic_Drone_Mission_Control/simulation/ros2_gazebo/results/rover_050_authorized_capture_...2_gazebo/results/rover_passive_regression_2026_10_22/56c886cf-5df9-4ff7-9815-656d8c06c466/capture/journal.jsonl'), ...])
+
+tests/test_rover_passive_odometry_fields.py:249: AssertionError
+=============================== warnings summary ===============================
+tests/test_langsmith_export.py::test_real_sdk_payload_has_exactly_one_destination_per_run
+  /home/joelm/TFG/Agentic_Drone_Mission_Control/.venv/lib/python3.12/site-packages/langsmith/_internal/_addressing.py:104: LangSmithBetaWarning: Addressing runs with `langsmith.address` is in beta and is enabled per workspace. A workspace without it rejects the run, so the trace is lost rather than falling back to a project. The behavior may change without notice.
+    _warn_once(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [4] tests/test_rover_failed_operational_close.py:91: Failed-start protected-stop invariant; successful layout covered separately
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_050_authorized_capture_2026_10_30/e7fc9f9b-76d9-42a5-8276-e852a17451ad/sdk-evidence/18/journal.jsonl]
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_authorized_capture_2026_10_28/f15f176e-0710-42cc-9dd9-c0c5fa8448e1/sdk-evidence/18/journal.jsonl]
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_identity_trial_2026_10_26/1cb9d86a-659b-4aa8-b7b1-214d2202210f/reader/journal.jsonl]
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_terminal_authorized_capture_2026_10_30/61282dad-fbbd-4256-bc8a-79739c182dba/sdk-evidence/18/journal.jsonl]
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_have_no_fields_and_are_always_selected
+5 failed, 3227 passed, 4 skipped, 1 warning in 694.64s (0:11:34)

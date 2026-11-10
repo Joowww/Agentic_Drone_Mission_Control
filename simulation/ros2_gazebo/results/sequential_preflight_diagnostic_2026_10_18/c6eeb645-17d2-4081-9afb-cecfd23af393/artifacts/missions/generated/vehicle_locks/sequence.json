@@ -1,0 +1,38 @@
+{
+  "kind": "PREFLIGHT_SEQUENCE",
+  "owner_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+  "actor": "sequential_preflight",
+  "state": "UNCONFIRMED",
+  "plan_sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436",
+  "children": [
+    {
+      "owner_id": "467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+      "vehicle": "v1",
+      "input_sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+    },
+    {
+      "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+      "vehicle": "v2",
+      "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+    }
+  ],
+  "next_index": 2,
+  "completed_count": 1,
+  "active_child": {
+    "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+    "vehicle": "v2",
+    "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+  },
+  "created_at": "2026-10-18T21:14:36.472104+00:00",
+  "process": {
+    "pid": 130817,
+    "start_ticks": 7968185,
+    "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+  },
+  "coordinator": {
+    "pid": 133909,
+    "start_ticks": 8003617,
+    "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+  },
+  "updated_at": "2026-10-18T21:18:42.213841+00:00"
+}

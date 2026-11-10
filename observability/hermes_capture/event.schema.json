@@ -1,0 +1,678 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tfg:hermes-capture-event:3",
+  "title": "Metadata-only Hermes LLM/tool capture event (no prompts, responses, arguments or results)",
+  "type": "object",
+  "$defs": {
+    "ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[a-f0-9]{16}$"
+    },
+    "label": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+    },
+    "token": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Za-z0-9_.:@+-]{1,128}$"
+    },
+    "model": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Za-z0-9_.:@+/-]{1,160}$"
+    },
+    "count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "positive": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "seconds": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "timing_source": {
+      "const": "hermes_hook_wall_clock"
+    },
+    "timing_scope": {
+      "const": "api_call_from_first_attempt"
+    },
+    "usage_counter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "status"
+      ],
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/count"
+        },
+        "status": {
+          "enum": [
+            "nonzero_normalized",
+            "zero_unconfirmed",
+            "absent",
+            "redacted"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "nonzero_normalized"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "zero_unconfirmed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "const": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "absent",
+                  "redacted"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "derived_counter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "status"
+      ],
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/count"
+        },
+        "status": {
+          "enum": [
+            "derived_nonzero",
+            "derived_zero",
+            "absent",
+            "redacted"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "derived_nonzero"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "derived_zero"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "const": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "absent",
+                  "redacted"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "event_type",
+    "event_id",
+    "recorded_at_utc",
+    "run_id",
+    "case_id",
+    "session_ref",
+    "task_ref",
+    "turn_ref",
+    "api_request_ref",
+    "absent_fields",
+    "redacted_fields",
+    "ambiguous_zero_fields"
+  ],
+  "properties": {
+    "schema": {
+      "const": "tfg.hermes.capture/3"
+    },
+    "event_type": {
+      "enum": [
+        "llm_call",
+        "llm_error",
+        "tool_call"
+      ]
+    },
+    "event_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "recorded_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "run_id": {
+      "$ref": "#/$defs/label"
+    },
+    "case_id": {
+      "$ref": "#/$defs/label"
+    },
+    "session_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "task_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "turn_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "api_request_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "absent_fields": {
+      "$ref": "#/$defs/fields"
+    },
+    "redacted_fields": {
+      "$ref": "#/$defs/fields"
+    },
+    "ambiguous_zero_fields": {
+      "$ref": "#/$defs/fields"
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "event_type": {
+          "const": "llm_call"
+        },
+        "schema": true,
+        "event_id": true,
+        "recorded_at_utc": true,
+        "run_id": true,
+        "case_id": true,
+        "session_ref": true,
+        "task_ref": true,
+        "turn_ref": true,
+        "api_request_ref": true,
+        "absent_fields": true,
+        "redacted_fields": true,
+        "ambiguous_zero_fields": true,
+        "provider": {
+          "$ref": "#/$defs/model"
+        },
+        "upstream_provider": {
+          "$ref": "#/$defs/model"
+        },
+        "model": {
+          "$ref": "#/$defs/model"
+        },
+        "response_model": {
+          "$ref": "#/$defs/model"
+        },
+        "api_mode": {
+          "$ref": "#/$defs/token"
+        },
+        "finish_reason": {
+          "$ref": "#/$defs/token"
+        },
+        "timing_source": {
+          "$ref": "#/$defs/timing_source"
+        },
+        "timing_scope": {
+          "$ref": "#/$defs/timing_scope"
+        },
+        "api_duration_s": {
+          "$ref": "#/$defs/seconds"
+        },
+        "started_at_epoch_s": {
+          "$ref": "#/$defs/seconds"
+        },
+        "ended_at_epoch_s": {
+          "$ref": "#/$defs/seconds"
+        },
+        "first_chunk_offset_s": {
+          "$ref": "#/$defs/seconds"
+        },
+        "api_call_count": {
+          "$ref": "#/$defs/count"
+        },
+        "message_count": {
+          "$ref": "#/$defs/count"
+        },
+        "assistant_tool_call_count": {
+          "$ref": "#/$defs/count"
+        },
+        "context_length": {
+          "$ref": "#/$defs/count"
+        },
+        "requested_tool_names": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/token"
+          }
+        },
+        "usage_source": {
+          "enum": [
+            "hermes_normalized_summary",
+            "absent"
+          ]
+        },
+        "usage": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "input_tokens",
+            "output_tokens",
+            "cache_read_tokens",
+            "cache_write_tokens",
+            "reasoning_tokens",
+            "prompt_tokens",
+            "total_tokens"
+          ],
+          "properties": {
+            "input_tokens": {
+              "$ref": "#/$defs/usage_counter"
+            },
+            "output_tokens": {
+              "$ref": "#/$defs/usage_counter"
+            },
+            "cache_read_tokens": {
+              "$ref": "#/$defs/usage_counter"
+            },
+            "cache_write_tokens": {
+              "$ref": "#/$defs/usage_counter"
+            },
+            "reasoning_tokens": {
+              "$ref": "#/$defs/usage_counter"
+            },
+            "prompt_tokens": {
+              "$ref": "#/$defs/derived_counter"
+            },
+            "total_tokens": {
+              "$ref": "#/$defs/derived_counter"
+            }
+          }
+        },
+        "retry_count": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "provider",
+        "upstream_provider",
+        "model",
+        "response_model",
+        "api_mode",
+        "finish_reason",
+        "timing_source",
+        "timing_scope",
+        "api_duration_s",
+        "started_at_epoch_s",
+        "ended_at_epoch_s",
+        "first_chunk_offset_s",
+        "api_call_count",
+        "message_count",
+        "assistant_tool_call_count",
+        "context_length",
+        "requested_tool_names",
+        "usage_source",
+        "usage",
+        "retry_count"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "usage_source": {
+                "const": "absent"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "usage": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "usage_source": {
+                "const": "hermes_normalized_summary"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "usage": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "llm_error"
+        },
+        "schema": true,
+        "event_id": true,
+        "recorded_at_utc": true,
+        "run_id": true,
+        "case_id": true,
+        "session_ref": true,
+        "task_ref": true,
+        "turn_ref": true,
+        "api_request_ref": true,
+        "absent_fields": true,
+        "redacted_fields": true,
+        "ambiguous_zero_fields": true,
+        "provider": {
+          "$ref": "#/$defs/model"
+        },
+        "model": {
+          "$ref": "#/$defs/model"
+        },
+        "api_mode": {
+          "$ref": "#/$defs/token"
+        },
+        "timing_source": {
+          "$ref": "#/$defs/timing_source"
+        },
+        "timing_scope": {
+          "$ref": "#/$defs/timing_scope"
+        },
+        "api_duration_s": {
+          "$ref": "#/$defs/seconds"
+        },
+        "started_at_epoch_s": {
+          "$ref": "#/$defs/seconds"
+        },
+        "ended_at_epoch_s": {
+          "$ref": "#/$defs/seconds"
+        },
+        "api_call_count": {
+          "$ref": "#/$defs/count"
+        },
+        "status_code": {
+          "$ref": "#/$defs/count"
+        },
+        "retry_count": {
+          "$ref": "#/$defs/count"
+        },
+        "max_retries": {
+          "$ref": "#/$defs/count"
+        },
+        "retryable": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "reason": {
+          "$ref": "#/$defs/token"
+        },
+        "error_type": {
+          "$ref": "#/$defs/token"
+        }
+      },
+      "required": [
+        "provider",
+        "model",
+        "api_mode",
+        "timing_source",
+        "timing_scope",
+        "api_duration_s",
+        "started_at_epoch_s",
+        "ended_at_epoch_s",
+        "api_call_count",
+        "status_code",
+        "retry_count",
+        "max_retries",
+        "retryable",
+        "reason",
+        "error_type"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "tool_call"
+        },
+        "schema": true,
+        "event_id": true,
+        "recorded_at_utc": true,
+        "run_id": true,
+        "case_id": true,
+        "session_ref": true,
+        "task_ref": true,
+        "turn_ref": true,
+        "api_request_ref": true,
+        "absent_fields": true,
+        "redacted_fields": true,
+        "ambiguous_zero_fields": true,
+        "tool_call_ref": {
+          "$ref": "#/$defs/ref"
+        },
+        "tool_name": {
+          "$ref": "#/$defs/token"
+        },
+        "status": {
+          "$ref": "#/$defs/token"
+        },
+        "error_type": {
+          "$ref": "#/$defs/token"
+        },
+        "duration_source": {
+          "enum": [
+            "hermes_reported_ms",
+            "zero_default_or_below_1ms",
+            "timeout_configured_not_measured",
+            "absent",
+            "redacted"
+          ]
+        },
+        "duration_ms_received": {
+          "$ref": "#/$defs/count"
+        },
+        "duration_ms_measured": {
+          "$ref": "#/$defs/positive"
+        }
+      },
+      "required": [
+        "tool_call_ref",
+        "tool_name",
+        "status",
+        "error_type",
+        "duration_source",
+        "duration_ms_received",
+        "duration_ms_measured"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "duration_source": {
+                "const": "hermes_reported_ms"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "duration_ms_measured": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "duration_source": {
+                "not": {
+                  "const": "hermes_reported_ms"
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "duration_ms_measured": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "duration_source": {
+                "const": "zero_default_or_below_1ms"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "duration_ms_received": {
+                "const": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "duration_source": {
+                "enum": [
+                  "absent",
+                  "redacted"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "duration_ms_received": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

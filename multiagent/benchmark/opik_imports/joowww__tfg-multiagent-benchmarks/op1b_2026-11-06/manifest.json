@@ -1,0 +1,147 @@
+{
+ "schema": "tfg.multiagent.op1b-manifest/1",
+ "operation": "OP-1b",
+ "status": "PREPARED_NOT_AUTHORIZED",
+ "destination": {
+  "workspace": "joowww",
+  "project": "tfg-multiagent-benchmarks",
+  "project_id": "01a1a77c-fb97-72f1-b2d7-376183ac994b"
+ },
+ "source": {
+  "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+  "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+  "candidate": "qwen",
+  "representation": "v2_native_fields",
+  "excluded": [
+   "E07"
+  ]
+ },
+ "cases": [
+  {
+   "case_id": "E01",
+   "original_trace_id": "01a1a76e-42f9-72ce-8408-9907fcd429f3",
+   "spans": 3
+  },
+  {
+   "case_id": "E04",
+   "original_trace_id": "01a1a76e-a08b-722f-8911-a00f50bff938",
+   "spans": 3
+  },
+  {
+   "case_id": "E11",
+   "original_trace_id": "01a1a76f-0c63-718d-bd1f-d55a5cb9e22b",
+   "spans": 9
+  },
+  {
+   "case_id": "E12",
+   "original_trace_id": "01a1a76f-3630-79b4-9798-92f88ae04807",
+   "spans": 8
+  },
+  {
+   "case_id": "E18",
+   "original_trace_id": "01a1a76f-69e4-7514-b592-8f9f3ea093c1",
+   "spans": 12
+  },
+  {
+   "case_id": "E19",
+   "original_trace_id": "01a1a76f-c706-70f5-8cd1-47152266139e",
+   "spans": 3
+  },
+  {
+   "case_id": "E20",
+   "original_trace_id": "01a1a76f-f369-7833-a0b3-ea9b12f37707",
+   "spans": 9
+  },
+  {
+   "case_id": "E21",
+   "original_trace_id": "01a1a770-3262-7a3b-b518-5f07a4317d0a",
+   "spans": 3
+  },
+  {
+   "case_id": "E22",
+   "original_trace_id": "01a1a770-6e4e-7fb9-b1b1-791fb61c13d7",
+   "spans": 9
+  },
+  {
+   "case_id": "E27",
+   "original_trace_id": "01a1a770-9a63-7a14-8048-ce0dc1ab9488",
+   "spans": 3
+  }
+ ],
+ "totals": {
+  "traces": 10,
+  "spans": 62,
+  "real_llm_spans": 10
+ },
+ "content_sha256": {
+  "traces": "15fa84cc592a05f4dfeb61905cc6443f995b866bf70f64c7845f97863b0dcb9f",
+  "spans": "1dfc76cb921ef2e671d435254f85039d589834d84ebf0dbfc1dbf289029bcd7a"
+ },
+ "id_rule": "trace/span id = deterministic UUIDv7 of the same scope with its time component shifted so the earliest pilot run maps to id_epoch (relative order kept); start_time/end_time historical; metadata._import_id = original id (Opik's import convention); tfg_id_epoch declares the shift",
+ "kept": [
+  "start_time and end_time",
+  "parent/child span links (remapped)",
+  "inputs, outputs, metadata, tags",
+  "secret redaction and egress checks",
+  "project",
+  "E07 excluded"
+ ],
+ "supersedes": [
+  {
+   "case_id": "E01",
+   "rejected_id": "01a1a76e-42f9-72ce-8408-9907fcd429f3",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  },
+  {
+   "case_id": "E04",
+   "rejected_id": "01a1a76e-a08b-722f-8911-a00f50bff938",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  },
+  {
+   "case_id": "E11",
+   "rejected_id": "01a1a76f-0c63-718d-bd1f-d55a5cb9e22b",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  },
+  {
+   "case_id": "E12",
+   "rejected_id": "01a1a76f-3630-79b4-9798-92f88ae04807",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  },
+  {
+   "case_id": "E18",
+   "rejected_id": "01a1a76f-69e4-7514-b592-8f9f3ea093c1",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  },
+  {
+   "case_id": "E19",
+   "rejected_id": "01a1a76f-c706-70f5-8cd1-47152266139e",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  },
+  {
+   "case_id": "E20",
+   "rejected_id": "01a1a76f-f369-7833-a0b3-ea9b12f37707",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  },
+  {
+   "case_id": "E21",
+   "rejected_id": "01a1a770-3262-7a3b-b518-5f07a4317d0a",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  },
+  {
+   "case_id": "E22",
+   "rejected_id": "01a1a770-6e4e-7fb9-b1b1-791fb61c13d7",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  },
+  {
+   "case_id": "E27",
+   "rejected_id": "01a1a770-9a63-7a14-8048-ce0dc1ab9488",
+   "attempt": "OP-1 2026-11-06T10:30Z, HTTP 400, read-back 404"
+  }
+ ],
+ "not_a_new_run": "a historical import of sealed records: no model is called, nothing is re-executed",
+ "authorization_steps": [
+  "1. Joel authorizes this content (content_sha256 + cases + destination)",
+  "2. at import time: prepare --id-epoch <now>, which checks content_sha256 and prints the exact traces/spans body sha256; Joel authorizes those two hashes",
+  "3. one send per batch, no retry, then per-trace read-back"
+ ]
+}

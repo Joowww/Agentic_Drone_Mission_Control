@@ -1,0 +1,149 @@
+{
+ "all_as_expected": true,
+ "cases": {
+  "aerial_dependency_lost": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "coordinator: ['GROUND_TASK_NOT_READY: BLOCKED_DEPENDENCY_LOST']"
+  },
+  "executor_parameters_not_declared": {
+   "as_expected": true,
+   "classification": "V2_READY_EXECUTOR_REQUEST_INCOMPLETE",
+   "commands": [],
+   "expected": "V2_READY_EXECUTOR_REQUEST_INCOMPLETE",
+   "first_blocking": "executor_request: ['EXECUTOR_PARAMETERS_NOT_DECLARED']"
+  },
+  "expired_authorization": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "authorization: ['OUTSIDE_VALIDITY_WINDOW']"
+  },
+  "expired_transform": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "frames: ['CHAIN_NOT_USABLE: synthetic_orchard_local<-odom: EXPIRED_OR_NOT_YET_VALID']"
+  },
+  "historical_m4c_r1": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "request: ['NO_NAVIGATION_PLAN: speed and timeout were not set by a human']"
+  },
+  "incompatible_frame": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "frames: ['ROVER_LOCALIZATION_FRAME_MISMATCH: map vs odom']"
+  },
+  "mission_cancelled": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "coordinator: ['GROUND_TASK_NOT_READY: CANCELLED']"
+  },
+  "no_authorization": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "authorization: ['NO_HUMAN_AUTHORIZATION_RECORD']"
+  },
+  "no_operator_receipt": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "codex_v2: ['AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE']"
+  },
+  "no_transform": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "frames: [\"UNKNOWN_FRAME: ['odom', 'synthetic_orchard_local']\"]"
+  },
+  "observation_refused_still_waiting": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "coordinator: ['GROUND_TASK_NOT_READY: CONDITIONAL_AWAITING_OBSERVATION']"
+  },
+  "operational_mode_refuses_fixtures": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "authorization: ['FIXTURE_AUTHORIZATION_NOT_ACCEPTED_IN_OPERATIONAL_MODE']"
+  },
+  "other_vehicle": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "authorization: ['ROVER_ID_MISMATCH']"
+  },
+  "rover_without_position": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "frames: ['ROVER_LOCALIZATION_NOT_ACCREDITED']"
+  },
+  "speed_and_duration_not_set": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "request: ['NO_NAVIGATION_PLAN: speed and timeout were not set by a human']"
+  },
+  "synthetic_complete": {
+   "as_expected": true,
+   "classification": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+   "commands": [],
+   "expected": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+   "first_blocking": "executor_admit: ['OPERATIONAL_ROVER_POLICY_DISABLED']"
+  },
+  "target_expired": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "coordinator: ['GROUND_TASK_NOT_READY: BLOCKED_OBSERVATION_EXPIRED']"
+  },
+  "wrong_scope": {
+   "as_expected": true,
+   "classification": "BLOCKED_BEFORE_SUBMISSION",
+   "commands": [],
+   "expected": "BLOCKED_BEFORE_SUBMISSION",
+   "first_blocking": "authorization: ['PLAN_ID_MISMATCH']"
+  }
+ },
+ "codex_commit": "57a0e303a",
+ "codex_contract_sha256": {
+  "schemas/rover-mission-execution-v2.schema.json": "39c2a5f232f8ca3b7fc95f5216bb7bc7ec323829e4be251586f7f4ab37089d89",
+  "tools/rover_agent_adapter.py": "357c1bea3b647372495901ff8e09cf97392bbda5c732b2e37ff02ba7771cedd0",
+  "tools/rover_control.py": "22d74f75e42f8d01964afd8dee5b067e935d75c4abf4be65c306c522cae16002",
+  "tools/rover_ground_executor.py": "a5db83999263790c7e7d34e5fe6952b91f339d0883facb6e965c462a06c7958d",
+  "tools/rover_mission_payload.py": "a9a7d77ca1ba5d506b0bd405c2ddeb1d6094237abb11203c0b4f4a163faed59d"
+ },
+ "codex_info": {
+  "operational_rover_enabled": false,
+  "v2_schema": "tfg.rover.mission-execution/2"
+ },
+ "codex_review_patch_sha256": null,
+ "codex_snapshot": "committed 57a0e303a",
+ "data_kind": "TEST_FIXTURE + sealed M4c-r1 request (read-only)",
+ "generated_utc": "2026-11-07T16:08:09.415269+00:00",
+ "no_command_anywhere": true,
+ "schema": "tfg.multiagent.rover-handoff-evidence/1"
+}

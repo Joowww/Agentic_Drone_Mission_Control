@@ -1,0 +1,460 @@
+{
+  "kind": "OFFLINE_SCOPED_SEARCH_DIAGNOSIS",
+  "historical_observations": {
+    "source": "simulation/ros2_gazebo/results/rover_xrce_trial_2026_10_24/cedfd5c5-9955-4ca0-b61a-0a4bda305098/container_after/container_copies/tmp/tfg_diagnostic_agents/c974c925-db90-4874-acaa-21c862efa53f/capture/sockets.jsonl",
+    "sha256": "a3b93702457787254e0865777dd909096112a887bedbcc103a542f6afdf89feb",
+    "rows": 39,
+    "reasons": {
+      "OUTPUT_BUDGET_DATA_INCOMPLETE": 37,
+      "ENOENT": 2
+    },
+    "retained_wire_bytes": {
+      "min": 2329,
+      "max": 57066
+    },
+    "first_fallback_value_bytes": {
+      "schema": 20,
+      "record": 1719,
+      "sources": 515,
+      "read_columns": 124,
+      "reads": 3342,
+      "sockets": 2,
+      "processes": 2,
+      "argv": 2,
+      "owners": 2
+    },
+    "fallback_rows_missing_table_after_provenance": 37,
+    "known_owned_processes": 23,
+    "limitations": "Pre-fallback topology, owner counts, FD counts, section sizes and overwritten earlier reasons were not retained. Missing table_after_reads establishes the scan had not completed; it does not identify the earlier error. Full /proc PID count is not the 23 attributable process count."
+  },
+  "fixture_measurements": [
+    {
+      "kind": "SYNTHETIC_STRESS_NOT_OBSERVED_TOPOLOGY",
+      "case": "base",
+      "background_processes": 0,
+      "total_fixture_processes": 3,
+      "unrelated_udp_sockets": 0,
+      "unrelated_fds_per_background_process": 0,
+      "old_max_before_fallback": {
+        "wire_bytes": 15267,
+        "section_value_bytes": {
+          "schema": 20,
+          "record": 1794,
+          "sources": 460,
+          "read_columns": 124,
+          "reads": 11191,
+          "sockets": 621,
+          "processes": 275,
+          "argv": 217,
+          "owners": 465
+        },
+        "read_events": 106,
+        "owners": 4,
+        "processes": 2,
+        "sockets": 2,
+        "pre_fallback_reasons": []
+      },
+      "old_final_reasons": [],
+      "new_state": "REPEATED_READS_AGREE",
+      "new_reasons": [],
+      "new_wire_bytes_including_newline": 11115,
+      "margin_bytes": 119957,
+      "new_size_diagnostics": {
+        "before_fallback_wire_bytes": 11115,
+        "section_value_bytes": {
+          "schema": 20,
+          "record": 2044,
+          "sources": 440,
+          "read_columns": 124,
+          "reads": 7187,
+          "sockets": 313,
+          "processes": 135,
+          "argv": 105,
+          "owners": 221
+        },
+        "retained_read_events": 68,
+        "owners_before": 1,
+        "owners_after": 1,
+        "target_socket_rows": 1,
+        "search_counts": {
+          "visible_pids": 3,
+          "fd_entries_listed": 4,
+          "fd_lists_completed": 6
+        },
+        "wire_bytes_before_accounting": 10689,
+        "framing_bytes": 99
+      }
+    },
+    {
+      "kind": "SYNTHETIC_STRESS_NOT_OBSERVED_TOPOLOGY",
+      "case": "many_unrelated_udp",
+      "background_processes": 20,
+      "total_fixture_processes": 23,
+      "unrelated_udp_sockets": 100,
+      "unrelated_fds_per_background_process": 3,
+      "old_max_before_fallback": {
+        "wire_bytes": 161541,
+        "section_value_bytes": {
+          "schema": 20,
+          "record": 12185,
+          "sources": 5100,
+          "read_columns": 124,
+          "reads": 84449,
+          "sockets": 32021,
+          "processes": 275,
+          "argv": 217,
+          "owners": 27050
+        },
+        "read_events": 786,
+        "owners": 204,
+        "processes": 2,
+        "sockets": 102,
+        "pre_fallback_reasons": []
+      },
+      "old_final_reasons": [
+        "OUTPUT_BUDGET_DATA_INCOMPLETE"
+      ],
+      "new_state": "REPEATED_READS_AGREE",
+      "new_reasons": [],
+      "new_wire_bytes_including_newline": 62057,
+      "margin_bytes": 69015,
+      "new_size_diagnostics": {
+        "before_fallback_wire_bytes": 62057,
+        "section_value_bytes": {
+          "schema": 20,
+          "record": 2061,
+          "sources": 4000,
+          "read_columns": 124,
+          "reads": 54531,
+          "sockets": 313,
+          "processes": 135,
+          "argv": 105,
+          "owners": 235
+        },
+        "retained_read_events": 508,
+        "owners_before": 1,
+        "owners_after": 1,
+        "target_socket_rows": 1,
+        "search_counts": {
+          "visible_pids": 23,
+          "fd_entries_listed": 324,
+          "fd_lists_completed": 46
+        },
+        "wire_bytes_before_accounting": 61624,
+        "framing_bytes": 99
+      }
+    },
+    {
+      "kind": "SYNTHETIC_STRESS_NOT_OBSERVED_TOPOLOGY",
+      "case": "many_processes_and_fds",
+      "background_processes": 40,
+      "total_fixture_processes": 43,
+      "unrelated_udp_sockets": 100,
+      "unrelated_fds_per_background_process": 5,
+      "old_max_before_fallback": {
+        "wire_bytes": 181380,
+        "section_value_bytes": {
+          "schema": 20,
+          "record": 2191,
+          "sources": 9200,
+          "read_columns": 124,
+          "reads": 110182,
+          "sockets": 32021,
+          "processes": 275,
+          "argv": 217,
+          "owners": 27050
+        },
+        "read_events": 1024,
+        "owners": 204,
+        "processes": 2,
+        "sockets": 102,
+        "pre_fallback_reasons": [
+          "READ_OR_WALL_BUDGET"
+        ]
+      },
+      "old_final_reasons": [
+        "OUTPUT_BUDGET_DATA_INCOMPLETE"
+      ],
+      "new_state": "REPEATED_READS_AGREE",
+      "new_reasons": [],
+      "new_wire_bytes_including_newline": 108295,
+      "margin_bytes": 22777,
+      "new_size_diagnostics": {
+        "before_fallback_wire_bytes": 108295,
+        "section_value_bytes": {
+          "schema": 20,
+          "record": 2061,
+          "sources": 7020,
+          "read_columns": 124,
+          "reads": 97747,
+          "sockets": 313,
+          "processes": 135,
+          "argv": 105,
+          "owners": 235
+        },
+        "retained_read_events": 908,
+        "owners_before": 1,
+        "owners_after": 1,
+        "target_socket_rows": 1,
+        "search_counts": {
+          "visible_pids": 43,
+          "fd_entries_listed": 604,
+          "fd_lists_completed": 86
+        },
+        "wire_bytes_before_accounting": 107860,
+        "framing_bytes": 99
+      }
+    },
+    {
+      "kind": "SYNTHETIC_STRESS_NOT_OBSERVED_TOPOLOGY",
+      "case": "over_read_budget",
+      "background_processes": 60,
+      "total_fixture_processes": 63,
+      "unrelated_udp_sockets": 100,
+      "unrelated_fds_per_background_process": 6,
+      "old_max_before_fallback": {
+        "wire_bytes": 171324,
+        "section_value_bytes": {
+          "schema": 20,
+          "record": 1784,
+          "sources": 13281,
+          "read_columns": 124,
+          "reads": 110316,
+          "sockets": 32021,
+          "processes": 275,
+          "argv": 217,
+          "owners": 13186
+        },
+        "read_events": 1024,
+        "owners": 102,
+        "processes": 2,
+        "sockets": 102,
+        "pre_fallback_reasons": [
+          "READ_OR_WALL_BUDGET"
+        ]
+      },
+      "old_final_reasons": [
+        "OUTPUT_BUDGET_DATA_INCOMPLETE"
+      ],
+      "new_state": "INCOMPLETE",
+      "new_reasons": [
+        "READ_OR_WALL_BUDGET"
+      ],
+      "new_wire_bytes_including_newline": 123561,
+      "margin_bytes": 7511,
+      "new_size_diagnostics": {
+        "before_fallback_wire_bytes": 123561,
+        "section_value_bytes": {
+          "schema": 20,
+          "record": 1403,
+          "sources": 10380,
+          "read_columns": 124,
+          "reads": 110308,
+          "sockets": 313,
+          "processes": 135,
+          "argv": 105,
+          "owners": 235
+        },
+        "retained_read_events": 1024,
+        "owners_before": 1,
+        "owners_after": 1,
+        "target_socket_rows": 1,
+        "search_counts": {
+          "visible_pids": 63,
+          "fd_entries_listed": 720,
+          "fd_lists_completed": 92
+        },
+        "wire_bytes_before_accounting": 123123,
+        "framing_bytes": 99
+      }
+    }
+  ],
+  "limits": {
+    "serialized_row_including_newline": 131072,
+    "read_events": 1024,
+    "pids": 128,
+    "fds_per_pass": 2048,
+    "cooperative_wall_seconds": 0.25,
+    "monitor_timeout_seconds": 0.75,
+    "monitor_samples": 64,
+    "interval_seconds": 5,
+    "context_bytes": 8192
+  },
+  "current_static_reads": {
+    "state": "CURRENT_ARTIFACT_HASHES_MATCH",
+    "calls": [
+      {
+        "command": [
+          "docker",
+          "info",
+          "--format",
+          "{{.ID}}"
+        ],
+        "at_utc": "2026-10-24T12:36:46.562688+00:00",
+        "duration_wall_s": 0.41545097902417183,
+        "rc": 0,
+        "stderr": ""
+      },
+      {
+        "command": [
+          "docker",
+          "inspect",
+          "--type",
+          "container",
+          "--format",
+          "{\"container_id\":{{json .Id}},\"image_id\":{{json .Image}},\"running\":{{json .State.Running}}}",
+          "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f"
+        ],
+        "at_utc": "2026-10-24T12:36:46.978185+00:00",
+        "duration_wall_s": 0.04458770001656376,
+        "rc": 0,
+        "stderr": ""
+      },
+      {
+        "command": [
+          "docker",
+          "exec",
+          "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+          "python3",
+          "-B",
+          "-c",
+          "import os,json,hashlib,time\nfrom pathlib import Path\nfrom datetime import datetime,timezone\nstarted=time.monotonic();out={'source':'CURRENT_STOPPED-SIMULATION_BACKGROUND_NOT_PRIOR_TOPOLOGY','at_utc':datetime.now(timezone.utc).isoformat(),'processes':[],'complete':True,'errors':[]}\npids=sorted((p for p in Path('/proc').iterdir() if p.name.isdigit()),key=lambda p:int(p.name))\nif len(pids)>128:out['complete']=False;out['errors'].append('PID_CAP');pids=pids[:128]\ntotal=0\nfor p in pids:\n if time.monotonic()-started>.5:out['complete']=False;out['errors'].append('READ_WALL_CAP');break\n try:\n  count=sum(1 for _ in (p/'fd').iterdir());total+=count\n  out['processes'].append({'pid':int(p.name),'fd_count':count,'source':str(p/'fd'),'received_monotonic':time.monotonic()})\n except OSError as e:out['complete']=False;out['errors'].append({'pid':int(p.name),'errno':e.errno})\n if total>2048:out['complete']=False;out['errors'].append('FD_CAP');break\nout['visible_pid_count_at_listing']=len(pids);out['fd_entries_counted']=total;out['duration_s']=time.monotonic()-started\nartifacts=[]\nfor name,h in [('/tmp/tfg-peer-build-20261024-swzvihrs-build/agent-build/micro_ros_agent', '2c81395a0aaf5aaac094e302c69edbe357975f200947578e9b4ca7eaf17a63a8'), ('/tmp/tfg-peer-build-20261024-swzvihrs-build/native-build/libmicroxrcedds_agent.so.2.4.2', 'cf2537265cb64b9ea0f52737306be6166e0a4456a4a2c94b21319b2298a097fa'), ('/tmp/tfg-rover-quota-cap-link-fefyp58g/build/rover_passive_collector', '94c0a9dd4a454c41561b0355803a7232ae001cf842336124341163ff5cf90d93')]:\n path=Path(name);artifacts.append({'path':name,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'expected_sha256':h,'real_path':str(path.resolve())})\nprint(json.dumps({'background_counts':out,'artifacts':artifacts}))\n"
+        ],
+        "at_utc": "2026-10-24T12:36:47.022819+00:00",
+        "duration_wall_s": 0.24289400698035024,
+        "rc": 0,
+        "stderr": ""
+      }
+    ],
+    "environment": {
+      "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+      "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+      "running": true,
+      "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99"
+    },
+    "background_counts": {
+      "source": "CURRENT_STOPPED-SIMULATION_BACKGROUND_NOT_PRIOR_TOPOLOGY",
+      "at_utc": "2026-10-24T12:36:47.151314+00:00",
+      "processes": [
+        {
+          "pid": 1,
+          "fd_count": 4,
+          "source": "/proc/1/fd",
+          "received_monotonic": 161668.406827269
+        },
+        {
+          "pid": 9333,
+          "fd_count": 15,
+          "source": "/proc/9333/fd",
+          "received_monotonic": 161668.406894777
+        },
+        {
+          "pid": 11533,
+          "fd_count": 4,
+          "source": "/proc/11533/fd",
+          "received_monotonic": 161668.407053297
+        }
+      ],
+      "complete": true,
+      "errors": [],
+      "visible_pid_count_at_listing": 3,
+      "fd_entries_counted": 23,
+      "duration_s": 0.0004975630145054311
+    },
+    "artifacts": [
+      {
+        "path": "/tmp/tfg-peer-build-20261024-swzvihrs-build/agent-build/micro_ros_agent",
+        "sha256": "2c81395a0aaf5aaac094e302c69edbe357975f200947578e9b4ca7eaf17a63a8",
+        "expected_sha256": "2c81395a0aaf5aaac094e302c69edbe357975f200947578e9b4ca7eaf17a63a8",
+        "real_path": "/tmp/tfg-peer-build-20261024-swzvihrs-build/agent-build/micro_ros_agent"
+      },
+      {
+        "path": "/tmp/tfg-peer-build-20261024-swzvihrs-build/native-build/libmicroxrcedds_agent.so.2.4.2",
+        "sha256": "cf2537265cb64b9ea0f52737306be6166e0a4456a4a2c94b21319b2298a097fa",
+        "expected_sha256": "cf2537265cb64b9ea0f52737306be6166e0a4456a4a2c94b21319b2298a097fa",
+        "real_path": "/tmp/tfg-peer-build-20261024-swzvihrs-build/native-build/libmicroxrcedds_agent.so.2.4.2"
+      },
+      {
+        "path": "/tmp/tfg-rover-quota-cap-link-fefyp58g/build/rover_passive_collector",
+        "sha256": "94c0a9dd4a454c41561b0355803a7232ae001cf842336124341163ff5cf90d93",
+        "expected_sha256": "94c0a9dd4a454c41561b0355803a7232ae001cf842336124341163ff5cf90d93",
+        "real_path": "/tmp/tfg-rover-quota-cap-link-fefyp58g/build/rover_passive_collector"
+      }
+    ]
+  },
+  "native_rebuild_required": false,
+  "movement_authorized": false,
+  "source_association_verified": false,
+  "prepared_helpers": [
+    {
+      "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/tools/rover_xrce_trace/selection.py",
+      "bootstrap_destination": "/tmp/tfg_diagnostic_agent.py",
+      "sha256": "8e909d1923a4054dadba20b855763eda33589ca446168a28f2941f99fa2f60f7"
+    },
+    {
+      "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/tools/rover_xrce_trace/monitor.py",
+      "bootstrap_destination": "/tmp/monitor.py",
+      "sha256": "487ccd7aa04c5a8307fadf93e9c5e60a8a9ba255603f29010bb5c30643057de8"
+    },
+    {
+      "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/tools/rover_xrce_trace/socket_inventory.py",
+      "bootstrap_destination": "/tmp/socket_inventory.py",
+      "sha256": "375c85fd54d9e65c0a7ffe7c5d22c4891c8a449192a0866a644b9f1e1f934289"
+    },
+    {
+      "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/tools/rover_xrce_trace/analyze.py",
+      "bootstrap_destination": "/tmp/analyze.py",
+      "sha256": "c07ccc0264500e022153a920b982a99ade60c408ec06a75aa0966cd5b14cfbe3"
+    }
+  ],
+  "manifest_sha256": "7943cf7c9541b06c6e05cf02f514bc61c1f2bc668593ae1bc203b65a18c3ad7c",
+  "native_inputs_unchanged": true,
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_rover_socket_inventory.py tests/test_rover_diagnostic_selection.py tests/test_rover_xrce_trace.py tests/test_rover_xrce_peer.py tests/test_rover_session_precheck.py",
+    "passed": 143,
+    "duration_s": 6.49,
+    "scope": "Offline only: fake proc, fake transport, frozen Python algorithm, native trace fixture and host synthetic C++; no operational inventory/monitor/agent",
+    "initial_cause_fixture": "75 unrelated sockets fit (115826 bytes with original short fake clock); fixture was increased to 100 and realistic-width synthetic timestamps to reproduce overflow without changing operational limits.",
+    "final_targeted": {
+      "command": ".venv/bin/python -m pytest -q tests/test_rover_socket_inventory.py",
+      "passed": 55,
+      "duration_s": 1.55,
+      "reason": "Final dual-stack candidate handling; two IPv6 fixture rows initially used an invalid IPv4-width remote address, corrected fixture then targeted suite passed."
+    }
+  },
+  "syntax": "py_compile affected Python modules/tests and bash -n existing build.sh passed",
+  "whitespace": "git diff --check plus explicit new/untracked code/docs checks passed; raw evidence not normalized",
+  "readiness_of_next_trial": {
+    "implementation": "PREPARED_OFFLINE_WITH_MEASURED_STRESS_ENVELOPE",
+    "operational_fit": "NOT_VERIFIED",
+    "historical_prefallback_composition": "UNRECOVERABLE",
+    "minimum_missing_measurement": "Per-query pre-fallback size sections, counts and original read failure already implemented for next separately authorized protected trial; no extra unbounded collection needed.",
+    "stop_if": "Native peer unavailable/invalid; any incomplete global search, missing refs, budget/time/persistence errors, GUI unknown/exit, ambiguous ownership or changed environment. No Status capture/retry.",
+    "movement_authorized": false
+  },
+  "historical_preservation": [
+    {
+      "trial": "cedfd5c5-9955-4ca0-b61a-0a4bda305098",
+      "entries_verified": 110,
+      "manifest_sha256": "48413cff3b03361c5af0e2baa5fe479a59ff301a6c42cf6d802e4f58eefc1a43"
+    },
+    {
+      "trial": "eb113b19-4923-4983-bed4-2e99db1aa512",
+      "entries_verified": 119,
+      "manifest_sha256": "42ab6eb1046f4f0983441b1c4949d4ade27444a015301b0829acdd39082a7a86"
+    },
+    {
+      "trial": "f3380567-b48a-4e47-b4c5-c3be066a76d1",
+      "entries_verified": 55,
+      "manifest_sha256": "9e8b4688df4d49b8691da05e3e736c65e674d16318381ab404c7268b0c3db5d2"
+    },
+    {
+      "trial": "3c3b6544-3324-4ac6-970d-776cb059d4c8",
+      "entries_verified": 41,
+      "manifest_sha256": "acb2fd60d92aec0d25a2b979368cf5e5967c92e8b3e8fe6923aa134f03e0304e"
+    }
+  ],
+  "historical_pending_paths_present": 198,
+  "historical_pending_check": "Presence only; no invented earlier byte baseline.",
+  "index": "EMPTY"
+}

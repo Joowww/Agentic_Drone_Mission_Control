@@ -1,0 +1,30 @@
+--- /home/joelm/TFG/ardupilot_ros2_ws/src/ardupilot_gz/ardupilot_gz_bringup/launch/multiagent.launch.py	2026-10-02 10:52:29.494364673 +0200
++++ simulation/ros2_gazebo/launch/tfg_demo.launch.py	2026-10-04 09:52:11.946930049 +0200
+@@ -84,22 +84,17 @@
+         {
+             "name": "drone1",
+             "model": Vehicle.IRIS,
+-            "position": ["0.0", "0.0", "0.195", "0", "0", "1.5708"],
+-        },  # [x, y, z, roll, pitch, yaw]
++            "position": ["-2.0", "0.0", "0.195", "0", "0", "1.5708"],
++        },
+         {
+             "name": "drone2",
+-            "model": Vehicle.IRIS_LIDAR,
+-            "position": ["1.0", "0.0", "0.195", "0", "0", "1.5708"],
++            "model": Vehicle.IRIS,
++            "position": ["2.0", "0.0", "0.195", "0", "0", "1.5708"],
+         },
+         {
+             "name": "rover1",
+             "model": Vehicle.WILD_THUMPER,
+-            "position": ["-1.0", "0.0", "0.195", "0", "0", "1.5708"],
+-        },
+-        {
+-            "name": "plane1",
+-            "model": Vehicle.ALTI_TRANSITION,
+-            "position": ["-4.0", "0.0", "0.195", "0", "0", "1.5708"],
++            "position": ["0.0", "-3.0", "0.195", "0", "0", "1.5708"],
+         },
+     ]
+ 

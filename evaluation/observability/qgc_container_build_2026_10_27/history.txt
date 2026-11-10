@@ -1,0 +1,14 @@
+0B | ENTRYPOINT ["/opt/tfg/entrypoint.sh"]
+0B | USER 1000:1000
+0B | ENV LANG=C.UTF-8 QT_QPA_PLATFORM=xcb QT_X11_NO_MITSHM=1 LIBGL_ALWAYS_SOFTWARE=1 HOME=/home/qgc
+0B | LABEL org.opencontainers.image.title=tfg-qgroundcontrol org.opencontainers.image.version=5.1.5 org.opencontainers.image.source=https://github.com/mavlink/qgroundcontrol/releases/tag/v5.1.5 tfg.qgc.appimage.sha256=9a47e4cf269d9e4f897f582f6b19aa7ebf1e9e67c9d68a532a45b541354bc344 tfg.qgc.commit=3a67d31f0c36bf3fe38ec52970d250a89d0aaf67 tfg.apt.snapshot=20261024T000000Z
+16.4kB | COPY --chmod=0755 entrypoint.sh /opt/tfg/entrypoint.sh # buildkit
+16.4kB | COPY --chmod=0644 QGroundControl.ini /opt/tfg/QGroundControl.ini # buildkit
+524MB | COPY /opt/qgroundcontrol /opt/qgroundcontrol # buildkit
+256MB | RUN |1 APT_SNAPSHOT=20261024T000000Z /bin/sh -c sed -i -E "s#^URIs: .*#URIs: https://snapshot.ubuntu.com/ubuntu/${APT_SNAPSHOT}/#"         /etc/apt/sources.list.d/ubuntu.sources     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt update     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt install -y --no-install-recommends         libegl1 libgles2 libgl1 libglx-mesa0 libgl1-mesa-dri         libxcb-xinerama0 libxkbcommon-x11-0 libxcb-cursor0         libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0         libxcb-shape0 libxcb-xfixes0 libxcb-xkb1 libx11-xcb1 libxkbcommon0         libfontconfig1 libfreetype6 fonts-dejavu-core libdbus-1-3         libasound2t64 libfribidi0 libharfbuzz0b libxrandr2     && rm -rf /var/lib/apt/lists/*     && install -d -o 1000 -g 1000 -m 0700 /home/qgc     && install -d -m 0755 /opt/tfg # buildkit
+0B | ARG APT_SNAPSHOT=20261024T000000Z
+0B | /bin/sh -c #(nop)  CMD ["/bin/bash"]
+87.6MB | /bin/sh -c #(nop) ADD file:eed88e94d6aa7c9da62836e137f889e03988c1a6b237b0cedb6ca666dfaa98ea in / 
+0B | /bin/sh -c #(nop)  LABEL org.opencontainers.image.version=24.04
+0B | /bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH
+0B | /bin/sh -c #(nop)  ARG RELEASE

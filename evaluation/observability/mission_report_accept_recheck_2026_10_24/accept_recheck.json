@@ -1,0 +1,67 @@
+{
+  "schema": "tfg.mission-report-acceptance-check/1",
+  "checked_at_utc": "2026-10-24T07:43:12.230349+00:00",
+  "command": ".venv/bin/python -m tools.mission_report_query accept --usage-file ~/tfg-hermes-capture-private/20261024T073531Z/native-usage.json --run-id d4519cab-ebd1-4359-b547-44be38294a6a",
+  "invocation_note": "main() called in-process with the same argv; runner = subprocess.run wrapped only to hash the export output in memory; no inference",
+  "session_of": "the integrated ask turn of 2026-10-24 07:35 UTC (private dir 20261024T073531Z)",
+  "intended_run_id": "d4519cab-ebd1-4359-b547-44be38294a6a",
+  "usage_file_sha256": "b11b8259c786d5fea0df7d9291817d0f8082395b1aacefb1e535056798b68ca2",
+  "hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
+  "sources_sha256": {
+    "tools/mission_report_query.py": "ee39af7f7f263ecf87f8362a1e9e423925ec882967ec7ef16006bfc713ab6b2a",
+    "observability/mission_report_acceptance.py": "84323823b23dec901b6dfbb7b692b1bbe8753c7e6f148312e694a7f686d57d7d",
+    "observability/mission_query_cases.py": "ed2353c723f7f28de1273c691ea59639719ccde14d050115c4f5facc4c4bde23",
+    "tools/mission_external_view.py": "394d0c1978b80ba475b15204646f8d7c2aeb39c83a8d52ebd92111c7f7627335",
+    "observability/hermes_capture_run.py": "a27d7772ec7dd534c2e2c4ef2487904138d83789b7100c266ff0dcd9f8a25673"
+  },
+  "hermes_sessions_export": {
+    "returncode": 0,
+    "stdout_bytes": 21121,
+    "stdout_sha256": "81e603c5d62a17fea997f4c4d1768e5df64f0b27d23bb490b581ec57ad3a4a3d",
+    "stdout_lines": 1,
+    "stderr_bytes": 0
+  },
+  "exit_code": 0,
+  "emitted_json_sha256": "e39fe1242e47d55c6f4de98cae793b111823a50bfef359a57542885a1d6951b7",
+  "emitted_contains_session_id": false,
+  "status": "VALIDATED",
+  "reasons": [],
+  "contract": "v3",
+  "observed_tool_calls": 1,
+  "report_present": true,
+  "answer_outcomes": {
+    "verdict": "ALL_FIELDS_CORRECT",
+    "parse_status": "FENCED_JSON_OBJECT",
+    "fields": {
+      "run_id": "match",
+      "historical_status": "match",
+      "mission_id": "match",
+      "vehicle_id": "match",
+      "simulated_vehicle": "match",
+      "planned_waypoint_ids": "match",
+      "reached_waypoint_ids": "match",
+      "return_to_home": "match",
+      "mission_landed_event_recorded": "match",
+      "recovery_landing_completed": "match",
+      "current_availability": "match"
+    },
+    "counts": {
+      "match": 11
+    },
+    "extra_keys": 0,
+    "contract": "v3"
+  },
+  "scope": {
+    "record": "historical",
+    "current_availability": "NOT_CHECKED",
+    "operational_authorization": false
+  },
+  "not_archived": [
+    "exported session content",
+    "session_id",
+    "session_ref",
+    "tool arguments and result",
+    "final answer / report values",
+    "emitted JSON (only its hash)"
+  ]
+}

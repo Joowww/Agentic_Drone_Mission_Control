@@ -1,0 +1,44 @@
+{
+  "_label": "Claude (asistida, preliminar). Lectura contra la vista recibida; NO es revisión humana y no cambia ningún estado.",
+  "pilot-real-r01": [
+    "Orden atribuido a executor_started/finished, coherente con order.checks; no cita horas.",
+    "«vuelo simultáneo no validado»: AMBIGUO. La vista registra simultaneous_flight: false y ventanas disjuntas; lo no validado es el marco común.",
+    "«la secuencia PASÓ»: la condición de la vista dice Sequence COMPLETED; equivalente en la práctica, formulación imprecisa."
+  ],
+  "pilot-real-r02": [
+    "Sin respuesta: timeout de 300 s tras errores del proveedor (timeout de 180 s y tres 429 overloaded). No hay explicación que revisar."
+  ],
+  "pilot-real-r03": [
+    "El modelo NO llamó a get_scenario_view. El texto mostrado procede de hermes_stdout.txt, porque la respuesta no se pudo analizar (bloque con etiqueta {json}).",
+    "Contenido INVENTADO frente a la vista: escenario completo, un solo dron, identificadores inexistentes (drone_001, POI-01, mission_agri_001) y «no realizaron … regreso ni aterrizaje validado»."
+  ],
+  "pilot-real-r04": [
+    "Las horas citadas (despegue 12:51:48, regreso 12:53:36, aterrizaje 12:54:22, fin 12:55:42; drone_02 12:56:17, 12:57:57, 12:58:31, 12:59:50) coinciden con commands_started_at y executor_finished_at.",
+    "Cita correctamente las tres comprobaciones de order.checks. «velocidad/torno» parece una errata de «giro»."
+  ],
+  "pilot-real-r05": [
+    "CONTRADICCIÓN INTERNA: dice que el orden se acredita «no por tiempos de admisión», pero enumera job_admitted_at entre las marcas que lo acreditan.",
+    "«drone_02 se despegó solo después de que drone_01 reportara PASSED»: coherente con el despacho del coordinador."
+  ],
+  "pilot-real-r06": [
+    "Contenido coherente con la vista: despacho 12:55:42 posterior al aterrizaje 12:54:22, tolerancias 1,0/0,75 m y autorización del operador limitada a dos capturas.",
+    "Rechazo estructurado por FORMATO: reached_points como objetos {poi, status} en lugar de lista de identificadores. Su significado coincide con la vista (lectura de Claude; no cambia el estado).",
+    "El evaluador original falló con TypeError en esta respuesta; se corrigió después del piloto (accept_h3b_post_fix.json)."
+  ],
+  "pilot-real-r07": [
+    "«vuelo simultáneo no validado»: AMBIGUO (el mismo caso que r01).",
+    "«sin velocidad ni frame común validado»: mezcla la velocidad (no comandada ni medida) con la validación; impreciso."
+  ],
+  "pilot-real-r08": [
+    "Las horas del ejecutor (12:51:28–12:55:42 y 12:55:50–12:59:50) y el despacho 12:55:42.21580 tras PASSED 12:55:42.177521 coinciden con la vista.",
+    "CONTRADICCIÓN CON SUS PROPIOS CAMPOS: la explicación afirma que no hubo imágenes, detecciones ni velocidad comandada o medida, pero los claims correspondientes son null (rechazo crítico).",
+    "El aviso heurístico may_claim_measured_or_commanded_speed es un FALSO POSITIVO: la frase es una negación."
+  ],
+  "pilot-real-r09": [
+    "Las horas citadas (despacho 12:55:42, land 12:54:22, arm de drone_02 12:56:14) coinciden con la vista. No se ven errores en esta lectura."
+  ],
+  "pilot-real-r10": [
+    "Justifica el orden solo con el despacho del coordinador: correcto pero parcial.",
+    "«marco común no validado (posiciones flotantes)»: IMPRECISO. La vista atribuye la falta de validación a offsets desde lanzamientos distintos; float32 es un detalle adicional."
+  ]
+}

@@ -1,0 +1,275 @@
+{
+ "classification": "BLOCKED_BEFORE_SUBMISSION",
+ "codex_commit": "57a0e303a",
+ "codex_snapshot": "reviewed 2e206f1fa+551eb1fefebc",
+ "commands": [],
+ "conversion_owner": "CLAUDE_FRAMES2D",
+ "coordinator_events": [
+  {
+   "detail": [
+    "authorization: FIXTURE_AUTHORIZATION_NOT_ACCEPTED_IN_OPERATIONAL_MODE",
+    "frames: CLAUDE_FRAMES2D_IS_OFFLINE_TEST_ONLY: the final conversion owner is CODEX_ADAPTER",
+    "codex_v2: AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE",
+    "executor_request: NO_GOAL_IN_ROVER_FRAME",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "reasons": [
+    "authorization: FIXTURE_AUTHORIZATION_NOT_ACCEPTED_IN_OPERATIONAL_MODE",
+    "frames: CLAUDE_FRAMES2D_IS_OFFLINE_TEST_ONLY",
+    "codex_v2: AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE",
+    "executor_request: NO_GOAL_IN_ROVER_FRAME",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "envelope": null,
+ "error_categories": [
+  "AUTHORIZATION",
+  "CONVERSION",
+  "EXECUTOR_POLICY",
+  "FRAMES"
+ ],
+ "errors": [
+  {
+   "category": "AUTHORIZATION",
+   "code": "FIXTURE_AUTHORIZATION_NOT_ACCEPTED_IN_OPERATIONAL_MODE",
+   "detail": "FIXTURE_AUTHORIZATION_NOT_ACCEPTED_IN_OPERATIONAL_MODE",
+   "stage": "authorization"
+  },
+  {
+   "category": "CONVERSION",
+   "code": "CLAUDE_FRAMES2D_IS_OFFLINE_TEST_ONLY",
+   "detail": "CLAUDE_FRAMES2D_IS_OFFLINE_TEST_ONLY: the final conversion owner is CODEX_ADAPTER",
+   "stage": "frames"
+  },
+  {
+   "category": "AUTHORIZATION",
+   "code": "AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE",
+   "detail": "AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE",
+   "stage": "codex_v2"
+  },
+  {
+   "category": "FRAMES",
+   "code": "NO_GOAL_IN_ROVER_FRAME",
+   "detail": "NO_GOAL_IN_ROVER_FRAME",
+   "stage": "executor_request"
+  },
+  {
+   "category": "EXECUTOR_POLICY",
+   "code": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "detail": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "stage": "executor_admit"
+  }
+ ],
+ "mode": "OPERATIONAL",
+ "movement_executed": false,
+ "provenance": null,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [],
+   "stage": "request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [
+    "FIXTURE_AUTHORIZATION_NOT_ACCEPTED_IN_OPERATIONAL_MODE"
+   ],
+   "stage": "authorization",
+   "status": "BLOCKED"
+  },
+  {
+   "reasons": [],
+   "stage": "codex_bridge",
+   "status": "PASS"
+  },
+  {
+   "conversion": null,
+   "goal_base_link": null,
+   "goal_handoff": {
+    "applied_conversions": [],
+    "constraints": {
+     "authorized_area_site_frame": [
+      [
+       -10.0,
+       -10.0
+      ],
+      [
+       30.0,
+       -10.0
+      ],
+      [
+       30.0,
+       30.0
+      ],
+      [
+       -10.0,
+       30.0
+      ]
+     ],
+     "human": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 60.0
+     },
+     "operator": {
+      "localization_max_age_s": 2.0,
+      "localization_max_uncertainty_m": 0.3,
+      "max_distance_m": 5.0,
+      "max_total_sigma_m": 0.5
+     }
+    },
+    "conversion_owner": "CLAUDE_FRAMES2D",
+    "delegated_checks": [
+     "GOAL_DISTANCE_FROM_ROVER: needs the converted goal"
+    ],
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "frame_identity": {
+     "rover_frame_expected": "odom",
+     "site_frame": "synthetic_orchard_local"
+    },
+    "goal_rover": null,
+    "goal_site": {
+     "frame": "synthetic_orchard_local",
+     "point_id": "POI_3",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "boot_id": "rover-boot-1",
+     "frame": "odom",
+     "observed_at": "2026-11-07T16:08:12.208841+00:00",
+     "sigma_m": 0.05,
+     "source": "TEST_FIXTURE_LOCALIZATION",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "state": "ACCREDITED",
+     "vehicle_id": "rover_01"
+    },
+    "observation": {
+     "data_kind": "TEST_FIXTURE observation from a SYNTHETIC_TEST image",
+     "observation_id": "red_target-obs-1",
+     "observed_at": "2026-11-07T16:08:10.408841+00:00",
+     "original_pose": {
+      "chain": [
+       "synthetic_orchard_local",
+       "drone_02/base_link",
+       "cam_down_fixture_optical"
+      ],
+      "frame": "synthetic_orchard_local",
+      "pose_source": "TEST_FIXTURE"
+     },
+     "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+     "source": "perception gate (detector on a SYNTHETIC_TEST image)",
+     "uncertainty_m": 0.12
+    },
+    "schema": "tfg.multiagent.rover-goal-handoff/1",
+    "transform_required": {
+     "from": "synthetic_orchard_local",
+     "reference": {
+      "accredited": true,
+      "chain": [
+       "inverse(synthetic_orchard_local<-odom)"
+      ],
+      "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "codex_matrix": {
+       "expires_at_utc": "2026-11-07T17:08:12.408841+00:00",
+       "matrix": [
+        [
+         6.123233995736766e-17,
+         1.0,
+         1.5
+        ],
+        [
+         -1.0,
+         6.123233995736766e-17,
+         1.0
+        ],
+        [
+         0.0,
+         0.0,
+         1.0
+        ]
+       ],
+       "not_before_utc": "2026-11-07T15:08:12.408841+00:00",
+       "source": "TEST_FIXTURE_SURVEY",
+       "source_frame": "synthetic_orchard_local",
+       "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+       "target_frame": "odom",
+       "uncertainty_m": 0.0200810856280232,
+       "uncertainty_rad": 0.001,
+       "validated": true
+      },
+      "goal_sigma_after_transform_m": 0.12199692619078564,
+      "sigma_m": 0.0200810856280232,
+      "sigma_rad": 0.001,
+      "source_frame": "synthetic_orchard_local",
+      "target_frame": "odom",
+      "valid_until": "2026-11-07T17:08:12.408841+00:00"
+     },
+     "status": "REQUIRED_NOT_APPLIED",
+     "to": "odom"
+    },
+    "vehicle": {
+     "boot_id": "rover-boot-1",
+     "vehicle_id": "rover_01"
+    }
+   },
+   "goal_rover": null,
+   "reasons": [
+    "CLAUDE_FRAMES2D_IS_OFFLINE_TEST_ONLY: the final conversion owner is CODEX_ADAPTER"
+   ],
+   "stage": "frames",
+   "status": "REFUSED"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [
+    "AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE"
+   ],
+   "schema_errors": null,
+   "stage": "codex_v2",
+   "status": "WAITING"
+  },
+  {
+   "reasons": [
+    "NO_GOAL_IN_ROVER_FRAME"
+   ],
+   "stage": "executor_request",
+   "status": "NOT_REACHED"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

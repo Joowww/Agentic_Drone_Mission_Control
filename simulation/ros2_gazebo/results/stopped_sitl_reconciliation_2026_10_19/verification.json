@@ -1,0 +1,67 @@
+{
+  "scope": "Offline only, no operational Docker/ROS/MCP, no application or real reservation change",
+  "affected_tests": {
+    "sha256": "b8657a214b54314ea72a9f521a40e16c771ff89085dc4c5bf52fac00e1463ed4",
+    "result": "97 passed in 5.59s"
+  },
+  "full_suite": {
+    "sha256": "e0f50db632120f63bf96977a9f008a877a6641654a961b5911c49db06046a531",
+    "result": "532 passed in 19.64s"
+  },
+  "syntax": {
+    "python_files": 27,
+    "bash_scripts": 5,
+    "embedded_observer": true,
+    "details": "syntax_final.json"
+  },
+  "historical_files_preserved": 472,
+  "changed_originals": [],
+  "original_inspection_sha256": "ce2fc0ec49d29a617f81a8236329308c80bf4b91c19dd7ac6f24525765db61b8",
+  "tracked_diff_check_exit": 0,
+  "untracked_code_docs_whitespace_issues": [],
+  "raw_prior_evidence_files_with_notices": 9,
+  "iteration_logs": {
+    "tests_affected.txt": {
+      "sha256": "9a4bdbf1e9a5fe4ca9ea3f4a0951284a937202165ffd70b9b389edb8d2e97fa5",
+      "result": "93 passed in 5.05s"
+    },
+    "tests_affected_closed.txt": {
+      "sha256": "eed0e40520ea2934241c0048886d11838794d19976caa7f528c93294fd3b4bde",
+      "result": "94 passed in 4.96s"
+    },
+    "tests_affected_complete.txt": {
+      "sha256": "b8657a214b54314ea72a9f521a40e16c771ff89085dc4c5bf52fac00e1463ed4",
+      "result": "97 passed in 5.59s"
+    },
+    "tests_affected_final.txt": {
+      "sha256": "0472a167ca8b4c4c1b642babfe35908535928fa69cdad71dcf4ddaf81a6484a8",
+      "result": "93 passed in 5.10s"
+    },
+    "tests_affected_first.txt": {
+      "sha256": "b3233b629cb4ab5e1eeba2cb82c94512a5723ef01644c670d0081224e7e07447",
+      "result": "76 passed in 3.99s"
+    },
+    "tests_affected_reviewed.txt": {
+      "sha256": "e21895c8535cad90e1e296f485284e8fee9b011ad2461a84af4e61e003de5c1d",
+      "result": "96 passed in 5.04s"
+    },
+    "tests_full.txt": {
+      "sha256": "60bdee8875b8e7eace0afee86872b928708feee151dd9c7883a79a5ae8ec9e60",
+      "result": "528 passed in 18.82s"
+    },
+    "tests_full_complete.txt": {
+      "sha256": "e0f50db632120f63bf96977a9f008a877a6641654a961b5911c49db06046a531",
+      "result": "532 passed in 19.64s"
+    }
+  },
+  "early_collection_errors": {
+    "observed_tool_output_only": true,
+    "counts": [
+      2,
+      4
+    ],
+    "cause": "New missing parenthesis, fixed before final checks; not attributed to preexisting tree"
+  },
+  "real_reconciliation_performed": false,
+  "real_environment_status": "NOT_COLLECTED_THIS_TURN"
+}

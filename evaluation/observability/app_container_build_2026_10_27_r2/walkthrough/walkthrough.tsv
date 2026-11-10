@@ -1,0 +1,16 @@
+step	expected_rc	rc	expected_text	result
+a_query	0	0	Escenario: AERIAL_COMPLETED_GROUND_PENDING	PASS
+b_demo	0	0	Escenario: SYNTHETIC_COMPLETE	PASS
+c1_demo_lost	0	0	admission reply lost	PASS
+c2_resume	0	0	Coordinador R1: VERIFIED_SYNTHETIC	PASS
+c3_single_admission	0	0	admit_calls=1 jobs=1	PASS
+d_validate_site	0	0	"status": "VALID"	PASS
+e1_dronelab_site	1	1	"status": "INCOMPLETE"	PASS
+e2_dronelab_package	0	0	BLOCKED_MISSING_DATA	PASS
+f_package	0	0	A2 drone_02: GENERATED	PASS
+g_verify	0	0	"status": "INTEGRITY_VERIFIED"	PASS
+h_compare	0	0	NO_SEMANTIC_DIFFERENCES	PASS
+i1_scenario_report	0	0	# Informe determinista del escenario agri_demo_001	PASS
+i2_comparison	0	0		PASS
+i3_review_sheet	0	0		PASS
+n_no_network	0	0	NO_NETWORK	PASS

@@ -1,0 +1,176 @@
+{
+  "mode": "dry-run",
+  "sent": false,
+  "verification": "UNVERIFIED_AGAINST_OPIK_SERVICE: fields follow the official OpenAPI spec for traces/batch and spans/batch (comet-ml/opik@6ff71e2, reviewed 2026-10-21); shape validated offline against opik==2.2.110 REST models and a mock transport (evaluation/observability/opik_sdk_offline_validation_2026_10_21); opik is not a dependency of this exporter",
+  "destination": {
+    "platform": "opik",
+    "project": "tfg-opik-hermes-real-20261021",
+    "workspace": "joowww"
+  },
+  "events": 1,
+  "traces": 1,
+  "spans": 1,
+  "point_events": 0,
+  "synthetic_traces": 0,
+  "unknown_provenance_traces": 0,
+  "captured_traces": 1,
+  "withheld_traces": [],
+  "blocked_for_future_send_by_default": [],
+  "provenance_check": {
+    "ok": true,
+    "files": [
+      {
+        "file": "hermes-events-2026-10-21.jsonl",
+        "records": 1,
+        "problems": []
+      }
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "payload": {
+    "traces_batches": [
+      {
+        "traces": [
+          {
+            "id": "01a16002-9b28-75bc-abca-6942ca6d1c95",
+            "project_name": "tfg-opik-hermes-real-20261021",
+            "name": "hermes_turn",
+            "start_time": "2026-10-21T19:49:05.960428Z",
+            "end_time": "2026-10-21T19:49:08.625207Z",
+            "metadata": {
+              "tfg_grouping": "derived_from_turn_ref",
+              "tfg_observed_event": false,
+              "tfg_run_id": "real-hermes-nous-20261021",
+              "tfg_case_id": "oneshot-ok",
+              "tfg_session_ref": "sha256:d5776a97ac84a9bf",
+              "tfg_turn_ref": "sha256:d77367489eac1190",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_timed_spans": 1,
+              "tfg_point_events": [],
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_exporter_version": "1",
+              "tfg_cost": "not_computed",
+              "tfg_point_event_time_basis": "capture_recorded_at_not_compared_with_hermes_epochs",
+              "tfg_time_basis": "derived_min_max_of_hermes_epochs",
+              "tfg_interval_derived": true,
+              "tfg_interval_status": "derived_from_measured_spans_only",
+              "tfg_latency_measured": false
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          }
+        ]
+      }
+    ],
+    "spans_batches": [
+      {
+        "spans": [
+          {
+            "id": "01a16002-9b28-7291-bce7-d68337bb58f2",
+            "trace_id": "01a16002-9b28-75bc-abca-6942ca6d1c95",
+            "project_name": "tfg-opik-hermes-real-20261021",
+            "type": "llm",
+            "name": "llm_call:poolside/laguna-s-2.1:free",
+            "start_time": "2026-10-21T19:49:05.960428Z",
+            "end_time": "2026-10-21T19:49:08.625207Z",
+            "metadata": {
+              "tfg_event_id": "8c7725d3-e6e1-4aa5-901f-478b5777872b",
+              "tfg_recorded_at_utc": "2026-10-21T19:49:09.315044+00:00",
+              "tfg_run_id": "real-hermes-nous-20261021",
+              "tfg_case_id": "oneshot-ok",
+              "tfg_session_ref": "sha256:d5776a97ac84a9bf",
+              "tfg_task_ref": "sha256:9c82894e5e7f7ddf",
+              "tfg_turn_ref": "sha256:d77367489eac1190",
+              "tfg_api_request_ref": "sha256:4ce346bf442f1127",
+              "tfg_absent_fields": [
+                "retry_count",
+                "upstream_provider"
+              ],
+              "tfg_redacted_fields": [],
+              "tfg_ambiguous_zero_fields": [
+                "usage.cache_write_tokens",
+                "usage.reasoning_tokens"
+              ],
+              "tfg_provider": "nous",
+              "tfg_upstream_provider": null,
+              "tfg_model": "poolside/laguna-s-2.1:free",
+              "tfg_response_model": "poolside/laguna-s-2.1:free",
+              "tfg_api_mode": "chat_completions",
+              "tfg_finish_reason": "stop",
+              "tfg_timing_source": "hermes_hook_wall_clock",
+              "tfg_timing_scope": "api_call_from_first_attempt",
+              "tfg_api_duration_s": 2.664778470993042,
+              "tfg_started_at_epoch_s": 1792612145.9604282,
+              "tfg_ended_at_epoch_s": 1792612148.6252067,
+              "tfg_first_chunk_offset_s": 2.6623475551605225,
+              "tfg_api_call_count": 1,
+              "tfg_message_count": 2,
+              "tfg_assistant_tool_call_count": 0,
+              "tfg_context_length": 65536,
+              "tfg_requested_tool_names": [],
+              "tfg_usage_source": "hermes_normalized_summary",
+              "tfg_usage": {
+                "cache_read_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 256
+                },
+                "cache_write_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "input_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 538
+                },
+                "output_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 2
+                },
+                "prompt_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 794
+                },
+                "reasoning_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "total_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 796
+                }
+              },
+              "tfg_retry_count": null,
+              "tfg_event_type": "llm_call",
+              "tfg_schema": "tfg.hermes.capture/3",
+              "tfg_exporter_version": "1",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_time_basis": "hermes_epochs",
+              "tfg_units": {
+                "api_duration_s": "s",
+                "started_at_epoch_s": "s_since_epoch",
+                "ended_at_epoch_s": "s_since_epoch",
+                "first_chunk_offset_s": "s"
+              },
+              "tfg_cost": "not_computed",
+              "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_latency_measured": true
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "note": "Nothing was sent. Metadata-only; token counters are Hermes-normalised; no cost, usage, model/provider or ttft at top level."
+}

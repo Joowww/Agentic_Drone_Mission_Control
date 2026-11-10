@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/home/joelm/TFG/Agentic_Drone_Mission_Control/.venv/bin/python",
+    "-c",
+    "\nimport os,json\nfrom pathlib import Path\nitems=[];errors=[]\nmodules={'tools.virtual_preflight_worker','tools.preflight_sequence_worker','tools.simulation_lifecycle','tools.rover_ground_executor'}\nscripts={'virtual_preflight_worker.py','preflight_sequence_worker.py','rover_identity_worker.py','tfg_rover_identity_worker.py'}\nfor p in Path('/proc').iterdir():\n    if not p.name.isdigit() or int(p.name)==os.getpid(): continue\n    try:\n        args=[x.decode(errors='replace') for x in (p/'cmdline').read_bytes().split(b'\\0') if x]\n        fields=(p/'stat').read_text().rpartition(')')[2].split()\n        if not args or fields[0]=='Z': continue\n        names={Path(x).name for x in args[:2]}\n        candidate=bool(names & {'arducopter','ardurover','gz','ign','micro_ros_agent'})\n        candidate=candidate or any(x in modules for x in args)\n        candidate=candidate or bool(names & scripts)\n        candidate=candidate or ('launch' in args and 'ardupilot_gz_bringup' in args)\n        candidate=candidate or (bool(names & {'parameter_bridge','robot_state_publisher','relay','rviz2','create'}) and any(x in {'__ns:=/drone1','__ns:=/drone2','__ns:=/rover1'} for x in args))\n        if candidate: items.append({'pid':int(p.name),'start_ticks':int(fields[19]),'ppid':int(fields[1]),'argv':args})\n    except (FileNotFoundError,ProcessLookupError): pass\n    except Exception as exc: errors.append({'pid':int(p.name),'error':str(exc)})\nprint(json.dumps({'candidates':items,'errors':errors}))\n"
+  ],
+  "timeout_s": 8,
+  "started_at_utc": "2026-10-21T08:35:54.324286+00:00",
+  "started_monotonic_s": 8201.027817829,
+  "return_code": 0,
+  "duration_wall_s": 0.04181435400096234,
+  "finished_at_utc": "2026-10-21T08:35:54.366102+00:00"
+}

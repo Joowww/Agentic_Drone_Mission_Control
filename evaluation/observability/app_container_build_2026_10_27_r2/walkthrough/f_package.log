@@ -1,0 +1,13 @@
+ Container tfg-dist-app-run-b3b931c2bc2f Creating 
+ Container tfg-dist-app-run-b3b931c2bc2f Created 
+Package b9cff3e6b6950110 [SYNTHETIC, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval ABSENT
+  A1 drone_01: GENERATED -> plans/drone_01.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  A2 drone_02: GENERATED -> plans/drone_02.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  R1 rover_01: line PASS, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: A1 -> A2 -> R1
+  PENDING: operator approval ABSENT
+  PENDING: A1: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)
+  PENDING: A2: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)
+  PENDING: conditioned or not in the .plan: failsafe actions, planning inputs, return coordinate, speed, takeoff, waypoint acceptance, yaw
+  PENDING: autopilot parameters not read: WP_RADIUS_M (waypoint acceptance), WP_YAW_BEHAVIOR (yaw), WP_SPD (default speed), FS_* (failsafe actions), LAND_SPD_MS / descent (landing rate)
+  PENDING: QGroundControl version unknown; imported_in_qgroundcontrol: NOT_DONE, uploaded_to_vehicle: NOT_DONE, read_back_from_vehicle: NOT_DONE, executed: NOT_DONE

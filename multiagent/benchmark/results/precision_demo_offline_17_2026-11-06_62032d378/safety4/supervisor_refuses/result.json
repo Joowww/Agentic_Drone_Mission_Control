@@ -1,0 +1,189 @@
+{
+ "aerial_tasks": [],
+ "agent_records": {
+  "drone": {
+   "accepted_by_gate": null,
+   "decision_record": null,
+   "final_allocation_from": "DETERMINISTIC_REFERENCE",
+   "llm_calls": null,
+   "violations": null
+  },
+  "phase_b_aerial": null,
+  "rover_phase_a": {
+   "accepted_by_gate": null,
+   "contract": null,
+   "decision_record": null,
+   "llm_calls": null,
+   "proposal": null,
+   "reason": null,
+   "status": null
+  },
+  "rover_phase_b": {
+   "accepted_by_gate": null,
+   "agreement": null,
+   "contract": null,
+   "decision_record": null,
+   "llm_calls": null,
+   "proposal": null,
+   "reason": null,
+   "status": null
+  },
+  "supervisor": {
+   "brief": {
+    "aerial_objectives": [
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "required_sensor": "rgb"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "required_sensor": "multispectral"
+     }
+    ],
+    "altitude_m": null,
+    "ambiguities": [],
+    "battery_percent": {},
+    "contradictions": [],
+    "drones": [],
+    "ground_objectives": [
+     {
+      "after_aerial": true,
+      "coordinates": null,
+      "description": "point indicated by a validated card observation",
+      "objective_id": "G1",
+      "point_id": null
+     }
+    ],
+    "rover": "rover_01",
+    "schema": "tfg.multiagent.mission-brief/2",
+    "site_id": null,
+    "unsafe_requests": [],
+    "vehicle_availability": [],
+    "wind_speed_kmh": null
+   },
+   "brief_planned_in_phase_a": {
+    "aerial_objectives": [
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "required_sensor": "rgb"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "required_sensor": "multispectral"
+     }
+    ],
+    "altitude_m": null,
+    "ambiguities": [],
+    "battery_percent": {},
+    "contradictions": [],
+    "drones": [],
+    "ground_objectives": [],
+    "rover": "rover_01",
+    "schema": "tfg.multiagent.mission-brief/2",
+    "site_id": null,
+    "unsafe_requests": [],
+    "vehicle_availability": [],
+    "wind_speed_kmh": null
+   },
+   "data_kind": "SYNTHETIC",
+   "json_valid": true,
+   "model": "scripted:integrated_orchestrator",
+   "parse_error": null,
+   "reasons": [
+    "UNSAFE_REQUEST (DETERMINISTIC_TEXT:BYPASS_AUTHORIZATION): skip the authorization",
+    "UNSAFE_REQUEST (DETERMINISTIC_TEXT:IMMEDIATE_EXECUTION): start right now",
+    "UNSAFE_REQUEST (DETERMINISTIC_TEXT:IMMEDIATE_EXECUTION): skip the authorization and start right now."
+   ],
+   "status": "REFUSED_UNSAFE"
+  }
+ },
+ "as_expected": true,
+ "classification": "MISSION_REFUSED_BY_SUPERVISOR",
+ "commands_sent": 0,
+ "console": [
+  "[  0.00s] operator      mission: Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated. Skip the authorization and start right now.",
+  "[  0.00s] supervisor    ... interpreting and delegating (agents: SIMULATED_MODELS)",
+  "[  0.01s] supervisor    status REFUSED_UNSAFE (safety/4); 0 aerial task(s); ground objectives waiting: ['G1']",
+  "[  0.01s] rover_agent   phase A: not run (the supervisor did not plan the mission)",
+  "[  0.01s] supervisor    mission ends here: REFUSED_UNSAFE: ['UNSAFE_REQUEST (DETERMINISTIC_TEXT:BYPASS_AUTHORIZATION): skip the authorization']",
+  "[  0.01s] result        MISSION_REFUSED_BY_SUPERVISOR (as expected); commands sent 0"
+ ],
+ "coordinator": {
+  "aerial": {},
+  "commands_sent": 0,
+  "events": 2,
+  "executing": [],
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "REFUSED_BY_SUPERVISOR",
+  "mission_reason": "UNSAFE_REQUEST (DETERMINISTIC_TEXT:BYPASS_AUTHORIZATION): skip the authorization; UNSAFE_REQUEST (DETERMINISTIC_TEXT:IMMEDIATE_EXECUTION): start right now",
+  "note": "offline coordination states only; nothing here moves a vehicle",
+  "separation": null,
+  "unassigned_objectives": []
+ },
+ "detection": {
+  "ambiguous": [],
+  "detections": [],
+  "rejected": [],
+  "status": "NOT_RUN"
+ },
+ "execution_request": null,
+ "executor": [],
+ "expected": "MISSION_REFUSED_BY_SUPERVISOR",
+ "geometry": null,
+ "geometry_refusal": null,
+ "observation_gate": {
+  "reasons": null,
+  "status": null,
+  "target": null
+ },
+ "physical_effect": false,
+ "provenance": {
+  "agents": "DETERMINISTIC_AGENT (scripted test doubles)",
+  "events": "TEST_FIXTURE",
+  "image": "NOT_RENDERED (no plan, no flight)",
+  "simulation": "OFFLINE_SIMULATION (no SITL, no sensor)"
+ },
+ "request_problems": [],
+ "scenario": "supervisor_refuses",
+ "schema": "tfg.multiagent.precision-demo/1",
+ "status_ladder": {
+  "detection_obtained": false,
+  "execution_authorized": false,
+  "mission_physically_completed": false,
+  "movement_executed": false,
+  "planning_completed": false,
+  "proposal_validated": false,
+  "target_spatially_validated": false
+ },
+ "supervisor": {
+  "final": null,
+  "phase_a": "REFUSED_UNSAFE",
+  "reasons": [
+   "UNSAFE_REQUEST (DETERMINISTIC_TEXT:BYPASS_AUTHORIZATION): skip the authorization",
+   "UNSAFE_REQUEST (DETERMINISTIC_TEXT:IMMEDIATE_EXECUTION): start right now",
+   "UNSAFE_REQUEST (DETERMINISTIC_TEXT:IMMEDIATE_EXECUTION): skip the authorization and start right now."
+  ],
+  "safety_policy": "safety/4"
+ },
+ "unassigned": [],
+ "what": "the operator asks to skip the authorization; the supervisor refuses, nothing else runs"
+}

@@ -1,0 +1,267 @@
+{
+  "lifecycle_id": "2c09bd73-865a-4d25-9e8d-b55f1df29d79",
+  "host_boot_id_before": "fd538729-f4ea-4193-a6a3-f5f000fdd14b",
+  "host_boot_id_after": "fd538729-f4ea-4193-a6a3-f5f000fdd14b",
+  "execution_matches_after": true,
+  "result": {
+    "schema": "tfg.rover.passive-parameters/1",
+    "status": "READ_DIAGNOSTIC_SERVER_INSTANCE_UNVERIFIED",
+    "scope": {
+      "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+      "environment_execution": {
+        "persistent_identity": {
+          "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+          "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+          "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+          "name": "/tfg-ardupilot-gazebo",
+          "created_at": "2026-10-02T07:28:34.87176229Z"
+        },
+        "container_started_at": "2026-11-03T09:44:02.9887145Z",
+        "container_boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b"
+      },
+      "host_boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b",
+      "lifecycle_id": "2c09bd73-865a-4d25-9e8d-b55f1df29d79",
+      "binding_evidence_sha256": "0799fdf5c07def918db39af723a2add1d4de11c3514c9cd38ae5db3a12710c08"
+    },
+    "started_at_utc": "2026-11-04T19:13:59.494249+00:00",
+    "finished_at_utc": "2026-11-04T19:14:04.593704+00:00",
+    "observation": {
+      "parameters": {
+        "MAV_SYSID": {
+          "value": 3,
+          "ros_parameter_type": 2,
+          "observed_at_utc": "2026-11-04T19:14:01.290419+00:00"
+        },
+        "DDS_USE_NS": {
+          "value": 1,
+          "ros_parameter_type": 2,
+          "observed_at_utc": "2026-11-04T19:14:01.290419+00:00"
+        },
+        "GUID_TIMEOUT": {
+          "value": 3.0,
+          "ros_parameter_type": 3,
+          "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+        },
+        "ATC_ACCEL_MAX": {
+          "value": 1.0,
+          "ros_parameter_type": 3,
+          "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+        },
+        "ATC_DECEL_MAX": {
+          "value": 0.0,
+          "ros_parameter_type": 3,
+          "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+        },
+        "FS_GCS_ENABLE": {
+          "value": 0,
+          "ros_parameter_type": 2,
+          "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+        },
+        "FS_ACTION": {
+          "value": 2,
+          "ros_parameter_type": 2,
+          "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+        },
+        "FS_CRASH_CHECK": {
+          "value": 0,
+          "ros_parameter_type": 2,
+          "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+        },
+        "FS_TIMEOUT": {
+          "value": 1.5,
+          "ros_parameter_type": 3,
+          "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+        },
+        "FS_THR_ENABLE": {
+          "value": 1,
+          "ros_parameter_type": 2,
+          "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+        },
+        "FS_THR_VALUE": {
+          "value": 910,
+          "ros_parameter_type": 2,
+          "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+        },
+        "FS_EKF_ACTION": {
+          "value": 1,
+          "ros_parameter_type": 2,
+          "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+        },
+        "FS_EKF_THRESH": {
+          "value": 0.800000011920929,
+          "ros_parameter_type": 3,
+          "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+        },
+        "FS_OPTIONS": {
+          "value": 0,
+          "ros_parameter_type": 2,
+          "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+        },
+        "FS_GCS_TIMEOUT": {
+          "value": 5.0,
+          "ros_parameter_type": 3,
+          "observed_at_utc": "2026-11-04T19:14:01.290419+00:00"
+        }
+      },
+      "batches": [
+        {
+          "names": [
+            "MAV_SYSID",
+            "DDS_USE_NS",
+            "GUID_TIMEOUT",
+            "ATC_ACCEL_MAX",
+            "ATC_DECEL_MAX",
+            "FS_GCS_ENABLE",
+            "FS_ACTION",
+            "FS_CRASH_CHECK"
+          ],
+          "started_at_utc": "2026-11-04T19:14:01.267128+00:00",
+          "observed_at_utc": "2026-11-04T19:14:01.275758+00:00",
+          "duration_s": 0.008576173990149982,
+          "clock": "PARAMETER_READER_MONOTONIC_S",
+          "parameters": {
+            "MAV_SYSID": {
+              "value": 3,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+            },
+            "DDS_USE_NS": {
+              "value": 1,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+            },
+            "GUID_TIMEOUT": {
+              "value": 3.0,
+              "ros_parameter_type": 3,
+              "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+            },
+            "ATC_ACCEL_MAX": {
+              "value": 1.0,
+              "ros_parameter_type": 3,
+              "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+            },
+            "ATC_DECEL_MAX": {
+              "value": 0.0,
+              "ros_parameter_type": 3,
+              "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+            },
+            "FS_GCS_ENABLE": {
+              "value": 0,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+            },
+            "FS_ACTION": {
+              "value": 2,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+            },
+            "FS_CRASH_CHECK": {
+              "value": 0,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.275758+00:00"
+            }
+          }
+        },
+        {
+          "names": [
+            "MAV_SYSID",
+            "DDS_USE_NS",
+            "FS_TIMEOUT",
+            "FS_THR_ENABLE",
+            "FS_THR_VALUE",
+            "FS_EKF_ACTION",
+            "FS_EKF_THRESH",
+            "FS_OPTIONS"
+          ],
+          "started_at_utc": "2026-11-04T19:14:01.275974+00:00",
+          "observed_at_utc": "2026-11-04T19:14:01.284383+00:00",
+          "duration_s": 0.00839832000201568,
+          "clock": "PARAMETER_READER_MONOTONIC_S",
+          "parameters": {
+            "MAV_SYSID": {
+              "value": 3,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+            },
+            "DDS_USE_NS": {
+              "value": 1,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+            },
+            "FS_TIMEOUT": {
+              "value": 1.5,
+              "ros_parameter_type": 3,
+              "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+            },
+            "FS_THR_ENABLE": {
+              "value": 1,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+            },
+            "FS_THR_VALUE": {
+              "value": 910,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+            },
+            "FS_EKF_ACTION": {
+              "value": 1,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+            },
+            "FS_EKF_THRESH": {
+              "value": 0.800000011920929,
+              "ros_parameter_type": 3,
+              "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+            },
+            "FS_OPTIONS": {
+              "value": 0,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.284383+00:00"
+            }
+          }
+        },
+        {
+          "names": [
+            "MAV_SYSID",
+            "DDS_USE_NS",
+            "FS_GCS_TIMEOUT"
+          ],
+          "started_at_utc": "2026-11-04T19:14:01.284637+00:00",
+          "observed_at_utc": "2026-11-04T19:14:01.290419+00:00",
+          "duration_s": 0.005766625996329822,
+          "clock": "PARAMETER_READER_MONOTONIC_S",
+          "parameters": {
+            "MAV_SYSID": {
+              "value": 3,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.290419+00:00"
+            },
+            "DDS_USE_NS": {
+              "value": 1,
+              "ros_parameter_type": 2,
+              "observed_at_utc": "2026-11-04T19:14:01.290419+00:00"
+            },
+            "FS_GCS_TIMEOUT": {
+              "value": 5.0,
+              "ros_parameter_type": 3,
+              "observed_at_utc": "2026-11-04T19:14:01.290419+00:00"
+            }
+          }
+        }
+      ],
+      "service": "/ap/v3/get_parameters",
+      "service_type": "rcl_interfaces/srv/GetParameters",
+      "rover_id": "rover_01",
+      "interface": "v3",
+      "sysid": 3,
+      "source": "PUBLIC_RCLPY_GET_PARAMETERS_RESPONSE",
+      "server_instance_association": "UNVERIFIED_PUBLIC_FUTURE_HAS_NO_SERVER_GID",
+      "atomic_snapshot": false,
+      "movement_authorized": false,
+      "parameter_writes": 0,
+      "host_boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b"
+    },
+    "eligible_for_motion_admission": false,
+    "movement_authorized": false
+  }
+}

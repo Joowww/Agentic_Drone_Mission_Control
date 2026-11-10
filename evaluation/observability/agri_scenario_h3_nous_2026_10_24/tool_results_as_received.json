@@ -1,0 +1,250 @@
+[
+  {
+    "tool_name": "mcp__tfg_mission_control__get_mission_state",
+    "arguments": {
+      "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+      "view": "external"
+    },
+    "status": "ok",
+    "result": {
+      "view": "external",
+      "external_schema_version": 2,
+      "status": "KNOWN",
+      "queried": {
+        "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757"
+      },
+      "error_code": null,
+      "readiness_now": "UNKNOWN_NOT_CHECKED",
+      "consent": "NOT_GRANTED_BY_THIS_QUERY",
+      "hardware_authorized": false,
+      "warning_count": 0,
+      "preflights": [
+        {
+          "identity": {
+            "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+            "mission_id": "agri_demo_001_h1_sector_a",
+            "mission_name": "agri_demo_001 H1 sector A",
+            "vehicle_id": "drone_01",
+            "simulated_vehicle": "v1"
+          },
+          "record": {
+            "result_status": "PASSED",
+            "report_stage": "analyze",
+            "job_state": "FINISHED",
+            "execution_attempted": true,
+            "started_at": "2026-10-24T12:51:18.368178+00:00",
+            "finished_at": "2026-10-24T12:55:42.149639+00:00",
+            "snapshot_integrity": "VERIFIED_LOCAL_HASH",
+            "worker_alive": false
+          },
+          "admission_at_run": {
+            "validation_mission_status": "FEASIBLE",
+            "validation_execution_status": "APPROVED",
+            "readiness_ready": true,
+            "readiness_status": "READY"
+          },
+          "plan": {
+            "planned_waypoint_ids": [
+              "WP1",
+              "WP2"
+            ]
+          },
+          "executor_facts": {
+            "status": "COMPLETED",
+            "success": true,
+            "stage": "MISSION_EXECUTION",
+            "waypoints_completed": 2,
+            "return_to_home": true,
+            "reached_waypoint_ids": [
+              "WP1",
+              "WP2"
+            ],
+            "mission_landing_events": [
+              {
+                "event": "LANDED",
+                "landed": true,
+                "armed": false,
+                "flying": false
+              }
+            ],
+            "mission_landing_event_count": 1
+          },
+          "acceptance_criteria": {
+            "passed": true,
+            "checks": {
+              "completed": true,
+              "identity": true,
+              "no_failure_or_recovery": true,
+              "count_and_return_flag": true,
+              "event_sequence": true,
+              "commands_confirmed": true,
+              "all_waypoints_reached": true,
+              "return_home_reached": true,
+              "takeoff_reached": true,
+              "landed_and_disarmed": true,
+              "position_evidence_consistent": true
+            }
+          },
+          "recovery_after_failure": {
+            "landing_attempted": null,
+            "landing_completed": null,
+            "landed": null,
+            "armed": null,
+            "flying": null
+          },
+          "reason_count": 0
+        }
+      ],
+      "other_linked_records": {
+        "artifacts": 1,
+        "proposals": 0,
+        "revisions": 0,
+        "linked_drafts": 1
+      },
+      "rejected_fields": [],
+      "omitted": [
+        "absolute paths",
+        "worker pid/start_ticks/boot_id",
+        "request_key",
+        "reasons and messages",
+        "readiness output",
+        "error texts and error evidence",
+        "event payloads",
+        "recovery final position",
+        "links to drafts/artifacts"
+      ],
+      "semantics": {
+        "null": "not recorded in the historical report; never inferred from other fields",
+        "readiness_now": "current availability; this historical query does not check it",
+        "executor_facts": "what the executor recorded during that run",
+        "executor_facts.mission_landing_events": "the mission's own LANDED events: [] = events recorded but no LANDED event; null = no event log",
+        "acceptance_criteria": "pass/fail of the analysis rules for that run; a false criterion is not a recorded fact and must not be read as one (e.g. not as return_to_home=false)",
+        "recovery_after_failure": "a separate landing performed after a failure; not the mission's own landing"
+      }
+    }
+  },
+  {
+    "tool_name": "mcp__tfg_mission_control__get_mission_state",
+    "arguments": {
+      "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+      "view": "external"
+    },
+    "status": "ok",
+    "result": {
+      "view": "external",
+      "external_schema_version": 2,
+      "status": "KNOWN",
+      "queried": {
+        "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a"
+      },
+      "error_code": null,
+      "readiness_now": "UNKNOWN_NOT_CHECKED",
+      "consent": "NOT_GRANTED_BY_THIS_QUERY",
+      "hardware_authorized": false,
+      "warning_count": 0,
+      "preflights": [
+        {
+          "identity": {
+            "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+            "mission_id": "agri_demo_001_h1_sector_b",
+            "mission_name": "agri_demo_001 H1 sector B",
+            "vehicle_id": "drone_02",
+            "simulated_vehicle": "v2"
+          },
+          "record": {
+            "result_status": "PASSED",
+            "report_stage": "analyze",
+            "job_state": "FINISHED",
+            "execution_attempted": true,
+            "started_at": "2026-10-24T12:51:18.376933+00:00",
+            "finished_at": "2026-10-24T12:59:50.916176+00:00",
+            "snapshot_integrity": "VERIFIED_LOCAL_HASH",
+            "worker_alive": false
+          },
+          "admission_at_run": {
+            "validation_mission_status": "FEASIBLE",
+            "validation_execution_status": "APPROVED",
+            "readiness_ready": true,
+            "readiness_status": "READY"
+          },
+          "plan": {
+            "planned_waypoint_ids": [
+              "WP1",
+              "WP2"
+            ]
+          },
+          "executor_facts": {
+            "status": "COMPLETED",
+            "success": true,
+            "stage": "MISSION_EXECUTION",
+            "waypoints_completed": 2,
+            "return_to_home": true,
+            "reached_waypoint_ids": [
+              "WP1",
+              "WP2"
+            ],
+            "mission_landing_events": [
+              {
+                "event": "LANDED",
+                "landed": true,
+                "armed": false,
+                "flying": false
+              }
+            ],
+            "mission_landing_event_count": 1
+          },
+          "acceptance_criteria": {
+            "passed": true,
+            "checks": {
+              "completed": true,
+              "identity": true,
+              "no_failure_or_recovery": true,
+              "count_and_return_flag": true,
+              "event_sequence": true,
+              "commands_confirmed": true,
+              "all_waypoints_reached": true,
+              "return_home_reached": true,
+              "takeoff_reached": true,
+              "landed_and_disarmed": true,
+              "position_evidence_consistent": true
+            }
+          },
+          "recovery_after_failure": {
+            "landing_attempted": null,
+            "landing_completed": null,
+            "landed": null,
+            "armed": null,
+            "flying": null
+          },
+          "reason_count": 0
+        }
+      ],
+      "other_linked_records": {
+        "artifacts": 1,
+        "proposals": 0,
+        "revisions": 0,
+        "linked_drafts": 1
+      },
+      "rejected_fields": [],
+      "omitted": [
+        "absolute paths",
+        "worker pid/start_ticks/boot_id",
+        "request_key",
+        "reasons and messages",
+        "readiness output",
+        "error texts and error evidence",
+        "event payloads",
+        "recovery final position",
+        "links to drafts/artifacts"
+      ],
+      "semantics": {
+        "null": "not recorded in the historical report; never inferred from other fields",
+        "readiness_now": "current availability; this historical query does not check it",
+        "executor_facts": "what the executor recorded during that run",
+        "executor_facts.mission_landing_events": "the mission's own LANDED events: [] = events recorded but no LANDED event; null = no event log",
+        "acceptance_criteria": "pass/fail of the analysis rules for that run; a false criterion is not a recorded fact and must not be read as one (e.g. not as return_to_home=false)",
+        "recovery_after_failure": "a separate landing performed after a failure; not the mission's own landing"
+      }
+    }
+  }
+]

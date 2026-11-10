@@ -1,0 +1,163 @@
+{
+  "schema": "tfg.agri-scenario-flow/1",
+  "scenario_id": "agri_demo_001",
+  "mode": "demo",
+  "source": "synthetic",
+  "origin": "SYNTHETIC",
+  "variant": "executor_refuses",
+  "resume": {
+    "resumed": false
+  },
+  "status": "COMPLETED_FLOW",
+  "stage": "report",
+  "reasons": [],
+  "artifacts": {
+    "binding_record": {
+      "path": "evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json",
+      "sha256": "b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf"
+    },
+    "missions": {
+      "drone_01": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24/sequence/mission_1.json",
+      "drone_02": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24/sequence/mission_2.json"
+    }
+  },
+  "sequence": {
+    "sequence_id": "0df8dec9-6b2f-5a18-be4a-4a5221389a82",
+    "job_state": "FINISHED",
+    "result_status": "PASSED",
+    "plan_sha256": "a1821ce7c0d16620af683759049737ace1096d3a18a2202b571567c3ee245e30",
+    "created_at": "2026-10-24T12:51:18.386453+00:00",
+    "finished_at": "2026-10-24T12:59:51.127955+00:00"
+  },
+  "view_sha256": "3173f822da7b99f99d02a9468bd6f47b937bf5d8af9127a79b5da4c25be6c043",
+  "hermes": {
+    "origin": "SUBSTITUTED",
+    "inference_performed": false,
+    "summary": "model provider substituted: no call; the conserved H1 finalizations are the inputs"
+  },
+  "r1": {
+    "request_key": "synthetic-r1-executor_refuses",
+    "stages": {
+      "dependency": "MET",
+      "eligibility": "ELIGIBLE",
+      "authorization": "ABSENT",
+      "admission": "NOT_REQUESTED",
+      "execution": "NOT_STARTED"
+    },
+    "blockers": [],
+    "candidate_sha256": "7e60ce0efefd1f3807c32d4c26e8bf8fa85882cfea437e108ab123bef09fb1aa",
+    "state": "REJECTED_BY_EXECUTOR",
+    "run_id": null,
+    "acceptance": null,
+    "admit_calls": 1,
+    "request_status": "CREATED",
+    "repeat_request_status": "EXISTING",
+    "reason": "TEST_DOUBLE executor refusal"
+  },
+  "r1_dimensions": {
+    "dependency": "MET",
+    "eligibility": {
+      "historical_view": {
+        "status": "BLOCKED_PENDING",
+        "barriers": [
+          "Rover identity chain (XRCE client to SITL instance/SYSID and bridge/model) not established",
+          "No public rover entry point with authorization and reservations",
+          "No navigation to a position: rover control offers bounded velocity/turn only",
+          "Execution gate covers the two_drones profile only"
+        ]
+      },
+      "this_preparation": {
+        "eligibility": "ELIGIBLE",
+        "blockers": []
+      }
+    },
+    "authorization": "DECLARED_NOT_AUTHENTICATED",
+    "request": {
+      "status": "REJECTED_BY_EXECUTOR",
+      "run_id": null
+    },
+    "execution": {
+      "status": "NOT_STARTED"
+    },
+    "completeness": {
+      "scenario_status": "AERIAL_COMPLETED_GROUND_REJECTED_BY_EXECUTOR",
+      "scenario_complete": false,
+      "synthetic_complete": false
+    }
+  },
+  "scenario": {
+    "scenario_status": "AERIAL_COMPLETED_GROUND_REJECTED_BY_EXECUTOR",
+    "scenario_complete": false,
+    "synthetic_complete": false,
+    "r1_state": "REJECTED_BY_EXECUTOR"
+  },
+  "report_path": "evaluation/observability/agri_scenario_flow_closure_2026_10_26/synthetic_demo/executor_refuses/scenario_report.md",
+  "previous_report_kept": null,
+  "transitions": [
+    {
+      "node": "load_artifacts",
+      "started_at": "2026-10-26T18:34:50.620863+00:00",
+      "finished_at": "2026-10-26T18:34:50.622218+00:00",
+      "waiting_on": "conserved H1/H2 artifacts, verified by their manifests",
+      "result": "LOADED",
+      "reason": "2 missions; binding record SYNTHETIC_DE"
+    },
+    {
+      "node": "bind_and_validate",
+      "started_at": "2026-10-26T18:34:50.623257+00:00",
+      "finished_at": "2026-10-26T18:34:50.627509+00:00",
+      "waiting_on": "deterministic validation, execution compatibility and H0 geometry of each mission",
+      "result": "BOUND",
+      "reason": "drone_01 321ad647ab9c, drone_02 079e25a30242"
+    },
+    {
+      "node": "aerial_sequence",
+      "started_at": "2026-10-26T18:34:50.628400+00:00",
+      "finished_at": "2026-10-26T18:34:50.637922+00:00",
+      "waiting_on": "the sequence coordinator's record (read-only; no admission or launch)",
+      "result": "FINISHED/PASSED",
+      "reason": "SYNTHETIC copy of the conserved H2 record, re-identified as 0df8dec9"
+    },
+    {
+      "node": "scenario_view",
+      "started_at": "2026-10-26T18:34:50.639021+00:00",
+      "finished_at": "2026-10-26T18:34:50.639172+00:00",
+      "waiting_on": "the scenario interpretation of the sequence against the binding",
+      "result": "OK",
+      "reason": "scenario AERIAL_COMPLETED_GROUND_PENDING; R1 dependency MET"
+    },
+    {
+      "node": "hermes_evidence",
+      "started_at": "2026-10-26T18:34:50.640210+00:00",
+      "finished_at": "2026-10-26T18:34:50.640219+00:00",
+      "waiting_on": "recorded Hermes captures (no inference)",
+      "result": "SUBSTITUTED",
+      "reason": "model provider substituted: no call; the conserved H1 finalizations are the inputs"
+    },
+    {
+      "node": "r1_prepare",
+      "started_at": "2026-10-26T18:34:50.641212+00:00",
+      "finished_at": "2026-10-26T18:34:50.641341+00:00",
+      "waiting_on": "R1 inputs, current executor facts and measured facts (dry-run)",
+      "result": "MET/ELIGIBLE",
+      "reason": "blockers: none"
+    },
+    {
+      "node": "r1_coordinate",
+      "started_at": "2026-10-26T18:34:50.642326+00:00",
+      "finished_at": "2026-10-26T18:34:50.656446+00:00",
+      "waiting_on": "the ground coordinator's record (query: read-only; demo: TEST_DOUBLE executor)",
+      "result": "REJECTED_BY_EXECUTOR",
+      "reason": "TEST_DOUBLE executor refusal"
+    },
+    {
+      "node": "report",
+      "started_at": "2026-10-26T18:34:50.657588+00:00",
+      "finished_at": "2026-10-26T18:34:50.658040+00:00",
+      "waiting_on": "deterministic rendering of the view, the R1 preparation and the R1 record",
+      "result": "AERIAL_COMPLETED_GROUND_REJECTED_BY_EXECUTOR",
+      "reason": "scenario complete: False"
+    }
+  ],
+  "movement_authorized": false
+}

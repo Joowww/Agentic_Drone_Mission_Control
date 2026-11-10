@@ -1,0 +1,77 @@
+{
+ "schema": "tfg.multiagent.operating-context/1",
+ "context_id": "swarm_3_drones_v1",
+ "provenance": "SYNTHETIC",
+ "site_path": "multiagent/fixtures/swarm_field_v1.site.json",
+ "fleet_path": "multiagent/fixtures/swarm_fleet_v1.json",
+ "drones": [
+  {
+   "vehicle_id": "drone_01",
+   "takeoff_point": "TAKEOFF_1",
+   "sensors": [
+    "rgb"
+   ],
+   "battery_percent": 100.0,
+   "consumption_percent_per_minute": 0.8,
+   "cruise_speed_kmh": 35.0,
+   "max_wind_kmh": 30.0,
+   "survey_speed_kmh": 12.0,
+   "provenance": "SYNTHETIC"
+  },
+  {
+   "vehicle_id": "drone_02",
+   "takeoff_point": "TAKEOFF_2",
+   "sensors": [
+    "multispectral"
+   ],
+   "battery_percent": 60.0,
+   "consumption_percent_per_minute": 1.2,
+   "cruise_speed_kmh": 30.0,
+   "max_wind_kmh": 20.0,
+   "survey_speed_kmh": 10.0,
+   "provenance": "SYNTHETIC"
+  },
+  {
+   "vehicle_id": "drone_03",
+   "takeoff_point": "TAKEOFF_3",
+   "sensors": [
+    "rgb",
+    "thermal"
+   ],
+   "battery_percent": 21.5,
+   "consumption_percent_per_minute": 1.0,
+   "cruise_speed_kmh": 40.0,
+   "max_wind_kmh": 25.0,
+   "survey_speed_kmh": 15.0,
+   "provenance": "SYNTHETIC"
+  }
+ ],
+ "rovers": [
+  {
+   "vehicle_id": "rover_01",
+   "start_point": "ROVER_START",
+   "available": true,
+   "provenance": "SYNTHETIC"
+  }
+ ],
+ "altitude_m": 5.0,
+ "requested_speed_kmh": 10.0,
+ "minimum_battery_reserve_percent": 20.0,
+ "planning_margin_m": 1.0,
+ "wind_speed_kmh": 0.0,
+ "coordinate_match_tolerance_m": 0.5,
+ "separation_policy": {
+  "min_separation_m": 5.0,
+  "position_uncertainty_m": 1.5,
+  "vehicle_extent_m": 0.5,
+  "timing_uncertainty_s": 3.0,
+  "timing_uncertainty_fraction": 0.2,
+  "takeoff_climb_s": 10.0,
+  "landing_s": 15.0,
+  "start_delay_step_s": 5.0,
+  "max_start_delay_s": 300.0,
+  "max_mission_duration_s": 900.0,
+  "provenance": "SYNTHETIC"
+ },
+ "export_policy": "SYNTHETIC_PLANNING_ONLY"
+}

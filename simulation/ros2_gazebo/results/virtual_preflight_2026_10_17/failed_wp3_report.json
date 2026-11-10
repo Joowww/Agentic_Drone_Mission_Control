@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.0",
+  "report_persisted": true,
+  "source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/simulation/ros2_gazebo/results/hermes_conversational_2026_10_17/approved_mission.json",
+  "run_id": "d4519cab-ebd1-4359-b547-44be38294a6a",
+  "run_directory": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/d4519cab-ebd1-4359-b547-44be38294a6a",
+  "snapshot_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/d4519cab-ebd1-4359-b547-44be38294a6a/mission.json",
+  "report_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/d4519cab-ebd1-4359-b547-44be38294a6a/report.json",
+  "mission_sha256": "2366d5a2c38f092e7ce5b01220f49463001dbf8164db6706899ff26beb9d56d1",
+  "mission_identity": {
+    "mission_id": "prueba_hermes_001",
+    "name": "Prueba Hermes",
+    "vehicle_id": "drone_01",
+    "simulated_vehicle": "v1"
+  },
+  "status": "FAILED",
+  "stage": "analyze",
+  "reasons": [
+    "Executor error: Waypoint WP3 was not reached within 180 seconds.",
+    "Acceptance criterion failed: completed",
+    "Acceptance criterion failed: no_failure_or_recovery",
+    "Acceptance criterion failed: count_and_return_flag",
+    "Acceptance criterion failed: event_sequence",
+    "Acceptance criterion failed: all_waypoints_reached",
+    "Acceptance criterion failed: return_home_reached",
+    "Acceptance criterion failed: landed_and_disarmed",
+    "Acceptance criterion failed: position_evidence_consistent"
+  ],
+  "validation": {
+    "mission_id": "prueba_hermes_001",
+    "mission_status": "FEASIBLE",
+    "execution_status": "APPROVED",
+    "qgc_plan_path": null,
+    "failure_reasons": [],
+    "errors": [],
+    "replan_status": "",
+    "replan_actions": []
+  },
+  "readiness": {
+    "ready": true,
+    "status": "READY",
+    "return_code": 0,
+    "message": "Simulation is healthy and both drones are ready.",
+    "output": "========================================\n TFG - Simulation Check\n========================================\n\n[1/5] Docker container...\n[PASS] Container running.\n\n[2/5] Gazebo server...\n[PASS] Gazebo runway world running.\n\n[3/5] ArduPilot processes...\n[PASS] 2 ArduCopter processes running.\n\n[4/5] ROS 2 vehicle interfaces...\n\n[PASS] /ap/v1/status\n[PASS] /ap/v2/status\n\n[5/5] Pre-arm checks...\n\n[PASS] /ap/v1 - Vehicle is Armable\n[PASS] /ap/v2 - Vehicle is Armable\n\n========================================\n SIMULATION HEALTHY\n========================================\n\nDrone 1 -> READY\nDrone 2 -> READY"
+  },
+  "compatibility_errors": [],
+  "executor_result": {
+    "success": false,
+    "status": "FAILED",
+    "stage": "MISSION_EXECUTION",
+    "mission_id": "prueba_hermes_001",
+    "vehicle": "v1",
+    "error": "Waypoint WP3 was not reached within 180 seconds.",
+    "events": [
+      {
+        "event": "GUIDED_MODE",
+        "success": true
+      },
+      {
+        "event": "ARM",
+        "success": true
+      },
+      {
+        "event": "TAKEOFF_COMMAND",
+        "success": true,
+        "altitude_m": 5.0
+      },
+      {
+        "event": "TAKEOFF_REACHED",
+        "reached": true,
+        "target_altitude_m": 5.0,
+        "altitude_amsl_m": 589.260009765625,
+        "altitude_error_m": 0.07000732421875
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP1",
+        "success": true
+      },
+      {
+        "event": "WAYPOINT_REACHED",
+        "reached": true,
+        "waypoint_id": "WP1",
+        "horizontal_error_m": 0.4515794605638958,
+        "altitude_error_m": 0.010009765625,
+        "final_position": {
+          "latitude": -35.36323928833008,
+          "longitude": 149.1652069091797,
+          "altitude_amsl_m": 589.2000122070312
+        }
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP2",
+        "success": true
+      },
+      {
+        "event": "WAYPOINT_REACHED",
+        "reached": true,
+        "waypoint_id": "WP2",
+        "horizontal_error_m": 0.5050285972530544,
+        "altitude_error_m": 0.030029296875,
+        "final_position": {
+          "latitude": -35.36323928833008,
+          "longitude": 149.1652374267578,
+          "altitude_amsl_m": 589.1599731445312
+        }
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP3",
+        "success": true
+      }
+    ],
+    "recovery": {
+      "landing_attempted": true,
+      "landing_completed": true,
+      "landing": {
+        "landed": true,
+        "armed": false,
+        "flying": false,
+        "final_position": {
+          "latitude": -35.36323547363281,
+          "longitude": 149.1652374267578,
+          "altitude_amsl_m": 584.1900024414062
+        }
+      }
+    }
+  },
+  "execution_attempted": true,
+  "analysis": {
+    "passed": false,
+    "checks": {
+      "completed": false,
+      "identity": true,
+      "no_failure_or_recovery": false,
+      "count_and_return_flag": false,
+      "event_sequence": false,
+      "commands_confirmed": true,
+      "all_waypoints_reached": false,
+      "return_home_reached": false,
+      "takeoff_reached": true,
+      "landed_and_disarmed": false,
+      "position_evidence_consistent": false
+    },
+    "expected_waypoint_ids": [
+      "WP1",
+      "WP2",
+      "WP3"
+    ],
+    "observed_waypoint_ids": [
+      "WP1",
+      "WP2"
+    ],
+    "tolerances": {
+      "horizontal_m": 1.0,
+      "altitude_m": 0.75
+    },
+    "reasons": [
+      "Executor error: Waypoint WP3 was not reached within 180 seconds.",
+      "Acceptance criterion failed: completed",
+      "Acceptance criterion failed: no_failure_or_recovery",
+      "Acceptance criterion failed: count_and_return_flag",
+      "Acceptance criterion failed: event_sequence",
+      "Acceptance criterion failed: all_waypoints_reached",
+      "Acceptance criterion failed: return_home_reached",
+      "Acceptance criterion failed: landed_and_disarmed",
+      "Acceptance criterion failed: position_evidence_consistent"
+    ]
+  },
+  "started_at": "2026-10-17T14:13:31.626518+00:00",
+  "execution_started_at": "2026-10-17T14:13:39.245453+00:00",
+  "execution_finished_at": "2026-10-17T14:20:15.065679+00:00",
+  "transitions": [
+    {
+      "node": "snapshot",
+      "started_at": "2026-10-17T14:13:31.643920+00:00",
+      "finished_at": "2026-10-17T14:13:31.646096+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "validate",
+      "started_at": "2026-10-17T14:13:31.647933+00:00",
+      "finished_at": "2026-10-17T14:13:31.653296+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "check_readiness",
+      "started_at": "2026-10-17T14:13:31.654093+00:00",
+      "finished_at": "2026-10-17T14:13:39.242830+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "compatibility",
+      "started_at": "2026-10-17T14:13:39.244121+00:00",
+      "finished_at": "2026-10-17T14:13:39.244250+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "execute",
+      "started_at": "2026-10-17T14:13:39.245247+00:00",
+      "finished_at": "2026-10-17T14:20:15.065711+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "analyze",
+      "started_at": "2026-10-17T14:20:15.067256+00:00",
+      "finished_at": "2026-10-17T14:20:15.067531+00:00",
+      "status": "FAILED"
+    },
+    {
+      "node": "write_report",
+      "started_at": "2026-10-17T14:20:15.068040+00:00",
+      "finished_at": "2026-10-17T14:20:15.068040+00:00",
+      "status": "FAILED"
+    }
+  ],
+  "finished_at": "2026-10-17T14:20:15.068040+00:00",
+  "scope": "Gazebo/ArduPilot SITL, simulated v1 only",
+  "hardware_authorized": false,
+  "subsequent_execution_authorized": false,
+  "replan_proposals": []
+}

@@ -1,0 +1,111 @@
+{
+  "scope": "OFFLINE_SELECTOR_AND_SUPERVISION_ONLY_NO_AGENT_OR_SIMULATION_EXECUTION",
+  "head": "83a147dda9065c812e0ff3b931cb22948fe52346",
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_rover_diagnostic_selection.py tests/test_rover_xrce_trace.py tests/test_rover_source_correlation.py tests/test_rover_identity_inventory.py tests/test_rover_passive_journal.py tests/test_simulation_lifecycle_exclusion.py tests/test_sequence_lifecycle_exclusion.py tests/test_simulation_profiles.py tests/test_simulation_lifecycle.py tests/test_rover_environment_identity.py",
+    "result": "238 passed in 103.80s",
+    "return_code": 0,
+    "new_selection_tests": 40,
+    "earlier_failure": "Two existing profile tests expected the old exact Docker environment vector. Expectations now also require explicit diagnostic-variable clearing; final affected run passed."
+  },
+  "syntax": [
+    "Python AST parse passed",
+    "bash -n start_sim_backend.sh stop_sim_backend.sh build.sh passed"
+  ],
+  "whitespace": "git diff --check and explicit no-index --check on new/changed files passed; one new-source trailing blank corrected without modifying raw evidence",
+  "real_build": {
+    "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+    "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+    "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+    "running_observed": true,
+    "commands": [
+      "cmake --build /tmp/tfg-xrce-trace-link-20261022/native-build --target microxrcedds_agent --parallel 2",
+      "cmake --build /tmp/tfg-xrce-trace-link-20261022/agent-build --target micro_ros_agent --parallel 2",
+      "sha256sum wrapper and real native .so.2.4.2",
+      "readelf -d wrapper and native library"
+    ],
+    "return_code": 0,
+    "result": "Both targets current, 100% built; existing binaries and ELF dependency/SONAME verified. Incremental verification, not a new clean compile. Original full compile/link remains in prior build record.",
+    "wrapper_sha256": "b1330420c764240c971263d5ec7abea3da82a46555bf677a2f21a1d78694325c",
+    "native_sha256": "5bae08d754e8113b99c1d418154f907754168b1217b5be18c0969738def55703",
+    "needed_native": "libmicroxrcedds_agent.so.2.4",
+    "native_soname": "libmicroxrcedds_agent.so.2.4",
+    "needed_conversion": "librmw_fastrtps_shared_cpp.so",
+    "executed": false
+  },
+  "preservation": {
+    "original_capture_entries_verified": 170,
+    "original_manifest_sha256": "57a5f13e19c80fd187e069befc6a3ce662fe651198af7d37f9f67e9fac8e8b12",
+    "historical_paths_still_present_untracked": 198
+  },
+  "not_performed": [
+    "real overlay preparation",
+    "agent execution",
+    "monitor execution against real processes/logs",
+    "simulation opening",
+    "passive reception",
+    "vehicle services",
+    "identity accreditation",
+    "movement",
+    "staging",
+    "commit",
+    "push"
+  ],
+  "current_files": [
+    {
+      "path": "tools/simulation_lifecycle.py",
+      "size_bytes": 11753,
+      "sha256": "dde6b224a9943582a96aa9403b4bc9df9d142bc6e6b6a0e27e4c925ca9277141"
+    },
+    {
+      "path": "simulation/ros2_gazebo/scripts/sim_processes.py",
+      "size_bytes": 15652,
+      "sha256": "26565866a650494242687c004c31c84fb917b7b4bae6dfc6975d43ed5a6d1df2"
+    },
+    {
+      "path": "simulation/ros2_gazebo/scripts/start_sim_backend.sh",
+      "size_bytes": 7208,
+      "sha256": "c0c1d986ab1dae65df43126db7bbca52c37960547f4e46846bf1a2626bbbb4a9"
+    },
+    {
+      "path": "simulation/ros2_gazebo/scripts/stop_sim_backend.sh",
+      "size_bytes": 1759,
+      "sha256": "b84cc315badba798290c3650bde0a991a1f0148f51eeceeb50f6ebccaa47147a"
+    },
+    {
+      "path": "tests/test_simulation_profiles.py",
+      "size_bytes": 37590,
+      "sha256": "ba98d87cd7c50cf7b41698a654e7dee1c3e02f6799c595fa00924b4c1dd2cc91"
+    },
+    {
+      "path": "tests/test_rover_diagnostic_selection.py",
+      "size_bytes": 23954,
+      "sha256": "4213c1f3e1fa3ca6b678e4c18203bf614d1cc04befca7d45c0344b94e5687bc3"
+    },
+    {
+      "path": "tools/rover_xrce_trace/selection.py",
+      "size_bytes": 9093,
+      "sha256": "395daabf5b40fca18c8484ae80f3542ab40afc1678925b1e9e751c0684e50c02"
+    },
+    {
+      "path": "tools/rover_xrce_trace/monitor.py",
+      "size_bytes": 10902,
+      "sha256": "9b211988c9941cce36033499ce9076f29efa00096cb423bc398b3a199a54e312"
+    },
+    {
+      "path": "tools/rover_xrce_trace/README.md",
+      "size_bytes": 19584,
+      "sha256": "8186150fe40d79aaf87b83a2777a89b21b8e1caf1d946051fb470290e6c9889a"
+    },
+    {
+      "path": "tools/rover_xrce_trace/diagnostic-agent.example.json",
+      "size_bytes": 633,
+      "sha256": "b5f4cda2027c56c02d8a713e808a4ac361282145f1bbb0b87782eec8cbbd27cb"
+    },
+    {
+      "path": "docs/rover-source-correlation.md",
+      "size_bytes": 14511,
+      "sha256": "43b5b18e1b9f6d352a54fd5bea58f65e97fd2e4406d831b481af5378a2c40e76"
+    }
+  ]
+}

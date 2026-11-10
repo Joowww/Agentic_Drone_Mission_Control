@@ -1,0 +1,104 @@
+{
+ "classification": "BLOCKED_BEFORE_SUBMISSION",
+ "codex_commit": "57a0e303a",
+ "commands": [],
+ "coordinator_events": [
+  {
+   "reasons": [
+    "request: NO_NAVIGATION_PLAN: speed and timeout were not set by a human",
+    "authorization: NO_HUMAN_AUTHORIZATION_RECORD",
+    "codex_bridge: NAVIGATION_PLAN_PENDING",
+    "frames: NO_FRAME_GRAPH",
+    "frames: ROVER_LOCALIZATION_NOT_ACCREDITED",
+    "codex_v2: NAVIGATION_PLAN_PENDING",
+    "executor_request: NO_NAVIGATION_PLAN: speed and timeout not set by a human",
+    "executor_request: NO_GOAL_IN_ROVER_FRAME",
+    "executor_request: EXECUTOR_PARAMETERS_NOT_DECLARED",
+    "executor_request: NO_ACCREDITED_ROVER_LOCALIZATION",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "mode": "OFFLINE_TEST",
+ "movement_executed": false,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [
+    "NO_NAVIGATION_PLAN: speed and timeout were not set by a human"
+   ],
+   "stage": "request",
+   "status": "WAITING"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [
+    "NO_HUMAN_AUTHORIZATION_RECORD"
+   ],
+   "stage": "authorization",
+   "status": "BLOCKED"
+  },
+  {
+   "reasons": [
+    "NAVIGATION_PLAN_PENDING"
+   ],
+   "stage": "codex_bridge",
+   "status": "WAITING"
+  },
+  {
+   "goal_base_link": null,
+   "goal_rover": null,
+   "reasons": [
+    "NO_FRAME_GRAPH",
+    "ROVER_LOCALIZATION_NOT_ACCREDITED"
+   ],
+   "stage": "frames",
+   "status": "REFUSED"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [
+    "NAVIGATION_PLAN_PENDING"
+   ],
+   "schema_errors": null,
+   "stage": "codex_v2",
+   "status": "WAITING"
+  },
+  {
+   "reasons": [
+    "NO_NAVIGATION_PLAN: speed and timeout not set by a human",
+    "NO_GOAL_IN_ROVER_FRAME",
+    "EXECUTOR_PARAMETERS_NOT_DECLARED",
+    "NO_ACCREDITED_ROVER_LOCALIZATION"
+   ],
+   "stage": "executor_request",
+   "status": "NOT_REACHED"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

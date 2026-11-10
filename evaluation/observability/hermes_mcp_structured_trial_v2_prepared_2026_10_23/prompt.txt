@@ -1,0 +1,12 @@
+Llama una sola vez a la herramienta mcp__tfg_mission_control__get_mission_state con run_id="d4519cab-ebd1-4359-b547-44be38294a6a" y view="external". Después responde únicamente con un objeto JSON, sin texto adicional, con exactamente estas 11 claves. Toma cada valor solo del campo indicado del resultado (preflights[0] es la ejecución consultada); si ese campo es null o no existe, escribe el texto "UNKNOWN". No uses acceptance_criteria ni ningún otro campo para rellenar una clave.
+- run_id (texto): preflights[0].identity.run_id
+- historical_status (texto): preflights[0].record.result_status
+- mission_id (texto): preflights[0].identity.mission_id
+- vehicle_id (texto): preflights[0].identity.vehicle_id
+- simulated_vehicle (texto): preflights[0].identity.simulated_vehicle
+- planned_waypoint_ids (lista de textos): preflights[0].plan.planned_waypoint_ids
+- reached_waypoint_ids (lista de textos): preflights[0].executor_facts.reached_waypoint_ids
+- return_to_home (booleano): preflights[0].executor_facts.return_to_home
+- mission_landed_event_recorded (booleano): preflights[0].executor_facts.mission_landing_events; true si algún evento tiene landed=true, false si la lista está vacía
+- recovery_landing_completed (booleano): preflights[0].recovery_after_failure.landing_completed
+- current_availability (texto): readiness_now; "UNKNOWN" si vale UNKNOWN_NOT_CHECKED

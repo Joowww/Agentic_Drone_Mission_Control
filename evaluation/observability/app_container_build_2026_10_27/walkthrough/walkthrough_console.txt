@@ -1,0 +1,85 @@
+
+== [a_query] Consulta del escenario H2 (copias conservadas): aéreo completado, R1 pendiente
+   origen: REAL_HISTORICAL · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/a_query.log (y /work/... dentro del contenedor)
+   · [load_artifacts] resultado: LOADED · motivo: 2 missions; binding record b28fceb02c5f
+   · [bind_and_validate] resultado: BOUND · motivo: drone_01 321ad647ab9c, drone_02 079e25a30242
+   · [aerial_sequence] resultado: FINISHED/PASSED · motivo: conserved copies verified (23 files)
+   rc=0 (esperado 0) · texto esperado: "Escenario: AERIAL_COMPLETED_GROUND_PENDING" · PASS
+
+== [b_demo] Demo sintética nominal (TEST_DOUBLE; nunca una ejecución física)
+   origen: SYNTHETIC · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/b_demo.log (y /work/... dentro del contenedor)
+   · [load_artifacts] resultado: LOADED · motivo: 2 missions; binding record SYNTHETIC_DE
+   · [bind_and_validate] resultado: BOUND · motivo: drone_01 321ad647ab9c, drone_02 079e25a30242
+   · [aerial_sequence] resultado: FINISHED/PASSED · motivo: SYNTHETIC copy of the conserved H2 record, re-identified as 0df8dec9
+   rc=0 (esperado 0) · texto esperado: "Escenario: SYNTHETIC_COMPLETE" · PASS
+
+== [c1_demo_lost] Demo con respuesta de admisión perdida (incertidumbre)
+   origen: SYNTHETIC · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/c1_demo_lost.log (y /work/... dentro del contenedor)
+   · [load_artifacts] resultado: LOADED · motivo: 2 missions; binding record SYNTHETIC_DE
+   · [bind_and_validate] resultado: BOUND · motivo: drone_01 321ad647ab9c, drone_02 079e25a30242
+   · [aerial_sequence] resultado: FINISHED/PASSED · motivo: SYNTHETIC copy of the conserved H2 record, re-identified as 0df8dec9
+   rc=0 (esperado 0) · texto esperado: "admission reply lost" · PASS
+
+== [c2_resume] Reanudación sobre el mismo almacenamiento (recuperación)
+   origen: SYNTHETIC · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/c2_resume.log (y /work/... dentro del contenedor)
+   · [load_artifacts] resultado: LOADED · motivo: 2 missions; binding record SYNTHETIC_DE
+   · [bind_and_validate] resultado: BOUND · motivo: drone_01 321ad647ab9c, drone_02 079e25a30242
+   · [aerial_sequence] resultado: FINISHED/PASSED · motivo: SYNTHETIC copy of the conserved H2 record, re-identified as 0df8dec9
+   rc=0 (esperado 0) · texto esperado: "Coordinador R1: VERIFIED_SYNTHETIC" · PASS
+
+== [c3_single_admission] Comprobación: una sola admisión tras la recuperación
+   origen: SYNTHETIC · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/c3_single_admission.log (y /work/... dentro del contenedor)
+   rc=0 (esperado 0) · texto esperado: "admit_calls=1 jobs=1" · PASS
+
+== [d_validate_site] Validación del emplazamiento sintético
+   origen: SYNTHETIC · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/d_validate_site.log (y /work/... dentro del contenedor)
+   ·   "errors": [],
+   ·   "missing": [],
+   ·     "missing": [],
+   rc=0 (esperado 0) · texto esperado: ""status": "VALID"" · PASS
+
+== [e1_dronelab_site] Plantilla DroneLab: validación (datos sin medir)
+   origen: TEMPLATE · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/e1_dronelab_site.log (y /work/... dentro del contenedor)
+   ·   "status": "INCOMPLETE",
+   ·   "errors": [],
+   ·   "missing": [
+   rc=1 (esperado 1) · texto esperado: ""status": "INCOMPLETE"" · PASS
+
+== [e2_dronelab_package] Plantilla DroneLab: exportación rechazada por datos ausentes
+   origen: TEMPLATE · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/e2_dronelab_package.log (y /work/... dentro del contenedor)
+   ·   A1 drone_01: BLOCKED_MISSING_DATA | site INCOMPLETE
+   ·   A2 drone_02: BLOCKED_MISSING_DATA | site INCOMPLETE
+   rc=0 (esperado 0) · texto esperado: "BLOCKED_MISSING_DATA" · PASS
+
+== [f_package] Exportación de un paquete SITL para dos drones
+   origen: SYNTHETIC · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/f_package.log (y /work/... dentro del contenedor)
+   rc=0 (esperado 0) · texto esperado: "A2 drone_02: GENERATED" · PASS
+
+== [g_verify] Verificación del paquete exportado
+   origen: SYNTHETIC · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/g_verify.log (y /work/... dentro del contenedor)
+   rc=0 (esperado 0) · texto esperado: ""status": "INTEGRITY_VERIFIED"" · PASS
+
+== [h_compare] Comparación de los archivos conservados de la primera importación en QGC
+   origen: REAL_HISTORICAL · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/h_compare.log (y /work/... dentro del contenedor)
+   rc=0 (esperado 0) · texto esperado: "NO_SEMANTIC_DIFFERENCES" · PASS
+
+== [i1_scenario_report] Informe determinista del escenario (vista H2 conservada)
+   origen: REAL_HISTORICAL · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/i1_scenario_report.log (y /work/... dentro del contenedor)
+   · - Dependencia: **MET**; estado: **BLOCKED_PENDING**; órdenes enviadas: **no**; movimiento autorizado: **no** [scenario.ground_task].
+   rc=0 (esperado 0) · texto esperado: "# Informe determinista del escenario agri_demo_001" · PASS
+
+== [i2_comparison] Comparación experimental (evidencia conservada, sin inferencias)
+   origen: REAL_HISTORICAL · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/i2_comparison.log (y /work/... dentro del contenedor)
+   rc=0 (esperado 0) · texto esperado: "" · PASS
+
+== [i3_review_sheet] Hoja de revisión humana (PENDIENTE)
+   origen: REAL_HISTORICAL · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/i3_review_sheet.log (y /work/... dentro del contenedor)
+   rc=0 (esperado 0) · texto esperado: "" · PASS
+
+== [n_no_network] Comprobación: el contenedor no tiene red (ni proveedor LLM alcanzable)
+   origen: CHECK · resultados: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/n_no_network.log (y /work/... dentro del contenedor)
+   · NO_NETWORK gaierror
+   rc=0 (esperado 0) · texto esperado: "NO_NETWORK" · PASS
+
+Resumen: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work/walkthrough.tsv · fallos: 0
+Resultados en /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/student_final/work (propiedad de uid 1000). Para salir de un paso en curso: Ctrl+C.

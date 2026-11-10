@@ -1,0 +1,57 @@
+```json
+{
+  "scenario_status": "AERIAL_COMPLETED_GROUND_PENDING",
+  "scenario_complete": false,
+  "sequence_order": ["drone_01", "drone_02"],
+  "order_basis": "EXECUTION_TIMESTAMPS",
+  "runs": [
+    {
+      "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+      "vehicle_id": "drone_01",
+      "simulated_vehicle": "v1",
+      "mission_id": "agri_demo_001_h1_sector_a",
+      "status": "COMPLETED",
+      "result_status": "PASSED",
+      "reached_points": [
+        {"poi": "POI_A1", "status": "REACHED"},
+        {"poi": "POI_A2", "status": "REACHED"}
+      ],
+      "return_home": "CONFIRMED",
+      "landing": "MISSION_LANDING_CONFIRMED",
+      "executor_started_at": "2026-10-24T12:51:28.380152+00:00",
+      "executor_finished_at": "2026-10-24T12:55:42.138208+00:00"
+    },
+    {
+      "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+      "vehicle_id": "drone_02",
+      "simulated_vehicle": "v2",
+      "mission_id": "agri_demo_001_h1_sector_b",
+      "status": "COMPLETED",
+      "result_status": "PASSED",
+      "reached_points": [
+        {"poi": "POI_B1", "status": "REACHED"},
+        {"poi": "POI_B2", "status": "REACHED"}
+      ],
+      "return_home": "CONFIRMED",
+      "landing": "MISSION_LANDING_CONFIRMED",
+      "executor_started_at": "2026-10-24T12:55:50.243976+00:00",
+      "executor_finished_at": "2026-10-24T12:59:50.905810+00:00"
+    }
+  ],
+  "r1_status": "BLOCKED_PENDING",
+  "r1_dependency": "MET",
+  "r1_commands_sent": false,
+  "r1_movement_authorized": false,
+  "claims": {
+    "images_captured": false,
+    "detections_made": false,
+    "speed_commanded": false,
+    "speed_measured": false,
+    "simultaneous_flight": false,
+    "common_frame_validated": false,
+    "current_permissions_checked": false
+  },
+  "evidence_source": "evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json (sha256: b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf); plan sha256 a1821ce7c0d16620af683759049737ace1096d3a18a2202b571567c3ee245e30; ejecutor AP-DDS",
+  "explanation": "Dos misiones aéreas se ejecutaron secuencialmente (no simultáneamente) en la secuencia H1 de agri_demo_001. El dron drone_01 (simulado v1, misión agri_demo_001_h1_sector_a) se despachó y ejecutó primero: alcanzó los POI_A1 y POI_A2 (ambos REACHED, con errores de posición dentro de las tolerancias de 1.0 m horizontal y 0.75 m altitud), ejecutó comando de retorno a casa (CONFIRMED) y aterrizaje (MISSION_LANDING_CONFIRMED), finalizando el executor a las 12:55:42 UTC. El dron drone_02 (simulado v2, misión agri_demo_001_h1_sector_b) se despachó únicamente después de que el coordinador aceptó el resultado PASSED de drone_01 (dispatcher a las 12:55:42, posterior al comando de aterrizaje del primer dron a las 12:54:22): alcanzó POI_B1 y POI_B2, regresó a casa y aterrizó, finalizando a las 12:59:50 UTC. El orden se acredita por huellas de tiempo de ejecución (executor_started_at/finished_at y comandos started_at), que muestran ventanas de ejecutor disjuntas, el despacho del coordinador después del primer resultado y el comando de aterrizaje del primer dron antes del armao del segundo.\n\nEl escenario no está completo (scenario_complete = false) porque la fase aérea concluyó (status AERIAL_COMPLETED_GROUND_PENDING) pero la tarea terrestre R1 sobre el rover_01 permanece BLOCKED_PENDING: aunque su dependencia está MET (el POI_A1 fue alcanzado por drone_01 y la secuencia COMPLETED), el rover no recibió comandos (commands_sent = false) ni movement_authorization (movement_authorized = false), debido a que la cadena de identidad XRCE del rover no está establecida, no hay punto de entrada público autorizado con reservas, el control del rover ofrece solo velocidad/rotación delimitada (sin navegación a posición) y el gate de ejecución cubre únicamente el perfil two_drones. La condición MET solo indica que la precondición declarada se cumple en este registro histórico; nunca autoriza el movimiento del rover.\n\nLímites que impiden afirmar más: la percepción es NONE (POI son entradas declaradas por operador, sin imágenes, detecciones ni análisis de cultivo), la velocidad no fue ni comandada ni medida (objetivos posicionales con type_mask 3576), el frame común no fue validado (misiones con offset respecto a la posición de lanzamiento), la información proviene de observaciones del ejecutor vía AP_DDS (no telemetry independiente), y las autorizaciones actuales no fueron verificadas (NOT_CHECKED). La declaración de autorización operativa proviene del operador vía agente, con ámbito limitado a estas dos capturas."
+}
+```

@@ -15,6 +15,7 @@ from models.mission_plan_draft import (
     MissionPlanDraft,
     PlannedWaypointDraft,
 )
+from planning.relative_routes import SHARED_FIELDS, generate_relative_route, merge_relative_route_intent
 
 DIRECTION_BEARINGS = {
     "north": 0.0,
@@ -42,6 +43,11 @@ def merge_mission_plan_drafts(
 
     for key, value in new_data.items():
         if key == "waypoints":
+            continue
+
+        if key == "geometry_intent":
+            if new.geometry_intent is not None:
+                current_data[key] = merge_relative_route_intent(current.geometry_intent, new.geometry_intent).model_dump()
             continue
 
         if value is not None:
@@ -230,6 +236,16 @@ def build_mission_from_draft(
                 for field in missing
             )
         )
+
+    if draft.geometry_intent is not None:
+        geometry = generate_relative_route(draft.geometry_intent)
+        if geometry["status"] != "GENERATED":
+            raise ValueError("Geometry decisions remain pending: " + ", ".join(geometry["missing_fields"]))
+        expected = [PlannedWaypointDraft(**point) for point in geometry["waypoints"]]
+        if draft.waypoints != expected or any(
+                getattr(draft, field) != getattr(draft.geometry_intent, field)
+                for field in SHARED_FIELDS if field in MissionPlanDraft.model_fields):
+            raise ValueError("Draft route/shared fields do not match its geometry intent")
 
     if (
         draft.wind_direction_from_deg

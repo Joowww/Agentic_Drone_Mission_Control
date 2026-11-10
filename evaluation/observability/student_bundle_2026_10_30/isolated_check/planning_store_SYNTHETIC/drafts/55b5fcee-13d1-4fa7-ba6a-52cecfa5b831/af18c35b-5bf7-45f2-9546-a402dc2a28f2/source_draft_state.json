@@ -1,0 +1,299 @@
+{
+  "schema_version": 2,
+  "draft_id": "55b5fcee-13d1-4fa7-ba6a-52cecfa5b831",
+  "draft_revision": 1,
+  "draft_sha256": "75a60484cfff1d6bbe45108e499903146535407c9bdc722edf909e19d2aca75a",
+  "route_provenance": {
+    "method": "local_linear_111320_cos_home_v1",
+    "parameters": {
+      "mode": "offsets",
+      "home_latitude": 41.275,
+      "home_longitude": 1.987,
+      "home_altitude_m": 0.0,
+      "altitude_reference": "relative_to_home",
+      "altitude_m": 5.0,
+      "return_to_home": true,
+      "close_route": false,
+      "offsets": [
+        {
+          "north_m": 8.0,
+          "east_m": 4.0
+        },
+        {
+          "north_m": 16.0,
+          "east_m": 4.0
+        }
+      ]
+    },
+    "maximum_radius_m": 1000.0,
+    "maximum_absolute_latitude": 75.0,
+    "source": "DETERMINISTIC_GENERATION",
+    "input_authentication": "NOT_VERIFIED",
+    "altitude_reference": "relative_to_home"
+  },
+  "geometry_revision": 1,
+  "geometry_intent_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+  "field_provenance": {
+    "/geometry_intent/mode": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "16bb31d52628d82354b0939484b70156c82745275f2b30f1e0de2404844da473"
+    },
+    "/geometry_intent/home_latitude": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "c03a8a1a93a03d6e6dadd570d0c116fa12a37bdf8a23fc6bfa4ad7d804c836a4"
+    },
+    "/geometry_intent/home_longitude": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "e65a09caca7b09f9da402350bd26464f75306eace966ff1dd678cc58a88012cd"
+    },
+    "/geometry_intent/home_altitude_m": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    "/geometry_intent/altitude_reference": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "a3ceec9db042db97491bf90f9a347326c201442ff4cda0e992d41dbe278d1c98"
+    },
+    "/geometry_intent/altitude_m": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "a19a1584344c1f3783bff51524a5a4b86f2cc09356c9dbfb6af9cd236e314362"
+    },
+    "/geometry_intent/return_to_home": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    "/geometry_intent/close_route": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+    },
+    "/geometry_intent/offsets": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "575bad38a3b4897150c8a97d9e1434eec458c4ea1cd2122f3025c048f848b5df"
+    },
+    "/mission_id": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "8e8c899b86774b162100bdc9c14992d00e471adbe6bac7d9da13906ca221a844"
+    },
+    "/name": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "7ed68dd556e3d91f27bc58de85152f9e235a9802deb0cd60a1e26210524070d3"
+    },
+    "/vehicle_id": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "dd98937bb6fbfb9000dc7c7c2b31281c0700d4b75dd91b52d710b8e085632a71"
+    },
+    "/vehicle_type": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "28b687e80712ec6bb87c0d3d7b8a4b41ca9be7b033161873584efafbb2581c2e"
+    },
+    "/autopilot": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "5d44960ecd6292c026f10c53f7c75f0b6b28e38f7176fafa220578f89588b873"
+    },
+    "/cruise_speed_kmh": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "72e72b41e40336eeef6045c40e3ac2988411fbadc42958caf30e7dbf1b729e00"
+    },
+    "/battery_percent": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "43b87f618caab482ebe4976c92bcd6ad308b48055f1c27b4c574f3e31d7683e0"
+    },
+    "/battery_consumption_percent_per_minute": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "1e9d7c27c8bbc8ddf0055c93e064a62fa995d177fee28cc8fa949bc8a4db06f4"
+    },
+    "/objective_type": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "19542bd7a16aab8e1225e5d94a2021b4273def1fad86e48b46b6fddb7d7c045f"
+    },
+    "/objective_target": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "8e8c899b86774b162100bdc9c14992d00e471adbe6bac7d9da13906ca221a844"
+    },
+    "/home_latitude": {
+      "source": "DETERMINISTIC_DERIVATION",
+      "from": "/geometry_intent/home_latitude",
+      "method": "copy_shared_geometry_field",
+      "authenticated": false,
+      "value_sha256": "c03a8a1a93a03d6e6dadd570d0c116fa12a37bdf8a23fc6bfa4ad7d804c836a4"
+    },
+    "/home_longitude": {
+      "source": "DETERMINISTIC_DERIVATION",
+      "from": "/geometry_intent/home_longitude",
+      "method": "copy_shared_geometry_field",
+      "authenticated": false,
+      "value_sha256": "e65a09caca7b09f9da402350bd26464f75306eace966ff1dd678cc58a88012cd"
+    },
+    "/home_altitude_m": {
+      "source": "DETERMINISTIC_DERIVATION",
+      "from": "/geometry_intent/home_altitude_m",
+      "method": "copy_shared_geometry_field",
+      "authenticated": false,
+      "value_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    "/waypoints/WP1/waypoint_id": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "7eefb372dfef951fbcc26df0cd563b54bc521a56b21b049cf5afff696e71d26c"
+    },
+    "/waypoints/WP1/latitude": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "536d001dae60a71e54af6e3b05e5b60abcf09246b95e046522f4d7500801b4b6"
+    },
+    "/waypoints/WP1/longitude": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "9170d0fc060e1768866707043dac44e69f3b6f555677e5c674a387225b0c3104"
+    },
+    "/waypoints/WP1/altitude_m": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "a19a1584344c1f3783bff51524a5a4b86f2cc09356c9dbfb6af9cd236e314362"
+    },
+    "/waypoints/WP1/action": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "5c3374f812f8f9f8bafd73f7f850a76a16b736e52390d80e4aa7a7436b93e3e1"
+    },
+    "/waypoints/WP2/waypoint_id": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "df9e9e70a7d583c228833cfd991e4ad9873167fda462bc36607a23ac4643c6a5"
+    },
+    "/waypoints/WP2/latitude": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "5e6cb56b6584ed60b721fa4324ce581c6b149f1fb1235b36327f0d829a577e74"
+    },
+    "/waypoints/WP2/longitude": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "9170d0fc060e1768866707043dac44e69f3b6f555677e5c674a387225b0c3104"
+    },
+    "/waypoints/WP2/altitude_m": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "a19a1584344c1f3783bff51524a5a4b86f2cc09356c9dbfb6af9cd236e314362"
+    },
+    "/waypoints/WP2/action": {
+      "source": "DETERMINISTIC_GENERATION",
+      "method": "relative_route_generator",
+      "parameters_sha256": "67517bf92105c21d419bc0516df9e71610e9baad2e89b1d58a031aba08f817f7",
+      "authenticated": false,
+      "value_sha256": "5c3374f812f8f9f8bafd73f7f850a76a16b736e52390d80e4aa7a7436b93e3e1"
+    },
+    "/return_to_home": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+    },
+    "/wind_speed_kmh": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    "/wind_direction_from_deg": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    "/minimum_battery_reserve_percent": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "585348dbd28810f9a34f57be46f000c5f9effab894d074713d93fe7ccfeb3b76"
+    },
+    "/maximum_wind_speed_kmh": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "26c9a96ce053a14dd88a71a4830c9cbed7e1fed7e3f3f8a0b0b6a58f3f0f02e6"
+    },
+    "/maximum_altitude_m": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "184999fc4112ff83be6e918533470be97f00217c85101d9543ef8d3c81e1f181"
+    },
+    "/low_battery_action": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "1d2b1a528125e941630df0cf48c6156a497293792fa276672a93427a60eebd0b"
+    },
+    "/unsafe_wind_action": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "1d2b1a528125e941630df0cf48c6156a497293792fa276672a93427a60eebd0b"
+    },
+    "/communication_loss_action": {
+      "source": "UNKNOWN",
+      "note": "Agent supplied value without operator attribution",
+      "authenticated": false,
+      "value_sha256": "1d2b1a528125e941630df0cf48c6156a497293792fa276672a93427a60eebd0b"
+    }
+  },
+  "provenance_status": "UNVERIFIED_AGENT_INPUT",
+  "updated_at": "2026-10-30T10:56:33.992492+00:00"
+}

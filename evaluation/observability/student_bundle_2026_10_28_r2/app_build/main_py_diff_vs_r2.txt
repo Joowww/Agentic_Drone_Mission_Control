@@ -1,0 +1,24 @@
+--- tfg/app:2026.10.27-r2:/opt/tfg/main.py	2026-10-27 18:50:08.000000000 +0100
++++ frozen context main.py	2026-10-28 09:45:48.344832688 +0100
+@@ -32,9 +32,9 @@
+ # no LLM provider, no network and a read-only image without
+ # missions/generated. The development menu (any other value) is unchanged.
+ OFFLINE_UNAVAILABLE = {
+-    "1": "needs a local LLM (Ollama); this offline profile has no LLM provider or network",
++    "1": "not part of the student distribution; AI planning there is the separate Hermes service",
+     "2": "saves the session under missions/generated, which this read-only offline image does not provide",
+-    "3": "needs a local LLM (Ollama); this offline profile has no LLM provider or network",
++    "3": "not part of the student distribution; AI planning there is the separate Hermes service",
+     "4": "saves the session under missions/generated, which this read-only offline image does not provide",
+ }
+ 
+@@ -66,7 +66,8 @@
+     if unavailable_options():
+         print(
+             "\nOffline distribution profile: scenario, export and comparison"
+-            " only. It is not a distribution of the AI planning."
++            " only. AI planning is the separate Hermes service; the simulator"
++            " is not distributed yet."
+         )
+ 
+     print(

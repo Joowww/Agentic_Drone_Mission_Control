@@ -1,0 +1,92 @@
+{
+ "classification": "V2_READY_EXECUTOR_REQUEST_INCOMPLETE",
+ "codex_commit": "57a0e303a",
+ "commands": [],
+ "coordinator_events": [
+  {
+   "reasons": [
+    "executor_request: EXECUTOR_PARAMETERS_NOT_DECLARED",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "mode": "OFFLINE_TEST",
+ "movement_executed": false,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [],
+   "stage": "request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "authorization",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "codex_bridge",
+   "status": "PASS"
+  },
+  {
+   "goal_base_link": {
+    "frame": "base_link",
+    "x_m": -2.0,
+    "y_m": -1.0106430996148606e-15
+   },
+   "goal_rover": {
+    "frame": "odom",
+    "sigma_m": 0.12199692619078564,
+    "x_m": 5.500000000000001,
+    "y_m": -7.0
+   },
+   "reasons": [],
+   "stage": "frames",
+   "status": "PASS"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [],
+   "schema_errors": [
+    "['authorization']: {'bridge_scope_sha256': '43a9e4c756800ca8535b1978b755eb48a164f66478b12207e9f74fba0e6677af', 'human_authorized': True, 'operator_id': 'TEST_FIXTURE_OPERATOR', 'o"
+   ],
+   "stage": "codex_v2",
+   "status": "PASS"
+  },
+  {
+   "reasons": [
+    "EXECUTOR_PARAMETERS_NOT_DECLARED"
+   ],
+   "stage": "executor_request",
+   "status": "NOT_REACHED"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

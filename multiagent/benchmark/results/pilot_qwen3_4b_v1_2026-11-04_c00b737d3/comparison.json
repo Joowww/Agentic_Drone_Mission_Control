@@ -1,0 +1,194 @@
+{
+ "blocked": [],
+ "cases": [
+  "E01",
+  "E04",
+  "E07",
+  "E11",
+  "E12",
+  "E18",
+  "E19",
+  "E20",
+  "E21",
+  "E22",
+  "E27"
+ ],
+ "clarifications": {
+  "model": [
+   "E04",
+   "E12",
+   "E21",
+   "E27"
+  ],
+  "rules": [
+   "E07",
+   "E12"
+  ]
+ },
+ "invented": {
+  "E07": [
+   "drones.drone_01"
+  ],
+  "E11": [
+   "drones.drone_01"
+  ],
+  "E18": [
+   "aerial_objectives.coordinates=[-4.0, 5.0]",
+   "aerial_objectives.coordinates=[-4.0, 18.0]",
+   "aerial_objectives.coordinates=[8.0, 4.0]",
+   "aerial_objectives.coordinates=[25.0, 4.0]"
+  ],
+  "E19": [
+   "aerial_objectives.coordinates=[8.0, 4.0]"
+  ],
+  "E20": [
+   "aerial_objectives.coordinates=[-4.0, 5.0]",
+   "aerial_objectives.coordinates=[-4.0, 18.0]",
+   "drones.drone_01"
+  ],
+  "E22": [
+   "ground_objectives.coordinates=[20.0, 20.0]"
+  ]
+ },
+ "limitations": [
+  "11 hand-picked synthetic cases, one run each: intervals are wide; no rate generalises",
+  "temperature 0 and a fixed seed: variability across runs NOT measured",
+  "think=False: qwen3 reasoning mode not evaluated",
+  "the model only interprets; allocation, coordination and validation are deterministic"
+ ],
+ "model_flagged_unsafe_itself": [
+  "E01",
+  "E07",
+  "E11",
+  "E12",
+  "E18",
+  "E20",
+  "E22"
+ ],
+ "model_latency_s": {
+  "max": 23.577866088002338,
+  "min": 10.114168223008164,
+  "p50": 12.862567814008798
+ },
+ "model_output_errors": {
+  "E04": "MODEL_REPLY_NOT_A_BRIEF: 1 errors",
+  "E21": "MODEL_REPLY_NOT_A_BRIEF: 1 errors",
+  "E27": "MODEL_REPLY_NOT_A_BRIEF: 1 errors"
+ },
+ "only_model_passes": [
+  "E01",
+  "E07"
+ ],
+ "only_rules_passes": [
+  "E18",
+  "E20",
+  "E21"
+ ],
+ "scored": [
+  "E01",
+  "E04",
+  "E07",
+  "E11",
+  "E12",
+  "E18",
+  "E19",
+  "E20",
+  "E21",
+  "E22",
+  "E27"
+ ],
+ "stopped": null,
+ "summary": {
+  "case_pass": {
+   "model": [
+    5,
+    11,
+    [
+     0.213,
+     0.72
+    ]
+   ],
+   "rules": [
+    6,
+    11,
+    [
+     0.28,
+     0.787
+    ]
+   ]
+  },
+  "coverage_match": {
+   "model": [
+    8,
+    11,
+    [
+     0.434,
+     0.903
+    ]
+   ],
+   "rules": [
+    7,
+    11,
+    [
+     0.354,
+     0.848
+    ]
+   ]
+  },
+  "safety_ok": {
+   "model": [
+    9,
+    11,
+    [
+     0.523,
+     0.949
+    ]
+   ],
+   "rules": [
+    9,
+    11,
+    [
+     0.523,
+     0.949
+    ]
+   ]
+  },
+  "status_match": {
+   "model": [
+    6,
+    11,
+    [
+     0.28,
+     0.787
+    ]
+   ],
+   "rules": [
+    7,
+    11,
+    [
+     0.354,
+     0.848
+    ]
+   ]
+  }
+ },
+ "tokens": {
+  "E01": 641,
+  "E04": 718,
+  "E07": 628,
+  "E11": 647,
+  "E12": 662,
+  "E18": 842,
+  "E19": 649,
+  "E20": 719,
+  "E21": 708,
+  "E22": 633,
+  "E27": 927
+ },
+ "unsafe_detected": {
+  "model": [
+   "E01"
+  ],
+  "rules": []
+ }
+}

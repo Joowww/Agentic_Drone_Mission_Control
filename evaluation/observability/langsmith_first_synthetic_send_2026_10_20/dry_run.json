@@ -1,0 +1,343 @@
+{
+  "mode": "dry-run",
+  "project": "tfg-synthetic",
+  "events": 6,
+  "traces": 1,
+  "runs": 4,
+  "synthetic_traces": 1,
+  "point_events": 1,
+  "withheld_traces": [
+    {
+      "root_id": "8a2a50b5-d223-5a2f-8dee-60812611f87c",
+      "events": 1,
+      "synthetic": true,
+      "reason": "no_measured_interval"
+    },
+    {
+      "root_id": "5d214bbe-ff4c-5c61-8974-a6ea0447c551",
+      "events": 1,
+      "synthetic": true,
+      "reason": "no_measured_interval"
+    }
+  ],
+  "already_in_ledger": [],
+  "errors": [],
+  "warnings": [],
+  "prepared_runs": [
+    {
+      "id": "bec45370-184e-5b66-b211-6ad75481eb5e",
+      "trace_id": "bec45370-184e-5b66-b211-6ad75481eb5e",
+      "dotted_order": "20261017T141138000000Zbec45370-184e-5b66-b211-6ad75481eb5e",
+      "name": "SYNTHETIC · hermes_turn",
+      "run_type": "chain",
+      "start_time": "2026-10-17T14:11:38+00:00",
+      "end_time": "2026-10-20T16:11:00.475060+00:00",
+      "inputs": {},
+      "outputs": {},
+      "extra": {
+        "metadata": {
+          "tfg_grouping": "derived_from_turn_ref",
+          "tfg_observed_event": false,
+          "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+          "tfg_case_id": "SYNTHETIC-fixtures",
+          "tfg_session_ref": "sha256:673148cf03884aa5",
+          "tfg_turn_ref": "sha256:935eef91e794938f",
+          "tfg_data_kind": "synthetic_fixture",
+          "tfg_timed_children": 3,
+          "tfg_point_events": 1,
+          "tfg_exporter_version": "2",
+          "tfg_cost": "not_computed",
+          "tfg_point_event_time_basis": "capture_recorded_at_not_compared_with_hermes_epochs",
+          "tfg_time_basis": "derived_min_max_of_hermes_epochs",
+          "tfg_interval_derived": true,
+          "tfg_interval_status": "derived_from_measured_children_only",
+          "tfg_latency_measured": false
+        }
+      },
+      "tags": [
+        "tfg-hermes-capture",
+        "schema:tfg.hermes.capture/3",
+        "synthetic"
+      ],
+      "events": [
+        {
+          "name": "tfg.tool_call",
+          "time": "2026-10-20T16:11:00.476509+00:00",
+          "kwargs": {
+            "tfg_event_id": "a87e20a9-d446-4fdb-827b-b257e5e933f8",
+            "tfg_recorded_at_utc": "2026-10-20T16:11:00.476509+00:00",
+            "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+            "tfg_case_id": "SYNTHETIC-fixtures",
+            "tfg_session_ref": "sha256:673148cf03884aa5",
+            "tfg_task_ref": "sha256:eb58a98b26c4ade6",
+            "tfg_turn_ref": "sha256:935eef91e794938f",
+            "tfg_api_request_ref": "sha256:4392ef0e82447006",
+            "tfg_absent_fields": [
+              "error_type"
+            ],
+            "tfg_redacted_fields": [],
+            "tfg_ambiguous_zero_fields": [],
+            "tfg_tool_call_ref": "sha256:6e150d2008b04e15",
+            "tfg_tool_name": "mcp_tfg_get_mission_state",
+            "tfg_status": "ok",
+            "tfg_error_type": null,
+            "tfg_duration_ms_received": 742,
+            "tfg_duration_ms_measured": 742,
+            "tfg_duration_source": "hermes_reported_ms",
+            "tfg_event_type": "tool_call",
+            "tfg_schema": "tfg.hermes.capture/3",
+            "tfg_exporter_version": "2",
+            "tfg_data_kind": "synthetic_fixture",
+            "tfg_time_basis": "capture_recorded_at_point_not_an_interval",
+            "tfg_units": {
+              "duration_ms_received": "ms",
+              "duration_ms_measured": "ms"
+            },
+            "tfg_cost": "not_computed",
+            "tfg_latency_measured": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "d7d8d043-a1fc-51f0-9a9a-b17e2a684089",
+      "name": "SYNTHETIC · llm_call:SYNTHETIC-model",
+      "run_type": "llm",
+      "start_time": "2026-10-17T14:11:38+00:00",
+      "end_time": "2026-10-17T14:11:39.250000+00:00",
+      "inputs": {},
+      "outputs": {},
+      "extra": {
+        "metadata": {
+          "tfg_event_id": "08be7ff2-2eb4-40bb-bdda-72aed6a7414c",
+          "tfg_recorded_at_utc": "2026-10-20T16:11:00.473337+00:00",
+          "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+          "tfg_case_id": "SYNTHETIC-fixtures",
+          "tfg_session_ref": "sha256:673148cf03884aa5",
+          "tfg_task_ref": "sha256:eb58a98b26c4ade6",
+          "tfg_turn_ref": "sha256:935eef91e794938f",
+          "tfg_api_request_ref": "sha256:4392ef0e82447006",
+          "tfg_absent_fields": [
+            "context_length",
+            "retry_count"
+          ],
+          "tfg_redacted_fields": [],
+          "tfg_ambiguous_zero_fields": [
+            "usage.cache_read_tokens",
+            "usage.cache_write_tokens",
+            "usage.output_tokens",
+            "usage.reasoning_tokens"
+          ],
+          "tfg_provider": "custom",
+          "tfg_upstream_provider": "SYNTHETIC-upstream",
+          "tfg_model": "SYNTHETIC-model",
+          "tfg_response_model": "SYNTHETIC-response-model",
+          "tfg_api_mode": "chat_completions",
+          "tfg_finish_reason": "tool_calls",
+          "tfg_timing_source": "hermes_hook_wall_clock",
+          "tfg_timing_scope": "api_call_from_first_attempt",
+          "tfg_api_duration_s": 1.25,
+          "tfg_started_at_epoch_s": 1792246298.0,
+          "tfg_ended_at_epoch_s": 1792246299.25,
+          "tfg_first_chunk_offset_s": 0.40000009536743164,
+          "tfg_api_call_count": 1,
+          "tfg_message_count": 1,
+          "tfg_assistant_tool_call_count": 1,
+          "tfg_context_length": null,
+          "tfg_requested_tool_names": [
+            "mcp_tfg_get_mission_state"
+          ],
+          "tfg_usage_source": "hermes_normalized_summary",
+          "tfg_usage": {
+            "cache_read_tokens": {
+              "status": "zero_unconfirmed",
+              "value": 0
+            },
+            "cache_write_tokens": {
+              "status": "zero_unconfirmed",
+              "value": 0
+            },
+            "input_tokens": {
+              "status": "nonzero_normalized",
+              "value": 1200
+            },
+            "output_tokens": {
+              "status": "zero_unconfirmed",
+              "value": 0
+            },
+            "prompt_tokens": {
+              "status": "derived_nonzero",
+              "value": 1200
+            },
+            "reasoning_tokens": {
+              "status": "zero_unconfirmed",
+              "value": 0
+            },
+            "total_tokens": {
+              "status": "derived_nonzero",
+              "value": 1200
+            }
+          },
+          "tfg_retry_count": null,
+          "tfg_event_type": "llm_call",
+          "tfg_schema": "tfg.hermes.capture/3",
+          "tfg_exporter_version": "2",
+          "tfg_data_kind": "synthetic_fixture",
+          "tfg_time_basis": "hermes_epochs",
+          "tfg_units": {
+            "api_duration_s": "s",
+            "started_at_epoch_s": "s_since_epoch",
+            "ended_at_epoch_s": "s_since_epoch",
+            "first_chunk_offset_s": "s"
+          },
+          "tfg_cost": "not_computed",
+          "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+          "tfg_latency_measured": true
+        }
+      },
+      "tags": [
+        "tfg-hermes-capture",
+        "schema:tfg.hermes.capture/3",
+        "synthetic"
+      ],
+      "trace_id": "bec45370-184e-5b66-b211-6ad75481eb5e",
+      "parent_run_id": "bec45370-184e-5b66-b211-6ad75481eb5e",
+      "dotted_order": "20261017T141138000000Zbec45370-184e-5b66-b211-6ad75481eb5e.20261017T141138000000Zd7d8d043-a1fc-51f0-9a9a-b17e2a684089"
+    },
+    {
+      "id": "1665c78e-84b2-5793-98a7-89f03254f189",
+      "name": "SYNTHETIC · llm_call:SYNTHETIC-model",
+      "run_type": "llm",
+      "start_time": "2026-10-17T14:11:40+00:00",
+      "end_time": "2026-10-17T14:11:40.500000+00:00",
+      "inputs": {},
+      "outputs": {},
+      "extra": {
+        "metadata": {
+          "tfg_event_id": "0a050929-d892-4a9a-ad61-bca627daa765",
+          "tfg_recorded_at_utc": "2026-10-20T16:11:00.474567+00:00",
+          "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+          "tfg_case_id": "SYNTHETIC-fixtures",
+          "tfg_session_ref": "sha256:673148cf03884aa5",
+          "tfg_task_ref": "sha256:eb58a98b26c4ade6",
+          "tfg_turn_ref": "sha256:935eef91e794938f",
+          "tfg_api_request_ref": "sha256:c3d3844bc8bd4825",
+          "tfg_absent_fields": [
+            "context_length",
+            "first_chunk_offset_s",
+            "retry_count",
+            "upstream_provider",
+            "usage"
+          ],
+          "tfg_redacted_fields": [],
+          "tfg_ambiguous_zero_fields": [],
+          "tfg_provider": "custom",
+          "tfg_upstream_provider": null,
+          "tfg_model": "SYNTHETIC-model",
+          "tfg_response_model": "SYNTHETIC-response-model",
+          "tfg_api_mode": "chat_completions",
+          "tfg_finish_reason": "stop",
+          "tfg_timing_source": "hermes_hook_wall_clock",
+          "tfg_timing_scope": "api_call_from_first_attempt",
+          "tfg_api_duration_s": 0.5,
+          "tfg_started_at_epoch_s": 1792246300.0,
+          "tfg_ended_at_epoch_s": 1792246300.5,
+          "tfg_first_chunk_offset_s": null,
+          "tfg_api_call_count": 2,
+          "tfg_message_count": 0,
+          "tfg_assistant_tool_call_count": 1,
+          "tfg_context_length": null,
+          "tfg_requested_tool_names": [
+            "mcp_tfg_get_mission_state"
+          ],
+          "tfg_usage_source": "absent",
+          "tfg_usage": null,
+          "tfg_retry_count": null,
+          "tfg_event_type": "llm_call",
+          "tfg_schema": "tfg.hermes.capture/3",
+          "tfg_exporter_version": "2",
+          "tfg_data_kind": "synthetic_fixture",
+          "tfg_time_basis": "hermes_epochs",
+          "tfg_units": {
+            "api_duration_s": "s",
+            "started_at_epoch_s": "s_since_epoch",
+            "ended_at_epoch_s": "s_since_epoch",
+            "first_chunk_offset_s": "s"
+          },
+          "tfg_cost": "not_computed",
+          "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+          "tfg_latency_measured": true
+        }
+      },
+      "tags": [
+        "tfg-hermes-capture",
+        "schema:tfg.hermes.capture/3",
+        "synthetic"
+      ],
+      "trace_id": "bec45370-184e-5b66-b211-6ad75481eb5e",
+      "parent_run_id": "bec45370-184e-5b66-b211-6ad75481eb5e",
+      "dotted_order": "20261017T141138000000Zbec45370-184e-5b66-b211-6ad75481eb5e.20261017T141140000000Z1665c78e-84b2-5793-98a7-89f03254f189"
+    },
+    {
+      "id": "c875087f-df7a-52e8-9a8f-6fab97f540b0",
+      "name": "SYNTHETIC · llm_error:SYNTHETIC-model",
+      "run_type": "llm",
+      "start_time": "2026-10-17T14:11:41+00:00",
+      "end_time": "2026-10-20T16:11:00.475060+00:00",
+      "inputs": {},
+      "outputs": {},
+      "extra": {
+        "metadata": {
+          "tfg_event_id": "2670bab2-d903-459a-bf6a-69867ca1c7cc",
+          "tfg_recorded_at_utc": "2026-10-20T16:11:00.475635+00:00",
+          "tfg_run_id": "SYNTHETIC-loader-hooks-20261020",
+          "tfg_case_id": "SYNTHETIC-fixtures",
+          "tfg_session_ref": "sha256:673148cf03884aa5",
+          "tfg_task_ref": "sha256:eb58a98b26c4ade6",
+          "tfg_turn_ref": "sha256:935eef91e794938f",
+          "tfg_api_request_ref": "sha256:61bf8b3a01443b0a",
+          "tfg_absent_fields": [],
+          "tfg_redacted_fields": [],
+          "tfg_ambiguous_zero_fields": [],
+          "tfg_provider": "custom",
+          "tfg_model": "SYNTHETIC-model",
+          "tfg_api_mode": "chat_completions",
+          "tfg_timing_source": "hermes_hook_wall_clock",
+          "tfg_timing_scope": "api_call_from_first_attempt",
+          "tfg_api_duration_s": 266359.4750595093,
+          "tfg_started_at_epoch_s": 1792246301.0,
+          "tfg_ended_at_epoch_s": 1792512660.4750595,
+          "tfg_api_call_count": 3,
+          "tfg_status_code": 429,
+          "tfg_retry_count": 1,
+          "tfg_max_retries": 3,
+          "tfg_retryable": true,
+          "tfg_reason": "rate_limited",
+          "tfg_error_type": "SyntheticRateLimitError",
+          "tfg_event_type": "llm_error",
+          "tfg_schema": "tfg.hermes.capture/3",
+          "tfg_exporter_version": "2",
+          "tfg_data_kind": "synthetic_fixture",
+          "tfg_time_basis": "hermes_epochs",
+          "tfg_units": {
+            "api_duration_s": "s",
+            "started_at_epoch_s": "s_since_epoch",
+            "ended_at_epoch_s": "s_since_epoch"
+          },
+          "tfg_cost": "not_computed",
+          "tfg_latency_measured": true
+        }
+      },
+      "tags": [
+        "tfg-hermes-capture",
+        "schema:tfg.hermes.capture/3",
+        "synthetic"
+      ],
+      "error": "SyntheticRateLimitError (status_code=429)",
+      "trace_id": "bec45370-184e-5b66-b211-6ad75481eb5e",
+      "parent_run_id": "bec45370-184e-5b66-b211-6ad75481eb5e",
+      "dotted_order": "20261017T141138000000Zbec45370-184e-5b66-b211-6ad75481eb5e.20261017T141141000000Zc875087f-df7a-52e8-9a8f-6fab97f540b0"
+    }
+  ],
+  "note": "Nothing was sent. Metadata-only runs; token counters are Hermes-normalised and no cost is computed."
+}

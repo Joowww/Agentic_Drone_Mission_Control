@@ -1,0 +1,76 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 7.52kB 0.0s done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#2 DONE 1.9s
+
+#3 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#3 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#4 DONE 1.4s
+
+#5 [certs 1/2] FROM docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#5 resolve docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c 0.0s done
+#5 CACHED
+
+#6 [certs 2/2] RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 2.57MB 0.1s
+#7 transferring context: 3.18MB 0.1s done
+#7 DONE 0.1s
+
+#8 [base 2/2] RUN --mount=type=bind,from=certs,source=/etc/ssl/certs/ca-certificates.crt,target=/run/tfg-ca.crt     sed -i -E "s#^URIs: .*#URIs: https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/#"         /etc/apt/sources.list.d/ubuntu.sources     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt update     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt install -y --no-install-recommends         python3 python3-venv     && rm -rf /var/lib/apt/lists/*
+#8 1.382 Ign:1 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble InRelease
+#8 1.674 Ign:2 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-updates InRelease
+#8 1.916 Ign:3 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-backports InRelease
+#8 2.184 Ign:4 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-security InRelease
+#8 2.668 Ign:1 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble InRelease
+#8 3.358 Ign:2 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-updates InRelease
+#8 3.564 Ign:3 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-backports InRelease
+#8 3.786 Ign:4 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-security InRelease
+#8 5.115 Ign:1 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble InRelease
+#8 5.708 Ign:2 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-updates InRelease
+#8 5.890 Ign:3 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-backports InRelease
+#8 6.198 Ign:4 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-security InRelease
+#8 9.379 Err:1 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble InRelease
+#8 9.379   503  Service Unavailable [IP: 185.125.189.37 443]
+#8 9.922 Err:2 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-updates InRelease
+#8 9.922   503  Service Unavailable [IP: 185.125.189.37 443]
+#8 10.18 Err:3 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-backports InRelease
+#8 10.18   503  Service Unavailable [IP: 185.125.189.37 443]
+#8 10.42 Err:4 https://snapshot.ubuntu.com/ubuntu/20261024T000000Z noble-security InRelease
+#8 10.42   503  Service Unavailable [IP: 185.125.189.37 443]
+#8 10.42 Reading package lists...
+#8 10.44 W: Failed to fetch https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/dists/noble/InRelease  503  Service Unavailable [IP: 185.125.189.37 443]
+#8 10.44 W: Failed to fetch https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/dists/noble-updates/InRelease  503  Service Unavailable [IP: 185.125.189.37 443]
+#8 10.44 W: Failed to fetch https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/dists/noble-backports/InRelease  503  Service Unavailable [IP: 185.125.189.37 443]
+#8 10.44 W: Failed to fetch https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/dists/noble-security/InRelease  503  Service Unavailable [IP: 185.125.189.37 443]
+#8 10.44 W: Some index files failed to download. They have been ignored, or old ones used instead.
+#8 10.45 Reading package lists...
+#8 10.46 Building dependency tree...
+#8 10.46 Reading state information...
+#8 10.46 E: Unable to locate package python3
+#8 10.46 E: Unable to locate package python3-venv
+#8 ERROR: process "/bin/sh -c sed -i -E \"s#^URIs: .*#URIs: https://snapshot.ubuntu.com/ubuntu/${APT_SNAPSHOT}/#\"         /etc/apt/sources.list.d/ubuntu.sources     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt update     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt install -y --no-install-recommends         python3 python3-venv     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+------
+ > [base 2/2] RUN --mount=type=bind,from=certs,source=/etc/ssl/certs/ca-certificates.crt,target=/run/tfg-ca.crt     sed -i -E "s#^URIs: .*#URIs: https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/#"         /etc/apt/sources.list.d/ubuntu.sources     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt update     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt install -y --no-install-recommends         python3 python3-venv     && rm -rf /var/lib/apt/lists/*:
+10.44 W: Failed to fetch https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/dists/noble/InRelease  503  Service Unavailable [IP: 185.125.189.37 443]
+10.44 W: Failed to fetch https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/dists/noble-updates/InRelease  503  Service Unavailable [IP: 185.125.189.37 443]
+10.44 W: Failed to fetch https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/dists/noble-backports/InRelease  503  Service Unavailable [IP: 185.125.189.37 443]
+10.44 W: Failed to fetch https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/dists/noble-security/InRelease  503  Service Unavailable [IP: 185.125.189.37 443]
+10.44 W: Some index files failed to download. They have been ignored, or old ones used instead.
+10.45 Reading package lists...
+10.46 Building dependency tree...
+10.46 Reading state information...
+10.46 E: Unable to locate package python3
+10.46 E: Unable to locate package python3-venv
+------
+ERROR: failed to build: failed to solve: process "/bin/sh -c sed -i -E \"s#^URIs: .*#URIs: https://snapshot.ubuntu.com/ubuntu/${APT_SNAPSHOT}/#\"         /etc/apt/sources.list.d/ubuntu.sources     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt update     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt install -y --no-install-recommends         python3 python3-venv     && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+rc=1

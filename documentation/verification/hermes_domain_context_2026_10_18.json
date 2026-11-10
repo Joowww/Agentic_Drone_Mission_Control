@@ -1,0 +1,2009 @@
+{
+  "date_local": "2026-10-18",
+  "project_commit": "66cf94dbe6423e4dedefb25dea8f4c4b74e253b8",
+  "client_source_root": "/home/joelm/.hermes/hermes-agent",
+  "client_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
+  "client_source_sha256": {
+    "tools/mcp_tool_transport.py": "b8f415a5d90c9ad2f0f0a7468fa863e3ebd14bbe9a58e99e46654b02e05375f9",
+    "tools/mcp_tool_registration.py": "7e73a415283c5255fedeb9318fceeb556eb31a19cea2e9bd3d9fdfc0f9297ade",
+    "tools/mcp_tool_schema.py": "21ab2ef8b122add133af4ef387b32f6e8c6711f6e1b2f6f4744bcb279fa2135b",
+    "agent/skill_utils.py": "fbf04204de0e7ab29e694aea2b099f971955e94223866b8abee545855eb2d3d0",
+    "agent/skill_commands.py": "47c3d33fc40e1ea91f96da5e86dd477ea69a82add4e8a9a3a0ebac4122289b0a",
+    "agent/prompt_builder.py": "660e7a2c311adf1b794c7b81c83090ea1b6f07619bd79be152c2f3c099ec0f05",
+    "cli.py": "04e9c76fc5596766d4fad1f28a1583ccbc0f9709371dd8a5f60ab91b34105ebb",
+    "hermes_cli/subcommands/skills.py": "40ba69b7ecf79f75b4e68619567ea639bc16182cc7f7421558206feef9fa54d1",
+    "hermes_cli/main_agent_cmds.py": "21e6fa7282bdd25f766ac3601cc133acc75b9a385acb1610d0ead146d09a62ae"
+  },
+  "server_initialization": {
+    "implementation_class": "mcp.server.mcpserver.server.MCPServer",
+    "name": "tfg-mission-control",
+    "version": "0.3.0",
+    "instructions_chars": 4828,
+    "instructions_sha256": "4c365dc3f8bbddac54f6dc76299747ac7b043a0d91e3de54bfe6150b554e1b2c",
+    "capabilities": {
+      "prompts": {
+        "list_changed": false
+      },
+      "resources": {
+        "subscribe": false,
+        "list_changed": false
+      },
+      "tools": {
+        "list_changed": false
+      },
+      "extensions": {}
+    }
+  },
+  "registered_project_tools": [
+    {
+      "name": "propose_mission_revision",
+      "description": "Persist a proposal from a final verified preflight run_id and snapshot hash. Recommendations only; no source edits or simulation. Preserve request_key/proposal_id and review proposal_sha256 before accepting changes.",
+      "input_schema": {
+        "properties": {
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "request_key": {
+            "title": "Request Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "run_id",
+          "request_key"
+        ],
+        "title": "propose_mission_revisionArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "get_revision_proposal",
+      "description": "Read a persistent proposal and its reviewed version/hash after reload. view=summary (default) keeps source IDs/hashes, reasons, conditions and consent; view=detail preserves the complete previous response including executor evidence. Both verify the same source-copy integrity. No mission edits, simulation, flight or release of v1 restrictions.",
+      "input_schema": {
+        "properties": {
+          "proposal_id": {
+            "title": "Proposal Id",
+            "type": "string"
+          },
+          "view": {
+            "default": "summary",
+            "enum": [
+              "summary",
+              "detail"
+            ],
+            "title": "View",
+            "type": "string"
+          }
+        },
+        "required": [
+          "proposal_id"
+        ],
+        "title": "get_revision_proposalArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "build_mission_revision",
+      "description": "Build a NEW mission revision from explicitly accepted/operator-supplied changes and the reviewed proposal hash. Physical battery/wind/performance updates require field declarations, labelled operator-declared, not telemetry. Revalidates and exports QGC once; may remain BLOCKED. Never flies or inherits flight consent. Same request_key is idempotent; different inputs conflict.",
+      "input_schema": {
+        "$defs": {
+          "ExplicitWaypointAddition": {
+            "additionalProperties": false,
+            "properties": {
+              "waypoint_id": {
+                "title": "Waypoint Id",
+                "type": "string"
+              },
+              "latitude": {
+                "title": "Latitude",
+                "type": "number"
+              },
+              "longitude": {
+                "title": "Longitude",
+                "type": "number"
+              },
+              "altitude_m": {
+                "title": "Altitude M",
+                "type": "number"
+              },
+              "speed_kmh": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Speed Kmh"
+              },
+              "action": {
+                "default": "navigate",
+                "enum": [
+                  "navigate",
+                  "survey",
+                  "inspect",
+                  "take_photo",
+                  "loiter"
+                ],
+                "title": "Action",
+                "type": "string"
+              }
+            },
+            "required": [
+              "waypoint_id",
+              "latitude",
+              "longitude",
+              "altitude_m"
+            ],
+            "title": "ExplicitWaypointAddition",
+            "type": "object"
+          },
+          "ExplicitWaypointUpdate": {
+            "additionalProperties": false,
+            "properties": {
+              "waypoint_id": {
+                "title": "Waypoint Id",
+                "type": "string"
+              },
+              "latitude": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Latitude"
+              },
+              "longitude": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Longitude"
+              },
+              "altitude_m": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Altitude M"
+              },
+              "speed_kmh": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Speed Kmh"
+              },
+              "action": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "navigate",
+                      "survey",
+                      "inspect",
+                      "take_photo",
+                      "loiter"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Action"
+              }
+            },
+            "required": [
+              "waypoint_id"
+            ],
+            "title": "ExplicitWaypointUpdate",
+            "type": "object"
+          },
+          "RevisionChanges": {
+            "additionalProperties": false,
+            "properties": {
+              "mission_name": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Mission Name"
+              },
+              "vehicle_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Vehicle Id"
+              },
+              "cruise_speed_kmh": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Cruise Speed Kmh"
+              },
+              "battery_percent": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Battery Percent"
+              },
+              "battery_consumption_percent_per_minute": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Battery Consumption Percent Per Minute"
+              },
+              "objective_type": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "transit",
+                      "inspection",
+                      "survey",
+                      "precision_agriculture",
+                      "custom"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Objective Type"
+              },
+              "objective_target": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Objective Target"
+              },
+              "objective_description": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Objective Description"
+              },
+              "wind_speed_kmh": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Wind Speed Kmh"
+              },
+              "wind_direction_from": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "north",
+                      "northeast",
+                      "east",
+                      "southeast",
+                      "south",
+                      "southwest",
+                      "west",
+                      "northwest"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Wind Direction From"
+              },
+              "wind_direction_from_deg": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Wind Direction From Deg"
+              },
+              "minimum_battery_reserve_percent": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Minimum Battery Reserve Percent"
+              },
+              "maximum_wind_speed_kmh": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Maximum Wind Speed Kmh"
+              },
+              "maximum_altitude_m": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Maximum Altitude M"
+              },
+              "return_to_home": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Return To Home"
+              },
+              "home_latitude": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Latitude"
+              },
+              "home_longitude": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Longitude"
+              },
+              "home_altitude_m": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Altitude M"
+              },
+              "waypoint_updates": {
+                "default": [],
+                "items": {
+                  "$ref": "#/$defs/ExplicitWaypointUpdate"
+                },
+                "title": "Waypoint Updates",
+                "type": "array"
+              },
+              "waypoint_additions": {
+                "default": [],
+                "items": {
+                  "$ref": "#/$defs/ExplicitWaypointAddition"
+                },
+                "title": "Waypoint Additions",
+                "type": "array"
+              },
+              "waypoint_removals": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Waypoint Removals",
+                "type": "array"
+              }
+            },
+            "title": "RevisionChanges",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "proposal_id": {
+            "title": "Proposal Id",
+            "type": "string"
+          },
+          "expected_proposal_sha256": {
+            "title": "Expected Proposal Sha256",
+            "type": "string"
+          },
+          "changes": {
+            "$ref": "#/$defs/RevisionChanges"
+          },
+          "operator_statement": {
+            "title": "Operator Statement",
+            "type": "string"
+          },
+          "request_key": {
+            "title": "Request Key",
+            "type": "string"
+          },
+          "declarations": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Declarations"
+          }
+        },
+        "required": [
+          "proposal_id",
+          "expected_proposal_sha256",
+          "changes",
+          "operator_statement",
+          "request_key"
+        ],
+        "title": "build_mission_revisionArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "start_virtual_preflight",
+      "description": "Admit ONE asynchronous virtual preflight and quickly return run_id and paths. Requires an explicit user rehearsal request: the detached worker may ARM, TAKE OFF and MOVE exclusively simulated v1, then land. Choose and record request_key before calling; it permanently identifies this admission. Validation/acceptance are pending. Never starts simulation. A lost response is recovered with get_virtual_preflight, not another start. PASSED grants neither hardware permission nor another flight.",
+      "input_schema": {
+        "properties": {
+          "mission_path": {
+            "title": "Mission Path",
+            "type": "string"
+          },
+          "request_key": {
+            "title": "Request Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mission_path",
+          "request_key"
+        ],
+        "title": "start_virtual_preflightArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "get_virtual_preflight",
+      "description": "Read-only preflight lookup by exactly one of run_id or request_key, including historical reports. Use this to query an EXISTING rehearsal by its run_id; a run is not an MCP prompt or generic resource. Returns job state, current/last phase, final result if available, report and paths. Never spawns, resumes, clears v1 ownership or commands flight. view=summary by default; view=detail returns the complete previous response and raw executor evidence. Both retain result/reasons, uncertainty and vehicle restriction. Poll the same run every 15-30 seconds. INTERRUPTED/UNCONFIRMED never implies landing.",
+      "input_schema": {
+        "properties": {
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Run Id"
+          },
+          "request_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Request Key"
+          },
+          "view": {
+            "default": "summary",
+            "enum": [
+              "summary",
+              "detail"
+            ],
+            "title": "View",
+            "type": "string"
+          }
+        },
+        "title": "get_virtual_preflightArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "run_virtual_preflight",
+      "description": "SYNCHRONOUS legacy operation: holds the request throughout the rehearsal and may exceed the MCP client timeout without cancelling the backend. Prefer start_virtual_preflight plus get_virtual_preflight for tracking. Run one explicitly requested virtual preflight in Gazebo/ArduPilot SITL. WARNING: this tool ARMS, TAKES OFF and MOVES exclusively simulated vehicle v1, then lands and waits for disarm via the existing executor. It snapshots and hashes the mission, validates safety, checks readiness and compatibility, and persists an evidence report. Never starts/restarts simulation or retries a flight. Use only when the user requests the rehearsal. PASSED does not authorize hardware or grant consent for any subsequent execution.",
+      "input_schema": {
+        "properties": {
+          "mission_path": {
+            "title": "Mission Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mission_path"
+        ],
+        "title": "run_virtual_preflightArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "update_mission_draft",
+      "description": "Save only operator-supplied mission facts and partial geometry_intent together; no inferred purpose/agriculture, safety limits, height or return decision. Geometry patches merge non-null facts, preserving dimensions; an explicit mode change clears old shape-specific fields. Retain draft_id/draft_revision; geometry edits require current expected_revision, existing routes require replace_route=true. A partial intent saves without waypoints; invalid facts do not overwrite state. Empty updates retrieve. Returns mission/geometry pending fields, effective compatibility defaults and UNVERIFIED field attribution (optional JSON-pointer attributions). Ordinary legacy waypoint updates merge; explicit manual replacement detaches geometry intent. No extra approval for requested saving, and no flight commands.",
+      "input_schema": {
+        "$defs": {
+          "InputAttribution": {
+            "additionalProperties": false,
+            "properties": {
+              "source": {
+                "enum": [
+                  "OPERATOR_DECLARED_VIA_AGENT",
+                  "UNKNOWN"
+                ],
+                "title": "Source",
+                "type": "string"
+              },
+              "statement": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Statement"
+              }
+            },
+            "required": [
+              "source"
+            ],
+            "title": "InputAttribution",
+            "type": "object"
+          },
+          "MissionPlanDraft": {
+            "additionalProperties": false,
+            "properties": {
+              "geometry_intent": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/RelativeRouteRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "mission_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Mission Id"
+              },
+              "name": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Name"
+              },
+              "vehicle_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Vehicle Id"
+              },
+              "vehicle_type": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "multirotor",
+                      "fixed_wing",
+                      "vtol",
+                      "ugv"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Vehicle Type"
+              },
+              "autopilot": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "PX4",
+                      "ArduPilot",
+                      "unknown"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Autopilot"
+              },
+              "cruise_speed_kmh": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Cruise Speed Kmh"
+              },
+              "battery_percent": {
+                "anyOf": [
+                  {
+                    "maximum": 100,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Battery Percent"
+              },
+              "battery_consumption_percent_per_minute": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Battery Consumption Percent Per Minute"
+              },
+              "objective_type": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "transit",
+                      "inspection",
+                      "survey",
+                      "precision_agriculture",
+                      "custom"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Objective Type"
+              },
+              "objective_target": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Objective Target"
+              },
+              "objective_description": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Objective Description"
+              },
+              "home_latitude": {
+                "anyOf": [
+                  {
+                    "maximum": 90,
+                    "minimum": -90,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Latitude"
+              },
+              "home_longitude": {
+                "anyOf": [
+                  {
+                    "maximum": 180,
+                    "minimum": -180,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Longitude"
+              },
+              "home_altitude_m": {
+                "anyOf": [
+                  {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Altitude M"
+              },
+              "waypoints": {
+                "items": {
+                  "$ref": "#/$defs/PlannedWaypointDraft"
+                },
+                "title": "Waypoints",
+                "type": "array"
+              },
+              "return_to_home": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Return To Home"
+              },
+              "wind_speed_kmh": {
+                "anyOf": [
+                  {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Wind Speed Kmh"
+              },
+              "wind_direction_from": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "north",
+                      "northeast",
+                      "east",
+                      "southeast",
+                      "south",
+                      "southwest",
+                      "west",
+                      "northwest"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Wind Direction From"
+              },
+              "wind_direction_from_deg": {
+                "anyOf": [
+                  {
+                    "exclusiveMaximum": 360,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Wind Direction From Deg"
+              },
+              "minimum_battery_reserve_percent": {
+                "anyOf": [
+                  {
+                    "maximum": 100,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Minimum Battery Reserve Percent"
+              },
+              "maximum_wind_speed_kmh": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Maximum Wind Speed Kmh"
+              },
+              "maximum_altitude_m": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Maximum Altitude M"
+              },
+              "low_battery_action": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "RETURN_TO_HOME",
+                      "HOLD_POSITION",
+                      "LAND",
+                      "ABORT_MISSION"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Low Battery Action"
+              },
+              "unsafe_wind_action": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "RETURN_TO_HOME",
+                      "HOLD_POSITION",
+                      "LAND",
+                      "ABORT_MISSION"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Unsafe Wind Action"
+              },
+              "communication_loss_action": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "RETURN_TO_HOME",
+                      "HOLD_POSITION",
+                      "LAND",
+                      "ABORT_MISSION"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Communication Loss Action"
+              }
+            },
+            "title": "MissionPlanDraft",
+            "type": "object"
+          },
+          "Offset": {
+            "additionalProperties": false,
+            "properties": {
+              "north_m": {
+                "title": "North M",
+                "type": "number"
+              },
+              "east_m": {
+                "title": "East M",
+                "type": "number"
+              }
+            },
+            "required": [
+              "north_m",
+              "east_m"
+            ],
+            "title": "Offset",
+            "type": "object"
+          },
+          "PlannedWaypointDraft": {
+            "additionalProperties": false,
+            "properties": {
+              "waypoint_id": {
+                "title": "Waypoint Id",
+                "type": "string"
+              },
+              "latitude": {
+                "anyOf": [
+                  {
+                    "maximum": 90,
+                    "minimum": -90,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Latitude"
+              },
+              "longitude": {
+                "anyOf": [
+                  {
+                    "maximum": 180,
+                    "minimum": -180,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Longitude"
+              },
+              "altitude_m": {
+                "anyOf": [
+                  {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Altitude M"
+              },
+              "speed_kmh": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Speed Kmh"
+              },
+              "action": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "navigate",
+                      "survey",
+                      "inspect",
+                      "take_photo",
+                      "loiter"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Action"
+              }
+            },
+            "required": [
+              "waypoint_id"
+            ],
+            "title": "PlannedWaypointDraft",
+            "type": "object"
+          },
+          "RelativeRouteRequest": {
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "offsets",
+                      "rectangle"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Mode"
+              },
+              "home_latitude": {
+                "anyOf": [
+                  {
+                    "maximum": 90,
+                    "minimum": -90,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Latitude"
+              },
+              "home_longitude": {
+                "anyOf": [
+                  {
+                    "maximum": 180,
+                    "minimum": -180,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Longitude"
+              },
+              "home_altitude_m": {
+                "anyOf": [
+                  {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Altitude M"
+              },
+              "altitude_reference": {
+                "anyOf": [
+                  {
+                    "const": "relative_to_home",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Altitude Reference"
+              },
+              "altitude_m": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Altitude M"
+              },
+              "return_to_home": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Return To Home"
+              },
+              "close_route": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Close Route"
+              },
+              "offsets": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/Offset"
+                    },
+                    "maxItems": 200,
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Offsets"
+              },
+              "length_m": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Length M"
+              },
+              "width_m": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Width M"
+              },
+              "orientation_deg": {
+                "anyOf": [
+                  {
+                    "exclusiveMaximum": 360,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Orientation Deg"
+              },
+              "traversal": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "clockwise",
+                      "counterclockwise"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Traversal"
+              },
+              "home_position": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "corner",
+                      "center"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Position"
+              }
+            },
+            "title": "RelativeRouteRequest",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "updates": {
+            "$ref": "#/$defs/MissionPlanDraft"
+          },
+          "draft_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Draft Id"
+          },
+          "expected_revision": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Expected Revision"
+          },
+          "replace_route": {
+            "default": false,
+            "title": "Replace Route",
+            "type": "boolean"
+          },
+          "attributions": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "$ref": "#/$defs/InputAttribution"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Attributions"
+          }
+        },
+        "required": [
+          "updates"
+        ],
+        "title": "update_mission_draftArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "get_mission_state",
+      "description": "Read-only mission explanation using exactly one retained draft_id, revision_id or run_id; query an EXISTING preflight run_id here to explain its mission/artifact links, or use get_virtual_preflight for its job/report. No prompt/resource search is needed. NOT a draft inventory. Missing identifier is INVALID_ARGUMENTS, lookup_performed=false, inventory UNKNOWN, never evidence of no drafts. view=summary by default keeps geometry intent/version/count, pending decisions, attribution caveats, defaults, validation and verified links without repeated trees. view=detail returns the complete previous response including route and field provenance. Both perform the same integrity checks. Use retained IDs/detail_access without redundant resource/file exploration. Optional finalization_id selects a draft snapshot. Historical readiness is not current; no consent, validation, writes or operational effects.",
+      "input_schema": {
+        "properties": {
+          "draft_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Draft Id"
+          },
+          "finalization_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Finalization Id"
+          },
+          "revision_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Revision Id"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Run Id"
+          },
+          "view": {
+            "default": "summary",
+            "enum": [
+              "summary",
+              "detail"
+            ],
+            "title": "View",
+            "type": "string"
+          }
+        },
+        "title": "get_mission_stateArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "generate_draft_route",
+      "description": "Save/complete structured geometry intent in an existing versioned draft, including incomplete parameters; null/omitted facts preserve earlier dimensions/decisions, explicit mode change resets old shape fields. Return joint geometry/mission pending fields; generate waypoints only when all geometry decisions are explicit. HOME alone is insufficient. Existing routes require replace_route=true for changed geometry; incomplete replacements invalidate old waypoints. Metres, length-edge heading clockwise from north. Deterministic generation is not operator attribution, agriculture or coverage. Optional JSON-pointer attributions are unverified agent declarations. Never flies.",
+      "input_schema": {
+        "$defs": {
+          "InputAttribution": {
+            "additionalProperties": false,
+            "properties": {
+              "source": {
+                "enum": [
+                  "OPERATOR_DECLARED_VIA_AGENT",
+                  "UNKNOWN"
+                ],
+                "title": "Source",
+                "type": "string"
+              },
+              "statement": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Statement"
+              }
+            },
+            "required": [
+              "source"
+            ],
+            "title": "InputAttribution",
+            "type": "object"
+          },
+          "Offset": {
+            "additionalProperties": false,
+            "properties": {
+              "north_m": {
+                "title": "North M",
+                "type": "number"
+              },
+              "east_m": {
+                "title": "East M",
+                "type": "number"
+              }
+            },
+            "required": [
+              "north_m",
+              "east_m"
+            ],
+            "title": "Offset",
+            "type": "object"
+          },
+          "RelativeRouteRequest": {
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "offsets",
+                      "rectangle"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Mode"
+              },
+              "home_latitude": {
+                "anyOf": [
+                  {
+                    "maximum": 90,
+                    "minimum": -90,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Latitude"
+              },
+              "home_longitude": {
+                "anyOf": [
+                  {
+                    "maximum": 180,
+                    "minimum": -180,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Longitude"
+              },
+              "home_altitude_m": {
+                "anyOf": [
+                  {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Altitude M"
+              },
+              "altitude_reference": {
+                "anyOf": [
+                  {
+                    "const": "relative_to_home",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Altitude Reference"
+              },
+              "altitude_m": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Altitude M"
+              },
+              "return_to_home": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Return To Home"
+              },
+              "close_route": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Close Route"
+              },
+              "offsets": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/Offset"
+                    },
+                    "maxItems": 200,
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Offsets"
+              },
+              "length_m": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Length M"
+              },
+              "width_m": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Width M"
+              },
+              "orientation_deg": {
+                "anyOf": [
+                  {
+                    "exclusiveMaximum": 360,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Orientation Deg"
+              },
+              "traversal": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "clockwise",
+                      "counterclockwise"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Traversal"
+              },
+              "home_position": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "corner",
+                      "center"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Home Position"
+              }
+            },
+            "title": "RelativeRouteRequest",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "draft_id": {
+            "title": "Draft Id",
+            "type": "string"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "request": {
+            "$ref": "#/$defs/RelativeRouteRequest"
+          },
+          "replace_route": {
+            "default": false,
+            "title": "Replace Route",
+            "type": "boolean"
+          },
+          "attributions": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "$ref": "#/$defs/InputAttribution"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Attributions"
+          }
+        },
+        "required": [
+          "draft_id",
+          "expected_revision",
+          "request"
+        ],
+        "title": "generate_draft_routeArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "finalize_mission_draft",
+      "description": "On requested finalization, snapshot the complete draft, validate and export QGC .plan in ONE operation without another saving/validation approval. Pending geometry also blocks finalization. Supply expected_revision; retain finalization_id/mission_path/hashes. Explain this result without repeating validation/export and show compatibility defaults and unverified provenance before seeking rehearsal consent. Unsafe plans remain BLOCKED candidates. Never starts simulation or grants flight consent.",
+      "input_schema": {
+        "properties": {
+          "draft_id": {
+            "title": "Draft Id",
+            "type": "string"
+          },
+          "expected_revision": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Expected Revision"
+          }
+        },
+        "required": [
+          "draft_id"
+        ],
+        "title": "finalize_mission_draftArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "validate_mission",
+      "description": "Validate a drone mission using the deterministic TFG mission-safety pipeline. No LLM is used for the safety decision.",
+      "input_schema": {
+        "properties": {
+          "mission_path": {
+            "title": "Mission Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mission_path"
+        ],
+        "title": "validate_missionArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "validate_and_export_qgc",
+      "description": "Validate a drone mission deterministically and export a QGroundControl .plan file. Unsafe missions remain blocked and are exported only as candidate plans.",
+      "input_schema": {
+        "properties": {
+          "mission_path": {
+            "title": "Mission Path",
+            "type": "string"
+          },
+          "output_directory": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Output Directory"
+          }
+        },
+        "required": [
+          "mission_path"
+        ],
+        "title": "validate_and_export_qgcArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "check_simulation_ready",
+      "description": "Check whether the ROS2, Gazebo and ArduPilot simulation stack is healthy and ready. This is a read-only check and does not issue flight commands.",
+      "input_schema": {
+        "properties": {},
+        "title": "check_simulation_readyArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "start_simulation",
+      "description": "Start the deterministic ROS2, Gazebo and ArduPilot simulation stack. This starts the simulation environment only and does not arm, take off or command a vehicle.",
+      "input_schema": {
+        "properties": {},
+        "title": "start_simulationArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "stop_simulation",
+      "description": "Stop the ROS2, Gazebo and ArduPilot simulation processes. This tool is intended for simulation lifecycle management and does not represent a normal in-flight landing command.",
+      "input_schema": {
+        "properties": {},
+        "title": "stop_simulationArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "check_mission_execution_ready",
+      "description": "Check whether a mission is authorized for execution. The deterministic mission-safety pipeline must approve the mission and the simulation must be healthy before execution is authorized.",
+      "input_schema": {
+        "properties": {
+          "mission_path": {
+            "title": "Mission Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mission_path"
+        ],
+        "title": "check_mission_execution_readyArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "execute_approved_mission",
+      "description": "SYNCHRONOUS: may exceed the MCP client timeout; timeout does not cancel flight. Shares v1 exclusion with asynchronous preflight. Execute an approved waypoint mission on Drone 1 in the Gazebo/ArduPilot simulation. The executor re-runs the deterministic execution gate internally before issuing any flight command. Unsupported or unsafe missions are blocked. The current executor supports ArduPilot multirotor missions with navigate actions.",
+      "input_schema": {
+        "properties": {
+          "mission_path": {
+            "title": "Mission Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mission_path"
+        ],
+        "title": "execute_approved_missionArguments",
+        "type": "object"
+      }
+    }
+  ],
+  "selected_local_configuration": {
+    "scope": "Only safe skills keys and command/args/enabled of tfg-mission-control; no credentials or other server settings",
+    "mcp_server": "tfg-mission-control",
+    "command": "/home/joelm/TFG/Agentic_Drone_Mission_Control/.venv/bin/python",
+    "args": [
+      "-m",
+      "tools.hermes_mcp_server"
+    ],
+    "enabled": true,
+    "explicit_skill_activation_or_trust_found_in_selected_skills_fields": false,
+    "personal_files_modified": false,
+    "credentials_inspected": false
+  },
+  "offline_loader_probe": {
+    "status": "OFFLINE_LOADER_VERIFIED",
+    "hermes_source_commit": "d923a5eb48",
+    "profile": "temporary; deleted after check",
+    "project_root_detected": true,
+    "trusted_project_skill_discovered": true,
+    "frontmatter": {
+      "name": "tfg-mission-control",
+      "description": "Planifica y consulta misiones del TFG mediante MCP.",
+      "version": "1.0.0",
+      "author": "Joel (TFG)",
+      "metadata": {
+        "hermes": {
+          "category": "tfg",
+          "tags": [
+            "missions",
+            "planning",
+            "sitl",
+            "mcp"
+          ]
+        }
+      }
+    },
+    "loaded_names": [
+      "tfg-mission-control"
+    ],
+    "missing_names": [],
+    "full_body_in_preloaded_prompt": true,
+    "rendered_prompt_sha256": "c3489353d5db6a8539e8f64191f40a8150e50d78866c4052011adc5a1407a1bb",
+    "rendered_prompt_utf8_bytes": 8974,
+    "skill_sha256": "79db31596aa5f7b22e80b4fa678e412698c9b4ea7ce9f100e13c33b6e4ef4b4e",
+    "limits": [
+      "Hermes loader functions from installed source, using installed managed Python and committed dependency site-packages, without bootstrap or repair",
+      "No personal config edited; temporary config only",
+      "No LLM, provider API, MCP connection, simulation or flight invoked",
+      "Does not prove client delivered this prompt in a real model session or followed it"
+    ]
+  },
+  "probe_source_utf8": "import hashlib,json,os,sys,tempfile\nfrom pathlib import Path\nproject=Path('/home/joelm/TFG/Agentic_Drone_Mission_Control')\nclient=Path('/home/joelm/.hermes/hermes-agent')\nwith tempfile.TemporaryDirectory(prefix='tfg-hermes-skill-') as temporary:\n    home=Path(temporary)\n    os.environ['HERMES_HOME']=str(home)\n    os.environ['HERMES_RUNTIME_DIR']=str(home/'runtime')\n    os.environ['TERMINAL_CWD']=str(project)\n    (home/'config.yaml').write_text(json.dumps({'skills':{'trusted_project_dirs':[str(project)],'auto_load':['tfg-mission-control']}}))\n    os.chdir(project)\n    sys.path.insert(0,'/home/joelm/.hermes/installs/9498c54f9c80956b/environments/c1e2bfd686f341a5926f0cd4fdd87b86/venv/lib/python3.14/site-packages')\n    sys.path.insert(0,str(client))\n    from hermes_constants import get_hermes_home,get_config_path\n    assert get_hermes_home()==home and get_config_path()==home/'config.yaml'\n    from agent.skill_utils import get_project_skills_dirs,parse_frontmatter,find_project_root\n    skill=project/'.hermes/skills/tfg-mission-control/SKILL.md'\n    metadata,body=parse_frontmatter(skill.read_text())\n    assert metadata['name']=='tfg-mission-control' and str(metadata['version'])=='1.0.0'\n    assert project/'.hermes/skills' in get_project_skills_dirs()\n    from agent.skill_commands import build_preloaded_skills_prompt\n    rendered,loaded,missing=build_preloaded_skills_prompt(['tfg-mission-control'])\n    assert loaded==['tfg-mission-control'] and missing==[]\n    assert body.strip() in rendered\n    print(json.dumps({'status':'OFFLINE_LOADER_VERIFIED','hermes_source_commit':'d923a5eb48','profile':'temporary; deleted after check','project_root_detected':find_project_root()==project,'trusted_project_skill_discovered':True,'frontmatter':metadata,'loaded_names':loaded,'missing_names':missing,'full_body_in_preloaded_prompt':True,'rendered_prompt_sha256':hashlib.sha256(rendered.encode()).hexdigest(),'rendered_prompt_utf8_bytes':len(rendered.encode()),'skill_sha256':hashlib.sha256(skill.read_bytes()).hexdigest(),'limits':['Hermes loader functions from installed source, using installed managed Python and committed dependency site-packages, without bootstrap or repair','No personal config edited; temporary config only','No LLM, provider API, MCP connection, simulation or flight invoked','Does not prove client delivered this prompt in a real model session or followed it']},ensure_ascii=False,indent=2))\n",
+  "probe_method": "Direct installed managed Python with committed dependency site-packages; source functions only; temporary HERMES_HOME/config. No launcher/bootstrap/repair, PM activation, LLM or MCP connection.",
+  "findings": [
+    {
+      "verified": "SDK initialization options contain server instructions; registered schemas expose run_id and summary/detail."
+    },
+    {
+      "verified": "Client stores initialize_result, converts tool descriptions/input schemas, prefixes names and may use cached discovery."
+    },
+    {
+      "bounded_negative": "No inspected path injecting initialize_result.instructions into the model prompt was found. This does not establish what an earlier real session received."
+    },
+    {
+      "verified": "Trusted project-local .hermes/skills is supported; explicit --skills preloading renders the entire body. The index alone is not the skill body."
+    },
+    {
+      "unverified": "Actual delivery/adherence in a real Hermes/provider session, historical tool catalogue, compactions and root causes of reported selection errors remain untested."
+    }
+  ],
+  "llm_evaluation": {
+    "status": "PREPARED_NOT_EXECUTED",
+    "scenarios": 8,
+    "prompts": 10,
+    "automated_fidelity_evaluator": false
+  },
+  "server_metadata_catalogue_counts": {
+    "list_prompts": 0,
+    "list_resources": 0,
+    "list_resource_templates": 0
+  },
+  "offline_test_results": [
+    {
+      "group": "affected",
+      "command": ".venv/bin/python -m pytest -q tests/test_hermes_conversation_contracts.py tests/test_hermes_mcp_server.py tests/test_mission_response_views.py",
+      "result": "45 passed in 2.41s",
+      "stdout_utf8": ".............................................                            [100%]\n45 passed in 2.41s\n",
+      "stdout_sha256": "f4009caca22b705b36a2c83537e1f8f9f6487a6d7a377e81c901c453d7758c62"
+    },
+    {
+      "group": "full_suite",
+      "command": ".venv/bin/python -m pytest -q",
+      "result": "331 passed in 8.51s",
+      "stdout_utf8": "........................................................................ [ 21%]\n........................................................................ [ 43%]\n........................................................................ [ 65%]\n........................................................................ [ 87%]\n...........................................                              [100%]\n331 passed in 8.51s\n",
+      "stdout_sha256": "75e68897b62935e353846d29f6dfbd0344955b94fb063fb2573ae460b13fa729"
+    }
+  ],
+  "final_checks": {
+    "previous_runtime_and_evidence_files_unchanged": 131,
+    "archived_copies_unchanged_and_matching_originals": 37,
+    "historical_document_prefixes_preserved": 2,
+    "untracked_files_whitespace_checked": 7,
+    "whitespace_issues": [],
+    "all_ten_prompts_in_guide_match_scenarios": true
+  },
+  "project_changes_sha256": {
+    ".hermes/skills/tfg-mission-control/SKILL.md": "79db31596aa5f7b22e80b4fa678e412698c9b4ea7ce9f100e13c33b6e4ef4b4e",
+    "tools/hermes_mcp_server.py": "855d42d559e607bdbc164d7c7df67d4efba70fc661b6058cdcb0dc0e629966bc",
+    "tests/test_hermes_conversation_contracts.py": "c29b924bf09e220ff97700a612d8dc2c40f7f70a8e184c9b2a45ead54880068f",
+    "evaluation/hermes_conversation/scenarios.json": "067091e6610192fba40c0b29d85d9e9501b5b684515194d09fc5ad87219edd2a",
+    "evaluation/hermes_conversation/run.template.json": "1b72a9ff154e92a5a5eb000a728f4055c1cc725b39ebc43db02056a195f40873",
+    "evaluation/hermes_conversation/run.schema.json": "baa09523372c21192155fe1f082802aa8c62fa3399fd3f4bbeca55572044ed91"
+  }
+}

@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.16)
+project(tfg_rover_passive_collector LANGUAGES CXX)
+# Standalone opt-in build only: no installation, tests executing ROS, or runtime wiring.
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(ardupilot_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(Threads REQUIRED)
+add_executable(rover_passive_collector collector.cpp)
+target_compile_features(rover_passive_collector PRIVATE cxx_std_17)
+target_compile_options(rover_passive_collector PRIVATE -Wall -Wextra -Wpedantic -Werror)
+ament_target_dependencies(rover_passive_collector rclcpp ardupilot_msgs nav_msgs)
+target_link_libraries(rover_passive_collector Threads::Threads)

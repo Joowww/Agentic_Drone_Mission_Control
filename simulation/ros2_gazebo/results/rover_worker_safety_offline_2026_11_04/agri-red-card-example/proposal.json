@@ -1,0 +1,101 @@
+{
+  "admission": "NOT_REQUESTED",
+  "authorization": "ABSENT",
+  "colour": "red",
+  "dependencies": {
+    "lifecycle_id": "SYNTHETIC-EXAMPLE-LIFECYCLE",
+    "rover_pose_reference_sha256": "d30864bcbff0470dff071401db7aa1d50b8a79d7de68635d27feef28acd6e513",
+    "transform_sha256": "bc1952d124eb31d954cc75e574eed34fcbafe75804a3e5540eb3dbe11613c150",
+    "transform_source": "SYNTHETIC_TEST"
+  },
+  "evidence_sha256": "0fd9f48e3f773d335231731bf4b45c73e30e4ae254b7051d469f586125b995c9",
+  "goal_sha256": "8efa688fc1029c306c9626e85b0e9c5248db70f052f3486d616ae708e5b56100",
+  "limits": {
+    "controller": {
+      "command_hz": 2.0,
+      "max_samples": 256,
+      "progress_rad": 0.05,
+      "yaw_rad": 0.0,
+      "yaw_tolerance_rad": 3.141592653589793
+    },
+    "rover_limits": {
+      "call_timeout_s": 2.0,
+      "max_duration_s": 60.0,
+      "max_forward_mps": 0.3,
+      "max_yaw_rate_rad_s": 0.5,
+      "observation_max_age_s": 1.0,
+      "stop_timeout_s": 8.0,
+      "stopped_angular_rad_s": 0.03,
+      "stopped_linear_mps": 0.03
+    }
+  },
+  "movement_authorized": false,
+  "observation_id": "example-red-card-001",
+  "observation_sha256": "c8c8ce133929424fb1d7af60d976ab80bc00f79475d6819368798c3d47244b2e",
+  "origin": "SYNTHETIC",
+  "proposal_sha256": "9ad496dfcae0308a8b2f506af116d3d81d1e927f17745d91f2f108ffc9162573",
+  "r1_inputs": {
+    "completion_evidence": {
+      "source": "TEST_DOUBLE synthetic policy",
+      "value": "rover_01 odometry (/rover1/odometry, odom) within tolerance, stop and disarm observed by the executor"
+    },
+    "execution_limits": {
+      "source": "TEST_DOUBLE synthetic derived limits",
+      "value": {
+        "controller": {
+          "command_hz": 2.0,
+          "max_samples": 256,
+          "progress_rad": 0.05,
+          "yaw_rad": 0.0,
+          "yaw_tolerance_rad": 3.141592653589793
+        },
+        "rover_limits": {
+          "call_timeout_s": 2.0,
+          "max_duration_s": 60.0,
+          "max_forward_mps": 0.3,
+          "max_yaw_rate_rad_s": 0.5,
+          "observation_max_age_s": 1.0,
+          "stop_timeout_s": 8.0,
+          "stopped_angular_rad_s": 0.03,
+          "stopped_linear_mps": 0.03
+        }
+      }
+    },
+    "frame_transform": {
+      "source": "TEST_DOUBLE synthetic transform SYNTHETIC_TEST",
+      "value": {
+        "from_frame": "drone_launch_enu",
+        "sha256": "bc1952d124eb31d954cc75e574eed34fcbafe75804a3e5540eb3dbe11613c150",
+        "status": "VERIFIED",
+        "to_frame": "odom"
+      }
+    },
+    "ground_tolerance_m": {
+      "source": "TEST_DOUBLE synthetic policy",
+      "value": 0.25
+    },
+    "rover_mission": {
+      "source": "TEST_DOUBLE synthetic rover mission file",
+      "value": {
+        "path": "missions/examples/rover_first_navigation_sitl.json",
+        "sha256": "f0098cb2e9502b3ad815001f98b6d5a127201c639ccf24ba0db7e4c1f91e1de9"
+      }
+    },
+    "target_in_rover_frame": {
+      "source": "TEST_DOUBLE synthetic drone observation example-red-card-001 (c8c8ce133929)",
+      "value": {
+        "frame": "odom",
+        "x_m": 1.0,
+        "y_m": 0.0
+      }
+    }
+  },
+  "schema": "tfg.agri.ground-task-proposal/1",
+  "status": "PROPOSED_PENDING_VALIDATION",
+  "target_in_rover_frame": {
+    "frame": "odom",
+    "x_m": 1.0,
+    "y_m": 0.0
+  },
+  "task": "R1"
+}

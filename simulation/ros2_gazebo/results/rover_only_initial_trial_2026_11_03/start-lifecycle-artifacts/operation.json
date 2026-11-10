@@ -1,0 +1,29 @@
+{
+  "kind": "SIMULATION_LIFECYCLE",
+  "owner_id": "8eefc494-6d81-42b7-ac11-c3d47bceb65d",
+  "state": "UNCONFIRMED",
+  "action": "start",
+  "gui": false,
+  "profile": "rover_only",
+  "scope": "SIMULATION_INFRASTRUCTURE_ONLY",
+  "movement_authorized": false,
+  "process": {
+    "pid": 200479,
+    "start_ticks": 6446958,
+    "boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b"
+  },
+  "started_at": "2026-11-03T11:25:41.279960+00:00",
+  "log_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/simulation_lifecycle/8eefc494-6d81-42b7-ac11-c3d47bceb65d/backend.log",
+  "environment_execution": {
+    "persistent_identity": {
+      "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+      "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+      "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+      "name": "/tfg-ardupilot-gazebo",
+      "created_at": "2026-10-02T07:28:34.87176229Z"
+    },
+    "container_started_at": "2026-11-03T09:44:02.9887145Z",
+    "container_boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b"
+  },
+  "error": "TimeoutExpired: Command '['bash', '/home/joelm/TFG/Agentic_Drone_Mission_Control/simulation/ros2_gazebo/scripts/start_sim_backend.sh']' timed out after 179.99998689000495 seconds"
+}

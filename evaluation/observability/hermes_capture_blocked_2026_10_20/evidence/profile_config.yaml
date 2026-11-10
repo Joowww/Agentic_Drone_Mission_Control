@@ -1,0 +1,26 @@
+model:
+  provider: custom
+  default: qwen3:4b
+  base_url: http://127.0.0.1:11434/v1
+  context_length: 8192
+  ollama_num_ctx: 8192
+platform_toolsets:
+  cli: []
+mcp_servers: {}
+skills:
+  project_discovery: false
+  auto_load: []
+  inline_shell: false
+memory:
+  memory_enabled: false
+  user_profile_enabled: false
+curator:
+  enabled: false
+updates:
+  check: false
+security:
+  allow_lazy_installs: false
+plugins:
+  enabled:
+    - tfg-observability-capture
+_config_version: 50

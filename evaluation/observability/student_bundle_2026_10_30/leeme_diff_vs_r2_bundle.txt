@@ -1,0 +1,91 @@
+--- /home/joelm/TFG/entregas/tfg-entrega-estudiantes-2026.10.28-r2/LEEME.md	2026-10-28 09:47:44.201745988 +0100
++++ /home/joelm/TFG/entregas/tfg-entrega-estudiantes-2026.10.30/LEEME.md	2026-10-30 11:55:00.451451068 +0100
+@@ -1,4 +1,4 @@
+-# Entrega PARCIAL para estudiantes — 2026.10.28-r2
++# Entrega PARCIAL para estudiantes — 2026.10.30
+ 
+ Entrega **local, no publicada y parcial**: **todavía falta el simulador**. Contiene tres imágenes exportadas con `docker save`, el Compose para usarlas, el script del recorrido, entradas de ejemplo y la identificación de versiones (`VERSIONES.json`). No incluye credenciales, sesiones, cachés ni código fuente del repositorio.
+ 
+@@ -9,6 +9,7 @@
+ | **App offline** (`app`) | Utilizable sin red: consulta del escenario conservado, demo sintética, validación de emplazamientos, exportación y verificación de paquetes, comparación de `.plan` e informes |
+ | **QGroundControl** (`qgc`) | Utilizable sin red ni dispositivos para abrir un paquete generado por `app` y guardar una copia. Necesita una pantalla X11 (WSLg en Windows) |
+ | **Planificación con IA: Hermes** (`hermes`) | Necesita **tu propia cuenta** del proveedor (`nous`, modelo `poolside/laguna-s-2.1:free`) y conexión a él. Solo tiene dos herramientas: guardar el borrador (`update_mission_draft`) y finalizarlo (`finalize_mission_draft`). La imagen no trae ninguna credencial |
++| **De Hermes a archivos `.plan`** (`app`) | Utilizable sin red: lee **en solo lectura** las misiones que Hermes finalizó en tu almacén, las coloca sobre un emplazamiento que eliges y genera un paquete con un `.plan` por dron (§6) |
+ | **Simulador** (ArduPilot SITL, ROS 2, Gazebo) | **Todavía no incluido**. Se añadirá en una versión posterior |
+ 
+ - **La demo es sintética (`TEST_DOUBLE`):** no ejecuta ni simula vehículos.
+@@ -44,13 +45,13 @@
+ ## 2. Cargar las imágenes
+ 
+ ```bash
+-docker load -i imagenes/tfg-app-2026.10.28.tar
++docker load -i imagenes/tfg-app-2026.10.30.tar
+ docker load -i imagenes/tfg-qgroundcontrol-5.1.5.tar
+ docker load -i imagenes/tfg-planner-2026.10.28.tar
+-docker image inspect --format '{{.Id}} {{.RepoTags}}' tfg/app:2026.10.28 tfg/qgroundcontrol:5.1.5 tfg/planner:2026.10.28
++docker image inspect --format '{{.Id}} {{.RepoTags}}' tfg/app:2026.10.30 tfg/qgroundcontrol:5.1.5 tfg/planner:2026.10.28
+ ```
+ 
+-Los ID deben coincidir con `image_id` de `VERSIONES.json` (`7ae59021…`, `c6a5c57a…` y `e2c4513e…`).
++Los ID deben coincidir con `image_id` de `VERSIONES.json` (`a2a49112…`, `c6a5c57a…` y `e2c4513e…`).
+ 
+ ## 3. Elegir los directorios de resultados
+ 
+@@ -107,17 +108,44 @@
+ 3. `run` sin argumentos abre la sesión de planificación. No hay simulación ni vehículos.
+ 4. `status` lista los borradores y finalizaciones guardados en `TFG_PLANNING_STORE`.
+ 
++## 6. De las finalizaciones de Hermes a los archivos `.plan`
++
++La app lee tu almacén de planificación **en solo lectura** (`/planning_store`) y escribe el paquete en tu directorio de resultados. No modifica tus misiones: cada misión se coloca sobre el punto de despegue que eliges, lo que genera una misión **derivada** con un hash nuevo y su propia validación, sin heredar la aprobación de la original.
++
++1. Anota en la salida de `status` (§5) el borrador y la finalización de cada dron. Las finalizaciones aparecen debajo de su borrador; usa solo las que figuren como «completa».
++2. Genera el paquete. Sustituye los cuatro identificadores. El emplazamiento `synthetic_hermes_rehearsal_v1` es **SINTÉTICO de ensayo**: no es DroneLab ni un campo real.
++
++```bash
++docker compose -f compose.yaml run --rm app -m tools.scenario_package package-finalized --store /planning_store --assign drone_01=BORRADOR_1/FINALIZACION_1@TAKEOFF_A --assign drone_02=BORRADOR_2/FINALIZACION_2@TAKEOFF_B --site missions/sites/synthetic_hermes_rehearsal_v1.site.json --fleet missions/fleets/agri_demo_fleet.json --target sitl --out /work/paquete_hermes_1
++docker compose -f compose.yaml run --rm app -m tools.scenario_package verify /work/paquete_hermes_1
++```
++
++3. Resultado:
++   - `$TFG_WORK_DIR/paquete_hermes_1/` contiene `plans/drone_01.plan` y `drone_02.plan`, `manifest.json`, `export_report.md` y copias de tus finalizaciones en `hermes/`;
++   - `verify` debe decir `INTEGRITY_VERIFIED`;
++   - los `.plan` se abren en QGC como en §4, con `QGC_PLAN_DIR=$TFG_WORK_DIR/paquete_hermes_1/plans`.
++
++**Qué significa cada estado:**
++- `GENERATED`: hay `.plan` para ese dron.
++- `BLOCKED_VALIDATION_FAILED` o `BLOCKED_MISSING_DATA`: no lo hay, y el motivo exacto figura en el resumen.
++- `deployment_ready` es **siempre** `false`, y «dependency structure PASS» solo indica que el orden de las tareas es coherente: no significa que se pueda ejecutar.
++- **Rechazos:** si una finalización está alterada, o si asignas a un dron la misión de otro, el comando se niega (`[REFUSED]`, código 2) y no escribe nada.
++
++**Opcional, solo para las misiones de la demo agri_demo_001:** `--rover rover_01@ROVER_START --scenario-binding evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json` añade la tarea del rover (`FORMAT_PENDING`) y su dependencia del punto POI_A1. Si tus misiones no son exactamente las de la demo, ese punto queda sin resolver y el paquete sale `PARTIAL`.
++
++También se puede hacer desde el menú: opción 5 → 3 → `f`.
++
+ Probado con uid 1000. Con otro uid, el volumen de Hermes puede no ser escribible.
+ 
+-## 6. Localizar los resultados
++## 7. Localizar los resultados
+ 
+ - **App y QGC:** `$TFG_WORK_DIR/<nombre>`. Cada salida trae su informe y su manifiesto.
+ - **Recorrido completo:** el directorio que le diste, con `walkthrough.tsv` como resumen.
+-- **Planificación:** `$TFG_PLANNING_STORE/drafts/…`. La sesión y el login de Hermes están en el volumen `tfg-estudiante_hermes-home`.
++- **Planificación:** `$TFG_PLANNING_STORE/drafts/…`. Los paquetes generados a partir de ella van a `$TFG_WORK_DIR/<nombre>`. La sesión y el login de Hermes están en el volumen `tfg-estudiante_hermes-home`.
+ 
+ Para entregar resultados, comprime esos directorios. No incluyas el volumen de Hermes: contiene tu login.
+ 
+-## 7. Cerrar y volver a abrir sin perder nada
++## 8. Cerrar y volver a abrir sin perder nada
+ 
+ - Cada `run --rm` termina solo y borra únicamente el contenedor.
+ - `Ctrl+C` interrumpe. La demo conserva sus registros y se reanuda con `--resume` y el mismo `--out`.
+@@ -127,7 +155,7 @@
+ 
+ ## Límites de esta entrega
+ 
+-- **Falta el simulador.** Lo construye otro trabajo del proyecto; sus rutas y nombres actuales pueden cambiar.
+-- **Probada solo en el equipo donde se preparó,** donde las imágenes ya existían. **La prueba en un segundo ordenador está pendiente.**
++- **Falta el simulador.** Lo construye otro trabajo del proyecto; sus rutas y nombres actuales pueden cambiar. Nada de esta entrega carga misiones en un vehículo ni en SITL, ni las ejecuta.
++- **Probada solo en el equipo donde se preparó,** donde las imágenes ya existían, con finalizaciones de prueba SINTÉTICAS. **La prueba en un segundo ordenador está pendiente.**
+ - **Hermes no se ha ejecutado con el proveedor real desde esta entrega.** La única ejecución real se hizo con la imagen anterior, `tfg/planner:2026.10.27`.
+ - **Antes de una distribución pública faltan** la licencia, el versionado y la publicación. Esta entrega **no tiene licencia elegida**: no la publiques ni la redistribuyas. La imagen de QGC incluye QGroundControl y Qt, con sus propias licencias.

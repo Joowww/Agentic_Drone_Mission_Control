@@ -1,0 +1,183 @@
+name: tfg-estudiante
+services:
+  app:
+    profiles:
+      - app
+    cap_drop:
+      - ALL
+    image: tfg/app:2026.10.27-r2
+    init: true
+    network_mode: none
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:mode=1777
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/results
+        target: /work
+        bind:
+          create_host_path: false
+  hermes:
+    profiles:
+      - planning
+    cap_drop:
+      - ALL
+    command:
+      - /opt/tfg/deploy/planner/hermes_home.py
+      - run
+    image: tfg/planner:2026.10.28
+    init: true
+    networks:
+      provider: null
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:mode=1777
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/planning_store
+        target: /opt/tfg/missions/generated
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/results
+        target: /work
+        bind:
+          create_host_path: false
+      - type: volume
+        source: hermes-home
+        target: /hermes
+        volume: {}
+  ollama:
+    profiles:
+      - planning
+    image: ollama/ollama:0.34.2@sha256:da6e0dc5651df159e45686fd663c4dbe1624a52c44d7280eeac1551d8f865532
+    networks:
+      local-llm: null
+      provider: null
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - type: volume
+        source: ollama-models
+        target: /root/.ollama
+        volume: {}
+  planner-menu:
+    profiles:
+      - planning
+    cap_drop:
+      - ALL
+    command:
+      - main.py
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    image: tfg/planner:2026.10.28
+    init: true
+    networks:
+      local-llm: null
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:mode=1777
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/planning_store
+        target: /opt/tfg/missions/generated
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/results
+        target: /work
+        bind:
+          create_host_path: false
+      - type: volume
+        source: hermes-home
+        target: /hermes
+        volume: {}
+  qgc:
+    profiles:
+      - qgc
+    cap_drop:
+      - ALL
+    environment:
+      DISPLAY: :0
+    image: tfg/qgroundcontrol:5.1.5
+    network_mode: none
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:mode=1777
+      - /home/qgc:uid=1000,gid=1000,mode=0700
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/bundle/QGC_PLAN_DIR_not_set
+        target: /data/plan
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/bundle/QGC_SAVE_DIR_not_set
+        target: /data/saved
+        bind:
+          create_host_path: false
+networks:
+  local-llm:
+    name: tfg-estudiante_local-llm
+    internal: true
+  provider:
+    name: tfg-estudiante_provider
+volumes:
+  hermes-home:
+    name: tfg-estudiante_hermes-home
+  ollama-models:
+    name: tfg-estudiante_ollama-models
+x-app:
+  cap_drop:
+    - ALL
+  image: tfg/app:2026.10.27-r2
+  init: true
+  network_mode: none
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  tmpfs:
+    - /tmp:mode=1777
+  user: 1000:1000
+x-planner:
+  cap_drop:
+    - ALL
+  image: tfg/planner:2026.10.28
+  init: true
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  tmpfs:
+    - /tmp:mode=1777
+  user: 1000:1000
+  volumes:
+    - bind:
+        create_host_path: false
+      source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/planning_store
+      target: /opt/tfg/missions/generated
+      type: bind
+    - bind:
+        create_host_path: false
+      source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/results
+      target: /work
+      type: bind
+    - hermes-home:/hermes

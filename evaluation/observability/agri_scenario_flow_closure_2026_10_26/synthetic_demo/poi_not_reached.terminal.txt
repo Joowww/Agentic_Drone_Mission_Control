@@ -1,0 +1,35 @@
+
+[ESCENARIO agri_demo_001] modo demo · origen SYNTHETIC · variante poi_not_reached · sin órdenes ni procesos operativos · Ctrl+C para salir
+
+[load_artifacts] trabajando · espera: conserved H1/H2 artifacts, verified by their manifests
+[load_artifacts] resultado: LOADED · motivo: 2 missions; binding record SYNTHETIC_DE
+
+[bind_and_validate] trabajando · espera: deterministic validation, execution compatibility and H0 geometry of each mission
+[bind_and_validate] resultado: BOUND · motivo: drone_01 321ad647ab9c, drone_02 079e25a30242
+
+[aerial_sequence] trabajando · espera: the sequence coordinator's record (read-only; no admission or launch)
+[aerial_sequence] resultado: FINISHED/PASSED · motivo: SYNTHETIC copy of the conserved H2 record, re-identified as 0df8dec9
+
+[scenario_view] trabajando · espera: the scenario interpretation of the sequence against the binding
+[scenario_view] resultado: OK · motivo: scenario AERIAL_COMPLETED_GROUND_PENDING; R1 dependency NOT_MET
+
+[hermes_evidence] trabajando · espera: recorded Hermes captures (no inference)
+[hermes_evidence] resultado: SUBSTITUTED · motivo: model provider substituted: no call; the conserved H1 finalizations are the inputs
+
+[r1_prepare] trabajando · espera: R1 inputs, current executor facts and measured facts (dry-run)
+[r1_prepare] resultado: NOT_MET/NOT_ELIGIBLE · motivo: blockers: target_reached_by_drone_01, dependency_met
+
+[r1_coordinate] trabajando · espera: the ground coordinator's record (query: read-only; demo: TEST_DOUBLE executor)
+[r1_coordinate] resultado: NOT_REQUESTED · motivo: DEPENDENCY_NOT_MET
+
+[report] trabajando · espera: deterministic rendering of the view, the R1 preparation and the R1 record
+[report] resultado: AERIAL_COMPLETED_R1_DEPENDENCY_NOT_MET · motivo: scenario complete: False
+
+[ESCENARIO agri_demo_001] origen: SYNTHETIC · modo: demo
+Estado del flujo: COMPLETED_FLOW (última etapa report)
+Escenario: AERIAL_COMPLETED_R1_DEPENDENCY_NOT_MET; completo: no
+R1 · dependencia: NOT_MET · elegibilidad (vista histórica): BLOCKED_PENDING · elegibilidad (esta preparación): NOT_ELIGIBLE [target_reached_by_drone_01, dependency_met]
+R1 · autorización: ABSENT · solicitud: NOT_REQUESTED_VIA_THIS_COORDINATOR · ejecución: NOT_STARTED
+Coordinador R1: NOT_REQUESTED; aceptación: sin resultado; motivo: DEPENDENCY_NOT_MET
+Informe: evaluation/observability/agri_scenario_flow_closure_2026_10_26/synthetic_demo/poi_not_reached/scenario_report.md
+Registro del flujo: evaluation/observability/agri_scenario_flow_closure_2026_10_26/synthetic_demo/poi_not_reached/flow_record.json

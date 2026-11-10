@@ -1,0 +1,26 @@
+    PID    PPID ELAPSED COMMAND
+      1       0    1985 bash
+    237       1     666 /usr/bin/python3 -c from ros2cli.daemon.daemonize import main; main() --name ros2-daemon --ros-domain-id 0 --rmw-implementation rmw_fastrtps_cpp
+   2002       1     101 /usr/bin/python3 /opt/ros/humble/bin/ros2 launch ardupilot_gz_bringup tfg_demo.launch.py rviz:=false gui:=false
+   2003       1     101 python3 /tmp/tfg_rover_identity_worker.py --context /tmp/tfg_rover_identity/72f47371-6d7f-4980-abe8-b7c72a9ce533/context.json
+   2078    2002      99 /bin/sh -c ruby /usr/bin/gz sim -v4 -s -r /root/ardu_ws/install/ardupilot_gz_gazebo/share/ardupilot_gz_gazebo/worlds/runway.sdf --force-version 8
+   2080    2002      99 /opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __ns:=/drone1 --params-file /tmp/launch_params_k8yaziio --params-file /tmp/launch_params_1zejx89b -r /tf:=tf -r /tf_static:=tf_s
+   2081    2078      99 gz sim -v4 -s -r /root/ardu_ws/install/ardupilot_gz_gazebo/share/ardupilot_gz_gazebo/worlds/runway.sdf
+   2083    2002      99 /root/ardu_ws/install/ros_gz_bridge/lib/ros_gz_bridge/parameter_bridge --ros-args -r __ns:=/drone1 --params-file /tmp/launch_params_q_d1okxh
+   2085    2002      99 /root/ardu_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent udp4 --middleware dds --verbose 4 --port 2019 --ros-args -r __node:=micro_ros_agent -r __ns:=/drone1
+   2087    2002      99 arducopter --model json --speedup 1 --slave 0 --sim-address=127.0.0.1 --instance 0 --defaults /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/instal
+   2089    2002      99 /usr/bin/python3 /usr/local/bin/mavproxy.py --out 127.0.0.1:14550 --out 127.0.0.1:14551 --master tcp:127.0.0.1:5760 --sitl 127.0.0.1:5501 --non-interactive
+   2093    2002      99 /opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __ns:=/drone2 --params-file /tmp/launch_params_xwnypevp --params-file /tmp/launch_params_ruatmhmt -r /tf:=tf -r /tf_static:=tf_s
+   2095    2002      99 /root/ardu_ws/install/ros_gz_bridge/lib/ros_gz_bridge/parameter_bridge --ros-args -r __ns:=/drone2 --params-file /tmp/launch_params_0a9c_pa3
+   2097    2002      99 arducopter --model json --speedup 1 --slave 0 --sim-address=127.0.0.1 --instance 1 --defaults /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/instal
+   2099    2002      99 /usr/bin/python3 /usr/local/bin/mavproxy.py --out 127.0.0.1:14560 --out 127.0.0.1:14551 --master tcp:127.0.0.1:5770 --sitl 127.0.0.1:5511 --non-interactive
+   2103    2002      99 /opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __ns:=/rover1 --params-file /tmp/launch_params_00e0_ek_ --params-file /tmp/launch_params_u6hzdyy9 -r /tf:=tf -r /tf_static:=tf_s
+   2105    2002      99 /root/ardu_ws/install/ros_gz_bridge/lib/ros_gz_bridge/parameter_bridge --ros-args -r __ns:=/rover1 --params-file /tmp/launch_params_e8k092at
+   2112    2002      99 ardurover --model json --speedup 1 --slave 0 --sim-address=127.0.0.1 --instance 2 --defaults /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/
+   2115    2002      99 /usr/bin/python3 /usr/local/bin/mavproxy.py --out 127.0.0.1:14570 --out 127.0.0.1:14551 --master tcp:127.0.0.1:5780 --sitl 127.0.0.1:5521 --non-interactive
+   2148    2002      99 /opt/ros/humble/lib/topic_tools/relay gz/tf tf --ros-args -r __ns:=/drone1
+   2151    2002      99 /opt/ros/humble/lib/topic_tools/relay gz/tf tf --ros-args -r __ns:=/drone2
+   2177    2002      99 /opt/ros/humble/lib/topic_tools/relay gz/tf tf --ros-args -r __ns:=/rover1
+   3369       0       0 bash -c ps -eo pid,ppid,etimes,args --sort=pid | cut -c1-230
+   3375    3369       0 ps -eo pid,ppid,etimes,args --sort=pid
+   3376    3369       0 cut -c1-230

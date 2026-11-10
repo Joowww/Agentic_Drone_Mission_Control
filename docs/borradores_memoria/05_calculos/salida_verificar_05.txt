@@ -1,0 +1,70 @@
+
+== 1. Cadena de posición de H2: texto archivado -> parser -> error -> decisión
+child_1_2f7db1f6: operaciones=60 omitidas=0
+  lecturas de posición=20; reparseadas == observación registrada: 20; todos los valores exactamente float32: 20
+  WP1              lectura 12:52:43.480-12:52:46.656 e_h=  8.9342 m e_v= 0.000 m llegada=False
+  WP1              lectura 12:52:52.571-12:52:55.862 e_h=  5.2877 m e_v= 0.030 m llegada=False
+  WP1              lectura 12:53:00.292-12:53:04.550 e_h=  1.2787 m e_v= 0.050 m llegada=False
+  WP1              lectura 12:53:08.574-12:53:10.925 e_h=  0.1698 m e_v= 0.000 m llegada=True  == valor registrado
+  WP2              lectura 12:53:16.552-12:53:19.543 e_h=  7.5001 m e_v= 0.030 m llegada=False
+  WP2              lectura 12:53:26.219-12:53:28.734 e_h=  2.8369 m e_v= 0.010 m llegada=False
+  WP2              lectura 12:53:34.633-12:53:36.872 e_h=  0.2070 m e_v= 0.030 m llegada=True  == valor registrado
+  SIMULATION_HOME  lectura 12:53:42.827-12:53:46.897 e_h= 15.4155 m e_v= 0.040 m llegada=False
+  SIMULATION_HOME  lectura 12:53:52.808-12:53:55.804 e_h= 11.7823 m e_v= 0.040 m llegada=False
+  SIMULATION_HOME  lectura 12:54:00.185-12:54:04.830 e_h=  5.2748 m e_v= 0.030 m llegada=False
+  SIMULATION_HOME  lectura 12:54:10.766-12:54:13.413 e_h=  2.1894 m e_v= 0.070 m llegada=False
+  SIMULATION_HOME  lectura 12:54:19.754-12:54:22.338 e_h=  0.0000 m e_v= 0.010 m llegada=True  == valor registrado
+child_2_febf7c4f: operaciones=56 omitidas=0
+  lecturas de posición=18; reparseadas == observación registrada: 18; todos los valores exactamente float32: 18
+  WP1              lectura 12:57:04.135-12:57:06.460 e_h=  8.9342 m e_v= 0.080 m llegada=False
+  WP1              lectura 12:57:11.915-12:57:14.434 e_h=  5.2877 m e_v= 0.070 m llegada=False
+  WP1              lectura 12:57:18.660-12:57:23.941 e_h=  0.3883 m e_v= 0.030 m llegada=True  == valor registrado
+  WP2              lectura 12:57:29.420-12:57:32.527 e_h=  7.9242 m e_v= 0.000 m llegada=False
+  WP2              lectura 12:57:38.425-12:57:41.261 e_h=  6.2279 m e_v= 0.030 m llegada=False
+  WP2              lectura 12:57:47.430-12:57:49.919 e_h=  1.1465 m e_v= 0.030 m llegada=False
+  WP2              lectura 12:57:54.536-12:57:57.612 e_h=  0.2070 m e_v= 0.000 m llegada=True  == valor registrado
+  SIMULATION_HOME  lectura 12:58:05.799-12:58:08.495 e_h= 15.4155 m e_v= 0.030 m llegada=False
+  SIMULATION_HOME  lectura 12:58:12.854-12:58:15.433 e_h= 12.1950 m e_v= 0.040 m llegada=False
+  SIMULATION_HOME  lectura 12:58:19.728-12:58:23.640 e_h=  5.6852 m e_v= 0.020 m llegada=False
+  SIMULATION_HOME  lectura 12:58:28.712-12:58:31.661 e_h=  0.8483 m e_v= 0.030 m llegada=True  == valor registrado
+
+== 2. Paso de representación float32 en la posición de H2
+paso latitud  = 2^-18 grados = 3.814697e-06 deg = 0.4247 m (111 320 m/deg)
+paso longitud = 2^-16 grados = 1.525879e-05 deg = 1.3852 m (111 320 m/deg * cos lat)
+con 111 318,845 m/deg (ArduPilot): 0.4246 m / 1.3852 m
+semipasos: 0.2123 m N, 0.6926 m E; semidiagonal = 0.7244 m
+
+== 3. Emulación de la conversión observada en el binario: double(f32(f32(int) * f32(1e-7)))
+f32(1e-7) = 1.0000000116860974e-07; sesgo relativo = 1.1686e-08
+lat: enteros ±262144 alrededor de -353632622: valores distintos=13745; máx |salida - int*1e-7| = 3.920e-06 deg = 0.4364 m; sin el sesgo de la constante = 3.507e-06 deg = 0.3904 m
+lon: enteros ±262144 alrededor de 1491652069: valores distintos=3437; máx |salida - int*1e-7| = 1.577e-05 deg = 1.4315 m; sin el sesgo de la constante = 1.402e-05 deg = 1.2732 m
+valor archivado -35.36326217651367: lo producen 31 enteros de 1e-7 deg (p. ej. [-353632623])
+valor archivado 149.1652069091797: lo producen 129 enteros de 1e-7 deg (p. ej. [1491652032])
+valor archivado -35.36326217651367: lo producen 31 enteros de 1e-7 deg (p. ej. [-353632623])
+valor archivado 149.1652374267578: lo producen 129 enteros de 1e-7 deg (p. ej. [1491652288])
+
+== 4. Duración prevista de H2 por el validador vigente (sin viento)
+child_1_2f7db1f6 agri_demo_001_h1_sector_a: cruise_speed_kmh=35.0; speed_kmh=[None, None]; viento=0.0 km/h
+  HOME->WP1: d=8.9342 m (redondeada 0.009 km) v=35.0 km/h t sin redondeo=0.919 s; t del validador=0.02 min
+  WP1->WP2: d=7.9910 m (redondeada 0.008 km) v=35.0 km/h t sin redondeo=0.822 s; t del validador=0.01 min
+  WP2->HOME: d=16.4739 m (redondeada 0.016 km) v=35.0 km/h t sin redondeo=1.694 s; t del validador=0.03 min
+  total sin redondeos = 3.435 s; emulación previa (suma de tiempos redondeados por tramo) = 0.06 min = 3.6 s
+  validador actual: total mostrado = 0.06 min; total exacto = 0.05725572131394918 min = 3.435 s; batería requerida mostrada = 0.05 pp (exacta = 0.04580 pp); mission_status=FEASIBLE
+child_2_febf7c4f agri_demo_001_h1_sector_b: cruise_speed_kmh=35.0; speed_kmh=[None, None]; viento=0.0 km/h
+  HOME->WP1: d=8.9342 m (redondeada 0.009 km) v=35.0 km/h t sin redondeo=0.919 s; t del validador=0.02 min
+  WP1->WP2: d=7.9910 m (redondeada 0.008 km) v=35.0 km/h t sin redondeo=0.822 s; t del validador=0.01 min
+  WP2->HOME: d=16.4739 m (redondeada 0.016 km) v=35.0 km/h t sin redondeo=1.694 s; t del validador=0.03 min
+  total sin redondeos = 3.435 s; emulación previa (suma de tiempos redondeados por tramo) = 0.06 min = 3.6 s
+  validador actual: total mostrado = 0.06 min; total exacto = 0.05725572131394918 min = 3.435 s; batería requerida mostrada = 0.05 pp (exacta = 0.04580 pp); mission_status=FEASIBLE
+
+== 5. Tramos cortos y vertical por tools.hermes_mission_validation.validate_mission
+0,4 m al norte: d=0.0 km -> success (); mission_status=FEASIBLE; execution_status=APPROVED; failure_reasons=[]; errors=[]; replan_status=''; replan_actions=[]
+0,6 m al norte: d=0.001 km -> success (); mission_status=FEASIBLE; execution_status=APPROVED; failure_reasons=[]; errors=[]; replan_status=''; replan_actions=[]
+vertical (misma lat/lon): d=0.0 km -> not_modelled (Vertical-only leg: the current flight-time model evaluates horizontal motion only and does not assess this leg.); mission_status=NOT FEASIBLE; execution_status=BLOCKED; failure_reasons=['Vertical-only route legs (HOME -> WP1) are not evaluated: the current flight-time model covers horizontal motion only.']; errors=[]; replan_status='ACTION REQUIRED'; replan_actions=['Add horizontal displacement to or remove the following vertical-only route legs, which the current model does not evaluate: HOME -> WP1.']
+0,49 m: d=0.0 km -> success (); mission_status=FEASIBLE; execution_status=APPROVED; failure_reasons=[]; errors=[]; replan_status=''; replan_actions=[]
+0,51 m: d=0.001 km -> success (); mission_status=FEASIBLE; execution_status=APPROVED; failure_reasons=[]; errors=[]; replan_status=''; replan_actions=[]
+
+== 6. Cambio de base: orientación geográfica y posición del despegue según beta
+beta=0.0: TAKEOFF_A local (-6,-6) -> -35.363315899, 149.165170907
+beta=30.0: TAKEOFF_A local (-6,-6) -> -35.363281728, 149.165146715
+desplazamiento geográfico del despegue entre beta=0 y beta=30: 4.387 m (cuerda teórica 2*|r|*sin(15 deg) = 4.392 m)

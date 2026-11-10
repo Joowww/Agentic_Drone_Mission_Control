@@ -1,0 +1,149 @@
+$ python -m tools.scenario_package package-historical --fleet missions/fleets/agri_demo_fleet.json --out evaluation/observability/agri_export_semantics_2026_10_27/packages/a_historical_h2_sitl_v2
+Package da8fe142547421af [SITL_HISTORICAL, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval ABSENT
+  H2_drone_01 drone_01: GENERATED -> plans/drone_01.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  H2_drone_02 drone_02: GENERATED -> plans/drone_02.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  R1 rover_01: line NOT_CHECKABLE, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: H2_drone_01 -> H2_drone_02 -> R1
+  PENDING: operator approval ABSENT
+  PENDING: H2_drone_01: spatial checks NOT_CHECKABLE (no site: H2 geometry is bound to each drone's own launch position)
+  PENDING: H2_drone_02: spatial checks NOT_CHECKABLE (no site: H2 geometry is bound to each drone's own launch position)
+  PENDING: conditioned or not in the .plan: failsafe actions, planning inputs, speed, takeoff, waypoint acceptance, yaw
+  PENDING: autopilot parameters not read: WP_RADIUS_M (waypoint acceptance), WP_YAW_BEHAVIOR (yaw), WP_SPD (default speed), FS_* (failsafe actions), LAND_SPD_MS / descent (landing rate)
+  PENDING: QGroundControl version unknown; imported_in_qgroundcontrol: NOT_DONE, uploaded_to_vehicle: NOT_DONE, read_back_from_vehicle: NOT_DONE, executed: NOT_DONE
+[rc 0]
+
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_v1.json --site missions/sites/synthetic_orchard_v1.site.json --fleet missions/fleets/agri_demo_fleet.json --target sitl --out evaluation/observability/agri_export_semantics_2026_10_27/packages/b_synthetic_orchard_v1_sitl_v2
+Package b9cff3e6b6950110 [SYNTHETIC, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval ABSENT
+  A1 drone_01: GENERATED -> plans/drone_01.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  A2 drone_02: GENERATED -> plans/drone_02.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  R1 rover_01: line PASS, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: A1 -> A2 -> R1
+  PENDING: operator approval ABSENT
+  PENDING: A1: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)
+  PENDING: A2: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)
+  PENDING: conditioned or not in the .plan: failsafe actions, planning inputs, return, speed, takeoff, waypoint acceptance, yaw
+  PENDING: autopilot parameters not read: WP_RADIUS_M (waypoint acceptance), WP_YAW_BEHAVIOR (yaw), WP_SPD (default speed), FS_* (failsafe actions), LAND_SPD_MS / descent (landing rate)
+  PENDING: QGroundControl version unknown; imported_in_qgroundcontrol: NOT_DONE, uploaded_to_vehicle: NOT_DONE, read_back_from_vehicle: NOT_DONE, executed: NOT_DONE
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_export_semantics_2026_10_27/packages/a_historical_h2_sitl_v2
+{
+  "status": "INTEGRITY_VERIFIED",
+  "problems": [],
+  "plans": [
+    {
+      "task_id": "H2_drone_01",
+      "status": "FILE_MATCHES_EXPECTATIONS",
+      "importer_readback": "REDUCED"
+    },
+    {
+      "task_id": "H2_drone_02",
+      "status": "FILE_MATCHES_EXPECTATIONS",
+      "importer_readback": "REDUCED"
+    }
+  ],
+  "approval": "ABSENT",
+  "package_status": "COMPLETE_OFFLINE",
+  "deployment_ready": false,
+  "compatibility": "NOT_ESTABLISHED (no QGroundControl import, upload or vehicle read-back)"
+}
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_export_semantics_2026_10_27/packages/b_synthetic_orchard_v1_sitl_v2
+{
+  "status": "INTEGRITY_VERIFIED",
+  "problems": [],
+  "plans": [
+    {
+      "task_id": "A1",
+      "status": "FILE_MATCHES_EXPECTATIONS",
+      "importer_readback": "REDUCED"
+    },
+    {
+      "task_id": "A2",
+      "status": "FILE_MATCHES_EXPECTATIONS",
+      "importer_readback": "REDUCED"
+    }
+  ],
+  "approval": "ABSENT",
+  "package_status": "COMPLETE_OFFLINE",
+  "deployment_ready": false,
+  "compatibility": "NOT_ESTABLISHED (no QGroundControl import, upload or vehicle read-back)"
+}
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_site_fleet_export_2026_10_27/packages/b_synthetic_orchard_v1_sitl
+{
+  "status": "INTEGRITY_VERIFIED",
+  "problems": [],
+  "plans": [
+    {
+      "task_id": "A1",
+      "status": "PROFILE_SUPERSEDED",
+      "detail": "ended with NAV_RETURN_TO_LAUNCH (landing conditioned by RTL_ALT_FINAL_M, climb to RTL_ALT_M) and DO_CHANGE_SPEED param3=-1; integrity checked, semantics not re-verified"
+    },
+    {
+      "task_id": "A2",
+      "status": "PROFILE_SUPERSEDED",
+      "detail": "ended with NAV_RETURN_TO_LAUNCH (landing conditioned by RTL_ALT_FINAL_M, climb to RTL_ALT_M) and DO_CHANGE_SPEED param3=-1; integrity checked, semantics not re-verified"
+    }
+  ],
+  "approval": "ABSENT",
+  "package_status": "COMPLETE_OFFLINE",
+  "deployment_ready": false,
+  "compatibility": "NOT_ESTABLISHED (no QGroundControl import, upload or vehicle read-back)"
+}
+[rc 0]
+
+# determinism: second build of b into a scratch directory is byte-identical
+# determinism: second build of a is byte-identical
+
+$ python -m tools.hermes_mission_validation --mission missions/examples/agri_demo_001_sector_a.json --export-qgc --output-dir <scratch>/v2rep/session_out
+{
+  "mission_id": "agri_demo_001_sector_a",
+  "mission_status": "FEASIBLE",
+  "execution_status": "APPROVED",
+  "qgc_plan_path": null,
+  "failure_reasons": [],
+  "errors": [],
+  "replan_status": "",
+  "replan_actions": [],
+  "qgc_export": {
+    "status": "REFUSED",
+    "profile": "QGC_PLAN_ARDUCOPTER_V2",
+    "reasons": [
+      "planned home AMSL altitude is required for plannedHomePosition; the mission only has altitudes relative to home and no placeholder is written"
+    ],
+    "earlier_files_not_from_this_operation": []
+  }
+}
+[rc 0]
+
+$ python -m tools.hermes_mission_validation --mission missions/examples/precision_agriculture_demo.json --export-qgc --output-dir <scratch>/v2rep/session_out
+{
+  "mission_id": "precision_agriculture_001",
+  "mission_status": "NOT FEASIBLE",
+  "execution_status": "BLOCKED",
+  "qgc_plan_path": null,
+  "failure_reasons": [
+    "The vehicle would finish the mission below the required battery reserve."
+  ],
+  "errors": [],
+  "replan_status": "ACTION REQUIRED",
+  "replan_actions": [
+    "Recharge or replace the battery so the mission starts with at least 22.9% battery."
+  ],
+  "qgc_export": {
+    "status": "REFUSED",
+    "profile": "QGC_PLAN_ARDUCOPTER_V2",
+    "reasons": [
+      "QGC_PLAN_ARDUCOPTER_V2 covers ArduPilot multirotors only (mission: PX4/multirotor)",
+      "unsupported waypoint action(s) ['survey', 'take_photo']: not exported as plain waypoints",
+      "planned home AMSL altitude is required for plannedHomePosition; the mission only has altitudes relative to home and no placeholder is written"
+    ],
+    "earlier_files_not_from_this_operation": []
+  }
+}
+[rc 0]
+
+# files written by the session entry: 0

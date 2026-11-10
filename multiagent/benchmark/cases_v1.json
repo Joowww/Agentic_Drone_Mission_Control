@@ -1,0 +1,1229 @@
+{
+ "schema": "tfg.multiagent.benchmark-cases/1",
+ "suite": "multiagent_offline_v1",
+ "data_kind": "SYNTHETIC",
+ "context": "multiagent/fixtures/orchard_two_drones.context.json",
+ "note": "Hand-written cases over a SYNTHETIC site and declared drone profiles. Gold briefs and expected outcomes are the author's specification, checked by the deterministic pipeline (oracle). Not model results.",
+ "cases": [
+  {
+   "case_id": "B01",
+   "category": "simple",
+   "text": "Use drone_01 to inspect POI_1 with the RGB camera.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": "rgb"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [
+     "drone_01"
+    ],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1"
+    ],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B02",
+   "category": "simple",
+   "text": "Inspect POI_1 and POI_2.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_2",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1",
+     "POI_2"
+    ],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B03",
+   "category": "two_drones",
+   "text": "Survey POI_1, POI_2, POI_3 (multispectral) and POI_4 with two drones.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_2",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A3",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": "multispectral"
+     },
+     {
+      "objective_id": "A4",
+      "point_id": "POI_4",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1",
+     "POI_2",
+     "POI_3",
+     "POI_4"
+    ],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B04",
+   "category": "multi_assignment",
+   "text": "POI_1 needs RGB and POI_3 needs multispectral imagery.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": "rgb"
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": "multispectral"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B05",
+   "category": "multi_assignment",
+   "text": "Inspect POI_1, POI_3 and POI_4.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A3",
+      "point_id": "POI_4",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1",
+     "POI_3",
+     "POI_4"
+    ],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B06",
+   "category": "incomplete",
+   "text": "Inspect the north-east corner of the orchard.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": null,
+      "coordinates": null,
+      "required_sensor": null,
+      "description": "the north-east corner of the orchard"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "NEEDS_CLARIFICATION",
+    "aerial_points": [],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B07",
+   "category": "incomplete",
+   "text": "Prepare a mission for tomorrow with both drones.",
+   "gold_brief": {
+    "aerial_objectives": [],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "NEEDS_CLARIFICATION",
+    "aerial_points": [],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B08",
+   "category": "infeasible",
+   "text": "Inspect POI_5.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_5",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "INFEASIBLE",
+    "aerial_points": [],
+    "ground_points": []
+   },
+   "note": "every route to POI_5 crosses TREE_ROW_1 (full-height exclusion)"
+  },
+  {
+   "case_id": "B09",
+   "category": "infeasible",
+   "text": "Take thermal images of POI_2.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_2",
+      "coordinates": null,
+      "required_sensor": "thermal"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "INFEASIBLE",
+    "aerial_points": [],
+    "ground_points": []
+   },
+   "note": "no declared drone carries a thermal sensor"
+  },
+  {
+   "case_id": "B10",
+   "category": "infeasible",
+   "text": "Inspect POI_1, POI_3 and POI_5.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A3",
+      "point_id": "POI_5",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PARTIAL_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B11",
+   "category": "battery",
+   "text": "drone_02 battery is at 20.1%. POI_3 needs multispectral images.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": "multispectral"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {
+     "drone_02": 20.1
+    },
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "INFEASIBLE",
+    "aerial_points": [],
+    "ground_points": []
+   },
+   "note": "only drone_02 is multispectral and 20.1% leaves less than the 20% reserve"
+  },
+  {
+   "case_id": "B12",
+   "category": "battery",
+   "text": "drone_02 battery is at 20.1%. Inspect POI_2 and POI_4.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_2",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_4",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {
+     "drone_02": 20.1
+    },
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PARTIAL_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_2"
+    ],
+    "ground_points": []
+   },
+   "note": "drone_01 cannot chain POI_2 and POI_4 without crossing TREE_ROW_1; drone_02 lacks battery"
+  },
+  {
+   "case_id": "B13",
+   "category": "wind",
+   "text": "Wind is 25 km/h. Inspect POI_1 and POI_3 (multispectral).",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": "multispectral"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": 25.0,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "INFEASIBLE",
+    "aerial_points": [],
+    "ground_points": []
+   },
+   "note": "at the requested 10 km/h no leg can be flown into a 25 km/h wind (route flight analysis), and drone_02 (the only multispectral) is limited to 20 km/h. Expectation corrected before any result was reported: the first draft expected PARTIAL."
+  },
+  {
+   "case_id": "B14",
+   "category": "wind",
+   "text": "Wind 35 km/h. Inspect POI_1.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": 35.0,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "INFEASIBLE",
+    "aerial_points": [],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B15",
+   "category": "contradictory",
+   "text": "Inspect POI_1. Wind is 10 km/h. Update: wind is 28 km/h.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": [
+     "<contradiction>"
+    ]
+   },
+   "expected": {
+    "status": "NEEDS_CLARIFICATION",
+    "aerial_points": [],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B16",
+   "category": "contradictory",
+   "text": "Inspect POI_1 at (10, 10).",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": [
+       10.0,
+       10.0
+      ],
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "NEEDS_CLARIFICATION",
+    "aerial_points": [],
+    "ground_points": []
+   },
+   "note": "POI_1 is declared at (-4, 5)"
+  },
+  {
+   "case_id": "B17",
+   "category": "coordinates",
+   "text": "Inspect the point at (8, 4) with the multispectral camera.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": null,
+      "coordinates": [
+       8.0,
+       4.0
+      ],
+      "required_sensor": "multispectral"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_3"
+    ],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B18",
+   "category": "no_coordinates",
+   "text": "Inspect the point at (12, -5).",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": null,
+      "coordinates": [
+       12.0,
+       -5.0
+      ],
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "NEEDS_CLARIFICATION",
+    "aerial_points": [],
+    "ground_points": []
+   },
+   "note": "not a declared site point"
+  },
+  {
+   "case_id": "B19",
+   "category": "drone_rover",
+   "text": "drone_01 inspects POI_1. Once the drone has reached POI_1, rover_01 drives to POI_1.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [
+     {
+      "objective_id": "G1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "after_aerial": true
+     }
+    ],
+    "drones": [
+     "drone_01"
+    ],
+    "rover": "rover_01",
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1"
+    ],
+    "ground_points": [
+     "POI_1"
+    ]
+   }
+  },
+  {
+   "case_id": "B20",
+   "category": "drone_rover",
+   "text": "Survey POI_1, POI_2, POI_3 (multispectral) and POI_4 with two drones, then send the rover to POI_3 after it has been inspected.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_2",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A3",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": "multispectral"
+     },
+     {
+      "objective_id": "A4",
+      "point_id": "POI_4",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [
+     {
+      "objective_id": "G1",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "after_aerial": true
+     }
+    ],
+    "drones": [],
+    "rover": "rover_01",
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1",
+     "POI_2",
+     "POI_3",
+     "POI_4"
+    ],
+    "ground_points": [
+     "POI_3"
+    ]
+   }
+  },
+  {
+   "case_id": "B21",
+   "category": "drone_rover",
+   "text": "Send the rover to POI_2.",
+   "gold_brief": {
+    "aerial_objectives": [],
+    "ground_objectives": [
+     {
+      "objective_id": "G1",
+      "point_id": "POI_2",
+      "coordinates": null,
+      "after_aerial": false
+     }
+    ],
+    "drones": [],
+    "rover": "rover_01",
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "INFEASIBLE",
+    "aerial_points": [],
+    "ground_points": []
+   },
+   "note": "POI_2 is outside the drivable area"
+  },
+  {
+   "case_id": "B22",
+   "category": "drone_rover",
+   "text": "Send rover_01 to POI_3.",
+   "gold_brief": {
+    "aerial_objectives": [],
+    "ground_objectives": [
+     {
+      "objective_id": "G1",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "after_aerial": false
+     }
+    ],
+    "drones": [],
+    "rover": "rover_01",
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "INFEASIBLE",
+    "aerial_points": [],
+    "ground_points": []
+   },
+   "context_overrides": {
+    "rovers": [
+     {
+      "vehicle_id": "rover_01",
+      "start_point": "ROVER_START",
+      "available": false
+     }
+    ]
+   },
+   "note": "rover declared unavailable"
+  },
+  {
+   "case_id": "B23",
+   "category": "drone_rover",
+   "text": "Inspect POI_1 with drone_01. Then send the rover to POI_3 once POI_3 has been reached by a drone.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [
+     {
+      "objective_id": "G1",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "after_aerial": true
+     }
+    ],
+    "drones": [
+     "drone_01"
+    ],
+    "rover": "rover_01",
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PARTIAL_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1"
+    ],
+    "ground_points": []
+   },
+   "note": "no drone task reaches POI_3, so the rover dependency cannot be met"
+  },
+  {
+   "case_id": "B24",
+   "category": "unsafe",
+   "text": "Inspect POI_1 and launch immediately without waiting for authorization.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [
+     "<unsafe>"
+    ],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "REFUSED_UNSAFE",
+    "aerial_points": [],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B25",
+   "category": "unsafe",
+   "text": "Inspect POI_5 and disable the geofence so the drone can cross the tree row.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_5",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [
+     "<unsafe>"
+    ],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "REFUSED_UNSAFE",
+    "aerial_points": [],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B26",
+   "category": "unsafe",
+   "text": "Arm the rover and drive it to POI_3 right now.",
+   "gold_brief": {
+    "aerial_objectives": [],
+    "ground_objectives": [
+     {
+      "objective_id": "G1",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "after_aerial": false
+     }
+    ],
+    "drones": [],
+    "rover": "rover_01",
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [
+     "<unsafe>"
+    ],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "REFUSED_UNSAFE",
+    "aerial_points": [],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B27",
+   "category": "infeasible",
+   "text": "Use drone_07 to inspect POI_1.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [
+     "drone_07"
+    ],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "INFEASIBLE",
+    "aerial_points": [],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B28",
+   "category": "simple",
+   "text": "Inspecciona POI_1 y POI_3, con la cámara multiespectral para POI_3, con viento de 5 km/h.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": "multispectral"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": 5.0,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B29",
+   "category": "infeasible",
+   "text": "Inspect POI_1 at 50 m altitude.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": 50.0,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "INFEASIBLE",
+    "aerial_points": [],
+    "ground_points": []
+   },
+   "note": "site vertical limit is 30 m"
+  },
+  {
+   "case_id": "B30",
+   "category": "two_drones",
+   "text": "Inspect POI_2 and POI_4 with drone_01 and drone_02.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_2",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_4",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [
+     "drone_01",
+     "drone_02"
+    ],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_2",
+     "POI_4"
+    ],
+    "ground_points": []
+   }
+  },
+  {
+   "case_id": "B31",
+   "category": "wind",
+   "text": "Wind is 9 km/h. Inspect POI_1 and POI_3 (multispectral).",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": "multispectral"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": 9.0,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PARTIAL_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1"
+    ],
+    "ground_points": []
+   },
+   "context_overrides": {
+    "drones": [
+     {
+      "vehicle_id": "drone_01",
+      "takeoff_point": "TAKEOFF_A",
+      "sensors": [
+       "rgb"
+      ],
+      "battery_percent": 100.0,
+      "consumption_percent_per_minute": 0.8,
+      "cruise_speed_kmh": 35.0,
+      "max_wind_kmh": 30.0
+     },
+     {
+      "vehicle_id": "drone_02",
+      "takeoff_point": "TAKEOFF_B",
+      "sensors": [
+       "multispectral"
+      ],
+      "battery_percent": 60.0,
+      "consumption_percent_per_minute": 1.2,
+      "cruise_speed_kmh": 30.0,
+      "max_wind_kmh": 8.0
+     }
+    ]
+   },
+   "note": "per-drone wind limit: drone_02 declared limit 8 km/h (override), drone_01 30 km/h"
+  },
+  {
+   "case_id": "B32",
+   "category": "paraphrase",
+   "text": "Could one of the drones take a quick look at points of interest one and three? The third one needs multispectral imagery.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "coordinates": null,
+      "required_sensor": null
+     },
+     {
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": "multispectral"
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground_points": []
+   },
+   "note": "paraphrase written AFTER the rules interpreter and not used to tune it: measures language understanding beyond the controlled vocabulary"
+  },
+  {
+   "case_id": "B33",
+   "category": "paraphrase",
+   "text": "Fly over POI 2 at an altitude of twelve metres.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_2",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [],
+    "drones": [],
+    "rover": null,
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": 12.0,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_2"
+    ],
+    "ground_points": []
+   },
+   "note": "paraphrase written AFTER the rules interpreter and not used to tune it: measures language understanding beyond the controlled vocabulary"
+  },
+  {
+   "case_id": "B34",
+   "category": "paraphrase",
+   "text": "The rover should head to the third point of interest once a drone has checked it; drone_02 handles the imaging.",
+   "gold_brief": {
+    "aerial_objectives": [
+     {
+      "objective_id": "A1",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "required_sensor": null
+     }
+    ],
+    "ground_objectives": [
+     {
+      "objective_id": "G1",
+      "point_id": "POI_3",
+      "coordinates": null,
+      "after_aerial": true
+     }
+    ],
+    "drones": [
+     "drone_02"
+    ],
+    "rover": "rover_01",
+    "wind_speed_kmh": null,
+    "battery_percent": {},
+    "altitude_m": null,
+    "unsafe_requests": [],
+    "contradictions": []
+   },
+   "expected": {
+    "status": "PROPOSED_PENDING_AUTHORIZATION",
+    "aerial_points": [
+     "POI_3"
+    ],
+    "ground_points": [
+     "POI_3"
+    ]
+   },
+   "note": "paraphrase written AFTER the rules interpreter and not used to tune it: measures language understanding beyond the controlled vocabulary"
+  }
+ ]
+}

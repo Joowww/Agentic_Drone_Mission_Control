@@ -1,0 +1,20 @@
+check	result	detail
+01_hermes_version	PASS	Hermes Agent vunknown (2026.9.24)
+02_mcp_server_starts	PASS	SERVER_TOOLS 27 (the server publishes all; Hermes must offer 2)
+03_test_double_home	PASS	provider custom at the fake provider
+04_planning_safe	PASS	test home planning-safe
+05_tampered_config_refused	PASS	rc=2
+06_toolsets_override_refused	PASS	rc=2
+07_only_planning_tools_offered	PASS	every request offering tools offered exactly the 2 planning tools (auxiliary calls: none)
+08_persisted	PASS	1 draft, 1 finalization.json (rc=0)
+09_strict_export_refused	PASS	qgc_export REFUSED (no AMSL in the draft): no .plan invented
+10_status_after_container_removed	PASS	a new container reads the persisted result
+11_invalid_response	PASS	rc=2; no new finalization
+12_timeout_cancel	PASS	provider silent; Ctrl+C after 20 s; rc=130; no new finalization
+13_provider_absent	PASS	rc=2; no new finalization
+14_write_error	PASS	rc=0; nothing written; the tool error reached the provider; nothing claimed
+15_ollama_double_extraction	PASS	ChatOllama via OLLAMA_HOST -> MissionPlanDraft
+16_ollama_invalid_rejected	PASS	REJECTED OutputParserException
+17_menu_provider_absent	PASS	menu option 3 reports [PLANNER ERROR] and continues
+18_no_secrets_in_logs	PASS	no credential patterns in /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/planning_checks_final2
+19_no_credentials_in_image	PASS	no auth.json/.env/keys; empty planning home in the image

@@ -1,0 +1,1724 @@
+{
+ "cases": {
+  "authorization_expired": {
+   "expected_rover": "REJECTED",
+   "expected_ours": [
+    "AUTHORIZATION",
+    "VALIDITY_EXCEEDS_AUTHORIZATION"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": false,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "801f90f512d135245c4de9491fe5a30b487de5cb5caa078a9b805c6bbee1f312",
+     "authorized_at_utc": "2026-11-06T11:53:20+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T11:58:20+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "authorized_another_plan": {
+   "expected_rover": "REJECTED",
+   "expected_ours": [
+    "AUTHORIZATION"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": false,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "a13aa6a2fe3264fc8f1a13ab86e4cb8e0349ae49bde84befbbcf4014afe01f80",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 1.0,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-1c33d7ff48e90732",
+     "plan_sha256": "ad25cb14cc5d23c67d9091ed3f334845d348e125134a399f1645690aa1daf9b8",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "235625bcc73fb257dc74ee2cd1c70009d5c6608640d75923ccba8c76b66cadc6",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "boolean_is_not_authorization": {
+   "expected_rover": "REJECTED",
+   "expected_ours": [
+    "AUTHORIZATION"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": false,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "human_authorized": true
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AWAITING_HUMAN_AUTHORIZATION",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "complete": {
+   "expected_rover": "READY_TO_SUBMIT",
+   "expected_ours": [],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "conditional_target_never_moves": {
+   "expected_rover": "WAITING",
+   "expected_ours": [
+    "NOT_READY"
+   ],
+   "inputs": {
+    "ground_state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": true,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "dependencies_not_satisfied": {
+   "expected_rover": "READY_TO_SUBMIT",
+   "expected_ours": [
+    "NOT_READY"
+   ],
+   "inputs": {
+    "ground_state": "TARGET_VALIDATED",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "frame_mismatch": {
+   "expected_rover": "REJECTED",
+   "expected_ours": [
+    "FRAME_MISMATCH_NO_ACCREDITED_TRANSFORM"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "odom",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "frame_with_accredited_transform": {
+   "expected_rover": "REJECTED",
+   "expected_ours": [],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": {
+     "accredited": true,
+     "from_frame": "odom",
+     "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+     "to_frame": "synthetic_orchard_local"
+    }
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "odom",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "localization_stale": {
+   "expected_rover": "READY_TO_SUBMIT",
+   "expected_ours": [
+    "LOCALIZATION_STALE"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 3.0,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "no_localization": {
+   "expected_rover": "REJECTED",
+   "expected_ours": [
+    "LOCALIZATION_NOT_ACCREDITED"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {},
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "uncertainty_too_high": {
+   "expected_rover": "READY_TO_SUBMIT",
+   "expected_ours": [
+    "UNCERTAINTY_TOO_HIGH"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.6,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "uncertainty_unknown": {
+   "expected_rover": "READY_TO_SUBMIT",
+   "expected_ours": [
+    "UNCERTAINTY_UNKNOWN"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": null,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "validity_beyond_authorization": {
+   "expected_rover": "READY_TO_SUBMIT",
+   "expected_ours": [
+    "VALIDITY_EXCEEDS_AUTHORIZATION"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": null,
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:02:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "f36180ebe88774976fc82f2872b3c29cc654507f7035aa7a8b8b2f5f8df48114",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:00:29+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "validity_beyond_target": {
+   "expected_rover": "READY_TO_SUBMIT",
+   "expected_ours": [
+    "VALIDITY_EXCEEDS_TARGET_VALIDITY"
+   ],
+   "inputs": {
+    "ground_state": "READY_FOR_AUTHORIZATION",
+    "localization_age_s": 0.2,
+    "localization_sigma_m": 0.1,
+    "observation_valid_until": "2026-11-06 12:00:10+00:00",
+    "target_sigma_m": 0.12,
+    "transform": null
+   },
+   "payload": {
+    "authorization": {
+     "human_authorized": true,
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984"
+    },
+    "constraints": {
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "timeout_s": 30.0
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "multiagent.DryRunRoverExecutor",
+     "version": "1"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "synthetic_orchard_local",
+     "source": "TEST_FIXTURE_ACCREDITED_SOURCE",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "validated": true,
+     "x_m": 1.0,
+     "y_m": -1.5
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "provenance": {
+     "source": "tfg.multiagent.observation/1",
+     "source_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/1",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-06T12:01:00+00:00",
+     "not_before_utc": "2026-11-06T12:00:00+00:00"
+    }
+   },
+   "request": {
+    "authorization": {
+     "authorization_id": "873c0da6af21b41db8ce07be446cdacf28e9f48788c82742fc3b80e758f8fb62",
+     "authorized_at_utc": "2026-11-06T11:59:59+00:00",
+     "authorized_by": {
+      "id": "op-fixture",
+      "role": "HUMAN_OPERATOR"
+     },
+     "expires_at_utc": "2026-11-06T12:04:59+00:00",
+     "mission_id": "GROUND_rover_01",
+     "operator_limits": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 30.0
+     },
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "plan_sha256": "6c08b0278e718aee1ad8f185174d3f407fa42c35e7552104098371f07c169d96",
+     "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+     "rover_id": "rover_01",
+     "schema": "tfg.multiagent.human-authorization/1",
+     "scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+     "source": "TEST_FIXTURE",
+     "statement": "fixture"
+    },
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "expected_scope_sha256": "6e68c699525aacd6a57f6e8b6faad55f4dbcecb8e6ff9245760514372fc69984",
+    "frame": "synthetic_orchard_local",
+    "navigation_plan": {
+     "frame": "synthetic_orchard_local",
+     "max_speed_mps": 0.3,
+     "plan_id": "NAV-fa8be32d04e33d32",
+     "target_x_m": 8.0,
+     "target_y_m": 4.0,
+     "timeout_s": 30.0
+    },
+    "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema": "tfg.multiagent.rover-execution-request/1",
+    "state": "AUTHORIZATION_ATTACHED_NOT_EXECUTED",
+    "target": {
+     "point_id": "POI_3",
+     "start_point": "ROVER_START"
+    },
+    "task_id": "GROUND_rover_01",
+    "vehicle_id": "rover_01"
+   }
+  }
+ },
+ "rover_contract": "tfg.rover.mission-execution/1 @ f2fd78ae1",
+ "data_kind": "TEST_FIXTURE",
+ "limits": {
+  "localization_max_age_s": 1.0,
+  "localization_max_uncertainty_m": 0.5
+ },
+ "now_utc": "2026-11-06T12:00:00+00:00",
+ "schema": "tfg.multiagent.rover-contract-fixtures/1"
+}

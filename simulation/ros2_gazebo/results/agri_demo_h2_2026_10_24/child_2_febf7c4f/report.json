@@ -1,0 +1,2899 @@
+{
+  "schema_version": "1.1",
+  "report_persisted": true,
+  "expected_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+  "persist_progress": true,
+  "source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/febf7c4f-27c8-4486-bd3b-63ce0a5f261a/input.json",
+  "source_artifact": {
+    "kind": "finalization",
+    "artifact_id": "f505f7ad-df2e-42cb-90d6-6420929fe3e6",
+    "draft_id": "4707cbd6-3dd4-42e3-a1e2-a175d12a62a6",
+    "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+    "record_sha256": "fcf2a28961483eda14793d4897a712d69e545e8df24604f0bbd8e4a820f159e4"
+  },
+  "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+  "run_directory": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+  "snapshot_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/febf7c4f-27c8-4486-bd3b-63ce0a5f261a/mission.json",
+  "report_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/febf7c4f-27c8-4486-bd3b-63ce0a5f261a/report.json",
+  "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+  "mission_identity": {
+    "mission_id": "agri_demo_001_h1_sector_b",
+    "name": "agri_demo_001 H1 sector B",
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "vehicle_selection": {
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "expected_vehicle_selection": {
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "status": "PASSED",
+  "stage": "analyze",
+  "reasons": [],
+  "validation": {
+    "mission_id": "agri_demo_001_h1_sector_b",
+    "mission_status": "FEASIBLE",
+    "execution_status": "APPROVED",
+    "qgc_plan_path": null,
+    "failure_reasons": [],
+    "errors": [],
+    "replan_status": "",
+    "replan_actions": []
+  },
+  "readiness": {
+    "profile": "two_drones",
+    "ready": true,
+    "status": "READY",
+    "return_code": 0,
+    "message": "Simulation infrastructure checks passed; no movement authorized.",
+    "output": "========================================\n TFG - Simulation Check\n========================================\n\n[1/5] Docker container...\n[PASS] Container running.\n\n[2/5] Gazebo server...\n[PASS] Gazebo runway world running.\n\n[3/5] ArduPilot processes...\n[PASS] 2 arducopter processes running.\n\n[4/5] ROS 2 vehicle interfaces...\nTFG_READINESS_VEHICLE /ap/v1 status PASS\nTFG_READINESS_VEHICLE /ap/v2 status PASS\n\n[PASS] /ap/v1/status\n[PASS] /ap/v2/status\n\n[5/5] Pre-arm checks...\nTFG_PREARM_EVENT {\"service\": \"/ap/v1/prearm_check\", \"interface\": \"v1\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v1/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-10-24T12:55:44.425305+00:00\", \"started_monotonic_s\": 162804.381227926, \"event\": \"started\"}\nTFG_PREARM_EVENT {\"service\": \"/ap/v1/prearm_check\", \"interface\": \"v1\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v1/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-10-24T12:55:44.425305+00:00\", \"started_monotonic_s\": 162804.381227926, \"event\": \"output\", \"stream\": \"stdout\", \"text\": \"requester: making request: std_srvs.srv.Trigger_Request()\\n\\n\", \"received_monotonic_s\": 162805.772074536}\nTFG_PREARM_EVENT {\"service\": \"/ap/v1/prearm_check\", \"interface\": \"v1\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v1/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-10-24T12:55:44.425305+00:00\", \"started_monotonic_s\": 162804.381227926, \"event\": \"output\", \"stream\": \"stdout\", \"text\": \"response:\\nstd_srvs.srv.Trigger_Response(success=True, message='Vehicle is Armable')\\n\\n\", \"received_monotonic_s\": 162805.779256553}\nTFG_PREARM_EVENT {\"service\": \"/ap/v1/prearm_check\", \"interface\": \"v1\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v1/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-10-24T12:55:44.425305+00:00\", \"started_monotonic_s\": 162804.381227926, \"event\": \"completed\", \"return_code\": 0, \"stdout\": \"requester: making request: std_srvs.srv.Trigger_Request()\\n\\nresponse:\\nstd_srvs.srv.Trigger_Response(success=True, message='Vehicle is Armable')\\n\\n\", \"stderr\": \"\", \"execution_error\": null, \"streams_closed\": {\"stdout\": true, \"stderr\": true}, \"finished_at_utc\": \"2026-10-24T12:55:46.047620+00:00\", \"duration_wall_s\": 1.6223688909958582, \"outcome\": \"ACCEPTED\", \"response\": {\"success\": true, \"message\": \"Vehicle is Armable\"}, \"timed_out\": false, \"timeout_basis\": null, \"waiting_for_service_observed\": false}\nTFG_READINESS_VEHICLE /ap/v1 prearm PASS\nTFG_PREARM_EVENT {\"service\": \"/ap/v2/prearm_check\", \"interface\": \"v2\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v2/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-10-24T12:55:46.113201+00:00\", \"started_monotonic_s\": 162806.069122443, \"event\": \"started\"}\nTFG_PREARM_EVENT {\"service\": \"/ap/v2/prearm_check\", \"interface\": \"v2\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v2/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-10-24T12:55:46.113201+00:00\", \"started_monotonic_s\": 162806.069122443, \"event\": \"output\", \"stream\": \"stdout\", \"text\": \"waiting for service to become available...\\n\", \"received_monotonic_s\": 162807.552660908}\nTFG_PREARM_EVENT {\"service\": \"/ap/v2/prearm_check\", \"interface\": \"v2\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v2/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-10-24T12:55:46.113201+00:00\", \"started_monotonic_s\": 162806.069122443, \"event\": \"output\", \"stream\": \"stdout\", \"text\": \"requester: making request: std_srvs.srv.Trigger_Request()\\n\\n\", \"received_monotonic_s\": 162809.805031127}\nTFG_PREARM_EVENT {\"service\": \"/ap/v2/prearm_check\", \"interface\": \"v2\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v2/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-10-24T12:55:46.113201+00:00\", \"started_monotonic_s\": 162806.069122443, \"event\": \"output\", \"stream\": \"stdout\", \"text\": \"response:\\nstd_srvs.srv.Trigger_Response(success=True, message='Vehicle is Armable')\\n\\n\", \"received_monotonic_s\": 162809.814039367}\nTFG_PREARM_EVENT {\"service\": \"/ap/v2/prearm_check\", \"interface\": \"v2\", \"attempt\": 1, \"service_type\": \"std_srvs/srv/Trigger\", \"request\": \"{}\", \"command\": [\"docker\", \"exec\", \"tfg-ardupilot-gazebo\", \"bash\", \"-lc\", \"source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \\\"$1\\\" std_srvs/srv/Trigger \\\"{}\\\"\", \"bash\", \"/ap/v2/prearm_check\"], \"timeout_s\": 30, \"started_at_utc\": \"2026-10-24T12:55:46.113201+00:00\", \"started_monotonic_s\": 162806.069122443, \"event\": \"completed\", \"return_code\": 0, \"stdout\": \"waiting for service to become available...\\nrequester: making request: std_srvs.srv.Trigger_Request()\\n\\nresponse:\\nstd_srvs.srv.Trigger_Response(success=True, message='Vehicle is Armable')\\n\\n\", \"stderr\": \"\", \"execution_error\": null, \"streams_closed\": {\"stdout\": true, \"stderr\": true}, \"finished_at_utc\": \"2026-10-24T12:55:50.228866+00:00\", \"duration_wall_s\": 3.984677164000459, \"outcome\": \"ACCEPTED\", \"response\": {\"success\": true, \"message\": \"Vehicle is Armable\"}, \"timed_out\": false, \"timeout_basis\": null, \"waiting_for_service_observed\": true}\nTFG_READINESS_VEHICLE /ap/v2 prearm PASS\n\n[PASS] /ap/v1 - Vehicle is Armable\n[PASS] /ap/v2 - Vehicle is Armable\n\n========================================\n SIMULATION HEALTHY\n========================================\n\n/ap/v1 -> READY (infrastructure only; no movement authorization)\n/ap/v2 -> READY (infrastructure only; no movement authorization)",
+    "vehicles": [
+      {
+        "vehicle_id": "drone_01",
+        "interface": "v1",
+        "robot_name": "drone1",
+        "sitl_executable": "arducopter",
+        "mission_executor_supported": true,
+        "status_topic": "/ap/v1/status",
+        "prearm_service": "/ap/v1/prearm_check",
+        "status_last_observed": "PASS",
+        "prearm_last_observed": "PASS",
+        "prearm_attempts": [
+          {
+            "interface": "v1",
+            "service": "/ap/v1/prearm_check",
+            "service_type": "std_srvs/srv/Trigger",
+            "attempt": 1,
+            "stdout": "requester: making request: std_srvs.srv.Trigger_Request()\n\nresponse:\nstd_srvs.srv.Trigger_Response(success=True, message='Vehicle is Armable')\n\n",
+            "stderr": "",
+            "return_code": 0,
+            "timeout_s": 30,
+            "duration_wall_s": 1.6223688909958582,
+            "outcome": "ACCEPTED",
+            "response": {
+              "success": true,
+              "message": "Vehicle is Armable"
+            },
+            "started_at_utc": "2026-10-24T12:55:44.425305+00:00",
+            "started_monotonic_s": 162804.381227926,
+            "timed_out": false,
+            "completed": true,
+            "last_output_received_monotonic_s": 162805.779256553,
+            "request": "{}",
+            "command": [
+              "docker",
+              "exec",
+              "tfg-ardupilot-gazebo",
+              "bash",
+              "-lc",
+              "source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \"$1\" std_srvs/srv/Trigger \"{}\"",
+              "bash",
+              "/ap/v1/prearm_check"
+            ],
+            "event": "completed",
+            "execution_error": null,
+            "streams_closed": {
+              "stdout": true,
+              "stderr": true
+            },
+            "finished_at_utc": "2026-10-24T12:55:46.047620+00:00",
+            "timeout_basis": null,
+            "waiting_for_service_observed": false
+          }
+        ]
+      },
+      {
+        "vehicle_id": "drone_02",
+        "interface": "v2",
+        "robot_name": "drone2",
+        "sitl_executable": "arducopter",
+        "mission_executor_supported": true,
+        "status_topic": "/ap/v2/status",
+        "prearm_service": "/ap/v2/prearm_check",
+        "status_last_observed": "PASS",
+        "prearm_last_observed": "PASS",
+        "prearm_attempts": [
+          {
+            "interface": "v2",
+            "service": "/ap/v2/prearm_check",
+            "service_type": "std_srvs/srv/Trigger",
+            "attempt": 1,
+            "stdout": "waiting for service to become available...\nrequester: making request: std_srvs.srv.Trigger_Request()\n\nresponse:\nstd_srvs.srv.Trigger_Response(success=True, message='Vehicle is Armable')\n\n",
+            "stderr": "",
+            "return_code": 0,
+            "timeout_s": 30,
+            "duration_wall_s": 3.984677164000459,
+            "outcome": "ACCEPTED",
+            "response": {
+              "success": true,
+              "message": "Vehicle is Armable"
+            },
+            "started_at_utc": "2026-10-24T12:55:46.113201+00:00",
+            "started_monotonic_s": 162806.069122443,
+            "timed_out": false,
+            "completed": true,
+            "last_output_received_monotonic_s": 162809.814039367,
+            "request": "{}",
+            "command": [
+              "docker",
+              "exec",
+              "tfg-ardupilot-gazebo",
+              "bash",
+              "-lc",
+              "source /opt/ros/humble/setup.bash && source /root/ardu_ws/install/setup.bash && LC_ALL=C timeout --verbose 30 ros2 service call \"$1\" std_srvs/srv/Trigger \"{}\"",
+              "bash",
+              "/ap/v2/prearm_check"
+            ],
+            "event": "completed",
+            "execution_error": null,
+            "streams_closed": {
+              "stdout": true,
+              "stderr": true
+            },
+            "finished_at_utc": "2026-10-24T12:55:50.228866+00:00",
+            "timeout_basis": null,
+            "waiting_for_service_observed": true
+          }
+        ]
+      }
+    ],
+    "movement_authorized": false
+  },
+  "compatibility_errors": [],
+  "executor_result": {
+    "success": true,
+    "status": "COMPLETED",
+    "stage": "MISSION_EXECUTION",
+    "mission_id": "agri_demo_001_h1_sector_b",
+    "vehicle": "v2",
+    "vehicle_id": "drone_02",
+    "simulation_origin": {
+      "latitude": -35.36326217651367,
+      "longitude": 149.1652374267578,
+      "altitude_amsl_m": 584.0
+    },
+    "launch_position": {
+      "latitude": -35.36326217651367,
+      "longitude": 149.16526794433594,
+      "altitude_amsl_m": 584.1900024414062
+    },
+    "waypoints_completed": 2,
+    "return_to_home": true,
+    "events": [
+      {
+        "event": "GUIDED_MODE",
+        "success": true
+      },
+      {
+        "event": "ARM",
+        "success": true
+      },
+      {
+        "event": "TAKEOFF_COMMAND",
+        "success": true,
+        "altitude_m": 5.0
+      },
+      {
+        "event": "TAKEOFF_REACHED",
+        "reached": true,
+        "target_altitude_m": 5.0,
+        "altitude_amsl_m": 588.6400146484375,
+        "altitude_error_m": 0.54998779296875
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP1",
+        "success": true
+      },
+      {
+        "event": "WAYPOINT_REACHED",
+        "reached": true,
+        "waypoint_id": "WP1",
+        "horizontal_error_m": 0.38833924185528407,
+        "altitude_error_m": 0.02996826171875,
+        "final_position": {
+          "latitude": -35.36319351196289,
+          "longitude": 149.16531372070312,
+          "altitude_amsl_m": 589.219970703125
+        }
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP2",
+        "success": true
+      },
+      {
+        "event": "WAYPOINT_REACHED",
+        "reached": true,
+        "waypoint_id": "WP2",
+        "horizontal_error_m": 0.20696954242378213,
+        "altitude_error_m": 0.0,
+        "final_position": {
+          "latitude": -35.36311721801758,
+          "longitude": 149.16531372070312,
+          "altitude_amsl_m": 589.1900024414062
+        }
+      },
+      {
+        "event": "RETURN_HOME_COMMAND",
+        "success": true
+      },
+      {
+        "event": "RETURN_HOME_REACHED",
+        "reached": true,
+        "waypoint_id": "SIMULATION_HOME",
+        "horizontal_error_m": 0.8483499652447414,
+        "altitude_error_m": 0.02996826171875,
+        "final_position": {
+          "latitude": -35.36325454711914,
+          "longitude": 149.16526794433594,
+          "altitude_amsl_m": 589.219970703125
+        }
+      },
+      {
+        "event": "LAND_COMMAND",
+        "success": true
+      },
+      {
+        "event": "LANDED",
+        "landed": true,
+        "armed": false,
+        "flying": false,
+        "final_position": {
+          "latitude": -35.36326599121094,
+          "longitude": 149.16526794433594,
+          "altitude_amsl_m": 584.1900024414062
+        }
+      }
+    ],
+    "final_position": {
+      "latitude": -35.36326599121094,
+      "longitude": 149.16526794433594,
+      "altitude_amsl_m": 584.1900024414062
+    },
+    "message": "Mission completed and vehicle landed successfully.",
+    "operation_diagnostics": {
+      "clock": "HOST_UTC_AND_MONOTONIC",
+      "simulated_time_inferred": false,
+      "total_operations": 56,
+      "omitted_operations": 0,
+      "initial": [
+        {
+          "operation": "read_origin",
+          "stage": "READ_ORIGIN",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/gps_global_origin/filtered",
+          "started_at_utc": "2026-10-24T12:55:59.278240+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36326217651367,
+            "longitude": 149.1652374267578,
+            "altitude_amsl_m": 584.0
+          },
+          "finished_at_utc": "2026-10-24T12:56:07.911584+00:00",
+          "elapsed_wall_seconds": 8.633329137024703,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/gps_global_origin/filtered --once",
+            "started_at_utc": "2026-10-24T12:55:59.278272+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846234\n    nanosec: 988396000\n  frame_id: base_link\nposition:\n  latitude: -35.36326217651367\n  longitude: 149.1652374267578\n  altitude: 584.0\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 8.6332184089988,
+            "finished_at_utc": "2026-10-24T12:56:07.911493+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "READ_POSITION",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:56:07.911612+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36326217651367,
+            "longitude": 149.16526794433594,
+            "altitude_amsl_m": 584.1900024414062
+          },
+          "finished_at_utc": "2026-10-24T12:56:11.086444+00:00",
+          "elapsed_wall_seconds": 3.1748318699828815,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:56:07.911626+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846235\n    nanosec: 527396000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36326217651367\n    longitude: 149.16526794433594\n    altitude: 584.1900024414062\n  orientation:\n    x: 1.0863034560770757e-07\n    y: 1.1495099272451625e-07\n    z: 0.6959423422813416\n    w: 0.7180976271629333\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.1747216260118876,
+            "finished_at_utc": "2026-10-24T12:56:11.086350+00:00"
+          }
+        },
+        {
+          "operation": "guided",
+          "stage": "GUIDED",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "service",
+          "endpoint": "/ap/v2/mode_switch",
+          "started_at_utc": "2026-10-24T12:56:11.086499+00:00",
+          "timeout_seconds": 30,
+          "inner_timeout_seconds": null,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [
+              4
+            ],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "ACKNOWLEDGED",
+          "finished_at_utc": "2026-10-24T12:56:14.114045+00:00",
+          "elapsed_wall_seconds": 3.027541621995624,
+          "transport": {
+            "command": "ros2 service call /ap/v2/mode_switch ardupilot_msgs/srv/ModeSwitch '{mode: 4}'",
+            "started_at_utc": "2026-10-24T12:56:11.087208+00:00",
+            "timeout_seconds": 30,
+            "return_code": 0,
+            "output": "waiting for service to become available...\nrequester: making request: ardupilot_msgs.srv.ModeSwitch_Request(mode=4)\n\nresponse:\nardupilot_msgs.srv.ModeSwitch_Response(status=True, curr_mode=4)",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.0267969090200495,
+            "finished_at_utc": "2026-10-24T12:56:14.114007+00:00"
+          }
+        },
+        {
+          "operation": "arm",
+          "stage": "ARM",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "service",
+          "endpoint": "/ap/v2/arm_motors",
+          "started_at_utc": "2026-10-24T12:56:14.114079+00:00",
+          "timeout_seconds": 30,
+          "inner_timeout_seconds": null,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "ACKNOWLEDGED",
+          "finished_at_utc": "2026-10-24T12:56:17.245502+00:00",
+          "elapsed_wall_seconds": 3.1314117570000235,
+          "transport": {
+            "command": "ros2 service call /ap/v2/arm_motors ardupilot_msgs/srv/ArmMotors '{arm: true}'",
+            "started_at_utc": "2026-10-24T12:56:14.115049+00:00",
+            "timeout_seconds": 30,
+            "return_code": 0,
+            "output": "waiting for service to become available...\nrequester: making request: ardupilot_msgs.srv.ArmMotors_Request(arm=True)\n\nresponse:\nardupilot_msgs.srv.ArmMotors_Response(result=True)",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.130454712023493,
+            "finished_at_utc": "2026-10-24T12:56:17.245478+00:00"
+          }
+        },
+        {
+          "operation": "takeoff",
+          "stage": "TAKEOFF",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "service",
+          "endpoint": "/ap/v2/experimental/takeoff",
+          "started_at_utc": "2026-10-24T12:56:17.245529+00:00",
+          "timeout_seconds": 30,
+          "inner_timeout_seconds": null,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [
+              5.0
+            ],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "ACKNOWLEDGED",
+          "finished_at_utc": "2026-10-24T12:56:20.374176+00:00",
+          "elapsed_wall_seconds": 3.033742372994311,
+          "transport": {
+            "command": "ros2 service call /ap/v2/experimental/takeoff ardupilot_msgs/srv/Takeoff '{alt: 5.0}'",
+            "started_at_utc": "2026-10-24T12:56:17.246421+00:00",
+            "timeout_seconds": 30,
+            "return_code": 0,
+            "output": "waiting for service to become available...\nrequester: making request: ardupilot_msgs.srv.Takeoff_Request(alt=5.0)\n\nresponse:\nardupilot_msgs.srv.Takeoff_Response(status=True)",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.0328128160035703,
+            "finished_at_utc": "2026-10-24T12:56:20.374139+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:56:20.374241+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": false,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846237\n    nanosec: 41396000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: false\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:56:22.639088+00:00",
+          "elapsed_wall_seconds": 2.264839971991023,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:56:20.374264+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846237\n    nanosec: 41396000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: false\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.2647318100207485,
+            "finished_at_utc": "2026-10-24T12:56:22.638999+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:56:22.639114+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36326217651367,
+            "longitude": 149.16526794433594,
+            "altitude_amsl_m": 584.1900024414062
+          },
+          "finished_at_utc": "2026-10-24T12:56:26.772343+00:00",
+          "elapsed_wall_seconds": 4.1332252510183025,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:56:22.639127+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846237\n    nanosec: 875396000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36326217651367\n    longitude: 149.16526794433594\n    altitude: 584.1900024414062\n  orientation:\n    x: 1.0863034560770757e-07\n    y: 1.1495099272451625e-07\n    z: 0.6959423422813416\n    w: 0.7180976271629333\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 4.13313814799767,
+            "finished_at_utc": "2026-10-24T12:56:26.772268+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:56:28.772481+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": false,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846238\n    nanosec: 556195000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: false\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:56:32.496941+00:00",
+          "elapsed_wall_seconds": 3.7244354889844544,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:56:28.772524+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846238\n    nanosec: 556195000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: false\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.724325071001658,
+            "finished_at_utc": "2026-10-24T12:56:32.496851+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:56:32.496974+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36326217651367,
+            "longitude": 149.16526794433594,
+            "altitude_amsl_m": 584.1900024414062
+          },
+          "finished_at_utc": "2026-10-24T12:56:35.251356+00:00",
+          "elapsed_wall_seconds": 2.7543742900015786,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:56:32.496995+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846239\n    nanosec: 353927000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36326217651367\n    longitude: 149.16526794433594\n    altitude: 584.1900024414062\n  orientation:\n    x: -2.8928143214201896e-10\n    y: 3.006439541763939e-10\n    z: 0.6959423422813416\n    w: 0.7180976271629333\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.754290367010981,
+            "finished_at_utc": "2026-10-24T12:56:35.251287+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:56:37.251528+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846239\n    nanosec: 770787000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:56:39.458657+00:00",
+          "elapsed_wall_seconds": 2.2070898940146435,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:56:37.251588+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846239\n    nanosec: 770787000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.2069801750185434,
+            "finished_at_utc": "2026-10-24T12:56:39.458571+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:56:39.458684+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36326217651367,
+            "longitude": 149.16526794433594,
+            "altitude_amsl_m": 584.3800048828125
+          },
+          "finished_at_utc": "2026-10-24T12:56:41.890391+00:00",
+          "elapsed_wall_seconds": 2.431705630995566,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:56:39.458702+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846240\n    nanosec: 384581000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36326217651367\n    longitude: 149.16526794433594\n    altitude: 584.3800048828125\n  orientation:\n    x: 0.0004095605982001871\n    y: 0.0002669689420145005\n    z: 0.6959637999534607\n    w: 0.7180766463279724\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.4315772210247815,
+            "finished_at_utc": "2026-10-24T12:56:41.890283+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:56:43.890566+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846240\n    nanosec: 781447000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:56:46.225614+00:00",
+          "elapsed_wall_seconds": 2.3350199409760535,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:56:43.890614+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846240\n    nanosec: 781447000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.334907115000533,
+            "finished_at_utc": "2026-10-24T12:56:46.225523+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:56:46.225644+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36326217651367,
+            "longitude": 149.16526794433594,
+            "altitude_amsl_m": 586.1599731445312
+          },
+          "finished_at_utc": "2026-10-24T12:56:50.530108+00:00",
+          "elapsed_wall_seconds": 4.216254833008861,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:56:46.225666+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846241\n    nanosec: 759119000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36326217651367\n    longitude: 149.16526794433594\n    altitude: 586.1599731445312\n  orientation:\n    x: -0.0005673989653587341\n    y: -0.0003521463950164616\n    z: 0.6959882378578186\n    w: 0.7180528044700623\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 4.216139168012887,
+            "finished_at_utc": "2026-10-24T12:56:50.530012+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:56:52.530294+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846242\n    nanosec: 298937000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:56:56.267998+00:00",
+          "elapsed_wall_seconds": 3.737675622018287,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:56:52.530340+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846242\n    nanosec: 298937000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.737584080983652,
+            "finished_at_utc": "2026-10-24T12:56:56.267926+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "TAKEOFF_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:56:56.268020+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36326217651367,
+            "longitude": 149.16526794433594,
+            "altitude_amsl_m": 588.6400146484375
+          },
+          "finished_at_utc": "2026-10-24T12:56:58.742298+00:00",
+          "elapsed_wall_seconds": 2.474280649999855,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:56:56.268032+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846243\n    nanosec: 102667000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36326217651367\n    longitude: 149.16526794433594\n    altitude: 588.6400146484375\n  orientation:\n    x: 0.0003802540886681527\n    y: 0.0004821392067242414\n    z: 0.6960228085517883\n    w: 0.7180193066596985\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.474056979001034,
+            "finished_at_utc": "2026-10-24T12:56:58.742094+00:00"
+          }
+        },
+        {
+          "operation": "navigate",
+          "stage": "NAVIGATE",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/cmd_gps_pose",
+          "started_at_utc": "2026-10-24T12:56:58.742357+00:00",
+          "timeout_seconds": 20,
+          "inner_timeout_seconds": null,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [
+              -35.363190311619675,
+              149.1653120062469,
+              5.0
+            ],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "ACKNOWLEDGED",
+          "finished_at_utc": "2026-10-24T12:57:01.234098+00:00",
+          "elapsed_wall_seconds": 2.4917104479973204,
+          "transport": {
+            "command": "ros2 topic pub --once --qos-reliability best_effort /ap/v2/cmd_gps_pose ardupilot_msgs/msg/GlobalPosition '{\n  header: {\n    frame_id: map\n  },\n  coordinate_frame: 6,\n  type_mask: 3576,\n  latitude: -35.363190311619675,\n  longitude: 149.1653120062469,\n  altitude: 5.0\n}'",
+            "started_at_utc": "2026-10-24T12:56:58.743446+00:00",
+            "timeout_seconds": 20,
+            "return_code": 0,
+            "output": "publisher: beginning loop\npublishing #1: ardupilot_msgs.msg.GlobalPosition(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=0, nanosec=0), frame_id='map'), coordinate_frame=6, type_mask=3576, latitude=-35.363190311619675, longitude=149.1653120062469, altitude=5.0, velocity=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), acceleration_or_force=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), yaw=0.0)",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.490616939991014,
+            "finished_at_utc": "2026-10-24T12:57:01.234066+00:00"
+          }
+        }
+      ],
+      "recent": [
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:WP1",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:57:01.234150+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846243\n    nanosec: 816427000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:57:04.135410+00:00",
+          "elapsed_wall_seconds": 2.901257951016305,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:57:01.234167+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846243\n    nanosec: 816427000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.9010984750057105,
+            "finished_at_utc": "2026-10-24T12:57:04.135269+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:WP1",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:57:04.135442+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36326217651367,
+            "longitude": 149.16526794433594,
+            "altitude_amsl_m": 589.2699584960938
+          },
+          "finished_at_utc": "2026-10-24T12:57:06.460577+00:00",
+          "elapsed_wall_seconds": 2.3251283729914576,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:57:04.135462+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846244\n    nanosec: 236286000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36326217651367\n    longitude: 149.16526794433594\n    altitude: 589.2699584960938\n  orientation:\n    x: -0.05657890439033508\n    y: 0.15931250154972076\n    z: 0.6385914087295532\n    w: 0.7507458925247192\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.3250206419907045,
+            "finished_at_utc": "2026-10-24T12:57:06.460486+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:WP1",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:57:08.460743+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846244\n    nanosec: 828087000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:57:11.915855+00:00",
+          "elapsed_wall_seconds": 3.4550805000180844,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:57:08.460791+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846244\n    nanosec: 828087000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.454979286005255,
+            "finished_at_utc": "2026-10-24T12:57:11.915772+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:WP1",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:57:11.915879+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36323165893555,
+            "longitude": 149.165283203125,
+            "altitude_amsl_m": 589.1199951171875
+          },
+          "finished_at_utc": "2026-10-24T12:57:14.434424+00:00",
+          "elapsed_wall_seconds": 2.518543537997175,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:57:11.915896+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846245\n    nanosec: 473870000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36323165893555\n    longitude: 149.165283203125\n    altitude: 589.1199951171875\n  orientation:\n    x: -0.039383478462696075\n    y: 0.06854746490716934\n    z: 0.48776331543922424\n    w: 0.8693889379501343\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.5184237429930363,
+            "finished_at_utc": "2026-10-24T12:57:14.434323+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:WP1",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:57:16.434653+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846245\n    nanosec: 840747000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:57:18.660330+00:00",
+          "elapsed_wall_seconds": 2.2256432959984522,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:57:16.434706+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846245\n    nanosec: 840747000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.225523847009754,
+            "finished_at_utc": "2026-10-24T12:57:18.660232+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:WP1",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:57:18.660361+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36319351196289,
+            "longitude": 149.16531372070312,
+            "altitude_amsl_m": 589.219970703125
+          },
+          "finished_at_utc": "2026-10-24T12:57:23.941695+00:00",
+          "elapsed_wall_seconds": 5.183821106998948,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:57:18.660379+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846246\n    nanosec: 885396000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36319351196289\n    longitude: 149.16531372070312\n    altitude: 589.219970703125\n  orientation:\n    x: 0.0775410607457161\n    y: -0.13580192625522614\n    z: 0.48415905237197876\n    w: 0.860892117023468\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 5.1837343809893355,
+            "finished_at_utc": "2026-10-24T12:57:23.941622+00:00"
+          }
+        },
+        {
+          "operation": "navigate",
+          "stage": "NAVIGATE",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/cmd_gps_pose",
+          "started_at_utc": "2026-10-24T12:57:23.941757+00:00",
+          "timeout_seconds": 20,
+          "inner_timeout_seconds": null,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [
+              -35.36311844672567,
+              149.1653120062469,
+              5.0
+            ],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "ACKNOWLEDGED",
+          "finished_at_utc": "2026-10-24T12:57:26.681975+00:00",
+          "elapsed_wall_seconds": 2.740213881013915,
+          "transport": {
+            "command": "ros2 topic pub --once --qos-reliability best_effort /ap/v2/cmd_gps_pose ardupilot_msgs/msg/GlobalPosition '{\n  header: {\n    frame_id: map\n  },\n  coordinate_frame: 6,\n  type_mask: 3576,\n  latitude: -35.36311844672567,\n  longitude: 149.1653120062469,\n  altitude: 5.0\n}'",
+            "started_at_utc": "2026-10-24T12:57:23.942405+00:00",
+            "timeout_seconds": 20,
+            "return_code": 0,
+            "output": "publisher: beginning loop\npublishing #1: ardupilot_msgs.msg.GlobalPosition(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=0, nanosec=0), frame_id='map'), coordinate_frame=6, type_mask=3576, latitude=-35.36311844672567, longitude=149.1653120062469, altitude=5.0, velocity=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), acceleration_or_force=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), yaw=0.0)",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.739529855985893,
+            "finished_at_utc": "2026-10-24T12:57:26.681938+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:WP2",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:57:26.682034+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846247\n    nanosec: 357237000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:57:29.420954+00:00",
+          "elapsed_wall_seconds": 2.738917989016045,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:57:26.682053+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846247\n    nanosec: 357237000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.738794864009833,
+            "finished_at_utc": "2026-10-24T12:57:29.420851+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:WP2",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:57:29.420991+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.363189697265625,
+            "longitude": 149.16531372070312,
+            "altitude_amsl_m": 589.1900024414062
+          },
+          "finished_at_utc": "2026-10-24T12:57:32.527001+00:00",
+          "elapsed_wall_seconds": 3.1060008089989424,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:57:29.421013+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846248\n    nanosec: 20014000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.363189697265625\n    longitude: 149.16531372070312\n    altitude: 589.1900024414062\n  orientation:\n    x: -0.058257654309272766\n    y: 0.04359038174152374\n    z: 0.5503326058387756\n    w: 0.8317691683769226\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.1058977819920983,
+            "finished_at_utc": "2026-10-24T12:57:32.526915+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:WP2",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:57:34.527244+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846248\n    nanosec: 368897000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:57:38.425542+00:00",
+          "elapsed_wall_seconds": 3.898272954975255,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:57:34.527290+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846248\n    nanosec: 368897000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.898146519990405,
+            "finished_at_utc": "2026-10-24T12:57:38.425441+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:WP2",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:57:38.425579+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36317443847656,
+            "longitude": 149.16531372070312,
+            "altitude_amsl_m": 589.1599731445312
+          },
+          "finished_at_utc": "2026-10-24T12:57:41.261376+00:00",
+          "elapsed_wall_seconds": 2.8357921009883285,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:57:38.425600+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846249\n    nanosec: 256599000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36317443847656\n    longitude: 149.16531372070312\n    altitude: 589.1599731445312\n  orientation:\n    x: -0.10199598968029022\n    y: 0.09015654027462006\n    z: 0.6919363141059875\n    w: 0.7090082764625549\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.8356682320008986,
+            "finished_at_utc": "2026-10-24T12:57:41.261272+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:WP2",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:57:43.261602+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846249\n    nanosec: 886387000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:57:47.430343+00:00",
+          "elapsed_wall_seconds": 4.168716963991756,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:57:43.261649+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846249\n    nanosec: 886387000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 4.168545636988711,
+            "finished_at_utc": "2026-10-24T12:57:47.430197+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:WP2",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:57:47.430379+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.363128662109375,
+            "longitude": 149.16531372070312,
+            "altitude_amsl_m": 589.219970703125
+          },
+          "finished_at_utc": "2026-10-24T12:57:49.919148+00:00",
+          "elapsed_wall_seconds": 2.4887641560053453,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:57:47.430396+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846250\n    nanosec: 528171000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.363128662109375\n    longitude: 149.16531372070312\n    altitude: 589.219970703125\n  orientation:\n    x: 0.13107936084270477\n    y: -0.1397785097360611\n    z: 0.6890840530395508\n    w: 0.6988872289657593\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.4886560989834834,
+            "finished_at_utc": "2026-10-24T12:57:49.919054+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:WP2",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:57:52.041301+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846250\n    nanosec: 897047000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:57:54.536727+00:00",
+          "elapsed_wall_seconds": 2.495390744006727,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:57:52.041356+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846250\n    nanosec: 897047000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.495284561009612,
+            "finished_at_utc": "2026-10-24T12:57:54.536645+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:WP2",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:57:54.536751+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36311721801758,
+            "longitude": 149.16531372070312,
+            "altitude_amsl_m": 589.1900024414062
+          },
+          "finished_at_utc": "2026-10-24T12:57:57.612472+00:00",
+          "elapsed_wall_seconds": 3.0757214199984446,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:57:54.536764+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846251\n    nanosec: 558825000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36311721801758\n    longitude: 149.16531372070312\n    altitude: 589.1900024414062\n  orientation:\n    x: 0.0664176493883133\n    y: -0.06623537838459015\n    z: 0.6988612413406372\n    w: 0.7090799808502197\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.075609778985381,
+            "finished_at_utc": "2026-10-24T12:57:57.612377+00:00"
+          }
+        },
+        {
+          "operation": "return_home",
+          "stage": "RETURN_HOME",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/cmd_gps_pose",
+          "started_at_utc": "2026-10-24T12:57:57.612589+00:00",
+          "timeout_seconds": 20,
+          "inner_timeout_seconds": null,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [
+              -35.36326217651367,
+              149.16526794433594,
+              5.0
+            ],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "ACKNOWLEDGED",
+          "finished_at_utc": "2026-10-24T12:58:00.698407+00:00",
+          "elapsed_wall_seconds": 3.085805358015932,
+          "transport": {
+            "command": "ros2 topic pub --once --qos-reliability best_effort /ap/v2/cmd_gps_pose ardupilot_msgs/msg/GlobalPosition '{\n  header: {\n    frame_id: map\n  },\n  coordinate_frame: 6,\n  type_mask: 3576,\n  latitude: -35.36326217651367,\n  longitude: 149.16526794433594,\n  altitude: 5.0\n}'",
+            "started_at_utc": "2026-10-24T12:57:57.613463+00:00",
+            "timeout_seconds": 20,
+            "return_code": 0,
+            "output": "publisher: beginning loop\npublishing #1: ardupilot_msgs.msg.GlobalPosition(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=0, nanosec=0), frame_id='map'), coordinate_frame=6, type_mask=3576, latitude=-35.36326217651367, longitude=149.16526794433594, altitude=5.0, velocity=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), acceleration_or_force=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), yaw=0.0)",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.0849094099830836,
+            "finished_at_utc": "2026-10-24T12:58:00.698374+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:SIMULATION_HOME",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:58:00.698451+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846252\n    nanosec: 414537000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:58:05.799895+00:00",
+          "elapsed_wall_seconds": 5.101441147009609,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:58:00.698468+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846252\n    nanosec: 414537000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 5.1013275849982165,
+            "finished_at_utc": "2026-10-24T12:58:05.799798+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:SIMULATION_HOME",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:58:05.799928+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.363128662109375,
+            "longitude": 149.16531372070312,
+            "altitude_amsl_m": 589.1599731445312
+          },
+          "finished_at_utc": "2026-10-24T12:58:08.495350+00:00",
+          "elapsed_wall_seconds": 2.695410485001048,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:58:05.799952+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846253\n    nanosec: 139294000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.363128662109375\n    longitude: 149.16531372070312\n    altitude: 589.1599731445312\n  orientation:\n    x: 0.042587652802467346\n    y: -0.14330540597438812\n    z: 0.8496522903442383\n    w: 0.5057080984115601\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.6953274339903146,
+            "finished_at_utc": "2026-10-24T12:58:08.495281+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:SIMULATION_HOME",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:58:10.495561+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846253\n    nanosec: 426197000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:58:12.854712+00:00",
+          "elapsed_wall_seconds": 2.3591248629963957,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:58:10.495601+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846253\n    nanosec: 426197000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.359042172000045,
+            "finished_at_utc": "2026-10-24T12:58:12.854645+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:SIMULATION_HOME",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:58:12.854735+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.363155364990234,
+            "longitude": 149.16529846191406,
+            "altitude_amsl_m": 589.1499633789062
+          },
+          "finished_at_utc": "2026-10-24T12:58:15.433629+00:00",
+          "elapsed_wall_seconds": 2.5788923960062675,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:58:12.854747+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846254\n    nanosec: 101970000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.363155364990234\n    longitude: 149.16529846191406\n    altitude: 589.1499633789062\n  orientation:\n    x: -0.027020856738090515\n    y: -0.12893721461296082\n    z: 0.9908947348594666\n    w: 0.02779752016067505\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.5787862699944526,
+            "finished_at_utc": "2026-10-24T12:58:15.433537+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:SIMULATION_HOME",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:58:17.433903+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846254\n    nanosec: 437857000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:58:19.728077+00:00",
+          "elapsed_wall_seconds": 2.2941408719925676,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:58:17.433956+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846254\n    nanosec: 437857000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.294035597005859,
+            "finished_at_utc": "2026-10-24T12:58:19.727993+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:SIMULATION_HOME",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:58:19.728102+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36321258544922,
+            "longitude": 149.165283203125,
+            "altitude_amsl_m": 589.2099609375
+          },
+          "finished_at_utc": "2026-10-24T12:58:23.640486+00:00",
+          "elapsed_wall_seconds": 3.803298613987863,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:58:19.728115+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846255\n    nanosec: 270577000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36321258544922\n    longitude: 149.165283203125\n    altitude: 589.2099609375\n  orientation:\n    x: -0.09093498438596725\n    y: -0.07860418409109116\n    z: -0.8215746879577637\n    w: 0.5572855472564697\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.8031736070115585,
+            "finished_at_utc": "2026-10-24T12:58:23.640379+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "WAYPOINT_WAIT:SIMULATION_HOME",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:58:25.640717+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 4,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "A message was lost!!!\n\ttotal count change:1\n\ttotal count: 1---\nheader:\n  stamp:\n    sec: 1792846255\n    nanosec: 955347000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:58:28.712325+00:00",
+          "elapsed_wall_seconds": 3.0715526010026224,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:58:25.640799+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "A message was lost!!!\n\ttotal count change:1\n\ttotal count: 1---\nheader:\n  stamp:\n    sec: 1792846255\n    nanosec: 955347000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 4\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.0714120769989677,
+            "finished_at_utc": "2026-10-24T12:58:28.712214+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "WAYPOINT_WAIT:SIMULATION_HOME",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:58:28.712365+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36325454711914,
+            "longitude": 149.16526794433594,
+            "altitude_amsl_m": 589.219970703125
+          },
+          "finished_at_utc": "2026-10-24T12:58:31.661838+00:00",
+          "elapsed_wall_seconds": 2.9494696029869374,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:58:28.712386+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846256\n    nanosec: 473173000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36325454711914\n    longitude: 149.16526794433594\n    altitude: 589.219970703125\n  orientation:\n    x: -0.09533800929784775\n    y: -0.07419536262750626\n    z: -0.7681411504745483\n    w: 0.6287804841995239\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.949337931990158,
+            "finished_at_utc": "2026-10-24T12:58:31.661728+00:00"
+          }
+        },
+        {
+          "operation": "land",
+          "stage": "LAND",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "service",
+          "endpoint": "/ap/v2/mode_switch",
+          "started_at_utc": "2026-10-24T12:58:31.661938+00:00",
+          "timeout_seconds": 30,
+          "inner_timeout_seconds": null,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "ACKNOWLEDGED",
+          "finished_at_utc": "2026-10-24T12:58:34.489305+00:00",
+          "elapsed_wall_seconds": 2.827354366017971,
+          "transport": {
+            "command": "ros2 service call /ap/v2/mode_switch ardupilot_msgs/srv/ModeSwitch '{mode: 9}'",
+            "started_at_utc": "2026-10-24T12:58:31.663986+00:00",
+            "timeout_seconds": 30,
+            "return_code": 0,
+            "output": "waiting for service to become available...\nrequester: making request: ardupilot_msgs.srv.ModeSwitch_Request(mode=9)\n\nresponse:\nardupilot_msgs.srv.ModeSwitch_Response(status=True, curr_mode=9)",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.8252874549943954,
+            "finished_at_utc": "2026-10-24T12:58:34.489275+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:58:34.489334+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846257\n    nanosec: 67973000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:58:36.827292+00:00",
+          "elapsed_wall_seconds": 2.3379566140065435,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:58:34.489348+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846257\n    nanosec: 67973000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.337847326998599,
+            "finished_at_utc": "2026-10-24T12:58:36.827198+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:58:38.827484+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846258\n    nanosec: 79633000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:58:41.243056+00:00",
+          "elapsed_wall_seconds": 2.4155429670063313,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:58:38.827531+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846258\n    nanosec: 79633000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.4154496830014978,
+            "finished_at_utc": "2026-10-24T12:58:41.242983+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:58:43.243259+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846259\n    nanosec: 91293000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:58:47.935907+00:00",
+          "elapsed_wall_seconds": 4.692623382987222,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:58:43.243306+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846259\n    nanosec: 91293000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 4.692472542985342,
+            "finished_at_utc": "2026-10-24T12:58:47.935782+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:58:49.936129+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846260\n    nanosec: 102953000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:58:54.049335+00:00",
+          "elapsed_wall_seconds": 4.002895171986893,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:58:49.936228+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846260\n    nanosec: 102953000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 4.002765014010947,
+            "finished_at_utc": "2026-10-24T12:58:54.049230+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:58:56.049558+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846261\n    nanosec: 114613000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:58:59.775184+00:00",
+          "elapsed_wall_seconds": 3.725586695014499,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:58:56.049616+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846261\n    nanosec: 114613000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.7254880239779595,
+            "finished_at_utc": "2026-10-24T12:58:59.775106+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:59:01.775391+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846262\n    nanosec: 632103000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:59:05.744771+00:00",
+          "elapsed_wall_seconds": 3.969345635996433,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:59:01.775447+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846262\n    nanosec: 632103000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.9692231139924843,
+            "finished_at_utc": "2026-10-24T12:59:05.744673+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:59:07.744992+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846263\n    nanosec: 137933000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:59:10.111966+00:00",
+          "elapsed_wall_seconds": 2.366940419015009,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:59:07.745061+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846263\n    nanosec: 137933000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.3667916530102957,
+            "finished_at_utc": "2026-10-24T12:59:10.111856+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:59:12.112251+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846264\n    nanosec: 148593000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:59:14.795539+00:00",
+          "elapsed_wall_seconds": 2.683251344016753,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:59:12.112305+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846264\n    nanosec: 148593000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.6831588450004347,
+            "finished_at_utc": "2026-10-24T12:59:14.795466+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:59:16.795678+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846265\n    nanosec: 160253000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:59:20.773873+00:00",
+          "elapsed_wall_seconds": 3.978178329009097,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:59:16.795711+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846265\n    nanosec: 160253000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.9780770159850363,
+            "finished_at_utc": "2026-10-24T12:59:20.773790+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:59:22.878377+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846266\n    nanosec: 171913000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:59:25.605207+00:00",
+          "elapsed_wall_seconds": 2.7267984460049774,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:59:22.878428+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846266\n    nanosec: 171913000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.7266930830082856,
+            "finished_at_utc": "2026-10-24T12:59:25.605123+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:59:27.605378+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846266\n    nanosec: 678743000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:59:30.352309+00:00",
+          "elapsed_wall_seconds": 2.746907747001387,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:59:27.605418+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846266\n    nanosec: 678743000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 2.746817656996427,
+            "finished_at_utc": "2026-10-24T12:59:30.352238+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:59:32.352443+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846267\n    nanosec: 689403000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:59:36.155723+00:00",
+          "elapsed_wall_seconds": 3.8032590319926385,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:59:32.352479+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846267\n    nanosec: 689403000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.803163595002843,
+            "finished_at_utc": "2026-10-24T12:59:36.155645+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:59:38.155920+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": true,
+            "mode": 9,
+            "flying": true,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846268\n    nanosec: 701063000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:59:41.918349+00:00",
+          "elapsed_wall_seconds": 3.7624025550030638,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:59:38.155966+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846268\n    nanosec: 701063000\n  frame_id: ''\nvehicle_type: 2\narmed: true\nmode: 9\nflying: true\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.7622800279932562,
+            "finished_at_utc": "2026-10-24T12:59:41.918248+00:00"
+          }
+        },
+        {
+          "operation": "read_status",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/status",
+          "started_at_utc": "2026-10-24T12:59:43.918536+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "armed": false,
+            "mode": 9,
+            "flying": false,
+            "external_control": true,
+            "failsafe_active": false,
+            "raw_output": "header:\n  stamp:\n    sec: 1792846269\n    nanosec: 408825000\n  frame_id: ''\nvehicle_type: 2\narmed: false\nmode: 9\nflying: false\nexternal_control: true\nfailsafe: []\n---"
+          },
+          "finished_at_utc": "2026-10-24T12:59:47.384529+00:00",
+          "elapsed_wall_seconds": 3.465969873010181,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/status --once",
+            "started_at_utc": "2026-10-24T12:59:43.918580+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846269\n    nanosec: 408825000\n  frame_id: ''\nvehicle_type: 2\narmed: false\nmode: 9\nflying: false\nexternal_control: true\nfailsafe: []\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.46584976799204,
+            "finished_at_utc": "2026-10-24T12:59:47.384433+00:00"
+          }
+        },
+        {
+          "operation": "read_position",
+          "stage": "LANDING_WAIT",
+          "vehicle": "v2",
+          "vehicle_id": "drone_02",
+          "endpoint_kind": "topic",
+          "endpoint": "/ap/v2/geopose/filtered",
+          "started_at_utc": "2026-10-24T12:59:47.384561+00:00",
+          "timeout_seconds": 15,
+          "inner_timeout_seconds": 10,
+          "attempted": true,
+          "confirmed": true,
+          "return_code": 0,
+          "parameters": {
+            "args": [],
+            "kwargs": {
+              "vehicle": "v2"
+            }
+          },
+          "effects": "READ_ONLY",
+          "observation": {
+            "latitude": -35.36326599121094,
+            "longitude": 149.16526794433594,
+            "altitude_amsl_m": 584.1900024414062
+          },
+          "finished_at_utc": "2026-10-24T12:59:50.905568+00:00",
+          "elapsed_wall_seconds": 3.520997265994083,
+          "transport": {
+            "command": "timeout 10 ros2 topic echo /ap/v2/geopose/filtered --once",
+            "started_at_utc": "2026-10-24T12:59:47.384583+00:00",
+            "timeout_seconds": 15,
+            "return_code": 0,
+            "output": "header:\n  stamp:\n    sec: 1792846270\n    nanosec: 192562000\n  frame_id: base_link\npose:\n  position:\n    latitude: -35.36326599121094\n    longitude: 149.16526794433594\n    altitude: 584.1900024414062\n  orientation:\n    x: 4.896503758011761e-10\n    y: 4.008909870734101e-10\n    z: -0.7876183986663818\n    w: 0.6161632537841797\n---",
+            "clock": "HOST_UTC_AND_MONOTONIC",
+            "output_truncated": false,
+            "elapsed_wall_seconds": 3.520904168020934,
+            "finished_at_utc": "2026-10-24T12:59:50.905490+00:00"
+          }
+        }
+      ]
+    },
+    "control_attempts": [
+      {
+        "operation": "guided",
+        "stage": "GUIDED",
+        "vehicle": "v2",
+        "vehicle_id": "drone_02",
+        "endpoint_kind": "service",
+        "endpoint": "/ap/v2/mode_switch",
+        "started_at_utc": "2026-10-24T12:56:11.086499+00:00",
+        "timeout_seconds": 30,
+        "inner_timeout_seconds": null,
+        "attempted": true,
+        "confirmed": true,
+        "return_code": 0,
+        "parameters": {
+          "args": [
+            4
+          ],
+          "kwargs": {
+            "vehicle": "v2"
+          }
+        },
+        "effects": "ACKNOWLEDGED",
+        "finished_at_utc": "2026-10-24T12:56:14.114045+00:00",
+        "elapsed_wall_seconds": 3.027541621995624,
+        "transport": {
+          "command": "ros2 service call /ap/v2/mode_switch ardupilot_msgs/srv/ModeSwitch '{mode: 4}'",
+          "started_at_utc": "2026-10-24T12:56:11.087208+00:00",
+          "timeout_seconds": 30,
+          "return_code": 0,
+          "output": "waiting for service to become available...\nrequester: making request: ardupilot_msgs.srv.ModeSwitch_Request(mode=4)\n\nresponse:\nardupilot_msgs.srv.ModeSwitch_Response(status=True, curr_mode=4)",
+          "clock": "HOST_UTC_AND_MONOTONIC",
+          "output_truncated": false,
+          "elapsed_wall_seconds": 3.0267969090200495,
+          "finished_at_utc": "2026-10-24T12:56:14.114007+00:00"
+        }
+      },
+      {
+        "operation": "arm",
+        "stage": "ARM",
+        "vehicle": "v2",
+        "vehicle_id": "drone_02",
+        "endpoint_kind": "service",
+        "endpoint": "/ap/v2/arm_motors",
+        "started_at_utc": "2026-10-24T12:56:14.114079+00:00",
+        "timeout_seconds": 30,
+        "inner_timeout_seconds": null,
+        "attempted": true,
+        "confirmed": true,
+        "return_code": 0,
+        "parameters": {
+          "args": [],
+          "kwargs": {
+            "vehicle": "v2"
+          }
+        },
+        "effects": "ACKNOWLEDGED",
+        "finished_at_utc": "2026-10-24T12:56:17.245502+00:00",
+        "elapsed_wall_seconds": 3.1314117570000235,
+        "transport": {
+          "command": "ros2 service call /ap/v2/arm_motors ardupilot_msgs/srv/ArmMotors '{arm: true}'",
+          "started_at_utc": "2026-10-24T12:56:14.115049+00:00",
+          "timeout_seconds": 30,
+          "return_code": 0,
+          "output": "waiting for service to become available...\nrequester: making request: ardupilot_msgs.srv.ArmMotors_Request(arm=True)\n\nresponse:\nardupilot_msgs.srv.ArmMotors_Response(result=True)",
+          "clock": "HOST_UTC_AND_MONOTONIC",
+          "output_truncated": false,
+          "elapsed_wall_seconds": 3.130454712023493,
+          "finished_at_utc": "2026-10-24T12:56:17.245478+00:00"
+        }
+      },
+      {
+        "operation": "takeoff",
+        "stage": "TAKEOFF",
+        "vehicle": "v2",
+        "vehicle_id": "drone_02",
+        "endpoint_kind": "service",
+        "endpoint": "/ap/v2/experimental/takeoff",
+        "started_at_utc": "2026-10-24T12:56:17.245529+00:00",
+        "timeout_seconds": 30,
+        "inner_timeout_seconds": null,
+        "attempted": true,
+        "confirmed": true,
+        "return_code": 0,
+        "parameters": {
+          "args": [
+            5.0
+          ],
+          "kwargs": {
+            "vehicle": "v2"
+          }
+        },
+        "effects": "ACKNOWLEDGED",
+        "finished_at_utc": "2026-10-24T12:56:20.374176+00:00",
+        "elapsed_wall_seconds": 3.033742372994311,
+        "transport": {
+          "command": "ros2 service call /ap/v2/experimental/takeoff ardupilot_msgs/srv/Takeoff '{alt: 5.0}'",
+          "started_at_utc": "2026-10-24T12:56:17.246421+00:00",
+          "timeout_seconds": 30,
+          "return_code": 0,
+          "output": "waiting for service to become available...\nrequester: making request: ardupilot_msgs.srv.Takeoff_Request(alt=5.0)\n\nresponse:\nardupilot_msgs.srv.Takeoff_Response(status=True)",
+          "clock": "HOST_UTC_AND_MONOTONIC",
+          "output_truncated": false,
+          "elapsed_wall_seconds": 3.0328128160035703,
+          "finished_at_utc": "2026-10-24T12:56:20.374139+00:00"
+        }
+      },
+      {
+        "operation": "navigate",
+        "stage": "NAVIGATE",
+        "vehicle": "v2",
+        "vehicle_id": "drone_02",
+        "endpoint_kind": "topic",
+        "endpoint": "/ap/v2/cmd_gps_pose",
+        "started_at_utc": "2026-10-24T12:56:58.742357+00:00",
+        "timeout_seconds": 20,
+        "inner_timeout_seconds": null,
+        "attempted": true,
+        "confirmed": true,
+        "return_code": 0,
+        "parameters": {
+          "args": [
+            -35.363190311619675,
+            149.1653120062469,
+            5.0
+          ],
+          "kwargs": {
+            "vehicle": "v2"
+          }
+        },
+        "effects": "ACKNOWLEDGED",
+        "finished_at_utc": "2026-10-24T12:57:01.234098+00:00",
+        "elapsed_wall_seconds": 2.4917104479973204,
+        "transport": {
+          "command": "ros2 topic pub --once --qos-reliability best_effort /ap/v2/cmd_gps_pose ardupilot_msgs/msg/GlobalPosition '{\n  header: {\n    frame_id: map\n  },\n  coordinate_frame: 6,\n  type_mask: 3576,\n  latitude: -35.363190311619675,\n  longitude: 149.1653120062469,\n  altitude: 5.0\n}'",
+          "started_at_utc": "2026-10-24T12:56:58.743446+00:00",
+          "timeout_seconds": 20,
+          "return_code": 0,
+          "output": "publisher: beginning loop\npublishing #1: ardupilot_msgs.msg.GlobalPosition(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=0, nanosec=0), frame_id='map'), coordinate_frame=6, type_mask=3576, latitude=-35.363190311619675, longitude=149.1653120062469, altitude=5.0, velocity=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), acceleration_or_force=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), yaw=0.0)",
+          "clock": "HOST_UTC_AND_MONOTONIC",
+          "output_truncated": false,
+          "elapsed_wall_seconds": 2.490616939991014,
+          "finished_at_utc": "2026-10-24T12:57:01.234066+00:00"
+        }
+      },
+      {
+        "operation": "navigate",
+        "stage": "NAVIGATE",
+        "vehicle": "v2",
+        "vehicle_id": "drone_02",
+        "endpoint_kind": "topic",
+        "endpoint": "/ap/v2/cmd_gps_pose",
+        "started_at_utc": "2026-10-24T12:57:23.941757+00:00",
+        "timeout_seconds": 20,
+        "inner_timeout_seconds": null,
+        "attempted": true,
+        "confirmed": true,
+        "return_code": 0,
+        "parameters": {
+          "args": [
+            -35.36311844672567,
+            149.1653120062469,
+            5.0
+          ],
+          "kwargs": {
+            "vehicle": "v2"
+          }
+        },
+        "effects": "ACKNOWLEDGED",
+        "finished_at_utc": "2026-10-24T12:57:26.681975+00:00",
+        "elapsed_wall_seconds": 2.740213881013915,
+        "transport": {
+          "command": "ros2 topic pub --once --qos-reliability best_effort /ap/v2/cmd_gps_pose ardupilot_msgs/msg/GlobalPosition '{\n  header: {\n    frame_id: map\n  },\n  coordinate_frame: 6,\n  type_mask: 3576,\n  latitude: -35.36311844672567,\n  longitude: 149.1653120062469,\n  altitude: 5.0\n}'",
+          "started_at_utc": "2026-10-24T12:57:23.942405+00:00",
+          "timeout_seconds": 20,
+          "return_code": 0,
+          "output": "publisher: beginning loop\npublishing #1: ardupilot_msgs.msg.GlobalPosition(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=0, nanosec=0), frame_id='map'), coordinate_frame=6, type_mask=3576, latitude=-35.36311844672567, longitude=149.1653120062469, altitude=5.0, velocity=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), acceleration_or_force=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), yaw=0.0)",
+          "clock": "HOST_UTC_AND_MONOTONIC",
+          "output_truncated": false,
+          "elapsed_wall_seconds": 2.739529855985893,
+          "finished_at_utc": "2026-10-24T12:57:26.681938+00:00"
+        }
+      },
+      {
+        "operation": "return_home",
+        "stage": "RETURN_HOME",
+        "vehicle": "v2",
+        "vehicle_id": "drone_02",
+        "endpoint_kind": "topic",
+        "endpoint": "/ap/v2/cmd_gps_pose",
+        "started_at_utc": "2026-10-24T12:57:57.612589+00:00",
+        "timeout_seconds": 20,
+        "inner_timeout_seconds": null,
+        "attempted": true,
+        "confirmed": true,
+        "return_code": 0,
+        "parameters": {
+          "args": [
+            -35.36326217651367,
+            149.16526794433594,
+            5.0
+          ],
+          "kwargs": {
+            "vehicle": "v2"
+          }
+        },
+        "effects": "ACKNOWLEDGED",
+        "finished_at_utc": "2026-10-24T12:58:00.698407+00:00",
+        "elapsed_wall_seconds": 3.085805358015932,
+        "transport": {
+          "command": "ros2 topic pub --once --qos-reliability best_effort /ap/v2/cmd_gps_pose ardupilot_msgs/msg/GlobalPosition '{\n  header: {\n    frame_id: map\n  },\n  coordinate_frame: 6,\n  type_mask: 3576,\n  latitude: -35.36326217651367,\n  longitude: 149.16526794433594,\n  altitude: 5.0\n}'",
+          "started_at_utc": "2026-10-24T12:57:57.613463+00:00",
+          "timeout_seconds": 20,
+          "return_code": 0,
+          "output": "publisher: beginning loop\npublishing #1: ardupilot_msgs.msg.GlobalPosition(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=0, nanosec=0), frame_id='map'), coordinate_frame=6, type_mask=3576, latitude=-35.36326217651367, longitude=149.16526794433594, altitude=5.0, velocity=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), acceleration_or_force=geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=0.0)), yaw=0.0)",
+          "clock": "HOST_UTC_AND_MONOTONIC",
+          "output_truncated": false,
+          "elapsed_wall_seconds": 3.0849094099830836,
+          "finished_at_utc": "2026-10-24T12:58:00.698374+00:00"
+        }
+      },
+      {
+        "operation": "land",
+        "stage": "LAND",
+        "vehicle": "v2",
+        "vehicle_id": "drone_02",
+        "endpoint_kind": "service",
+        "endpoint": "/ap/v2/mode_switch",
+        "started_at_utc": "2026-10-24T12:58:31.661938+00:00",
+        "timeout_seconds": 30,
+        "inner_timeout_seconds": null,
+        "attempted": true,
+        "confirmed": true,
+        "return_code": 0,
+        "parameters": {
+          "args": [],
+          "kwargs": {
+            "vehicle": "v2"
+          }
+        },
+        "effects": "ACKNOWLEDGED",
+        "finished_at_utc": "2026-10-24T12:58:34.489305+00:00",
+        "elapsed_wall_seconds": 2.827354366017971,
+        "transport": {
+          "command": "ros2 service call /ap/v2/mode_switch ardupilot_msgs/srv/ModeSwitch '{mode: 9}'",
+          "started_at_utc": "2026-10-24T12:58:31.663986+00:00",
+          "timeout_seconds": 30,
+          "return_code": 0,
+          "output": "waiting for service to become available...\nrequester: making request: ardupilot_msgs.srv.ModeSwitch_Request(mode=9)\n\nresponse:\nardupilot_msgs.srv.ModeSwitch_Response(status=True, curr_mode=9)",
+          "clock": "HOST_UTC_AND_MONOTONIC",
+          "output_truncated": false,
+          "elapsed_wall_seconds": 2.8252874549943954,
+          "finished_at_utc": "2026-10-24T12:58:34.489275+00:00"
+        }
+      }
+    ],
+    "controls_not_attempted": [
+      "recovery_land"
+    ],
+    "partial_context": {
+      "mission_id": "agri_demo_001_h1_sector_b",
+      "stage": "LANDING_WAIT",
+      "simulation_origin": {
+        "latitude": -35.36326217651367,
+        "longitude": 149.1652374267578,
+        "altitude_amsl_m": 584.0
+      },
+      "launch_position": {
+        "latitude": -35.36326217651367,
+        "longitude": 149.16526794433594,
+        "altitude_amsl_m": 584.1900024414062
+      }
+    }
+  },
+  "execution_attempted": true,
+  "analysis": {
+    "passed": true,
+    "checks": {
+      "completed": true,
+      "identity": true,
+      "no_failure_or_recovery": true,
+      "count_and_return_flag": true,
+      "event_sequence": true,
+      "commands_confirmed": true,
+      "all_waypoints_reached": true,
+      "return_home_reached": true,
+      "takeoff_reached": true,
+      "landed_and_disarmed": true,
+      "position_evidence_consistent": true
+    },
+    "expected_waypoint_ids": [
+      "WP1",
+      "WP2"
+    ],
+    "observed_waypoint_ids": [
+      "WP1",
+      "WP2"
+    ],
+    "tolerances": {
+      "horizontal_m": 1.0,
+      "altitude_m": 0.75
+    },
+    "reasons": []
+  },
+  "started_at": "2026-10-24T12:51:18.376933+00:00",
+  "execution_started_at": "2026-10-24T12:55:50.243976+00:00",
+  "execution_finished_at": "2026-10-24T12:59:50.905810+00:00",
+  "transitions": [
+    {
+      "node": "snapshot",
+      "started_at": "2026-10-24T12:55:42.234628+00:00",
+      "finished_at": "2026-10-24T12:55:42.235617+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "validate",
+      "started_at": "2026-10-24T12:55:42.236586+00:00",
+      "finished_at": "2026-10-24T12:55:42.240397+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "check_readiness",
+      "started_at": "2026-10-24T12:55:42.241722+00:00",
+      "finished_at": "2026-10-24T12:55:50.240317+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "compatibility",
+      "started_at": "2026-10-24T12:55:50.241162+00:00",
+      "finished_at": "2026-10-24T12:55:50.242192+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "execute",
+      "started_at": "2026-10-24T12:55:50.242958+00:00",
+      "finished_at": "2026-10-24T12:59:50.905822+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "analyze",
+      "started_at": "2026-10-24T12:59:50.907150+00:00",
+      "finished_at": "2026-10-24T12:59:50.915501+00:00",
+      "status": "PASSED"
+    },
+    {
+      "node": "write_report",
+      "started_at": "2026-10-24T12:59:50.916176+00:00",
+      "finished_at": "2026-10-24T12:59:50.916176+00:00",
+      "status": "PASSED"
+    }
+  ],
+  "finished_at": "2026-10-24T12:59:50.916176+00:00",
+  "scope": "Gazebo/ArduPilot SITL, simulated v2 only; at most one project-wide flight",
+  "hardware_authorized": false,
+  "subsequent_execution_authorized": false,
+  "replan_proposals": []
+}

@@ -1,0 +1,90 @@
+{
+ "classification": "BLOCKED_BEFORE_SUBMISSION",
+ "codex_commit": "57a0e303a",
+ "codex_snapshot": "reviewed 2e206f1fa+551eb1fefebc",
+ "commands": [],
+ "coordinator_events": [
+  {
+   "reasons": [
+    "frames: UNKNOWN_FRAME: ['odom', 'synthetic_orchard_local']",
+    "codex_v2: LOCALIZATION_MISSING_OR_UNVALIDATED",
+    "executor_request: NO_GOAL_IN_ROVER_FRAME",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "envelope": null,
+ "mode": "OFFLINE_TEST",
+ "movement_executed": false,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [],
+   "stage": "request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "authorization",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "codex_bridge",
+   "status": "PASS"
+  },
+  {
+   "conversion": null,
+   "goal_base_link": null,
+   "goal_rover": null,
+   "reasons": [
+    "UNKNOWN_FRAME: ['odom', 'synthetic_orchard_local']"
+   ],
+   "stage": "frames",
+   "status": "REFUSED"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [
+    "LOCALIZATION_MISSING_OR_UNVALIDATED"
+   ],
+   "schema_errors": [],
+   "stage": "codex_v2",
+   "status": "REJECTED"
+  },
+  {
+   "reasons": [
+    "NO_GOAL_IN_ROVER_FRAME"
+   ],
+   "stage": "executor_request",
+   "status": "NOT_REACHED"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

@@ -1,0 +1,105 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 11.57kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#2 DONE 1.8s
+
+#3 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#3 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e 0.0s done
+#3 CACHED
+
+#4 [context hermes_src] load .dockerignore
+#4 DONE 0.0s
+
+#5 [internal] load metadata for docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#5 ...
+
+#4 [context hermes_src] load .dockerignore
+#4 transferring hermes_src: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load metadata for docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#5 DONE 0.9s
+
+#6 [hermes 1/6] ADD --checksum=sha256:600cf9a742aca00d292673b16b5acffaa7b8c269a364ad0c2e79498dcb1fe101     https://github.com/astral-sh/uv/releases/download/0.12.3/uv-x86_64-unknown-linux-gnu.tar.gz /tmp/uv.tar.gz
+#6 DONE 0.0s
+
+#7 [hermes 2/6] ADD --checksum=sha256:0ab3305457051cd3e7c031857e005f1bda17c218a1990567dacaaac6dd1d14f0     https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-x86_64-unknown-linux-gnu-install_only.tar.gz     /tmp/python.tar.gz
+#7 DONE 0.0s
+
+#8 [certs 1/2] FROM docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#8 resolve docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c 0.0s done
+#8 DONE 0.1s
+
+#9 [internal] load build context
+#9 transferring context: 2.23MB 0.1s
+#9 transferring context: 3.59MB 0.1s done
+#9 DONE 0.2s
+
+#10 [context hermes_src] load from client
+#10 transferring hermes_src: 229.58MB 2.0s done
+#10 DONE 2.0s
+
+#11 [stage-4 2/6] COPY --from=deps /opt/tfg-build/pip-install-report.json /opt/tfg-build/pip-freeze.txt /opt/tfg-provenance/
+#11 CACHED
+
+#12 [deps 1/2] COPY requirements.txt requirements-observability.txt constraints-verified.txt /opt/tfg-build/
+#12 CACHED
+
+#13 [hermes 5/6] RUN echo "5b668df1d429ab315e1ba857a9ffa00898b5cf066b6d9304b8698d5d300fa7c0  /tmp/hermes-agent.tar" | sha256sum -c -     && python3 /tmp/hermes_source.py verify /tmp/hermes-agent.tar     && mkdir -p /opt/hermes/agent && tar -xf /tmp/hermes-agent.tar -C /opt/hermes/agent --no-same-owner     && rm /tmp/hermes-agent.tar /tmp/hermes_source.py
+#13 CACHED
+
+#14 [hermes 2/6] ADD --checksum=sha256:0ab3305457051cd3e7c031857e005f1bda17c218a1990567dacaaac6dd1d14f0     https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-x86_64-unknown-linux-gnu-install_only.tar.gz     /tmp/python.tar.gz
+#14 CACHED
+
+#15 [certs 2/2] RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
+#15 CACHED
+
+#16 [hermes 6/6] RUN mkdir -p /opt/hermes/python /tmp/uv     && tar -xzf /tmp/uv.tar.gz -C /tmp/uv --strip-components=1     && tar -xzf /tmp/python.tar.gz -C /opt/hermes/python --strip-components=1     && cd /opt/hermes/agent     && UV_PYTHON=/opt/hermes/python/bin/python3 UV_PYTHON_DOWNLOADS=never UV_NO_CACHE=1 UV_LINK_MODE=copy        /tmp/uv/uv sync --frozen --no-dev --extra all     && /opt/hermes/agent/.venv/bin/python -c "import hermes_cli"     && (cd /opt/hermes/agent && find . -path ./.venv -prune -o -type f -print0 | sort -z | xargs -0 sha256sum)         > /opt/hermes/agent-files.sha256     && rm -rf /tmp/uv /tmp/uv.tar.gz /tmp/python.tar.gz
+#16 CACHED
+
+#17 [stage-4 1/6] COPY --from=deps /opt/venv /opt/venv
+#17 CACHED
+
+#18 [hermes 1/6] ADD --checksum=sha256:600cf9a742aca00d292673b16b5acffaa7b8c269a364ad0c2e79498dcb1fe101     https://github.com/astral-sh/uv/releases/download/0.12.3/uv-x86_64-unknown-linux-gnu.tar.gz /tmp/uv.tar.gz
+#18 CACHED
+
+#19 [base 2/2] RUN --mount=type=bind,from=certs,source=/etc/ssl/certs/ca-certificates.crt,target=/run/tfg-ca.crt     sed -i -E "s#^URIs: .*#URIs: https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/#"         /etc/apt/sources.list.d/ubuntu.sources     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt -o APT::Update::Error-Mode=any update     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt install -y --no-install-recommends         python3 python3-venv ca-certificates     && rm -rf /var/lib/apt/lists/*
+#19 CACHED
+
+#20 [deps 2/2] RUN python3 -m venv /opt/venv     && /opt/venv/bin/pip install --no-cache-dir --disable-pip-version-check         --report /opt/tfg-build/pip-install-report.json         -r /opt/tfg-build/requirements.txt -r /opt/tfg-build/requirements-observability.txt         -c /opt/tfg-build/constraints-verified.txt     && /opt/venv/bin/pip freeze --all > /opt/tfg-build/pip-freeze.txt
+#20 CACHED
+
+#21 [hermes 3/6] COPY --from=hermes_src hermes-agent-d923a5eb.tar /tmp/hermes-agent.tar
+#21 CACHED
+
+#22 [hermes 4/6] COPY deploy/planner/hermes_source.py /tmp/hermes_source.py
+#22 CACHED
+
+#23 [stage-4 3/6] COPY --from=hermes /opt/hermes /opt/hermes
+#23 CACHED
+
+#24 [stage-4 4/6] COPY . /opt/tfg/
+#24 DONE 0.4s
+
+#25 [stage-4 5/6] RUN cd /opt/tfg && find . -type f -print0 | sort -z | xargs -0 sha256sum > /opt/tfg-provenance/files.sha256     && ln -s /opt/venv /opt/tfg/.venv     && install -d -m 0755 /opt/tfg/missions/generated /work     && install -d -o 1000 -g 1000 -m 0700 /hermes /hermes/planning     && chmod -R a+rX,go-w /opt/tfg /opt/tfg-provenance /opt/hermes
+#25 DONE 85.7s
+
+#26 [stage-4 6/6] WORKDIR /opt/tfg
+#26 DONE 0.3s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 28.3s done
+#27 exporting manifest sha256:7d1b5fa656953cb6e2191cf8eeddd8f50e00f370f212bf110b5979d8e6b09e53 0.0s done
+#27 exporting config sha256:cd12f7df24072f19e81143669dc14309a4ac5e98ea75d310d8d3069c4ded5d3e 0.0s done
+#27 exporting attestation manifest sha256:6b0d317c5579301410fc769c121191c2e77c5aab47e5d572d90134621e40e99a 0.0s done
+#27 exporting manifest list sha256:e2c4513e4ca6982c5d7c88811d4df647d6d7c35055f284104f3aa0f0077e2112 0.0s done
+#27 naming to docker.io/tfg/planner:2026.10.28 done
+#27 unpacking to docker.io/tfg/planner:2026.10.28
+#27 unpacking to docker.io/tfg/planner:2026.10.28 4.9s done
+#27 DONE 33.3s
+rc=0

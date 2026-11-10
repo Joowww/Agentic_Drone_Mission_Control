@@ -63,3 +63,9 @@ def qgc_mission(
             deep=True
         )
     )
+
+@pytest.fixture(autouse=True)
+def isolated_vehicle_lock(tmp_path, monkeypatch):
+    # Never create or clear a real vehicle restriction from offline tests.
+    import tools.vehicle_execution_lock as vehicle_lock
+    monkeypatch.setattr(vehicle_lock, "LOCK_ROOT", tmp_path / "vehicle_locks")

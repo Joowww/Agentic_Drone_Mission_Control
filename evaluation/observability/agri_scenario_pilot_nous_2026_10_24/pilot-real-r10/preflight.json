@@ -1,0 +1,159 @@
+{
+  "utility_version": "1",
+  "mode": "preflight",
+  "hermes_home": "~/.hermes",
+  "ok": true,
+  "checks": [
+    {
+      "check": "hermes_binary",
+      "ok": true,
+      "detail": "~/.local/bin/hermes"
+    },
+    {
+      "check": "tool_selection_sources_verified",
+      "ok": true,
+      "detail": "sources match the version where --toolsets tfg-mission-control offers only the included tool"
+    },
+    {
+      "check": "config_present",
+      "ok": true,
+      "detail": "~/.hermes/config.yaml"
+    },
+    {
+      "check": "config_parses",
+      "ok": true,
+      "detail": "YAML mapping"
+    },
+    {
+      "check": "no_plugins_allow_list",
+      "ok": true,
+      "detail": "plugins.enabled absent (no other user plugin is active)"
+    },
+    {
+      "check": "plugin_not_disabled",
+      "ok": true,
+      "detail": "plugins.disabled"
+    },
+    {
+      "check": "no_mcp_named_like_selection",
+      "ok": true,
+      "detail": "configured MCP keys: 1; none may be 'catalog'"
+    },
+    {
+      "check": "no_shell_hooks",
+      "ok": true,
+      "detail": "top-level 'hooks' absent or empty"
+    },
+    {
+      "check": "config_edit_isolated",
+      "ok": true,
+      "detail": "only plugins.enabled, mcp_servers.tfg-mission-control.tools (include ['get_scenario_view']) and tools.tool_search.enabled \"off\" would be added"
+    },
+    {
+      "check": "trial_server_configured",
+      "ok": true,
+      "detail": "mcp_servers.tfg-mission-control: enabled stdio server running this repository's tools.hermes_mcp_server"
+    },
+    {
+      "check": "trial_server_not_lazy",
+      "ok": true,
+      "detail": "lazy servers register from the schema cache"
+    },
+    {
+      "check": "no_other_mcp_server_enabled",
+      "ok": true,
+      "detail": "0 other enabled MCP server(s); discovery would start them"
+    },
+    {
+      "check": "user_plugins_dir_empty",
+      "ok": true,
+      "detail": "~/.hermes/plugins: 0 entries"
+    },
+    {
+      "check": "plugin_source_present",
+      "ok": true,
+      "detail": "<repo>/observability/hermes_capture"
+    },
+    {
+      "check": "no_other_hermes_process",
+      "ok": true,
+      "detail": "0 visible Hermes process(es)"
+    },
+    {
+      "check": "no_project_mcp_server_process",
+      "ok": true,
+      "detail": "0 visible tools.hermes_mcp_server process(es)"
+    },
+    {
+      "check": "trial_case_current",
+      "ok": true,
+      "detail": "agri-scenario-pilot-real is a current case"
+    },
+    {
+      "check": "trial_server_sources_pinned",
+      "ok": true,
+      "detail": "4 pinned server source(s) unchanged"
+    },
+    {
+      "check": "trial_sequence_exists",
+      "ok": true,
+      "detail": "request_key agri-demo-001-h2-r01 names an admitted sequence"
+    }
+  ],
+  "facts": {
+    "config_sha256": "c99d1a88cb3cf578973d50e84b12d605b7b2ec28225ff55a034282d6fe08f4fb",
+    "edited_config_sha256": "8d5ed8347f5a5a2956759dd733165f2f6101af2f7985f6bf3545a1b327cef1fb",
+    "model": "poolside/laguna-s-2.1:free",
+    "provider": "nous",
+    "plugin_source_sha256": {
+      "plugin.yaml": "a7768459ed16ecea4728df170d72b0a1d1ed8df2fdda7608e0efbcb35945a09d",
+      "__init__.py": "7b7c046c740e0ea6ce5531534a6bae30934cc31b9e9ba5b95c6704a8e07ac0e3",
+      "capture.py": "36f368f62f2530c27060670f66737e5b20dfe172cdf77fd06424d8391b5094c9",
+      "event.schema.json": "e5b9f3d076eadcdb0bd40215a15a3d37978ab3da72bbd0f1d1613a3d354fa7a3",
+      "tool-offer.schema.json": "db03ee96f1534c320a6ba9adef0f5d1ad5b274c0fa7cec9617a6322ccc061089",
+      "tool-result-check.schema.json": "e36437cce2ad2fe6e6d613e0920163df205c8d71601d0e73a1f6a4f67e7f44e9"
+    },
+    "trial_server_sources_sha256": {
+      "tools/hermes_mcp_server.py": "1cf136c9da94a96367500d88182d6cf438cafaf6a5210d697756117b886e035e",
+      "tools/mission_state.py": "e66dd901f37572bf0f174928398da919ea1d55d4290330c993e1d5551028d2be",
+      "tools/virtual_preflight_jobs.py": "64ec1039eacd53d654ab1311e3b2003f7fb530dabfbfe205b646ad164485fd17",
+      "tools/mission_response_views.py": "b80593fab857562b3eb0819c2c74fa0b503fb5a526cc16f4f3791658146b0752",
+      "tools/mission_external_view.py": "394d0c1978b80ba475b15204646f8d7c2aeb39c83a8d52ebd92111c7f7627335"
+    },
+    "mcp_schema_cache_sha256": "45793edb9a7948359fb36cf0324c5d8e1824dd7e9310ab482feaf64015ce20de"
+  },
+  "verified_hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
+  "toolset_selection": "tfg-mission-control",
+  "mcp_tool_trial": {
+    "server": "tfg-mission-control",
+    "tool": "get_scenario_view",
+    "registry_name": "mcp__tfg_mission_control__get_scenario_view",
+    "tools": [
+      "get_scenario_view"
+    ],
+    "registry_names": [
+      "mcp__tfg_mission_control__get_scenario_view"
+    ],
+    "tools_filter": {
+      "include": [
+        "get_scenario_view"
+      ],
+      "resources": false,
+      "prompts": false
+    },
+    "tool_search_enabled": "off",
+    "toolsets_argument": "tfg-mission-control",
+    "trial_case": "agri-scenario-pilot-real",
+    "prompt": "Paso 1: llama a mcp__tfg_mission_control__get_scenario_view con scenario_id=\"agri_demo_001\" y request_key=\"agri-demo-001-h2-r01\". No respondas antes de tener su resultado.\nPaso 2: responde solo un objeto JSON. Toma cada valor únicamente del resultado de la herramienta; si un dato no figura, escribe null. Claves:\nscenario_status <- scenario.status (o status si scenario es null); scenario_complete <- scenario.scenario_complete; sequence_order <- scenario.order.vehicle_order (null si scenario.order.status no es ACCREDITED_BY_EXECUTION_TIMESTAMPS); order_basis: \"EXECUTION_TIMESTAMPS\" si scenario.order.status es ACCREDITED_BY_EXECUTION_TIMESTAMPS, si no \"NOT_ACCREDITED\"; runs: una entrada por scenario.runs con run_id, vehicle_id, simulated_vehicle, mission_id, status, result_status, reached_points (POI con valor REACHED en points), return_home, landing, executor_started_at y executor_finished_at (de timeline); r1_status, r1_dependency, r1_commands_sent, r1_movement_authorized <- scenario.ground_task (status, dependency, commands_sent, movement_authorized); claims: objeto con images_captured, detections_made, speed_commanded, speed_measured, simultaneous_flight, common_frame_validated y current_permissions_checked, cada uno true solo si el resultado lo registra (ver limitations y scope); evidence_source (texto breve); explanation (texto en español: qué hicieron los drones y en qué orden, qué lo acredita, qué POI se alcanzaron, qué respalda regreso y aterrizaje, por qué el escenario está o no completo, qué significa la dependencia de R1 y qué límites impiden afirmar más).\ntimeline.job_admitted_at es la admisión del trabajo, no el despegue.",
+    "prompt_sha256": "663b63a06958b0418535452c3bc62094b6a77dedd20e23671ce5f8f20d498784",
+    "queried_run_id": null,
+    "run_must_exist": true,
+    "expected_final_answer": null,
+    "expected_structured_answer": null,
+    "expected_arguments": {},
+    "result_expectation_sha256": null,
+    "result_expectation_pointers": [],
+    "tool_classification": "read-only: run_id lookup reads job/report files only; verified offline under an audit hook (no writes, mkdir, subprocess or socket)"
+  },
+  "note": "Offline preflight only: nothing was created and Hermes was not run."
+}

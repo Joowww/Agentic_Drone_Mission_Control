@@ -1,0 +1,99 @@
+{
+ "not_representable_in_plan": [
+  {
+   "field": "action",
+   "status": "NOT_REPRESENTABLE",
+   "value": "inspect",
+   "waypoint_id": "POI_1",
+   "waypoint_index": 0,
+   "why": "no MAVLink mission command expresses an inspection"
+  },
+  {
+   "field": "sensor",
+   "status": "NOT_REPRESENTABLE",
+   "value": "rgb",
+   "waypoint_id": "POI_1",
+   "waypoint_index": 0,
+   "why": "a sensor type is not a MAVLink mission field"
+  },
+  {
+   "field": "waypoint_id",
+   "status": "NOT_REPRESENTABLE",
+   "value": "POI_1",
+   "waypoint_id": "POI_1",
+   "waypoint_index": 0,
+   "why": "QGC items carry doJumpId only; the importer renames them"
+  },
+  {
+   "field": "action",
+   "status": "NOT_REPRESENTABLE",
+   "value": "take_photo",
+   "waypoint_id": "POI_3",
+   "waypoint_index": 1,
+   "why": "IMAGE_START_CAPTURE (2000) / DO_DIGICAM_CONTROL (203) exist but address a camera instance id, not a sensor type; no camera inventory is declared, they are outside the exporter profile and the importer skips them"
+  },
+  {
+   "field": "sensor",
+   "status": "NOT_REPRESENTABLE",
+   "value": "multispectral",
+   "waypoint_id": "POI_3",
+   "waypoint_index": 1,
+   "why": "a sensor type is not a MAVLink mission field"
+  },
+  {
+   "field": "waypoint_id",
+   "status": "NOT_REPRESENTABLE",
+   "value": "POI_3",
+   "waypoint_id": "POI_3",
+   "waypoint_index": 1,
+   "why": "QGC items carry doJumpId only; the importer renames them"
+  }
+ ],
+ "with_manifest": {
+  "loss": [],
+  "semantics": "MANIFEST_APPLIED",
+  "status": "OK"
+ },
+ "without_manifest": {
+  "loss": [
+   {
+    "arrived": "QGC_WP1",
+    "field": "waypoint_id",
+    "intended": "POI_1",
+    "waypoint_id": "POI_1"
+   },
+   {
+    "arrived": "navigate",
+    "field": "action",
+    "intended": "inspect",
+    "waypoint_id": "POI_1"
+   },
+   {
+    "arrived": null,
+    "field": "sensor",
+    "intended": "rgb",
+    "waypoint_id": "POI_1"
+   },
+   {
+    "arrived": "QGC_WP2",
+    "field": "waypoint_id",
+    "intended": "POI_3",
+    "waypoint_id": "POI_3"
+   },
+   {
+    "arrived": "navigate",
+    "field": "action",
+    "intended": "take_photo",
+    "waypoint_id": "POI_3"
+   },
+   {
+    "arrived": null,
+    "field": "sensor",
+    "intended": "multispectral",
+    "waypoint_id": "POI_3"
+   }
+  ],
+  "semantics": "NO_MANIFEST",
+  "status": "OK"
+ }
+}

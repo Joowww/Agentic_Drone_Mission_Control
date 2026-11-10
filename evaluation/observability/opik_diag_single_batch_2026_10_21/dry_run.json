@@ -1,0 +1,108 @@
+{
+  "mode": "dry-run",
+  "sent": false,
+  "verification": "UNVERIFIED_AGAINST_OPIK_SERVICE: fields follow the official OpenAPI spec for traces/batch and spans/batch (comet-ml/opik@6ff71e2, reviewed 2026-10-21); shape validated offline against opik==2.2.110 REST models and a mock transport (evaluation/observability/opik_sdk_offline_validation_2026_10_21); opik is not a dependency of this exporter",
+  "destination": {
+    "platform": "opik",
+    "project": "tfg-opik-synthetic-20261021",
+    "workspace": "joowww"
+  },
+  "events": 1,
+  "traces": 1,
+  "spans": 0,
+  "point_events": 1,
+  "synthetic_traces": 1,
+  "unknown_provenance_traces": 0,
+  "captured_traces": 0,
+  "withheld_traces": [],
+  "blocked_for_future_send_by_default": [
+    "plan contains synthetic traces; explicit synthetic authorization required"
+  ],
+  "provenance_check": null,
+  "errors": [],
+  "warnings": [],
+  "payload": {
+    "traces_batches": [
+      {
+        "traces": [
+          {
+            "id": "01a15fe1-153f-75cb-9eee-0bea00feb2b1",
+            "project_name": "tfg-opik-synthetic-20261021",
+            "name": "SYNTHETIC · [interval unknown] hermes_turn",
+            "start_time": "2026-10-21T19:12:28.991015Z",
+            "end_time": "2026-10-21T19:12:28.991015Z",
+            "metadata": {
+              "tfg_grouping": "single_event_without_turn_ref",
+              "tfg_observed_event": false,
+              "tfg_run_id": "SYNTHETIC-opik-diag-single-batch-20261021",
+              "tfg_case_id": "SYNTHETIC-lone-tool-call",
+              "tfg_session_ref": null,
+              "tfg_turn_ref": null,
+              "tfg_data_kind": "synthetic_fixture",
+              "tfg_provenance_basis": "synthetic_marker_in_ids",
+              "tfg_timed_spans": 0,
+              "tfg_point_events": [
+                {
+                  "name": "tfg.tool_call",
+                  "time": "2026-10-21T19:12:28.991015+00:00",
+                  "metadata": {
+                    "tfg_event_id": "63ddfe8a-9dcc-433e-9d3c-4b14f740ce32",
+                    "tfg_recorded_at_utc": "2026-10-21T19:12:28.991015+00:00",
+                    "tfg_run_id": "SYNTHETIC-opik-diag-single-batch-20261021",
+                    "tfg_case_id": "SYNTHETIC-lone-tool-call",
+                    "tfg_session_ref": null,
+                    "tfg_task_ref": null,
+                    "tfg_turn_ref": null,
+                    "tfg_api_request_ref": null,
+                    "tfg_absent_fields": [
+                      "error_type"
+                    ],
+                    "tfg_redacted_fields": [],
+                    "tfg_ambiguous_zero_fields": [],
+                    "tfg_tool_call_ref": null,
+                    "tfg_tool_name": "mcp_tfg_get_mission_state",
+                    "tfg_status": "ok",
+                    "tfg_error_type": null,
+                    "tfg_duration_ms_received": 1,
+                    "tfg_duration_ms_measured": 1,
+                    "tfg_duration_source": "hermes_reported_ms",
+                    "tfg_event_type": "tool_call",
+                    "tfg_schema": "tfg.hermes.capture/3",
+                    "tfg_exporter_version": "1",
+                    "tfg_data_kind": "synthetic_fixture",
+                    "tfg_provenance_basis": "synthetic_marker_in_ids",
+                    "tfg_time_basis": "capture_recorded_at_point_not_an_interval",
+                    "tfg_units": {
+                      "duration_ms_received": "ms",
+                      "duration_ms_measured": "ms"
+                    },
+                    "tfg_cost": "not_computed",
+                    "tfg_exporter": "tfg-opik-offline",
+                    "tfg_latency_measured": false
+                  }
+                }
+              ],
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_exporter_version": "1",
+              "tfg_cost": "not_computed",
+              "tfg_point_event_time_basis": "capture_recorded_at_not_compared_with_hermes_epochs",
+              "tfg_time_basis": "capture_recorded_at_marker",
+              "tfg_interval_derived": false,
+              "tfg_interval_status": "unknown_no_measured_interval",
+              "tfg_latency_measured": false
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "synthetic",
+              "interval-unknown",
+              "latency-not-measured"
+            ]
+          }
+        ]
+      }
+    ],
+    "spans_batches": []
+  },
+  "note": "Nothing was sent. Metadata-only; token counters are Hermes-normalised; no cost, usage, model/provider or ttft at top level."
+}

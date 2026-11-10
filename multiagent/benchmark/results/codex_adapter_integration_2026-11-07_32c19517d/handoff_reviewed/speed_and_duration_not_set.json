@@ -1,0 +1,338 @@
+{
+ "classification": "BLOCKED_BEFORE_SUBMISSION",
+ "codex_commit": "57a0e303a",
+ "codex_snapshot": "reviewed 2e206f1fa+551eb1fefebc",
+ "commands": [],
+ "conversion_owner": "CLAUDE_FRAMES2D",
+ "coordinator_events": [
+  {
+   "detail": [
+    "request: NO_NAVIGATION_PLAN: speed and timeout were not set by a human",
+    "authorization: NO_HUMAN_AUTHORIZATION_RECORD",
+    "codex_bridge: NAVIGATION_PLAN_PENDING",
+    "codex_v2: NAVIGATION_PLAN_PENDING",
+    "executor_request: NO_NAVIGATION_PLAN: speed and timeout not set by a human",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "reasons": [
+    "request: NO_NAVIGATION_PLAN",
+    "authorization: NO_HUMAN_AUTHORIZATION_RECORD",
+    "codex_bridge: NAVIGATION_PLAN_PENDING",
+    "codex_v2: NAVIGATION_PLAN_PENDING",
+    "executor_request: NO_NAVIGATION_PLAN",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "envelope": null,
+ "error_categories": [
+  "AUTHORIZATION",
+  "EXECUTOR_POLICY",
+  "PLAN"
+ ],
+ "errors": [
+  {
+   "category": "PLAN",
+   "code": "NO_NAVIGATION_PLAN",
+   "detail": "NO_NAVIGATION_PLAN: speed and timeout were not set by a human",
+   "stage": "request"
+  },
+  {
+   "category": "AUTHORIZATION",
+   "code": "NO_HUMAN_AUTHORIZATION_RECORD",
+   "detail": "NO_HUMAN_AUTHORIZATION_RECORD",
+   "stage": "authorization"
+  },
+  {
+   "category": "PLAN",
+   "code": "NAVIGATION_PLAN_PENDING",
+   "detail": "NAVIGATION_PLAN_PENDING",
+   "stage": "codex_bridge"
+  },
+  {
+   "category": "PLAN",
+   "code": "NAVIGATION_PLAN_PENDING",
+   "detail": "NAVIGATION_PLAN_PENDING",
+   "stage": "codex_v2"
+  },
+  {
+   "category": "PLAN",
+   "code": "NO_NAVIGATION_PLAN",
+   "detail": "NO_NAVIGATION_PLAN: speed and timeout not set by a human",
+   "stage": "executor_request"
+  },
+  {
+   "category": "EXECUTOR_POLICY",
+   "code": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "detail": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "stage": "executor_admit"
+  }
+ ],
+ "mode": "OFFLINE_TEST",
+ "movement_executed": false,
+ "provenance": null,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [
+    "NO_NAVIGATION_PLAN: speed and timeout were not set by a human"
+   ],
+   "stage": "request",
+   "status": "WAITING"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [
+    "NO_HUMAN_AUTHORIZATION_RECORD"
+   ],
+   "stage": "authorization",
+   "status": "BLOCKED"
+  },
+  {
+   "reasons": [
+    "NAVIGATION_PLAN_PENDING"
+   ],
+   "stage": "codex_bridge",
+   "status": "WAITING"
+  },
+  {
+   "conversion": {
+    "at": "2026-11-07T16:08:12.391306+00:00",
+    "chain": [
+     "inverse(synthetic_orchard_local<-odom)"
+    ],
+    "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "converted_by": "claude.multiagent.frames2d",
+    "from": {
+     "frame": "synthetic_orchard_local",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "to": {
+     "frame": "odom",
+     "sigma_m": 0.12199692619078564,
+     "x_m": 5.500000000000001,
+     "y_m": -7.0
+    },
+    "valid_until": "2026-11-07T17:08:12.391306+00:00"
+   },
+   "goal_base_link": {
+    "frame": "base_link",
+    "x_m": -2.0,
+    "y_m": -1.0106430996148606e-15
+   },
+   "goal_handoff": {
+    "applied_conversions": [
+     {
+      "at": "2026-11-07T16:08:12.391306+00:00",
+      "chain": [
+       "inverse(synthetic_orchard_local<-odom)"
+      ],
+      "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "converted_by": "claude.multiagent.frames2d",
+      "from": {
+       "frame": "synthetic_orchard_local",
+       "sigma_m": 0.12,
+       "x_m": 8.0,
+       "y_m": 4.0
+      },
+      "to": {
+       "frame": "odom",
+       "sigma_m": 0.12199692619078564,
+       "x_m": 5.500000000000001,
+       "y_m": -7.0
+      },
+      "valid_until": "2026-11-07T17:08:12.391306+00:00"
+     }
+    ],
+    "constraints": {
+     "authorized_area_site_frame": [
+      [
+       -10.0,
+       -10.0
+      ],
+      [
+       30.0,
+       -10.0
+      ],
+      [
+       30.0,
+       30.0
+      ],
+      [
+       -10.0,
+       30.0
+      ]
+     ],
+     "human": {
+      "max_speed_mps": null,
+      "timeout_s": null
+     },
+     "operator": {
+      "localization_max_age_s": 2.0,
+      "localization_max_uncertainty_m": 0.3,
+      "max_distance_m": 5.0,
+      "max_total_sigma_m": 0.5
+     }
+    },
+    "conversion_owner": "CLAUDE_FRAMES2D",
+    "delegated_checks": [],
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "frame_identity": {
+     "rover_frame_expected": "odom",
+     "site_frame": "synthetic_orchard_local"
+    },
+    "goal_rover": {
+     "frame": "odom",
+     "sigma_m": 0.12199692619078564,
+     "x_m": 5.500000000000001,
+     "y_m": -7.0
+    },
+    "goal_site": {
+     "frame": "synthetic_orchard_local",
+     "point_id": "POI_3",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "boot_id": "rover-boot-1",
+     "frame": "odom",
+     "observed_at": "2026-11-07T16:08:12.191306+00:00",
+     "sigma_m": 0.05,
+     "source": "TEST_FIXTURE_LOCALIZATION",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "state": "ACCREDITED",
+     "vehicle_id": "rover_01"
+    },
+    "observation": {
+     "data_kind": "TEST_FIXTURE observation from a SYNTHETIC_TEST image",
+     "observation_id": "red_target-obs-1",
+     "observed_at": "2026-11-07T16:08:10.391306+00:00",
+     "original_pose": {
+      "chain": [
+       "synthetic_orchard_local",
+       "drone_02/base_link",
+       "cam_down_fixture_optical"
+      ],
+      "frame": "synthetic_orchard_local",
+      "pose_source": "TEST_FIXTURE"
+     },
+     "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+     "source": "perception gate (detector on a SYNTHETIC_TEST image)",
+     "uncertainty_m": 0.12
+    },
+    "schema": "tfg.multiagent.rover-goal-handoff/1",
+    "transform_required": {
+     "from": "synthetic_orchard_local",
+     "reference": {
+      "accredited": true,
+      "chain": [
+       "inverse(synthetic_orchard_local<-odom)"
+      ],
+      "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "codex_matrix": {
+       "expires_at_utc": "2026-11-07T17:08:12.391306+00:00",
+       "matrix": [
+        [
+         6.123233995736766e-17,
+         1.0,
+         1.5
+        ],
+        [
+         -1.0,
+         6.123233995736766e-17,
+         1.0
+        ],
+        [
+         0.0,
+         0.0,
+         1.0
+        ]
+       ],
+       "not_before_utc": "2026-11-07T15:08:12.391306+00:00",
+       "source": "TEST_FIXTURE_SURVEY",
+       "source_frame": "synthetic_orchard_local",
+       "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+       "target_frame": "odom",
+       "uncertainty_m": 0.0200810856280232,
+       "uncertainty_rad": 0.001,
+       "validated": true
+      },
+      "goal_sigma_after_transform_m": 0.12199692619078564,
+      "sigma_m": 0.0200810856280232,
+      "sigma_rad": 0.001,
+      "source_frame": "synthetic_orchard_local",
+      "target_frame": "odom",
+      "valid_until": "2026-11-07T17:08:12.391306+00:00"
+     },
+     "status": "APPLIED_ONCE",
+     "to": "odom"
+    },
+    "vehicle": {
+     "boot_id": "rover-boot-1",
+     "vehicle_id": "rover_01"
+    }
+   },
+   "goal_rover": {
+    "frame": "odom",
+    "sigma_m": 0.12199692619078564,
+    "x_m": 5.500000000000001,
+    "y_m": -7.0
+   },
+   "reasons": [],
+   "stage": "frames",
+   "status": "PASS"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [
+    "NAVIGATION_PLAN_PENDING"
+   ],
+   "schema_errors": null,
+   "stage": "codex_v2",
+   "status": "WAITING"
+  },
+  {
+   "reasons": [
+    "NO_NAVIGATION_PLAN: speed and timeout not set by a human"
+   ],
+   "stage": "executor_request",
+   "status": "NOT_REACHED"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

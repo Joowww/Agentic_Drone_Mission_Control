@@ -1,0 +1,28 @@
+========================================
+ TFG - Start Drone Simulation
+========================================
+
+[1/6] Starting Docker container...
+[2/6] Stopping previous simulation processes...
+{"success": true, "signals": [], "errors": [], "unattributed_auxiliaries": [], "remaining": []}
+      Waiting for expected SITL ports [5760, 5770, 5780] to be released...
+      SITL ports are free.
+[3/6] Applying Gazebo model compatibility fix...
+      Model fix already present.
+[4/6] Updating launch file inside Docker...
+[5/6] Starting Gazebo + ArduPilot...
+{"success": true, "pid": 90, "start_ticks": 754001, "log_path": "/tmp/tfg_demo.log", "rover_identity_worker": {"pid": 91, "start_ticks": 754003, "context_path": "/tmp/tfg_rover_identity/692f2736-a98e-43d5-ab60-7bf3880635e4/context.json", "record_path": "/tmp/tfg_rover_identity/692f2736-a98e-43d5-ab60-7bf3880635e4/worker.json", "log_path": "/tmp/tfg_rover_identity/692f2736-a98e-43d5-ab60-7bf3880635e4/worker.log", "scope": "READ_ONLY_IDENTITY_NOT_MOVEMENT"}}
+[6/6] Waiting for AP_DDS...
+................
+========================================
+ SIMULATION READY
+========================================
+
+Infrastructure interface expected: /ap/v1
+Infrastructure interface expected: /ap/v2
+Infrastructure interface expected: /ap/v3
+No movement authorization; rover mission execution unsupported.
+
+Gazebo GUI requested: true (visual confirmation required)
+RViz:       OFF
+

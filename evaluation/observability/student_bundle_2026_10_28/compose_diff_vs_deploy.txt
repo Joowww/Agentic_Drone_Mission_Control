@@ -1,0 +1,188 @@
+--- deploy/compose.yaml	2026-10-28 08:56:33.660832198 +0100
++++ /home/joelm/TFG/entregas/tfg-entrega-estudiantes-2026.10.28/compose.yaml	2026-10-28 09:20:11.435208611 +0100
+@@ -1,28 +1,24 @@
+-# Distribution environment (students and the first QGC import). Project name tfg-dist.
++# Student bundle 2026.10.28: the services of the project's deploy/compose.yaml for the delivered images, with the
++# same restrictions, but without build sections, the development profile (sources mounted over the image) or the
++# test doubles. Paths are relative to this directory; nothing refers to a source repository.
+ #
+-# It never creates, starts or stops the development/operational containers tfg-ardupilot-gazebo
+-# and tfg-ardupilot-ros2 (created by hand, not by Compose); `down` here only touches tfg-dist.
+-# Paths in this file are relative to deploy/. Results live in bind-mounted project directories,
+-# so `down` never deletes them (no named volumes are used).
++# Project name tfg-estudiante: its hermes-home volume belongs to whoever uses this bundle on that computer; it never
++# reuses another project's volume, sessions or provider login.
+ #
+-#   docker compose -f deploy/compose.yaml --profile qgc build qgc
+-#   QGC_SAVE_DIR=$PWD/<new dir> docker compose -f deploy/compose.yaml --profile qgc run --rm qgc
+-#   docker compose -f deploy/compose.yaml --profile app build app
+-#   docker compose -f deploy/compose.yaml run --rm app                  (main menu; option 5 = scenario)
++# Every host directory below must exist before starting (nothing is created for you) and is chosen by the student:
++#   TFG_WORK_DIR        results of app (and /work of the planning services)
++#   QGC_PLAN_DIR        plans QGC opens, read-only (e.g. $TFG_WORK_DIR/paquete_1/plans)
++#   QGC_SAVE_DIR        where QGC saves its copy
++#   TFG_PLANNING_STORE  drafts, finalizations, missions and reports of the planning profile
++# Unset, each one points to a non-existent *_not_set directory and the service refuses to start.
+ #
+ # Profiles:
+-#   qgc  QGroundControl 5.1.5 for the offline .plan import: no network, no devices, read-only plan.
+-#   app  DISTRIBUTION: code, dependencies, inputs and evidence inside the image; no network; read-only root;
+-#        the only writable place is /work (TFG_WORK_DIR on the host, default ../work, must exist).
+-#   dev  DEVELOPMENT: same image, but the repository sources are mounted read-only over /opt/tfg.
+-#   planning       AI planning (deploy/planner): `hermes` (Hermes + project MCP server restricted to the planning
+-#                  tools; provider login in the hermes-home volume), `planner-menu` (main menu; options 1/3 use
+-#                  the `ollama` service), `ollama` (official 0.34.2, models in the ollama-models volume).
+-#                  Drafts, missions and reports: TFG_PLANNING_STORE (default ../work/planning_store, must exist).
+-#   planning-test  TEST DOUBLES only (fake provider on an internal network): deploy/planner/planning_checks.sh.
+-#   sim  not defined: the simulator still lives in a hand-made mutable container (see
+-#        docs/simulator-distribution-handoff.md).
+-name: tfg-dist
++#   app       offline tools: no network, read-only root, writes only to /work.
++#   qgc       QGroundControl 5.1.5 for the offline .plan import: no network, no devices, read-only plans.
++#   planning  hermes (needs the student's own provider account and network to it), planner-menu and ollama
++#             (Ollama image and model NOT included in this bundle; optional).
++#   (no simulator: not distributed yet.)
++name: tfg-estudiante
+ 
+ x-app: &app
+   image: tfg/app:2026.10.27-r2
+@@ -48,34 +44,20 @@
+   volumes:
+     # Drafts, finalizations, missions and reports of the project stores (only this directory is writable).
+     - type: bind
+-      source: ${TFG_PLANNING_STORE:-../work/planning_store}
++      source: ${TFG_PLANNING_STORE:-./TFG_PLANNING_STORE_not_set}
+       target: /opt/tfg/missions/generated
+       bind: {create_host_path: false}
+     - type: bind
+-      source: ${TFG_WORK_DIR:-../work}
++      source: ${TFG_WORK_DIR:-./TFG_WORK_DIR_not_set}
+       target: /work
+       bind: {create_host_path: false}
+-    # Hermes homes: planning sessions and the operator's own provider login (never in the image).
++    # Hermes homes: planning sessions and the student's own provider login (never in the image or this bundle).
+     - hermes-home:/hermes
+ 
+-x-planner-test: &planner-test
+-  <<: *planner
+-  networks: [test]
+-  volumes:
+-    - type: bind
+-      source: ${TFG_PLANNING_STORE:-../work/planning_store}
+-      target: /opt/tfg/missions/generated
+-      bind: {create_host_path: false}
+-    - type: bind
+-      source: ${TFG_WORK_DIR:-../work}
+-      target: /work
+-      bind: {create_host_path: false}
+-
+ services:
+   qgc:
+     profiles: ["qgc"]
+     image: tfg/qgroundcontrol:5.1.5
+-    build: ./qgc
+     # No network namespace at all: no vehicle, SITL, UDP 14550 or ZeroConf endpoint is reachable,
+     # whatever QGC settings say. The display is reached through the X11 unix socket only.
+     network_mode: none
+@@ -95,9 +77,9 @@
+         target: /tmp/.X11-unix
+         read_only: true
+         bind: {create_host_path: false}
+-      # Plans to open, read-only: QGC cannot overwrite the sealed package.
++      # Plans to open, read-only: QGC cannot overwrite the package.
+       - type: bind
+-        source: ${QGC_PLAN_DIR:-../evaluation/observability/agri_export_semantics_2026_10_27/packages/b_synthetic_orchard_v1_sitl_v2/plans}
++        source: ${QGC_PLAN_DIR:-./QGC_PLAN_DIR_not_set}
+         target: /data/plan
+         read_only: true
+         bind: {create_host_path: false}
+@@ -110,26 +92,9 @@
+   app:
+     <<: *app
+     profiles: ["app"]
+-    build:
+-      context: ..
+-      dockerfile: deploy/app/Dockerfile
+     volumes:
+       - type: bind
+-        source: ${TFG_WORK_DIR:-../work}
+-        target: /work
+-        bind: {create_host_path: false}
+-
+-  app-dev:
+-    <<: *app
+-    profiles: ["dev"]
+-    volumes:
+-      - type: bind
+-        source: ..
+-        target: /opt/tfg
+-        read_only: true
+-        bind: {create_host_path: false}
+-      - type: bind
+-        source: ${TFG_WORK_DIR:-../work}
++        source: ${TFG_WORK_DIR:-./TFG_WORK_DIR_not_set}
+         target: /work
+         bind: {create_host_path: false}
+ 
+@@ -137,12 +102,6 @@
+   hermes:
+     <<: *planner
+     profiles: ["planning"]
+-    build:
+-      context: ..
+-      dockerfile: deploy/planner/Dockerfile
+-      # frozen Hermes source: python3 deploy/planner/hermes_source.py fetch --out deploy/planner/vendor/hermes-agent-d923a5eb.tar
+-      additional_contexts:
+-        hermes_src: ./planner/vendor
+     # Egress only for the model provider; not attached to any simulator or vehicle network.
+     networks: [provider]
+     command: ["/opt/tfg/deploy/planner/hermes_home.py", "run"]
+@@ -157,6 +116,7 @@
+ 
+   ollama:
+     profiles: ["planning"]
++    # NOT included in this bundle: pulled from Docker Hub only if the student starts it.
+     image: ollama/ollama:0.34.2@sha256:da6e0dc5651df159e45686fd663c4dbe1624a52c44d7280eeac1551d8f865532
+     # local-llm serves the menu; provider is only needed to pull a model into the volume.
+     networks: [local-llm, provider]
+@@ -164,34 +124,6 @@
+     volumes:
+       - ollama-models:/root/.ollama
+ 
+-  # ---- planning-test profile: TEST DOUBLES, internal network without egress -------------------------------
+-  fake-provider:
+-    <<: *planner-test
+-    profiles: ["planning-test"]
+-    environment:
+-      FAKE_SCENARIO: ${FAKE_SCENARIO:-planning}
+-      FAKE_DELAY_S: ${FAKE_DELAY_S:-60}
+-      FAKE_RECORDS: /work/fake_provider_requests.jsonl
+-    volumes:
+-      - type: bind
+-        source: ./planner/doubles
+-        target: /doubles
+-        read_only: true
+-        bind: {create_host_path: false}
+-      - type: bind
+-        source: ${TFG_WORK_DIR:-../work}
+-        target: /work
+-        bind: {create_host_path: false}
+-    command: ["/doubles/fake_provider.py"]
+-
+-  hermes-test:
+-    <<: *planner-test
+-    profiles: ["planning-test"]
+-    environment:
+-      HERMES_HOME: /work/hermes_test_home
+-      OLLAMA_HOST: http://fake-provider:8000
+-    command: ["/opt/tfg/deploy/planner/hermes_home.py", "status"]
+-
+ volumes:
+   hermes-home:
+   ollama-models:
+@@ -200,5 +132,3 @@
+   provider: {}
+   local-llm:
+     internal: true
+-  test:
+-    internal: true

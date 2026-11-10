@@ -1,0 +1,198 @@
+{
+  "status": "ANALYZED",
+  "movement_authorized": false,
+  "source_association_verified": false,
+  "trial_manifest_sha256": "a88a09f9cfcce654709a6524eb30da3867408e8c48b8e7631dd7b8c7d9bdf8a5",
+  "completion_evidence": {
+    "footer_capture_complete": null,
+    "receipt_capture_complete": true,
+    "returncode": 0,
+    "data_present_both_streams": true,
+    "termination": "SAMPLE_LIMIT",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "samples_per_topic": {
+    "/ap/v3/status": 1,
+    "/rover1/odometry": 19
+  },
+  "journal_sha256": "13811afdfe8b20b71e3b5f1ff595c546ebdc5ff5c4919ef77424216d679a3f18",
+  "capture_schema": "tfg.rover.passive-capture/3",
+  "pose_fields_present": true,
+  "odometry": {
+    "schema": "tfg.rover.odometry-summary/1",
+    "status": "BLOCKED",
+    "movement_authorized": false,
+    "source_association_verified": false,
+    "capture_schema": "tfg.rover.passive-capture/3",
+    "sampling_policy": "RESERVE_BOTH_STREAMS",
+    "max_samples": 20,
+    "termination": "SAMPLE_LIMIT",
+    "omitted_odometry_by_quota": 0,
+    "capture_selection": [
+      "best_effort KeepLast(5) subscription; dropped messages are not counted",
+      "one callback handled per spin, with a graph query per sample",
+      "termination SAMPLE_LIMIT"
+    ],
+    "groups": [
+      {
+        "message_publisher_gid": "010feb7d3c06f84c00000000000014030000000000000000",
+        "rmw_implementation_identifier": "rmw_fastrtps_cpp",
+        "frame_id": "odom",
+        "child_frame_id": "base_link",
+        "retained_samples": 19,
+        "complete_with_fields": 19,
+        "incomplete": 0,
+        "with_nonfinite": 0,
+        "header_stamp_interval_ns": {
+          "n": 18,
+          "min": 20000000,
+          "max": 20000000,
+          "median": 20000000.0
+        },
+        "covered_header_span_ns": 360000000,
+        "covered_receipt_span_ns": 18637393562,
+        "header_stamp_repeats_or_regressions": 0,
+        "receipt_interval_steady_ns": {
+          "n": 18,
+          "min": 98303886,
+          "max": 4504853058,
+          "median": 107106352.0
+        },
+        "position_m_as_received": {
+          "x": {
+            "n": 19,
+            "min": -0.0012413615396634312,
+            "max": -0.0012346256118826464,
+            "mean": -0.001238382012955012,
+            "pstdev": 2.1042053951619594e-06
+          },
+          "y": {
+            "n": 19,
+            "min": -3.000423987567238,
+            "max": -3.000404449920009,
+            "mean": -3.0004141480546846,
+            "pstdev": 6.085076316650721e-06
+          },
+          "z": {
+            "n": 19,
+            "min": 0.09491469784655701,
+            "max": 0.09492817730644805,
+            "mean": 0.09492051860339845,
+            "pstdev": 4.169981167014745e-06
+          }
+        },
+        "orientation_quaternion_as_received": {
+          "x": {
+            "n": 19,
+            "min": -0.003363470184621919,
+            "max": -0.003358797339562485,
+            "mean": -0.0033615535487342705,
+            "pstdev": 1.4254491573969133e-06
+          },
+          "y": {
+            "n": 19,
+            "min": 0.0033726141339645637,
+            "max": 0.003377140470460522,
+            "mean": 0.003375282160555959,
+            "pstdev": 1.3830005284857225e-06
+          },
+          "z": {
+            "n": 19,
+            "min": 0.7056744662334027,
+            "max": 0.7056750442592857,
+            "mean": 0.7056747312784855,
+            "pstdev": 1.9953750172490616e-07
+          },
+          "w": {
+            "n": 19,
+            "min": 0.7085195931660712,
+            "max": 0.7085202125984391,
+            "mean": 0.7085199228385068,
+            "pstdev": 2.11779175261801e-07
+          }
+        },
+        "orientation_rpy_deg_from_quaternion": {
+          "roll": {
+            "n": 19,
+            "min": 9.078828791037246e-06,
+            "max": 2.198810214891253e-05,
+            "mean": 1.4172322949285665e-05,
+            "pstdev": 3.7475714570365237e-06
+          },
+          "pitch": {
+            "n": 19,
+            "min": 0.5454391703753745,
+            "max": 0.5461845490180923,
+            "mean": 0.5458786776031094,
+            "pstdev": 0.0002275595066434115
+          },
+          "yaw": {
+            "n": 19,
+            "min": 89.7694108673417,
+            "max": 89.7695078283164,
+            "mean": 89.76945578157658,
+            "pstdev": 3.33086246918819e-05
+          }
+        },
+        "linear_speed_norm": {
+          "n": 19,
+          "min": 0.0,
+          "max": 0.00015607120718399883,
+          "mean": 9.673255494186958e-05,
+          "pstdev": 5.912598042063416e-05
+        },
+        "angular_rate_norm": {
+          "n": 19,
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "pstdev": 0.0
+        },
+        "declared_covariance_diagonal": {
+          "n": 228,
+          "min": 0,
+          "max": 0,
+          "mean": 0.0,
+          "pstdev": 0.0
+        },
+        "all_zero_declared_covariances": 38
+      }
+    ],
+    "sources_merged": false,
+    "limits": [
+      "retained samples only; the complete stream's rate, loss and jitter are NOT inferable",
+      "header-stamp and receipt intervals differ in meaning (message clock vs steady receipt); their difference is not attributed to any cause and yields no real-time factor",
+      "positions/velocities in the message's own frames; frames and units NOT validated",
+      "declared covariance zero is not certainty",
+      "small reported speeds come from the same source and are not independent proof of physical rest",
+      "no identity, model, transformation, stop or arrival"
+    ],
+    "r1_reportable": [
+      "rest dispersion of position/orientation per group",
+      "residual linear/angular speed",
+      "header-stamp and receipt intervals (separately)",
+      "frame-name stability",
+      "declared covariances"
+    ],
+    "r1_pending": [
+      "approval of arrival tolerance and stop thresholds",
+      "verified frame transformation",
+      "publisher/model/SYSID association",
+      "complete-stream rate and loss",
+      "arrival, dwell and progress (need a movement trial)"
+    ]
+  },
+  "r1_contrastable": {
+    "arrival_tolerance_m": "position dispersion at rest per group (compare with the proposed tolerance)",
+    "stopped_linear_mps / stopped_angular_rad_s": "residual speeds at rest (compare with the stop thresholds)",
+    "max_sample_gap_s": "receipt intervals of RETAINED samples (a lower bound on gaps, not the stream's loss)"
+  },
+  "r1_needs_wider_design": [
+    "complete-stream rate, loss and jitter (the collector is selective and capped at 20 samples in reserve mode)",
+    "dispersion during motion and at the target, progress and dwell (need a movement trial)",
+    "frame transformation and physical identity (need the three-vehicle check and the identity chain)",
+    "any threshold approval: 20 samples of one session are not a basis for approving R1 parameters"
+  ],
+  "note": "Metrics describe retained samples of one session; no identity, transformation or approval."
+}

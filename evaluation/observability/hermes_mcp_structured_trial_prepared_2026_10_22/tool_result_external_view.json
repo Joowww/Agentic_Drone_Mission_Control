@@ -1,0 +1,90 @@
+{
+  "view": "external",
+  "external_schema_version": 1,
+  "status": "KNOWN_WITH_WARNINGS",
+  "queried": {
+    "run_id": "d4519cab-ebd1-4359-b547-44be38294a6a"
+  },
+  "error_code": null,
+  "readiness_now": "UNKNOWN_NOT_CHECKED",
+  "consent": "NOT_GRANTED_BY_THIS_QUERY",
+  "hardware_authorized": false,
+  "warning_count": 1,
+  "preflights": [
+    {
+      "run_id": "d4519cab-ebd1-4359-b547-44be38294a6a",
+      "job_state": "FINISHED",
+      "phase": "analyze",
+      "result_status": "FAILED",
+      "snapshot_integrity": "VERIFIED_LOCAL_HASH",
+      "worker_alive": null,
+      "vehicle_id": "drone_01",
+      "simulated_vehicle": "v1",
+      "mission_id": "prueba_hermes_001",
+      "mission_name": "Prueba Hermes",
+      "report_status": "FAILED",
+      "report_stage": "analyze",
+      "execution_attempted": true,
+      "started_at": "2026-10-17T14:13:31.626518+00:00",
+      "finished_at": "2026-10-17T14:20:15.068040+00:00",
+      "validation_mission_status": "FEASIBLE",
+      "validation_execution_status": "APPROVED",
+      "readiness_at_run_ready": true,
+      "readiness_at_run_status": "READY",
+      "executor_status": "FAILED",
+      "executor_success": false,
+      "executor_stage": "MISSION_EXECUTION",
+      "waypoints_completed": null,
+      "return_to_home": null,
+      "planned_waypoint_ids": [
+        "WP1",
+        "WP2",
+        "WP3"
+      ],
+      "reached_waypoint_ids": [
+        "WP1",
+        "WP2"
+      ],
+      "landing_evidence": [],
+      "recovery_landing_attempted": true,
+      "recovery_landing_completed": true,
+      "recovery_landed": true,
+      "recovery_armed": false,
+      "recovery_flying": false,
+      "analysis_passed": false,
+      "analysis_checks": {
+        "completed": false,
+        "identity": true,
+        "no_failure_or_recovery": false,
+        "count_and_return_flag": false,
+        "event_sequence": false,
+        "commands_confirmed": true,
+        "all_waypoints_reached": false,
+        "return_home_reached": false,
+        "takeoff_reached": true,
+        "landed_and_disarmed": false,
+        "position_evidence_consistent": false
+      },
+      "reason_count": 9,
+      "landing_evidence_count": 0
+    }
+  ],
+  "other_linked_records": {
+    "artifacts": 0,
+    "proposals": 1,
+    "revisions": 0,
+    "linked_drafts": 0
+  },
+  "rejected_fields": [],
+  "omitted": [
+    "absolute paths",
+    "worker pid/start_ticks/boot_id",
+    "request_key",
+    "reasons and messages",
+    "readiness output",
+    "error texts and error evidence",
+    "event payloads",
+    "links to drafts/artifacts"
+  ],
+  "semantics": "Historical records only. null = not recorded, never inferred. landing_evidence = the mission's own LANDED events; recovery_* = a recorded recovery landing after a failure. readiness_now is the current availability and is not checked by this query."
+}

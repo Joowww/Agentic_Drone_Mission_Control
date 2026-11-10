@@ -1,0 +1,54 @@
+{
+ "config_id": "M3-rover-qwen-pilot",
+ "data_kind": "REAL_MODELS",
+ "drone_swarm_agent": {
+  "budget_s": 300.0,
+  "candidate": null,
+  "generation": {},
+  "max_iterations": 6,
+  "max_llm_calls": 8,
+  "max_reply_chars": 20000,
+  "max_revisions": 2,
+  "max_tool_calls": 10,
+  "max_total_tokens": null,
+  "mode": "deterministic",
+  "prompt_id": null,
+  "step_contract": "loop"
+ },
+ "mission_orchestrator": {
+  "budget_s": 300.0,
+  "candidate": null,
+  "generation": {},
+  "max_iterations": 6,
+  "max_llm_calls": 8,
+  "max_reply_chars": 20000,
+  "max_revisions": 2,
+  "max_tool_calls": 10,
+  "max_total_tokens": null,
+  "mode": "oracle",
+  "prompt_id": null,
+  "step_contract": "loop"
+ },
+ "rover_agent": {
+  "budget_s": 180.0,
+  "candidate": "ollama:qwen3:4b",
+  "generation": {
+   "num_ctx": 8192,
+   "num_predict": 1024,
+   "seed": 7,
+   "temperature": 0.0,
+   "think": false,
+   "timeout_s": 120.0
+  },
+  "max_iterations": 6,
+  "max_llm_calls": 1,
+  "max_reply_chars": 8000,
+  "max_revisions": 0,
+  "max_tool_calls": 8,
+  "max_total_tokens": 8192,
+  "mode": "llm",
+  "prompt_id": null,
+  "step_contract": "single_shot"
+ },
+ "schema": "tfg.multiagent.agents-config/1"
+}

@@ -1,0 +1,480 @@
+{
+ "status": "ACCREDITED_FOR_SESSION",
+ "raw": {
+  "discovery": {
+   "complete": true,
+   "missing": [],
+   "reasons": {
+    "/rover1/odometry": "RESOLVED",
+    "/ap/v3/status": "RESOLVED"
+   },
+   "deadline_s": 15.0,
+   "elapsed_s": 1.6568580089951865,
+   "first_seen_s": {
+    "/rover1/odometry": 0.31040827100514434,
+    "/ap/v3/status": 1.4494827349990373
+   },
+   "resolved_s": {
+    "/rover1/odometry": 0.5180280430067796,
+    "/ap/v3/status": 1.6568580089951865
+   },
+   "identities": {
+    "/rover1/odometry": {
+     "node": "ros_gz_bridge",
+     "namespace": "/rover1",
+     "gid": "010feb7d14286c2b00000000000014030000000000000000"
+    },
+    "/ap/v3/status": {
+     "node": "ap_v3",
+     "namespace": "/",
+     "gid": "010feb7d0f288b4a0000000000000f030000000000000000"
+    }
+   },
+   "gid_changes": [],
+   "stable_polls": 2
+  },
+  "collected_wall_unix_ns": 1793728060488285272,
+  "before": {
+   "/rover1/odometry": [
+    {
+     "node": "ros_gz_bridge",
+     "namespace": "/rover1",
+     "type": "nav_msgs/msg/Odometry",
+     "gid": "010feb7d14286c2b00000000000014030000000000000000",
+     "reliability": "RELIABLE"
+    }
+   ],
+   "/ap/v3/status": [
+    {
+     "node": "ap_v3",
+     "namespace": "/",
+     "type": "ardupilot_msgs/msg/Status",
+     "gid": "010feb7d0f288b4a0000000000000f030000000000000000",
+     "reliability": "RELIABLE"
+    }
+   ]
+  },
+  "after": {
+   "/rover1/odometry": [
+    {
+     "node": "ros_gz_bridge",
+     "namespace": "/rover1",
+     "type": "nav_msgs/msg/Odometry",
+     "gid": "010feb7d14286c2b00000000000014030000000000000000",
+     "reliability": "RELIABLE"
+    }
+   ],
+   "/ap/v3/status": [
+    {
+     "node": "ap_v3",
+     "namespace": "/",
+     "type": "ardupilot_msgs/msg/Status",
+     "gid": "010feb7d0f288b4a0000000000000f030000000000000000",
+     "reliability": "RELIABLE"
+    }
+   ]
+  },
+  "samples": [
+   {
+    "stamp_ns": 16580000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059112930889
+   },
+   {
+    "stamp_ns": 16600000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059150633285
+   },
+   {
+    "stamp_ns": 16620000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059181357416
+   },
+   {
+    "stamp_ns": 16640000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059215740387
+   },
+   {
+    "stamp_ns": 16660000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059251926785
+   }
+  ],
+  "bridge": [
+   {
+    "pid": 10260,
+    "argv": [
+     "/root/ardu_ws/install/ros_gz_bridge/lib/ros_gz_bridge/parameter_bridge",
+     "--ros-args",
+     "-r",
+     "__ns:=/rover1",
+     "--params-file",
+     "/tmp/launch_params_ophi7hx_"
+    ],
+    "params": [
+     {
+      "path": "/tmp/launch_params_ophi7hx_",
+      "sha256": "4f037834625633dfe17b1ac9d669b455fd8ee58cc22c91a73033444ee9266049",
+      "text": "/**:\n  ros__parameters:\n    config_file: /tmp/tmpylzffsej.yaml\n    qos_overrides./tf_static.publisher.durability: transient_local\n"
+     }
+    ],
+    "configs": [
+     {
+      "path": "/tmp/tmpylzffsej.yaml",
+      "sha256": "db97010c73c389d1d8e3fbb4712d4e565f94442a478f15429895b35cfe77b093",
+      "text": "---\n- ros_topic_name: \"clock\"\n  gz_topic_name: \"/clock\"\n  ros_type_name: \"rosgraph_msgs/msg/Clock\"\n  gz_type_name: \"gz.msgs.Clock\"\n  direction: GZ_TO_ROS\n- ros_topic_name: \"joint_states\"\n  gz_topic_name: \"/world/runway/model/rover1/joint_state\"\n  ros_type_name: \"sensor_msgs/msg/JointState\"\n  gz_type_name: \"gz.msgs.Model\"\n  direction: GZ_TO_ROS\n- ros_topic_name: \"odometry\"\n  gz_topic_name: \"/model/rover1/odometry\"\n  ros_type_name: \"nav_msgs/msg/Odometry\"\n  gz_type_name: \"gz.msgs.Odometry\"\n  direction: GZ_TO_ROS\n- ros_topic_name: \"gz/tf\"\n  gz_topic_name: \"/model/rover1/pose\"\n  ros_type_name: \"tf2_msgs/msg/TFMessage\"\n  gz_type_name: \"gz.msgs.Pose_V\"\n  direction: GZ_TO_ROS\n- ros_topic_name: \"gz/tf_static\"\n  gz_topic_name: \"/model/rover1/pose_static\"\n  ros_type_name: \"tf2_msgs/msg/TFMessage\"\n  gz_type_name: \"gz.msgs.Pose_V\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"imu\"\n  gz_topic_name: \"/world/runway/model/rover1/link/imu_link/sensor/imu_sensor/imu\"\n  ros_type_name: \"sensor_msgs/msg/Imu\"\n  gz_type_name: \"gz.msgs.IMU\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"magnetometer\"\n  gz_topic_name: \"/world/runway/model/rover1/link/base_link/sensor/magnetometer_sensor/magnetometer\"\n  ros_type_name: \"sensor_msgs/msg/MagneticField\"\n  gz_type_name: \"gz.msgs.Magnetometer\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"navsat\"\n  gz_topic_name: \"/world/runway/model/rover1/link/base_link/sensor/navsat_sensor/navsat\"\n  ros_type_name: \"sensor_msgs/msg/NavSatFix\"\n  gz_type_name: \"gz.msgs.NavSat\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"gpsfix\"\n  gz_topic_name: \"/world/runway/model/rover1/link/base_link/sensor/navsat_sensor/navsat\" \n  ros_type_name: \"gps_msgs/msg/GPSFix\"\n  gz_type_name: \"gz.msgs.NavSat\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"battery\"\n  gz_topic_name: \"/model/rover1/battery/linear_battery/state\"\n  ros_type_name: \"sensor_msgs/msg/BatteryState\"\n  gz_type_name: \"gz.msgs.BatteryState\"\n  direction: GZ_TO_ROS\n\n- ros_topic_name: \"scan\"\n  gz_topic_name: \"/lidar\"\n  ros_type_name: \"sensor_msgs/msg/LaserScan\"\n  gz_type_name: \"gz.msgs.LaserScan\"\n  direction: GZ_TO_ROS\n"
+     }
+    ]
+   }
+  ],
+  "gz_model_pose_stdout": "\nRequesting state for world [runway]...\n\nModel: [11]\n  - Name: rover1\n  - Pose [ XYZ (m) ] [ RPY (rad) ]:\n    [-0.000000 -3.000000 0.095843]\n    [-0.000000 0.000000 1.570800]\n",
+  "gz_return_code": 0,
+  "boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b",
+  "namespaces": {
+   "net": "net:[4026533327]",
+   "pid": "pid:[4026533325]",
+   "time": "time:[4026533397]"
+  }
+ },
+ "binding": {
+  "environment_identity_sha256": "61ee959f6de2c76f42355c9ad62b82be44bfe184d4980071a3bc289f34ad1d7c",
+  "active_bridge_config_sha256": "4c7931b13feff2b2367c6b9eb1c804214750c4d72352bb88b822969524287994",
+  "odometry_publisher_gid": "010feb7d14286c2b00000000000014030000000000000000",
+  "gz_topic": "/model/rover1/odometry",
+  "ros_topic": "/rover1/odometry",
+  "child_frame": "base_link",
+  "pose_reference_frame": "odom",
+  "pose_reference_sha256": "5a8580d3bc8ce006244481cc9aac375640b275f599e47242d2c58c9c715261f3"
+ },
+ "evidence": {
+  "schema": "tfg.rover.motion-binding-evidence/1",
+  "status": "ACCREDITED_FOR_SESSION",
+  "attribution": "SINGLE_PUBLISHER_GRAPH_ATTRIBUTION",
+  "scope": {
+   "lifecycle_id": "60e34ff7-da87-46e2-aa5c-4ce5f1a9526f",
+   "environment_execution": {
+    "persistent_identity": {
+     "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+     "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+     "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+     "name": "/tfg-ardupilot-gazebo",
+     "created_at": "2026-10-02T07:28:34.87176229Z"
+    },
+    "container_started_at": "2026-11-03T09:44:02.9887145Z",
+    "container_boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b"
+   },
+   "host_boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b"
+  },
+  "odometry_publisher_gid": "010feb7d14286c2b00000000000014030000000000000000",
+  "status_publisher_gid": "010feb7d0f288b4a0000000000000f030000000000000000",
+  "discovery": {
+   "complete": true,
+   "missing": [],
+   "reasons": {
+    "/rover1/odometry": "RESOLVED",
+    "/ap/v3/status": "RESOLVED"
+   },
+   "deadline_s": 15.0,
+   "elapsed_s": 1.6568580089951865,
+   "first_seen_s": {
+    "/rover1/odometry": 0.31040827100514434,
+    "/ap/v3/status": 1.4494827349990373
+   },
+   "resolved_s": {
+    "/rover1/odometry": 0.5180280430067796,
+    "/ap/v3/status": 1.6568580089951865
+   },
+   "identities": {
+    "/rover1/odometry": {
+     "node": "ros_gz_bridge",
+     "namespace": "/rover1",
+     "gid": "010feb7d14286c2b00000000000014030000000000000000"
+    },
+    "/ap/v3/status": {
+     "node": "ap_v3",
+     "namespace": "/",
+     "gid": "010feb7d0f288b4a0000000000000f030000000000000000"
+    }
+   },
+   "gid_changes": [],
+   "stable_polls": 2
+  },
+  "collected_wall_unix_ns": 1793728060488285272,
+  "publishers": {
+   "before": {
+    "/rover1/odometry": [
+     {
+      "node": "ros_gz_bridge",
+      "namespace": "/rover1",
+      "type": "nav_msgs/msg/Odometry",
+      "gid": "010feb7d14286c2b00000000000014030000000000000000",
+      "reliability": "RELIABLE"
+     }
+    ],
+    "/ap/v3/status": [
+     {
+      "node": "ap_v3",
+      "namespace": "/",
+      "type": "ardupilot_msgs/msg/Status",
+      "gid": "010feb7d0f288b4a0000000000000f030000000000000000",
+      "reliability": "RELIABLE"
+     }
+    ]
+   },
+   "after": {
+    "/rover1/odometry": [
+     {
+      "node": "ros_gz_bridge",
+      "namespace": "/rover1",
+      "type": "nav_msgs/msg/Odometry",
+      "gid": "010feb7d14286c2b00000000000014030000000000000000",
+      "reliability": "RELIABLE"
+     }
+    ],
+    "/ap/v3/status": [
+     {
+      "node": "ap_v3",
+      "namespace": "/",
+      "type": "ardupilot_msgs/msg/Status",
+      "gid": "010feb7d0f288b4a0000000000000f030000000000000000",
+      "reliability": "RELIABLE"
+     }
+    ]
+   }
+  },
+  "samples": [
+   {
+    "stamp_ns": 16580000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059112930889
+   },
+   {
+    "stamp_ns": 16600000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059150633285
+   },
+   {
+    "stamp_ns": 16620000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059181357416
+   },
+   {
+    "stamp_ns": 16640000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059215740387
+   },
+   {
+    "stamp_ns": 16660000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059251926785
+   }
+  ],
+  "association": {
+   "gz_model": "rover1",
+   "gz_pose": {
+    "xyz_m": [
+     -0.0,
+     -3.0,
+     0.095843
+    ],
+    "rpy_rad": [
+     -0.0,
+     0.0,
+     1.5708
+    ]
+   },
+   "odometry_last": {
+    "stamp_ns": 16660000000,
+    "frame_id": "odom",
+    "child_frame_id": "base_link",
+    "position": [
+     -5.748441061866067e-16,
+     -3.0,
+     0.09584259132635081
+    ],
+    "orientation_xyzw": [
+     -2.1710754764767354e-16,
+     -1.1601447779949833e-16,
+     0.7071080798595057,
+     0.7071054825112042
+    ],
+    "received_wall_unix_ns": 1793728059251926785
+   },
+   "position_error_m": 5.748441061866067e-16,
+   "yaw_error_rad": 9.08162434143378e-14,
+   "tolerances": {
+    "position_m": 0.05,
+    "yaw_rad": 0.02
+   }
+  },
+  "bridge": [
+   {
+    "pid": 10260,
+    "argv": [
+     "/root/ardu_ws/install/ros_gz_bridge/lib/ros_gz_bridge/parameter_bridge",
+     "--ros-args",
+     "-r",
+     "__ns:=/rover1",
+     "--params-file",
+     "/tmp/launch_params_ophi7hx_"
+    ],
+    "params": [
+     {
+      "path": "/tmp/launch_params_ophi7hx_",
+      "sha256": "4f037834625633dfe17b1ac9d669b455fd8ee58cc22c91a73033444ee9266049"
+     }
+    ],
+    "configs": [
+     {
+      "path": "/tmp/tmpylzffsej.yaml",
+      "sha256": "db97010c73c389d1d8e3fbb4712d4e565f94442a478f15429895b35cfe77b093"
+     }
+    ]
+   }
+  ],
+  "namespaces": {
+   "net": "net:[4026533327]",
+   "pid": "pid:[4026533325]",
+   "time": "time:[4026533397]"
+  },
+  "binding": {
+   "environment_identity_sha256": "61ee959f6de2c76f42355c9ad62b82be44bfe184d4980071a3bc289f34ad1d7c",
+   "active_bridge_config_sha256": "4c7931b13feff2b2367c6b9eb1c804214750c4d72352bb88b822969524287994",
+   "odometry_publisher_gid": "010feb7d14286c2b00000000000014030000000000000000",
+   "gz_topic": "/model/rover1/odometry",
+   "ros_topic": "/rover1/odometry",
+   "child_frame": "base_link",
+   "pose_reference_frame": "odom",
+   "pose_reference_sha256": "5a8580d3bc8ce006244481cc9aac375640b275f599e47242d2c58c9c715261f3"
+  },
+  "movement_authorized": false,
+  "evidence_sha256": "10b42e723189afaea468dbe48a4790996342ee9844fa25d7f0d10d0875932bae"
+ },
+ "reason": null,
+ "collector": {
+  "return_code": 0,
+  "stderr_tail": ""
+ },
+ "require_current": "PASSED"
+}

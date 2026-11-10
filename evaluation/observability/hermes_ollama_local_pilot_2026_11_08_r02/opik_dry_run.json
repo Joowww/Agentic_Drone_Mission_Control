@@ -1,0 +1,1003 @@
+{
+  "mode": "dry-run",
+  "sent": false,
+  "verification": "UNVERIFIED_AGAINST_OPIK_SERVICE: fields follow the official OpenAPI spec for traces/batch and spans/batch (comet-ml/opik@6ff71e2, reviewed 2026-10-21); shape validated offline against opik==2.2.110 REST models and a mock transport (evaluation/observability/opik_sdk_offline_validation_2026_10_21); opik is not a dependency of this exporter",
+  "destination": {
+    "platform": "opik",
+    "project": "tfg-hermes-local-demo",
+    "workspace": "local-dry-run"
+  },
+  "events": 12,
+  "traces": 2,
+  "spans": 7,
+  "point_events": 5,
+  "synthetic_traces": 0,
+  "unknown_provenance_traces": 0,
+  "captured_traces": 2,
+  "withheld_traces": [],
+  "blocked_for_future_send_by_default": [],
+  "provenance_check": {
+    "ok": true,
+    "files": [
+      {
+        "file": "hermes-events-2026-11-08.jsonl",
+        "records": 2,
+        "problems": []
+      }
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "payload": {
+    "traces_batches": [
+      {
+        "traces": [
+          {
+            "id": "01a1bbc3-a3cc-715e-ac22-e1547df2978f",
+            "project_name": "tfg-hermes-local-demo",
+            "name": "hermes_turn",
+            "start_time": "2026-11-08T15:25:23.276494Z",
+            "end_time": "2026-11-08T15:25:45.331996Z",
+            "metadata": {
+              "tfg_grouping": "derived_from_turn_ref",
+              "tfg_observed_event": false,
+              "tfg_run_id": "pilot-20261108-r02-t1",
+              "tfg_case_id": "mcp-local-planning-demo",
+              "tfg_session_ref": "sha256:57359049f1808af3",
+              "tfg_turn_ref": "sha256:a1f9aeec086dc05b",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_timed_spans": 3,
+              "tfg_point_events": [
+                {
+                  "name": "tfg.tool_call",
+                  "time": "2026-11-08T15:25:29.959130+00:00",
+                  "metadata": {
+                    "tfg_event_id": "fc163e17-8593-4198-96f2-fff723c92017",
+                    "tfg_recorded_at_utc": "2026-11-08T15:25:29.959130+00:00",
+                    "tfg_run_id": "pilot-20261108-r02-t1",
+                    "tfg_case_id": "mcp-local-planning-demo",
+                    "tfg_session_ref": "sha256:57359049f1808af3",
+                    "tfg_task_ref": "sha256:18061ab1790bfbac",
+                    "tfg_turn_ref": "sha256:a1f9aeec086dc05b",
+                    "tfg_api_request_ref": "sha256:a0fde55e3bd2e979",
+                    "tfg_absent_fields": [
+                      "error_type"
+                    ],
+                    "tfg_redacted_fields": [],
+                    "tfg_ambiguous_zero_fields": [],
+                    "tfg_tool_call_ref": "sha256:9f615f830aa66499",
+                    "tfg_tool_name": "mcp__tfg_demo_planning__update_mission_draft",
+                    "tfg_status": "ok",
+                    "tfg_error_type": null,
+                    "tfg_duration_ms_received": 78,
+                    "tfg_duration_ms_measured": 78,
+                    "tfg_duration_source": "hermes_reported_ms",
+                    "tfg_event_type": "tool_call",
+                    "tfg_schema": "tfg.hermes.capture/3",
+                    "tfg_exporter_version": "1",
+                    "tfg_data_kind": "captured_hermes_metadata",
+                    "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+                    "tfg_time_basis": "capture_recorded_at_point_not_an_interval",
+                    "tfg_units": {
+                      "duration_ms_received": "ms",
+                      "duration_ms_measured": "ms"
+                    },
+                    "tfg_cost": "not_computed",
+                    "tfg_exporter": "tfg-opik-offline",
+                    "tfg_latency_measured": false
+                  }
+                },
+                {
+                  "name": "tfg.tool_call",
+                  "time": "2026-11-08T15:25:34.548043+00:00",
+                  "metadata": {
+                    "tfg_event_id": "8b0832a8-3cbe-41a7-b417-e3687c596164",
+                    "tfg_recorded_at_utc": "2026-11-08T15:25:34.548043+00:00",
+                    "tfg_run_id": "pilot-20261108-r02-t1",
+                    "tfg_case_id": "mcp-local-planning-demo",
+                    "tfg_session_ref": "sha256:57359049f1808af3",
+                    "tfg_task_ref": "sha256:18061ab1790bfbac",
+                    "tfg_turn_ref": "sha256:a1f9aeec086dc05b",
+                    "tfg_api_request_ref": "sha256:c57bdc4c6acfaa8a",
+                    "tfg_absent_fields": [
+                      "error_type"
+                    ],
+                    "tfg_redacted_fields": [],
+                    "tfg_ambiguous_zero_fields": [],
+                    "tfg_tool_call_ref": "sha256:eb1b8546545e4d28",
+                    "tfg_tool_name": "mcp__tfg_demo_planning__finalize_mission_draft",
+                    "tfg_status": "ok",
+                    "tfg_error_type": null,
+                    "tfg_duration_ms_received": 13,
+                    "tfg_duration_ms_measured": 13,
+                    "tfg_duration_source": "hermes_reported_ms",
+                    "tfg_event_type": "tool_call",
+                    "tfg_schema": "tfg.hermes.capture/3",
+                    "tfg_exporter_version": "1",
+                    "tfg_data_kind": "captured_hermes_metadata",
+                    "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+                    "tfg_time_basis": "capture_recorded_at_point_not_an_interval",
+                    "tfg_units": {
+                      "duration_ms_received": "ms",
+                      "duration_ms_measured": "ms"
+                    },
+                    "tfg_cost": "not_computed",
+                    "tfg_exporter": "tfg-opik-offline",
+                    "tfg_latency_measured": false
+                  }
+                }
+              ],
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_exporter_version": "1",
+              "tfg_cost": "not_computed",
+              "tfg_point_event_time_basis": "capture_recorded_at_not_compared_with_hermes_epochs",
+              "tfg_time_basis": "derived_min_max_of_hermes_epochs",
+              "tfg_interval_derived": true,
+              "tfg_interval_status": "derived_from_measured_spans_only",
+              "tfg_latency_measured": false
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          },
+          {
+            "id": "01a1bbc4-69e6-7b08-84bc-095452cc5f71",
+            "project_name": "tfg-hermes-local-demo",
+            "name": "hermes_turn",
+            "start_time": "2026-11-08T15:26:13.990942Z",
+            "end_time": "2026-11-08T15:26:47.534171Z",
+            "metadata": {
+              "tfg_grouping": "derived_from_turn_ref",
+              "tfg_observed_event": false,
+              "tfg_run_id": "pilot-20261108-r02-t2",
+              "tfg_case_id": "mcp-local-planning-demo",
+              "tfg_session_ref": "sha256:57359049f1808af3",
+              "tfg_turn_ref": "sha256:6003a9aecafc0407",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_timed_spans": 4,
+              "tfg_point_events": [
+                {
+                  "name": "tfg.tool_call",
+                  "time": "2026-11-08T15:26:16.704198+00:00",
+                  "metadata": {
+                    "tfg_event_id": "5c764232-6976-41de-b31b-c5319cc91897",
+                    "tfg_recorded_at_utc": "2026-11-08T15:26:16.704198+00:00",
+                    "tfg_run_id": "pilot-20261108-r02-t2",
+                    "tfg_case_id": "mcp-local-planning-demo",
+                    "tfg_session_ref": "sha256:57359049f1808af3",
+                    "tfg_task_ref": "sha256:61a46c080ad83af8",
+                    "tfg_turn_ref": "sha256:6003a9aecafc0407",
+                    "tfg_api_request_ref": "sha256:8c6e0a9437b23bf4",
+                    "tfg_absent_fields": [
+                      "error_type"
+                    ],
+                    "tfg_redacted_fields": [],
+                    "tfg_ambiguous_zero_fields": [],
+                    "tfg_tool_call_ref": "sha256:7b2a298fedb504a6",
+                    "tfg_tool_name": "mcp__tfg_demo_planning__update_mission_draft",
+                    "tfg_status": "ok",
+                    "tfg_error_type": null,
+                    "tfg_duration_ms_received": 65,
+                    "tfg_duration_ms_measured": 65,
+                    "tfg_duration_source": "hermes_reported_ms",
+                    "tfg_event_type": "tool_call",
+                    "tfg_schema": "tfg.hermes.capture/3",
+                    "tfg_exporter_version": "1",
+                    "tfg_data_kind": "captured_hermes_metadata",
+                    "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+                    "tfg_time_basis": "capture_recorded_at_point_not_an_interval",
+                    "tfg_units": {
+                      "duration_ms_received": "ms",
+                      "duration_ms_measured": "ms"
+                    },
+                    "tfg_cost": "not_computed",
+                    "tfg_exporter": "tfg-opik-offline",
+                    "tfg_latency_measured": false
+                  }
+                },
+                {
+                  "name": "tfg.tool_call",
+                  "time": "2026-11-08T15:26:26.046108+00:00",
+                  "metadata": {
+                    "tfg_event_id": "85455abc-35f5-44a3-a57a-14b46507f934",
+                    "tfg_recorded_at_utc": "2026-11-08T15:26:26.046108+00:00",
+                    "tfg_run_id": "pilot-20261108-r02-t2",
+                    "tfg_case_id": "mcp-local-planning-demo",
+                    "tfg_session_ref": "sha256:57359049f1808af3",
+                    "tfg_task_ref": "sha256:61a46c080ad83af8",
+                    "tfg_turn_ref": "sha256:6003a9aecafc0407",
+                    "tfg_api_request_ref": "sha256:0ab6b1affae2a983",
+                    "tfg_absent_fields": [
+                      "error_type"
+                    ],
+                    "tfg_redacted_fields": [],
+                    "tfg_ambiguous_zero_fields": [],
+                    "tfg_tool_call_ref": "sha256:5aef95dec518a3fe",
+                    "tfg_tool_name": "mcp__tfg_demo_planning__update_mission_draft",
+                    "tfg_status": "ok",
+                    "tfg_error_type": null,
+                    "tfg_duration_ms_received": 27,
+                    "tfg_duration_ms_measured": 27,
+                    "tfg_duration_source": "hermes_reported_ms",
+                    "tfg_event_type": "tool_call",
+                    "tfg_schema": "tfg.hermes.capture/3",
+                    "tfg_exporter_version": "1",
+                    "tfg_data_kind": "captured_hermes_metadata",
+                    "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+                    "tfg_time_basis": "capture_recorded_at_point_not_an_interval",
+                    "tfg_units": {
+                      "duration_ms_received": "ms",
+                      "duration_ms_measured": "ms"
+                    },
+                    "tfg_cost": "not_computed",
+                    "tfg_exporter": "tfg-opik-offline",
+                    "tfg_latency_measured": false
+                  }
+                },
+                {
+                  "name": "tfg.tool_call",
+                  "time": "2026-11-08T15:26:31.783976+00:00",
+                  "metadata": {
+                    "tfg_event_id": "3706071c-c9fe-44d2-b098-3ce8b277a8e3",
+                    "tfg_recorded_at_utc": "2026-11-08T15:26:31.783976+00:00",
+                    "tfg_run_id": "pilot-20261108-r02-t2",
+                    "tfg_case_id": "mcp-local-planning-demo",
+                    "tfg_session_ref": "sha256:57359049f1808af3",
+                    "tfg_task_ref": "sha256:61a46c080ad83af8",
+                    "tfg_turn_ref": "sha256:6003a9aecafc0407",
+                    "tfg_api_request_ref": "sha256:e02ae2621e0ee8a0",
+                    "tfg_absent_fields": [
+                      "error_type"
+                    ],
+                    "tfg_redacted_fields": [],
+                    "tfg_ambiguous_zero_fields": [],
+                    "tfg_tool_call_ref": "sha256:252acca5015d4d3b",
+                    "tfg_tool_name": "mcp__tfg_demo_planning__finalize_mission_draft",
+                    "tfg_status": "ok",
+                    "tfg_error_type": null,
+                    "tfg_duration_ms_received": 23,
+                    "tfg_duration_ms_measured": 23,
+                    "tfg_duration_source": "hermes_reported_ms",
+                    "tfg_event_type": "tool_call",
+                    "tfg_schema": "tfg.hermes.capture/3",
+                    "tfg_exporter_version": "1",
+                    "tfg_data_kind": "captured_hermes_metadata",
+                    "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+                    "tfg_time_basis": "capture_recorded_at_point_not_an_interval",
+                    "tfg_units": {
+                      "duration_ms_received": "ms",
+                      "duration_ms_measured": "ms"
+                    },
+                    "tfg_cost": "not_computed",
+                    "tfg_exporter": "tfg-opik-offline",
+                    "tfg_latency_measured": false
+                  }
+                }
+              ],
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_exporter_version": "1",
+              "tfg_cost": "not_computed",
+              "tfg_point_event_time_basis": "capture_recorded_at_not_compared_with_hermes_epochs",
+              "tfg_time_basis": "derived_min_max_of_hermes_epochs",
+              "tfg_interval_derived": true,
+              "tfg_interval_status": "derived_from_measured_spans_only",
+              "tfg_latency_measured": false
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          }
+        ]
+      }
+    ],
+    "spans_batches": [
+      {
+        "spans": [
+          {
+            "id": "01a1bbc3-a3cc-7b1e-8b57-2f13fd7b5444",
+            "trace_id": "01a1bbc3-a3cc-715e-ac22-e1547df2978f",
+            "project_name": "tfg-hermes-local-demo",
+            "type": "llm",
+            "name": "llm_call:qwen3-4b-instruct-64k",
+            "start_time": "2026-11-08T15:25:23.276494Z",
+            "end_time": "2026-11-08T15:25:29.415074Z",
+            "metadata": {
+              "tfg_event_id": "340c7a3f-da1e-4764-97c2-c9aa902637f0",
+              "tfg_recorded_at_utc": "2026-11-08T15:25:29.859867+00:00",
+              "tfg_run_id": "pilot-20261108-r02-t1",
+              "tfg_case_id": "mcp-local-planning-demo",
+              "tfg_session_ref": "sha256:57359049f1808af3",
+              "tfg_task_ref": "sha256:18061ab1790bfbac",
+              "tfg_turn_ref": "sha256:a1f9aeec086dc05b",
+              "tfg_api_request_ref": "sha256:a0fde55e3bd2e979",
+              "tfg_absent_fields": [
+                "retry_count",
+                "upstream_provider"
+              ],
+              "tfg_redacted_fields": [],
+              "tfg_ambiguous_zero_fields": [
+                "usage.cache_write_tokens",
+                "usage.reasoning_tokens"
+              ],
+              "tfg_provider": "custom",
+              "tfg_upstream_provider": null,
+              "tfg_model": "qwen3-4b-instruct-64k",
+              "tfg_response_model": "qwen3-4b-instruct-64k",
+              "tfg_api_mode": "chat_completions",
+              "tfg_finish_reason": "tool_calls",
+              "tfg_timing_source": "hermes_hook_wall_clock",
+              "tfg_timing_scope": "api_call_from_first_attempt",
+              "tfg_api_duration_s": 6.138580560684204,
+              "tfg_started_at_epoch_s": 1794151523.2764935,
+              "tfg_ended_at_epoch_s": 1794151529.415074,
+              "tfg_first_chunk_offset_s": 6.1361448764801025,
+              "tfg_api_call_count": 1,
+              "tfg_message_count": 2,
+              "tfg_assistant_tool_call_count": 1,
+              "tfg_context_length": 65536,
+              "tfg_requested_tool_names": [
+                "mcp__tfg_demo_planning__update_mission_draft"
+              ],
+              "tfg_usage_source": "hermes_normalized_summary",
+              "tfg_usage": {
+                "cache_read_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 1972
+                },
+                "cache_write_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "input_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 3456
+                },
+                "output_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 295
+                },
+                "prompt_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 5428
+                },
+                "reasoning_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "total_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 5723
+                }
+              },
+              "tfg_retry_count": null,
+              "tfg_event_type": "llm_call",
+              "tfg_schema": "tfg.hermes.capture/3",
+              "tfg_exporter_version": "1",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_time_basis": "hermes_epochs",
+              "tfg_units": {
+                "api_duration_s": "s",
+                "started_at_epoch_s": "s_since_epoch",
+                "ended_at_epoch_s": "s_since_epoch",
+                "first_chunk_offset_s": "s"
+              },
+              "tfg_cost": "not_computed",
+              "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_latency_measured": true
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          },
+          {
+            "id": "01a1bbc3-bdf5-70c1-8956-c5368b3372da",
+            "trace_id": "01a1bbc3-a3cc-715e-ac22-e1547df2978f",
+            "project_name": "tfg-hermes-local-demo",
+            "type": "llm",
+            "name": "llm_call:qwen3-4b-instruct-64k",
+            "start_time": "2026-11-08T15:25:29.973551Z",
+            "end_time": "2026-11-08T15:25:34.514441Z",
+            "metadata": {
+              "tfg_event_id": "4b4e0b8a-4cb6-4217-9654-4ba2ee20c2f2",
+              "tfg_recorded_at_utc": "2026-11-08T15:25:34.522940+00:00",
+              "tfg_run_id": "pilot-20261108-r02-t1",
+              "tfg_case_id": "mcp-local-planning-demo",
+              "tfg_session_ref": "sha256:57359049f1808af3",
+              "tfg_task_ref": "sha256:18061ab1790bfbac",
+              "tfg_turn_ref": "sha256:a1f9aeec086dc05b",
+              "tfg_api_request_ref": "sha256:c57bdc4c6acfaa8a",
+              "tfg_absent_fields": [
+                "retry_count",
+                "upstream_provider"
+              ],
+              "tfg_redacted_fields": [],
+              "tfg_ambiguous_zero_fields": [
+                "usage.cache_write_tokens",
+                "usage.reasoning_tokens"
+              ],
+              "tfg_provider": "custom",
+              "tfg_upstream_provider": null,
+              "tfg_model": "qwen3-4b-instruct-64k",
+              "tfg_response_model": "qwen3-4b-instruct-64k",
+              "tfg_api_mode": "chat_completions",
+              "tfg_finish_reason": "tool_calls",
+              "tfg_timing_source": "hermes_hook_wall_clock",
+              "tfg_timing_scope": "api_call_from_first_attempt",
+              "tfg_api_duration_s": 4.540890216827393,
+              "tfg_started_at_epoch_s": 1794151529.9735506,
+              "tfg_ended_at_epoch_s": 1794151534.5144408,
+              "tfg_first_chunk_offset_s": 4.539318561553955,
+              "tfg_api_call_count": 2,
+              "tfg_message_count": 4,
+              "tfg_assistant_tool_call_count": 1,
+              "tfg_context_length": 65536,
+              "tfg_requested_tool_names": [
+                "mcp__tfg_demo_planning__finalize_mission_draft"
+              ],
+              "tfg_usage_source": "hermes_normalized_summary",
+              "tfg_usage": {
+                "cache_read_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 5455
+                },
+                "cache_write_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "input_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 7378
+                },
+                "output_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 70
+                },
+                "prompt_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 12833
+                },
+                "reasoning_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "total_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 12903
+                }
+              },
+              "tfg_retry_count": null,
+              "tfg_event_type": "llm_call",
+              "tfg_schema": "tfg.hermes.capture/3",
+              "tfg_exporter_version": "1",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_time_basis": "hermes_epochs",
+              "tfg_units": {
+                "api_duration_s": "s",
+                "started_at_epoch_s": "s_since_epoch",
+                "ended_at_epoch_s": "s_since_epoch",
+                "first_chunk_offset_s": "s"
+              },
+              "tfg_cost": "not_computed",
+              "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_latency_measured": true
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          },
+          {
+            "id": "01a1bbc3-cfe2-7f85-83c5-dedea0405671",
+            "trace_id": "01a1bbc3-a3cc-715e-ac22-e1547df2978f",
+            "project_name": "tfg-hermes-local-demo",
+            "type": "llm",
+            "name": "llm_call:qwen3-4b-instruct-64k",
+            "start_time": "2026-11-08T15:25:34.562598Z",
+            "end_time": "2026-11-08T15:25:45.331996Z",
+            "metadata": {
+              "tfg_event_id": "2e169b70-4a15-4f2a-8156-ab127c5183db",
+              "tfg_recorded_at_utc": "2026-11-08T15:25:45.340820+00:00",
+              "tfg_run_id": "pilot-20261108-r02-t1",
+              "tfg_case_id": "mcp-local-planning-demo",
+              "tfg_session_ref": "sha256:57359049f1808af3",
+              "tfg_task_ref": "sha256:18061ab1790bfbac",
+              "tfg_turn_ref": "sha256:a1f9aeec086dc05b",
+              "tfg_api_request_ref": "sha256:a2f2d170e25bf138",
+              "tfg_absent_fields": [
+                "retry_count",
+                "upstream_provider"
+              ],
+              "tfg_redacted_fields": [],
+              "tfg_ambiguous_zero_fields": [
+                "usage.cache_write_tokens",
+                "usage.reasoning_tokens"
+              ],
+              "tfg_provider": "custom",
+              "tfg_upstream_provider": null,
+              "tfg_model": "qwen3-4b-instruct-64k",
+              "tfg_response_model": "qwen3-4b-instruct-64k",
+              "tfg_api_mode": "chat_completions",
+              "tfg_finish_reason": "stop",
+              "tfg_timing_source": "hermes_hook_wall_clock",
+              "tfg_timing_scope": "api_call_from_first_attempt",
+              "tfg_api_duration_s": 10.769398927688599,
+              "tfg_started_at_epoch_s": 1794151534.5625975,
+              "tfg_ended_at_epoch_s": 1794151545.3319964,
+              "tfg_first_chunk_offset_s": 3.9472923278808594,
+              "tfg_api_call_count": 3,
+              "tfg_message_count": 6,
+              "tfg_assistant_tool_call_count": 0,
+              "tfg_context_length": 65536,
+              "tfg_requested_tool_names": [],
+              "tfg_usage_source": "hermes_normalized_summary",
+              "tfg_usage": {
+                "cache_read_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 12902
+                },
+                "cache_write_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "input_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 7112
+                },
+                "output_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 299
+                },
+                "prompt_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 20014
+                },
+                "reasoning_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "total_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 20313
+                }
+              },
+              "tfg_retry_count": null,
+              "tfg_event_type": "llm_call",
+              "tfg_schema": "tfg.hermes.capture/3",
+              "tfg_exporter_version": "1",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_time_basis": "hermes_epochs",
+              "tfg_units": {
+                "api_duration_s": "s",
+                "started_at_epoch_s": "s_since_epoch",
+                "ended_at_epoch_s": "s_since_epoch",
+                "first_chunk_offset_s": "s"
+              },
+              "tfg_cost": "not_computed",
+              "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_latency_measured": true
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          },
+          {
+            "id": "01a1bbc4-69e6-706b-9fa3-f397023eb305",
+            "trace_id": "01a1bbc4-69e6-7b08-84bc-095452cc5f71",
+            "project_name": "tfg-hermes-local-demo",
+            "type": "llm",
+            "name": "llm_call:qwen3-4b-instruct-64k",
+            "start_time": "2026-11-08T15:26:13.990942Z",
+            "end_time": "2026-11-08T15:26:16.387972Z",
+            "metadata": {
+              "tfg_event_id": "cdb6c26a-c1d1-4b12-b8ff-f6f1117436b3",
+              "tfg_recorded_at_utc": "2026-11-08T15:26:16.615964+00:00",
+              "tfg_run_id": "pilot-20261108-r02-t2",
+              "tfg_case_id": "mcp-local-planning-demo",
+              "tfg_session_ref": "sha256:57359049f1808af3",
+              "tfg_task_ref": "sha256:61a46c080ad83af8",
+              "tfg_turn_ref": "sha256:6003a9aecafc0407",
+              "tfg_api_request_ref": "sha256:8c6e0a9437b23bf4",
+              "tfg_absent_fields": [
+                "retry_count",
+                "upstream_provider"
+              ],
+              "tfg_redacted_fields": [],
+              "tfg_ambiguous_zero_fields": [
+                "usage.cache_write_tokens",
+                "usage.reasoning_tokens"
+              ],
+              "tfg_provider": "custom",
+              "tfg_upstream_provider": null,
+              "tfg_model": "qwen3-4b-instruct-64k",
+              "tfg_response_model": "qwen3-4b-instruct-64k",
+              "tfg_api_mode": "chat_completions",
+              "tfg_finish_reason": "tool_calls",
+              "tfg_timing_source": "hermes_hook_wall_clock",
+              "tfg_timing_scope": "api_call_from_first_attempt",
+              "tfg_api_duration_s": 2.3970296382904053,
+              "tfg_started_at_epoch_s": 1794151573.990942,
+              "tfg_ended_at_epoch_s": 1794151576.3879716,
+              "tfg_first_chunk_offset_s": 2.3946187496185303,
+              "tfg_api_call_count": 1,
+              "tfg_message_count": 8,
+              "tfg_assistant_tool_call_count": 1,
+              "tfg_context_length": 65536,
+              "tfg_requested_tool_names": [
+                "mcp__tfg_demo_planning__update_mission_draft"
+              ],
+              "tfg_usage_source": "hermes_normalized_summary",
+              "tfg_usage": {
+                "cache_read_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 20312
+                },
+                "cache_write_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "input_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 125
+                },
+                "output_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 61
+                },
+                "prompt_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 20437
+                },
+                "reasoning_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "total_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 20498
+                }
+              },
+              "tfg_retry_count": null,
+              "tfg_event_type": "llm_call",
+              "tfg_schema": "tfg.hermes.capture/3",
+              "tfg_exporter_version": "1",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_time_basis": "hermes_epochs",
+              "tfg_units": {
+                "api_duration_s": "s",
+                "started_at_epoch_s": "s_since_epoch",
+                "ended_at_epoch_s": "s_since_epoch",
+                "first_chunk_offset_s": "s"
+              },
+              "tfg_cost": "not_computed",
+              "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_latency_measured": true
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          },
+          {
+            "id": "01a1bbc4-748c-7fee-895d-a79e80847f12",
+            "trace_id": "01a1bbc4-69e6-7b08-84bc-095452cc5f71",
+            "project_name": "tfg-hermes-local-demo",
+            "type": "llm",
+            "name": "llm_call:qwen3-4b-instruct-64k",
+            "start_time": "2026-11-08T15:26:16.716635Z",
+            "end_time": "2026-11-08T15:26:25.997882Z",
+            "metadata": {
+              "tfg_event_id": "f1377674-5e5e-4e64-9fd0-489b4f7e2a1f",
+              "tfg_recorded_at_utc": "2026-11-08T15:26:26.008489+00:00",
+              "tfg_run_id": "pilot-20261108-r02-t2",
+              "tfg_case_id": "mcp-local-planning-demo",
+              "tfg_session_ref": "sha256:57359049f1808af3",
+              "tfg_task_ref": "sha256:61a46c080ad83af8",
+              "tfg_turn_ref": "sha256:6003a9aecafc0407",
+              "tfg_api_request_ref": "sha256:0ab6b1affae2a983",
+              "tfg_absent_fields": [
+                "retry_count",
+                "upstream_provider"
+              ],
+              "tfg_redacted_fields": [],
+              "tfg_ambiguous_zero_fields": [
+                "usage.cache_write_tokens",
+                "usage.reasoning_tokens"
+              ],
+              "tfg_provider": "custom",
+              "tfg_upstream_provider": null,
+              "tfg_model": "qwen3-4b-instruct-64k",
+              "tfg_response_model": "qwen3-4b-instruct-64k",
+              "tfg_api_mode": "chat_completions",
+              "tfg_finish_reason": "tool_calls",
+              "tfg_timing_source": "hermes_hook_wall_clock",
+              "tfg_timing_scope": "api_call_from_first_attempt",
+              "tfg_api_duration_s": 9.28124713897705,
+              "tfg_started_at_epoch_s": 1794151576.716635,
+              "tfg_ended_at_epoch_s": 1794151585.9978821,
+              "tfg_first_chunk_offset_s": 9.280019521713257,
+              "tfg_api_call_count": 2,
+              "tfg_message_count": 10,
+              "tfg_assistant_tool_call_count": 1,
+              "tfg_context_length": 65536,
+              "tfg_requested_tool_names": [
+                "mcp__tfg_demo_planning__update_mission_draft"
+              ],
+              "tfg_usage_source": "hermes_normalized_summary",
+              "tfg_usage": {
+                "cache_read_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 20464
+                },
+                "cache_write_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "input_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 1712
+                },
+                "output_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 329
+                },
+                "prompt_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 22176
+                },
+                "reasoning_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "total_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 22505
+                }
+              },
+              "tfg_retry_count": null,
+              "tfg_event_type": "llm_call",
+              "tfg_schema": "tfg.hermes.capture/3",
+              "tfg_exporter_version": "1",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_time_basis": "hermes_epochs",
+              "tfg_units": {
+                "api_duration_s": "s",
+                "started_at_epoch_s": "s_since_epoch",
+                "ended_at_epoch_s": "s_since_epoch",
+                "first_chunk_offset_s": "s"
+              },
+              "tfg_cost": "not_computed",
+              "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_latency_measured": true
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          },
+          {
+            "id": "01a1bbc4-990a-7c2a-ad9e-5d316240d73e",
+            "trace_id": "01a1bbc4-69e6-7b08-84bc-095452cc5f71",
+            "project_name": "tfg-hermes-local-demo",
+            "type": "llm",
+            "name": "llm_call:qwen3-4b-instruct-64k",
+            "start_time": "2026-11-08T15:26:26.058974Z",
+            "end_time": "2026-11-08T15:26:31.741008Z",
+            "metadata": {
+              "tfg_event_id": "6e5f4ef8-0080-491b-867d-4ca180ba4777",
+              "tfg_recorded_at_utc": "2026-11-08T15:26:31.750676+00:00",
+              "tfg_run_id": "pilot-20261108-r02-t2",
+              "tfg_case_id": "mcp-local-planning-demo",
+              "tfg_session_ref": "sha256:57359049f1808af3",
+              "tfg_task_ref": "sha256:61a46c080ad83af8",
+              "tfg_turn_ref": "sha256:6003a9aecafc0407",
+              "tfg_api_request_ref": "sha256:e02ae2621e0ee8a0",
+              "tfg_absent_fields": [
+                "retry_count",
+                "upstream_provider"
+              ],
+              "tfg_redacted_fields": [],
+              "tfg_ambiguous_zero_fields": [
+                "usage.cache_write_tokens",
+                "usage.reasoning_tokens"
+              ],
+              "tfg_provider": "custom",
+              "tfg_upstream_provider": null,
+              "tfg_model": "qwen3-4b-instruct-64k",
+              "tfg_response_model": "qwen3-4b-instruct-64k",
+              "tfg_api_mode": "chat_completions",
+              "tfg_finish_reason": "tool_calls",
+              "tfg_timing_source": "hermes_hook_wall_clock",
+              "tfg_timing_scope": "api_call_from_first_attempt",
+              "tfg_api_duration_s": 5.6820337772369385,
+              "tfg_started_at_epoch_s": 1794151586.0589738,
+              "tfg_ended_at_epoch_s": 1794151591.7410076,
+              "tfg_first_chunk_offset_s": 5.680608749389648,
+              "tfg_api_call_count": 3,
+              "tfg_message_count": 12,
+              "tfg_assistant_tool_call_count": 1,
+              "tfg_context_length": 65536,
+              "tfg_requested_tool_names": [
+                "mcp__tfg_demo_planning__finalize_mission_draft"
+              ],
+              "tfg_usage_source": "hermes_normalized_summary",
+              "tfg_usage": {
+                "cache_read_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 22181
+                },
+                "cache_write_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "input_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 4850
+                },
+                "output_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 74
+                },
+                "prompt_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 27031
+                },
+                "reasoning_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "total_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 27105
+                }
+              },
+              "tfg_retry_count": null,
+              "tfg_event_type": "llm_call",
+              "tfg_schema": "tfg.hermes.capture/3",
+              "tfg_exporter_version": "1",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_time_basis": "hermes_epochs",
+              "tfg_units": {
+                "api_duration_s": "s",
+                "started_at_epoch_s": "s_since_epoch",
+                "ended_at_epoch_s": "s_since_epoch",
+                "first_chunk_offset_s": "s"
+              },
+              "tfg_cost": "not_computed",
+              "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_latency_measured": true
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          },
+          {
+            "id": "01a1bbc4-af75-7a4e-b960-ea5eb02f6da0",
+            "trace_id": "01a1bbc4-69e6-7b08-84bc-095452cc5f71",
+            "project_name": "tfg-hermes-local-demo",
+            "type": "llm",
+            "name": "llm_call:qwen3-4b-instruct-64k",
+            "start_time": "2026-11-08T15:26:31.797461Z",
+            "end_time": "2026-11-08T15:26:47.534171Z",
+            "metadata": {
+              "tfg_event_id": "ed4d77d2-a909-44cf-8728-1f615b29799c",
+              "tfg_recorded_at_utc": "2026-11-08T15:26:47.542782+00:00",
+              "tfg_run_id": "pilot-20261108-r02-t2",
+              "tfg_case_id": "mcp-local-planning-demo",
+              "tfg_session_ref": "sha256:57359049f1808af3",
+              "tfg_task_ref": "sha256:61a46c080ad83af8",
+              "tfg_turn_ref": "sha256:6003a9aecafc0407",
+              "tfg_api_request_ref": "sha256:765b34f4954104d0",
+              "tfg_absent_fields": [
+                "retry_count",
+                "upstream_provider"
+              ],
+              "tfg_redacted_fields": [],
+              "tfg_ambiguous_zero_fields": [
+                "usage.cache_write_tokens",
+                "usage.reasoning_tokens"
+              ],
+              "tfg_provider": "custom",
+              "tfg_upstream_provider": null,
+              "tfg_model": "qwen3-4b-instruct-64k",
+              "tfg_response_model": "qwen3-4b-instruct-64k",
+              "tfg_api_mode": "chat_completions",
+              "tfg_finish_reason": "stop",
+              "tfg_timing_source": "hermes_hook_wall_clock",
+              "tfg_timing_scope": "api_call_from_first_attempt",
+              "tfg_api_duration_s": 15.736710548400879,
+              "tfg_started_at_epoch_s": 1794151591.7974606,
+              "tfg_ended_at_epoch_s": 1794151607.534171,
+              "tfg_first_chunk_offset_s": 4.178023338317871,
+              "tfg_api_call_count": 4,
+              "tfg_message_count": 14,
+              "tfg_assistant_tool_call_count": 0,
+              "tfg_context_length": 65536,
+              "tfg_requested_tool_names": [],
+              "tfg_usage_source": "hermes_normalized_summary",
+              "tfg_usage": {
+                "cache_read_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 27104
+                },
+                "cache_write_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "input_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 4929
+                },
+                "output_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 370
+                },
+                "prompt_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 32033
+                },
+                "reasoning_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "total_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 32403
+                }
+              },
+              "tfg_retry_count": null,
+              "tfg_event_type": "llm_call",
+              "tfg_schema": "tfg.hermes.capture/3",
+              "tfg_exporter_version": "1",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_time_basis": "hermes_epochs",
+              "tfg_units": {
+                "api_duration_s": "s",
+                "started_at_epoch_s": "s_since_epoch",
+                "ended_at_epoch_s": "s_since_epoch",
+                "first_chunk_offset_s": "s"
+              },
+              "tfg_cost": "not_computed",
+              "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_latency_measured": true
+            },
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "note": "Nothing was sent. Metadata-only; token counters are Hermes-normalised; no cost, usage, model/provider or ttft at top level."
+}

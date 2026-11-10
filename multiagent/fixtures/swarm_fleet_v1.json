@@ -1,0 +1,110 @@
+{
+ "schema": "tfg.fleet/1",
+ "fleet_id": "synthetic_swarm_fleet",
+ "version": 1,
+ "provenance": "drone_01, drone_02 and rover_01 copied from agri_demo_fleet v2; drone_03..05 are SYNTHETIC placeholders without export profile",
+ "vehicles": [
+  {
+   "vehicle_id": "drone_01",
+   "category": "sitl_multirotor",
+   "vehicle_type": "multirotor",
+   "autopilot": "ArduPilot",
+   "platform": "ArduCopter SITL, Gazebo IRIS model (tfg_demo launch)",
+   "provenance": "SITL",
+   "export_profile": "QGC_PLAN_ARDUCOPTER",
+   "compatibility": "DOCUMENTED_SITL",
+   "sim_binding": "drone_01",
+   "start_zone_id": null,
+   "capabilities": [
+    "GUIDED via AP_DDS (executed in H2)",
+    "mission .plan (documented, not loaded)"
+   ],
+   "limitations": [
+    "no physical airframe bound",
+    "SITL firmware reported as ArduCopter V4.8.0-dev (755258db) in 20-26/10 logs; not recorded in H2"
+   ]
+  },
+  {
+   "vehicle_id": "drone_02",
+   "category": "sitl_multirotor",
+   "vehicle_type": "multirotor",
+   "autopilot": "ArduPilot",
+   "platform": "ArduCopter SITL, Gazebo IRIS model (tfg_demo launch)",
+   "provenance": "SITL",
+   "export_profile": "QGC_PLAN_ARDUCOPTER",
+   "compatibility": "DOCUMENTED_SITL",
+   "sim_binding": "drone_02",
+   "start_zone_id": null,
+   "capabilities": [
+    "GUIDED via AP_DDS (executed in H2)",
+    "mission .plan (documented, not loaded)"
+   ],
+   "limitations": [
+    "no physical airframe bound",
+    "SITL firmware reported as ArduCopter V4.8.0-dev (755258db) in 20-26/10 logs; not recorded in H2"
+   ]
+  },
+  {
+   "vehicle_id": "drone_03",
+   "category": "sitl_multirotor",
+   "vehicle_type": "multirotor",
+   "autopilot": "ArduPilot",
+   "platform": "synthetic multirotor placeholder (multi-agent prototype)",
+   "provenance": "SYNTHETIC_PLACEHOLDER",
+   "export_profile": "NONE",
+   "compatibility": "UNRESOLVED_COMPATIBILITY",
+   "sim_binding": null,
+   "start_zone_id": null,
+   "capabilities": [],
+   "limitations": [
+    "no simulator binding, no airframe, no export profile: planning only"
+   ]
+  },
+  {
+   "vehicle_id": "drone_04",
+   "category": "sitl_multirotor",
+   "vehicle_type": "multirotor",
+   "autopilot": "ArduPilot",
+   "platform": "synthetic multirotor placeholder (multi-agent prototype)",
+   "provenance": "SYNTHETIC_PLACEHOLDER",
+   "export_profile": "NONE",
+   "compatibility": "UNRESOLVED_COMPATIBILITY",
+   "sim_binding": null,
+   "start_zone_id": null,
+   "capabilities": [],
+   "limitations": [
+    "no simulator binding, no airframe, no export profile: planning only"
+   ]
+  },
+  {
+   "vehicle_id": "drone_05",
+   "category": "sitl_multirotor",
+   "vehicle_type": "multirotor",
+   "autopilot": "ArduPilot",
+   "platform": "synthetic multirotor placeholder (multi-agent prototype)",
+   "provenance": "SYNTHETIC_PLACEHOLDER",
+   "export_profile": "NONE",
+   "compatibility": "UNRESOLVED_COMPATIBILITY",
+   "sim_binding": null,
+   "start_zone_id": null,
+   "capabilities": [],
+   "limitations": [
+    "no simulator binding, no airframe, no export profile: planning only"
+   ]
+  },
+  {
+   "vehicle_id": "rover_01",
+   "category": "rover",
+   "vehicle_type": "ugv",
+   "autopilot": "ArduPilot",
+   "platform": "ArduRover SITL, Gazebo WILD_THUMPER model (two_drones_rover profile)",
+   "provenance": "SITL",
+   "export_profile": "NONE",
+   "compatibility": "NOT_APPLICABLE",
+   "sim_binding": "rover_01",
+   "limitations": [
+    "no rover exporter; ground execution belongs to the R1 coordinator and its gates"
+   ]
+  }
+ ]
+}

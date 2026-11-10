@@ -1,0 +1,116 @@
+{
+  "status": "NOT_VALIDATED",
+  "reasons": [
+    "ANSWER_KEYS_NOT_AS_EVIDENCE: r1_movement_authorized"
+  ],
+  "observed_tool_calls": 2,
+  "answer_outcomes": {
+    "parse": "JSON_OBJECT",
+    "sequence_order": "match",
+    "reached_points": "match",
+    "scenario_complete": "match",
+    "r1_status": "match",
+    "r1_dependency": "match",
+    "r1_commands_sent": "match",
+    "r1_movement_authorized": "mismatch",
+    "runs[2f7db1f6].run_id": "match",
+    "runs[2f7db1f6].vehicle_id": "match",
+    "runs[2f7db1f6].simulated_vehicle": "match",
+    "runs[2f7db1f6].mission_id": "match",
+    "runs[2f7db1f6].result_status": "match",
+    "runs[2f7db1f6].reached_waypoint_ids": "match",
+    "runs[2f7db1f6].return_to_home": "match",
+    "runs[2f7db1f6].mission_landed": "match",
+    "runs[febf7c4f].run_id": "match",
+    "runs[febf7c4f].vehicle_id": "match",
+    "runs[febf7c4f].simulated_vehicle": "match",
+    "runs[febf7c4f].mission_id": "match",
+    "runs[febf7c4f].result_status": "match",
+    "runs[febf7c4f].reached_waypoint_ids": "match",
+    "runs[febf7c4f].return_to_home": "match",
+    "runs[febf7c4f].mission_landed": "match",
+    "evidence_source": "present",
+    "explanation": "present"
+  },
+  "answer": {
+    "sequence_order": [
+      "drone_01",
+      "drone_02"
+    ],
+    "runs": [
+      {
+        "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+        "vehicle_id": "drone_01",
+        "simulated_vehicle": "v1",
+        "mission_id": "agri_demo_001_h1_sector_a",
+        "result_status": "PASSED",
+        "reached_waypoint_ids": [
+          "WP1",
+          "WP2"
+        ],
+        "return_to_home": true,
+        "mission_landed": true
+      },
+      {
+        "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+        "vehicle_id": "drone_02",
+        "simulated_vehicle": "v2",
+        "mission_id": "agri_demo_001_h1_sector_b",
+        "result_status": "PASSED",
+        "reached_waypoint_ids": [
+          "WP1",
+          "WP2"
+        ],
+        "return_to_home": true,
+        "mission_landed": true
+      }
+    ],
+    "reached_points": [
+      "POI_A1",
+      "POI_A2",
+      "POI_B1",
+      "POI_B2"
+    ],
+    "scenario_complete": false,
+    "r1_status": "BLOCKED_PENDING",
+    "r1_dependency": "MET",
+    "r1_commands_sent": false,
+    "r1_movement_authorized": true,
+    "evidence_source": "executor_facts (AP_DDS), verified local hash snapshots",
+    "explanation": "drone_01 (v1) ejecutó H1 sector A, alcanzando WP1 y WP2 asociados a POI_A1 y POI_A2, regresando a casa (return_to_home=true) y aterrizando (evento LANDED con landed=true, armed=false, flying=false). drone_02 (v2) ejecutó H1 sector B, alcanzando WP1 y WP2 asociados a POI_B1 y POI_B2, igualmente con retorno a casa y aterrizaje confirmado. El orden fue secuencial: drone_01 primero (admitido a las 12:51:18.368) y drone_02 después (admitido a las 12:51:18.376), el coordinador iniciando el hijo 2 tras verificar el PASSED del hijo 1. La evidencia de regreso y aterrizaje proviene de executor_facts (return_to_home, reached_waypoint_ids, mission_landing_events), respaldada por snapshots con integridad VERIFIED_LOCAL_HASH. El escenario sigue incompleto (scenario_complete false, status AERIAL_COMPLETED_GROUND_PENDING) porque la tarea terrestre R1 (rover_01 hacia POI_A1) permanece en BLOCKED_PENDING: aunque su dependencia está MET (el drone_01 aéreo que precede a R1 ya completó su fase), no se han enviado comandos al rover, su identidad no está establecida, carece de entrada pública con autorización y reservas, y no hay navegación hasta una posición. La dependencia MET autoriza mover el rover (r1_movement_authorized true) en principio, pero esa autorización no se ejerció ni se comandó. Las limitaciones que impiden afirmar más: no hubo imágenes ni percepción agrícola registrada, la velocidad ni se comandó ni se midió, y los hechos del ejecutor provienen de observaciones por AP_DDS sin entrada pública de autorización/reservas que garantice el paso al rover."
+  },
+  "expected_from_session": {
+    "2f7db1f6-ef92-4302-b1ae-ec5566e24757": {
+      "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+      "vehicle_id": "drone_01",
+      "simulated_vehicle": "v1",
+      "mission_id": "agri_demo_001_h1_sector_a",
+      "result_status": "PASSED",
+      "reached_waypoint_ids": [
+        "WP1",
+        "WP2"
+      ],
+      "return_to_home": true,
+      "mission_landed": true
+    },
+    "febf7c4f-27c8-4486-bd3b-63ce0a5f261a": {
+      "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+      "vehicle_id": "drone_02",
+      "simulated_vehicle": "v2",
+      "mission_id": "agri_demo_001_h1_sector_b",
+      "result_status": "PASSED",
+      "reached_waypoint_ids": [
+        "WP1",
+        "WP2"
+      ],
+      "return_to_home": true,
+      "mission_landed": true
+    }
+  },
+  "scope": {
+    "record": "historical H2 run",
+    "current_availability": "NOT_CHECKED",
+    "operational_authorization": false,
+    "explanation": "free text reported for review; not validated automatically"
+  }
+}

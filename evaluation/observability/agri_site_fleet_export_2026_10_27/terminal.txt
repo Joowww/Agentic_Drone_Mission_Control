@@ -1,0 +1,320 @@
+$ python -m tools.scenario_package validate-site missions/sites/synthetic_orchard_v1.site.json
+{
+  "site_id": "synthetic_orchard",
+  "version": 1,
+  "site_status": "SYNTHETIC",
+  "status": "VALID",
+  "errors": [],
+  "missing": [],
+  "warnings": [],
+  "geographic_references": {
+    "complete": true,
+    "missing": [],
+    "field_verified_declared": false
+  },
+  "capabilities": {
+    "local_design": true,
+    "sitl_geographic_export": true,
+    "field_export": false
+  },
+  "export_blocks": {
+    "sitl": [],
+    "field": [
+      "SYNTHETIC site: never a proposal for hardware"
+    ]
+  },
+  "note": "VERIFIED_DECLARED is a declaration in the file, not an authentication"
+}
+[rc 0]
+
+$ python -m tools.scenario_package validate-site missions/sites/dronelab.template.site.json
+{
+  "site_id": "dronelab",
+  "version": 1,
+  "site_status": "TEMPLATE_PENDING_MEASUREMENT",
+  "status": "INCOMPLETE",
+  "errors": [],
+  "missing": [
+    "zone PERIMETER.polygon",
+    "zone EXCLUSION_1.polygon",
+    "zone PAD_1.polygon",
+    "zone ROVER_BAY.polygon",
+    "zone DRIVABLE.polygon",
+    "point ORIGIN.x_m/y_m",
+    "point TAKEOFF_A.x_m/y_m",
+    "point TAKEOFF_B.x_m/y_m",
+    "point ROVER_START.x_m/y_m",
+    "point POI_1.x_m/y_m",
+    "point POI_2.x_m/y_m",
+    "point POI_3.x_m/y_m",
+    "point POI_4.x_m/y_m"
+  ],
+  "warnings": [],
+  "geographic_references": {
+    "complete": false,
+    "missing": [
+      "geo_reference.latitude/longitude",
+      "local_frame.y_axis_bearing_deg",
+      "vertical_reference.origin_ground_amsl_m"
+    ],
+    "field_verified_declared": false
+  },
+  "capabilities": {
+    "local_design": false,
+    "sitl_geographic_export": false,
+    "field_export": false
+  },
+  "export_blocks": {
+    "sitl": [
+      "site INCOMPLETE"
+    ],
+    "field": [
+      "site INCOMPLETE",
+      "site, geo/vertical reference and frame orientation are not all VERIFIED_DECLARED"
+    ]
+  },
+  "note": "VERIFIED_DECLARED is a declaration in the file, not an authentication"
+}
+[rc 1]
+
+$ python -m tools.scenario_package validate-fleet missions/fleets/agri_demo_fleet.json
+{
+  "status": "VALID",
+  "fleet_id": "agri_demo_fleet",
+  "vehicles": {
+    "drone_01": [
+      "sitl_multirotor",
+      "QGC_PLAN_ARDUCOPTER_V1",
+      "DOCUMENTED_SITL"
+    ],
+    "drone_02": [
+      "sitl_multirotor",
+      "QGC_PLAN_ARDUCOPTER_V1",
+      "DOCUMENTED_SITL"
+    ],
+    "large_drone_01": [
+      "large_drone",
+      "NONE",
+      "UNRESOLVED_COMPATIBILITY"
+    ],
+    "mini_drone_01": [
+      "mini_drone",
+      "NONE",
+      "UNRESOLVED_COMPATIBILITY"
+    ],
+    "rover_01": [
+      "rover",
+      "NONE",
+      "NOT_APPLICABLE"
+    ]
+  }
+}
+[rc 0]
+
+$ python -m tools.scenario_package package-historical --fleet missions/fleets/agri_demo_fleet.json --out evaluation/observability/agri_site_fleet_export_2026_10_27/packages/a_historical_h2_sitl
+Package a03d3b06eb374ca7 [SITL_HISTORICAL, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval ABSENT
+  H2_drone_01 drone_01: GENERATED -> plans/drone_01.plan (VERIFIED_OFFLINE)
+  H2_drone_02 drone_02: GENERATED -> plans/drone_02.plan (VERIFIED_OFFLINE)
+  R1 rover_01: line NOT_CHECKABLE, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: H2_drone_01 -> H2_drone_02 -> R1
+[rc 0]
+
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_v1.json --site missions/sites/synthetic_orchard_v1.site.json --fleet missions/fleets/agri_demo_fleet.json --target sitl --out evaluation/observability/agri_site_fleet_export_2026_10_27/packages/b_synthetic_orchard_v1_sitl
+Package 4ffa1d92f0c7bc21 [SYNTHETIC, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval ABSENT
+  A1 drone_01: GENERATED -> plans/drone_01.plan (VERIFIED_OFFLINE)
+  A2 drone_02: GENERATED -> plans/drone_02.plan (VERIFIED_OFFLINE)
+  R1 rover_01: line PASS, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: A1 -> A2 -> R1
+[rc 0]
+
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_v1.json --site missions/sites/synthetic_orchard_v1.site.json --fleet missions/fleets/agri_demo_fleet.json --target field --out evaluation/observability/agri_site_fleet_export_2026_10_27/packages/b_synthetic_orchard_v1_field_refused
+Package 4ffa1d92f0c7bc21 [SYNTHETIC, FIELD]: PARTIAL, deployment_ready=False, approval ABSENT
+  A1 drone_01: BLOCKED_MISSING_DATA | SYNTHETIC site: never a proposal for hardware
+  A2 drone_02: BLOCKED_MISSING_DATA | SYNTHETIC site: never a proposal for hardware
+  R1 rover_01: line PASS, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: A1 -> A2 -> R1
+[rc 0]
+
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_v1.json --site missions/sites/dronelab.template.site.json --fleet missions/fleets/agri_demo_fleet.json --target field --out evaluation/observability/agri_site_fleet_export_2026_10_27/packages/c_dronelab_template_field
+Package 5c73dd4dbb413cab [TEMPLATE, FIELD]: PARTIAL, deployment_ready=False, approval ABSENT
+  A1 drone_01: BLOCKED_MISSING_DATA | site INCOMPLETE
+  A2 drone_02: BLOCKED_MISSING_DATA | site INCOMPLETE
+  R1 rover_01: line NOT_CHECKABLE, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: A1 -> A2 -> R1
+[rc 0]
+
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_unresolved_fleet_v1.json --site missions/sites/synthetic_orchard_v1.site.json --fleet missions/fleets/agri_demo_fleet.json --target sitl --out evaluation/observability/agri_site_fleet_export_2026_10_27/packages/d_unresolved_fleet
+Package b39bcceac2e07385 [SYNTHETIC, SITL_REHEARSAL]: PARTIAL, deployment_ready=False, approval ABSENT
+  A1 drone_01: GENERATED -> plans/drone_01.plan (VERIFIED_OFFLINE)
+  A2 mini_drone_01: COMPATIBILITY_PENDING | mini_drone_01: future mini drone (unknown)
+  A3 drone_99: BLOCKED_MISSING_DATA | vehicle drone_99 is not in the fleet
+  R1 rover_01: line PASS, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination FAIL: A1 -> A2 -> A3 -> R1
+[rc 0]
+
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_crossing_v1.json --site missions/sites/synthetic_orchard_v1.site.json --fleet missions/fleets/agri_demo_fleet.json --target sitl --out evaluation/observability/agri_site_fleet_export_2026_10_27/packages/e_exclusion_crossing
+Package 1b81d43e7232e4a4 [SYNTHETIC, SITL_REHEARSAL]: PARTIAL, deployment_ready=False, approval ABSENT
+  A1 drone_01: GENERATED -> plans/drone_01.plan (VERIFIED_OFFLINE)
+  A2 drone_02: BLOCKED_VALIDATION_FAILED | exclusion TREE_ROW_1 POI_3 -> POI_5: crosses or touches exclusion TREE_ROW_1; exclusion TREE_ROW_1 POI_5 -> TAKEOFF_B (RTL): crosses or touches exclusion TREE_ROW_1
+  R1 rover_01: line REQUIRES_PLANNING, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: A1 -> A2 -> R1
+[rc 0]
+
+$ python -m tools.scenario_package approval-draft --package evaluation/observability/agri_site_fleet_export_2026_10_27/packages/b_synthetic_orchard_v1_sitl --out evaluation/observability/agri_site_fleet_export_2026_10_27/approval_draft_b.json
+Draft written to evaluation/observability/agri_site_fleet_export_2026_10_27/approval_draft_b.json: approved_by is empty until a person fills it.
+[rc 0]
+
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_v1.json --site missions/sites/synthetic_orchard_v1.site.json --fleet missions/fleets/agri_demo_fleet.json --target sitl --out evaluation/observability/agri_site_fleet_export_2026_10_27/packages/f1_site_v1_approval --approval evaluation/observability/agri_site_fleet_export_2026_10_27/approval_synthetic_fixture_b.json
+Package 4ffa1d92f0c7bc21 [SYNTHETIC, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval BOUND
+  A1 drone_01: GENERATED -> plans/drone_01.plan (VERIFIED_OFFLINE)
+  A2 drone_02: GENERATED -> plans/drone_02.plan (VERIFIED_OFFLINE)
+  R1 rover_01: line PASS, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: A1 -> A2 -> R1
+[rc 0]
+
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_v1.json --site missions/sites/synthetic_orchard_v2.site.json --fleet missions/fleets/agri_demo_fleet.json --target sitl --out evaluation/observability/agri_site_fleet_export_2026_10_27/packages/f2_site_v2_same_approval --approval evaluation/observability/agri_site_fleet_export_2026_10_27/approval_synthetic_fixture_b.json
+Package 9a4c1823960be7ed [SYNTHETIC, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval STALE
+  A1 drone_01: GENERATED -> plans/drone_01.plan (VERIFIED_OFFLINE)
+  A2 drone_02: GENERATED -> plans/drone_02.plan (VERIFIED_OFFLINE)
+  R1 rover_01: line PASS, FORMAT_PENDING: no rover exporter; a .plan is not assumed
+  coordination PASS: A1 -> A2 -> R1
+[rc 0]
+
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_v1.json --site missions/sites/synthetic_orchard_v1.site.json --fleet missions/fleets/agri_demo_fleet.json --target sitl --out evaluation/observability/agri_site_fleet_export_2026_10_27/packages/b_synthetic_orchard_v1_sitl
+[REFUSED] FileExistsError: evaluation/observability/agri_site_fleet_export_2026_10_27/packages/b_synthetic_orchard_v1_sitl exists; packages are never overwritten
+[rc 2]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_site_fleet_export_2026_10_27/packages/a_historical_h2_sitl/
+{
+  "status": "VERIFIED",
+  "problems": [],
+  "plans": [
+    {
+      "task_id": "H2_drone_01",
+      "status": "VERIFIED_OFFLINE"
+    },
+    {
+      "task_id": "H2_drone_02",
+      "status": "VERIFIED_OFFLINE"
+    }
+  ],
+  "approval": "ABSENT",
+  "package_status": "COMPLETE_OFFLINE",
+  "deployment_ready": false
+}
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_site_fleet_export_2026_10_27/packages/b_synthetic_orchard_v1_field_refused/
+{
+  "status": "VERIFIED",
+  "problems": [],
+  "plans": [],
+  "approval": "ABSENT",
+  "package_status": "PARTIAL",
+  "deployment_ready": false
+}
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_site_fleet_export_2026_10_27/packages/b_synthetic_orchard_v1_sitl/
+{
+  "status": "VERIFIED",
+  "problems": [],
+  "plans": [
+    {
+      "task_id": "A1",
+      "status": "VERIFIED_OFFLINE"
+    },
+    {
+      "task_id": "A2",
+      "status": "VERIFIED_OFFLINE"
+    }
+  ],
+  "approval": "ABSENT",
+  "package_status": "COMPLETE_OFFLINE",
+  "deployment_ready": false
+}
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_site_fleet_export_2026_10_27/packages/c_dronelab_template_field/
+{
+  "status": "VERIFIED",
+  "problems": [],
+  "plans": [],
+  "approval": "ABSENT",
+  "package_status": "PARTIAL",
+  "deployment_ready": false
+}
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_site_fleet_export_2026_10_27/packages/d_unresolved_fleet/
+{
+  "status": "VERIFIED",
+  "problems": [],
+  "plans": [
+    {
+      "task_id": "A1",
+      "status": "VERIFIED_OFFLINE"
+    }
+  ],
+  "approval": "ABSENT",
+  "package_status": "PARTIAL",
+  "deployment_ready": false
+}
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_site_fleet_export_2026_10_27/packages/e_exclusion_crossing/
+{
+  "status": "VERIFIED",
+  "problems": [],
+  "plans": [
+    {
+      "task_id": "A1",
+      "status": "VERIFIED_OFFLINE"
+    }
+  ],
+  "approval": "ABSENT",
+  "package_status": "PARTIAL",
+  "deployment_ready": false
+}
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_site_fleet_export_2026_10_27/packages/f1_site_v1_approval/
+{
+  "status": "VERIFIED",
+  "problems": [],
+  "plans": [
+    {
+      "task_id": "A1",
+      "status": "VERIFIED_OFFLINE"
+    },
+    {
+      "task_id": "A2",
+      "status": "VERIFIED_OFFLINE"
+    }
+  ],
+  "approval": "BOUND",
+  "package_status": "COMPLETE_OFFLINE",
+  "deployment_ready": false
+}
+[rc 0]
+
+$ python -m tools.scenario_package verify evaluation/observability/agri_site_fleet_export_2026_10_27/packages/f2_site_v2_same_approval/
+{
+  "status": "VERIFIED",
+  "problems": [],
+  "plans": [
+    {
+      "task_id": "A1",
+      "status": "VERIFIED_OFFLINE"
+    },
+    {
+      "task_id": "A2",
+      "status": "VERIFIED_OFFLINE"
+    }
+  ],
+  "approval": "STALE",
+  "package_status": "COMPLETE_OFFLINE",
+  "deployment_ready": false
+}
+[rc 0]
+

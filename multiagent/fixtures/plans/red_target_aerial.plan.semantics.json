@@ -1,0 +1,76 @@
+{
+ "not_representable_in_plan": [
+  {
+   "field": "action",
+   "status": "NOT_REPRESENTABLE",
+   "value": "inspect",
+   "waypoint_id": "POI_1",
+   "waypoint_index": 0,
+   "why": "no MAVLink mission command expresses an inspection"
+  },
+  {
+   "field": "sensor",
+   "status": "NOT_REPRESENTABLE",
+   "value": "rgb",
+   "waypoint_id": "POI_1",
+   "waypoint_index": 0,
+   "why": "a sensor type is not a MAVLink mission field"
+  },
+  {
+   "field": "waypoint_id",
+   "status": "NOT_REPRESENTABLE",
+   "value": "POI_1",
+   "waypoint_id": "POI_1",
+   "waypoint_index": 0,
+   "why": "QGC items carry doJumpId only; the importer renames them"
+  },
+  {
+   "field": "action",
+   "status": "NOT_REPRESENTABLE",
+   "value": "take_photo",
+   "waypoint_id": "POI_3",
+   "waypoint_index": 1,
+   "why": "IMAGE_START_CAPTURE (2000) / DO_DIGICAM_CONTROL (203) exist but address a camera instance id, not a sensor type; no camera inventory is declared, they are outside the exporter profile and the importer skips them"
+  },
+  {
+   "field": "sensor",
+   "status": "NOT_REPRESENTABLE",
+   "value": "multispectral",
+   "waypoint_id": "POI_3",
+   "waypoint_index": 1,
+   "why": "a sensor type is not a MAVLink mission field"
+  },
+  {
+   "field": "waypoint_id",
+   "status": "NOT_REPRESENTABLE",
+   "value": "POI_3",
+   "waypoint_id": "POI_3",
+   "waypoint_index": 1,
+   "why": "QGC items carry doJumpId only; the importer renames them"
+  }
+ ],
+ "plan_file": "red_target_aerial.plan",
+ "plan_sha256": "155dbd3664ce0e326153f81e8aab93a46fff829f1862255efe655353e704c705",
+ "schema": "tfg.multiagent.plan-semantics/1",
+ "source": "MAVLink common.xml in pymavlink 2.4.50 (read-only); exporter profile inputs/qgc_plan_export.py",
+ "waypoints": [
+  {
+   "action": "inspect",
+   "altitude_m": 5.0,
+   "index": 0,
+   "latitude": -35.36321708444125,
+   "longitude": 149.16519293808915,
+   "sensor": "rgb",
+   "waypoint_id": "POI_1"
+  },
+  {
+   "action": "take_photo",
+   "altitude_m": 5.0,
+   "index": 1,
+   "latitude": -35.363226067553,
+   "longitude": 149.1653251238217,
+   "sensor": "multispectral",
+   "waypoint_id": "POI_3"
+  }
+ ]
+}

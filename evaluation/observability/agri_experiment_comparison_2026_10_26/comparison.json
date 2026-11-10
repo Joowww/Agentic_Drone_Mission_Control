@@ -1,0 +1,718 @@
+{
+  "schema": "tfg.agri-experiment-comparison/1",
+  "inference_executed": false,
+  "turns": [
+    {
+      "case": "H1",
+      "protocol": "generación y validación de artefactos de misión a partir de una especificación completa",
+      "source_dir": "evaluation/observability/agri_planning_h1_nous_2026_10_24",
+      "invocations": 1,
+      "return_code": 0,
+      "model_requests_main": 3,
+      "model_requests_auxiliary": 1,
+      "plugin_llm_calls": 3,
+      "plugin_llm_errors": 0,
+      "tools_offered": "ONLY_TRIAL_TOOL_OFFERED",
+      "tools_requested": [
+        "mcp__tfg_mission_control__update_mission_draft",
+        "mcp__tfg_mission_control__update_mission_draft",
+        "mcp__tfg_mission_control__finalize_mission_draft",
+        "mcp__tfg_mission_control__finalize_mission_draft"
+      ],
+      "tool_calls_ok": 4,
+      "tool_calls": 4,
+      "tool_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "elapsed_wall_s": 55.593,
+      "tokens": {
+        "input_tokens": 41211,
+        "output_tokens": 1856,
+        "cache_read_tokens": 23424,
+        "reasoning_tokens": 808,
+        "total_tokens": 66491
+      },
+      "tokens_auxiliary": 598,
+      "turn_exit_reason": "text_response(finish_reason=stop)",
+      "sources": {
+        "run": "evaluation/observability/agri_planning_h1_nous_2026_10_24/run.json",
+        "tools": "evaluation/observability/agri_planning_h1_nous_2026_10_24/capture_summary.json",
+        "usage": "evaluation/observability/agri_planning_h1_nous_2026_10_24/native_usage_reviewed.json"
+      },
+      "answer": "NOT_EVALUATED (los artefactos se juzgan por la vinculación)",
+      "parse": null,
+      "decisions": {
+        "given_by_operator": "todos los valores (vehículos, ids, offsets, altitud, home, límites y acciones), las herramientas a usar y su orden",
+        "by_hermes": "trasladar la especificación en español a los argumentos estructurados de update_mission_draft (incluido geometry_intent) sin inventar campos, encadenar draft_id y draft_revision en las 4 llamadas y devolver el JSON final",
+        "by_code": "coordenadas desde los offsets, validación determinista, finalización y vinculación por hash frente a H0"
+      },
+      "acceptance": "BOUND",
+      "acceptance_source": "evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json",
+      "structured": {
+        "match": 2,
+        "total": 2,
+        "failed": [],
+        "counted": "artefactos BOUND con validación APPROVED y geometría igual a H0"
+      },
+      "critical": null,
+      "explanation": "no aplica: no se usa texto del modelo"
+    },
+    {
+      "case": "H3",
+      "protocol": "accept-h3 (get_mission_state; claves sin clases)",
+      "source_dir": "evaluation/observability/agri_scenario_h3_nous_2026_10_24",
+      "invocations": 1,
+      "return_code": 0,
+      "model_requests_main": 2,
+      "model_requests_auxiliary": 1,
+      "plugin_llm_calls": 2,
+      "plugin_llm_errors": 0,
+      "tools_offered": "ONLY_TRIAL_TOOL_OFFERED",
+      "tools_requested": [
+        "mcp__tfg_mission_control__get_mission_state",
+        "mcp__tfg_mission_control__get_mission_state"
+      ],
+      "tool_calls_ok": 2,
+      "tool_calls": 2,
+      "tool_verdict": "QUERY_CALLS_WITHIN_ALLOWED_TOOLS",
+      "elapsed_wall_s": 49.935,
+      "tokens": {
+        "input_tokens": 7448,
+        "output_tokens": 1102,
+        "cache_read_tokens": 1504,
+        "reasoning_tokens": 35,
+        "total_tokens": 10054
+      },
+      "tokens_auxiliary": 664,
+      "turn_exit_reason": "text_response(finish_reason=stop)",
+      "sources": {
+        "run": "evaluation/observability/agri_scenario_h3_nous_2026_10_24/run.json",
+        "tools": "evaluation/observability/agri_scenario_h3_nous_2026_10_24/capture_summary.json",
+        "usage": "evaluation/observability/agri_scenario_h3_nous_2026_10_24/native_usage_reviewed.json"
+      },
+      "answer": "RECEIVED",
+      "parse": "JSON_OBJECT",
+      "acceptance": "NOT_VALIDATED",
+      "acceptance_source": "evaluation/observability/agri_scenario_h3_nous_2026_10_24/accept_h3.json",
+      "structured": {
+        "match": 22,
+        "total": 23,
+        "presence_only": [
+          "evidence_source",
+          "explanation"
+        ],
+        "failed": [
+          "r1_movement_authorized"
+        ],
+        "values": {
+          "match": 22,
+          "mismatch": 1
+        }
+      },
+      "critical": null,
+      "critical_note": "el protocolo H3 no separaba claves críticas; r1_movement_authorized es crítica solo bajo el protocolo H3b posterior (clasificación retrospectiva). Además comprobó la presencia de evidence_source y explanation; contando esas dos como aciertos, la evidencia de H3 dice «24 de 25 claves»",
+      "explanation": "clasificación manual en el README de H3 (no registrada como revisión humana de Joel): error crítico «MET autoriza mover el rover», orden basado en la admisión, MET impreciso"
+    },
+    {
+      "case": "H3b",
+      "protocol": "accept-h3b (get_scenario_view; claves factuales y críticas)",
+      "source_dir": "evaluation/observability/agri_scenario_h3b_nous_2026_10_24",
+      "invocations": 1,
+      "return_code": 0,
+      "model_requests_main": 2,
+      "model_requests_auxiliary": 1,
+      "plugin_llm_calls": 2,
+      "plugin_llm_errors": 0,
+      "tools_offered": "ONLY_TRIAL_TOOL_OFFERED",
+      "tools_requested": [
+        "mcp__tfg_mission_control__get_scenario_view"
+      ],
+      "tool_calls_ok": 1,
+      "tool_calls": 1,
+      "tool_verdict": "QUERY_CALLS_WITHIN_ALLOWED_TOOLS",
+      "elapsed_wall_s": 46.106,
+      "tokens": {
+        "input_tokens": 8543,
+        "output_tokens": 1190,
+        "cache_read_tokens": 448,
+        "reasoning_tokens": 0,
+        "total_tokens": 10181
+      },
+      "tokens_auxiliary": 533,
+      "turn_exit_reason": "text_response(finish_reason=stop)",
+      "sources": {
+        "run": "evaluation/observability/agri_scenario_h3b_nous_2026_10_24/run.json",
+        "tools": "evaluation/observability/agri_scenario_h3b_nous_2026_10_24/capture_summary.json",
+        "usage": "evaluation/observability/agri_scenario_h3b_nous_2026_10_24/native_usage_reviewed.json"
+      },
+      "answer": "RECEIVED",
+      "parse": "FENCED_JSON_OBJECT",
+      "acceptance": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+      "acceptance_source": "evaluation/observability/agri_scenario_h3b_nous_2026_10_24/accept_h3b.json",
+      "structured": {
+        "match": 23,
+        "total": 23,
+        "presence_only": [],
+        "failed": [],
+        "values": {
+          "match": 23
+        }
+      },
+      "critical": {
+        "match": 12,
+        "total": 12,
+        "presence_only": [],
+        "failed": [],
+        "values": {
+          "match": 12
+        }
+      },
+      "explanation": "UNREVIEWED por Joel; revisión asistida (ChatGPT, transmitida por Joel) con errores factuales: evaluation/observability/agri_scenario_h3b_nous_2026_10_24/explanation_review_assisted.json"
+    }
+  ],
+  "h2": {
+    "sequence": {
+      "sequence_id": "6628bc51-e232-45f5-901e-f5fdeb05c6f4",
+      "job_state": "FINISHED",
+      "result_status": "PASSED",
+      "plan_sha256": "a1821ce7c0d16620af683759049737ace1096d3a18a2202b571567c3ee245e30",
+      "created_at": "2026-10-24T12:51:18.386453+00:00",
+      "finished_at": "2026-10-24T12:59:51.127955+00:00"
+    },
+    "order": "ACCREDITED_BY_EXECUTION_TIMESTAMPS",
+    "scenario_status": "AERIAL_COMPLETED_GROUND_PENDING",
+    "runs": [
+      {
+        "vehicle": "drone_01/v1",
+        "result": "PASSED",
+        "points_reached": "2/2",
+        "max_horizontal_error_m": 0.21,
+        "return_home": "CONFIRMED",
+        "landing": "MISSION_LANDING_CONFIRMED"
+      },
+      {
+        "vehicle": "drone_02/v2",
+        "result": "PASSED",
+        "points_reached": "2/2",
+        "max_horizontal_error_m": 0.85,
+        "return_home": "CONFIRMED",
+        "landing": "MISSION_LANDING_CONFIRMED"
+      }
+    ],
+    "tolerances": {
+      "horizontal_m": 1.0,
+      "altitude_m": 0.75
+    },
+    "source": "evaluation/observability/agri_scenario_view_h2_2026_10_24/scenario_view.json",
+    "model_involved": false
+  },
+  "pilot": {
+    "rows": [
+      {
+        "case": "pilot-real-r01",
+        "segment": "protocolo original",
+        "answer": "RECEIVED",
+        "tools_requested": [
+          "mcp__tfg_mission_control__get_scenario_view"
+        ],
+        "view_calls": 1,
+        "logical_requests": 2,
+        "completed_requests": 2,
+        "failed_attempts": 0,
+        "client_retries": 0,
+        "attempt_sequence": [],
+        "retry_counter_monotonic": null,
+        "form_only_keys": [],
+        "original_acceptance_error": false,
+        "parse": "JSON_OBJECT",
+        "acceptance": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "structured": {
+          "match": 23,
+          "total": 23,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 23
+          }
+        },
+        "critical": {
+          "match": 12,
+          "total": 12,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 12
+          }
+        },
+        "elapsed_wall_s": 43.702,
+        "timed_out": false,
+        "tokens_total": 10221,
+        "model_requests_main": 2,
+        "acceptance_source": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/pilot-real-r01/accept_h3b_post_fix.json"
+      },
+      {
+        "case": "pilot-real-r02",
+        "segment": "protocolo original",
+        "answer": "NO_ANSWER_TECHNICAL",
+        "tools_requested": [
+          "mcp__tfg_mission_control__get_scenario_view"
+        ],
+        "view_calls": 1,
+        "logical_requests": 1,
+        "completed_requests": 1,
+        "failed_attempts": 4,
+        "client_retries": 4,
+        "attempt_sequence": [
+          {
+            "event_type": "llm_error",
+            "recorded_at_utc": "2026-10-24T18:01:43.724342+00:00",
+            "api_request_ref": "sha256:4195422380faf93a",
+            "error_type": "APIConnectionError",
+            "status_code": null,
+            "reason": "timeout",
+            "retry_count": 0,
+            "finish_reason": null
+          },
+          {
+            "event_type": "llm_error",
+            "recorded_at_utc": "2026-10-24T18:01:51.789485+00:00",
+            "api_request_ref": "sha256:4195422380faf93a",
+            "error_type": "RateLimitError",
+            "status_code": 429,
+            "reason": "overloaded",
+            "retry_count": 1,
+            "finish_reason": null
+          },
+          {
+            "event_type": "llm_error",
+            "recorded_at_utc": "2026-10-24T18:02:22.827325+00:00",
+            "api_request_ref": "sha256:4195422380faf93a",
+            "error_type": "RateLimitError",
+            "status_code": 429,
+            "reason": "overloaded",
+            "retry_count": 2,
+            "finish_reason": null
+          },
+          {
+            "event_type": "llm_error",
+            "recorded_at_utc": "2026-10-24T18:02:54.062969+00:00",
+            "api_request_ref": "sha256:4195422380faf93a",
+            "error_type": "RateLimitError",
+            "status_code": 429,
+            "reason": "overloaded",
+            "retry_count": 0,
+            "finish_reason": null
+          },
+          {
+            "event_type": "llm_call",
+            "recorded_at_utc": "2026-10-24T18:03:29.457322+00:00",
+            "api_request_ref": "sha256:4195422380faf93a",
+            "error_type": null,
+            "status_code": null,
+            "reason": null,
+            "retry_count": null,
+            "finish_reason": "tool_calls"
+          }
+        ],
+        "retry_counter_monotonic": false,
+        "form_only_keys": [],
+        "original_acceptance_error": false,
+        "parse": null,
+        "acceptance": null,
+        "structured": null,
+        "critical": null,
+        "elapsed_wall_s": 300.034,
+        "timed_out": true,
+        "tokens_total": null,
+        "model_requests_main": null,
+        "acceptance_source": null
+      },
+      {
+        "case": "pilot-real-r03",
+        "segment": "tras enmienda 01",
+        "answer": "RECEIVED",
+        "tools_requested": [],
+        "view_calls": 0,
+        "logical_requests": 1,
+        "completed_requests": 1,
+        "failed_attempts": 0,
+        "client_retries": 0,
+        "attempt_sequence": [],
+        "retry_counter_monotonic": null,
+        "form_only_keys": [],
+        "original_acceptance_error": false,
+        "parse": "NOT_JSON",
+        "acceptance": "NOT_VALIDATED",
+        "structured": null,
+        "critical": null,
+        "elapsed_wall_s": 20.176,
+        "timed_out": false,
+        "tokens_total": 3134,
+        "model_requests_main": 1,
+        "acceptance_source": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/pilot-real-r03/accept_h3b_post_fix.json"
+      },
+      {
+        "case": "pilot-real-r04",
+        "segment": "tras enmienda 01",
+        "answer": "RECEIVED",
+        "tools_requested": [
+          "mcp__tfg_mission_control__get_scenario_view"
+        ],
+        "view_calls": 1,
+        "logical_requests": 2,
+        "completed_requests": 2,
+        "failed_attempts": 0,
+        "client_retries": 0,
+        "attempt_sequence": [],
+        "retry_counter_monotonic": null,
+        "form_only_keys": [],
+        "original_acceptance_error": false,
+        "parse": "FENCED_JSON_OBJECT",
+        "acceptance": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "structured": {
+          "match": 23,
+          "total": 23,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 23
+          }
+        },
+        "critical": {
+          "match": 12,
+          "total": 12,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 12
+          }
+        },
+        "elapsed_wall_s": 48.575,
+        "timed_out": false,
+        "tokens_total": 10429,
+        "model_requests_main": 2,
+        "acceptance_source": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/pilot-real-r04/accept_h3b_post_fix.json"
+      },
+      {
+        "case": "pilot-real-r05",
+        "segment": "tras enmienda 01",
+        "answer": "RECEIVED",
+        "tools_requested": [
+          "mcp__tfg_mission_control__get_scenario_view"
+        ],
+        "view_calls": 1,
+        "logical_requests": 2,
+        "completed_requests": 2,
+        "failed_attempts": 0,
+        "client_retries": 0,
+        "attempt_sequence": [],
+        "retry_counter_monotonic": null,
+        "form_only_keys": [],
+        "original_acceptance_error": false,
+        "parse": "JSON_OBJECT",
+        "acceptance": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "structured": {
+          "match": 23,
+          "total": 23,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 23
+          }
+        },
+        "critical": {
+          "match": 12,
+          "total": 12,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 12
+          }
+        },
+        "elapsed_wall_s": 62.467,
+        "timed_out": false,
+        "tokens_total": 11713,
+        "model_requests_main": 2,
+        "acceptance_source": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/pilot-real-r05/accept_h3b_post_fix.json"
+      },
+      {
+        "case": "pilot-real-r06",
+        "segment": "tras enmienda 01",
+        "answer": "RECEIVED",
+        "tools_requested": [
+          "mcp__tfg_mission_control__get_scenario_view"
+        ],
+        "view_calls": 1,
+        "logical_requests": 2,
+        "completed_requests": 2,
+        "failed_attempts": 0,
+        "client_retries": 0,
+        "attempt_sequence": [],
+        "retry_counter_monotonic": null,
+        "form_only_keys": [
+          "runs[2f7db1f6].reached_points",
+          "runs[febf7c4f].reached_points"
+        ],
+        "original_acceptance_error": true,
+        "parse": "FENCED_JSON_OBJECT",
+        "acceptance": "NOT_VALIDATED",
+        "structured": {
+          "match": 21,
+          "total": 23,
+          "presence_only": [],
+          "failed": [
+            "runs[2f7db1f6].reached_points",
+            "runs[febf7c4f].reached_points"
+          ],
+          "values": {
+            "match": 21,
+            "mismatch": 2
+          }
+        },
+        "critical": {
+          "match": 12,
+          "total": 12,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 12
+          }
+        },
+        "elapsed_wall_s": 171.112,
+        "timed_out": false,
+        "tokens_total": 18728,
+        "model_requests_main": 2,
+        "acceptance_source": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/pilot-real-r06/accept_h3b_post_fix.json"
+      },
+      {
+        "case": "pilot-real-r07",
+        "segment": "tras enmienda 01",
+        "answer": "RECEIVED",
+        "tools_requested": [
+          "mcp__tfg_mission_control__get_scenario_view"
+        ],
+        "view_calls": 1,
+        "logical_requests": 2,
+        "completed_requests": 2,
+        "failed_attempts": 0,
+        "client_retries": 0,
+        "attempt_sequence": [],
+        "retry_counter_monotonic": null,
+        "form_only_keys": [],
+        "original_acceptance_error": false,
+        "parse": "JSON_OBJECT",
+        "acceptance": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "structured": {
+          "match": 23,
+          "total": 23,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 23
+          }
+        },
+        "critical": {
+          "match": 12,
+          "total": 12,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 12
+          }
+        },
+        "elapsed_wall_s": 32.888,
+        "timed_out": false,
+        "tokens_total": 10066,
+        "model_requests_main": 2,
+        "acceptance_source": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/pilot-real-r07/accept_h3b_post_fix.json"
+      },
+      {
+        "case": "pilot-real-r08",
+        "segment": "tras enmienda 01",
+        "answer": "RECEIVED",
+        "tools_requested": [
+          "mcp__tfg_mission_control__get_scenario_view"
+        ],
+        "view_calls": 1,
+        "logical_requests": 2,
+        "completed_requests": 2,
+        "failed_attempts": 0,
+        "client_retries": 0,
+        "attempt_sequence": [],
+        "retry_counter_monotonic": null,
+        "form_only_keys": [],
+        "original_acceptance_error": false,
+        "parse": "JSON_OBJECT",
+        "acceptance": "NOT_VALIDATED",
+        "structured": {
+          "match": 23,
+          "total": 23,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 23
+          }
+        },
+        "critical": {
+          "match": 7,
+          "total": 12,
+          "presence_only": [],
+          "failed": [
+            "claims.current_permissions_checked",
+            "claims.detections_made",
+            "claims.images_captured",
+            "claims.speed_commanded",
+            "claims.speed_measured"
+          ],
+          "values": {
+            "match": 7,
+            "mismatch": 5
+          }
+        },
+        "elapsed_wall_s": 39.768,
+        "timed_out": false,
+        "tokens_total": 10480,
+        "model_requests_main": 2,
+        "acceptance_source": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/pilot-real-r08/accept_h3b_post_fix.json"
+      },
+      {
+        "case": "pilot-real-r09",
+        "segment": "tras enmienda 01",
+        "answer": "RECEIVED",
+        "tools_requested": [
+          "mcp__tfg_mission_control__get_scenario_view"
+        ],
+        "view_calls": 1,
+        "logical_requests": 2,
+        "completed_requests": 2,
+        "failed_attempts": 0,
+        "client_retries": 0,
+        "attempt_sequence": [],
+        "retry_counter_monotonic": null,
+        "form_only_keys": [],
+        "original_acceptance_error": false,
+        "parse": "JSON_OBJECT",
+        "acceptance": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "structured": {
+          "match": 23,
+          "total": 23,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 23
+          }
+        },
+        "critical": {
+          "match": 12,
+          "total": 12,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 12
+          }
+        },
+        "elapsed_wall_s": 63.865,
+        "timed_out": false,
+        "tokens_total": 11906,
+        "model_requests_main": 2,
+        "acceptance_source": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/pilot-real-r09/accept_h3b_post_fix.json"
+      },
+      {
+        "case": "pilot-real-r10",
+        "segment": "tras enmienda 01",
+        "answer": "RECEIVED",
+        "tools_requested": [
+          "mcp__tfg_mission_control__get_scenario_view"
+        ],
+        "view_calls": 1,
+        "logical_requests": 2,
+        "completed_requests": 2,
+        "failed_attempts": 0,
+        "client_retries": 0,
+        "attempt_sequence": [],
+        "retry_counter_monotonic": null,
+        "form_only_keys": [],
+        "original_acceptance_error": false,
+        "parse": "JSON_OBJECT",
+        "acceptance": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "structured": {
+          "match": 23,
+          "total": 23,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 23
+          }
+        },
+        "critical": {
+          "match": 12,
+          "total": 12,
+          "presence_only": [],
+          "failed": [],
+          "values": {
+            "match": 12
+          }
+        },
+        "elapsed_wall_s": 35.375,
+        "timed_out": false,
+        "tokens_total": 10191,
+        "model_requests_main": 2,
+        "acceptance_source": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/pilot-real-r10/accept_h3b_post_fix.json"
+      }
+    ],
+    "segments": {
+      "protocolo original": {
+        "invocations": 2,
+        "keys": [
+          "pilot-real-r01",
+          "pilot-real-r02"
+        ],
+        "answered": "1/2",
+        "structured_validated": "1/2"
+      },
+      "tras enmienda 01": {
+        "invocations": 8,
+        "keys": [
+          "pilot-real-r03",
+          "pilot-real-r04",
+          "pilot-real-r05",
+          "pilot-real-r06",
+          "pilot-real-r07",
+          "pilot-real-r08",
+          "pilot-real-r09",
+          "pilot-real-r10"
+        ],
+        "answered": "8/8",
+        "structured_validated": "5/8"
+      }
+    },
+    "pilot_report_denominators": {
+      "structured_validated_of_attempted": "6/10",
+      "structured_validated_of_answered": "6/9",
+      "r1_false_of_analysable": "8/8"
+    },
+    "protocol_sha256": "13a7595fbc9d5e077e21266d120e79abb93cf410254b4b29c81734922c54244a",
+    "protocol_prompt": "663b63a06958b0418535452c3bc62094b6a77dedd20e23671ce5f8f20d498784",
+    "amendment": {
+      "after": "pilot-real-r02 (timeout; driver stopped by residual-process rule)",
+      "driver_changes": [
+        "wait up to 15 s for own processes to exit before declaring them residual",
+        "60 s pause between invocations",
+        "stop after two consecutive invocations ending without a final answer due to provider errors/timeouts"
+      ],
+      "unchanged": [
+        "prompt 663b63a0",
+        "tool get_scenario_view only",
+        "pinned sources",
+        "provider/model/config",
+        "acceptance criteria",
+        "timeout 300 s",
+        "no retries by the pilot"
+      ]
+    },
+    "sources": {
+      "report": "reporting.agri_scenario_summary.pilot_report(evaluation/observability/agri_scenario_pilot_nous_2026_10_24, evaluation/observability/agri_scenario_pilot_audit_2026_10_25)",
+      "protocol": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/protocol.json",
+      "amendment": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24/protocol_amendment_01.json"
+    }
+  },
+  "not_pooled": "H3, H3b y el piloto no se agregan: prompts, herramientas y protocolos de aceptación distintos"
+}

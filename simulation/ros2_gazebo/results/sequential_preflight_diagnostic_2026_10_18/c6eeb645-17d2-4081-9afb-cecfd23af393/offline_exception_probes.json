@@ -1,0 +1,82 @@
+[
+  {
+    "injected_failure": "get_vehicle_global_origin",
+    "graph_update": {
+      "execution_attempted": true,
+      "execution_started_at": "2026-10-18T21:44:43.275500+00:00",
+      "execution_finished_at": "2026-10-18T21:44:43.276276+00:00",
+      "status": "ERROR",
+      "reasons": [
+        "Executor raised FlightControlError: ROS2 command failed with return code 124:\n; outcome unknown."
+      ]
+    },
+    "mock_calls": {
+      "get_vehicle_global_origin": 1,
+      "get_vehicle_geopose": 0,
+      "switch_vehicle_mode": 0,
+      "arm_vehicle": 0,
+      "takeoff_vehicle": 0,
+      "send_global_position_target": 0,
+      "land_vehicle": 0
+    },
+    "flight_commands_emitted": false,
+    "note": "Offline doubles and temporary files; does not identify which read failed historically"
+  },
+  {
+    "injected_failure": "get_vehicle_geopose",
+    "graph_update": {
+      "execution_attempted": true,
+      "execution_started_at": "2026-10-18T21:44:43.278332+00:00",
+      "execution_finished_at": "2026-10-18T21:44:43.279081+00:00",
+      "status": "ERROR",
+      "reasons": [
+        "Executor raised FlightControlError: ROS2 command failed with return code 124:\n; outcome unknown."
+      ]
+    },
+    "mock_calls": {
+      "get_vehicle_global_origin": 1,
+      "get_vehicle_geopose": 1,
+      "switch_vehicle_mode": 0,
+      "arm_vehicle": 0,
+      "takeoff_vehicle": 0,
+      "send_global_position_target": 0,
+      "land_vehicle": 0
+    },
+    "flight_commands_emitted": false,
+    "note": "Offline doubles and temporary files; does not identify which read failed historically"
+  },
+  {
+    "injected_failure": "switch_vehicle_mode",
+    "graph_update": {
+      "execution_attempted": true,
+      "execution_started_at": "2026-10-18T21:44:43.280280+00:00",
+      "execution_finished_at": "2026-10-18T21:44:43.281024+00:00",
+      "executor_result": {
+        "success": false,
+        "status": "FAILED",
+        "stage": "MISSION_EXECUTION",
+        "mission_id": "simulation_navigation_drone02",
+        "vehicle": "v2",
+        "vehicle_id": "drone_02",
+        "error": "ROS2 command failed with return code 124:\n",
+        "waypoint_diagnostic": null,
+        "events": [],
+        "recovery": {
+          "landing_attempted": false,
+          "landing_completed": false
+        }
+      }
+    },
+    "mock_calls": {
+      "get_vehicle_global_origin": 1,
+      "get_vehicle_geopose": 1,
+      "switch_vehicle_mode": 1,
+      "arm_vehicle": 0,
+      "takeoff_vehicle": 0,
+      "send_global_position_target": 0,
+      "land_vehicle": 0
+    },
+    "flight_commands_emitted": false,
+    "note": "Offline doubles and temporary files; does not identify which read failed historically"
+  }
+]

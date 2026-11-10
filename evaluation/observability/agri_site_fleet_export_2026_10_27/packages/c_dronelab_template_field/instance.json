@@ -1,0 +1,181 @@
+{
+  "aerial": [
+    {
+      "blocks": [
+        [
+          "BLOCKED_MISSING_DATA",
+          "site INCOMPLETE"
+        ]
+      ],
+      "mission_sha256": null,
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "coordinates",
+            "detail": "unmeasured point or perimeter",
+            "status": "FAIL"
+          }
+        ],
+        "route_local": null,
+        "status": "FAIL"
+      },
+      "task_id": "A1",
+      "vehicle_id": "drone_01"
+    },
+    {
+      "blocks": [
+        [
+          "BLOCKED_MISSING_DATA",
+          "site INCOMPLETE"
+        ]
+      ],
+      "mission_sha256": null,
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "coordinates",
+            "detail": "unmeasured point or perimeter",
+            "status": "FAIL"
+          }
+        ],
+        "route_local": null,
+        "status": "FAIL"
+      },
+      "task_id": "A2",
+      "vehicle_id": "drone_02"
+    }
+  ],
+  "coordination": {
+    "dependencies": [
+      {
+        "after": "A1",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "A2"
+      },
+      {
+        "after": "A1",
+        "condition": "POI_REACHED",
+        "point": "POI_1",
+        "task_id": "R1"
+      },
+      {
+        "after": "A2",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "R1"
+      }
+    ],
+    "errors": [],
+    "mode": "SEQUENTIAL",
+    "note": "dependencies are conditions on OBSERVED outcomes held by the coordinator; never a time wait. Individual .plan files do not coordinate vehicles.",
+    "order": [
+      "A1",
+      "A2",
+      "R1"
+    ],
+    "status": "PASS"
+  },
+  "ground": [
+    {
+      "execution": "outside this package: R1 coordinator gates unchanged",
+      "export": "FORMAT_PENDING: no rover exporter; a .plan is not assumed",
+      "frame_transform_to_rover": "NOT_ACCREDITED (site frame -> rover odometry frame)",
+      "kind": "VISIT_AND_STOP",
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "drivable area",
+            "detail": "no measured drivable area or points",
+            "status": "NOT_CHECKABLE"
+          }
+        ],
+        "status": "NOT_CHECKABLE"
+      },
+      "start_point": "ROVER_START",
+      "target_point": "POI_1",
+      "task_id": "R1",
+      "vehicle_id": "rover_01"
+    }
+  ],
+  "inputs": {
+    "fleet": {
+      "id": "agri_demo_fleet",
+      "sha256": "45b09915aa95e48726e27bd5e3fb33c3018bb40e42593712f34a4068655a296c",
+      "version": 1
+    },
+    "site": {
+      "id": "dronelab",
+      "sha256": "10c6ee168ab4fe6473d01101f9494b97bd934ba6da85776b0996e0117800d8a7",
+      "status": "TEMPLATE_PENDING_MEASUREMENT",
+      "version": 1
+    },
+    "template": {
+      "id": "agri_poi_visit",
+      "sha256": "62dd9c06a8520d76d9e6d0bc16c75f1fbb635a97fbef5454fdb0540ab827d314",
+      "version": 1
+    }
+  },
+  "instance_id": "5c73dd4dbb413cab",
+  "joint_spatial": {
+    "frame": "dronelab_local",
+    "pairs": []
+  },
+  "provenance": "TEMPLATE",
+  "references": {
+    "effective_home": "NOT_OBSERVED (ArduPilot sets it at arming)",
+    "estimator_origin": "NOT_OBSERVED",
+    "gazebo_spawn": "not related to the site frame (no accredited transform)",
+    "planned_takeoff": "site points of kind planned_takeoff",
+    "rover_start": "site points of kind rover_start",
+    "site_origin": "ORIGIN"
+  },
+  "schema": "tfg.scenario-instance/1",
+  "site_validation": {
+    "capabilities": {
+      "field_export": false,
+      "local_design": false,
+      "sitl_geographic_export": false
+    },
+    "errors": [],
+    "export_blocks": {
+      "field": [
+        "site INCOMPLETE",
+        "site, geo/vertical reference and frame orientation are not all VERIFIED_DECLARED"
+      ],
+      "sitl": [
+        "site INCOMPLETE"
+      ]
+    },
+    "geographic_references": {
+      "complete": false,
+      "field_verified_declared": false,
+      "missing": [
+        "geo_reference.latitude/longitude",
+        "local_frame.y_axis_bearing_deg",
+        "vertical_reference.origin_ground_amsl_m"
+      ]
+    },
+    "missing": [
+      "zone PERIMETER.polygon",
+      "zone EXCLUSION_1.polygon",
+      "zone PAD_1.polygon",
+      "zone ROVER_BAY.polygon",
+      "zone DRIVABLE.polygon",
+      "point ORIGIN.x_m/y_m",
+      "point TAKEOFF_A.x_m/y_m",
+      "point TAKEOFF_B.x_m/y_m",
+      "point ROVER_START.x_m/y_m",
+      "point POI_1.x_m/y_m",
+      "point POI_2.x_m/y_m",
+      "point POI_3.x_m/y_m",
+      "point POI_4.x_m/y_m"
+    ],
+    "note": "VERIFIED_DECLARED is a declaration in the file, not an authentication",
+    "site_id": "dronelab",
+    "site_status": "TEMPLATE_PENDING_MEASUREMENT",
+    "status": "INCOMPLETE",
+    "version": 1,
+    "warnings": []
+  }
+}

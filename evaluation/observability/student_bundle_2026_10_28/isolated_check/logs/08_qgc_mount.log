@@ -1,0 +1,11 @@
+total 8
+-rw-r--r-- 1 joelm joelm 3258 Oct 28 09:23 drone_01.plan
+-rw-r--r-- 1 joelm joelm 3259 Oct 28 09:23 drone_02.plan
+        target: /data/plan
+        read_only: true
+        bind:
+          create_host_path: false
+          create_host_path: false
+      - type: bind
+        source: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/results/paquete_1/plans
+        target: /data/plan

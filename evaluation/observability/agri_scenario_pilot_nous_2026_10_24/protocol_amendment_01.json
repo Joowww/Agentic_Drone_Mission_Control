@@ -1,0 +1,22 @@
+{
+  "amended_at_utc": "2026-10-24T18:04:33.893782+00:00",
+  "after": "pilot-real-r02 (timeout; driver stopped by residual-process rule)",
+  "finding": "residual process was Hermes mcp_death_supervisor; it exited on its own within seconds (none at 18:03:42Z); restore ok, config c99d1a88, plugins empty",
+  "r02_cause": "provider: first API call timed out at 180 s, then 3 Hermes-internal retries got 429 overloaded; tool call at 285 s; final answer not received before 300 s outer timeout",
+  "decision": "resume with r03..r10; r02 is NOT re-invoked",
+  "driver_changes": [
+    "wait up to 15 s for own processes to exit before declaring them residual",
+    "60 s pause between invocations",
+    "stop after two consecutive invocations ending without a final answer due to provider errors/timeouts"
+  ],
+  "unchanged": [
+    "prompt 663b63a0",
+    "tool get_scenario_view only",
+    "pinned sources",
+    "provider/model/config",
+    "acceptance criteria",
+    "timeout 300 s",
+    "no retries by the pilot"
+  ],
+  "note": "Hermes itself retries API calls internally (max_retries 3 in its client); that existed in H3b and r01 and is part of the configured runtime, not a pilot retry"
+}

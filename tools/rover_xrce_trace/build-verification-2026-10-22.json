@@ -1,0 +1,31 @@
+{
+  "kind": "BUILD_AND_LINK_ONLY_NO_AGENT_EXECUTION",
+  "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+  "image": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+  "initial_inspection_running": true,
+  "build_command": "bash /tmp/tfg-xrce-trace-build.sh /tmp/tfg-xrce-trace-native /tmp/tfg-xrce-trace-link-20261022",
+  "initial_full_build": "Native 100% compilation/link and ROS wrapper 100% compilation/link completed successfully; original tool output not saved as a raw log. Following output is a separate incremental target verification and static ELF/hash inspection.",
+  "verification": {
+    "chunk_id": "2dca03",
+    "wall_time_seconds": 0.350231845,
+    "exit_code": 0,
+    "original_token_count": 961,
+    "output": "Consolidate compiler generated dependencies of target microxrcedds_agent\n[100%] Built target microxrcedds_agent\nConsolidate compiler generated dependencies of target micro_ros_agent\n[100%] Built target micro_ros_agent\nb1330420c764240c971263d5ec7abea3da82a46555bf677a2f21a1d78694325c  /tmp/tfg-xrce-trace-link-20261022/agent-build/micro_ros_agent\ncc4cf3522cc4bab9980e42beb7b556e21c74206a5223cb0a27d00dfce38a1bd4  /tmp/tfg-xrce-trace-link-20261022/native-build/libmicroxrcedds_agent.so\n7f2f751df40f2433682a9f0536e8ae5aa54be7e71d0533368370aea69b5f0e87  /tmp/tfg-xrce-trace-native/include/uxr/agent/diagnostic/trace.hpp\nd1078c0db5edef6ae90f73d1cd19ca1433f04066622660360ae9c82145c491c3  /root/ardu_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent\ncaeecdefd1da42825335b24d23f58df9fff2b1dac6383a3638ad60c14df47c34  /root/ardu_ws/install/micro_ros_agent/lib/libmicroxrcedds_agent.so\nce4dc19342ffeec5cc968cd1540ef0cf8c437b3610c3dde44bc2f98c0a632ae1  /opt/ros/humble/include/rmw_fastrtps_shared_cpp/rmw_fastrtps_shared_cpp/create_rmw_gid.hpp\n82282f69aebfff8fe9a22551b17db386daf7b4afd1296f00c9b9613fe9182844  /opt/ros/humble/lib/librmw_fastrtps_shared_cpp.so\n\nDynamic section at offset 0x3a860 contains 40 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [librmw_fastrtps_shared_cpp.so]\n 0x0000000000000001 (NEEDED)             Shared library: [libmicro_ros_msgs__rosidl_typesupport_cpp.so]\n 0x0000000000000001 (NEEDED)             Shared library: [libmicroxrcedds_agent.so.2.4]\n 0x0000000000000001 (NEEDED)             Shared library: [libfastrtps.so.2.6]\n 0x0000000000000001 (NEEDED)             Shared library: [librmw_dds_common.so]\n 0x0000000000000001 (NEEDED)             Shared library: [librmw_dds_common__rosidl_typesupport_cpp.so]\n 0x0000000000000001 (NEEDED)             Shared library: [librmw.so]\n 0x0000000000000001 (NEEDED)             Shared library: [librosidl_runtime_c.so]\n 0x0000000000000001 (NEEDED)             Shared library: [librcutils.so]\n 0x0000000000000001 (NEEDED)             Shared library: [libfastcdr.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x000000000000001d (RUNPATH)            Library runpath: [/tmp/tfg-xrce-trace-link-20261022/native-build:/opt/ros/humble/lib:]\n 0x000000000000000c (INIT)               0x12000\n 0x000000000000000d (FINI)               0x307c0\n 0x0000000000000019 (INIT_ARRAY)         0x39ff0\n 0x000000000000001b (INIT_ARRAYSZ)       40 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0x3a018\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x3b0\n 0x0000000000000005 (STRTAB)             0x4740\n 0x0000000000000006 (SYMTAB)             0x1080\n 0x000000000000000a (STRSZ)              33415 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0x3bb20\n 0x0000000000000002 (PLTRELSZ)           3480 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x107c8\n 0x0000000000000007 (RELA)               0xcfe8\n 0x0000000000000008 (RELASZ)             14304 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x000000000000001e (FLAGS)              BIND_NOW\n 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE\n 0x000000006ffffffe (VERNEED)            0xce58\n 0x000000006fffffff (VERNEEDNUM)         4\n 0x000000006ffffff0 (VERSYM)             0xc9c8\n 0x000000006ffffff9 (RELACOUNT)          482\n 0x0000000000000000 (NULL)               0x0\n                 U _ZN23rmw_fastrtps_shared_cpp14create_rmw_gidEPKcRKN8eprosima8fastrtps4rtps6GUID_tE\n"
+  },
+  "final_revision": {
+    "kind": "RECOMPILED_AND_RELINKED_NOT_EXECUTED",
+    "return_code": 0,
+    "native_changed_objects": [
+      "ProxyClient.cpp.o",
+      "FastDDSMiddleware.cpp.o"
+    ],
+    "targets": [
+      "microxrcedds_agent (100% built)",
+      "micro_ros_agent (100% built)"
+    ],
+    "wrapper_sha256": "b1330420c764240c971263d5ec7abea3da82a46555bf677a2f21a1d78694325c",
+    "native_library_sha256": "5bae08d754e8113b99c1d418154f907754168b1217b5be18c0969738def55703",
+    "trace_header_sha256": "7132c6f38f780d4baa3d64c91db12129451431266b1d07c209eb8cd55f0cf0db",
+    "note": "Supersedes earlier native library cc4cf352 after adding per-thread SIGPIPE handling for a disappearing diagnostic reader; wrapper hash unchanged. Header/native paths remain those above. Final static native NEEDED includes librmw_fastrtps_shared_cpp.so and libfastrtps.so.2.6."
+  }
+}

@@ -1,0 +1,625 @@
+{
+  "approval": {
+    "mismatches": [],
+    "status": "ABSENT"
+  },
+  "artifacts": [
+    {
+      "conversion": {
+        "geofence": "empty: site perimeter/exclusions are NOT exported as a fence (FENCE_* not verified)",
+        "items": [
+          {
+            "doJumpId": 1,
+            "source": "takeoff to the first waypoint altitude (as the SITL executor does)"
+          },
+          {
+            "doJumpId": 2,
+            "note": "REQUESTED maximum speed; runs when the preceding NAV item completes; not validated",
+            "source": "POI_1.speed_kmh=10.0"
+          },
+          {
+            "doJumpId": 3,
+            "source": "POI_1"
+          },
+          {
+            "doJumpId": 4,
+            "source": "POI_2"
+          },
+          {
+            "doJumpId": 5,
+            "source": "return_to_home -> land at the planned home coordinate"
+          }
+        ],
+        "label_scope": "EXACT: the named element of the file equals the corresponding element of the mission (or of the H2 record where stated). It does not claim dynamic equivalence with H2, QGroundControl or vehicle compatibility, or any flight guarantee. CONDITIONED: the element is present but its effect depends on something outside the file (autopilot parameters, arming position). NOT_IN_PLAN: not expressed.",
+        "precision": {
+          "altitude_decimals": 3,
+          "latlon_decimals": 8,
+          "transport": "MISSION_ITEM_INT carries degE7 (~1.1 cm); see verifier"
+        },
+        "profile": "QGC_PLAN_ARDUCOPTER_V2",
+        "semantics": [
+          {
+            "detail": "NAV_TAKEOFF to the first waypoint altitude, relative to the EFFECTIVE home (set at arming); equals the executor's launch-relative target only if armed at the planned takeoff position",
+            "element": "takeoff",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "item lat/lon/alt equal the mission waypoint values (8 decimals; degE7 transport quantization reported); says nothing about the flown path",
+            "element": "waypoint coordinate values",
+            "status": "EXACT"
+          },
+          {
+            "detail": "ArduCopter accepts within WP_RADIUS_M and does not stop at a waypoint followed by another navigation item (hold 0); the H2 executor sent targets one by one and accepted at 1.0 m horizontal / 0.75 m vertical",
+            "element": "waypoint acceptance",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "param1 = 0, matching the mission model, which has no hold field; the vehicle's dwell is not implied (see waypoint acceptance)",
+            "element": "hold parameter",
+            "status": "EXACT"
+          },
+          {
+            "detail": "not specified by the mission (param4 NaN): WP_YAW_BEHAVIOR decides; the executor commanded no yaw either",
+            "element": "yaw",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "requested [10.0] km/h as DO_CHANGE_SPEED (maximum horizontal speed, bounded by the autopilot); the GUIDED executor did not apply speed_kmh",
+            "element": "speed",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "NAV_LAND coordinate = the planned home coordinate; the executor returned to the OBSERVED launch position, equal only if the vehicle launches at the planned coordinate. The motion differs: H2 sent a GUIDED target and waited within 1.0 m before LAND; ArduCopter flies the NAV_LAND leg at the current altitude, then descends (not RTL, not the effective home)",
+            "element": "return coordinate",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "an explicit NAV_LAND item is present, as H2 always commanded LAND; it does not depend on RTL_ALT_FINAL_M. Descent and touchdown behaviour depend on LAND_* parameters",
+            "element": "landing command",
+            "status": "EXACT"
+          },
+          {
+            "detail": "low battery / wind / link loss actions are autopilot parameters (FS_*), not mission items; the mission's failsafe block is not expressed",
+            "element": "failsafe actions",
+            "status": "NOT_IN_PLAN"
+          },
+          {
+            "detail": "battery, wind and constraints are validation inputs only",
+            "element": "planning inputs",
+            "status": "NOT_IN_PLAN"
+          }
+        ],
+        "speed_fields": {
+          "hoverSpeed_cruiseSpeed_mps": 9.722,
+          "meaning": "QGC planning fields; not converted into a commanded speed"
+        }
+      },
+      "mission_file": "missions/A1.drone_01.mission.json",
+      "mission_id": "agri_poi_visit_v1_synthetic_orchard_v1_A1",
+      "mission_sha256": "4f4eef794cb6c3f1af374945b9520c476398dceff9951a877f4aacd9b78eed4b",
+      "plan_file": "plans/drone_01.plan",
+      "plan_sha256": "692c8075133ef62bdb4a051892387ce62213fb2c8ae3a905904d2f157d142c8d",
+      "planned_home": {
+        "amsl_m": 584.0,
+        "amsl_source": "site vertical_reference.origin_ground_amsl_m (DECLARED_FLAT); not the effective home",
+        "latitude": -35.3633158986705,
+        "longitude": 149.16519293808915
+      },
+      "profile": "QGC_PLAN_ARDUCOPTER_V2",
+      "reasons": [],
+      "state": "GENERATED",
+      "task_id": "A1",
+      "vehicle_id": "drone_01",
+      "verification": {
+        "checks": [
+          {
+            "check": "top level",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "mission header",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "plannedHomePosition (lat, lon, AMSL)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "numbering",
+            "detail": "doJumpId 1..n",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 1 (22)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 2 (178)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 3 (16)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 4 (16)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 5 (21)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "command sequence",
+            "detail": "[22, 178, 16, 16, 21]",
+            "ok": true
+          },
+          {
+            "check": "item 1 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 2 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 3 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 4 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 5 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "degE7 transport quantization below 2 cm",
+            "detail": "max 0.363 cm",
+            "ok": true
+          }
+        ],
+        "compatibility": "NOT_ESTABLISHED: not imported in QGroundControl, not uploaded, not read back from a vehicle",
+        "importer_readback": {
+          "losses": [
+            "MAV_CMD_NAV_TAKEOFF was not converted into a horizontal waypoint. Vertical takeoff dynamics are not modelled yet.",
+            "MAV_CMD_NAV_LAND was converted to a navigation endpoint. Landing dynamics are not modelled yet.",
+            "NAV_LAND represented as an extra navigation waypoint; landing and return meaning lost"
+          ],
+          "note": "our own importer; it is not QGroundControl and shares the project's assumptions",
+          "status": "REDUCED",
+          "waypoint_geometry": "MATCH"
+        },
+        "max_degE7_quantization_m": 0.003631,
+        "status": "FILE_MATCHES_EXPECTATIONS"
+      }
+    },
+    {
+      "conversion": {
+        "geofence": "empty: site perimeter/exclusions are NOT exported as a fence (FENCE_* not verified)",
+        "items": [
+          {
+            "doJumpId": 1,
+            "source": "takeoff to the first waypoint altitude (as the SITL executor does)"
+          },
+          {
+            "doJumpId": 2,
+            "note": "REQUESTED maximum speed; runs when the preceding NAV item completes; not validated",
+            "source": "POI_3.speed_kmh=10.0"
+          },
+          {
+            "doJumpId": 3,
+            "source": "POI_3"
+          },
+          {
+            "doJumpId": 4,
+            "source": "POI_4"
+          },
+          {
+            "doJumpId": 5,
+            "source": "return_to_home -> land at the planned home coordinate"
+          }
+        ],
+        "label_scope": "EXACT: the named element of the file equals the corresponding element of the mission (or of the H2 record where stated). It does not claim dynamic equivalence with H2, QGroundControl or vehicle compatibility, or any flight guarantee. CONDITIONED: the element is present but its effect depends on something outside the file (autopilot parameters, arming position). NOT_IN_PLAN: not expressed.",
+        "precision": {
+          "altitude_decimals": 3,
+          "latlon_decimals": 8,
+          "transport": "MISSION_ITEM_INT carries degE7 (~1.1 cm); see verifier"
+        },
+        "profile": "QGC_PLAN_ARDUCOPTER_V2",
+        "semantics": [
+          {
+            "detail": "NAV_TAKEOFF to the first waypoint altitude, relative to the EFFECTIVE home (set at arming); equals the executor's launch-relative target only if armed at the planned takeoff position",
+            "element": "takeoff",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "item lat/lon/alt equal the mission waypoint values (8 decimals; degE7 transport quantization reported); says nothing about the flown path",
+            "element": "waypoint coordinate values",
+            "status": "EXACT"
+          },
+          {
+            "detail": "ArduCopter accepts within WP_RADIUS_M and does not stop at a waypoint followed by another navigation item (hold 0); the H2 executor sent targets one by one and accepted at 1.0 m horizontal / 0.75 m vertical",
+            "element": "waypoint acceptance",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "param1 = 0, matching the mission model, which has no hold field; the vehicle's dwell is not implied (see waypoint acceptance)",
+            "element": "hold parameter",
+            "status": "EXACT"
+          },
+          {
+            "detail": "not specified by the mission (param4 NaN): WP_YAW_BEHAVIOR decides; the executor commanded no yaw either",
+            "element": "yaw",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "requested [10.0] km/h as DO_CHANGE_SPEED (maximum horizontal speed, bounded by the autopilot); the GUIDED executor did not apply speed_kmh",
+            "element": "speed",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "NAV_LAND coordinate = the planned home coordinate; the executor returned to the OBSERVED launch position, equal only if the vehicle launches at the planned coordinate. The motion differs: H2 sent a GUIDED target and waited within 1.0 m before LAND; ArduCopter flies the NAV_LAND leg at the current altitude, then descends (not RTL, not the effective home)",
+            "element": "return coordinate",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "an explicit NAV_LAND item is present, as H2 always commanded LAND; it does not depend on RTL_ALT_FINAL_M. Descent and touchdown behaviour depend on LAND_* parameters",
+            "element": "landing command",
+            "status": "EXACT"
+          },
+          {
+            "detail": "low battery / wind / link loss actions are autopilot parameters (FS_*), not mission items; the mission's failsafe block is not expressed",
+            "element": "failsafe actions",
+            "status": "NOT_IN_PLAN"
+          },
+          {
+            "detail": "battery, wind and constraints are validation inputs only",
+            "element": "planning inputs",
+            "status": "NOT_IN_PLAN"
+          }
+        ],
+        "speed_fields": {
+          "hoverSpeed_cruiseSpeed_mps": 9.722,
+          "meaning": "QGC planning fields; not converted into a commanded speed"
+        }
+      },
+      "mission_file": "missions/A2.drone_02.mission.json",
+      "mission_id": "agri_poi_visit_v1_synthetic_orchard_v1_A2",
+      "mission_sha256": "c7a9d6b409b6ceda16ee70ff8c63f97f91cec607c0b3a198d065d0c37b6dc466",
+      "plan_file": "plans/drone_02.plan",
+      "plan_sha256": "d190e0551838483fc973e852b82855be6d085c1f2ca5d2526f8f8e676a5b75e2",
+      "planned_home": {
+        "amsl_m": 584.0,
+        "amsl_source": "site vertical_reference.origin_ground_amsl_m (DECLARED_FLAT); not the effective home",
+        "latitude": -35.3633158986705,
+        "longitude": 149.16528106191083
+      },
+      "profile": "QGC_PLAN_ARDUCOPTER_V2",
+      "reasons": [],
+      "state": "GENERATED",
+      "task_id": "A2",
+      "vehicle_id": "drone_02",
+      "verification": {
+        "checks": [
+          {
+            "check": "top level",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "mission header",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "plannedHomePosition (lat, lon, AMSL)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "numbering",
+            "detail": "doJumpId 1..n",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 1 (22)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 2 (178)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 3 (16)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 4 (16)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 5 (21)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "command sequence",
+            "detail": "[22, 178, 16, 16, 21]",
+            "ok": true
+          },
+          {
+            "check": "item 1 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 2 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 3 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 4 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 5 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "degE7 transport quantization below 2 cm",
+            "detail": "max 0.363 cm",
+            "ok": true
+          }
+        ],
+        "compatibility": "NOT_ESTABLISHED: not imported in QGroundControl, not uploaded, not read back from a vehicle",
+        "importer_readback": {
+          "losses": [
+            "MAV_CMD_NAV_TAKEOFF was not converted into a horizontal waypoint. Vertical takeoff dynamics are not modelled yet.",
+            "MAV_CMD_NAV_LAND was converted to a navigation endpoint. Landing dynamics are not modelled yet.",
+            "NAV_LAND represented as an extra navigation waypoint; landing and return meaning lost"
+          ],
+          "note": "our own importer; it is not QGroundControl and shares the project's assumptions",
+          "status": "REDUCED",
+          "waypoint_geometry": "MATCH"
+        },
+        "max_degE7_quantization_m": 0.003631,
+        "status": "FILE_MATCHES_EXPECTATIONS"
+      }
+    }
+  ],
+  "coordination": {
+    "dependencies": [
+      {
+        "after": "A1",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "A2"
+      },
+      {
+        "after": "A1",
+        "condition": "POI_REACHED",
+        "point": "POI_1",
+        "task_id": "R1"
+      },
+      {
+        "after": "A2",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "R1"
+      }
+    ],
+    "errors": [],
+    "mode": "SEQUENTIAL",
+    "note": "dependencies are conditions on OBSERVED outcomes held by the coordinator; never a time wait. Individual .plan files do not coordinate vehicles.",
+    "order": [
+      "A1",
+      "A2",
+      "R1"
+    ],
+    "status": "PASS"
+  },
+  "deployment_blockers": [
+    "operator approval ABSENT",
+    "imported_in_qgroundcontrol: NOT_DONE",
+    "uploaded_to_vehicle: NOT_DONE",
+    "read_back_from_vehicle: NOT_DONE",
+    "executed: NOT_DONE"
+  ],
+  "deployment_ready": false,
+  "files": {
+    "export_report.md": "174205a5980c49d811b78eeaf30be176bd53b0f504e700ef4ba4f9ad5a7f8930",
+    "fleet.json": "9a2ffcfa2539a17c7e4b746ed485e949e0a905096c936b7b2ffaf0c938ce41c1",
+    "instance.json": "88f364483245a92e437c239c44217889c102c02eb36fd5cf150a3daad2724499",
+    "missions/A1.drone_01.mission.json": "4f4eef794cb6c3f1af374945b9520c476398dceff9951a877f4aacd9b78eed4b",
+    "missions/A2.drone_02.mission.json": "c7a9d6b409b6ceda16ee70ff8c63f97f91cec607c0b3a198d065d0c37b6dc466",
+    "plans/drone_01.plan": "692c8075133ef62bdb4a051892387ce62213fb2c8ae3a905904d2f157d142c8d",
+    "plans/drone_02.plan": "d190e0551838483fc973e852b82855be6d085c1f2ca5d2526f8f8e676a5b75e2",
+    "site.json": "0db007e872c8c9d04ae4cc24b733d7753dfbd7e814fe3ab725ee580785e3eb05",
+    "template.json": "62dd9c06a8520d76d9e6d0bc16c75f1fbb635a97fbef5454fdb0540ab827d314"
+  },
+  "ground_tasks": [
+    {
+      "execution": "outside this package: R1 coordinator gates unchanged",
+      "export": "FORMAT_PENDING: no rover exporter; a .plan is not assumed",
+      "frame_transform_to_rover": "NOT_ACCREDITED (site frame -> rover odometry frame)",
+      "kind": "VISIT_AND_STOP",
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "target in drivable area",
+            "detail": "DRIVABLE",
+            "status": "PASS"
+          },
+          {
+            "check": "straight line within drivable area",
+            "detail": "the aerial perimeter is never used for the rover",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion TREE_ROW_1",
+            "detail": "clearance 7.211 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion SHED",
+            "detail": "clearance 17.088 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion DITCH",
+            "detail": "clearance 14.000 m vs margin 1.0 m",
+            "status": "PASS"
+          }
+        ],
+        "line_local": [
+          [
+            1.0,
+            -1.5
+          ],
+          [
+            -4.0,
+            4.0
+          ]
+        ],
+        "margin": {
+          "kind": "DECLARED_PLANNING_MARGIN",
+          "missing_inputs": [
+            "point POI_1.uncertainty_m",
+            "point ROVER_START.uncertainty_m",
+            "vehicle.horizontal_position_uncertainty_m",
+            "vehicle.max_horizontal_extent_m",
+            "zone DRIVABLE.uncertainty_m"
+          ],
+          "planning_margin_m": 1.0,
+          "status": "NOT_ACCREDITED"
+        },
+        "scope": "straight planned line only; no path planner; rover frame transform not accredited",
+        "status": "PASS"
+      },
+      "start_point": "ROVER_START",
+      "target_point": "POI_1",
+      "task_id": "R1",
+      "vehicle_id": "rover_01"
+    }
+  ],
+  "inputs": {
+    "fleet": {
+      "id": "agri_demo_fleet",
+      "sha256": "9a2ffcfa2539a17c7e4b746ed485e949e0a905096c936b7b2ffaf0c938ce41c1",
+      "version": 2
+    },
+    "site": {
+      "id": "synthetic_orchard",
+      "sha256": "0db007e872c8c9d04ae4cc24b733d7753dfbd7e814fe3ab725ee580785e3eb05",
+      "status": "SYNTHETIC",
+      "version": 1
+    },
+    "template": {
+      "id": "agri_poi_visit",
+      "sha256": "62dd9c06a8520d76d9e6d0bc16c75f1fbb635a97fbef5454fdb0540ab827d314",
+      "version": 1
+    }
+  },
+  "instance_id": "b9cff3e6b6950110",
+  "joint_spatial": {
+    "frame": "synthetic_orchard_local",
+    "pairs": [
+      {
+        "min_horizontal_distance_m": 8.0,
+        "pair": [
+          "A1",
+          "A2"
+        ],
+        "simultaneous_execution": "NOT_CLEARED",
+        "temporal_deconfliction": "NOT_EVALUATED"
+      }
+    ]
+  },
+  "layers": {
+    "deployment_approval": "ABSENT",
+    "geometric_validation": "VALID",
+    "measurement_provenance": "SYNTHETIC",
+    "operator_declaration": "SYNTHETIC"
+  },
+  "lifecycle": {
+    "executed": "NOT_DONE",
+    "exported": "DONE",
+    "file_checks": "FILE_MATCHES_EXPECTATIONS; importer readback REDUCED",
+    "imported_in_qgroundcontrol": "NOT_DONE",
+    "read_back_from_vehicle": "NOT_DONE",
+    "uploaded_to_vehicle": "NOT_DONE"
+  },
+  "limitations": [
+    "checks cover planned straight lines, not flown trajectories, unknown obstacles or collisions",
+    "relative altitudes refer to the EFFECTIVE home set at arming, not to plannedHomePosition",
+    "requested speeds are DO_CHANGE_SPEED requests, not validated speeds",
+    "the .plan returns to a planned COORDINATE and lands (NAV_LAND); it does not use RTL",
+    "no geofence exported",
+    "individual .plan files do not coordinate vehicles; order and dependencies live in the coordinator",
+    "our importer reads the file back with losses (TAKEOFF dropped, LAND reduced to a waypoint)"
+  ],
+  "package_status": "COMPLETE_OFFLINE",
+  "pending_conditions": [
+    "operator approval ABSENT",
+    "A1: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)",
+    "A2: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)",
+    "conditioned or not in the .plan: failsafe actions, planning inputs, return coordinate, speed, takeoff, waypoint acceptance, yaw",
+    "autopilot parameters not read: WP_RADIUS_M (waypoint acceptance), WP_YAW_BEHAVIOR (yaw), WP_SPD (default speed), FS_* (failsafe actions), LAND_SPD_MS / descent (landing rate)",
+    "QGroundControl version unknown; imported_in_qgroundcontrol: NOT_DONE, uploaded_to_vehicle: NOT_DONE, read_back_from_vehicle: NOT_DONE, executed: NOT_DONE"
+  ],
+  "provenance": "SYNTHETIC",
+  "references": {
+    "effective_home": "NOT_OBSERVED (ArduPilot sets it at arming)",
+    "estimator_origin": "NOT_OBSERVED",
+    "gazebo_spawn": "not related to the site frame (no accredited transform)",
+    "planned_takeoff": "site points of kind planned_takeoff",
+    "rover_start": "site points of kind rover_start",
+    "site_origin": "ORIGIN"
+  },
+  "schema": "tfg.scenario-package/1",
+  "site": {
+    "id": "synthetic_orchard",
+    "sha256": "0db007e872c8c9d04ae4cc24b733d7753dfbd7e814fe3ab725ee580785e3eb05",
+    "status": "SYNTHETIC",
+    "validation": "VALID",
+    "version": 1
+  },
+  "target": "SITL_REHEARSAL",
+  "vehicles": [
+    "drone_01",
+    "drone_02",
+    "rover_01"
+  ],
+  "versions": {
+    "ardupilot_executed": "ArduCopter/ArduRover V4.8.0-dev (755258db) as reported by SITL in logs of 20-26/10/2026 (e.g. results/gui_control_two_drones_2026_10_25, rover_identity_trial_2026_10_26; image sha256:5d5de3c6...); the H2 record of 24/10 keeps no firmware version or image id",
+    "ardupilot_source_consulted": "local clean tree at 755258dbb452 (~/TFG/ardupilot_ros2_ws/src/ardupilot)",
+    "physical_vehicles": "UNKNOWN",
+    "qgroundcontrol": "UNKNOWN: no installation found; plan format from the QGC master documentation (27/10/2026)"
+  }
+}

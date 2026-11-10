@@ -1,0 +1,472 @@
+{
+ "commands": {
+  "safety/3": "python -m multiagent.demo --all-scenarios --safety-policy safety/3 --out <dir>/safety3",
+  "safety/4": "python -m multiagent.demo --all-scenarios --safety-policy safety/4 --out <dir>/safety4"
+ },
+ "commit": "62032d378",
+ "date": "2026-11-06",
+ "identical_classifications_across_policies": true,
+ "limitations": [
+  "colour-threshold detector on synthetic nadir images; not validated on real photographs",
+  "flat-ground hypothesis for depth; virtual camera parameters, no real calibration",
+  "scripted agents (no model) in every scenario",
+  "no executor other than the dry-run adapter"
+ ],
+ "policies": {
+  "safety3": {
+   "all_as_expected": true,
+   "n": 17,
+   "scenarios": {
+    "ambiguous_detection": {
+     "as_expected": true,
+     "classification": "DETECTION_AMBIGUOUS_ROVER_KEEPS_WAITING",
+     "commands_sent": 0,
+     "expected": "DETECTION_AMBIGUOUS_ROVER_KEEPS_WAITING",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "planning_completed"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "disallowed_color": {
+     "as_expected": true,
+     "classification": "NO_DETECTION_ROVER_KEEPS_WAITING",
+     "commands_sent": 0,
+     "expected": "NO_DETECTION_ROVER_KEEPS_WAITING",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "planning_completed"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "duplicate_observation": {
+     "as_expected": true,
+     "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "commands_sent": 0,
+     "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "group": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "impossible_dependency": {
+     "as_expected": true,
+     "classification": "DEPENDENCY_IMPOSSIBLE",
+     "commands_sent": 0,
+     "expected": "DEPENDENCY_IMPOSSIBLE",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "missing_camera_pose": {
+     "as_expected": true,
+     "classification": "TARGET_NOT_GEOREFERENCED",
+     "commands_sent": 0,
+     "expected": "TARGET_NOT_GEOREFERENCED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "missing_depth": {
+     "as_expected": true,
+     "classification": "TARGET_NOT_GEOREFERENCED",
+     "commands_sent": 0,
+     "expected": "TARGET_NOT_GEOREFERENCED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "missing_localization": {
+     "as_expected": true,
+     "classification": "EXECUTION_BLOCKED_NO_LOCALIZATION",
+     "commands_sent": 0,
+     "expected": "EXECUTION_BLOCKED_NO_LOCALIZATION",
+     "group": "PLANNED_EXECUTION_BLOCKED",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "mission_cancelled": {
+     "as_expected": true,
+     "classification": "MISSION_CANCELLED",
+     "commands_sent": 0,
+     "expected": "MISSION_CANCELLED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "no_target": {
+     "as_expected": true,
+     "classification": "NO_DETECTION_ROVER_KEEPS_WAITING",
+     "commands_sent": 0,
+     "expected": "NO_DETECTION_ROVER_KEEPS_WAITING",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "planning_completed"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "red_target": {
+     "as_expected": true,
+     "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "commands_sent": 0,
+     "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "group": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "stale_observation": {
+     "as_expected": true,
+     "classification": "OBSERVATION_REFUSED",
+     "commands_sent": 0,
+     "expected": "OBSERVATION_REFUSED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "supervisor_refuses": {
+     "as_expected": true,
+     "classification": "MISSION_REFUSED_BY_SUPERVISOR",
+     "commands_sent": 0,
+     "expected": "MISSION_REFUSED_BY_SUPERVISOR",
+     "group": "NOT_PLANNED_BY_SUPERVISOR",
+     "ladder": [],
+     "safety_policy": "safety/3"
+    },
+    "tool_error": {
+     "as_expected": true,
+     "classification": "MISSION_ERROR",
+     "commands_sent": 0,
+     "expected": "MISSION_ERROR",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "unassigned_objective": {
+     "as_expected": true,
+     "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION_WITH_UNASSIGNED",
+     "commands_sent": 0,
+     "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION_WITH_UNASSIGNED",
+     "group": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "unauthorized_execution": {
+     "as_expected": true,
+     "classification": "EXECUTION_REFUSED_NOT_AUTHORIZED",
+     "commands_sent": 0,
+     "expected": "EXECUTION_REFUSED_NOT_AUTHORIZED",
+     "group": "PLANNED_EXECUTION_BLOCKED",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "wrong_frame": {
+     "as_expected": true,
+     "classification": "TARGET_NOT_GEOREFERENCED",
+     "commands_sent": 0,
+     "expected": "TARGET_NOT_GEOREFERENCED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed"
+     ],
+     "safety_policy": "safety/3"
+    },
+    "yellow_target": {
+     "as_expected": true,
+     "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "commands_sent": 0,
+     "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "group": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/3"
+    }
+   }
+  },
+  "safety4": {
+   "all_as_expected": true,
+   "n": 17,
+   "scenarios": {
+    "ambiguous_detection": {
+     "as_expected": true,
+     "classification": "DETECTION_AMBIGUOUS_ROVER_KEEPS_WAITING",
+     "commands_sent": 0,
+     "expected": "DETECTION_AMBIGUOUS_ROVER_KEEPS_WAITING",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "planning_completed"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "disallowed_color": {
+     "as_expected": true,
+     "classification": "NO_DETECTION_ROVER_KEEPS_WAITING",
+     "commands_sent": 0,
+     "expected": "NO_DETECTION_ROVER_KEEPS_WAITING",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "planning_completed"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "duplicate_observation": {
+     "as_expected": true,
+     "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "commands_sent": 0,
+     "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "group": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "impossible_dependency": {
+     "as_expected": true,
+     "classification": "DEPENDENCY_IMPOSSIBLE",
+     "commands_sent": 0,
+     "expected": "DEPENDENCY_IMPOSSIBLE",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "missing_camera_pose": {
+     "as_expected": true,
+     "classification": "TARGET_NOT_GEOREFERENCED",
+     "commands_sent": 0,
+     "expected": "TARGET_NOT_GEOREFERENCED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "missing_depth": {
+     "as_expected": true,
+     "classification": "TARGET_NOT_GEOREFERENCED",
+     "commands_sent": 0,
+     "expected": "TARGET_NOT_GEOREFERENCED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "missing_localization": {
+     "as_expected": true,
+     "classification": "EXECUTION_BLOCKED_NO_LOCALIZATION",
+     "commands_sent": 0,
+     "expected": "EXECUTION_BLOCKED_NO_LOCALIZATION",
+     "group": "PLANNED_EXECUTION_BLOCKED",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "mission_cancelled": {
+     "as_expected": true,
+     "classification": "MISSION_CANCELLED",
+     "commands_sent": 0,
+     "expected": "MISSION_CANCELLED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "no_target": {
+     "as_expected": true,
+     "classification": "NO_DETECTION_ROVER_KEEPS_WAITING",
+     "commands_sent": 0,
+     "expected": "NO_DETECTION_ROVER_KEEPS_WAITING",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "planning_completed"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "red_target": {
+     "as_expected": true,
+     "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "commands_sent": 0,
+     "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "group": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "stale_observation": {
+     "as_expected": true,
+     "classification": "OBSERVATION_REFUSED",
+     "commands_sent": 0,
+     "expected": "OBSERVATION_REFUSED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "supervisor_refuses": {
+     "as_expected": true,
+     "classification": "MISSION_REFUSED_BY_SUPERVISOR",
+     "commands_sent": 0,
+     "expected": "MISSION_REFUSED_BY_SUPERVISOR",
+     "group": "NOT_PLANNED_BY_SUPERVISOR",
+     "ladder": [],
+     "safety_policy": "safety/4"
+    },
+    "tool_error": {
+     "as_expected": true,
+     "classification": "MISSION_ERROR",
+     "commands_sent": 0,
+     "expected": "MISSION_ERROR",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "unassigned_objective": {
+     "as_expected": true,
+     "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION_WITH_UNASSIGNED",
+     "commands_sent": 0,
+     "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION_WITH_UNASSIGNED",
+     "group": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "unauthorized_execution": {
+     "as_expected": true,
+     "classification": "EXECUTION_REFUSED_NOT_AUTHORIZED",
+     "commands_sent": 0,
+     "expected": "EXECUTION_REFUSED_NOT_AUTHORIZED",
+     "group": "PLANNED_EXECUTION_BLOCKED",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "wrong_frame": {
+     "as_expected": true,
+     "classification": "TARGET_NOT_GEOREFERENCED",
+     "commands_sent": 0,
+     "expected": "TARGET_NOT_GEOREFERENCED",
+     "group": "PLANNING_BLOCKED_OR_WAITING",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed"
+     ],
+     "safety_policy": "safety/4"
+    },
+    "yellow_target": {
+     "as_expected": true,
+     "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "commands_sent": 0,
+     "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "group": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+     "ladder": [
+      "detection_obtained",
+      "planning_completed",
+      "proposal_validated",
+      "target_spatially_validated"
+     ],
+     "safety_policy": "safety/4"
+    }
+   }
+  }
+ },
+ "provenance": {
+  "agents": "DETERMINISTIC_AGENT (scripted test doubles through the real contracts)",
+  "camera": "DECLARED_VIRTUAL",
+  "events": "TEST_FIXTURE",
+  "image": "SYNTHETIC_TEST",
+  "not_used": [
+   "REAL_LOCAL_LLM",
+   "SITL_SENSOR",
+   "PHYSICAL_SENSOR"
+  ],
+  "simulation": "OFFLINE_SIMULATION"
+ },
+ "relation_to": {
+  "precision_demo_offline_2026-11-06_792d93936": "16 scenarios, sealed before supervisor_refuses existed; NOT modified. This directory is new evidence with the 17 current scenarios under both policies"
+ },
+ "schema": "tfg.multiagent.precision-demo-evidence/1",
+ "supersedes": null
+}

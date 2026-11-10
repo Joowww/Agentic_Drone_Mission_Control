@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tfg.hermes.tool-result-check/1",
+  "title": "Outcome of comparing allow-listed tool-result pointers (no observed values)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "event_type", "event_id", "recorded_at_utc", "run_id", "case_id",
+    "session_ref", "task_ref", "turn_ref", "api_request_ref", "tool_call_ref", "tool_name",
+    "expectation_sha256", "result_envelope", "checks", "counts", "absent_fields", "redacted_fields"
+  ],
+  "properties": {
+    "schema": {"const": "tfg.hermes.tool-result-check/1"},
+    "event_type": {"const": "tool_result_check"},
+    "event_id": {"type": "string", "format": "uuid"},
+    "recorded_at_utc": {"type": "string", "format": "date-time"},
+    "run_id": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9_.:-]{1,64}$"},
+    "case_id": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9_.:-]{1,64}$"},
+    "session_ref": {"$ref": "#/$defs/ref"},
+    "task_ref": {"$ref": "#/$defs/ref"},
+    "turn_ref": {"$ref": "#/$defs/ref"},
+    "api_request_ref": {"$ref": "#/$defs/ref"},
+    "tool_call_ref": {"$ref": "#/$defs/ref"},
+    "tool_name": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9_.:@+-]{1,128}$"},
+    "expectation_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "result_envelope": {
+      "enum": ["result_json_text", "result_object", "structured_content", "result_text_not_json",
+               "result_text_not_object", "no_result_field", "not_json", "absent",
+               "expectation_invalid", "expectation_unreadable", "expectation_path_not_absolute"]
+    },
+    "checks": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pointer", "outcome"],
+        "properties": {
+          "pointer": {"type": "string", "pattern": "^(/[A-Za-z0-9_]{1,64}){1,12}$"},
+          "outcome": {"enum": ["match", "mismatch", "absent"]}
+        }
+      }
+    },
+    "argument_checks": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "outcome"],
+        "properties": {
+          "key": {"type": "string", "pattern": "^[A-Za-z0-9_.:-]{1,64}$"},
+          "outcome": {"enum": ["match", "mismatch", "absent"]}
+        }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["match", "mismatch", "absent"],
+      "properties": {
+        "match": {"type": "integer", "minimum": 0},
+        "mismatch": {"type": "integer", "minimum": 0},
+        "absent": {"type": "integer", "minimum": 0}
+      }
+    },
+    "absent_fields": {"type": "array", "items": {"type": "string"}},
+    "redacted_fields": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "ref": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{16}$"}
+  }
+}

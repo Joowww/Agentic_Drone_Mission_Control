@@ -1,0 +1,410 @@
+{
+  "sequence_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+  "request_key": "joel-secuencia-sitl-01",
+  "diagnostic_scope": "Evidence preservation, offline code/probe analysis and explicitly authorized bounded read-only Docker/ROS observations; no control commands or reconciliation",
+  "sequence_result": "INCOMPLETE_UNCONFIRMED",
+  "persisted_job_state": "UNCONFIRMED",
+  "persisted_result_status": null,
+  "plan_sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436",
+  "children": [
+    {
+      "index": 0,
+      "run_id": "467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+      "selection": {
+        "vehicle_id": "drone_01",
+        "simulated_vehicle": "v1"
+      },
+      "mission_sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74",
+      "report_sha256": "d967bc138c2c9a9834ba0a845417139a491c01953bd9690b610a10ac7b155451",
+      "job_state": "FINISHED",
+      "report_status": "PASSED",
+      "accepted_child_state": {
+        "state": "FINISHED",
+        "result_status": "PASSED",
+        "started_at": "2026-10-18T21:14:38.204129+00:00",
+        "report_sha256": "d967bc138c2c9a9834ba0a845417139a491c01953bd9690b610a10ac7b155451",
+        "finished_at": "2026-10-18T21:18:42.196598+00:00",
+        "reasons": []
+      },
+      "raw_executor_present": true,
+      "analysis_reproduced": {
+        "passed": true,
+        "checks": {
+          "completed": true,
+          "identity": true,
+          "no_failure_or_recovery": true,
+          "count_and_return_flag": true,
+          "event_sequence": true,
+          "commands_confirmed": true,
+          "all_waypoints_reached": true,
+          "return_home_reached": true,
+          "takeoff_reached": true,
+          "landed_and_disarmed": true,
+          "position_evidence_consistent": true
+        },
+        "expected_waypoint_ids": [
+          "WP1",
+          "WP2",
+          "WP3"
+        ],
+        "observed_waypoint_ids": [
+          "WP1",
+          "WP2",
+          "WP3"
+        ],
+        "tolerances": {
+          "horizontal_m": 1.0,
+          "altitude_m": 0.75
+        },
+        "reasons": []
+      },
+      "execution_operation_seconds": 235.144404,
+      "report_operation_seconds_including_queue": 245.703052,
+      "worker_operation_seconds": 243.973315,
+      "reasons": []
+    },
+    {
+      "index": 1,
+      "run_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+      "selection": {
+        "vehicle_id": "drone_02",
+        "simulated_vehicle": "v2"
+      },
+      "mission_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+      "report_sha256": "2ab1614fbec51fc827dc108d6cc863c212d0f5595a21c5ff91526791ec259a61",
+      "job_state": "FINISHED",
+      "report_status": "ERROR",
+      "accepted_child_state": {
+        "state": "UNCONFIRMED",
+        "result_status": null,
+        "started_at": "2026-10-18T21:18:42.224986+00:00"
+      },
+      "raw_executor_present": false,
+      "analysis_reproduced": null,
+      "execution_operation_seconds": 18.574868,
+      "report_operation_seconds_including_queue": 272.6585,
+      "worker_operation_seconds": 26.914309,
+      "reasons": [
+        "Executor raised FlightControlError: ROS2 command failed with return code 124:\n; outcome unknown."
+      ]
+    }
+  ],
+  "reservations": {
+    "sequence": {
+      "kind": "PREFLIGHT_SEQUENCE",
+      "owner_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+      "actor": "sequential_preflight",
+      "state": "UNCONFIRMED",
+      "plan_sha256": "49340c69cb0466ee832d273c6003cc0e03f02b733a0336641b926ce6a3f4c436",
+      "children": [
+        {
+          "owner_id": "467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+          "vehicle": "v1",
+          "input_sha256": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74"
+        },
+        {
+          "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+          "vehicle": "v2",
+          "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+        }
+      ],
+      "next_index": 2,
+      "completed_count": 1,
+      "active_child": {
+        "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+        "vehicle": "v2",
+        "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb"
+      },
+      "created_at": "2026-10-18T21:14:36.472104+00:00",
+      "process": {
+        "pid": 130817,
+        "start_ticks": 7968185,
+        "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+      },
+      "coordinator": {
+        "pid": 133909,
+        "start_ticks": 8003617,
+        "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+      },
+      "updated_at": "2026-10-18T21:18:42.213841+00:00"
+    },
+    "v2": {
+      "owner_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+      "vehicle": "v2",
+      "input_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+      "sequence_id": "c6eeb645-17d2-4081-9afb-cecfd23af393",
+      "actor": "sequence_child",
+      "state": "UNCONFIRMED",
+      "vehicle_id": "drone_02",
+      "created_at": "2026-10-18T21:18:42.217622+00:00",
+      "process": {
+        "pid": 133909,
+        "start_ticks": 8003617,
+        "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+      },
+      "updated_at": "2026-10-18T21:19:09.156883+00:00"
+    },
+    "v1_file_present": false,
+    "modified_or_released": false,
+    "index_semantics": "next_index=2 means dispatch slots consumed, not two successful flights; completed_count=1"
+  },
+  "prior_v2_passed": {
+    "run_id": "7162bce5-3635-4a76-bf02-6a5a22612aab",
+    "report_sha256": "2e38bc9f2295c52b21d289f068f9cfe6731709a03789be21e76cb88cae09d3ff",
+    "analysis_reverified": true,
+    "same_mission_sha256": true,
+    "does_not_resolve_new_error": true
+  },
+  "current_telemetry_observed": {
+    "v1": {
+      "latest_status": {
+        "received_at_utc": "2026-10-18T21:42:56.473818+00:00",
+        "elapsed_seconds": 8.81831080300617,
+        "message": {
+          "header": {
+            "stamp": {
+              "sec": 1792358205,
+              "nanosec": 458092000
+            },
+            "frame_id": ""
+          },
+          "vehicle_type": 2,
+          "armed": false,
+          "mode": 9,
+          "flying": false,
+          "external_control": true,
+          "failsafe": []
+        }
+      },
+      "latest_position": {
+        "received_at_utc": "2026-10-18T21:42:52.514575+00:00",
+        "elapsed_seconds": 4.859065912998631,
+        "message": {
+          "header": {
+            "stamp": {
+              "sec": 1792358204,
+              "nanosec": 830092000
+            },
+            "frame_id": "base_link"
+          },
+          "pose": {
+            "position": {
+              "latitude": -35.36326217651367,
+              "longitude": 149.1652069091797,
+              "altitude": 584.1900024414062
+            },
+            "orientation": {
+              "x": -6.320625134392799e-10,
+              "y": -9.12284137122299e-12,
+              "z": 0.9999735355377197,
+              "w": 0.007272958755493164
+            }
+          }
+        }
+      },
+      "latest_status_europe_madrid": "2026-10-18T23:42:56.473818+02:00",
+      "status_samples_final_window": 3,
+      "position_samples_final_window": 3,
+      "earlier_window_also_armed_false_flying_false": true,
+      "header_advance_seconds": 1.0099999904632568,
+      "receipt_advance_seconds": 6.45002,
+      "header_seconds_per_receipt_second": 0.1565886602620235,
+      "current_pose_matches_launch_level": "584.1900024414062 m AMSL, same reported level as preserved launches",
+      "ground_contact_independently_confirmed": false,
+      "formal_reconciliation_performed": false
+    },
+    "v2": {
+      "latest_status": {
+        "received_at_utc": "2026-10-18T21:42:57.735763+00:00",
+        "elapsed_seconds": 10.0802556599956,
+        "message": {
+          "header": {
+            "stamp": {
+              "sec": 1792358205,
+              "nanosec": 652092000
+            },
+            "frame_id": ""
+          },
+          "vehicle_type": 2,
+          "armed": false,
+          "mode": 0,
+          "flying": false,
+          "external_control": true,
+          "failsafe": []
+        }
+      },
+      "latest_position": {
+        "received_at_utc": "2026-10-18T21:42:52.461628+00:00",
+        "elapsed_seconds": 4.8061217829963425,
+        "message": {
+          "header": {
+            "stamp": {
+              "sec": 1792358204,
+              "nanosec": 818092000
+            },
+            "frame_id": "base_link"
+          },
+          "pose": {
+            "position": {
+              "latitude": -35.36326217651367,
+              "longitude": 149.16526794433594,
+              "altitude": 584.1900024414062
+            },
+            "orientation": {
+              "x": -4.629413652423864e-08,
+              "y": -1.900835044921223e-08,
+              "z": 0.699556827545166,
+              "w": 0.7145769596099854
+            }
+          }
+        }
+      },
+      "latest_status_europe_madrid": "2026-10-18T23:42:57.735763+02:00",
+      "status_samples_final_window": 3,
+      "position_samples_final_window": 3,
+      "earlier_window_also_armed_false_flying_false": true,
+      "header_advance_seconds": 1.0099999904632568,
+      "receipt_advance_seconds": 6.501444,
+      "header_seconds_per_receipt_second": 0.15535010229469895,
+      "current_pose_matches_launch_level": "584.1900024414062 m AMSL, same reported level as preserved launches",
+      "ground_contact_independently_confirmed": false,
+      "formal_reconciliation_performed": false
+    }
+  },
+  "freshness_interpretation": "Multiple live subscriber receipts and advancing headers in both windows; AP clocks and Gazebo clocks have different origins and advance slower than wall clock. Do not subtract wall epoch as message age or infer current state from historical report.",
+  "observed_clock_publishers": {
+    "/ap/v1/clock": [
+      {
+        "node_name": "ap_v1",
+        "node_namespace": "/",
+        "topic_type": "rosgraph_msgs/msg/Clock",
+        "reliability": "ReliabilityPolicy.RELIABLE",
+        "durability": "DurabilityPolicy.VOLATILE"
+      }
+    ],
+    "/ap/v2/clock": [
+      {
+        "node_name": "ap_v2",
+        "node_namespace": "/",
+        "topic_type": "rosgraph_msgs/msg/Clock",
+        "reliability": "ReliabilityPolicy.RELIABLE",
+        "durability": "DurabilityPolicy.VOLATILE"
+      }
+    ],
+    "/drone1/clock": [
+      {
+        "node_name": "ros_gz_bridge",
+        "node_namespace": "/drone1",
+        "topic_type": "rosgraph_msgs/msg/Clock",
+        "reliability": "ReliabilityPolicy.RELIABLE",
+        "durability": "DurabilityPolicy.VOLATILE"
+      }
+    ],
+    "/drone2/clock": [
+      {
+        "node_name": "ros_gz_bridge",
+        "node_namespace": "/drone2",
+        "topic_type": "rosgraph_msgs/msg/Clock",
+        "reliability": "ReliabilityPolicy.RELIABLE",
+        "durability": "DurabilityPolicy.VOLATILE"
+      }
+    ]
+  },
+  "initial_root_clock_observation": {
+    "samples": 0,
+    "publishers": [],
+    "interpretation": "No root clock publisher discovered during first window; catalog entry may be created by diagnostic subscription, not proof of a publisher"
+  },
+  "coordinator_process_read": {
+    "pid": 133909,
+    "state": "Z",
+    "start_ticks": 8003617,
+    "boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc"
+  },
+  "coordinator_interpretation": "Matching PID/start_ticks/boot_id is zombie (Z), terminated/not reaped; not proof of landing",
+  "exact_reader_followup": [
+    {
+      "name": "v2_origin_exact_reader",
+      "return_code": 0,
+      "elapsed_seconds": 6.741775697999401,
+      "started_at_utc": "2026-10-18T21:41:24.979421+00:00",
+      "finished_at_utc": "2026-10-18T21:41:31.721197+00:00"
+    },
+    {
+      "name": "v2_position_exact_reader",
+      "return_code": 0,
+      "elapsed_seconds": 2.547385615995154,
+      "started_at_utc": "2026-10-18T21:41:24.979977+00:00",
+      "finished_at_utc": "2026-10-18T21:41:27.527359+00:00"
+    },
+    {
+      "name": "v1_origin_exact_reader",
+      "return_code": 0,
+      "elapsed_seconds": 6.743529861007119,
+      "started_at_utc": "2026-10-18T21:41:24.980587+00:00",
+      "finished_at_utc": "2026-10-18T21:41:31.724110+00:00"
+    },
+    {
+      "name": "topic_types_readonly",
+      "return_code": 0,
+      "elapsed_seconds": 1.5332454640010837,
+      "started_at_utc": "2026-10-18T21:41:24.981416+00:00",
+      "finished_at_utc": "2026-10-18T21:41:26.514651+00:00"
+    }
+  ],
+  "code_diagnosis": {
+    "possible_propagating_read_calls": [
+      "get_vehicle_global_origin(v2)",
+      "get_vehicle_geopose(v2)"
+    ],
+    "boundary": "Both reads precede events initialization and the main try/except, and precede GUIDED/ARM. Errors inside main try return FAILED; these reads escape to graph execute_node.",
+    "what_124_proves": "A nonzero return code was recorded from the ROS subprocess command; candidate commands contain timeout 10. It identifies neither failing topic nor root cause.",
+    "partial_evidence_gap": "FlightControlError message retains code/output but not command, topic or stage; empty output here. progress=False suppresses stage prints. Initial read context is not returned. Graph catches the exception as ERROR; executor_result stays null and analysis is skipped.",
+    "retrospective_limit": "Current source preserved; loaded historical code build not independently authenticated. Do not infer a v2 takeoff, successful LAND or exact failed read from this report."
+  },
+  "offline_probes": {
+    "file": "offline_exception_probes.json",
+    "cases": 3,
+    "passed": 3,
+    "live_flight_commands": 0
+  },
+  "gui_observations": {
+    "operator_reports_repeated_black_gui": true,
+    "visual_confirmation_available": false,
+    "current_launch_at_utc": "2026-10-18T21:12:11",
+    "current_log_sources": [
+      "/tmp/tfg_demo.log",
+      "/root/.ros/log/2026-10-18-21-12-11-013468-tfg-gz-46687/launch.log",
+      "/root/.gz/sim/log/2026-10-18T21:12:11.979078160/server_console.log",
+      "/root/.gz/auto_default.log",
+      "/root/.gz/rendering/ogre2.log"
+    ],
+    "renderer_recorded": "OpenGL 4.1, Mesa 23.2.1-1ubuntu3.1~22.04.4, vendor Microsoft Corporation, renderer D3D12 (Intel(R) UHD Graphics)",
+    "graphics_process_environment": {
+      "DISPLAY": ":0",
+      "QT_QPA_PLATFORM": "xcb"
+    },
+    "gui_config_engine": "ogre2",
+    "gui_log_findings": "package://ardupilot_gazebo mesh URI/geometry resolution failures; physical mesh files exist at installed paths checked by stat",
+    "current_main_log_exit_139_found": false,
+    "current_main_log_process_died_found": false,
+    "server_sitl_findings": "Controller-reset and No JSON sensor message warnings in captured startup/server/SITL logs; not proven cause of v2 timeout",
+    "cause_of_black_gui": "UNDETERMINED",
+    "common_cause_with_ros_timeout": "NOT_ESTABLISHED",
+    "renderer_initialization_is_not_visual_success": true
+  },
+  "recovery_options_not_executed": [
+    "Keep restrictions and current state while retaining diagnostics; no retry of sequence/children",
+    "Separately authorize a future reviewed reconciliation procedure using fresh telemetry, worker identity, report/hash and reservation ownership, retaining original ERROR/incomplete evidence; no automatic unlock",
+    "Only after safe reconciliation and explicit separate authorization, plan a single controlled GUI recovery or targeted resource/rendering investigation; no restart under current unconfirmed reservation"
+  ],
+  "limitations": [
+    "No raw historical failing command or full stack in v2 report",
+    "No independent ground-contact sensor or visual confirmation",
+    "ROS/DDS messages are autopilot observations, not authentication of full past flight history",
+    "Live container logs may grow during capture; byte hashes identify captured versions only",
+    "Extra launch_params files from earlier starts are retained but not treated as current; current bridge configs identified from live process arguments",
+    "No root cause proven for 124, repeated black screen, previous WP3 or common failure",
+    "Previous 428 test result is historical; no new full suite was run for this evidence/docs-only diagnosis"
+  ]
+}

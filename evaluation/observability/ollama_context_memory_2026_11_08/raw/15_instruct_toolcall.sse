@@ -1,0 +1,8 @@
+data: {"id":"chatcmpl-863","object":"chat.completion.chunk","created":1794149811,"model":"qwen3-4b-instruct-64k","system_fingerprint":"fp_ollama","choices":[{"index":0,"delta":{"role":"assistant","content":"","tool_calls":[{"id":"aiFDUQVo1hIzid6Ol1QP7UBjj2x7BCba","index":0,"type":"function","function":{"name":"update_mission_draft","arguments":"{\"updates\":{\"autopilot\":\"ArduPilot\",\"battery_consumption_percent_per_minute\":0.8,\"battery_percent\":100,\"cruise_speed_kmh\":35,\"mission_id\":\"agri_demo_001_h1_sector_a\",\"name\":\"agri_demo_001 H1 sector A\",\"objective_target\":\"agri_demo_001_sector_a\",\"objective_type\":\"precision_agriculture\",\"vehicle_id\":\"drone_01\",\"vehicle_type\":\"multirotor\",\"wind_direction_from\":\"north\",\"wind_direction_from_deg\":0,\"wind_speed_kmh\":0},\"expected_revision\":0,\"replace_route\":false}"}}]},"finish_reason":null}]}
+
+data: {"id":"chatcmpl-863","object":"chat.completion.chunk","created":1794149811,"model":"qwen3-4b-instruct-64k","system_fingerprint":"fp_ollama","choices":[{"index":0,"delta":{},"finish_reason":"tool_calls"}]}
+
+data: {"id":"chatcmpl-863","object":"chat.completion.chunk","created":1794149811,"model":"qwen3-4b-instruct-64k","system_fingerprint":"fp_ollama","choices":[],"usage":{"prompt_tokens":3231,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens":179,"total_tokens":3410}}
+
+data: [DONE]
+

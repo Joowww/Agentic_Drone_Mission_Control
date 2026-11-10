@@ -1,0 +1,24 @@
+{
+  "kind": "OFFLINE_TESTS_AND_REAL_BUILD_ONLY",
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_rover_xrce_trace.py tests/test_rover_source_correlation.py tests/test_rover_identity_inventory.py tests/test_rover_passive_journal.py",
+    "return_code": 0,
+    "result": "80 passed in 4.67s",
+    "new_diagnostic_tests": 15,
+    "scope": "Host synthetic native scope, malformed/contradictory records, existing archived inventory/journal regressions; no ROS agent/client execution."
+  },
+  "syntax": [
+    "Python AST parse",
+    "bash -n tools/rover_xrce_trace/build.sh"
+  ],
+  "whitespace": "git diff --check and explicit no-index --check on new files",
+  "original_evidence": "170 entries verified byte sizes/SHA-256; unchanged",
+  "not_performed": [
+    "agent execution",
+    "new ROS/XRCE reception",
+    "protected diagnostic selection",
+    "identity accreditation",
+    "movement"
+  ],
+  "build": "See build-verification-2026-10-22.json final_revision; full native and wrapper compilation/link passed."
+}

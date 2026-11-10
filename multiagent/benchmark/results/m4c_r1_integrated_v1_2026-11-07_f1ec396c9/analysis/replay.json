@@ -1,0 +1,53 @@
+{
+ "phase_a_rover_tool_replay": {
+  "arguments": {
+   "point": "ROVER_START"
+  },
+  "kind": "REPLAY_OF_A_DETERMINISTIC_TOOL_NOT_RECORDED_IN_THE_RUN",
+  "note": "requested by the rover agent in phase A (call 3); its result was not written by the run (defect fixed in a516dfc77)",
+  "output": {
+   "aerial_points_proposed": [
+    "POI_1",
+    "POI_3"
+   ],
+   "point": "ROVER_START",
+   "reached_by_a_proposed_drone_task": false
+  },
+  "status": "OK",
+  "tool": "check_dependency"
+ },
+ "supervisor_replay": {
+  "kind": "REPLAY_OF_SEALED_REPLIES_NO_MODEL_CALL",
+  "policies": {
+   "safety/2": {
+    "other_agents_called": [
+     "drone_swarm_agent"
+    ],
+    "prompt_matches_sealed": true,
+    "reasons": [],
+    "status": "PROPOSED_PENDING_AUTHORIZATION"
+   },
+   "safety/3": {
+    "other_agents_called": [
+     "drone_swarm_agent"
+    ],
+    "prompt_matches_sealed": true,
+    "reasons": [],
+    "status": "PROPOSED_PENDING_AUTHORIZATION"
+   },
+   "safety/4": {
+    "other_agents_called": [
+     "drone_swarm_agent"
+    ],
+    "prompt_matches_sealed": true,
+    "reasons": [],
+    "status": "PROPOSED_PENDING_AUTHORIZATION"
+   }
+  },
+  "prompt_id": "interpret_brief/4",
+  "prompt_sha256": "9bd4b8f3883a514f4e8793a661b330eb93aff5d8824e077f092c87a825178c10",
+  "reply_sha256": "679f615d2d38df12924ba213ddf4366048183fb3fd5b599b9654c7b1948fc250",
+  "schema": "tfg.multiagent.supervisor-replay/1",
+  "source": "multiagent/benchmark/results/m4c_r1_integrated_v1_2026-11-07_f1ec396c9"
+ }
+}

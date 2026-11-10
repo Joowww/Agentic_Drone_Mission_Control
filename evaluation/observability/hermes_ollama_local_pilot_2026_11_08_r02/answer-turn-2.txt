@@ -1,0 +1,20 @@
+**Resultado final de la misión:**
+
+- **status**: `VALIDATED`  
+- **validation.mission_status**: `FEASIBLE`  
+- **validation.execution_status**: `APPROVED`  
+- **exportación QGC**: `REFUSED` (por falta de altitud AMSL en el punto de retorno home)
+
+**Comentarios:**
+- La misión ha sido completamente planificada y validada con todos los datos proporcionados.
+- Se han integrado los valores nuevos:  
+  - Reserva mínima de batería: **20%**  
+  - Velocidad máxima de viento: **30 km/h**  
+  - Altitud máxima: **120 m**  
+- El estado del **QGC no se realizó** porque el modelo no contiene la altitud AMSL del punto de retorno home.  
+- Aunque la misión es **funcional y segura** en cuanto a los criterios técnicos, **la exportación a QGC no se puede ejecutar** con los datos actuales.
+
+**Archivo final:**  
+`~/tfg-local-demo/drafts/e219b490-74e4-4f93-9f6b-65d1898578b5/13162233-9bcd-4da2-b234-ff255ddff14a/mission.json`  
+
+> ⚠️ **Nota**: Para exportar la misión a QGC, se debe especificar la altitud AMSL del punto de retorno home (por ejemplo, 50 m sobre el elipsoide). Sin ello, el exportado se rechaza.

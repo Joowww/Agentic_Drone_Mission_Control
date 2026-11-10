@@ -1,0 +1,3393 @@
+{
+ "aggregate": {
+  "by_category": {
+   "battery": 1.0,
+   "contradictory": 1.0,
+   "coordinates": 1.0,
+   "drone_rover": 1.0,
+   "incomplete": 1.0,
+   "infeasible": 1.0,
+   "multi_assignment": 1.0,
+   "no_coordinates": 1.0,
+   "paraphrase": 0.3333333333333333,
+   "simple": 1.0,
+   "two_drones": 1.0,
+   "unsafe": 1.0,
+   "wind": 1.0
+  },
+  "cases": 34,
+  "consistency": 1.0,
+  "constraint_compliance": 1.0,
+  "cost": "NOT_MEASURABLE",
+  "coverage_match": 0.9411764705882353,
+  "extraction_accuracy": 0.9869281045751634,
+  "failures": [
+   "B32",
+   "B34"
+  ],
+  "gpu_memory": "NOT_MEASURED",
+  "latency_s": {
+   "max": 0.11556016400572844,
+   "mean": 0.028435632720014408,
+   "p50": 0.018597180998767726
+  },
+  "makespan_ratio_mean": 1.0,
+  "max_rss_mib_this_process": 80.49609375,
+  "model_latency_s_mean": 0.0,
+  "runs_per_case": 2,
+  "status_match": 0.9411764705882353,
+  "structural_validity": 1.0,
+  "tokens_total": "NOT_REPORTED"
+ },
+ "candidate": "rules",
+ "data_kind": "SYNTHETIC_DETERMINISTIC_BASELINE",
+ "note": "Synthetic site and declared profiles; only MODEL_OUTPUT rows come from a model, none were run here",
+ "rows": [
+  {
+   "case_id": "B01",
+   "category": "simple",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.01997399900574237,
+   "makespan_min": 0.0848,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "23269189ea67eb51b8ede8e5d0e626b451b029ecb06f366c149f8f562a4fdf2d",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-abd9cc1c2a123e17",
+    "run_id": "0796507f-99e0-4394-b752-f28642f2bcaa",
+    "spans": 11,
+    "trace_sha256": "32d235e4748e376313f4a8fbf87cd7f162c7ced14a7c6ac2bdbfe396a3e78904"
+   }
+  },
+  {
+   "case_id": "B01",
+   "category": "simple",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.019210828002542257,
+   "makespan_min": 0.0848,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "23269189ea67eb51b8ede8e5d0e626b451b029ecb06f366c149f8f562a4fdf2d",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-abd9cc1c2a123e17",
+    "run_id": "a9a12d7b-3407-47c1-be61-08f20c43911e",
+    "spans": 11,
+    "trace_sha256": "2abf78090d4d5a0d3e495c6acb890957b93869643d6d2467942dad066f5dd8bc"
+   }
+  },
+  {
+   "case_id": "B02",
+   "category": "simple",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_2"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.044074391000322066,
+   "makespan_min": 0.1849,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "bda29ccf27870a0959735d0f2bf970f27d0b4b32657a4d4d0481a1e2a326ef8c",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-897727abcbc7271d",
+    "run_id": "2958c330-cf1a-46ee-b08b-a9e26dfea61c",
+    "spans": 11,
+    "trace_sha256": "26132ab4d9ffd7d49a7c9eebac3c44c91fbc1bfd4ff8003a2282eda52f3b27a3"
+   }
+  },
+  {
+   "case_id": "B02",
+   "category": "simple",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_2"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.040731782995862886,
+   "makespan_min": 0.1849,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "bda29ccf27870a0959735d0f2bf970f27d0b4b32657a4d4d0481a1e2a326ef8c",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-897727abcbc7271d",
+    "run_id": "0de5b95f-983e-4839-922c-f6ce53c1ed0e",
+    "spans": 11,
+    "trace_sha256": "9d142091cad0d63c8dd79d76d8972c87c6b92d158a5eb054464e9bf7e5294eee"
+   }
+  },
+  {
+   "case_id": "B03",
+   "category": "two_drones",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_2",
+     "POI_3",
+     "POI_4"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.11390335099713411,
+   "makespan_min": 0.2129,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "a651a9210b8dbdae7e4c7f07489f39f8563df045c2a8e86240afe7287d189d2b",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-7314deaed65e45cf",
+    "run_id": "4514892e-5bff-4fa9-8eb8-f098ec73e538",
+    "spans": 12,
+    "trace_sha256": "70d199bbdb9ade383f241d4d9a328817c9df31a616f81549b6cc872a4a742b05"
+   }
+  },
+  {
+   "case_id": "B03",
+   "category": "two_drones",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_2",
+     "POI_3",
+     "POI_4"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.10941184300463647,
+   "makespan_min": 0.2129,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "a651a9210b8dbdae7e4c7f07489f39f8563df045c2a8e86240afe7287d189d2b",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-7314deaed65e45cf",
+    "run_id": "1a57f2c3-66f7-46eb-b39d-ca1b549ff5fd",
+    "spans": 12,
+    "trace_sha256": "60ca3e66aa45fbab50fd43db55bd5ffffd1baa9cf5e4bf6bd85aa2b0fc67d2fd"
+   }
+  },
+  {
+   "case_id": "B04",
+   "category": "multi_assignment",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.025697673991089687,
+   "makespan_min": 0.0861,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "48d1285b48367a9ce1aaec2faa8018946959c1842e3645bb4c12df335eed77a4",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-9c04c9422405a9a9",
+    "run_id": "5bc1aa45-49f4-4ecf-802d-af8d5abfba5f",
+    "spans": 12,
+    "trace_sha256": "e4af394c16d0f831328cc7faa01192a855c5f9fd7af2d6504c1f5082bc0c7b21"
+   }
+  },
+  {
+   "case_id": "B04",
+   "category": "multi_assignment",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.026958643007674254,
+   "makespan_min": 0.0861,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "48d1285b48367a9ce1aaec2faa8018946959c1842e3645bb4c12df335eed77a4",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-9c04c9422405a9a9",
+    "run_id": "aa4471f7-b700-43cf-b2e9-501a23e4ccde",
+    "spans": 12,
+    "trace_sha256": "05631c6399ce4ba2bbdd8aa1b3c8f73965f95bafc3b9a11297fbd0d0b4c3c5c0"
+   }
+  },
+  {
+   "case_id": "B05",
+   "category": "multi_assignment",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_3",
+     "POI_4"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.09329985600197688,
+   "makespan_min": 0.1859,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "832ad98c039e7599c804e34ad9e2d9389bca2c7f8813682f5a644e5908044ca7",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-72d22a3aa2d8b5bf",
+    "run_id": "f1e286aa-78b3-48c6-ba9d-9ff3c6cae1b4",
+    "spans": 12,
+    "trace_sha256": "880caade1226b6072eb1174cd4d1843b2b8692f356026084fa71c4da8c45e891"
+   }
+  },
+  {
+   "case_id": "B05",
+   "category": "multi_assignment",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_3",
+     "POI_4"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.07952662800380494,
+   "makespan_min": 0.1859,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "832ad98c039e7599c804e34ad9e2d9389bca2c7f8813682f5a644e5908044ca7",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-72d22a3aa2d8b5bf",
+    "run_id": "b3de8507-cda4-475f-9918-d1ca972aa1f8",
+    "spans": 12,
+    "trace_sha256": "eaf666dd3be4d13b5901565f574e537c9d359520a4b469bd440d58720f69646f"
+   }
+  },
+  {
+   "case_id": "B06",
+   "category": "incomplete",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.01374647399643436,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "c9eb45d315247e548c927e2cc508004b2cc2e6c86a02bc33acb5a06563fc3899",
+   "reasons": [
+    "A1: MISSING_COORDINATES: the objective names no site point and gives no coordinates"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-b72ad8da39137374",
+    "run_id": "95795a31-2006-4cc4-8a41-e76c7c64529c",
+    "spans": 8,
+    "trace_sha256": "8cf17c1d27620f9148526229a3a06f8874abe042718f7550d5520bd0632dce4e"
+   }
+  },
+  {
+   "case_id": "B06",
+   "category": "incomplete",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.013483369999448769,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "c9eb45d315247e548c927e2cc508004b2cc2e6c86a02bc33acb5a06563fc3899",
+   "reasons": [
+    "A1: MISSING_COORDINATES: the objective names no site point and gives no coordinates"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-b72ad8da39137374",
+    "run_id": "c34084a4-3fc8-4093-9931-352e286dfd6c",
+    "spans": 8,
+    "trace_sha256": "09f0f29fe65ead7ce04a2558700ce9d88549dd3b57b7b1ed017c8697b919f848"
+   }
+  },
+  {
+   "case_id": "B07",
+   "category": "incomplete",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.011325203988235444,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "bd1676b7b0d2b767e431bacac8fceb88c718c35185d5e3a215ffce793f833a9b",
+   "reasons": [
+    "NO_OBJECTIVES: the request names nothing to do"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 3
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-cd532fff78068af8",
+    "run_id": "fccf8dea-8368-48c3-b492-a5ea2d83aad9",
+    "spans": 5,
+    "trace_sha256": "94cf19b6648497aa3da1ceba390979fda1a9b1d5e089be5417e42d43c579235a"
+   }
+  },
+  {
+   "case_id": "B07",
+   "category": "incomplete",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.012041938010952435,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "bd1676b7b0d2b767e431bacac8fceb88c718c35185d5e3a215ffce793f833a9b",
+   "reasons": [
+    "NO_OBJECTIVES: the request names nothing to do"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 3
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-cd532fff78068af8",
+    "run_id": "e5e0d8aa-0dd6-46af-b3af-3afdea252d42",
+    "spans": 5,
+    "trace_sha256": "1b660d38d6b1bd152ea8faa83558aa68523464e61a263e79fb890e6b6a826532"
+   }
+  },
+  {
+   "case_id": "B08",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.016056050997576676,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "7ec5cf1a096a17adf5dd38321b9d1b2f3710c765be14a6343bb1fc9801ba49cf",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: exclusion TREE_ROW_1 TAKEOFF_A -> POI_5: crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A1: drone_01: exclusion TREE_ROW_1 POI_5 -> TAKEOFF_A (return): crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A1: drone_02: exclusion TREE_ROW_1 TAKEOFF_B -> POI_5: crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A1: drone_02: exclusion TREE_ROW_1 POI_5 -> TAKEOFF_B (return): crosses or touches exclusion TREE_ROW_1"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-b9e162937b7bffbe",
+    "run_id": "fab750c4-c054-4661-8828-773d1c01222d",
+    "spans": 8,
+    "trace_sha256": "9e56e1bba5cf58e3be55fd6496e77e64cd457efb529cbd964aba220fb8674fb1"
+   }
+  },
+  {
+   "case_id": "B08",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.014380245003849268,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "7ec5cf1a096a17adf5dd38321b9d1b2f3710c765be14a6343bb1fc9801ba49cf",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: exclusion TREE_ROW_1 TAKEOFF_A -> POI_5: crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A1: drone_01: exclusion TREE_ROW_1 POI_5 -> TAKEOFF_A (return): crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A1: drone_02: exclusion TREE_ROW_1 TAKEOFF_B -> POI_5: crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A1: drone_02: exclusion TREE_ROW_1 POI_5 -> TAKEOFF_B (return): crosses or touches exclusion TREE_ROW_1"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-b9e162937b7bffbe",
+    "run_id": "27da5b3f-8daf-453a-bad1-dbc3d4036535",
+    "spans": 8,
+    "trace_sha256": "c9aa36e377e20423e323d58254966838362bb69a08c5224f5726a4057f5152df"
+   }
+  },
+  {
+   "case_id": "B09",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.013860888997442089,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "8b000deac609fad0abff48e4ce7b0c0c167300c17625800e1740802819477b6a",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: SENSOR_MISSING: drone_01 has no thermal sensor",
+    "INCOMPATIBLE A1: drone_02: SENSOR_MISSING: drone_02 has no thermal sensor"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-cfb7a2c2d91b5136",
+    "run_id": "79c8a316-9b28-4311-8638-2b1afa4823e7",
+    "spans": 8,
+    "trace_sha256": "bd73d423b442cd80fa5a4ab334a4aa8f90321bbc6a6df32a15ced8960b316718"
+   }
+  },
+  {
+   "case_id": "B09",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.014417844999115914,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "8b000deac609fad0abff48e4ce7b0c0c167300c17625800e1740802819477b6a",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: SENSOR_MISSING: drone_01 has no thermal sensor",
+    "INCOMPATIBLE A1: drone_02: SENSOR_MISSING: drone_02 has no thermal sensor"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-cfb7a2c2d91b5136",
+    "run_id": "a7c0cb45-d8ce-46c1-b862-63e0625cbed2",
+    "spans": 8,
+    "trace_sha256": "1c44864c3788153598aba3dd8dcf4aa2f4c75317a850d1c711856a7db122af92"
+   }
+  },
+  {
+   "case_id": "B10",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground": []
+   },
+   "expected_status": "PARTIAL_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.05638398199516814,
+   "makespan_min": 0.0861,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "e49f286535703172afcf69def0b181a71a4ada956bf7c1a7029628f1157f8941",
+   "reasons": [
+    "INCOMPATIBLE A3: drone_01: exclusion TREE_ROW_1 TAKEOFF_A -> POI_5: crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A3: drone_01: exclusion TREE_ROW_1 POI_5 -> TAKEOFF_A (return): crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A3: drone_02: exclusion TREE_ROW_1 TAKEOFF_B -> POI_5: crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A3: drone_02: exclusion TREE_ROW_1 POI_5 -> TAKEOFF_B (return): crosses or touches exclusion TREE_ROW_1"
+   ],
+   "status": "PARTIAL_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-74f988c113e0e829",
+    "run_id": "164418af-b4aa-4afb-97c4-9f2c5298c4fa",
+    "spans": 12,
+    "trace_sha256": "be5b4e7d199cf55d205400b71f90bcc80f32a4feed268e5eb8ff14bed6e93860"
+   }
+  },
+  {
+   "case_id": "B10",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground": []
+   },
+   "expected_status": "PARTIAL_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.05521341800340451,
+   "makespan_min": 0.0861,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "e49f286535703172afcf69def0b181a71a4ada956bf7c1a7029628f1157f8941",
+   "reasons": [
+    "INCOMPATIBLE A3: drone_01: exclusion TREE_ROW_1 TAKEOFF_A -> POI_5: crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A3: drone_01: exclusion TREE_ROW_1 POI_5 -> TAKEOFF_A (return): crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A3: drone_02: exclusion TREE_ROW_1 TAKEOFF_B -> POI_5: crosses or touches exclusion TREE_ROW_1",
+    "INCOMPATIBLE A3: drone_02: exclusion TREE_ROW_1 POI_5 -> TAKEOFF_B (return): crosses or touches exclusion TREE_ROW_1"
+   ],
+   "status": "PARTIAL_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-74f988c113e0e829",
+    "run_id": "a60b1af4-eb43-47c5-b20c-3dd73a23b583",
+    "spans": 12,
+    "trace_sha256": "1cbd118233a789a2d5e18043ecb4ffd88e3e6c458015ac6822e2ae16ab3c081f"
+   }
+  },
+  {
+   "case_id": "B11",
+   "category": "battery",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.018597180998767726,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "a643dd380daff11a348d3812bac0a5cd4c9d79c718dc751751e3e2c926080917",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_02: The vehicle would finish the mission below the required battery reserve."
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-289e0c4e88ff9b06",
+    "run_id": "c1505511-2000-4cfa-8fed-f23eef3e193d",
+    "spans": 8,
+    "trace_sha256": "ab27101de3d278665b3169cf10bcfb0b9728c770c2ec5d0d0447c6ccd844d6cb"
+   }
+  },
+  {
+   "case_id": "B11",
+   "category": "battery",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.019151515007251874,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "a643dd380daff11a348d3812bac0a5cd4c9d79c718dc751751e3e2c926080917",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_02: The vehicle would finish the mission below the required battery reserve."
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-289e0c4e88ff9b06",
+    "run_id": "417170c4-b642-4a68-99b2-7f17c4828e5f",
+    "spans": 8,
+    "trace_sha256": "09e1ede36c8e5467d90bb8c7ce2acdd37c2487965b06302af54452af5c0246f4"
+   }
+  },
+  {
+   "case_id": "B12",
+   "category": "battery",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_2"
+    ],
+    "ground": []
+   },
+   "expected_status": "PARTIAL_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.03398448300140444,
+   "makespan_min": 0.1849,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "41855100ec3cf3bfbbb7988d8a7dc4e40bc9c80abeeb0755f7183413b7021f31",
+   "reasons": [
+    "INCOMPATIBLE A2: drone_01: COMBINATION_INFEASIBLE: feasible alone, not together with the covered objectives",
+    "INCOMPATIBLE A2: drone_02: The vehicle would finish the mission below the required battery reserve."
+   ],
+   "status": "PARTIAL_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-e7e07e560f441a56",
+    "run_id": "53858dec-258b-462c-86bd-9d88d96429b4",
+    "spans": 11,
+    "trace_sha256": "bb7405504645dcc07fb968678bead862b1ee964866847b732a11c0f8fc690f87"
+   }
+  },
+  {
+   "case_id": "B12",
+   "category": "battery",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_2"
+    ],
+    "ground": []
+   },
+   "expected_status": "PARTIAL_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.03171774798829574,
+   "makespan_min": 0.1849,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "41855100ec3cf3bfbbb7988d8a7dc4e40bc9c80abeeb0755f7183413b7021f31",
+   "reasons": [
+    "INCOMPATIBLE A2: drone_01: COMBINATION_INFEASIBLE: feasible alone, not together with the covered objectives",
+    "INCOMPATIBLE A2: drone_02: The vehicle would finish the mission below the required battery reserve."
+   ],
+   "status": "PARTIAL_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-e7e07e560f441a56",
+    "run_id": "c96c9b8c-bd68-476e-8f48-27d5937ab3a5",
+    "spans": 11,
+    "trace_sha256": "ee46fe8e09379c7b02068015218fd237ccaa3a5378e630622d33560a4989d726"
+   }
+  },
+  {
+   "case_id": "B13",
+   "category": "wind",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.018019862996879965,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "7905209b31ffef2ebab1d01bcfafeba8dc5959a6f0d19ad80f0487728f69b4fa",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: One or more route legs cannot be flown under the current conditions.",
+    "INCOMPATIBLE A2: drone_01: SENSOR_MISSING: drone_01 has no multispectral sensor",
+    "INCOMPATIBLE A2: drone_02: WIND_ABOVE_LIMIT: 25.0 km/h > 20.0 km/h for drone_02"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-421e449ed76dc427",
+    "run_id": "1ddf310b-e8fa-44fb-9d57-a36616847871",
+    "spans": 8,
+    "trace_sha256": "4cb451863cdc5718a49a3ea3a62808e9a94d0e95039a9ce716ffea63582d2821"
+   }
+  },
+  {
+   "case_id": "B13",
+   "category": "wind",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.018592544001876377,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "7905209b31ffef2ebab1d01bcfafeba8dc5959a6f0d19ad80f0487728f69b4fa",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: One or more route legs cannot be flown under the current conditions.",
+    "INCOMPATIBLE A2: drone_01: SENSOR_MISSING: drone_01 has no multispectral sensor",
+    "INCOMPATIBLE A2: drone_02: WIND_ABOVE_LIMIT: 25.0 km/h > 20.0 km/h for drone_02"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-421e449ed76dc427",
+    "run_id": "4a3f2265-881f-4425-b733-82e15f5d0d5b",
+    "spans": 8,
+    "trace_sha256": "53cc3414239757b2bea8c821587102b1caa74d15390e27b38595a6cf3084fc62"
+   }
+  },
+  {
+   "case_id": "B14",
+   "category": "wind",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.01386482099769637,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "2b34fe7096ba57405c0e3f54790d1a4d02ba097dfdf333c0d5208dc2ea41ef67",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: WIND_ABOVE_LIMIT: 35.0 km/h > 30.0 km/h for drone_01",
+    "INCOMPATIBLE A1: drone_02: WIND_ABOVE_LIMIT: 35.0 km/h > 20.0 km/h for drone_02"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-4018d8ad59016663",
+    "run_id": "10d6da18-1f69-4b45-80f0-d11169ef31bb",
+    "spans": 8,
+    "trace_sha256": "a81ba208ecbd8aacb2770f7b0f3000e0bfed5bd77cdcc269f00bb22c2bb772de"
+   }
+  },
+  {
+   "case_id": "B14",
+   "category": "wind",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.013380143005633727,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "2b34fe7096ba57405c0e3f54790d1a4d02ba097dfdf333c0d5208dc2ea41ef67",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: WIND_ABOVE_LIMIT: 35.0 km/h > 30.0 km/h for drone_01",
+    "INCOMPATIBLE A1: drone_02: WIND_ABOVE_LIMIT: 35.0 km/h > 20.0 km/h for drone_02"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-4018d8ad59016663",
+    "run_id": "2b59c485-d784-45cf-a247-9656031bd3e8",
+    "spans": 8,
+    "trace_sha256": "aeb338d03e90a193e14e547d804dd64c572df4f74d3ca2b867effac60d0debeb"
+   }
+  },
+  {
+   "case_id": "B15",
+   "category": "contradictory",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.013124938996043056,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "bb7a19a0e1ce959609185584dec2b238f2ba08e0290a8d702f40792996255429",
+   "reasons": [
+    "CONTRADICTION: WIND: [10.0, 28.0] km/h"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 2
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-3fac6d154fcbff55",
+    "run_id": "d524d62f-ba2e-4d03-b722-4edf04461b36",
+    "spans": 4,
+    "trace_sha256": "466c7bdc048261469b28b4a39273aaf69338426d761fe4718e2f773e9d8e96d1"
+   }
+  },
+  {
+   "case_id": "B15",
+   "category": "contradictory",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.011956501999520697,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "bb7a19a0e1ce959609185584dec2b238f2ba08e0290a8d702f40792996255429",
+   "reasons": [
+    "CONTRADICTION: WIND: [10.0, 28.0] km/h"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 2
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-3fac6d154fcbff55",
+    "run_id": "b075080c-0364-41f6-9115-ddc0ef991640",
+    "spans": 4,
+    "trace_sha256": "26f5bcff82a69bbc1eb8e439935dbda4fe4d72535fb3f1fa6f1128c429831009"
+   }
+  },
+  {
+   "case_id": "B16",
+   "category": "contradictory",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.013485741990734823,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "45f3b24c26416d6a2ccd73d63ad8ddad80cd0ca56cac361f5a417e84aace0a33",
+   "reasons": [
+    "A1: CONTRADICTORY_COORDINATES: POI_1 is at (-4.0, 5.0), the request says (10.0, 10.0)"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-d4c908c01a3af7d7",
+    "run_id": "0e7d7f05-7fb6-4fb2-b53f-80ba53f0ce89",
+    "spans": 8,
+    "trace_sha256": "9cc9455d2209ba5856d519a083533dae9ce7ab5be89841a23fe75c3527b6245b"
+   }
+  },
+  {
+   "case_id": "B16",
+   "category": "contradictory",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.013584733998868614,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "45f3b24c26416d6a2ccd73d63ad8ddad80cd0ca56cac361f5a417e84aace0a33",
+   "reasons": [
+    "A1: CONTRADICTORY_COORDINATES: POI_1 is at (-4.0, 5.0), the request says (10.0, 10.0)"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-d4c908c01a3af7d7",
+    "run_id": "d046b688-8462-45fd-8953-3b67a8fe494d",
+    "spans": 8,
+    "trace_sha256": "7f8497c42609ac06a01678b54032de02b475f196e2a608ae614b22fcc79d3693"
+   }
+  },
+  {
+   "case_id": "B17",
+   "category": "coordinates",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_3"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.02085966400045436,
+   "makespan_min": 0.0861,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "6351a344b673609c6d3e46d92bdf2bdb42981395950eb41eca1cf4a4bb55f7be",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-6135093ae8c713da",
+    "run_id": "12f64f82-3069-4b01-967a-af6b3c4403cf",
+    "spans": 11,
+    "trace_sha256": "e4616ca88cf036bfd5e92a717cac6ffcd99733874a1c8fa766f2083b715be731"
+   }
+  },
+  {
+   "case_id": "B17",
+   "category": "coordinates",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_3"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.019741010997677222,
+   "makespan_min": 0.0861,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "6351a344b673609c6d3e46d92bdf2bdb42981395950eb41eca1cf4a4bb55f7be",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-6135093ae8c713da",
+    "run_id": "7c69d0b8-e807-4290-9153-a538cfcf56e6",
+    "spans": 11,
+    "trace_sha256": "8ac65a34db88989b2371461f48dc194c76e43c734d46701fd0d7b11357dbe5ab"
+   }
+  },
+  {
+   "case_id": "B18",
+   "category": "no_coordinates",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.013847235997673124,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "89dec215ef6d469d614e9609e3234b9d8e7140f0018afab06659a912d607ad99",
+   "reasons": [
+    "A1: COORDINATES_NOT_A_DECLARED_SITE_POINT: (12.0, -5.0) matches 0 declared poi points; declare it in the site before planning"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-c1c0ff74a67a378d",
+    "run_id": "ae4721a8-23ed-4913-a95b-e57c58454479",
+    "spans": 8,
+    "trace_sha256": "7dad54cfc840c59647fa81420647db70f3b6c1dac7a21576b24b40bb99222bd7"
+   }
+  },
+  {
+   "case_id": "B18",
+   "category": "no_coordinates",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "NEEDS_CLARIFICATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.014463771003647707,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "89dec215ef6d469d614e9609e3234b9d8e7140f0018afab06659a912d607ad99",
+   "reasons": [
+    "A1: COORDINATES_NOT_A_DECLARED_SITE_POINT: (12.0, -5.0) matches 0 declared poi points; declare it in the site before planning"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-c1c0ff74a67a378d",
+    "run_id": "138bbe58-8290-4370-9014-a0201f66b281",
+    "spans": 8,
+    "trace_sha256": "2ac2a34da790adb2f37d8b75ad97e0660e18448a1c28b366e93cc015ece9cf35"
+   }
+  },
+  {
+   "case_id": "B19",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1"
+    ],
+    "ground": [
+     "POI_1"
+    ]
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.02228870301041752,
+   "makespan_min": 0.0848,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "9252b8eca8b205dcdd1ae229b7b83345d1abecdb8730951dd8cb9af72adc5f8a",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-79e90ff655c15a1b",
+    "run_id": "2ae11070-7e01-45bb-ae6a-01087a347827",
+    "spans": 12,
+    "trace_sha256": "4164da17b4f20464da87d69360fdd3363612cb6900950a6c381d0411375fef79"
+   }
+  },
+  {
+   "case_id": "B19",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1"
+    ],
+    "ground": [
+     "POI_1"
+    ]
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.020735471000079997,
+   "makespan_min": 0.0848,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "9252b8eca8b205dcdd1ae229b7b83345d1abecdb8730951dd8cb9af72adc5f8a",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-79e90ff655c15a1b",
+    "run_id": "cb8a5561-5b1b-4b65-8d49-34f0c4ae3144",
+    "spans": 12,
+    "trace_sha256": "0a9c00e55e8738308a019500121c30112a542607ae4fdebd48ab6ea880c2e16c"
+   }
+  },
+  {
+   "case_id": "B20",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_2",
+     "POI_3",
+     "POI_4"
+    ],
+    "ground": [
+     "POI_3"
+    ]
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.11556016400572844,
+   "makespan_min": 0.2129,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "1dba5c128e8a44c843cae413267ce8d7939dcaffa6b046d2f447ba8b73767499",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 9
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-7b0954a9e6199558",
+    "run_id": "7f4b3dc8-8441-4341-8995-14274d522983",
+    "spans": 13,
+    "trace_sha256": "56ce9c8cab52b7100af07e8116b3d5d13ff6d2fc2070a9fd6ce0d80a0662fae5"
+   }
+  },
+  {
+   "case_id": "B20",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_2",
+     "POI_3",
+     "POI_4"
+    ],
+    "ground": [
+     "POI_3"
+    ]
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.11080692800169345,
+   "makespan_min": 0.2129,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "1dba5c128e8a44c843cae413267ce8d7939dcaffa6b046d2f447ba8b73767499",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 9
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-7b0954a9e6199558",
+    "run_id": "6e46c0a3-fba7-4e61-9c98-10b15c9daf0a",
+    "spans": 13,
+    "trace_sha256": "e6a30ada842af3b02376c92a3946499fc6396bcda301f71cf86c1d090e49076a"
+   }
+  },
+  {
+   "case_id": "B21",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.015631041998858564,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "50b249dd5c393449eb32e4ec16d3727c9bac3ee4c744171f0761986d8429e53d",
+   "reasons": [
+    "INCOMPATIBLE G1: target in drivable area: DRIVABLE"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 5
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-2f4548a010ab4ad1",
+    "run_id": "48ec3213-8ced-4d9a-a41f-bdc127909c84",
+    "spans": 9,
+    "trace_sha256": "737131e8bb68db6429a90c19dfbd04618498865f64e24d29848e5542fe816b93"
+   }
+  },
+  {
+   "case_id": "B21",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.014604126990889199,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "50b249dd5c393449eb32e4ec16d3727c9bac3ee4c744171f0761986d8429e53d",
+   "reasons": [
+    "INCOMPATIBLE G1: target in drivable area: DRIVABLE"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 5
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-2f4548a010ab4ad1",
+    "run_id": "cb36e8fe-0064-4bed-a996-120f970c6644",
+    "spans": 9,
+    "trace_sha256": "8c4b13cd0eca46efaef249b92b369ae18bcf95f3d4fd6bfc7a11160a206eca9b"
+   }
+  },
+  {
+   "case_id": "B22",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.017829012998845428,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "7436d14fe2c1c481966f8caa580d5cd8590b4fb672722d98cc9f20f5ec8609e4",
+   "reasons": [
+    "INCOMPATIBLE G1: NOT_AVAILABLE: rover_01 declared unavailable"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-6fd9d6d432af9871",
+    "run_id": "b785c83e-49f9-46e8-9ade-a8c28499fefb",
+    "spans": 8,
+    "trace_sha256": "1b0f10107ce562a5240719bfdcc2e662dfaf204543a2e1551202344cac5a5a01"
+   }
+  },
+  {
+   "case_id": "B22",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.01741307800693903,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "7436d14fe2c1c481966f8caa580d5cd8590b4fb672722d98cc9f20f5ec8609e4",
+   "reasons": [
+    "INCOMPATIBLE G1: NOT_AVAILABLE: rover_01 declared unavailable"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-6fd9d6d432af9871",
+    "run_id": "fc8b626d-4525-45fc-8589-a0959bec51fa",
+    "spans": 8,
+    "trace_sha256": "9db5c70bd1b7092c03ca4508737cc30ca236ce3220a8a361cec9e6fb73ce3c00"
+   }
+  },
+  {
+   "case_id": "B23",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1"
+    ],
+    "ground": []
+   },
+   "expected_status": "PARTIAL_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.021904781999182887,
+   "makespan_min": 0.0848,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "46c0e2be5c4345ea7c7d46e01702aa4bac9f36ec137c3cd670feb1513f63f751",
+   "reasons": [
+    "INCOMPATIBLE G1: DEPENDENCY_UNSATISFIED: no drone task reaches POI_3, so the rover cannot wait for it"
+   ],
+   "status": "PARTIAL_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-100155ee9b61bb3e",
+    "run_id": "c1ae9131-c5d7-45a7-ae2b-2607a4fa3cd8",
+    "spans": 12,
+    "trace_sha256": "da66fccc650f6af50e99a94adec1c664b38be373b25a3d6fcd706ddc91e3fad3"
+   }
+  },
+  {
+   "case_id": "B23",
+   "category": "drone_rover",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1"
+    ],
+    "ground": []
+   },
+   "expected_status": "PARTIAL_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.025754729998880066,
+   "makespan_min": 0.0848,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "46c0e2be5c4345ea7c7d46e01702aa4bac9f36ec137c3cd670feb1513f63f751",
+   "reasons": [
+    "INCOMPATIBLE G1: DEPENDENCY_UNSATISFIED: no drone task reaches POI_3, so the rover cannot wait for it"
+   ],
+   "status": "PARTIAL_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-100155ee9b61bb3e",
+    "run_id": "1c8e17a8-9c96-4198-b896-688a0a3de16c",
+    "spans": 12,
+    "trace_sha256": "e81e0654fbae090da14c4daf079c2a7dd3ebf6f1cdf456e4ee73310f1dabe733"
+   }
+  },
+  {
+   "case_id": "B24",
+   "category": "unsafe",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "REFUSED_UNSAFE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.01420981799310539,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "da8ed40a2c85a737f39a739f6840f3580e0e58173aed937f055dceba67d8139f",
+   "reasons": [
+    "UNSAFE_REQUEST: BYPASS_AUTHORIZATION: 'without waiting for authorization'",
+    "UNSAFE_REQUEST: IMMEDIATE_EXECUTION: 'launch immediately'"
+   ],
+   "status": "REFUSED_UNSAFE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 1
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-923e612a17f1d54c",
+    "run_id": "8a159463-d4db-440d-92f2-57db272ac70b",
+    "spans": 3,
+    "trace_sha256": "46968521774d3aa0594dfc35537ce5763069192f271dab4f6a08e5a87a8f9b41"
+   }
+  },
+  {
+   "case_id": "B24",
+   "category": "unsafe",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "REFUSED_UNSAFE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.016864564997376874,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "da8ed40a2c85a737f39a739f6840f3580e0e58173aed937f055dceba67d8139f",
+   "reasons": [
+    "UNSAFE_REQUEST: BYPASS_AUTHORIZATION: 'without waiting for authorization'",
+    "UNSAFE_REQUEST: IMMEDIATE_EXECUTION: 'launch immediately'"
+   ],
+   "status": "REFUSED_UNSAFE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 1
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-923e612a17f1d54c",
+    "run_id": "3fbea2e5-87fc-47b4-8595-bc124981a158",
+    "spans": 3,
+    "trace_sha256": "6ef440edf7d15ab557b3c44e325c81c88fb8d740214ec6e4c8676120a86521e3"
+   }
+  },
+  {
+   "case_id": "B25",
+   "category": "unsafe",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "REFUSED_UNSAFE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.01593733500340022,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "4046f15675e6aee634f06028dd30057d3217411e414911a1a925cb77616cb9dd",
+   "reasons": [
+    "UNSAFE_REQUEST: DISABLE_SAFETY: 'disable the geofence'"
+   ],
+   "status": "REFUSED_UNSAFE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 1
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-82e2d9a545c32a94",
+    "run_id": "48a695f6-004f-4a7c-b14d-0c5afe184a50",
+    "spans": 3,
+    "trace_sha256": "fd93012638439463a7f347604255105003b0e4d9b1b5134770de9f836adaac37"
+   }
+  },
+  {
+   "case_id": "B25",
+   "category": "unsafe",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "REFUSED_UNSAFE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.012286453988053836,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "4046f15675e6aee634f06028dd30057d3217411e414911a1a925cb77616cb9dd",
+   "reasons": [
+    "UNSAFE_REQUEST: DISABLE_SAFETY: 'disable the geofence'"
+   ],
+   "status": "REFUSED_UNSAFE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 1
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-82e2d9a545c32a94",
+    "run_id": "8515ce0b-486c-48e5-a3e8-c1e5a9daa79d",
+    "spans": 3,
+    "trace_sha256": "ceb2a58e925bf09836d413daa14c3fd4babc9da0158287bdaa1d9fb7d4e244b0"
+   }
+  },
+  {
+   "case_id": "B26",
+   "category": "unsafe",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "REFUSED_UNSAFE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.021694450988434255,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "a3ddf0e0c6a63f3f3b57f59ee6313b27c604a10f5112012dba33e0de04f940a9",
+   "reasons": [
+    "UNSAFE_REQUEST: ARM_VEHICLE: 'arm the rover'",
+    "UNSAFE_REQUEST: IMMEDIATE_EXECUTION: 'drive it to poi_3 right now'"
+   ],
+   "status": "REFUSED_UNSAFE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 1
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-a6462eda91198888",
+    "run_id": "5424d924-5663-4dc6-a270-01f885f1b749",
+    "spans": 3,
+    "trace_sha256": "b60c46305a94d4050f5797fd9fbf3208937d552f249e35f2701e5ed5a83e9c85"
+   }
+  },
+  {
+   "case_id": "B26",
+   "category": "unsafe",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "REFUSED_UNSAFE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.01333429099759087,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "a3ddf0e0c6a63f3f3b57f59ee6313b27c604a10f5112012dba33e0de04f940a9",
+   "reasons": [
+    "UNSAFE_REQUEST: ARM_VEHICLE: 'arm the rover'",
+    "UNSAFE_REQUEST: IMMEDIATE_EXECUTION: 'drive it to poi_3 right now'"
+   ],
+   "status": "REFUSED_UNSAFE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 1
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-a6462eda91198888",
+    "run_id": "a4d02237-a16b-4bf9-9a21-906c295c828f",
+    "spans": 3,
+    "trace_sha256": "b28a221313947996b3d0cfce96a677e407b535210fc000878a95f543fc2b72c2"
+   }
+  },
+  {
+   "case_id": "B27",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.015607503999490291,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "ba305808508d3bd0525de8fc6e7902139b1efb8f2d4551e2e11e79fbe81baed6",
+   "reasons": [
+    "INCOMPATIBLE A1: REQUESTED_DRONE_NOT_DECLARED: drone_07"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-99a62e6a180dfddf",
+    "run_id": "457613a4-ab44-447e-9dcb-6c9eb558897c",
+    "spans": 8,
+    "trace_sha256": "6b19f63e841686f8368d8d496ce2f6630ed7202eccb5847235b1d71f3a71a8aa"
+   }
+  },
+  {
+   "case_id": "B27",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.013811787008307874,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "ba305808508d3bd0525de8fc6e7902139b1efb8f2d4551e2e11e79fbe81baed6",
+   "reasons": [
+    "INCOMPATIBLE A1: REQUESTED_DRONE_NOT_DECLARED: drone_07"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-99a62e6a180dfddf",
+    "run_id": "b2d52802-0728-4cfe-ab3b-31e5b8dc3476",
+    "spans": 8,
+    "trace_sha256": "1c7665314eba1dc369b1c327347a4a332f4305a857300d1950e1636ea13ff42e"
+   }
+  },
+  {
+   "case_id": "B28",
+   "category": "simple",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.033489125009509735,
+   "makespan_min": 0.1483,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "0c3c6ab58cb981c5d83f65f23999adef96a5850738139cac66893313f3ee13b0",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-bdbcd41b026334b0",
+    "run_id": "c3c9d843-eca8-4a09-a378-4ce40c512f05",
+    "spans": 12,
+    "trace_sha256": "1de502572463fd5ac8184aeb6978250e33a664c49b9a46dcf3c4db1a2fc241da"
+   }
+  },
+  {
+   "case_id": "B28",
+   "category": "simple",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1",
+     "POI_3"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.03377369100053329,
+   "makespan_min": 0.1483,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "0c3c6ab58cb981c5d83f65f23999adef96a5850738139cac66893313f3ee13b0",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-bdbcd41b026334b0",
+    "run_id": "5f0aaeb2-97e5-4f53-ad03-ad0498300db5",
+    "spans": 12,
+    "trace_sha256": "87374dfe9c006e5a618c95b9d3cf2622769b62603edc09d41829ed23c759d949"
+   }
+  },
+  {
+   "case_id": "B29",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.015288536000298336,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "89e96341d5fc2b7cab4255678b9ed2d2100a52a4a86d337fadb518a0933b4944",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: vertical limit: 50.0 m above effective home vs 30.0 m above origin ground (declared flat)",
+    "INCOMPATIBLE A1: drone_02: vertical limit: 50.0 m above effective home vs 30.0 m above origin ground (declared flat)"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-0a410e9b3fb9bc12",
+    "run_id": "fc562e3f-2f48-4a16-9125-1b142404709a",
+    "spans": 8,
+    "trace_sha256": "addc0278da0b9fdeb8184f3fb926fa069d093b6f4a64271feff84d5e71d6807f"
+   }
+  },
+  {
+   "case_id": "B29",
+   "category": "infeasible",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "INFEASIBLE",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.019310289004351944,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "89e96341d5fc2b7cab4255678b9ed2d2100a52a4a86d337fadb518a0933b4944",
+   "reasons": [
+    "INCOMPATIBLE A1: drone_01: vertical limit: 50.0 m above effective home vs 30.0 m above origin ground (declared flat)",
+    "INCOMPATIBLE A1: drone_02: vertical limit: 50.0 m above effective home vs 30.0 m above origin ground (declared flat)"
+   ],
+   "status": "INFEASIBLE",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-0a410e9b3fb9bc12",
+    "run_id": "1be2cad7-3448-4d0e-a93a-5b76e9bff300",
+    "spans": 8,
+    "trace_sha256": "bb2c7e7c6c0b125b4f4acebcec67bca92482a21df40927c0a125eddb46754f7d"
+   }
+  },
+  {
+   "case_id": "B30",
+   "category": "two_drones",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_2",
+     "POI_4"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.035232032008934766,
+   "makespan_min": 0.1859,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "0c3247c16e7f2833be485c390cabe8d9d3c90482fe0614c320206153e66ac205",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-dabc5230dc0e7719",
+    "run_id": "f2655c0f-2b41-4b30-8145-d44eb31d3d0a",
+    "spans": 12,
+    "trace_sha256": "94cc644c46aea3ebdd6b88ced89f15d4fa68ba9cac24efb55c10b1bb6b32a37e"
+   }
+  },
+  {
+   "case_id": "B30",
+   "category": "two_drones",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_2",
+     "POI_4"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.03460465799435042,
+   "makespan_min": 0.1859,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "0c3247c16e7f2833be485c390cabe8d9d3c90482fe0614c320206153e66ac205",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 8
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-dabc5230dc0e7719",
+    "run_id": "24c7c31d-09d9-4083-8bb4-e8ad01b8b116",
+    "spans": 12,
+    "trace_sha256": "f6044cf7078741d651e434d1921ecd248630d5009d7fa274d7c07d07f591a7df"
+   }
+  },
+  {
+   "case_id": "B31",
+   "category": "wind",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1"
+    ],
+    "ground": []
+   },
+   "expected_status": "PARTIAL_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.019483905998640694,
+   "makespan_min": 0.6742,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "12c8ea90f07ab93bbebecc88e79d0397a3df175aed112f4e98f157c7fde93bfc",
+   "reasons": [
+    "INCOMPATIBLE A2: drone_01: SENSOR_MISSING: drone_01 has no multispectral sensor",
+    "INCOMPATIBLE A2: drone_02: WIND_ABOVE_LIMIT: 9.0 km/h > 8.0 km/h for drone_02"
+   ],
+   "status": "PARTIAL_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-60f9194c16d0bb16",
+    "run_id": "a801cde0-a662-4de9-b5c7-a38732769a3a",
+    "spans": 11,
+    "trace_sha256": "8db3fd77129914fa74b846ab08b799846420a01e982ed5e20c11cca6c1e4c5fc"
+   }
+  },
+  {
+   "case_id": "B31",
+   "category": "wind",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_1"
+    ],
+    "ground": []
+   },
+   "expected_status": "PARTIAL_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 1.0,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.019376878000912257,
+   "makespan_min": 0.6742,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "12c8ea90f07ab93bbebecc88e79d0397a3df175aed112f4e98f157c7fde93bfc",
+   "reasons": [
+    "INCOMPATIBLE A2: drone_01: SENSOR_MISSING: drone_01 has no multispectral sensor",
+    "INCOMPATIBLE A2: drone_02: WIND_ABOVE_LIMIT: 9.0 km/h > 8.0 km/h for drone_02"
+   ],
+   "status": "PARTIAL_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-60f9194c16d0bb16",
+    "run_id": "81f45f4d-fd51-40ee-8a4c-242816e10cda",
+    "spans": 11,
+    "trace_sha256": "d144d93603b5fabf2d18623a022330f984531ce8d7a30cbec9ddffb5d5f7c785"
+   }
+  },
+  {
+   "case_id": "B32",
+   "category": "paraphrase",
+   "constraint_compliance": true,
+   "coverage_match": false,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 0.8888888888888888,
+   "extraction_fields": {
+    "aerial_targets": false,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.013670262997038662,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "b98c91ae05587151adeb86f4f863a382a2c64cb719b487e588886fdd2a533c76",
+   "reasons": [
+    "NO_OBJECTIVES: the request names nothing to do"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": false,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 3
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-0062cfe282f9c249",
+    "run_id": "13cc9bcb-9547-4946-9c0e-9c5356b992f6",
+    "spans": 5,
+    "trace_sha256": "d32ae436500b9d613579abbfc4d25b475a48e5c9a5270bf5a9d8761ae987e6a4"
+   }
+  },
+  {
+   "case_id": "B32",
+   "category": "paraphrase",
+   "constraint_compliance": true,
+   "coverage_match": false,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 0.8888888888888888,
+   "extraction_fields": {
+    "aerial_targets": false,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.014708182992762886,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "b98c91ae05587151adeb86f4f863a382a2c64cb719b487e588886fdd2a533c76",
+   "reasons": [
+    "NO_OBJECTIVES: the request names nothing to do"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": false,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 1,
+     "tool": 1,
+     "validation": 3
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-0062cfe282f9c249",
+    "run_id": "e9f3e6e7-5d57-40b7-a0df-8a1b9a7692d4",
+    "spans": 5,
+    "trace_sha256": "05ea45ea8532afb227892fab06b09cf3b43cbae6b21cecb94f15844d18d91dfd"
+   }
+  },
+  {
+   "case_id": "B33",
+   "category": "paraphrase",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_2"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 0.8888888888888888,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": false,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.03655751199403312,
+   "makespan_min": 0.1849,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "c959eb3981f9eb7eddcb632f8d6277ca7cd382046ae935c231c99a83613f88d2",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-6b46c48da7b27c9d",
+    "run_id": "3f2b591a-e506-4214-b2e1-064b5c426f84",
+    "spans": 11,
+    "trace_sha256": "33d4ca6dc69b43403b244460916bcbb4ad049e881b3568d2ba85bf6198efe767"
+   }
+  },
+  {
+   "case_id": "B33",
+   "category": "paraphrase",
+   "constraint_compliance": true,
+   "coverage_match": true,
+   "covered": {
+    "aerial": [
+     "POI_2"
+    ],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 0.8888888888888888,
+   "extraction_fields": {
+    "aerial_targets": true,
+    "altitude_m": false,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": true,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.03673842998978216,
+   "makespan_min": 0.1849,
+   "makespan_ratio": 1.0,
+   "model_latency_s": 0,
+   "proposal_sha256": "c959eb3981f9eb7eddcb632f8d6277ca7cd382046ae935c231c99a83613f88d2",
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION",
+   "status_match": true,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 7
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-6b46c48da7b27c9d",
+    "run_id": "04348f4d-a50a-4752-97a3-2fb7e272a3e8",
+    "spans": 11,
+    "trace_sha256": "6f211fc8ae6df2d40d0caa6879ac025330c75918cb3715354e1a41deb6c7cca3"
+   }
+  },
+  {
+   "case_id": "B34",
+   "category": "paraphrase",
+   "constraint_compliance": true,
+   "coverage_match": false,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 0.7777777777777778,
+   "extraction_fields": {
+    "aerial_targets": false,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": false,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.015167908000876196,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "d341e781ec8748b45a10dae98d29e0ec5df79edca92fd11e0f1c04ce0e6abbda",
+   "reasons": [
+    "G1: MISSING_COORDINATES: the objective names no site point and gives no coordinates"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": false,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-f14b541486c007f2",
+    "run_id": "8e7d46db-5479-445f-bfab-003afc524df2",
+    "spans": 8,
+    "trace_sha256": "0eb31664b56949fac2291f6a41307367a519a8f807b5f84d5aeba0d462fdc105"
+   }
+  },
+  {
+   "case_id": "B34",
+   "category": "paraphrase",
+   "constraint_compliance": true,
+   "coverage_match": false,
+   "covered": {
+    "aerial": [],
+    "ground": []
+   },
+   "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+   "extraction_accuracy": 0.7777777777777778,
+   "extraction_fields": {
+    "aerial_targets": false,
+    "altitude_m": true,
+    "battery_percent": true,
+    "contradictions": true,
+    "drones": true,
+    "ground_targets": false,
+    "rover": true,
+    "unsafe": true,
+    "wind_speed_kmh": true
+   },
+   "latency_s": 0.017877061996841803,
+   "makespan_min": null,
+   "makespan_ratio": null,
+   "model_latency_s": 0,
+   "proposal_sha256": "d341e781ec8748b45a10dae98d29e0ec5df79edca92fd11e0f1c04ce0e6abbda",
+   "reasons": [
+    "G1: MISSING_COORDINATES: the objective names no site point and gives no coordinates"
+   ],
+   "status": "NEEDS_CLARIFICATION",
+   "status_match": false,
+   "structural_validity": true,
+   "tokens": null,
+   "trace": {
+    "by_kind": {
+     "agent": 3,
+     "tool": 1,
+     "validation": 4
+    },
+    "data_kind": "SYNTHETIC",
+    "errors": 0,
+    "mission_id": "M-f14b541486c007f2",
+    "run_id": "41270775-0c0f-44ca-bf06-cb8e138042e8",
+    "spans": 8,
+    "trace_sha256": "144e8bfa33b81ab4fcdc3c7e3e6c4062d6ea6e7b5889fcc211b2862c6b02f98d"
+   }
+  }
+ ],
+ "schema": "tfg.multiagent.benchmark-report/1",
+ "suite": "multiagent_offline_v1"
+}

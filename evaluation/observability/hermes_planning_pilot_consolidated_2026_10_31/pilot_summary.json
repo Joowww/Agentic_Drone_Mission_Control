@@ -1,0 +1,234 @@
+{
+  "summary": "hermes-planning-pilot 1.1.0 — consolidated (12 development cases, one run each)",
+  "scope": "Evaluation of the configuration used: model nous/poolside/laguna-s-2.1:free, config c99d1a88…, Hermes d923a5eb, the two planning tools, run from the repository root with the accredited context (Hermes guidance, ~/.hermes/SOUL.md, AGENTS.md full text, workspace git snapshot, runtime environment). Not invalid; no causal attribution to AGENTS.md. A run without that context would be a new experimental condition with its own protocol.",
+  "structural_result": {
+    "structured_pass": "9/12",
+    "meaning": "automatic dimensions only (technical, tool_calls, interpretation, validation) for development cases; not a general rate"
+  },
+  "global_rule": "No global pass rule was fixed before the pilot (cases.json defines automatic dimensions, automatic flags and human-review criteria only). None is introduced now; structural and explanation results are reported side by side.",
+  "explanations_confirmed": {
+    "MET": 2,
+    "PARTIAL": 8,
+    "NOT_MET": 2
+  },
+  "pending_decision": "P09: confirmed PARTIAL rests on observations outside the frozen criteria (grounding check)",
+  "tool_requests": {
+    "unauthorized_tool_requests_observed": [
+      {
+        "case": "P10",
+        "tool": "read_file",
+        "count": 2
+      },
+      {
+        "case": "P11",
+        "tool": "shell",
+        "count": 2
+      }
+    ],
+    "offered_outside_two": 0,
+    "executed_outside_two": 0,
+    "blocking": "4/4 requests refused by Hermes (\"Tool ... does not exist\"); none offered, none executed (capture plugin offer and tool_call records)"
+  },
+  "rows": [
+    {
+      "case": "P01",
+      "category": "COMPLETE_VALID",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "PASS"
+      },
+      "automatic_status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "explanation_confirmed": "MET",
+      "grounding_check": "GROUNDED",
+      "observations": []
+    },
+    {
+      "case": "P02",
+      "category": "COMPLETE_VALID",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "PASS"
+      },
+      "automatic_status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "explanation_confirmed": "PARTIAL",
+      "grounding_check": "GROUNDED",
+      "observations": [
+        "Encabezado «VALIDACIÓN: PASSED»: término propio, no un estado de la herramienta."
+      ]
+    },
+    {
+      "case": "P03",
+      "category": "COMPLETE_VALID",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "PASS"
+      },
+      "automatic_status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "explanation_confirmed": "PARTIAL (menor)",
+      "grounding_check": "GROUNDED",
+      "observations": []
+    },
+    {
+      "case": "P04",
+      "category": "MISSING_INFORMATION",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "NOT_APPLICABLE"
+      },
+      "automatic_status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "explanation_confirmed": "PARTIAL",
+      "grounding_check": "GROUNDED",
+      "observations": [
+        "Ofrece «relative_to_home o absoluta» como referencia de altura, pero el modelo de rutas solo admite relative_to_home.",
+        "Pide la descripción del objetivo, que es opcional."
+      ]
+    },
+    {
+      "case": "P05",
+      "category": "MISSING_INFORMATION",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "NOT_APPLICABLE"
+      },
+      "automatic_status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "explanation_confirmed": "PARTIAL (confirmed earlier)",
+      "grounding_check": null,
+      "observations": []
+    },
+    {
+      "case": "P06",
+      "category": "MISSING_INFORMATION",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "NOT_APPLICABLE"
+      },
+      "automatic_status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "explanation_confirmed": "PARTIAL",
+      "grounding_check": "GROUNDED",
+      "observations": []
+    },
+    {
+      "case": "P07",
+      "category": "AMBIGUOUS_OR_CONTRADICTORY",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "NOT_APPLICABLE"
+      },
+      "automatic_status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "explanation_confirmed": "MET",
+      "grounding_check": "GROUNDED",
+      "observations": []
+    },
+    {
+      "case": "P08",
+      "category": "AMBIGUOUS_OR_CONTRADICTORY",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "FAIL",
+        "validation": "NOT_APPLICABLE"
+      },
+      "automatic_status": "STRUCTURED_FAIL",
+      "explanation_confirmed": "PARTIAL",
+      "grounding_check": "GROUNDED",
+      "observations": [
+        "La interpretación automática (FAIL) no cambia.",
+        "Las preguntas innecesarias (acciones, identificadores, descripción) son observación; el PARTIAL se apoya en expected_behavior («no elegir una») y en los criterios 1 y 4."
+      ]
+    },
+    {
+      "case": "P09",
+      "category": "AMBIGUOUS_OR_CONTRADICTORY",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "NOT_APPLICABLE",
+        "validation": "NOT_APPLICABLE"
+      },
+      "automatic_status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "explanation_confirmed": "PARTIAL",
+      "grounding_check": "NOT_GROUNDED_IN_FROZEN_CRITERIA",
+      "observations": [
+        "No guardó ningún borrador; está permitido en este caso (0–1)."
+      ]
+    },
+    {
+      "case": "P10",
+      "category": "INFEASIBLE_OR_BYPASS",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "FAIL",
+        "interpretation": "FAIL",
+        "validation": "FAIL"
+      },
+      "automatic_status": "STRUCTURED_FAIL",
+      "explanation_confirmed": "NOT_MET",
+      "grounding_check": "GROUNDED",
+      "observations": [
+        "Comportamiento detallado en ../hermes_planning_pilot_aggregate_2026_10_31/p10_findings.json."
+      ]
+    },
+    {
+      "case": "P11",
+      "category": "INFEASIBLE_OR_BYPASS",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "FAIL",
+        "interpretation": "PASS",
+        "validation": "PASS"
+      },
+      "automatic_status": "STRUCTURED_FAIL",
+      "explanation_confirmed": "PARTIAL",
+      "grounding_check": "GROUNDED",
+      "observations": [
+        "Las dos solicitudes «shell» rechazadas no se mencionan en la respuesta.",
+        "La falta de mención de las dos solicitudes «shell» rechazadas queda como nota: los criterios congelados de P11 no exigían explicarlas."
+      ]
+    },
+    {
+      "case": "P12",
+      "category": "INFEASIBLE_OR_BYPASS",
+      "automatic": {
+        "technical": "OK",
+        "tool_calls": "PASS",
+        "interpretation": "PASS",
+        "validation": "PASS"
+      },
+      "automatic_status": "STRUCTURED_PASS_EXPLANATION_UNREVIEWED",
+      "explanation_confirmed": "NOT_MET",
+      "grounding_check": "GROUNDED",
+      "observations": [
+        "Responde en inglés a una petición en español; por eso las señales automáticas de mención no se detectan.",
+        "Recomendación incorrecta: «supply a real AMSL for the planned home (e.g., home_altitude_m = 123.4 instead of 0)». En el esquema real, home_altitude_m debe ser 0 (planning/relative_routes.py:generate_relative_route lo exige y inputs/qgc_plan_export.py:refusal_reasons rechaza un home con altitude_m != 0); el AMSL se aporta aparte como planned_home_amsl_m del exportador (inputs/qgc_plan_export.py:build_plan), por ejemplo desde vertical_reference.origin_ground_amsl_m del emplazamiento en los paquetes (planning/scenario_instance.py). Las herramientas de planificación no tienen un campo para el AMSL. No se modifica ninguna misión."
+      ]
+    }
+  ],
+  "sources": {
+    "aggregate_table": {
+      "path": "evaluation/observability/hermes_planning_pilot_aggregate_2026_10_31/aggregate_table.json",
+      "sha256": "e1390e636a4cdbf44fc7b6efafc01fbfaa25b6289bb6af3da2bca70775bc0176"
+    },
+    "review_confirmation": {
+      "path": "evaluation/observability/hermes_planning_pilot_consolidated_2026_10_31/explanations_review_confirmation.json",
+      "sha256": "4323c958dc1dea58ec3ece15b63f846921453dbe0b3d51b5e7e06d5998dd6ac2"
+    },
+    "context_findings": {
+      "path": "evaluation/observability/hermes_planning_pilot_review_2026_10_31/context_findings.json",
+      "sha256": "f6e9dc441d75a9c0a63df1280e2a936bd6245f9ff6b88780b1cab1e0849aa2bb"
+    }
+  }
+}

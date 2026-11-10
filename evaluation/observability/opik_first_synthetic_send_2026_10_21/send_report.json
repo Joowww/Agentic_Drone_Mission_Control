@@ -1,0 +1,35 @@
+{
+  "mode": "send",
+  "endpoint": "https://www.comet.com/opik/api",
+  "record": "evaluation/observability/opik_first_synthetic_send_2026_10_21/send_record.jsonl",
+  "destination": {
+    "platform": "opik",
+    "project": "tfg-opik-synthetic-20261021",
+    "workspace": "joowww"
+  },
+  "traces": 1,
+  "spans": 3,
+  "batches_planned": 2,
+  "batches": [
+    {
+      "outcome": "http_not_accepted",
+      "http_status": 400,
+      "response_body_bytes": 177,
+      "index": 0,
+      "kind": "traces",
+      "items": 1,
+      "elapsed_wall_s": 0.864,
+      "recorded": true
+    }
+  ],
+  "status": "UNCERTAIN",
+  "uncertain_reason": "http_status_400",
+  "not_attempted_batches": 1,
+  "record_complete": true,
+  "record_failure": null,
+  "note": "No automatic retry. HTTP 2xx is not proof of storage or of exactly-once delivery; ids are deterministic, and how Opik treats a repeated id is not verified.",
+  "http_statuses_received": [
+    400
+  ],
+  "http_accepted_batches": 0
+}

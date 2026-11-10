@@ -1,0 +1,22 @@
+{
+  "source": "OPERATOR_STATEMENT_IN_CHAT",
+  "confirmed_by": "Joel",
+  "reported_on": "2026-10-24",
+  "statement_verbatim": "Confirmo que en Opik veo la traza H3 hermes_turn con los 2 spans llm_call:poolside/laguna-s-2.1:free y la etiqueta acceptance:NOT_VALIDATED.",
+  "metadata_reviewed_verbatim": [
+    "tfg_case_id: mcp-agri-scenario-h3",
+    "tfg_evaluation.acceptance: NOT_VALIDATED",
+    "failed_keys: [r1_movement_authorized]",
+    "evidence_ref: sha256:80858822326bcadd",
+    "answer_exported: false"
+  ],
+  "refers_to": {
+    "destination": {
+      "workspace": "joowww",
+      "project": "tfg-opik-hermes-real-20261021"
+    },
+    "trace_id": "01a16e0d-eb87-71c9-a8b6-626d08ba0e23",
+    "spans": 2
+  },
+  "note": "Operator visual statement, separate from the exporter facts; not an automated check of Opik storage. The trace id was not part of the statement."
+}

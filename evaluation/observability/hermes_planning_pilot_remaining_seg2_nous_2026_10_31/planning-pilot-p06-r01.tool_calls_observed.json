@@ -1,0 +1,346 @@
+{
+  "turn_reasons": [],
+  "final_answer": "Borrador guardado correctamente. ID: 1b9dce65-1fbd-477b-8900-c55ce5773f3f (revisión 1).\n\nEstado: INCOMPLETE — no finalizada, no simulada, sin comandos de vuelo.\n\nTodo lo proporcionado se guardó: drone_02 / multirotor / ArduPilot, 35 km/h crucero, batería 100 %, consumo 0.8 %/min, precision_agriculture con target agri_demo_001_sector_b, viento 0 km/h @ 0°, reserva mínima 20 %, viento máximo 30 km/h, altitud máxima 120 m, todas las acciones RETURN_TO_HOME, ruta por offsets (POI_B1: N8/E4, POI_B2: N16/E4), altitud de vuelo 5 m sobre HOME con referencia relativa, vuelta al HOME, recorrido no cerrado.\n\nFalta, y bloquea la finalización:\n\n1. Latitud del HOME — pendiente de confirmación en campo. No se ha usado ninguna coordenada por defecto.\n2. Longitud del HOME — igualmente pendiente de confirmación en campo.\n3. Waypoints explícitos — el modo offsets requiere resolver las coordenadas reales de los POI_B1 y POI_B2, lo cual depende de las coordenadas del HOME que faltan.\n\nUna vez que proporcione lat/lon del HOME, el sistema puede resolver los offsets a coordenadas geográficas y generar los waypoints. Entonces el borrador podría pasarse a finalización (validación + exportación QGC .plan).",
+  "calls": [
+    {
+      "tool_name": "mcp__tfg_mission_control__update_mission_draft",
+      "args": {
+        "updates": {
+          "name": "Sector B pendiente de HOME",
+          "mission_id": null,
+          "vehicle_id": "drone_02",
+          "vehicle_type": "multirotor",
+          "autopilot": "ArduPilot",
+          "cruise_speed_kmh": 35,
+          "battery_percent": 100,
+          "battery_consumption_percent_per_minute": 0.8,
+          "objective_type": "precision_agriculture",
+          "objective_target": "agri_demo_001_sector_b",
+          "wind_speed_kmh": 0,
+          "wind_direction_from_deg": 0,
+          "minimum_battery_reserve_percent": 20,
+          "maximum_wind_speed_kmh": 30,
+          "maximum_altitude_m": 120,
+          "low_battery_action": "RETURN_TO_HOME",
+          "unsafe_wind_action": "RETURN_TO_HOME",
+          "communication_loss_action": "RETURN_TO_HOME",
+          "geometry_intent": {
+            "mode": "offsets",
+            "home_altitude_m": 0,
+            "altitude_reference": "relative_to_home",
+            "altitude_m": 5,
+            "return_to_home": true,
+            "close_route": false,
+            "offsets": [
+              {
+                "north_m": 8,
+                "east_m": 4
+              },
+              {
+                "north_m": 16,
+                "east_m": 4
+              }
+            ]
+          }
+        }
+      },
+      "status": "ok",
+      "result": {
+        "schema_version": 2,
+        "draft_id": "1b9dce65-1fbd-477b-8900-c55ce5773f3f",
+        "draft_revision": 1,
+        "draft_sha256": "9868aa07ea80a23bf391dca1060fa003fe940302819ed6a3b1899a0b097ea88c",
+        "route_provenance": null,
+        "geometry_revision": 1,
+        "geometry_intent_sha256": "fb6ebeb0d7836bc08f2537b37999a38f053226ac4ea83a0829f9e1549608afe9",
+        "field_provenance": {
+          "/geometry_intent/mode": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "16bb31d52628d82354b0939484b70156c82745275f2b30f1e0de2404844da473"
+          },
+          "/geometry_intent/home_altitude_m": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+          },
+          "/geometry_intent/altitude_reference": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "a3ceec9db042db97491bf90f9a347326c201442ff4cda0e992d41dbe278d1c98"
+          },
+          "/geometry_intent/altitude_m": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "a19a1584344c1f3783bff51524a5a4b86f2cc09356c9dbfb6af9cd236e314362"
+          },
+          "/geometry_intent/return_to_home": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+          },
+          "/geometry_intent/close_route": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+          },
+          "/geometry_intent/offsets": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "575bad38a3b4897150c8a97d9e1434eec458c4ea1cd2122f3025c048f848b5df"
+          },
+          "/name": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "12ff4087b3955ad1d8fb731a76e66115e9a730ec6bd1149656ff1aa6d889d985"
+          },
+          "/vehicle_id": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "dd98937bb6fbfb9000dc7c7c2b31281c0700d4b75dd91b52d710b8e085632a71"
+          },
+          "/vehicle_type": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "28b687e80712ec6bb87c0d3d7b8a4b41ca9be7b033161873584efafbb2581c2e"
+          },
+          "/autopilot": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "5d44960ecd6292c026f10c53f7c75f0b6b28e38f7176fafa220578f89588b873"
+          },
+          "/cruise_speed_kmh": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "72e72b41e40336eeef6045c40e3ac2988411fbadc42958caf30e7dbf1b729e00"
+          },
+          "/battery_percent": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "43b87f618caab482ebe4976c92bcd6ad308b48055f1c27b4c574f3e31d7683e0"
+          },
+          "/battery_consumption_percent_per_minute": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "1e9d7c27c8bbc8ddf0055c93e064a62fa995d177fee28cc8fa949bc8a4db06f4"
+          },
+          "/objective_type": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "19542bd7a16aab8e1225e5d94a2021b4273def1fad86e48b46b6fddb7d7c045f"
+          },
+          "/objective_target": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "87a0473b2c40bf2fc7e2c2298889042f596ae2388f1c48167d063c4d13c8aefc"
+          },
+          "/home_altitude_m": {
+            "source": "DETERMINISTIC_DERIVATION",
+            "from": "/geometry_intent/home_altitude_m",
+            "method": "copy_shared_geometry_field",
+            "authenticated": false,
+            "value_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+          },
+          "/return_to_home": {
+            "source": "DETERMINISTIC_DERIVATION",
+            "from": "/geometry_intent/return_to_home",
+            "method": "copy_shared_geometry_field",
+            "authenticated": false,
+            "value_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+          },
+          "/wind_speed_kmh": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+          },
+          "/wind_direction_from_deg": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+          },
+          "/minimum_battery_reserve_percent": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "585348dbd28810f9a34f57be46f000c5f9effab894d074713d93fe7ccfeb3b76"
+          },
+          "/maximum_wind_speed_kmh": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "26c9a96ce053a14dd88a71a4830c9cbed7e1fed7e3f3f8a0b0b6a58f3f0f02e6"
+          },
+          "/maximum_altitude_m": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "184999fc4112ff83be6e918533470be97f00217c85101d9543ef8d3c81e1f181"
+          },
+          "/low_battery_action": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "1d2b1a528125e941630df0cf48c6156a497293792fa276672a93427a60eebd0b"
+          },
+          "/unsafe_wind_action": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "1d2b1a528125e941630df0cf48c6156a497293792fa276672a93427a60eebd0b"
+          },
+          "/communication_loss_action": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "1d2b1a528125e941630df0cf48c6156a497293792fa276672a93427a60eebd0b"
+          }
+        },
+        "provenance_status": "UNVERIFIED_AGENT_INPUT",
+        "updated_at": "2026-10-31T08:34:25.415971+00:00",
+        "status": "INCOMPLETE",
+        "draft": {
+          "geometry_intent": {
+            "mode": "offsets",
+            "home_latitude": null,
+            "home_longitude": null,
+            "home_altitude_m": 0.0,
+            "altitude_reference": "relative_to_home",
+            "altitude_m": 5.0,
+            "return_to_home": true,
+            "close_route": false,
+            "offsets": [
+              {
+                "north_m": 8.0,
+                "east_m": 4.0
+              },
+              {
+                "north_m": 16.0,
+                "east_m": 4.0
+              }
+            ],
+            "length_m": null,
+            "width_m": null,
+            "orientation_deg": null,
+            "traversal": null,
+            "home_position": null
+          },
+          "mission_id": null,
+          "name": "Sector B pendiente de HOME",
+          "vehicle_id": "drone_02",
+          "vehicle_type": "multirotor",
+          "autopilot": "ArduPilot",
+          "cruise_speed_kmh": 35.0,
+          "battery_percent": 100.0,
+          "battery_consumption_percent_per_minute": 0.8,
+          "objective_type": "precision_agriculture",
+          "objective_target": "agri_demo_001_sector_b",
+          "objective_description": null,
+          "home_latitude": null,
+          "home_longitude": null,
+          "home_altitude_m": 0.0,
+          "waypoints": [],
+          "return_to_home": true,
+          "wind_speed_kmh": 0.0,
+          "wind_direction_from": null,
+          "wind_direction_from_deg": 0.0,
+          "minimum_battery_reserve_percent": 20.0,
+          "maximum_wind_speed_kmh": 30.0,
+          "maximum_altitude_m": 120.0,
+          "low_battery_action": "RETURN_TO_HOME",
+          "unsafe_wind_action": "RETURN_TO_HOME",
+          "communication_loss_action": "RETURN_TO_HOME"
+        },
+        "geometry": {
+          "status": "INCOMPLETE",
+          "missing_fields": [
+            "home_latitude",
+            "home_longitude"
+          ]
+        },
+        "geometry_intent": {
+          "mode": "offsets",
+          "home_latitude": null,
+          "home_longitude": null,
+          "home_altitude_m": 0.0,
+          "altitude_reference": "relative_to_home",
+          "altitude_m": 5.0,
+          "return_to_home": true,
+          "close_route": false,
+          "offsets": [
+            {
+              "north_m": 8.0,
+              "east_m": 4.0
+            },
+            {
+              "north_m": 16.0,
+              "east_m": 4.0
+            }
+          ],
+          "length_m": null,
+          "width_m": null,
+          "orientation_deg": null,
+          "traversal": null,
+          "home_position": null
+        },
+        "mission_missing_fields": [
+          "home latitude",
+          "home longitude",
+          "at least one waypoint"
+        ],
+        "geometry_missing_fields": [
+          "home_latitude",
+          "home_longitude"
+        ],
+        "pending": {
+          "route_generation": [
+            "home_latitude",
+            "home_longitude"
+          ],
+          "mission_finalization": [
+            "home latitude",
+            "home longitude",
+            "at least one waypoint",
+            "geometry.home_latitude",
+            "geometry.home_longitude"
+          ]
+        },
+        "missing_fields": [
+          "home latitude",
+          "home longitude",
+          "at least one waypoint",
+          "geometry.home_latitude",
+          "geometry.home_longitude"
+        ],
+        "errors": [],
+        "stored_provenance_status": "UNVERIFIED_AGENT_INPUT",
+        "provenance_notice": "MCP input comes from the agent. Operator attribution is an unverified agent declaration, not proof of dialogue fidelity; no authenticated conversation source is stored.",
+        "compatibility_defaults": [
+          {
+            "path": "/mission_id",
+            "value": "sector_b_pendiente_de_home_001",
+            "source": "COMPATIBILITY_DEFAULT",
+            "applies_on_finalization": true
+          }
+        ]
+      }
+    }
+  ]
+}

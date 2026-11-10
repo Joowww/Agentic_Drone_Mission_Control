@@ -1,0 +1,46 @@
+--- /home/joelm/TFG/entregas/tfg-entrega-estudiantes-2026.10.28-r2/compose.yaml	2026-10-28 09:47:08.335105354 +0100
++++ /home/joelm/TFG/entregas/tfg-entrega-estudiantes-2026.10.30/compose.yaml	2026-10-30 11:54:35.889694505 +0100
+@@ -1,4 +1,4 @@
+-# Student bundle 2026.10.28-r2 (PARTIAL: no simulator yet): the services of the project's deploy/compose.yaml for the
++# Student bundle 2026.10.30 (PARTIAL: no simulator yet): the services of the project's deploy/compose.yaml for the
+ # delivered images, with the same restrictions, but without build sections, the development profile (sources mounted
+ # over the image), the test doubles or the development-only local-LLM menu. AI planning is Hermes only.
+ # Paths are relative to this directory; nothing refers to a source repository.
+@@ -10,11 +10,13 @@
+ #   TFG_WORK_DIR        results of app (and /work of the hermes service)
+ #   QGC_PLAN_DIR        plans QGC opens, read-only (e.g. $TFG_WORK_DIR/paquete_1/plans)
+ #   QGC_SAVE_DIR        where QGC saves its copy
+-#   TFG_PLANNING_STORE  drafts, finalizations, missions and reports of the planning profile
++#   TFG_PLANNING_STORE  drafts, finalizations, missions and reports of the planning profile (written by hermes;
++#                       mounted READ-ONLY at /planning_store in app; unset there: ./almacen_vacio)
+ # Unset, each one points to a non-existent *_not_set directory and the service refuses to start.
+ #
+ # Profiles:
+-#   app       offline tools: no network, read-only root, writes only to /work.
++#   app       offline tools: no network, read-only root, writes only to /work; reads the planning store at
++#             /planning_store (read-only) to package Hermes finalizations (scenario_package package-finalized).
+ #   qgc       QGroundControl 5.1.5 for the offline .plan import: no network, no devices, read-only plans.
+ #   planning  hermes: the project's MCP server restricted to update_mission_draft and finalize_mission_draft; needs
+ #             the student's own provider account and network to the provider.
+@@ -22,7 +24,7 @@
+ name: tfg-estudiante
+ 
+ x-app: &app
+-  image: tfg/app:2026.10.28
++  image: tfg/app:2026.10.30
+   # No network namespace: no LLM provider, Opik, simulator or vehicle is reachable.
+   network_mode: none
+   user: "${TFG_UID:-1000}:${TFG_GID:-1000}"
+@@ -98,6 +100,12 @@
+         source: ${TFG_WORK_DIR:-./TFG_WORK_DIR_not_set}
+         target: /work
+         bind: {create_host_path: false}
++      # The student's planning store, READ-ONLY; packages and reports go to /work.
++      - type: bind
++        source: ${TFG_PLANNING_STORE:-./almacen_vacio}
++        target: /planning_store
++        read_only: true
++        bind: {create_host_path: false}
+ 
+   # ---- planning profile -----------------------------------------------------------------------------------
+   hermes:

@@ -1,0 +1,19 @@
+
+[ESCENARIO agri_demo_001] modo demo · origen SYNTHETIC · variante artifact_modified · sin órdenes ni procesos operativos · Ctrl+C para salir
+
+[load_artifacts] trabajando · espera: conserved H1/H2 artifacts, verified by their manifests
+[load_artifacts] resultado: LOADED · motivo: 2 missions; binding record SYNTHETIC_DE
+
+[bind_and_validate] trabajando · espera: deterministic validation, execution compatibility and H0 geometry of each mission
+[bind_and_validate] resultado: REJECTED · motivo: Artifact content differs from the recorded hash: ['drone_02']
+
+[report] trabajando · espera: deterministic rendering of the view, the R1 preparation and the R1 record
+[report] resultado: REJECTED · motivo: scenario complete: False
+
+[ESCENARIO agri_demo_001] origen: SYNTHETIC · modo: demo
+Estado del flujo: REJECTED (última etapa report)
+Escenario: sin vista; completo: no
+Coordinador R1: None; aceptación: sin resultado
+Motivo: ARTIFACT_REJECTED: Artifact content differs from the recorded hash: ['drone_02']
+Informe: no escrito (sin --out)
+Registro del flujo: evaluation/observability/agri_scenario_flow_closure_2026_10_26/synthetic_demo/artifact_modified/flow_record.json

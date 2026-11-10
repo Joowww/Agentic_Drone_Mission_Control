@@ -1,0 +1,125 @@
+{
+  "status": "CORRESPONDS",
+  "problems": [],
+  "site": {
+    "id": "synthetic_hermes_rehearsal",
+    "version": 1,
+    "status": "SYNTHETIC",
+    "geo_reference": [
+      -35.363262,
+      149.165237
+    ],
+    "origin_ground_amsl_m": 584.0,
+    "terrain": "DECLARED_FLAT"
+  },
+  "missions": [
+    {
+      "vehicle_id": "drone_01",
+      "takeoff_point": "TAKEOFF_A",
+      "takeoff_local_xy_m": [
+        -6.0,
+        -6.0
+      ],
+      "original_mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+      "derived_mission_sha256": "b215a38bc3322fe958d2443e559665782fcbe0985295a0b47f7a927d6aa2fe91",
+      "derived_home": [
+        -35.3633158986705,
+        149.1651709071337
+      ],
+      "plan_planned_home": [
+        -35.3633159,
+        149.16517091,
+        584.0
+      ],
+      "declared_offsets": [
+        {
+          "north_m": 8.0,
+          "east_m": -4.0
+        },
+        {
+          "north_m": 16.0,
+          "east_m": -4.0
+        }
+      ],
+      "recomputed_offsets": [
+        {
+          "waypoint_id": "WP1",
+          "north_m": 7.999999999529223,
+          "east_m": -4.0000000002911005
+        },
+        {
+          "waypoint_id": "WP2",
+          "north_m": 16.000000000019043,
+          "east_m": -4.0000000002911005
+        }
+      ],
+      "max_offset_error_m": 4.70777195005212e-10,
+      "checks": {
+        "original_unchanged_in_store": true,
+        "original_copied_byte_for_byte": true,
+        "derived_hash_is_new": true,
+        "vehicle_matches_assignment": true,
+        "other_mission_fields_unchanged": true,
+        "home_is_selected_takeoff": true,
+        "offsets_equal_finalized_geometry": true,
+        "plan_home_is_takeoff_with_site_amsl": true,
+        "approval_not_inherited": true,
+        "derived_validated_again": true
+      }
+    },
+    {
+      "vehicle_id": "drone_02",
+      "takeoff_point": "TAKEOFF_B",
+      "takeoff_local_xy_m": [
+        6.0,
+        -6.0
+      ],
+      "original_mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+      "derived_mission_sha256": "c8f7c80e4d387294f2d8ff1c2a778c8cd5547a5e41fef54207552329f6bb6c79",
+      "derived_home": [
+        -35.3633158986705,
+        149.16530309286628
+      ],
+      "plan_planned_home": [
+        -35.3633159,
+        149.16530309,
+        584.0
+      ],
+      "declared_offsets": [
+        {
+          "north_m": 8.0,
+          "east_m": 4.0
+        },
+        {
+          "north_m": 16.0,
+          "east_m": 4.0
+        }
+      ],
+      "recomputed_offsets": [
+        {
+          "waypoint_id": "WP1",
+          "north_m": 7.999999999529223,
+          "east_m": 4.0000000002911005
+        },
+        {
+          "waypoint_id": "WP2",
+          "north_m": 16.000000000019043,
+          "east_m": 4.0000000002911005
+        }
+      ],
+      "max_offset_error_m": 4.70777195005212e-10,
+      "checks": {
+        "original_unchanged_in_store": true,
+        "original_copied_byte_for_byte": true,
+        "derived_hash_is_new": true,
+        "vehicle_matches_assignment": true,
+        "other_mission_fields_unchanged": true,
+        "home_is_selected_takeoff": true,
+        "offsets_equal_finalized_geometry": true,
+        "plan_home_is_takeoff_with_site_amsl": true,
+        "approval_not_inherited": true,
+        "derived_validated_again": true
+      }
+    }
+  ]
+}

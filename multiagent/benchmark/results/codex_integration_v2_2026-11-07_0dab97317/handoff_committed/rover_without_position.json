@@ -1,0 +1,117 @@
+{
+ "classification": "BLOCKED_BEFORE_SUBMISSION",
+ "codex_commit": "57a0e303a",
+ "codex_snapshot": "committed 57a0e303a",
+ "commands": [],
+ "coordinator_events": [
+  {
+   "reasons": [
+    "frames: ROVER_LOCALIZATION_NOT_ACCREDITED",
+    "codex_v2: LOCALIZATION_MISSING_OR_UNVALIDATED",
+    "executor_request: NO_ACCREDITED_ROVER_LOCALIZATION",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "envelope": null,
+ "mode": "OFFLINE_TEST",
+ "movement_executed": false,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [],
+   "stage": "request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "authorization",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "codex_bridge",
+   "status": "PASS"
+  },
+  {
+   "conversion": {
+    "at": "2026-11-07T09:50:28.230954+00:00",
+    "chain": [
+     "inverse(synthetic_orchard_local<-odom)"
+    ],
+    "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "converted_by": "claude.multiagent.frames2d",
+    "from": {
+     "frame": "synthetic_orchard_local",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "to": {
+     "frame": "odom",
+     "sigma_m": 0.12199692619078564,
+     "x_m": 5.500000000000001,
+     "y_m": -7.0
+    },
+    "valid_until": "2026-11-07T10:50:28.230954+00:00"
+   },
+   "goal_base_link": null,
+   "goal_rover": {
+    "frame": "odom",
+    "sigma_m": 0.12199692619078564,
+    "x_m": 5.500000000000001,
+    "y_m": -7.0
+   },
+   "reasons": [
+    "ROVER_LOCALIZATION_NOT_ACCREDITED"
+   ],
+   "stage": "frames",
+   "status": "REFUSED"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [
+    "LOCALIZATION_MISSING_OR_UNVALIDATED"
+   ],
+   "schema_errors": [
+    "['authorization']: {'bridge_scope_sha256': '43a9e4c756800ca8535b1978b755eb48a164f66478b12207e9f74fba0e6677af', 'human_authorized': True, 'operator_id': 'TEST_FIXTURE_OPERATOR', 'o"
+   ],
+   "stage": "codex_v2",
+   "status": "REJECTED"
+  },
+  {
+   "reasons": [
+    "NO_ACCREDITED_ROVER_LOCALIZATION"
+   ],
+   "stage": "executor_request",
+   "status": "NOT_REACHED"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

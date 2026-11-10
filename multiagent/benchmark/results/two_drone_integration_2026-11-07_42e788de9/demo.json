@@ -1,0 +1,65 @@
+{
+ "replay_m4c_r1": {
+  "commands": 0,
+  "observation": "OBSERVED",
+  "plan_source": {
+   "agents_recorded_as": "REAL_LOCAL_LLM",
+   "evidence": "m4c_r1_integrated_v1_2026-11-07_f1ec396c9",
+   "kind": "REPLAY_OF_SEALED_RUN",
+   "new_llm_calls": 0,
+   "same_missions_as_scripted_plan": true
+  },
+  "rover": {
+   "handoff": {
+    "commands": 0,
+    "executor_admit": [
+     "OPERATIONAL_ROVER_POLICY_DISABLED"
+    ],
+    "final": "V2_READY_AWAITING_CODEX_ADAPTER",
+    "offline_test": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+    "snapshot": "2e206f1fa+551eb1fefebc"
+   },
+   "proposal": "PROPOSED_PENDING_AUTHORIZATION",
+   "request_problems": [
+    "NO_NAVIGATION_PLAN: speed and timeout were not set by a human"
+   ],
+   "request_state": "AWAITING_HUMAN_AUTHORIZATION"
+  },
+  "second_drone": {
+   "decision": "START_PERMITTED",
+   "reasons": [],
+   "state": "START_PERMITTED"
+  },
+  "status": "COMPLETED_OFFLINE"
+ },
+ "scripted": {
+  "commands": 0,
+  "observation": "OBSERVED",
+  "plan_source": {
+   "agents": "OFFLINE_DETERMINISTIC (scripted test doubles)",
+   "kind": "LIVE"
+  },
+  "rover": {
+   "handoff": {
+    "commands": 0,
+    "executor_admit": [
+     "OPERATIONAL_ROVER_POLICY_DISABLED"
+    ],
+    "final": "V2_READY_AWAITING_CODEX_ADAPTER",
+    "offline_test": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+    "snapshot": "2e206f1fa+551eb1fefebc"
+   },
+   "proposal": "PROPOSED_PENDING_AUTHORIZATION",
+   "request_problems": [
+    "NO_NAVIGATION_PLAN: speed and timeout were not set by a human"
+   ],
+   "request_state": "AWAITING_HUMAN_AUTHORIZATION"
+  },
+  "second_drone": {
+   "decision": "START_PERMITTED",
+   "reasons": [],
+   "state": "START_PERMITTED"
+  },
+  "status": "COMPLETED_OFFLINE"
+ }
+}

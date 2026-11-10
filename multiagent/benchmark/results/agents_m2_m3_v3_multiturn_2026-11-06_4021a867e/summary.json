@@ -1,0 +1,245 @@
+{
+ "budget": {
+  "limit": 12,
+  "log": [
+   {
+    "at_utc": "2026-11-06T15:37:35.530148+00:00",
+    "latency_s": 9.239805062010419,
+    "n": 1,
+    "real": true,
+    "role": "drone_swarm_agent",
+    "usage": {
+     "completion_tokens": 112,
+     "prompt_tokens": 1153
+    }
+   },
+   {
+    "at_utc": "2026-11-06T15:37:44.832811+00:00",
+    "latency_s": 1.1951982219761703,
+    "n": 2,
+    "real": true,
+    "role": "drone_swarm_agent",
+    "usage": {
+     "completion_tokens": 105,
+     "prompt_tokens": 1090
+    }
+   },
+   {
+    "at_utc": "2026-11-06T15:37:46.126564+00:00",
+    "latency_s": 2.5879240240028594,
+    "n": 3,
+    "real": true,
+    "role": "drone_swarm_agent",
+    "usage": {
+     "completion_tokens": 234,
+     "prompt_tokens": 1426
+    }
+   },
+   {
+    "at_utc": "2026-11-06T15:37:48.771515+00:00",
+    "latency_s": 2.4788276219915133,
+    "n": 4,
+    "real": true,
+    "role": "drone_swarm_agent",
+    "usage": {
+     "completion_tokens": 225,
+     "prompt_tokens": 1894
+    }
+   },
+   {
+    "at_utc": "2026-11-06T15:37:51.516552+00:00",
+    "latency_s": 2.922049873013748,
+    "n": 5,
+    "real": true,
+    "role": "rover_agent",
+    "usage": {
+     "completion_tokens": 123,
+     "prompt_tokens": 1067
+    }
+   },
+   {
+    "at_utc": "2026-11-06T15:37:54.473865+00:00",
+    "latency_s": 1.4058861539815553,
+    "n": 6,
+    "real": true,
+    "role": "rover_agent",
+    "usage": {
+     "completion_tokens": 123,
+     "prompt_tokens": 1057
+    }
+   },
+   {
+    "at_utc": "2026-11-06T15:37:55.882036+00:00",
+    "latency_s": 1.2719899470102973,
+    "n": 7,
+    "real": true,
+    "role": "rover_agent",
+    "usage": {
+     "completion_tokens": 119,
+     "prompt_tokens": 1116
+    }
+   },
+   {
+    "at_utc": "2026-11-06T15:37:57.196152+00:00",
+    "latency_s": 1.3064818349957932,
+    "n": 8,
+    "real": true,
+    "role": "rover_agent",
+    "usage": {
+     "completion_tokens": 115,
+     "prompt_tokens": 1053
+    }
+   }
+  ],
+  "real_calls_used": 8
+ },
+ "commit": "4021a867efc24cc3f4108213d24213460bb554d1",
+ "data_kind": "MODEL_OUTPUT_OVER_SYNTHETIC_CASES",
+ "experiments": {
+  "M2-drone-qwen-pilot-v3-multiturn": {
+   "cases": [
+    "D01",
+    "D05",
+    "D13"
+   ],
+   "comparison": {
+    "cases": [
+     {
+      "case_id": "D01",
+      "expected": "PROPOSED_PENDING_AUTHORIZATION",
+      "llm": {
+       "agent_success": true,
+       "failure_kind": null,
+       "pass": true,
+       "status": "PROPOSED_PENDING_AUTHORIZATION"
+      },
+      "m0": {
+       "pass": true,
+       "status": "PROPOSED_PENDING_AUTHORIZATION"
+      },
+      "same_status": true
+     },
+     {
+      "case_id": "D05",
+      "expected": "INFEASIBLE",
+      "llm": {
+       "agent_success": true,
+       "failure_kind": null,
+       "pass": true,
+       "status": "INFEASIBLE"
+      },
+      "m0": {
+       "pass": true,
+       "status": "INFEASIBLE"
+      },
+      "same_status": true
+     },
+     {
+      "case_id": "D13",
+      "expected": "PARTIAL_PENDING_AUTHORIZATION",
+      "llm": {
+       "agent_success": false,
+       "failure_kind": "MODEL",
+       "pass": true,
+       "status": "PARTIAL_PENDING_AUTHORIZATION"
+      },
+      "m0": {
+       "pass": true,
+       "status": "PARTIAL_PENDING_AUTHORIZATION"
+      },
+      "same_status": true
+     }
+    ],
+    "llm_agent_success": 2,
+    "llm_pass": 3,
+    "m0_pass": 3,
+    "n": 3,
+    "note": "same cases, delegation, criteria and information; n=3: preliminary, no statistics"
+   },
+   "failure_kinds": {
+    "D01": null,
+    "D05": null,
+    "D13": "MODEL"
+   },
+   "role": "drone_swarm_agent"
+  },
+  "M3-rover-qwen-pilot-v3-multiturn": {
+   "cases": [
+    "D11",
+    "D12",
+    "D14"
+   ],
+   "comparison": {
+    "cases": [
+     {
+      "case_id": "D11",
+      "expected": "PROPOSED_PENDING_AUTHORIZATION",
+      "llm": {
+       "agent_success": true,
+       "failure_kind": null,
+       "pass": true,
+       "status": "PROPOSED_PENDING_AUTHORIZATION"
+      },
+      "m0": {
+       "pass": true,
+       "status": "PROPOSED_PENDING_AUTHORIZATION"
+      },
+      "same_status": true
+     },
+     {
+      "case_id": "D12",
+      "expected": "INFEASIBLE",
+      "llm": {
+       "agent_success": false,
+       "failure_kind": "MODEL",
+       "pass": true,
+       "status": "INFEASIBLE"
+      },
+      "m0": {
+       "pass": true,
+       "status": "INFEASIBLE"
+      },
+      "same_status": true
+     },
+     {
+      "case_id": "D14",
+      "expected": "INFEASIBLE",
+      "llm": {
+       "agent_success": true,
+       "failure_kind": null,
+       "pass": true,
+       "status": "INFEASIBLE"
+      },
+      "m0": {
+       "pass": true,
+       "status": "INFEASIBLE"
+      },
+      "same_status": true
+     }
+    ],
+    "llm_agent_success": 2,
+    "llm_pass": 3,
+    "m0_pass": 3,
+    "n": 3,
+    "note": "same cases, delegation, criteria and information; n=3: preliminary, no statistics"
+   },
+   "failure_kinds": {
+    "D11": null,
+    "D12": "MODEL",
+    "D14": null
+   },
+   "role": "rover_agent"
+  }
+ },
+ "finished_utc": "2026-11-06T15:37:58.806239+00:00",
+ "manifest": "agents_m2_m3_v3_multiturn.json",
+ "manifest_sha256": "364d78f922f16ae7d512d357333f064b3efe62cd2f3ab30046ee02bd7c068ee3",
+ "physical_execution": {
+  "basis": "every proposal records commands_sent 0, vehicles_contacted 0, movement_authorized false; no process was launched",
+  "commands_sent": 0,
+  "simulator_started": false,
+  "vehicles_contacted": 0
+ },
+ "pilot_id": "agents_m2_m3_v3_multiturn",
+ "started_utc": "2026-11-06T15:37:35.473453+00:00"
+}

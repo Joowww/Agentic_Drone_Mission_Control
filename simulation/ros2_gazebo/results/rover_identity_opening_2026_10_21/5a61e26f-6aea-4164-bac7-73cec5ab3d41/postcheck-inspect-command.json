@@ -1,0 +1,17 @@
+{
+  "command": [
+    "docker",
+    "inspect",
+    "--type",
+    "container",
+    "--format",
+    "{\"container_id\":{{json .Id}},\"name\":{{json .Name}},\"created_at\":{{json .Created}},\"image_id\":{{json .Image}},\"state\":{{json .State}}}",
+    "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f"
+  ],
+  "timeout_s": 5,
+  "started_at_utc": "2026-10-21T08:35:53.878671+00:00",
+  "started_monotonic_s": 8200.582202786,
+  "return_code": 0,
+  "duration_wall_s": 0.04109766800138459,
+  "finished_at_utc": "2026-10-21T08:35:53.919770+00:00"
+}

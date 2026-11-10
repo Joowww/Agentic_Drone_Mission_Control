@@ -1,0 +1,51 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/joelm/TFG/Agentic_Drone_Mission_Control/.venv/bin/python
+rootdir: /home/joelm/TFG/Agentic_Drone_Mission_Control
+configfile: pytest.ini
+plugins: langsmith-0.14.11, anyio-4.15.1, cov-7.1.0
+collecting ... collected 38 items
+
+tests/test_rover_first_navigation.py::test_trial_request_is_one_metre_ahead_in_odom_from_the_accredited_pose PASSED [  2%]
+tests/test_rover_first_navigation.py::test_trial_cannot_be_built_from_another_or_stale_session[other_lifecycle] PASSED [  5%]
+tests/test_rover_first_navigation.py::test_trial_cannot_be_built_from_another_or_stale_session[other_boot] PASSED [  7%]
+tests/test_rover_first_navigation.py::test_trial_cannot_be_built_from_another_or_stale_session[other_container] PASSED [ 10%]
+tests/test_rover_first_navigation.py::test_trial_cannot_be_built_from_another_or_stale_session[expired] PASSED [ 13%]
+tests/test_rover_first_navigation.py::test_goal_outside_the_bounded_offset_is_refused[0.0] PASSED [ 15%]
+tests/test_rover_first_navigation.py::test_goal_outside_the_bounded_offset_is_refused[-1.0] PASSED [ 18%]
+tests/test_rover_first_navigation.py::test_goal_outside_the_bounded_offset_is_refused[1.6] PASSED [ 21%]
+tests/test_rover_first_navigation.py::test_goal_outside_the_bounded_offset_is_refused[5.0] PASSED [ 23%]
+tests/test_rover_first_navigation.py::test_statements_are_never_generated_and_authorization_names_one_scope PASSED [ 26%]
+tests/test_rover_first_navigation.py::test_dry_run_with_current_facts_is_eligible_except_the_disabled_flag PASSED [ 28%]
+tests/test_rover_first_navigation.py::test_dry_run_refuses_when_the_current_environment_differs[lifecycle] PASSED [ 31%]
+tests/test_rover_first_navigation.py::test_dry_run_refuses_when_the_current_environment_differs[boot] PASSED [ 34%]
+tests/test_rover_first_navigation.py::test_dry_run_refuses_when_the_current_environment_differs[execution] PASSED [ 36%]
+tests/test_rover_first_navigation.py::test_dry_run_refuses_when_the_current_environment_differs[binding] PASSED [ 39%]
+tests/test_rover_first_navigation.py::test_dry_run_refuses_when_the_current_environment_differs[profile] PASSED [ 42%]
+tests/test_rover_first_navigation.py::test_dry_run_refuses_when_the_current_environment_differs[consumed] PASSED [ 44%]
+tests/test_rover_first_navigation.py::test_dry_run_without_a_live_environment_is_blocked_not_assumed PASSED [ 47%]
+tests/test_rover_first_navigation.py::test_offline_flow_guided_then_arm_then_one_metre_then_hold_and_disarm PASSED [ 50%]
+tests/test_rover_first_navigation.py::test_failed_guided_or_arm_never_publishes_motion[guided_rejected] PASSED [ 52%]
+tests/test_rover_first_navigation.py::test_failed_guided_or_arm_never_publishes_motion[arm_rejected] PASSED [ 55%]
+tests/test_rover_first_navigation.py::test_not_armable_readiness_blocks_before_any_command PASSED [ 57%]
+tests/test_rover_first_navigation.py::test_lost_preparation_reply_is_uncertain_and_keeps_the_reservation PASSED [ 60%]
+tests/test_rover_first_navigation.py::test_loss_of_supervision_mid_navigation_ends_uncertain_and_protected[eof_mid_navigation] PASSED [ 63%]
+tests/test_rover_first_navigation.py::test_loss_of_supervision_mid_navigation_ends_uncertain_and_protected[publisher_change_mid_navigation] PASSED [ 65%]
+tests/test_rover_first_navigation.py::test_no_progress_stops_and_is_observed PASSED [ 68%]
+tests/test_rover_first_navigation.py::test_the_same_authorization_cannot_start_a_second_trial PASSED [ 71%]
+tests/test_rover_first_navigation.py::test_module_defaults_still_disabled PASSED [ 73%]
+tests/test_rover_first_navigation.py::test_native_exchange_alarm_between_loop_and_cancel_still_cancels_the_future XFAIL [ 76%]
+tests/test_rover_first_navigation_timing.py::test_sixty_seconds_bounds_the_navigation_phase_only_not_the_whole_trial PASSED [ 78%]
+tests/test_rover_first_navigation_timing.py::test_stop_and_disarm_get_their_own_reserve_after_a_navigation_failure PASSED [ 81%]
+tests/test_rover_first_navigation_timing.py::test_effective_command_rate_follows_new_status_not_the_declared_2_hz PASSED [ 84%]
+tests/test_rover_first_navigation_timing.py::test_one_second_age_limit_needs_a_status_at_least_every_second PASSED [ 86%]
+tests/test_rover_first_navigation_timing.py::test_worker_is_given_less_time_than_the_host_deadline XFAIL [ 89%]
+tests/test_rover_first_navigation_timing.py::test_a_status_gap_mid_navigation_must_not_cost_the_host_its_hold XFAIL [ 92%]
+tests/test_rover_first_navigation_timing.py::test_proposed_worker_margin_restores_the_hold_after_the_same_gap PASSED [ 94%]
+tests/test_rover_first_navigation_timing.py::test_slow_status_in_the_stop_window_breaks_the_session_without_the_margin[False] PASSED [ 97%]
+tests/test_rover_first_navigation_timing.py::test_slow_status_in_the_stop_window_breaks_the_session_without_the_margin[True] PASSED [100%]
+
+=========================== short test summary info ============================
+XFAIL tests/test_rover_first_navigation.py::test_native_exchange_alarm_between_loop_and_cancel_still_cancels_the_future - Known race (Codex review): an alarm-raised TimeoutError between the end of the wait loop and future.cancel() skips the local cancellation. Fix proposed in docs/rover-first-navigation-sitl.md; this test turns XPASS when it is applied.
+XFAIL tests/test_rover_first_navigation_timing.py::test_worker_is_given_less_time_than_the_host_deadline - Known margin defect (Codex review): PipeRos2Session gives the worker the same timeout_s as the host alarm; see documentation/codex_review_rover_2026_11_04.md.
+XFAIL tests/test_rover_first_navigation_timing.py::test_a_status_gap_mid_navigation_must_not_cost_the_host_its_hold - Known margin defect (Codex review): a status gap longer than the call budget lets the host alarm fire before the worker reply, the session breaks and no HOLD is sent.
+======================== 35 passed, 3 xfailed in 6.53s =========================

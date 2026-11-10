@@ -1,0 +1,36 @@
+{
+  "process_execution": {
+    "hermes_invocations": 1,
+    "automatic_relaunch": false,
+    "return_code": 0,
+    "timed_out": false,
+    "elapsed_wall_s": 48.91,
+    "started_at_utc": "2026-10-31T00:34:49.134041+00:00",
+    "finished_at_utc": "2026-10-31T00:35:38.369367+00:00",
+    "config_restored": true
+  },
+  "normal_provider_calls": {
+    "main_logical_requests_completed": 2,
+    "main_api_calls_native_usage": 2,
+    "auxiliary_api_calls_native_usage": 1,
+    "note": "main: tool-call request + final answer; auxiliary: Hermes title generation, outside the tool loop"
+  },
+  "internal_retries_observed": {
+    "llm_error_events": 0,
+    "failed_attempts": 0,
+    "client_retries": 0
+  },
+  "tokens_main": {
+    "input_tokens": 18159,
+    "output_tokens": 1639,
+    "cache_read_tokens": 1344,
+    "reasoning_tokens": 926,
+    "total_tokens": 21142
+  },
+  "sources": [
+    "capture_output.json",
+    "planning-pilot-p05-r01/capture_summary.json",
+    "planning-pilot-p05-r01/native_usage_reviewed.json",
+    "planning-pilot-p05-r01/capture/hermes-events-*.jsonl (reporting.agri_scenario_summary._model_requests)"
+  ]
+}

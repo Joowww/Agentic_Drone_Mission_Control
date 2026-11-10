@@ -1,0 +1,306 @@
+--- historical/tools/simulation_lifecycle.py
++++ current/tools/simulation_lifecycle.py
+@@ -196,13 +196,231 @@
+         'observed_at':locks.utc_now(),'cleanup':value,'vehicle_stationary':None,'vehicle_disarmed':None}
+ 
+ 
++START_CLOSE_KIND = 'ORDINARY_FAILED_START_CLOSE_V1'
++START_CLOSE_AUTHORIZATION = 'AUTHORIZE_FAILED_START_CLOSE'
++START_BACKEND_TIMEOUT_S = 180  # _backend() start budget; the launch must begin inside it
++CLOSE_ROLES = {'tools.virtual_preflight_worker', 'tools.preflight_sequence_worker', 'tools.simulation_lifecycle',
++               'tools.simulation_mission_executor', 'tools.rover_ground_executor', 'tools.rover_identity_worker'}
++
++# Same supervisor ownership rules as the stop backend, run read-only in the exact
++# container. /tmp is on the path exactly as for /tmp/tfg_sim_processes.py, so the
++# diagnostic helper resolves as it does during a real stop.
++START_CLOSE_INVENTORY = r'''
++import json, os, sys, types
++from pathlib import Path
++sys.path.insert(0, '/tmp')
++v = json.load(sys.stdin)
++p = types.ModuleType('tfg_simulation_profiles'); sys.modules[p.__name__] = p; exec(v['profiles'], p.__dict__)
++m = types.ModuleType('readonly_start_close_supervisor'); sys.modules[m.__name__] = m; exec(v['supervisor'], m.__dict__)
++result = m.readonly_inventory()
++for row in result['owned']:
++    try:
++        env = (Path('/proc') / str(row['pid']) / 'environ').read_bytes().split(b'\0')
++        row['profile_tag'] = next((e.split(b'=', 1)[1].decode() for e in env if e.startswith(b'TFG_SIM_PROFILE=')), None)
++    except OSError:
++        row['profile_tag'] = None
++# Tick->wall conversion drifts on WSL; keep the realtime mtime of the launch state
++# file (written right after spawning) and the container init ticks for ordering.
++state = Path('/tmp/tfg_demo.processes.json')
++result['launch_state_mtime'] = state.stat().st_mtime if state.exists() else None
++result['container_init_ticks'] = int((Path('/proc/1/stat')).read_text().rpartition(')')[2].split()[19])
++result['pid_file'] = Path('/tmp/tfg_demo.pid').read_text().strip() if Path('/tmp/tfg_demo.pid').exists() else None
++result['installed_supervisor_sha256'] = __import__('hashlib').sha256(Path('/tmp/tfg_sim_processes.py').read_bytes()).hexdigest() if Path('/tmp/tfg_sim_processes.py').exists() else None
++print(json.dumps(result))
++'''
++
++
++def read_container_inventory(container_id):
++    """Bounded read-only supervisor inventory in the exact container; never signals."""
++    payload = {'profiles': (locks.PROJECT_ROOT/'tools/simulation_profiles.py').read_text(),
++               'supervisor': (SCRIPTS/'sim_processes.py').read_text()}
++    result = subprocess.run(['docker', 'exec', '-i', container_id, 'python3', '-B', '-c', START_CLOSE_INVENTORY],
++                            input=json.dumps(payload), capture_output=True, text=True, timeout=10, check=False)
++    if result.returncode:
++        raise locks.VehicleBusy('Container inventory failed; not absence: ' + result.stderr[-400:])
++    return json.loads(result.stdout)
++
++
++def host_role_processes():
++    found = []
++    for path in Path('/proc').iterdir():
++        if not path.name.isdigit() or int(path.name) == os.getpid():
++            continue
++        try:
++            args = {a.decode(errors='replace') for a in (path/'cmdline').read_bytes().split(b'\0')}
++        except OSError:
++            continue
++        if CLOSE_ROLES & args:
++            found.append(locks.process_identity(int(path.name)))
++    return found
++
++
++def _wall(value):
++    from datetime import datetime
++    return datetime.fromisoformat(value).timestamp()
++
++
++def assess_start_close(owner, lease_bytes, operation_bytes, inventory, *, host_boot_id, owner_alive,
++                       vehicle_restrictions, other_guards, diagnostic_target, host_roles):
++    """Pure eligibility decision for closing ONE ordinary UNCONFIRMED start. Raises VehicleBusy."""
++    def require(condition, reason):
++        if not condition:
++            raise locks.VehicleBusy('Start close BLOCKED: ' + reason)
++    require(str(UUID(owner)) == owner, 'owner is not a canonical UUID')
++    lease, operation = json.loads(lease_bytes), json.loads(operation_bytes)
++    require(lease == operation, 'lease differs from its original operation record')
++    require(lease.get('kind') == 'SIMULATION_LIFECYCLE' and lease.get('owner_id') == owner
++            and lease.get('action') == 'start' and lease.get('state') == 'UNCONFIRMED', 'not this UNCONFIRMED start')
++    require(not any(k in lease for k in ('diagnostic_agent', 'diagnostic_close_target', 'closing_failed_start',
++                                         'closing_ground_trial', 'closing_ordinary_start')),
++            'diagnostic or closing lease; use its own procedure')
++    require(lease.get('movement_authorized') is False and lease.get('scope') == 'SIMULATION_INFRASTRUCTURE_ONLY',
++            'lease scope is not infrastructure-only')
++    profile = get_profile(lease['profile'])
++    process = lease.get('process') or {}
++    require(process.get('boot_id') == host_boot_id, 'owner recorded on another host boot')
++    require(owner_alive is False, 'original owner still alive or unknown')
++    execution = lease.get('environment_execution')
++    require(isinstance(execution, dict) and execution.get('container_boot_id') == host_boot_id,
++            'container execution reference absent or bound to another boot')
++    require(not any(vehicle_restrictions.values()), 'vehicle reservations present')
++    require(not other_guards, 'other guards present: ' + ','.join(sorted(other_guards)))
++    require(diagnostic_target is None or diagnostic_target.get('state') == 'CLOSED', 'diagnostic session not CLOSED')
++    require(not host_roles, 'another project role process is running on the host')
++    require(inventory.get('boot_id') == host_boot_id, 'container inventory from another boot')
++    require(inventory.get('ambiguous') == [], 'processes of uncertain ownership present')
++    state = json.loads(inventory['state_files'].get('/tmp/tfg_demo.processes.json', 'null'))
++    require(isinstance(state, dict) and state.get('project') == 'Agentic_Drone_Mission_Control'
++            and isinstance(state.get('identities'), list) and len(state['identities']) == 1,
++            'launch state file absent or not exactly one recorded identity')
++    root_pid, root_ticks = state['identities'][0]
++    owned = {row['pid']: row for row in inventory['owned']}
++    root = owned.get(root_pid)
++    require(root is not None and root['start_ticks'] == root_ticks, 'recorded launch identity not alive (PID reuse or exit)')
++    expected_argv = ['ros2', 'launch', profile.launch_package, profile.launch_file, *profile.fixed_launch_arguments,
++                     'gui:=' + ('true' if lease.get('gui') else 'false')]
++    argv = list(root['argv'])
++    tail = argv[-len(expected_argv):]
++    require(len(tail) == len(expected_argv) and Path(tail[0]).name == 'ros2' and tail[1:] == expected_argv[1:]
++            and (len(argv) == len(expected_argv)
++                 or len(argv) == len(expected_argv) + 1 and Path(argv[0]).name.startswith('python')),
++            'launch root argv differs from the profile')
++    started = _wall(lease['started_at'])
++    mtime = inventory.get('launch_state_mtime')
++    require(isinstance(mtime, (int, float)) and started - 2 <= mtime <= started + START_BACKEND_TIMEOUT_S + 2,
++            'launch state was not written inside this operation window')
++    require(type(inventory.get('container_init_ticks')) is int and root_ticks > inventory['container_init_ticks'],
++            'launch root predates the current container execution')
++    require(inventory.get('pid_file') == str(root_pid), 'compatibility PID file differs from the recorded launch')
++    children = {root_pid}
++    while True:
++        added = {pid for pid, row in owned.items() if row['ppid'] in children} - children
++        if not added:
++            break
++        children |= added
++    require(set(owned) == children, 'owned processes outside the recorded launch tree')
++    require(all(row.get('tagged') is True and row.get('profile_tag') == profile.name for row in owned.values()),
++            'process without project/profile tag in the launch tree')
++    require(all(a['pid'] in owned for a in inventory.get('agents', [])), 'micro_ros_agent outside the launch tree')
++    processes = sorted([row['pid'], row['start_ticks'], row['argv'][:3]] for row in owned.values())
++    return {'kind': START_CLOSE_KIND, 'owner_id': owner, 'profile': profile.name,
++            'lease_sha256': hashlib.sha256(lease_bytes).hexdigest(),
++            'operation_sha256': hashlib.sha256(operation_bytes).hexdigest(),
++            'environment_execution': execution, 'host_boot_id': host_boot_id,
++            'launch_identity': [root_pid, root_ticks], 'launch_state_mtime': mtime,
++            'processes': processes, 'effects': ['STOP_RECORDED_LAUNCH_TREE_VIA_BACKEND',
++                                                'RELEASE_LEASE_ONLY_AFTER_CONFIRMED_CLEANUP'],
++            'movement_authorized': False}
++
++
++def _start_close_scope(owner):
++    """Fresh read under the CALLER's exclusion (both lifecycle mutexes held)."""
++    lease_path = locks.LOCK_ROOT/'lifecycle.json'
++    operation_path = locks.LOCK_ROOT.parent/'simulation_lifecycle'/owner/'operation.json'
++    lease_bytes, operation_bytes = lease_path.read_bytes(), operation_path.read_bytes()
++    lease = json.loads(lease_bytes)
++    assert_environment_execution(lease.get('environment_execution'))
++    target_path = locks.LOCK_ROOT.parent/'diagnostic_agent_session.json'
++    others = {p.name for p in locks.LOCK_ROOT.glob('*.json') if p.name != 'lifecycle.json'}
++    inventory = read_container_inventory(lease['environment_execution']['persistent_identity']['container_id'])
++    scope = assess_start_close(
++        owner, lease_bytes, operation_bytes, inventory,
++        host_boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
++        owner_alive=locks.identity_alive(lease.get('process')),
++        vehicle_restrictions={v: locks.restriction(v) for v in locks.RESERVATION_INTERFACES},
++        other_guards=others, diagnostic_target=json.loads(target_path.read_text()) if target_path.exists() else None,
++        host_roles=host_role_processes())
++    assert_environment_execution(lease['environment_execution'])
++    return scope, inventory
++
++
++def inspect_start_close(owner):
++    """Phase A, read-only: same mutexes as lifecycle, no lease/state/backend change."""
++    try:
++        with (locks.file_mutex(locks.LOCK_ROOT / "v1.execution.lock", blocking=False),
++              locks.file_mutex(locks.LOCK_ROOT / "registry.lock", blocking=False)):
++            scope, inventory = _start_close_scope(owner)
++    except (locks.VehicleBusy, OSError, ValueError, KeyError, TypeError) as exc:
++        return {'status': 'BLOCKED', 'reason': str(exc), 'owner_id': owner, 'lease_changed': False}
++    sha = hashlib.sha256(json.dumps(scope, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
++    return {'status': 'ELIGIBLE', 'owner_id': owner, 'scope': scope, 'scope_sha256': sha,
++            'required_authorization': f'{START_CLOSE_AUTHORIZATION} {owner} {sha}',
++            'inventory_owned': inventory['owned'], 'lease_changed': False}
++
++
++def start_close(owner, scope_sha256, authorization):
++    """Under both mutexes: recompute the exact reviewed scope; becomes the closing lease."""
++    if authorization != f'{START_CLOSE_AUTHORIZATION} {owner} {scope_sha256}':
++        raise locks.VehicleBusy('Exact failed-start close authorization required')
++    scope, _ = _start_close_scope(owner)
++    if hashlib.sha256(json.dumps(scope, sort_keys=True, separators=(',', ':')).encode()).hexdigest() != scope_sha256:
++        raise locks.VehicleBusy('Failed-start close scope changed since review; inspect again')
++    return scope
++
++
++def completed_start_close(owner):
++    """Idempotent query: a FINISHED closing operation for this owner, if any."""
++    for path in sorted((locks.LOCK_ROOT.parent/'simulation_lifecycle').glob('*/operation.json')):
++        try:
++            value = json.loads(path.read_text())
++        except (OSError, ValueError):
++            continue
++        closing = value.get('closing_ordinary_start') or {}
++        if closing.get('scope', {}).get('owner_id') == owner:
++            return value
++    return None
++
++
++def start_close_receipt(log_path, scope):
++    """This operation's backend stream plus a post-stop inventory; never SUCCESS alone."""
++    from tools.virtual_preflight_jobs import read_mission_input
++    raw = read_mission_input(log_path)
++    rows = [json.loads(line) for line in raw.splitlines() if line.startswith(b'{"success"')]
++    if len(rows) != 1:
++        raise locks.VehicleBusy('Close cleanup receipt absent or ambiguous')
++    value = rows[0]
++    if (value.get('success') is not True or any(value.get(k) != [] for k in
++            ('remaining', 'errors', 'unattributed_auxiliaries', 'diagnostic_coordination_errors'))):
++        raise locks.VehicleBusy('Close cleanup partial or contradictory')
++    after = read_container_inventory(scope['environment_execution']['persistent_identity']['container_id'])
++    if (after.get('owned') != [] or after.get('ambiguous') != [] or after.get('agents') != []
++            or '/tmp/tfg_demo.processes.json' in after.get('state_files', {})):
++        raise locks.VehicleBusy('Launch tree, agent or launch state still present after close')
++    return {'source': 'OWN_OPERATION_BACKEND_STREAM', 'sha256': hashlib.sha256(raw).hexdigest(),
++            'cleanup': value, 'post_close_inventory': {k: after.get(k) for k in ('owned', 'ambiguous', 'agents')},
++            'observed_at': locks.utc_now()}
++
++
+ def run_lifecycle(action, *, gui=True, profile="two_drones", diagnostic_agent_manifest=None,
+-                  close_owner=None, ground_owner=None):
++                  close_owner=None, ground_owner=None, start_close_request=None):
+     if action not in {"start", "stop", "restart"} or type(gui) is not bool:
+         return {"success": False, "status": "ERROR", "message": "Invalid action or GUI mode"}
+     try:
+         selected = get_profile(profile)  # before mutex files, leases or subprocesses
+         if ground_owner is not None and (action!='stop' or close_owner is not None):raise ValueError('Ground owner only permits its own stop')
++        if start_close_request is not None and (action != 'stop' or close_owner is not None or ground_owner is not None
++                                                or diagnostic_agent_manifest is not None):
++            raise ValueError('Failed-start close permits only its own stop')
+         if close_owner is not None and action != 'stop':
+             raise ValueError('Explicit close owner supports stop only')
+         manifest = None
+@@ -232,6 +450,17 @@
+                 execution_reference=ground_close(ground_owner,action,selected,target,barrier)
+             elif close_owner is not None:
+                 execution_reference=failed_start_close(close_owner, action, selected, target, barrier)
++            elif start_close_request is not None:
++                start_owner, start_scope_sha256, start_authorization = start_close_request
++                done = completed_start_close(start_owner)
++                if barrier is None and done is not None and done.get('state') == 'FINISHED':
++                    return {"success": True, "status": "SUCCESS", "already_completed": True, "operation": done}
++                if barrier is None or barrier.get('owner_id') != start_owner:
++                    raise locks.VehicleBusy('No retained UNCONFIRMED start for this owner; query only, no replay')
++                start_scope = start_close(start_owner, start_scope_sha256, start_authorization)
++                if start_scope['profile'] != selected.name:
++                    raise locks.VehicleBusy('Failed-start close profile differs from the reviewed scope')
++                execution_reference = start_scope['environment_execution']
+             elif barrier is not None:
+                 raise locks.VehicleBusy("Flight/lifecycle/reconciliation restriction remains; no simulator recovery")
+             if target and target.get('state') != 'CLOSED' and action != 'stop':
+@@ -262,6 +491,9 @@
+             if close_owner is not None:
+                 record['closing_failed_start'] = barrier
+             if ground_owner is not None:record['closing_ground_trial']=barrier
++            if start_close_request is not None:
++                record['closing_ordinary_start'] = {'scope': start_scope, 'scope_sha256': start_close_request[1],
++                                                    'original_lease': barrier}
+             if manifest is not None:
+                 from tools.rover_xrce_trace.selection import descriptor
+                 record['diagnostic_agent'] = descriptor(manifest, owner_id)
+@@ -288,6 +520,9 @@
+                 if ground_owner is not None:
+                     record['cleanup_receipt']=ground_cleanup_receipt(record,root/'backend.log')
+                     locks.atomic_json(root/'cleanup-receipt.json',record['cleanup_receipt'])
++                if start_close_request is not None:
++                    record['cleanup_receipt'] = start_close_receipt(root/'backend.log', start_scope)
++                    locks.atomic_json(root/'cleanup-receipt.json', record['cleanup_receipt'])
+                 if record.get('diagnostic_close_target'):
+                     locks.atomic_json(target_path,{**target,'state':'CLOSED','closed_by':owner_id})
+                 final = {**record, "state": "FINISHED", "finished_at": locks.utc_now()}
+@@ -313,20 +548,30 @@
+ 
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("action", choices=("start", "stop", "restart", "verify"))
++    parser.add_argument("action", choices=("start", "stop", "restart", "verify", "inspect-start-close"))
+     parser.add_argument("--headless", action="store_true")
+     parser.add_argument("--profile", default="two_drones")
+     parser.add_argument('--diagnostic-agent-manifest', type=Path,
+                         help='Explicit pinned host manifest; start/two_drones_rover only')
+     parser.add_argument('--close-owner', help='Close only this retained UNCONFIRMED diagnostic start')
++    parser.add_argument('--start-close-owner', help='Ordinary UNCONFIRMED start to inspect or close')
++    parser.add_argument('--scope-sha256', help='Reviewed failed-start close scope')
++    parser.add_argument('--authorization', help='Exact operator declaration for that scope')
+     args = parser.parse_args()
+     if args.action == "verify":
+         get_profile(args.profile)
+         verify_backend()
+         return 0
++    if args.action == "inspect-start-close":
++        result = inspect_start_close(args.start_close_owner)
++        print(json.dumps(result, ensure_ascii=False))
++        return 0 if result["status"] == "ELIGIBLE" else 1
++    start_request = None
++    if args.start_close_owner is not None:
++        start_request = (args.start_close_owner, args.scope_sha256, args.authorization)
+     result = run_lifecycle(args.action, gui=not args.headless, profile=args.profile,
+                            diagnostic_agent_manifest=args.diagnostic_agent_manifest,
+-                           close_owner=args.close_owner)
++                           close_owner=args.close_owner, start_close_request=start_request)
+     print(json.dumps(result, ensure_ascii=False))
+     return 0 if result["success"] else 1
+ 

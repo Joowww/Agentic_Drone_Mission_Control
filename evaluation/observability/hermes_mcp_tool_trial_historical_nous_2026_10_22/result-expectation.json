@@ -1,0 +1,98 @@
+{
+  "checks": [
+    {
+      "expected": "KNOWN_WITH_WARNINGS",
+      "pointer": "/status"
+    },
+    {
+      "expected": "UNKNOWN_NOT_CHECKED",
+      "pointer": "/readiness_now"
+    },
+    {
+      "expected": "NOT_GRANTED_BY_THIS_QUERY",
+      "pointer": "/consent"
+    },
+    {
+      "expected": false,
+      "pointer": "/hardware_authorized"
+    },
+    {
+      "expected": "467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+      "pointer": "/preflights/0/run_id"
+    },
+    {
+      "absent": true,
+      "pointer": "/preflights/1"
+    },
+    {
+      "expected": "FINISHED",
+      "pointer": "/preflights/0/job_state"
+    },
+    {
+      "expected": "analyze",
+      "pointer": "/preflights/0/phase"
+    },
+    {
+      "expected": "PASSED",
+      "pointer": "/preflights/0/result_status"
+    },
+    {
+      "expected": false,
+      "pointer": "/preflights/0/worker_alive"
+    },
+    {
+      "expected": "b9fb6ce534e7704deabcefc4b493c978d7f633f437ab5e2aa894d8332e5e8c74",
+      "pointer": "/preflights/0/mission_sha256"
+    },
+    {
+      "expected": "VERIFIED_LOCAL_HASH",
+      "pointer": "/preflights/0/snapshot_integrity"
+    },
+    {
+      "expected": "UNKNOWN_NOT_CHECKED",
+      "pointer": "/preflights/0/readiness_now"
+    },
+    {
+      "expected": "drone_01",
+      "pointer": "/preflights/0/vehicle_selection/vehicle_id"
+    },
+    {
+      "expected": "v1",
+      "pointer": "/preflights/0/vehicle_selection/simulated_vehicle"
+    },
+    {
+      "expected": "PASSED",
+      "pointer": "/preflights/0/report/status"
+    },
+    {
+      "expected": "2026-10-18T21:18:42.180468+00:00",
+      "pointer": "/preflights/0/report/finished_at"
+    },
+    {
+      "expected": "simulation_navigation_3waypoint_001",
+      "pointer": "/preflights/0/report/mission_identity/mission_id"
+    },
+    {
+      "expected": "FEASIBLE",
+      "pointer": "/preflights/0/report/validation/mission_status"
+    },
+    {
+      "expected": "COMPLETED",
+      "pointer": "/preflights/0/report/executor_result/status"
+    },
+    {
+      "expected": 3,
+      "pointer": "/preflights/0/report/executor_result/waypoints_completed"
+    },
+    {
+      "expected": true,
+      "pointer": "/preflights/0/report/executor_result/return_to_home"
+    },
+    {
+      "expected": true,
+      "pointer": "/preflights/0/report/analysis/passed"
+    }
+  ],
+  "schema": "tfg.hermes.tool-result-expectation/1",
+  "tool_name": "mcp__tfg_mission_control__get_mission_state"
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "tfg.passive-reader-selection/1",
+  "binary": {
+    "path": "/tmp/tfg-reader-integrated-build-f71b76ab/rover_identity_probe",
+    "sha256": "893cc61238bb3573d65a28f9ba8d0806e5349049bf69f7d732e73a9dfd1b3b2e"
+  },
+  "max_samples": 20,
+  "duration_s": 120,
+  "spacing_source_ns": 500000000,
+  "model_trigger": "capture/model_request after first retained Status",
+  "source_hashes": {
+    "tools/rover_identity_probe/probe.cpp": "24b8cf7aaad8279de77fe6f1c316fc4aa50e23ccf3cc29c20ce284dded1f2f32",
+    "tools/rover_identity_probe/retention.hpp": "bd842252b99b6f8679fb6a2ca3a962a50fa85526272193d74de6b8285992f813",
+    "tools/rover_identity_probe/CMakeLists.txt": "d6b45075e601d7ffd065e9e5822557d19ea607a0bc92e00f2a6e353a148a8f7b"
+  },
+  "executed": false,
+  "movement_authorized": false
+}

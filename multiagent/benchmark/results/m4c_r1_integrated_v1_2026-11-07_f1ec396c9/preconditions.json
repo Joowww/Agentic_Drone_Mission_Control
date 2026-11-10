@@ -1,0 +1,120 @@
+{
+ "checks": {
+  "10_manifest_and_criteria_intact": true,
+  "1_no_concurrent_llm_experiment": true,
+  "2_no_gazebo_or_sitl_session": true,
+  "3_gpu_memory_sufficient": true,
+  "3b_host_memory_sufficient": true,
+  "4_no_incompatible_gpu_load": true,
+  "5_no_protected_operation": true,
+  "6_contracts_pinned_and_tree_clean": true,
+  "7_no_vehicle_command_path": true,
+  "8_llm_tools_planning_only": true,
+  "9_executor_dry_run": true,
+  "model_installed_with_expected_digest": true,
+  "no_external_endpoint": true,
+  "ollama_answers_locally": true
+ },
+ "facts": {
+  "checked_at_epoch": 1794006317.421157,
+  "codex_contract_commit": "f2fd78ae1",
+  "codex_contract_pinned": true,
+  "concurrent_llm_processes": [],
+  "container": {
+   "matches": [],
+   "processes": [
+    "57611               1-18:15:06          bash"
+   ],
+   "status": "RUNNING (Up 3 days)"
+  },
+  "cpu": {
+   "cpus": 16,
+   "loadavg": [
+    1.36181640625,
+    1.6201171875,
+    1.50537109375
+   ]
+  },
+  "git_status": "",
+  "gpu": {
+   "memory_total_mib": 8192.0,
+   "memory_used_mib": 1.0,
+   "status": "MEASURED",
+   "utilization_pct": 0.0
+  },
+  "gpu_compute_apps": [],
+  "host_memory": {
+   "available_mib": 9564,
+   "total_mib": 15869
+  },
+  "host_sim_processes": [],
+  "llm_tool_names": [
+   "check_dependency",
+   "check_separation",
+   "drone_capabilities",
+   "plan_preview",
+   "reference_allocation",
+   "rover_capabilities",
+   "validate_ground_target",
+   "validate_route"
+  ],
+  "manifest_integrity": {
+   "criteria_present": true,
+   "equals_committed": true,
+   "frozen_datasets": {
+    "adversarial_v3": [
+     "MATCH"
+    ],
+    "eval_v3": [
+     "MATCH"
+    ]
+   },
+   "manifest": "multiagent/benchmark/pilots/m4c_r1_integrated_v1.json",
+   "ok": true,
+   "prompt_hashes_match": true,
+   "sha256": "c500cb89fe2c285a5231a95c1da00e6ccf51712bb302b0fc000847a34cfa5219"
+  },
+  "model": {
+   "capabilities": [
+    "completion",
+    "tools",
+    "thinking"
+   ],
+   "details": {
+    "context_length": 262144,
+    "embedding_length": 2560,
+    "families": [
+     "qwen3"
+    ],
+    "family": "qwen3",
+    "format": "gguf",
+    "parameter_size": "4.0B",
+    "parent_model": "",
+    "quantization_level": "Q4_K_M"
+   },
+   "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+   "model": "qwen3:4b",
+   "modified_at": "2026-09-22T09:51:28.383089367+02:00",
+   "name": "qwen3:4b",
+   "size": 2497293931
+  },
+  "ollama_loaded_models": [],
+  "ollama_version": {
+   "version": "0.34.2"
+  },
+  "operational_processes": [],
+  "other_checkout_recent_files_INFORMATIONAL": [
+   "tools/simulation_lifecycle.py",
+   "tests/test_rover_passive_vertical_integration.py",
+   "docs/INDEX.md",
+   "docs/checkpoints/2026-11-06-rover-passive-integration-followup.md"
+  ],
+  "recent_vehicle_locks": [],
+  "reservations_original_checkout": [],
+  "sim_processes_ignored_test_runners": [],
+  "sim_processes_sampled": []
+ },
+ "ok": true,
+ "profile": "resource_isolation/1",
+ "schema": "tfg.multiagent.resource-isolation/1"
+}

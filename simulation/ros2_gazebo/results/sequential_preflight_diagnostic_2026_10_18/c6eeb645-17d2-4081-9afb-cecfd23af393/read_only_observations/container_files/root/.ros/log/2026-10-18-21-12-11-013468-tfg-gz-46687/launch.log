@@ -1,0 +1,527 @@
+1792357931.0148776 [INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-18-21-12-11-013468-tfg-gz-46687
+1792357931.0150635 [INFO] [launch]: Default logging verbosity is set to INFO
+1792357931.7526147 [INFO] [gz sim-1]: process started with pid [46731]
+1792357931.7529452 [INFO] [gz sim-2]: process started with pid [46733]
+1792357931.7531374 [INFO] [robot_state_publisher-3]: process started with pid [46736]
+1792357931.7532926 [INFO] [parameter_bridge-4]: process started with pid [46739]
+1792357931.7534513 [INFO] [micro_ros_agent-5]: process started with pid [46741]
+1792357931.7536533 [INFO] [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6]: process started with pid [46743]
+1792357931.7538469 [INFO] [exec -7]: process started with pid [46745]
+1792357931.7540178 [INFO] [create-8]: process started with pid [46747]
+1792357931.7541709 [INFO] [robot_state_publisher-9]: process started with pid [46749]
+1792357931.7543159 [INFO] [parameter_bridge-10]: process started with pid [46751]
+1792357931.7544527 [INFO] [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11]: process started with pid [46753]
+1792357931.7546048 [INFO] [exec -12]: process started with pid [46755]
+1792357931.7547374 [INFO] [create-13]: process started with pid [46757]
+1792357931.7627769 [micro_ros_agent-5] [35m[1792357931.746338][m info     | [34mUDPv4AgentLinux.cpp[m | [37minit                    [m | [32mrunning...[m             | port: 2019
+1792357931.7632458 [micro_ros_agent-5] [35m[1792357931.746996][m info     | [34mRoot.cpp          [m | [37mset_verbose_level       [m | [32mlogger setup[m           | verbose_level: 4
+1792357931.7646945 [INFO] [relay-14]: process started with pid [46773]
+1792357931.7651148 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Setting SIM_SPEEDUP=1.000000
+1792357931.7652457 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Ignoring obsolete command-line parameter '-S'/'--synthetic-clock'. Synthetic clock mode is now always enabled.
+1792357931.7653356 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Setting MAV_SYSID=1
+1792357931.7654188 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Starting SITL: JSON
+1792357931.7654982 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] JSON control interface set to 127.0.0.1:9002
+1792357931.7655773 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Starting sketch 'ArduCopter'
+1792357931.7656538 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Starting SITL input
+1792357931.7657316 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Using Irlock at port : 9005
+1792357931.7658134 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Using \clock topic for DDS timing: enabled
+1792357931.7659075 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Waiting for connection ....
+1792357931.7712622 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Setting SIM_SPEEDUP=1.000000
+1792357931.7714391 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Ignoring obsolete command-line parameter '-S'/'--synthetic-clock'. Synthetic clock mode is now always enabled.
+1792357931.7715123 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Setting MAV_SYSID=2
+1792357931.7715745 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Starting SITL: JSON
+1792357931.7716336 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] JSON control interface set to 127.0.0.1:9012
+1792357931.7717068 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Starting sketch 'ArduCopter'
+1792357931.7718122 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Starting SITL input
+1792357931.7718818 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Using Irlock at port : 9015
+1792357931.7719350 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Using \clock topic for DDS timing: enabled
+1792357931.7719998 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Waiting for connection ....
+1792357931.7729740 [INFO] [relay-15]: process started with pid [46785]
+1792357931.7737505 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] bind port 5760 for SERIAL0
+1792357931.7738979 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] SERIAL0 on TCP port 5760
+1792357931.7742152 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] bind port 5770 for SERIAL0
+1792357931.7743053 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] SERIAL0 on TCP port 5770
+1792357932.0171473 [robot_state_publisher-3] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_standoffs"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.sdf:L273]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+1792357932.1038771 [robot_state_publisher-3] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="gimbal_small_3d"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.sdf:L192]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+1792357932.1197739 [robot_state_publisher-3] [WARN] [1792357932.119355323] [sdformat_urdf]: SDFormat link [base_link] has a <sensor>, but URDF does not support this
+1792357932.1199400 [robot_state_publisher-3] [WARN] [1792357932.119500872] [sdformat_urdf]: SDFormat link [imu_link] has a <sensor>, but URDF does not support this
+1792357932.1204681 [robot_state_publisher-3] [WARN] [1792357932.119710067] [sdformat_urdf]: SDFormat link [pitch_link] has a <sensor>, but URDF does not support this
+1792357932.1286690 [robot_state_publisher-9] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_standoffs"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.sdf:L273]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+1792357932.1410530 [robot_state_publisher-3] [WARN] [1792357932.140648412] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+1792357932.1412241 [robot_state_publisher-3] [INFO] [1792357932.140751962] [drone1.robot_state_publisher]: got segment base_link
+1792357932.1416311 [robot_state_publisher-3] [INFO] [1792357932.140848728] [drone1.robot_state_publisher]: got segment gimbal_link
+1792357932.1417747 [robot_state_publisher-3] [INFO] [1792357932.140865188] [drone1.robot_state_publisher]: got segment imu_link
+1792357932.1418984 [robot_state_publisher-3] [INFO] [1792357932.140871274] [drone1.robot_state_publisher]: got segment pitch_link
+1792357932.1419671 [robot_state_publisher-3] [INFO] [1792357932.140876361] [drone1.robot_state_publisher]: got segment roll_link
+1792357932.1420648 [robot_state_publisher-3] [INFO] [1792357932.140881549] [drone1.robot_state_publisher]: got segment rotor_0
+1792357932.1421607 [robot_state_publisher-3] [INFO] [1792357932.140887036] [drone1.robot_state_publisher]: got segment rotor_1
+1792357932.1422641 [robot_state_publisher-3] [INFO] [1792357932.140892223] [drone1.robot_state_publisher]: got segment rotor_2
+1792357932.1423321 [robot_state_publisher-3] [INFO] [1792357932.140897111] [drone1.robot_state_publisher]: got segment rotor_3
+1792357932.1423881 [robot_state_publisher-3] [INFO] [1792357932.140902299] [drone1.robot_state_publisher]: got segment yaw_link
+1792357932.2066600 [robot_state_publisher-9] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="gimbal_small_3d"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.sdf:L192]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+1792357932.2201121 [robot_state_publisher-9] [WARN] [1792357932.219744238] [sdformat_urdf]: SDFormat link [base_link] has a <sensor>, but URDF does not support this
+1792357932.2206333 [robot_state_publisher-9] [WARN] [1792357932.219898066] [sdformat_urdf]: SDFormat link [imu_link] has a <sensor>, but URDF does not support this
+1792357932.2208962 [robot_state_publisher-9] [WARN] [1792357932.220101176] [sdformat_urdf]: SDFormat link [pitch_link] has a <sensor>, but URDF does not support this
+1792357932.2428875 [robot_state_publisher-9] [WARN] [1792357932.242493710] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+1792357932.2430546 [robot_state_publisher-9] [INFO] [1792357932.242636465] [drone2.robot_state_publisher]: got segment base_link
+1792357932.2434189 [robot_state_publisher-9] [INFO] [1792357932.242877383] [drone2.robot_state_publisher]: got segment gimbal_link
+1792357932.2435126 [robot_state_publisher-9] [INFO] [1792357932.242902922] [drone2.robot_state_publisher]: got segment imu_link
+1792357932.2435772 [robot_state_publisher-9] [INFO] [1792357932.242914793] [drone2.robot_state_publisher]: got segment pitch_link
+1792357932.2436662 [robot_state_publisher-9] [INFO] [1792357932.242925068] [drone2.robot_state_publisher]: got segment roll_link
+1792357932.2437494 [robot_state_publisher-9] [INFO] [1792357932.242935044] [drone2.robot_state_publisher]: got segment rotor_0
+1792357932.2438068 [robot_state_publisher-9] [INFO] [1792357932.242945120] [drone2.robot_state_publisher]: got segment rotor_1
+1792357932.2438612 [robot_state_publisher-9] [INFO] [1792357932.242954796] [drone2.robot_state_publisher]: got segment rotor_2
+1792357932.2439139 [robot_state_publisher-9] [INFO] [1792357932.242964872] [drone2.robot_state_publisher]: got segment rotor_3
+1792357932.2439666 [robot_state_publisher-9] [INFO] [1792357932.242974649] [drone2.robot_state_publisher]: got segment yaw_link
+1792357932.5260069 [exec -12] Connect tcp:127.0.0.1:5770 source_system=255
+1792357932.5264628 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Connection on serial port 5770
+1792357932.5272584 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357932.5279858 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] bind port 5772 for SERIAL1
+1792357932.5280988 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] SERIAL1 on TCP port 5772
+1792357932.5282459 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] bind port 5773 for SERIAL2
+1792357932.5283170 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] SERIAL2 on TCP port 5773
+1792357932.5291114 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357932.5292165 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Home: -35.363262 149.165237 alt=584.000000m hdg=353.000000
+1792357932.5510876 [exec -7] Connect tcp:127.0.0.1:5760 source_system=255
+1792357932.5515587 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Connection on serial port 5760
+1792357932.5521114 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357932.5528293 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] bind port 5762 for SERIAL1
+1792357932.5529516 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] SERIAL1 on TCP port 5762
+1792357932.5530469 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] bind port 5763 for SERIAL2
+1792357932.5531156 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] SERIAL2 on TCP port 5763
+1792357932.5537300 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357932.5541351 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Home: -35.363262 149.165237 alt=584.000000m hdg=353.000000
+1792357932.5826902 [exec -12] Log Directory: 
+1792357932.5828431 [exec -12] Telemetry log: mav.tlog
+1792357932.5832896 [exec -12] Waiting for heartbeat from tcp:127.0.0.1:5770
+1792357932.6120579 [exec -7] Log Directory: 
+1792357932.6122496 [exec -7] Telemetry log: mav.tlog
+1792357932.6128440 [exec -7] Waiting for heartbeat from tcp:127.0.0.1:5760
+1792357932.7266030 [INFO] [create-13]: process has finished cleanly [pid 46757]
+1792357932.7397532 [INFO] [create-8]: process has finished cleanly [pid 46747]
+1792357933.6311164 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+1792357933.6557660 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+1792357934.7366736 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+1792357934.7606411 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+1792357934.9530804 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 
+1792357934.9532633 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] JSON received:
+1792357934.9533560 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	timestamp
+1792357934.9534187 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	imu: gyro
+1792357934.9534752 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	imu: accel_body
+1792357934.9535296 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	position
+1792357934.9535964 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	quaternion
+1792357934.9536531 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	velocity
+1792357934.9537063 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	no_time_sync
+1792357934.9537780 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	no_lockstep
+1792357934.9538641 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 
+1792357934.9539471 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Forcing use_time_sync=0
+1792357934.9542489 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 
+1792357934.9543364 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] JSON received:
+1792357934.9543955 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	timestamp
+1792357934.9544809 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	imu: gyro
+1792357934.9545655 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	imu: accel_body
+1792357934.9546330 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	position
+1792357934.9546890 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	quaternion
+1792357934.9547420 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	velocity
+1792357934.9547946 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	no_time_sync
+1792357934.9548459 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	no_lockstep
+1792357934.9548974 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 
+1792357934.9549494 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Forcing use_time_sync=0
+1792357935.5639908 [exec -12] link 1 down
+1792357935.5853565 [exec -7] link 1 down
+1792357936.0552194 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+1792357936.0556097 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+1792357936.4273860 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] validate_structures:536: Validating structures
+1792357936.4280539 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] validate_structures:536: Validating structures
+1792357936.4406383 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4410248 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4415195 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4418886 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4594221 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4600651 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4752791 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4756744 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4762774 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4765706 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4773016 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4777565 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4782290 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4788699 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4793293 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4802454 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4805405 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4812231 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4815099 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4822347 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4825442 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4832449 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4835520 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4842181 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4845340 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4852271 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4854643 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4862070 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4864850 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4872382 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4875174 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4882898 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4885876 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4892366 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4895272 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4902298 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4905407 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4912376 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4915648 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4922466 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4925330 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4932275 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4936092 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.4947500 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357936.5283990 [exec -7] AP: ArduCopter V4.8.0-dev (755258db)
+1792357936.5290444 [exec -12] AP: ArduCopter V4.8.0-dev (755258db)
+1792357936.5295293 [exec -7] AP: c88f7d8019be4ab9bb66919a37e50793
+1792357936.5298421 [exec -12] AP: d88f7d8019be4ab9bb66919a37e50793
+1792357936.5301917 [exec -7] AP: Frame: QUAD/X
+1792357936.5305178 [exec -12] AP: Frame: QUAD/X
+1792357937.3109505 [exec -7] AP: RCInput: decoding UDP (Pulses)
+1792357937.3115027 [exec -12] AP: RCInput: decoding UDP (Pulses)
+1792357937.7956152 [exec -7] AP: Calibrating barometer
+1792357937.7964976 [exec -12] AP: Calibrating barometer
+1792357940.7216218 [exec -7] Detected vehicle 1:1 on link 0
+1792357940.7220008 [exec -7] link 1 OK
+1792357940.7221344 [exec -7] online system 1
+1792357940.7222157 [exec -7] STABILIZE> Mode STABILIZE
+1792357940.7224653 [exec -12] Detected vehicle 2:1 on link 0
+1792357940.7225561 [exec -12] link 1 OK
+1792357940.7227859 [exec -12] online system 2
+1792357940.7228665 [exec -12] STABILIZE> Mode STABILIZE
+1792357940.8207793 [exec -12] AP: ArduCopter V4.8.0-dev (755258db)
+1792357940.8214195 [exec -7] AP: ArduCopter V4.8.0-dev (755258db)
+1792357940.8218081 [exec -7] AP: c88f7d8019be4ab9bb66919a37e50793
+1792357940.8222983 [exec -7] AP: Frame: QUAD/X
+1792357940.8226779 [exec -12] AP: d88f7d8019be4ab9bb66919a37e50793
+1792357940.8230703 [exec -12] AP: Frame: QUAD/X
+1792357940.9707403 [exec -7] paramftp: bad count 1428 should be 1418
+1792357940.9712477 [exec -12] paramftp: bad count 1428 should be 1418
+1792357941.8394818 [exec -12] Received 1428 parameters (ftp)
+1792357941.8429229 [exec -7] Received 1428 parameters (ftp)
+1792357941.8443537 [exec -12] Saved 1428 parameters to mav_0_1.parm
+1792357941.8468471 [exec -7] Saved 1428 parameters to mav_0_1.parm
+1792357941.8804955 [exec -12] AP: ArduCopter V4.8.0-dev (755258db)
+1792357941.8818574 [exec -12] AP: d88f7d8019be4ab9bb66919a37e50793
+1792357941.8831410 [exec -12] AP: Frame: QUAD/X
+1792357941.8847804 [exec -7] AP: ArduCopter V4.8.0-dev (755258db)
+1792357941.8884664 [exec -7] AP: c88f7d8019be4ab9bb66919a37e50793
+1792357941.8904645 [exec -7] AP: Frame: QUAD/X
+1792357942.0601995 [exec -7] Received 1428 parameters (ftp)
+1792357942.0665917 [exec -12] Received 1428 parameters (ftp)
+1792357942.0674520 [exec -7] Saved 1428 parameters to mav.parm
+1792357942.0747404 [exec -12] Saved 1428 parameters to mav_2_1.parm
+1792357944.8400011 [exec -7] AP: Barometer 1 calibration complete
+1792357944.8409774 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357944.8415830 [exec -7] AP: Barometer 2 calibration complete
+1792357944.8420424 [exec -12] AP: Barometer 1 calibration complete
+1792357944.8424940 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+1792357944.8427427 [exec -12] AP: Barometer 2 calibration complete
+1792357944.8431461 [micro_ros_agent-5] [35m[1792357944.841914][m info     | [34mRoot.cpp          [m | [37mcreate_client           [m | [32mcreate[m                 | client_key: 0xAD000002, session_id: 0x81
+1792357944.8432815 [micro_ros_agent-5] [35m[1792357944.841964][m info     | [34mSessionManager.hpp[m | [37mestablish_session       [m | [32msession established[m    | client_key: 0xAD000002, address: 127.0.0.1:12240
+1792357944.8433805 [micro_ros_agent-5] [35m[1792357944.842022][m info     | [34mRoot.cpp          [m | [37mcreate_client           [m | [32mcreate[m                 | client_key: 0xAD000001, session_id: 0x81
+1792357944.8434541 [micro_ros_agent-5] [35m[1792357944.842032][m info     | [34mSessionManager.hpp[m | [37mestablish_session       [m | [32msession established[m    | client_key: 0xAD000001, address: 127.0.0.1:28114
+1792357944.8591580 [exec -12] AP: ArduPilot Ready
+1792357944.8598735 [exec -7] AP: ArduPilot Ready
+1792357944.8603809 [exec -12] AP: DDS: initializing...
+1792357944.8609481 [exec -12] AP: DDS: Using UDP
+1792357944.8613737 [exec -12] AP: DDS: Init complete
+1792357944.8618836 [micro_ros_agent-5] [35m[1792357944.860334][m info     | [34mProxyClient.cpp   [m | [37mcreate_participant      [m | [32mparticipant created[m    | client_key: 0xAD000002, participant_id: 0x001(1)
+1792357944.8622761 [exec -7] AP: DDS: initializing...
+1792357944.8627396 [exec -7] AP: DDS: Using UDP
+1792357944.8631618 [exec -7] AP: DDS: Init complete
+1792357945.1573257 [exec -12] AP: Field Elevation Set: 584m
+1792357945.1578429 [exec -7] AP: Field Elevation Set: 584m
+1792357945.2025735 [micro_ros_agent-5] [35m[1792357945.202071][m info     | [34mProxyClient.cpp   [m | [37mcreate_participant      [m | [32mparticipant created[m    | client_key: 0xAD000001, participant_id: 0x001(1)
+1792357945.2032347 [micro_ros_agent-5] [35m[1792357945.202322][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x000(2), participant_id: 0x001(1)
+1792357945.2034085 [micro_ros_agent-5] [35m[1792357945.202582][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x000(3), participant_id: 0x001(1)
+1792357945.2055318 [micro_ros_agent-5] [35m[1792357945.205198][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x000(5), publisher_id: 0x000(3)
+1792357945.2065630 [micro_ros_agent-5] [35m[1792357945.206018][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x000(2), participant_id: 0x001(1)
+1792357945.2066848 [micro_ros_agent-5] [35m[1792357945.206060][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x000(3), participant_id: 0x001(1)
+1792357945.2075620 [micro_ros_agent-5] [35m[1792357945.207229][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x000(5), publisher_id: 0x000(3)
+1792357945.2080624 [micro_ros_agent-5] [35m[1792357945.207363][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x001(2), participant_id: 0x001(1)
+1792357945.2082400 [micro_ros_agent-5] [35m[1792357945.207396][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x001(3), participant_id: 0x001(1)
+1792357945.2096140 [micro_ros_agent-5] [35m[1792357945.209214][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x001(5), publisher_id: 0x001(3)
+1792357945.2097876 [micro_ros_agent-5] [35m[1792357945.209324][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x001(2), participant_id: 0x001(1)
+1792357945.2113786 [micro_ros_agent-5] [35m[1792357945.210181][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x001(3), participant_id: 0x001(1)
+1792357945.2115252 [micro_ros_agent-5] [35m[1792357945.210634][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x001(5), publisher_id: 0x001(3)
+1792357945.2116227 [micro_ros_agent-5] [35m[1792357945.210735][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x002(2), participant_id: 0x001(1)
+1792357945.2117116 [micro_ros_agent-5] [35m[1792357945.210767][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x002(3), participant_id: 0x001(1)
+1792357945.2118003 [micro_ros_agent-5] [35m[1792357945.211069][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x002(5), publisher_id: 0x002(3)
+1792357945.2127495 [micro_ros_agent-5] [35m[1792357945.212219][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x002(2), participant_id: 0x001(1)
+1792357945.2129381 [micro_ros_agent-5] [35m[1792357945.212255][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x002(3), participant_id: 0x001(1)
+1792357945.2134945 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '0'
+1792357945.2138622 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '0'
+1792357945.2148900 [micro_ros_agent-5] [35m[1792357945.214582][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x002(5), publisher_id: 0x002(3)
+1792357945.2154357 [micro_ros_agent-5] [35m[1792357945.214703][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x003(2), participant_id: 0x001(1)
+1792357945.2155745 [micro_ros_agent-5] [35m[1792357945.214776][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x003(3), participant_id: 0x001(1)
+1792357945.2160509 [micro_ros_agent-5] [35m[1792357945.215485][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x003(5), publisher_id: 0x003(3)
+1792357945.2162547 [micro_ros_agent-5] [35m[1792357945.215572][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x003(2), participant_id: 0x001(1)
+1792357945.2164016 [micro_ros_agent-5] [35m[1792357945.215603][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x003(3), participant_id: 0x001(1)
+1792357945.2169087 [micro_ros_agent-5] [35m[1792357945.216265][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x003(5), publisher_id: 0x003(3)
+1792357945.2170506 [micro_ros_agent-5] [35m[1792357945.216389][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x004(2), participant_id: 0x001(1)
+1792357945.2175114 [micro_ros_agent-5] [35m[1792357945.216677][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x004(3), participant_id: 0x001(1)
+1792357945.2183902 [micro_ros_agent-5] [35m[1792357945.218077][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x004(5), publisher_id: 0x004(3)
+1792357945.2187638 [micro_ros_agent-5] [35m[1792357945.218187][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x004(2), participant_id: 0x001(1)
+1792357945.2188697 [micro_ros_agent-5] [35m[1792357945.218232][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x004(3), participant_id: 0x001(1)
+1792357945.2192683 [micro_ros_agent-5] [35m[1792357945.218983][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x004(5), publisher_id: 0x004(3)
+1792357945.2196698 [micro_ros_agent-5] [35m[1792357945.219414][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x005(2), participant_id: 0x001(1)
+1792357945.2200258 [micro_ros_agent-5] [35m[1792357945.219486][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x005(3), participant_id: 0x001(1)
+1792357945.2204964 [micro_ros_agent-5] [35m[1792357945.220195][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x005(5), publisher_id: 0x005(3)
+1792357945.2213295 [micro_ros_agent-5] [35m[1792357945.221023][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x005(2), participant_id: 0x001(1)
+1792357945.2219539 [micro_ros_agent-5] [35m[1792357945.221198][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x005(3), participant_id: 0x001(1)
+1792357945.2224438 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '1'
+1792357945.2230592 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '1'
+1792357945.2235720 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '2'
+1792357945.2241793 [micro_ros_agent-5] [35m[1792357945.222498][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x005(5), publisher_id: 0x005(3)
+1792357945.2243221 [micro_ros_agent-5] [35m[1792357945.222575][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x006(2), participant_id: 0x001(1)
+1792357945.2244380 [micro_ros_agent-5] [35m[1792357945.222615][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x006(3), participant_id: 0x001(1)
+1792357945.2248883 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '3'
+1792357945.2252350 [micro_ros_agent-5] [35m[1792357945.223171][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x006(5), publisher_id: 0x006(3)
+1792357945.2256951 [micro_ros_agent-5] [35m[1792357945.223326][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x006(2), participant_id: 0x001(1)
+1792357945.2258925 [micro_ros_agent-5] [35m[1792357945.223368][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x006(3), participant_id: 0x001(1)
+1792357945.2265339 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '2'
+1792357945.2271559 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '3'
+1792357945.2276506 [micro_ros_agent-5] [35m[1792357945.224399][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x006(5), publisher_id: 0x006(3)
+1792357945.2277868 [micro_ros_agent-5] [35m[1792357945.224492][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x007(2), participant_id: 0x001(1)
+1792357945.2279441 [micro_ros_agent-5] [35m[1792357945.224599][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x007(3), participant_id: 0x001(1)
+1792357945.2285471 [micro_ros_agent-5] [35m[1792357945.225249][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x007(5), publisher_id: 0x007(3)
+1792357945.2286899 [micro_ros_agent-5] [35m[1792357945.225328][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x007(2), participant_id: 0x001(1)
+1792357945.2287972 [micro_ros_agent-5] [35m[1792357945.225361][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x007(3), participant_id: 0x001(1)
+1792357945.2292221 [micro_ros_agent-5] [35m[1792357945.226042][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x007(5), publisher_id: 0x007(3)
+1792357945.2293670 [micro_ros_agent-5] [35m[1792357945.226145][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x008(2), participant_id: 0x001(1)
+1792357945.2294719 [micro_ros_agent-5] [35m[1792357945.226181][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x008(3), participant_id: 0x001(1)
+1792357945.2298851 [micro_ros_agent-5] [35m[1792357945.226749][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x008(5), publisher_id: 0x008(3)
+1792357945.2304540 [micro_ros_agent-5] [35m[1792357945.226830][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x008(2), participant_id: 0x001(1)
+1792357945.2306073 [micro_ros_agent-5] [35m[1792357945.226866][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x008(3), participant_id: 0x001(1)
+1792357945.2310755 [micro_ros_agent-5] [35m[1792357945.227577][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x008(5), publisher_id: 0x008(3)
+1792357945.2312093 [micro_ros_agent-5] [35m[1792357945.227680][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x009(2), participant_id: 0x001(1)
+1792357945.2313142 [micro_ros_agent-5] [35m[1792357945.227723][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x009(3), participant_id: 0x001(1)
+1792357945.2314370 [micro_ros_agent-5] [35m[1792357945.228218][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x009(5), publisher_id: 0x009(3)
+1792357945.2319052 [micro_ros_agent-5] [35m[1792357945.228303][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x009(2), participant_id: 0x001(1)
+1792357945.2320406 [micro_ros_agent-5] [35m[1792357945.228336][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x009(3), participant_id: 0x001(1)
+1792357945.2324817 [micro_ros_agent-5] [35m[1792357945.229148][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x009(5), publisher_id: 0x009(3)
+1792357945.2325842 [micro_ros_agent-5] [35m[1792357945.229216][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00A(2), participant_id: 0x001(1)
+1792357945.2326622 [micro_ros_agent-5] [35m[1792357945.229263][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x00A(3), participant_id: 0x001(1)
+1792357945.2331097 [micro_ros_agent-5] [35m[1792357945.229972][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x00A(5), publisher_id: 0x00A(3)
+1792357945.2332523 [micro_ros_agent-5] [35m[1792357945.230055][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00A(2), participant_id: 0x001(1)
+1792357945.2333813 [micro_ros_agent-5] [35m[1792357945.230083][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x00A(3), participant_id: 0x001(1)
+1792357945.2337401 [micro_ros_agent-5] [35m[1792357945.230618][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x00A(5), publisher_id: 0x00A(3)
+1792357945.2338691 [micro_ros_agent-5] [35m[1792357945.230719][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00B(2), participant_id: 0x001(1)
+1792357945.2339885 [micro_ros_agent-5] [35m[1792357945.230758][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x00B(3), participant_id: 0x001(1)
+1792357945.2343998 [micro_ros_agent-5] [35m[1792357945.231204][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x00B(5), publisher_id: 0x00B(3)
+1792357945.2345345 [micro_ros_agent-5] [35m[1792357945.231273][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00B(2), participant_id: 0x001(1)
+1792357945.2346163 [micro_ros_agent-5] [35m[1792357945.231303][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x00B(3), participant_id: 0x001(1)
+1792357945.2350361 [micro_ros_agent-5] [35m[1792357945.232080][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x00B(5), publisher_id: 0x00B(3)
+1792357945.2351835 [micro_ros_agent-5] [35m[1792357945.232171][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00C(2), participant_id: 0x001(1)
+1792357945.2353072 [micro_ros_agent-5] [35m[1792357945.232228][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x00C(4), participant_id: 0x001(1)
+1792357945.2358966 [micro_ros_agent-5] [35m[1792357945.232651][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x00C(6), subscriber_id: 0x00C(4)
+1792357945.2360420 [micro_ros_agent-5] [35m[1792357945.232718][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00C(2), participant_id: 0x001(1)
+1792357945.2361996 [micro_ros_agent-5] [35m[1792357945.232747][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x00C(4), participant_id: 0x001(1)
+1792357945.2366431 [micro_ros_agent-5] [35m[1792357945.233573][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x00C(6), subscriber_id: 0x00C(4)
+1792357945.2367816 [micro_ros_agent-5] [35m[1792357945.233799][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00D(2), participant_id: 0x001(1)
+1792357945.2369099 [micro_ros_agent-5] [35m[1792357945.233889][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x00D(3), participant_id: 0x001(1)
+1792357945.2373652 [micro_ros_agent-5] [35m[1792357945.234505][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x00D(5), publisher_id: 0x00D(3)
+1792357945.2374775 [micro_ros_agent-5] [35m[1792357945.234714][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00D(2), participant_id: 0x001(1)
+1792357945.2375803 [micro_ros_agent-5] [35m[1792357945.234758][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x00D(3), participant_id: 0x001(1)
+1792357945.2380764 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '4'
+1792357945.2385433 [micro_ros_agent-5] [35m[1792357945.235474][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x00D(5), publisher_id: 0x00D(3)
+1792357945.2389183 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '4'
+1792357945.2393589 [micro_ros_agent-5] [35m[1792357945.235688][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00E(2), participant_id: 0x001(1)
+1792357945.2395122 [micro_ros_agent-5] [35m[1792357945.235764][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x00E(3), participant_id: 0x001(1)
+1792357945.2400453 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '5'
+1792357945.2406316 [micro_ros_agent-5] [35m[1792357945.236605][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x00E(5), publisher_id: 0x00E(3)
+1792357945.2407882 [micro_ros_agent-5] [35m[1792357945.236701][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00E(2), participant_id: 0x001(1)
+1792357945.2408981 [micro_ros_agent-5] [35m[1792357945.236770][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x00E(3), participant_id: 0x001(1)
+1792357945.2413483 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '5'
+1792357945.2418284 [micro_ros_agent-5] [35m[1792357945.237477][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x00E(5), publisher_id: 0x00E(3)
+1792357945.2419345 [micro_ros_agent-5] [35m[1792357945.237573][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00F(2), participant_id: 0x001(1)
+1792357945.2420275 [micro_ros_agent-5] [35m[1792357945.237611][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x00F(4), participant_id: 0x001(1)
+1792357945.2424533 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '6'
+1792357945.2428634 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '7'
+1792357945.2433650 [micro_ros_agent-5] [35m[1792357945.238311][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x00F(6), subscriber_id: 0x00F(4)
+1792357945.2435491 [micro_ros_agent-5] [35m[1792357945.238418][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00F(2), participant_id: 0x001(1)
+1792357945.2436793 [micro_ros_agent-5] [35m[1792357945.238455][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x00F(4), participant_id: 0x001(1)
+1792357945.2441788 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '6'
+1792357945.2446842 [micro_ros_agent-5] [35m[1792357945.239336][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x00F(6), subscriber_id: 0x00F(4)
+1792357945.2448275 [micro_ros_agent-5] [35m[1792357945.239569][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x010(2), participant_id: 0x001(1)
+1792357945.2449446 [micro_ros_agent-5] [35m[1792357945.239609][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x010(4), participant_id: 0x001(1)
+1792357945.2453871 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '8'
+1792357945.2458537 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '9'
+1792357945.2463226 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '7'
+1792357945.2468777 [micro_ros_agent-5] [35m[1792357945.240314][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x010(6), subscriber_id: 0x010(4)
+1792357945.2473357 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '10'
+1792357945.2477076 [micro_ros_agent-5] [35m[1792357945.240531][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x010(2), participant_id: 0x001(1)
+1792357945.2478819 [micro_ros_agent-5] [35m[1792357945.240606][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x010(4), participant_id: 0x001(1)
+1792357945.2482834 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '8'
+1792357945.2487452 [micro_ros_agent-5] [35m[1792357945.241451][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x010(6), subscriber_id: 0x010(4)
+1792357945.2490680 [micro_ros_agent-5] [35m[1792357945.241669][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x011(2), participant_id: 0x001(1)
+1792357945.2491789 [micro_ros_agent-5] [35m[1792357945.241739][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x011(4), participant_id: 0x001(1)
+1792357945.2492473 [micro_ros_agent-5] [35m[1792357945.242085][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x011(6), subscriber_id: 0x011(4)
+1792357945.2494633 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '9'
+1792357945.2499797 [micro_ros_agent-5] [35m[1792357945.242276][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x011(2), participant_id: 0x001(1)
+1792357945.2501078 [micro_ros_agent-5] [35m[1792357945.242348][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x011(4), participant_id: 0x001(1)
+1792357945.2503812 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '10'
+1792357945.2507191 [micro_ros_agent-5] [35m[1792357945.242997][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x011(6), subscriber_id: 0x011(4)
+1792357945.2510121 [micro_ros_agent-5] [35m[1792357945.243188][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x012(2), participant_id: 0x001(1)
+1792357945.2510974 [micro_ros_agent-5] [35m[1792357945.243266][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x012(4), participant_id: 0x001(1)
+1792357945.2511709 [micro_ros_agent-5] [35m[1792357945.243747][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x012(6), subscriber_id: 0x012(4)
+1792357945.2514007 [micro_ros_agent-5] [35m[1792357945.243928][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x012(2), participant_id: 0x001(1)
+1792357945.2514818 [micro_ros_agent-5] [35m[1792357945.244013][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x012(4), participant_id: 0x001(1)
+1792357945.2517107 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '11'
+1792357945.2520394 [exec -7] AP: DDS: Topic/Sub/Reader session pass for index '12'
+1792357945.2524185 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '11'
+1792357945.2528255 [micro_ros_agent-5] [35m[1792357945.245169][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x012(6), subscriber_id: 0x012(4)
+1792357945.2531760 [exec -12] AP: DDS: Topic/Sub/Reader session pass for index '12'
+1792357945.2536800 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '13'
+1792357945.2540793 [exec -7] AP: DDS: Topic/Pub/Writer session pass for index '14'
+1792357945.2543380 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '13'
+1792357945.2546923 [exec -7] AP: DDS: Topic/Sub/Reader session pass for index '15'
+1792357945.2550526 [exec -12] AP: DDS: Topic/Pub/Writer session pass for index '14'
+1792357945.2554452 [micro_ros_agent-5] [35m[1792357945.248291][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x000(7), participant_id: 0x001(1)
+1792357945.2559860 [micro_ros_agent-5] [35m[1792357945.249592][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x000(7), participant_id: 0x001(1)
+1792357945.2564094 [micro_ros_agent-5] [35m[1792357945.253048][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x001(7), participant_id: 0x001(1)
+1792357945.2566795 [micro_ros_agent-5] [35m[1792357945.255594][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x001(7), participant_id: 0x001(1)
+1792357945.2572603 [micro_ros_agent-5] [35m[1792357945.256964][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x002(7), participant_id: 0x001(1)
+1792357945.2589347 [exec -7] AP: DDS: Topic/Sub/Reader session pass for index '16'
+1792357945.2595222 [exec -12] AP: DDS: Topic/Sub/Reader session pass for index '15'
+1792357945.2599978 [exec -7] AP: DDS: Topic/Sub/Reader session pass for index '17'
+1792357945.2605116 [micro_ros_agent-5] [35m[1792357945.258811][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x002(7), participant_id: 0x001(1)
+1792357945.2609437 [exec -12] AP: DDS: Topic/Sub/Reader session pass for index '16'
+1792357945.2613895 [exec -12] AP: DDS: Topic/Sub/Reader session pass for index '17'
+1792357945.2618718 [micro_ros_agent-5] [35m[1792357945.260282][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x003(7), participant_id: 0x001(1)
+1792357945.2622905 [exec -12] AP: DDS: Topic/Sub/Reader session pass for index '18'
+1792357945.2627282 [exec -12] AP: DDS: Service/Replier session pass for index '0'
+1792357945.2631216 [micro_ros_agent-5] [35m[1792357945.262335][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x003(7), participant_id: 0x001(1)
+1792357945.2648904 [micro_ros_agent-5] [35m[1792357945.263834][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x004(7), participant_id: 0x001(1)
+1792357945.2653155 [exec -7] AP: DDS: Topic/Sub/Reader session pass for index '18'
+1792357945.2654748 [exec -7] AP: DDS: Service/Replier session pass for index '0'
+1792357945.2666898 [micro_ros_agent-5] [35m[1792357945.266432][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x004(7), participant_id: 0x001(1)
+1792357945.2685921 [exec -12] AP: DDS: Service/Replier session pass for index '1'
+1792357945.2692719 [micro_ros_agent-5] [35m[1792357945.268575][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x005(7), participant_id: 0x001(1)
+1792357945.2697487 [exec -7] AP: DDS: Service/Replier session pass for index '1'
+1792357945.2702773 [exec -7] AP: DDS: Service/Replier session pass for index '2'
+1792357945.2707450 [exec -7] AP: DDS: Service/Replier session pass for index '3'
+1792357945.2710364 [micro_ros_agent-5] [35m[1792357945.270111][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x005(7), participant_id: 0x001(1)
+1792357945.2730813 [exec -12] AP: DDS: Service/Replier session pass for index '2'
+1792357945.2738321 [exec -12] AP: DDS: Service/Replier session pass for index '3'
+1792357945.2820034 [exec -7] AP: DDS: Service/Replier session pass for index '4'
+1792357945.2825344 [exec -12] AP: DDS: Service/Replier session pass for index '4'
+1792357945.2830744 [exec -7] AP: DDS: Service/Replier session pass for index '5'
+1792357945.2835209 [exec -12] AP: DDS: Service/Replier session pass for index '5'
+1792357945.2840533 [exec -7] AP: DDS: Initialization passed
+1792357945.2844532 [exec -12] AP: DDS: Initialization passed
+1792357950.5100205 [exec -12] fence present
+1792357950.5383911 [exec -7] fence present
+1792357951.1248279 [exec -7] Flight battery 100 percent
+1792357951.1256738 [exec -12] Flight battery 100 percent
+1792357956.6768994 [exec -12] AP: EKF3 IMU0 initialised
+1792357956.6776993 [exec -12] AP: EKF3 IMU1 initialised
+1792357956.6960378 [exec -7] AP: EKF3 IMU0 initialised
+1792357956.6971295 [exec -7] AP: EKF3 IMU1 initialised
+1792357964.4250112 [exec -7] AP: EKF3 IMU0 tilt alignment complete
+1792357964.4257805 [exec -12] AP: EKF3 IMU0 tilt alignment complete
+1792357964.4645753 [exec -12] AP: EKF3 IMU1 tilt alignment complete
+1792357964.4653628 [exec -7] AP: EKF3 IMU1 tilt alignment complete
+1792357965.0362973 [exec -7] AP: EKF3 IMU1 MAG0 initial yaw alignment complete
+1792357965.0367835 [exec -12] AP: EKF3 IMU1 MAG0 initial yaw alignment complete
+1792357965.0613544 [exec -7] AP: EKF3 IMU0 MAG0 initial yaw alignment complete
+1792357965.0619500 [exec -12] AP: EKF3 IMU0 MAG0 initial yaw alignment complete
+1792357989.0123339 [exec -7] AP: GPS 1: probing for u-blox at 230400 baud
+1792357989.0128660 [exec -12] AP: GPS 1: probing for u-blox at 230400 baud
+1792357989.1044090 [exec -7] AP: GPS 1: detected u-blox
+1792357989.1049440 [exec -12] AP: GPS 1: detected u-blox
+1792358011.7332747 [exec -12] Flight battery 100 percent
+1792358011.7668824 [exec -7] Flight battery 100 percent
+1792358053.0322087 [exec -7] AP: EKF3 IMU1 origin set
+1792358053.0326245 [exec -12] AP: EKF3 IMU1 origin set
+1792358054.3445675 [exec -7] AP: EKF3 IMU0 origin set
+1792358054.3451781 [exec -12] AP: EKF3 IMU0 origin set
+1792358073.1424170 [exec -12] Flight battery 100 percent
+1792358073.1811302 [exec -7] Flight battery 100 percent
+1792358099.9186280 [exec -7] GUIDED> Mode GUIDED
+1792358099.9193470 [exec -7] AP: DDS: Request for Mode Switch : SUCCESS
+1792358101.8065233 [exec -7] AP: DDS: Request for arming received
+1792358101.8431721 [exec -7] AP: Arming motors
+1792358101.8440251 [exec -7] AP: DDS: Request for Arming/Disarming : SUCCESS
+1792358102.4940815 [exec -7] ARMED
+1792358104.3485413 [exec -7] AP: DDS: Request for Takeoff : SUCCESS
+1792358134.2631586 [exec -12] Flight battery 100 percent
+1792358134.2874551 [exec -7] Flight battery 100 percent
+1792358138.5335736 [exec -7] Received 1438 parameters
+1792358138.5370057 [exec -12] Received 1438 parameters
+1792358138.5403256 [exec -7] Saved 1428 parameters to mav.parm
+1792358138.5431349 [exec -12] Saved 1428 parameters to mav_2_1.parm
+1792358147.0210807 [exec -7] AP: EKF3 IMU1 MAG0 in-flight yaw alignment complete
+1792358147.0343349 [exec -7] AP: EKF3 IMU0 MAG0 in-flight yaw alignment complete
+1792358182.2224417 [exec -12] AP: PreArm: Accels inconsistent
+1792358195.0761549 [exec -12] Flight battery 100 percent
+1792358195.0974698 [exec -7] Flight battery 100 percent
+1792358203.0520303 [exec -12] AP: EKF3 IMU0 is using GPS
+1792358204.2515461 [exec -12] AP: EKF3 IMU1 is using GPS
+1792358223.8661568 [exec -7] LAND> Mode LAND
+1792358223.8669343 [exec -7] AP: DDS: Request for Mode Switch : SUCCESS
+1792358255.1092963 [exec -7] Flight battery 100 percent
+1792358255.1113741 [exec -12] Flight battery 100 percent
+1792358284.5895464 [exec -7] AP: EKF3 IMU0 is using GPS
+1792358284.9612684 [exec -7] AP: EKF3 IMU1 is using GPS
+1792358291.8230050 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+1792358291.8255377 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+1792358315.8612196 [exec -7] AP: Disarming motors
+1792358315.8620527 [exec -7] Flight battery 100 percent
+1792358315.9406388 [exec -12] Flight battery 100 percent
+1792358321.9397328 [exec -7] DISARMED
+1792358352.0084579 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+1792358352.0109763 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+1792358360.7956979 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+1792358360.8042417 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+1792358365.1988659 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+1792358365.2035968 [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+1792358378.7007604 [exec -12] Flight battery 100 percent
+1792358378.7302196 [exec -7] Flight battery 100 percent
+1792358439.1620307 [exec -12] Flight battery 100 percent
+1792358439.1922877 [exec -7] Flight battery 100 percent
+1792358500.2809720 [exec -12] Flight battery 100 percent
+1792358500.3117263 [exec -7] Flight battery 100 percent
+1792358560.4841421 [exec -12] Flight battery 100 percent
+1792358560.5131130 [exec -7] Flight battery 100 percent
+1792358621.7411437 [exec -12] Flight battery 100 percent
+1792358622.0144134 [exec -7] Flight battery 100 percent
+1792358682.8334043 [exec -12] Flight battery 100 percent
+1792358682.8656983 [exec -7] Flight battery 100 percent
+1792358743.8753705 [exec -12] Flight battery 100 percent
+1792358743.9113486 [exec -7] Flight battery 100 percent
+1792358805.5432692 [exec -12] Flight battery 100 percent
+1792358805.5780654 [exec -7] Flight battery 100 percent
+1792358865.8394022 [exec -12] Flight battery 100 percent
+1792358865.8718622 [exec -7] Flight battery 100 percent
+1792358926.3503983 [exec -12] Flight battery 100 percent
+1792358926.3791661 [exec -7] Flight battery 100 percent
+1792358987.6638999 [exec -12] Flight battery 100 percent
+1792358987.6952403 [exec -7] Flight battery 100 percent
+1792359048.8908238 [exec -12] Flight battery 100 percent
+1792359048.9246273 [exec -7] Flight battery 100 percent
+1792359108.9394462 [exec -12] Flight battery 100 percent
+1792359108.9696052 [exec -7] Flight battery 100 percent
+1792359169.8533881 [exec -12] Flight battery 100 percent
+1792359169.8830853 [exec -7] Flight battery 100 percent
+1792359230.0264895 [exec -12] Flight battery 100 percent
+1792359230.0575266 [exec -7] Flight battery 100 percent
+1792359290.4529366 [exec -12] Flight battery 100 percent
+1792359290.4613924 [exec -7] Flight battery 100 percent
+1792359350.5973184 [exec -12] Flight battery 100 percent
+1792359350.6271138 [exec -7] Flight battery 100 percent
+1792359411.9772408 [exec -12] Flight battery 100 percent
+1792359412.0084610 [exec -7] Flight battery 100 percent
+1792359472.1406319 [exec -12] Flight battery 100 percent
+1792359472.1790020 [exec -7] Flight battery 100 percent
+1792359532.2231526 [exec -7] Flight battery 100 percent
+1792359532.2291687 [exec -12] Flight battery 100 percent
+1792359592.6476839 [exec -12] Flight battery 100 percent
+1792359592.6806030 [exec -7] Flight battery 100 percent

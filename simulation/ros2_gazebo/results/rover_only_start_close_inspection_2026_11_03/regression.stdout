@@ -1,0 +1,85 @@
+........................................................................ [  5%]
+........................................................................ [ 11%]
+.................................................................F...... [ 17%]
+........................................................................ [ 23%]
+........................................................................ [ 29%]
+........................................................................ [ 35%]
+...............ss.....ss................................................ [ 41%]
+........................................................................ [ 47%]
+...............................................F........................ [ 53%]
+........................................................................ [ 59%]
+........................................................................ [ 65%]
+........................................................................ [ 70%]
+........................................................................ [ 76%]
+........................................................................ [ 82%]
+........................................................................ [ 88%]
+........................................................................ [ 94%]
+..................................................................       [100%]
+=================================== FAILURES ===================================
+_____ test_derived_closure_reader_pins_are_consumed_without_binary_changes _____
+
+tmp_path = PosixPath('/tmp/pytest-of-joelm/pytest-42/test_derived_closure_reader_pi0')
+
+    def test_derived_closure_reader_pins_are_consumed_without_binary_changes(tmp_path):
+        import hashlib
+        reader=json.loads((PREP/'reader.prepared.json').read_text())
+        before=copy.deepcopy(reader)
+        for name in ('tools/rover_xrce_trace/session_precheck.py','tools/rover_xrce_trace/historical_disposition.py'):
+            reader['source_hashes'][name]=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
+        path=tmp_path/'reader.json';path.write_text(json.dumps(reader))
+        result=selection_dry_run(ROOT,PREP/'agent.prepared.json',path,socket_helper_review=PREP/'socket-helper-review.json')
+>       assert result['selection_files_valid'] and not result['executed']
+E       assert (False)
+
+tests/test_rover_clock_path_preparation.py:36: AssertionError
+__________ test_native_service_timeout_has_no_confirmation_or_resend ___________
+
+setup = (PosixPath('/tmp/pytest-of-joelm/pytest-42/test_native_service_timeout_ha0/mission.json'), {'kind': 'ROVER_BOUNDED_CON...sts.test_rover_ground_executor.Session object at 0x7bc858f7e900>, <function setup.<locals>.<lambda> at 0x7bc8584b0680>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7bc858f7e1e0>
+
+    def test_native_service_timeout_has_no_confirmation_or_resend(setup, monkeypatch):
+        from types import SimpleNamespace
+        import tools.rover_ros2_adapter as ros
+        native = ros.NativeRos2Session.__new__(ros.NativeRos2Session)
+        native._require_identity = lambda **kw: None  # isolated transport test; not identity accreditation
+        native.node = object()
+        native.mode_type = SimpleNamespace(Request=lambda: SimpleNamespace(mode=None))
+        future = SimpleNamespace(done=lambda: False, cancel=Mock())
+        native.client = SimpleNamespace(call_async=Mock(return_value=future))
+        native.rclpy = SimpleNamespace(spin_until_future_complete=Mock())
+        admitted = admit(setup)
+        command = dict(kind='service', endpoint=MODE, type='ardupilot_msgs/srv/ModeSwitch', payload={'mode': 4})
+        with locks.execution_scope(admitted['run_id'], 'v3'):
+            with pytest.raises(TimeoutError) as caught:
+                native.exchange(command, timeout_s=.3)
+            with pytest.raises(RoverControlError):
+                native.exchange(command | {'payload': {'mode': 9}}, timeout_s=.3)
+        assert caught.value.diagnostic['response_received'] is False
+        assert caught.value.diagnostic['effects'] == 'UNCONFIRMED'
+        native.client.call_async.assert_called_once()
+        assert native.client.call_async.call_args.args[0].mode == 4
+>       future.cancel.assert_called_once()
+
+tests/test_rover_ground_executor.py:461: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock id='136100416313328'>
+
+    def assert_called_once(self):
+        """assert that the mock was called only once.
+        """
+        if not self.call_count == 1:
+            msg = ("Expected '%s' to have been called once. Called %s times.%s"
+                   % (self._mock_name or 'mock',
+                      self.call_count,
+                      self._calls_repr()))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'mock' to have been called once. Called 0 times.
+
+/usr/lib/python3.12/unittest/mock.py:923: AssertionError
+=========================== short test summary info ============================
+SKIPPED [4] tests/test_rover_failed_operational_close.py:91: Failed-start protected-stop invariant; successful layout covered separately
+FAILED tests/test_rover_clock_path_preparation.py::test_derived_closure_reader_pins_are_consumed_without_binary_changes
+FAILED tests/test_rover_ground_executor.py::test_native_service_timeout_has_no_confirmation_or_resend
+2 failed, 1212 passed, 4 skipped in 409.26s (0:06:49)
+rc=1

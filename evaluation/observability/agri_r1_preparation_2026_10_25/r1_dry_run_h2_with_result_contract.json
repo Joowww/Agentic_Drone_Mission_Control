@@ -1,0 +1,94 @@
+{
+  "schema": "tfg.agri-r1-preparation/1",
+  "task_id": "R1",
+  "dry_run": true,
+  "inputs_include_test_doubles": [],
+  "stages": {
+    "dependency": "MET",
+    "eligibility": "NOT_ELIGIBLE",
+    "authorization": "ABSENT",
+    "admission": "NOT_REQUESTED",
+    "execution": "NOT_STARTED"
+  },
+  "conditions": [
+    {
+      "name": "view_verified",
+      "stage": "dependency",
+      "status": "SATISFIED",
+      "detail": "view status OK"
+    },
+    {
+      "name": "sequence_completed",
+      "stage": "dependency",
+      "status": "SATISFIED",
+      "detail": "sequence FINISHED/PASSED, scenario AERIAL_COMPLETED_GROUND_PENDING"
+    },
+    {
+      "name": "target_reached_by_drone_01",
+      "stage": "dependency",
+      "status": "SATISFIED",
+      "detail": "POI_A1: {'vehicle_id': 'drone_01', 'status': 'REACHED'}"
+    }
+  ],
+  "eligibility": [
+    {
+      "name": "dependency_met",
+      "status": "SATISFIED",
+      "detail": "dependency MET"
+    },
+    {
+      "name": "rover_identity_accredited",
+      "status": "NOT_SATISFIED",
+      "detail": "Rover identity chain (XRCE client to SITL instance/SYSID and bridge/model) not established"
+    },
+    {
+      "name": "position_navigation_supported",
+      "status": "NOT_SATISFIED",
+      "detail": "existing executor accepts only ROVER_BOUNDED_CONTROL"
+    },
+    {
+      "name": "operational_rover_policy_enabled",
+      "status": "NOT_SATISFIED",
+      "detail": "tools.rover_ground_executor.OPERATIONAL_ROVER_ENABLED"
+    },
+    {
+      "name": "required_data_present",
+      "status": "NOT_SATISFIED",
+      "detail": "missing: target_in_rover_frame, ground_tolerance_m, rover_mission, completion_evidence"
+    },
+    {
+      "name": "public_entry_point_with_reservations",
+      "detail": "No public rover entry point with authorization and reservations",
+      "status": "NOT_SATISFIED"
+    },
+    {
+      "name": "execution_gate_covers_rover_profile",
+      "detail": "Execution gate covers the two_drones profile only",
+      "status": "NOT_SATISFIED"
+    }
+  ],
+  "blockers": [
+    "rover_identity_accredited",
+    "position_navigation_supported",
+    "operational_rover_policy_enabled",
+    "required_data_present",
+    "public_entry_point_with_reservations",
+    "execution_gate_covers_rover_profile"
+  ],
+  "missing_data": {
+    "target_in_rover_frame": "POI_A1 expressed for rover_01 in a validated common frame (H1 offsets are relative to drone_01's own launch position; common_frame.validated is false)",
+    "ground_tolerance_m": "horizontal tolerance at which a ground verification counts as reached",
+    "rover_mission": "a validated rover_01/v3 (ugv, ArduPilot) mission definition and its SHA-256",
+    "completion_evidence": "which attributed observation proves the rover verified POI_A1 (source, frame, timing)"
+  },
+  "candidate": null,
+  "candidate_sha256": null,
+  "ground_result": null,
+  "r1_status": "BLOCKED_PENDING",
+  "scenario_complete": false,
+  "movement_authorized": false,
+  "commands_sent": false,
+  "admission_created": false,
+  "reservation_created": false,
+  "note": "dry-run: MET is a precondition only; authorization and admission belong to the operator and the existing ground executor gates, which this function never calls"
+}

@@ -1,0 +1,52 @@
+{
+  "decision": "ROVER_TASK_PENDING_AUTHORIZATION",
+  "executor_admit_calls": 0,
+  "movement_authorized": false,
+  "not_claimed": [
+    "visual detection",
+    "accredited transformation",
+    "joint drone-rover run",
+    "any rover movement"
+  ],
+  "now_utc": "2026-11-03T23:48:06.545099+00:00",
+  "origin": "SYNTHETIC",
+  "trace": [
+    {
+      "reasons": [],
+      "status": "ACCEPTED",
+      "step": "validate"
+    },
+    {
+      "proposal_sha256": "9ad496dfcae0308a8b2f506af116d3d81d1e927f17745d91f2f108ffc9162573",
+      "status": "PROPOSED_PENDING_VALIDATION",
+      "step": "propose"
+    },
+    {
+      "blockers": [],
+      "candidate_matches_proposal": true,
+      "candidate_sha256": "27c3d822672af0f2df1c3d2d34f8af0013a51ee66a75ff33365e0f51dced1f22",
+      "inputs_include_test_doubles": [
+        "completion_evidence",
+        "execution_limits",
+        "frame_transform",
+        "ground_tolerance_m",
+        "rover_mission",
+        "target_in_rover_frame"
+      ],
+      "status": {
+        "admission": "NOT_REQUESTED",
+        "authorization": "ABSENT",
+        "dependency": "MET",
+        "eligibility": "ELIGIBLE",
+        "execution": "NOT_STARTED"
+      },
+      "step": "prepare"
+    },
+    {
+      "executor_called": false,
+      "reason": "AUTHORIZATION_ABSENT_OR_MALFORMED",
+      "status": "BLOCKED",
+      "step": "request_without_authorization"
+    }
+  ]
+}

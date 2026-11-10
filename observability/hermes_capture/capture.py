@@ -1,0 +1,534 @@
+"""Metadata-only capture of Hermes LLM and tool hook events into local JSONL.
+
+Allowlist design: each event is rebuilt from a fixed set of scalar fields.
+Prompts, responses, tool arguments/results, error messages, request bodies,
+base URLs and mission content are never read into an event. A field the hook
+does not provide is written as null and listed in ``absent_fields``; a value
+that fails validation or looks like a secret is null and listed in
+``redacted_fields``; a received zero is kept but, when Hermes cannot tell it
+apart from its own default, it is labelled and listed in
+``ambiguous_zero_fields``. Nothing is estimated. The one exception to "no request
+body" is the offered tool NAMES (``tool_offer`` records, separate file): never
+descriptions, parameter schemas or messages. Callbacks never raise into
+Hermes and never write to stdout/stderr (MCP stdio safety).
+
+Hook contract: hermes-agent d923a5eb48 (see docs/hermes-observability-capture.md).
+"""
+from __future__ import annotations
+
+from datetime import datetime, timezone
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import re
+import threading
+import uuid
+
+SCHEMA = "tfg.hermes.capture/3"
+VERIFIED_HERMES_COMMIT = "d923a5eb487a17c0a68801bba9ef0f56c81040a8"
+ENABLE_ENV = "TFG_OBSERVABILITY_CAPTURE"
+DIR_ENV = "TFG_OBSERVABILITY_DIR"
+RUN_ENV = "TFG_OBSERVABILITY_RUN_ID"
+CASE_ENV = "TFG_OBSERVABILITY_CASE_ID"
+HOOKS = ("pre_api_request", "post_api_request", "api_request_error", "post_tool_call")
+# pre_api_request feeds a SEPARATE file (hermes-tool-offers-*.jsonl, its own schema): the tool
+# names offered in the request body, nothing else of the request. Event files keep SCHEMA.
+TOOL_OFFER_SCHEMA = "tfg.hermes.tool-offer/1"
+# Opt-in result check (separate file hermes-tool-result-checks-*.jsonl): an expectation file lists
+# JSON pointers and scalar values; post_tool_call compares the matching tool's result in memory
+# and records only match/mismatch/absent per pointer. No observed value is ever written.
+EXPECTATION_ENV = "TFG_OBSERVABILITY_RESULT_EXPECTATION"
+EXPECTATION_SCHEMA = "tfg.hermes.tool-result-expectation/1"
+RESULT_CHECK_SCHEMA = "tfg.hermes.tool-result-check/1"
+MAX_EXPECTED_POINTERS = 64
+_POINTER = re.compile(r"(/[A-Za-z0-9_]{1,64}){1,12}")
+
+# Hermes CanonicalUsage fields: each is the first non-zero provider path or 0, so a provider
+# zero and a missing field arrive identically (input_tokens may also be prompt minus cache,
+# clamped at 0). prompt_tokens/total_tokens are sums Hermes computes from those fields.
+NORMALIZED_USAGE_FIELDS = ("input_tokens", "output_tokens", "cache_read_tokens", "cache_write_tokens",
+                           "reasoning_tokens")
+DERIVED_USAGE_FIELDS = ("prompt_tokens", "total_tokens")
+USAGE_FIELDS = NORMALIZED_USAGE_FIELDS + DERIVED_USAGE_FIELDS
+# api_start_time/api_request_id are set once per API call before Hermes' retry loop;
+# time.time() supplies the epochs, so durations are wall-clock and span all attempts.
+TIMING = {"timing_source": "hermes_hook_wall_clock", "timing_scope": "api_call_from_first_attempt"}
+
+_TOKEN = re.compile(r"[A-Za-z0-9_.:@+-]{1,128}")
+_MODEL = re.compile(r"[A-Za-z0-9_.:@+/-]{1,160}")  # provider/model ids may contain '/'
+_LABEL = re.compile(r"[A-Za-z0-9_.:-]{1,64}")
+_SECRET = re.compile(
+    r"(?i)(sk-|pk-|ghp_|gho_|xox[abp]-|AKIA|AIza|eyJ[A-Za-z0-9_-]{8,}|bearer|api[_-]?key|token=|secret|password)"
+    r"|[A-Fa-f0-9]{32,}|[A-Za-z0-9+=]{32,}"  # long unseparated runs; model ids keep '-', '/', ':'
+)
+
+
+def _enabled_directory(environ=os.environ):
+    """Return the capture directory only for an explicit opt-in with an absolute path."""
+    if environ.get(ENABLE_ENV) != "1":
+        return None
+    raw = environ.get(DIR_ENV, "")
+    if not raw or not os.path.isabs(raw):
+        return None
+    return Path(raw)
+
+
+def _ref(value):
+    """Pseudonymous correlation id (unsalted); the original id is not stored."""
+    if not isinstance(value, str) or not value:
+        return None
+    return "sha256:" + hashlib.sha256(value.encode("utf-8")).hexdigest()[:16]
+
+
+def _is_count(value):
+    return isinstance(value, int) and not isinstance(value, bool) and value >= 0
+
+
+def _is_seconds(value):
+    return (isinstance(value, (int, float)) and not isinstance(value, bool)
+            and math.isfinite(value) and value >= 0)
+
+
+class _Builder:
+    def __init__(self):
+        self.event = {}
+        self.absent = []
+        self.redacted = []
+        self.ambiguous = []
+
+    def _put(self, name, value, valid):
+        if value is None or value == "":
+            self.event[name] = None
+            self.absent.append(name)
+        elif valid:
+            self.event[name] = value
+        else:
+            self.event[name] = None
+            self.redacted.append(name)
+
+    def text(self, name, value, pattern=_TOKEN):
+        valid = (isinstance(value, str) and pattern.fullmatch(value) is not None
+                 and "://" not in value and _SECRET.search(value) is None)
+        self._put(name, value, valid)
+
+    def integer(self, name, value):
+        self._put(name, value, _is_count(value))
+
+    def seconds(self, name, value):
+        valid = _is_seconds(value)
+        self._put(name, float(value) if valid else value, valid)
+
+    def boolean(self, name, value):
+        self._put(name, value, isinstance(value, bool))
+
+    def finish(self, event_type, environ):
+        run = environ.get(RUN_ENV)
+        case = environ.get(CASE_ENV)
+        return {
+            "schema": SCHEMA,
+            "event_type": event_type,
+            "event_id": str(uuid.uuid4()),
+            "recorded_at_utc": datetime.now(timezone.utc).isoformat(),
+            "run_id": run if isinstance(run, str) and _LABEL.fullmatch(run) else None,
+            "case_id": case if isinstance(case, str) and _LABEL.fullmatch(case) else None,
+            **self.event,
+            "absent_fields": sorted(self.absent),
+            "redacted_fields": sorted(self.redacted),
+            "ambiguous_zero_fields": sorted(self.ambiguous),
+        }
+
+
+def _identity(builder, kwargs):
+    for name in ("session_id", "task_id", "turn_id", "api_request_id"):
+        builder.event[name.replace("_id", "_ref")] = _ref(kwargs.get(name))
+
+
+def _timing(builder, kwargs):
+    builder.event.update(TIMING)
+    builder.seconds("api_duration_s", kwargs.get("api_duration"))
+    builder.seconds("started_at_epoch_s", kwargs.get("started_at"))
+    builder.seconds("ended_at_epoch_s", kwargs.get("ended_at"))
+
+
+def _usage(builder, usage):
+    """Keep every received counter with a status saying what Hermes still lets us know.
+
+    ``usage=None`` from the hook means the response carried no usage. Inside a
+    summary, a positive normalised counter came from a provider field; a 0 may be
+    a provider zero or the CanonicalUsage default (raw_usage is not passed to
+    hooks), so it is kept as ``zero_unconfirmed``. Derived sums are labelled as such.
+    """
+    if not isinstance(usage, dict):
+        builder.event["usage_source"] = "absent"
+        builder.event["usage"] = None
+        builder.absent.append("usage")
+        return
+    tokens = {}
+    for name in USAGE_FIELDS:
+        value = usage.get(name)
+        derived = name in DERIVED_USAGE_FIELDS
+        if name not in usage or value is None:
+            tokens[name] = {"value": None, "status": "absent"}
+            builder.absent.append(f"usage.{name}")
+        elif not _is_count(value):
+            tokens[name] = {"value": None, "status": "redacted"}
+            builder.redacted.append(f"usage.{name}")
+        elif value == 0:
+            tokens[name] = {"value": 0, "status": "derived_zero" if derived else "zero_unconfirmed"}
+            builder.ambiguous.append(f"usage.{name}")
+        else:
+            tokens[name] = {"value": value, "status": "derived_nonzero" if derived else "nonzero_normalized"}
+    builder.event["usage_source"] = "hermes_normalized_summary"
+    builder.event["usage"] = tokens
+
+
+def _requested_tool_names(response):
+    calls = (((response or {}).get("assistant_message") or {}).get("tool_calls")
+             if isinstance(response, dict) else None)
+    if not isinstance(calls, list):
+        return None
+    names = []
+    for call in calls:
+        # Hermes' normalized ToolCall dataclass serializes as {id, name, arguments, provider_data}
+        # (``function`` is only a back-compat property); raw provider shapes keep ``function.name``.
+        call = call if isinstance(call, dict) else {}
+        function = call.get("function") if isinstance(call.get("function"), dict) else {}
+        name = function.get("name", call.get("name"))
+        ok = isinstance(name, str) and _TOKEN.fullmatch(name) and _SECRET.search(name) is None
+        names.append(name if ok else None)
+    return names
+
+
+def llm_call_event(kwargs, environ=os.environ):
+    b = _Builder()
+    _identity(b, kwargs)
+    response = kwargs.get("response") if isinstance(kwargs.get("response"), dict) else {}
+    b.text("provider", kwargs.get("provider"), _MODEL)
+    b.text("upstream_provider", response.get("upstream_provider"), _MODEL)
+    b.text("model", kwargs.get("model"), _MODEL)
+    b.text("response_model", kwargs.get("response_model"), _MODEL)
+    b.text("api_mode", kwargs.get("api_mode"))
+    b.text("finish_reason", kwargs.get("finish_reason"))
+    _timing(b, kwargs)
+    # Hermes resets first_chunk_at per attempt but keeps started_at from the first one:
+    # this offset equals time-to-first-chunk only when the call had no retry.
+    first, start, duration = kwargs.get("first_chunk_at"), kwargs.get("started_at"), kwargs.get("api_duration")
+    offset = first - start if _is_seconds(first) and _is_seconds(start) else first
+    consistent = _is_seconds(offset) and (not _is_seconds(duration) or offset <= duration)
+    b._put("first_chunk_offset_s", float(offset) if consistent else offset, consistent)
+    for name in ("api_call_count", "message_count", "assistant_tool_call_count", "context_length"):
+        b.integer(name, kwargs.get(name))
+    b.event["requested_tool_names"] = _requested_tool_names(response)
+    if b.event["requested_tool_names"] is None:
+        b.absent.append("requested_tool_names")
+    _usage(b, kwargs.get("usage"))
+    b.event["retry_count"] = None  # post_api_request carries no retry evidence
+    b.absent.append("retry_count")
+    return b.finish("llm_call", environ)
+
+
+def llm_error_event(kwargs, environ=os.environ):
+    b = _Builder()
+    _identity(b, kwargs)
+    b.text("provider", kwargs.get("provider"), _MODEL)
+    b.text("model", kwargs.get("model"), _MODEL)
+    b.text("api_mode", kwargs.get("api_mode"))
+    _timing(b, kwargs)
+    for name in ("api_call_count", "status_code", "retry_count", "max_retries"):
+        b.integer(name, kwargs.get(name))
+    b.boolean("retryable", kwargs.get("retryable"))
+    b.text("reason", kwargs.get("reason"))
+    error = kwargs.get("error") if isinstance(kwargs.get("error"), dict) else {}
+    b.text("error_type", error.get("type"))
+    return b.finish("llm_error", environ)
+
+
+def tool_call_event(kwargs, environ=os.environ):
+    b = _Builder()
+    _identity(b, kwargs)
+    b.event["tool_call_ref"] = _ref(kwargs.get("tool_call_id"))
+    b.text("tool_name", kwargs.get("tool_name"))
+    b.text("status", kwargs.get("status"))
+    b.text("error_type", kwargs.get("error_type"))
+    # Received value and confirmed measurement are separate fields.
+    duration = kwargs.get("duration_ms")
+    b.event["duration_ms_received"] = duration if _is_count(duration) else None
+    b.event["duration_ms_measured"] = None
+    if duration is None:
+        b.event["duration_source"] = "absent"
+        b.absent.append("duration_ms")
+    elif not _is_count(duration):
+        b.event["duration_source"] = "redacted"
+        b.redacted.append("duration_ms")
+    elif b.event["status"] == "timeout":
+        b.event["duration_source"] = "timeout_configured_not_measured"  # Hermes sends the timeout setting
+    elif duration == 0:
+        b.event["duration_source"] = "zero_default_or_below_1ms"  # 0 is also the hook default
+        b.ambiguous.append("duration_ms")
+    else:
+        b.event["duration_ms_measured"] = duration
+        b.event["duration_source"] = "hermes_reported_ms"
+    return b.finish("tool_call", environ)
+
+
+def _offered_tool_names(request):
+    """(names, source) from the request body Hermes is about to send; only ``name`` is read.
+    Chat-completions tools carry ``function.name``; other API modes a top-level ``name``."""
+    body = request.get("body") if isinstance(request, dict) else None
+    if not isinstance(body, dict):
+        return None, "absent"
+    if "tools" not in body or body["tools"] is None:
+        return [], "request_body_without_tools"  # Hermes omits the key when no tool is offered
+    if not isinstance(body["tools"], list):
+        return None, "unreadable"
+    names = []
+    for tool in body["tools"]:
+        tool = tool if isinstance(tool, dict) else {}
+        function = tool.get("function") if isinstance(tool.get("function"), dict) else {}
+        name = function.get("name", tool.get("name"))
+        ok = isinstance(name, str) and _TOKEN.fullmatch(name) and _SECRET.search(name) is None
+        names.append(name if ok else None)
+    return names, "request_body_tools"
+
+
+def tool_offer_event(kwargs, environ=os.environ):
+    """Which tools one API request offers the model: names and Hermes' own count only."""
+    b = _Builder()
+    _identity(b, kwargs)
+    b.integer("api_call_count", kwargs.get("api_call_count"))
+    b.integer("tool_count", kwargs.get("tool_count"))  # len(agent.tools), not read from the body
+    names, source = _offered_tool_names(kwargs.get("request"))
+    b.event["offered_tool_names"] = names
+    b.event["offered_tool_names_source"] = source
+    if names is None:
+        b.absent.append("offered_tool_names")
+    elif None in names:
+        b.redacted.append("offered_tool_names")
+    record = b.finish("tool_offer", environ)
+    record["schema"] = TOOL_OFFER_SCHEMA
+    del record["ambiguous_zero_fields"]
+    return record
+
+
+def load_expectation(environ=os.environ):
+    """(expectation, sha256, error) from the opt-in file; never raises. Values must be JSON scalars
+    (short strings, ints, bools, null) or ``{"absent": true}`` so nothing large can be compared."""
+    raw_path = environ.get(EXPECTATION_ENV)
+    if not raw_path:
+        return None, None, None
+    try:
+        if not os.path.isabs(raw_path):
+            return None, None, "expectation_path_not_absolute"
+        data = Path(raw_path).read_bytes()
+        spec = json.loads(data)
+        checks = spec.get("checks") if isinstance(spec, dict) else None
+        arguments = spec.get("arguments", []) if isinstance(spec, dict) else None
+        if (spec.get("schema") != EXPECTATION_SCHEMA or not isinstance(spec.get("tool_name"), str)
+                or not _TOKEN.fullmatch(spec["tool_name"]) or not isinstance(checks, list)
+                or not 0 < len(checks) <= MAX_EXPECTED_POINTERS or not isinstance(arguments, list)
+                or len(arguments) > 8 or set(spec) - {"schema", "tool_name", "checks", "arguments"}):
+            return None, None, "expectation_invalid"
+        for argument in arguments:
+            if (not isinstance(argument, dict) or set(argument) != {"key", "expected"}
+                    or not isinstance(argument["key"], str) or not _LABEL.fullmatch(argument["key"])
+                    or not isinstance(argument["expected"], str) or len(argument["expected"]) > 256):
+                return None, None, "expectation_invalid"
+        for check in checks:
+            pointer = check.get("pointer") if isinstance(check, dict) else None
+            if not isinstance(pointer, str) or not _POINTER.fullmatch(pointer) or set(check) - {"pointer", "expected", "absent"}:
+                return None, None, "expectation_invalid"
+            if "absent" in check:
+                if check["absent"] is not True or "expected" in check:
+                    return None, None, "expectation_invalid"
+            elif not ("expected" in check and (check["expected"] is None or isinstance(check["expected"], (bool, int))
+                                               or (isinstance(check["expected"], str) and len(check["expected"]) <= 256))):
+                return None, None, "expectation_invalid"
+        return spec, hashlib.sha256(data).hexdigest(), None
+    except (OSError, ValueError, AttributeError):
+        return None, None, "expectation_unreadable"
+
+
+def _tool_payload(result):
+    """(object, envelope) for Hermes' MCP handler JSON ({"result": text|object, "structuredContent"?})."""
+    if result is None:
+        return None, "absent"
+    try:
+        outer = json.loads(result) if isinstance(result, str) else result
+    except ValueError:
+        return None, "not_json"
+    if not isinstance(outer, dict):
+        return None, "not_json"
+    if isinstance(outer.get("structuredContent"), dict):
+        return outer["structuredContent"], "structured_content"
+    inner = outer.get("result")
+    if isinstance(inner, dict):
+        return inner, "result_object"
+    if isinstance(inner, str):
+        try:
+            parsed = json.loads(inner)
+        except ValueError:
+            return None, "result_text_not_json"
+        return (parsed, "result_json_text") if isinstance(parsed, dict) else (None, "result_text_not_object")
+    return None, "no_result_field"
+
+
+_MISSING = object()
+
+
+def _resolve(document, pointer):
+    node = document
+    for part in pointer.split("/")[1:]:
+        if isinstance(node, dict) and part in node:
+            node = node[part]
+        elif isinstance(node, list) and part.isdigit() and int(part) < len(node):
+            node = node[int(part)]
+        else:
+            return _MISSING
+    return node
+
+
+def result_check_event(kwargs, expectation, expectation_sha256, environ=os.environ):
+    """Compare the allow-listed pointers of one tool result; the record holds outcomes only."""
+    b = _Builder()
+    _identity(b, kwargs)
+    b.event["tool_call_ref"] = _ref(kwargs.get("tool_call_id"))
+    b.text("tool_name", kwargs.get("tool_name"))
+    b.event["expectation_sha256"] = expectation_sha256
+    document, envelope = _tool_payload(kwargs.get("result"))
+    b.event["result_envelope"] = envelope
+    checks = []
+    for check in expectation["checks"]:
+        observed = _MISSING if document is None else _resolve(document, check["pointer"])
+        if check.get("absent"):
+            outcome = "match" if observed is _MISSING else "mismatch"
+        elif observed is _MISSING:
+            outcome = "absent"
+        else:
+            # Type-strict: True must not match 1, "3" must not match 3.
+            outcome = "match" if (type(observed) is type(check["expected"]) and observed == check["expected"]) else "mismatch"
+        checks.append({"pointer": check["pointer"], "outcome": outcome})
+    b.event["checks"] = checks
+    b.event["counts"] = {k: sum(c["outcome"] == k for c in checks) for k in ("match", "mismatch", "absent")}
+    # Was the executed call the intended query? Compared in memory; the arguments are not stored.
+    args = kwargs.get("args") if isinstance(kwargs.get("args"), dict) else {}
+    b.event["argument_checks"] = [
+        {"key": a["key"], "outcome": "absent" if a["key"] not in args
+         else "match" if type(args[a["key"]]) is str and args[a["key"]] == a["expected"] else "mismatch"}
+        for a in expectation.get("arguments", [])]
+    record = b.finish("tool_result_check", environ)
+    record["schema"] = RESULT_CHECK_SCHEMA
+    del record["ambiguous_zero_fields"]
+    return record
+
+
+PROVENANCE_SCHEMA = "tfg.hermes.capture-provenance/1"
+PLUGIN_VERSION = "0.6.0"
+HERMES_CONTEXT = "hermes_cli.plugins.PluginContext"
+
+
+def _context_origin(ctx):
+    """How the sink came to exist; a type name is evidence, not an attestation."""
+    if ctx is None:
+        return "direct_jsonl_sink", None
+    name = f"{type(ctx).__module__}.{type(ctx).__qualname__}"
+    return ("hermes_plugin_context" if name == HERMES_CONTEXT else "non_hermes_context"), name
+
+
+class JsonlSink:
+    """Append-only, one event per line; directory 0700, files 0600, no symlinks.
+
+    Before its first event the sink writes ``capture-provenance-<sink_id>.json`` (once, O_EXCL)
+    saying how it was created. The exporter uses it, together with an explicit operator
+    declaration, to accept a file as a real capture; events never carry it themselves.
+    """
+
+    def __init__(self, directory: Path, environ=os.environ, *, ctx=None):
+        self.directory = directory
+        self.environ = environ
+        self.failures = 0
+        self._lock = threading.Lock()
+        self.sink_id = str(uuid.uuid4())
+        self.origin, self.context_type = _context_origin(ctx)
+        self._provenance_written = False
+        self.expectation, self.expectation_sha256, self.expectation_error = load_expectation(environ)
+
+    def _open(self, path, flags):
+        return os.open(path, flags | getattr(os, "O_NOFOLLOW", 0), 0o600)
+
+    def _write_provenance(self):
+        record = {"schema": PROVENANCE_SCHEMA, "origin": self.origin, "context_type": self.context_type,
+                  "plugin": "tfg-observability-capture", "plugin_version": PLUGIN_VERSION,
+                  "capture_schema": SCHEMA, "verified_hermes_commit": VERIFIED_HERMES_COMMIT,
+                  "sink_id": self.sink_id, "created_at_utc": datetime.now(timezone.utc).isoformat()}
+        path = self.directory / f"capture-provenance-{self.sink_id}.json"
+        descriptor = self._open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL)
+        try:
+            os.write(descriptor, (json.dumps(record, sort_keys=True) + "\n").encode("utf-8"))
+        finally:
+            os.close(descriptor)
+        self._provenance_written = True
+
+    def _ensure_provenance(self):
+        # Before the event is built, so the record's time precedes every event's recorded_at.
+        with self._lock:
+            if not self._provenance_written:
+                self.directory.mkdir(mode=0o700, parents=True, exist_ok=True)
+                self._write_provenance()
+
+    def _write(self, event):
+        self._ensure_provenance()
+        line = json.dumps(event, ensure_ascii=False, allow_nan=False, sort_keys=True) + "\n"
+        prefix = {TOOL_OFFER_SCHEMA: "hermes-tool-offers",
+                  RESULT_CHECK_SCHEMA: "hermes-tool-result-checks"}.get(event["schema"], "hermes-events")
+        path = self.directory / f"{prefix}-{event['recorded_at_utc'][:10]}.jsonl"
+        with self._lock:
+            descriptor = self._open(path, os.O_WRONLY | os.O_CREAT | os.O_APPEND)
+            try:
+                os.write(descriptor, line.encode("utf-8"))
+            finally:
+                os.close(descriptor)
+
+    def _capture(self, build, kwargs):
+        # Count only: no logging or printing, since a payload could surface in the message
+        # and stdout may be an MCP stdio channel.
+        try:
+            self._ensure_provenance()
+            self._write(build(kwargs, self.environ))
+        except Exception:
+            self.failures += 1
+        return None
+
+    def on_pre_api_request(self, **kwargs):
+        return self._capture(tool_offer_event, kwargs)
+
+    def on_post_api_request(self, **kwargs):
+        return self._capture(llm_call_event, kwargs)
+
+    def on_api_request_error(self, **kwargs):
+        return self._capture(llm_error_event, kwargs)
+
+    def on_post_tool_call(self, **kwargs):
+        self._capture(tool_call_event, kwargs)
+        if self.expectation_error is not None:
+            failed = {"checks": [], "tool_name": None}
+            return self._capture(lambda kw, env: {**result_check_event(kw, failed, None, env),
+                                                  "result_envelope": self.expectation_error}, kwargs)
+        if self.expectation is not None and kwargs.get("tool_name") == self.expectation["tool_name"]:
+            return self._capture(lambda kw, env: result_check_event(kw, self.expectation, self.expectation_sha256, env),
+                                 kwargs)
+        return None
+
+
+def register(ctx, environ=os.environ):
+    """Hermes plugin entry point. Registers nothing unless explicitly enabled."""
+    directory = _enabled_directory(environ)
+    if directory is None:
+        return None
+    sink = JsonlSink(directory, environ, ctx=ctx)
+    ctx.register_hook("pre_api_request", sink.on_pre_api_request)
+    ctx.register_hook("post_api_request", sink.on_post_api_request)
+    ctx.register_hook("api_request_error", sink.on_api_request_error)
+    ctx.register_hook("post_tool_call", sink.on_post_tool_call)
+    return sink

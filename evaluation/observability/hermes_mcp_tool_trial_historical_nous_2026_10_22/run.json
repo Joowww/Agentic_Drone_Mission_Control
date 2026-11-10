@@ -1,0 +1,98 @@
+{
+  "automatic_retry": false,
+  "capture_files": [
+    "capture-provenance-8527eacd-16fa-441b-9716-0e152355d840.json",
+    "hermes-events-2026-10-22.jsonl",
+    "hermes-tool-offers-2026-10-22.jsonl",
+    "hermes-tool-result-checks-2026-10-22.jsonl"
+  ],
+  "case_id": "mcp-get-mission-state-historical",
+  "config_sha256_edited": "82bfe207e04007351867237add2534cfd2584f704c7ae928be6918a8ace22b72",
+  "config_sha256_original": "c99d1a88cb3cf578973d50e84b12d605b7b2ec28225ff55a034282d6fe08f4fb",
+  "elapsed_wall_s": 19.648,
+  "finished_at_utc": "2026-10-22T17:22:38.492349+00:00",
+  "hermes_invocations": 1,
+  "mcp_tool_trial": {
+    "expected_final_answer": "PASSED",
+    "mcp_schema_cache_sha256_after": "b354400ab9bba8eecb1fa474ae7df3627ca5d4cbcc130e9bd19b93fb340d2997",
+    "mcp_schema_cache_sha256_before": "fef5a2b0b4b61ad6de7114b928ddd4f2cba8d34026f922d2804a3748d31f3742",
+    "mcp_server_processes_after": 0,
+    "prompt": "Llama una sola vez a la herramienta mcp__tfg_mission_control__get_mission_state con run_id=\"467f7ec6-b2a6-4b68-9d97-766d85732f8e\" y view=\"summary\". Después responde únicamente con el valor de result_status de la ejecución consultada.",
+    "prompt_sha256": "c32c1a702b8acdc8a5235afb6bf8f142a01624cb2a138f48851a275fad1184c8",
+    "queried_run_id": "467f7ec6-b2a6-4b68-9d97-766d85732f8e",
+    "registry_name": "mcp__tfg_mission_control__get_mission_state",
+    "result_expectation_pointers": [
+      "/status",
+      "/readiness_now",
+      "/consent",
+      "/hardware_authorized",
+      "/preflights/0/run_id",
+      "/preflights/1",
+      "/preflights/0/job_state",
+      "/preflights/0/phase",
+      "/preflights/0/result_status",
+      "/preflights/0/worker_alive",
+      "/preflights/0/mission_sha256",
+      "/preflights/0/snapshot_integrity",
+      "/preflights/0/readiness_now",
+      "/preflights/0/vehicle_selection/vehicle_id",
+      "/preflights/0/vehicle_selection/simulated_vehicle",
+      "/preflights/0/report/status",
+      "/preflights/0/report/finished_at",
+      "/preflights/0/report/mission_identity/mission_id",
+      "/preflights/0/report/validation/mission_status",
+      "/preflights/0/report/executor_result/status",
+      "/preflights/0/report/executor_result/waypoints_completed",
+      "/preflights/0/report/executor_result/return_to_home",
+      "/preflights/0/report/analysis/passed"
+    ],
+    "result_expectation_sha256": "94c205cfa8612a47525f34f9529733c2c4b27d8abebaf29f433359fee1e3524f",
+    "run_must_exist": true,
+    "server": "tfg-mission-control",
+    "server_sources_sha256": {
+      "tools/hermes_mcp_server.py": "8d531d4b5ebf5a231cc6335cb8380dfecd74d1475e06a6428f2f00a9b04cbd6c",
+      "tools/mission_response_views.py": "b80593fab857562b3eb0819c2c74fa0b503fb5a526cc16f4f3791658146b0752",
+      "tools/mission_state.py": "6137f000ed2344f7b5abcc1bfb85d67efe937dfb0bc534df09612dd92297617e",
+      "tools/virtual_preflight_jobs.py": "64ec1039eacd53d654ab1311e3b2003f7fb530dabfbfe205b646ad164485fd17"
+    },
+    "tool": "get_mission_state",
+    "tool_classification": "read-only: run_id lookup reads job/report files only; verified offline under an audit hook (no writes, mkdir, subprocess or socket)",
+    "tool_search_enabled": "off",
+    "tools_filter": {
+      "include": [
+        "get_mission_state"
+      ],
+      "prompts": false,
+      "resources": false
+    },
+    "toolsets_argument": "tfg-mission-control",
+    "trial_case": "historical-passed"
+  },
+  "model_configured": "poolside/laguna-s-2.1:free",
+  "plugin_installed_sha256": {
+    "__init__.py": "7b7c046c740e0ea6ce5531534a6bae30934cc31b9e9ba5b95c6704a8e07ac0e3",
+    "capture.py": "78e2755c7f4d40a58abea4a38f51208a0415fbff87d560ab6ca83cd5d65ff45c",
+    "event.schema.json": "e5b9f3d076eadcdb0bd40215a15a3d37978ab3da72bbd0f1d1613a3d354fa7a3",
+    "plugin.yaml": "333fda7ac67303293f115433364767398299aafa4fc5a51af3070126f5e49710",
+    "tool-offer.schema.json": "db03ee96f1534c320a6ba9adef0f5d1ad5b274c0fa7cec9617a6322ccc061089",
+    "tool-result-check.schema.json": "89768d0a5353739a28844372bd8cec52beded89ca59a22575f969366f1ccea42"
+  },
+  "prompt_sha256": "c32c1a702b8acdc8a5235afb6bf8f142a01624cb2a138f48851a275fad1184c8",
+  "provider_configured": "nous",
+  "restore": {
+    "config": "restored",
+    "error_type": null,
+    "ok": true,
+    "plugin": "removed"
+  },
+  "return_code": 0,
+  "run_id": "real-hermes-20261022",
+  "started_at_utc": "2026-10-22T17:22:18.718046+00:00",
+  "stderr_bytes": 0,
+  "stdout_sha256": "945e979857a00aeaae461be449d6470c978d71fdd37495dd6df7d6c47f8b6662",
+  "timed_out": false,
+  "timeout_s": 120,
+  "toolset_selection": "tfg-mission-control",
+  "utility_version": "1",
+  "verified_hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8"
+}

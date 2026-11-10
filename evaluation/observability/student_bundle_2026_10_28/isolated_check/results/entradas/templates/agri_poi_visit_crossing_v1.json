@@ -1,0 +1,84 @@
+{
+  "schema": "tfg.scenario-template/1",
+  "template_id": "agri_poi_visit_crossing",
+  "version": 1,
+  "description": "TEST VARIANT: A2 reaches POI_5 across TREE_ROW_1; R1 drives across the DITCH.",
+  "provenance": "derived from the agri_demo_001 task structure (H0/H1/H2); POIs resolved against a site",
+  "planning_margin_m": 1.0,
+  "mission_defaults": {
+    "cruise_speed_kmh": 35.0,
+    "battery_percent": 100.0,
+    "battery_consumption_percent_per_minute": 0.8,
+    "wind_speed_kmh": 0.0,
+    "wind_direction_from_deg": 0.0,
+    "minimum_battery_reserve_percent": 20.0,
+    "maximum_wind_speed_kmh": 30.0,
+    "maximum_altitude_m": 120.0,
+    "failsafe": {
+      "low_battery_action": "RETURN_TO_HOME",
+      "unsafe_wind_action": "RETURN_TO_HOME",
+      "communication_loss_action": "RETURN_TO_HOME"
+    },
+    "source": "same declared planning inputs as the H0 references (missions/examples/agri_demo_001_sector_*.json)"
+  },
+  "aerial_tasks": [
+    {
+      "task_id": "A1",
+      "vehicle_id": "drone_01",
+      "takeoff_point": "TAKEOFF_A",
+      "poi_sequence": [
+        "POI_1",
+        "POI_2"
+      ],
+      "altitude_m": 5.0,
+      "altitude_reference": "relative_to_effective_home",
+      "requested_speed_kmh": 10.0,
+      "end": "RETURN_TO_LAUNCH"
+    },
+    {
+      "task_id": "A2",
+      "vehicle_id": "drone_02",
+      "takeoff_point": "TAKEOFF_B",
+      "poi_sequence": [
+        "POI_3",
+        "POI_5"
+      ],
+      "altitude_m": 5.0,
+      "altitude_reference": "relative_to_effective_home",
+      "requested_speed_kmh": 10.0,
+      "end": "RETURN_TO_LAUNCH"
+    }
+  ],
+  "ground_tasks": [
+    {
+      "task_id": "R1",
+      "vehicle_id": "rover_01",
+      "start_point": "ROVER_START",
+      "target_point": "POI_4",
+      "kind": "VISIT_AND_STOP"
+    }
+  ],
+  "dependencies": [
+    {
+      "task_id": "A2",
+      "after": "A1",
+      "condition": "COMPLETED"
+    },
+    {
+      "task_id": "R1",
+      "after": "A2",
+      "condition": "POI_REACHED",
+      "point": "POI_3"
+    },
+    {
+      "task_id": "R1",
+      "after": "A2",
+      "condition": "COMPLETED"
+    }
+  ],
+  "execution_order": [
+    "A1",
+    "A2",
+    "R1"
+  ]
+}

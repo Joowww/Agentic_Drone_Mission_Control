@@ -1,0 +1,47 @@
+{
+ "config_id": "M0-oracle-delegation",
+ "data_kind": "DETERMINISTIC",
+ "drone_swarm_agent": {
+  "budget_s": 300.0,
+  "candidate": null,
+  "generation": {},
+  "max_iterations": 6,
+  "max_llm_calls": 8,
+  "max_reply_chars": 20000,
+  "max_revisions": 2,
+  "max_tool_calls": 10,
+  "max_total_tokens": null,
+  "mode": "deterministic",
+  "prompt_id": null,
+  "step_contract": "loop"
+ },
+ "mission_orchestrator": {
+  "budget_s": 300.0,
+  "candidate": null,
+  "generation": {},
+  "max_iterations": 6,
+  "max_llm_calls": 8,
+  "max_reply_chars": 20000,
+  "max_revisions": 2,
+  "max_tool_calls": 10,
+  "max_total_tokens": null,
+  "mode": "oracle",
+  "prompt_id": null,
+  "step_contract": "loop"
+ },
+ "rover_agent": {
+  "budget_s": 300.0,
+  "candidate": null,
+  "generation": {},
+  "max_iterations": 6,
+  "max_llm_calls": 8,
+  "max_reply_chars": 20000,
+  "max_revisions": 2,
+  "max_tool_calls": 10,
+  "max_total_tokens": null,
+  "mode": "deterministic",
+  "prompt_id": null,
+  "step_contract": "loop"
+ },
+ "schema": "tfg.multiagent.agents-config/1"
+}

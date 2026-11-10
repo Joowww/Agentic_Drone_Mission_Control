@@ -1,0 +1,26 @@
+========================================
+ TFG - Start Drone Simulation
+========================================
+
+[1/6] Starting Docker container...
+[2/6] Stopping previous simulation processes...
+{"success": true, "signals": [], "errors": [], "unattributed_auxiliaries": [], "remaining": []}
+      Waiting for SITL ports 5760 and 5770 to be released...
+      SITL ports are free.
+[3/6] Applying Gazebo model compatibility fix...
+      Model fix already present.
+[4/6] Updating launch file inside Docker...
+[5/6] Starting Gazebo + ArduPilot...
+{"success": true, "pid": 97, "start_ticks": 809918, "log_path": "/tmp/tfg_demo.log"}
+[6/6] Waiting for AP_DDS...
+.....
+========================================
+ SIMULATION READY
+========================================
+
+Drone 1 -> /ap/v1
+Drone 2 -> /ap/v2
+
+Gazebo GUI: ON
+RViz:       OFF
+

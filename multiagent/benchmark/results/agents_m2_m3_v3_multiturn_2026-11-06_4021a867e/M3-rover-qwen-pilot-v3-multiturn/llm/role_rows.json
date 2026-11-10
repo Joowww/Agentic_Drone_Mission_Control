@@ -1,0 +1,534 @@
+[
+ {
+  "agent_proposal": {
+   "decisions": [
+    {
+     "decision": "PLAN_TO_DECLARED_POI",
+     "objective_id": "G1",
+     "reason": null,
+     "target_point": "POI_3"
+    }
+   ]
+  },
+  "agent_reason": null,
+  "agent_status": "FINAL",
+  "agent_success": true,
+  "agent_success_final_outcome": true,
+  "agreement": "AGREES",
+  "authorization": {
+   "by": null,
+   "granted": false,
+   "how": "each task separately through the existing entries and gates",
+   "required": true
+  },
+  "case_id": "D11",
+  "case_pass": true,
+  "commands_sent": 0,
+  "contract": "v3",
+  "criteria": {
+   "aerial_points": true,
+   "ground_points": true,
+   "no_authorization_no_command": true,
+   "status": true
+  },
+  "decision_record": {
+   "accepted_after_revision": false,
+   "accepted_first_round": true,
+   "accepted_round": 0,
+   "llm_proposals": [
+    {
+     "accepted": true,
+     "findings": [],
+     "proposal": {
+      "decisions": [
+       {
+        "decision": "PLAN_TO_DECLARED_POI",
+        "objective_id": "G1",
+        "reason": null,
+        "target_point": "POI_3"
+       }
+      ]
+     },
+     "reason": null,
+     "round": 0,
+     "status": "FINAL"
+    }
+   ]
+  },
+  "expected_status": "PROPOSED_PENDING_AUTHORIZATION",
+  "failure_kind": null,
+  "finish_reason": [
+   "stop"
+  ],
+  "llm_calls": 1,
+  "llm_calls_real": 1,
+  "llm_latency_s": 2.922049873013748,
+  "mission_latency_s": 2.9473522230109666,
+  "movement_authorized": false,
+  "parse_error": [],
+  "phases": {
+   "first": {
+    "accepted": true,
+    "findings": [],
+    "parse_error": null,
+    "proposal": {
+     "decisions": [
+      {
+       "decision": "PLAN_TO_DECLARED_POI",
+       "objective_id": "G1",
+       "reason": null,
+       "target_point": "POI_3"
+      }
+     ]
+    },
+    "reason": null,
+    "status": "FINAL"
+   },
+   "incomplete": false,
+   "llm_rounds": 1,
+   "second": null,
+   "success": "FIRST_ROUND"
+  },
+  "proposal_sha256": "1151ed99435a69f66f5e29d811202d2482e51a46e562b464d2ef086808f4b567",
+  "rover_gate_accepted": true,
+  "rover_gate_findings": [],
+  "safety_ok": true,
+  "status": "PROPOSED_PENDING_AUTHORIZATION",
+  "tokens": [
+   {
+    "completion_tokens": 123,
+    "prompt_tokens": 1067
+   }
+  ],
+  "tool_calls_model": 1,
+  "tool_calls_runtime": 1,
+  "tools": [
+   {
+    "requested_by": "runtime",
+    "status": "OK",
+    "tool": "rover_capabilities"
+   },
+   {
+    "requested_by": "model",
+    "status": "OK",
+    "tool": "validate_ground_target"
+   }
+  ],
+  "validations": [
+   {
+    "name": "risk_signals:safety/2",
+    "status": "PASS"
+   },
+   {
+    "name": "availability",
+    "status": "PASS"
+   },
+   {
+    "name": "decomposition",
+    "status": "PASS"
+   },
+   {
+    "name": "deconfliction:CHOSEN",
+    "status": "NOT_APPLICABLE"
+   },
+   {
+    "name": "mission:drone_02",
+    "status": "FEASIBLE"
+   },
+   {
+    "name": "ground_route:rover_01->POI_3",
+    "status": "PASS"
+   },
+   {
+    "name": "gate:rover_llm_proposal:round0",
+    "status": "ACCEPTED"
+   },
+   {
+    "name": "gate:rover_proposal",
+    "status": "AGREES"
+   },
+   {
+    "name": "coordination_checks",
+    "status": "PASS"
+   },
+   {
+    "name": "joint_spatial",
+    "status": "INFO"
+   }
+  ],
+  "vehicles_contacted": 0,
+  "verifications": [
+   {
+    "data": {
+     "available": true,
+     "failed_checks": [],
+     "start_point": "ROVER_START",
+     "status": "PASS"
+    },
+    "status": "OK",
+    "tool": "validate_ground_target",
+    "tool_call": 2
+   }
+  ]
+ },
+ {
+  "agent_proposal": {
+   "decisions": [
+    {
+     "decision": "CANNOT_PLAN",
+     "objective_id": "G1",
+     "reason": "NO_DRONE_TASK_REACHES_WAIT_POINT",
+     "target_point": null
+    }
+   ]
+  },
+  "agent_reason": null,
+  "agent_status": "FINAL",
+  "agent_success": false,
+  "agent_success_final_outcome": true,
+  "agreement": "DISAGREES_DETERMINISTIC_KEPT",
+  "authorization": {
+   "by": null,
+   "granted": false,
+   "how": "each task separately through the existing entries and gates",
+   "required": true
+  },
+  "case_id": "D12",
+  "case_pass": true,
+  "commands_sent": 0,
+  "contract": "v3",
+  "criteria": {
+   "no_authorization_no_command": true,
+   "no_tasks": true,
+   "reason_contains": true,
+   "status": true
+  },
+  "decision_record": {
+   "accepted_after_revision": true,
+   "accepted_first_round": false,
+   "accepted_round": 1,
+   "llm_proposals": [
+    {
+     "accepted": false,
+     "findings": [
+      "DEPENDENCY_UNSATISFIED_TASK_PROPOSED at decisions[0].decision: no proposed drone task reaches POI_1"
+     ],
+     "proposal": {
+      "decisions": [
+       {
+        "decision": "PLAN_TO_DECLARED_POI",
+        "objective_id": "G1",
+        "reason": null,
+        "target_point": "POI_1"
+       }
+      ]
+     },
+     "reason": null,
+     "round": 0,
+     "status": "FINAL"
+    },
+    {
+     "accepted": true,
+     "findings": [],
+     "proposal": {
+      "decisions": [
+       {
+        "decision": "CANNOT_PLAN",
+        "objective_id": "G1",
+        "reason": "NO_DRONE_TASK_REACHES_WAIT_POINT",
+        "target_point": null
+       }
+      ]
+     },
+     "reason": null,
+     "round": 1,
+     "status": "FINAL"
+    }
+   ]
+  },
+  "expected_status": "INFEASIBLE",
+  "failure_kind": "MODEL",
+  "finish_reason": [
+   "stop",
+   "stop"
+  ],
+  "llm_calls": 2,
+  "llm_calls_real": 2,
+  "llm_latency_s": 2.6778761009918526,
+  "mission_latency_s": 2.6989034279831685,
+  "movement_authorized": false,
+  "parse_error": [],
+  "phases": {
+   "first": {
+    "accepted": false,
+    "findings": [
+     "DEPENDENCY_UNSATISFIED_TASK_PROPOSED at decisions[0].decision: no proposed drone task reaches POI_1"
+    ],
+    "parse_error": null,
+    "proposal": {
+     "decisions": [
+      {
+       "decision": "PLAN_TO_DECLARED_POI",
+       "objective_id": "G1",
+       "reason": null,
+       "target_point": "POI_1"
+      }
+     ]
+    },
+    "reason": null,
+    "status": "FINAL"
+   },
+   "incomplete": false,
+   "llm_rounds": 2,
+   "second": {
+    "accepted": true,
+    "findings": [],
+    "parse_error": null,
+    "proposal": {
+     "decisions": [
+      {
+       "decision": "CANNOT_PLAN",
+       "objective_id": "G1",
+       "reason": "NO_DRONE_TASK_REACHES_WAIT_POINT",
+       "target_point": null
+      }
+     ]
+    },
+    "reason": null,
+    "status": "FINAL"
+   },
+   "success": "AFTER_REVISION"
+  },
+  "proposal_sha256": "6d717b7b1e700c40f4146822b8a9899a8b25424dc9eb4feccde8465cf3129151",
+  "rover_gate_accepted": true,
+  "rover_gate_findings": [
+   "DEPENDENCY_UNSATISFIED_TASK_PROPOSED at decisions[0].decision: no proposed drone task reaches POI_1"
+  ],
+  "safety_ok": true,
+  "status": "INFEASIBLE",
+  "tokens": [
+   {
+    "completion_tokens": 123,
+    "prompt_tokens": 1057
+   },
+   {
+    "completion_tokens": 119,
+    "prompt_tokens": 1116
+   }
+  ],
+  "tool_calls_model": 2,
+  "tool_calls_runtime": 1,
+  "tools": [
+   {
+    "requested_by": "runtime",
+    "status": "OK",
+    "tool": "rover_capabilities"
+   },
+   {
+    "requested_by": "model",
+    "status": "OK",
+    "tool": "validate_ground_target"
+   },
+   {
+    "requested_by": "model",
+    "status": "OK",
+    "tool": "validate_ground_target"
+   }
+  ],
+  "validations": [
+   {
+    "name": "risk_signals:safety/2",
+    "status": "PASS"
+   },
+   {
+    "name": "availability",
+    "status": "PASS"
+   },
+   {
+    "name": "decomposition",
+    "status": "PASS"
+   },
+   {
+    "name": "ground_route:rover_01->POI_1",
+    "status": "PASS"
+   },
+   {
+    "name": "gate:rover_llm_proposal:round0",
+    "status": "REJECTED"
+   },
+   {
+    "name": "gate:rover_llm_proposal:round1",
+    "status": "ACCEPTED"
+   },
+   {
+    "name": "gate:rover_proposal",
+    "status": "DISAGREES_DETERMINISTIC_KEPT"
+   }
+  ],
+  "vehicles_contacted": 0,
+  "verifications": [
+   {
+    "data": {
+     "available": true,
+     "failed_checks": [],
+     "start_point": "ROVER_START",
+     "status": "PASS"
+    },
+    "status": "OK",
+    "tool": "validate_ground_target",
+    "tool_call": 3
+   }
+  ]
+ },
+ {
+  "agent_proposal": {
+   "decisions": [
+    {
+     "decision": "CANNOT_PLAN",
+     "objective_id": "G1",
+     "reason": "ROVER_UNAVAILABLE",
+     "target_point": null
+    }
+   ]
+  },
+  "agent_reason": null,
+  "agent_status": "FINAL",
+  "agent_success": true,
+  "agent_success_final_outcome": true,
+  "agreement": "AGREES",
+  "authorization": {
+   "by": null,
+   "granted": false,
+   "how": "each task separately through the existing entries and gates",
+   "required": true
+  },
+  "case_id": "D14",
+  "case_pass": true,
+  "commands_sent": 0,
+  "contract": "v3",
+  "criteria": {
+   "no_authorization_no_command": true,
+   "no_tasks": true,
+   "status": true
+  },
+  "decision_record": {
+   "accepted_after_revision": false,
+   "accepted_first_round": true,
+   "accepted_round": 0,
+   "llm_proposals": [
+    {
+     "accepted": true,
+     "findings": [],
+     "proposal": {
+      "decisions": [
+       {
+        "decision": "CANNOT_PLAN",
+        "objective_id": "G1",
+        "reason": "ROVER_UNAVAILABLE",
+        "target_point": null
+       }
+      ]
+     },
+     "reason": null,
+     "round": 0,
+     "status": "FINAL"
+    }
+   ]
+  },
+  "expected_status": "INFEASIBLE",
+  "failure_kind": null,
+  "finish_reason": [
+   "stop"
+  ],
+  "llm_calls": 1,
+  "llm_calls_real": 1,
+  "llm_latency_s": 1.3064818349957932,
+  "mission_latency_s": 1.325320625997847,
+  "movement_authorized": false,
+  "parse_error": [],
+  "phases": {
+   "first": {
+    "accepted": true,
+    "findings": [],
+    "parse_error": null,
+    "proposal": {
+     "decisions": [
+      {
+       "decision": "CANNOT_PLAN",
+       "objective_id": "G1",
+       "reason": "ROVER_UNAVAILABLE",
+       "target_point": null
+      }
+     ]
+    },
+    "reason": null,
+    "status": "FINAL"
+   },
+   "incomplete": false,
+   "llm_rounds": 1,
+   "second": null,
+   "success": "FIRST_ROUND"
+  },
+  "proposal_sha256": "7df233d454939a44ad76c3b3830fc3fada782ac821b084e355a8c15d7baafb87",
+  "rover_gate_accepted": true,
+  "rover_gate_findings": [],
+  "safety_ok": true,
+  "status": "INFEASIBLE",
+  "tokens": [
+   {
+    "completion_tokens": 115,
+    "prompt_tokens": 1053
+   }
+  ],
+  "tool_calls_model": 1,
+  "tool_calls_runtime": 1,
+  "tools": [
+   {
+    "requested_by": "runtime",
+    "status": "OK",
+    "tool": "rover_capabilities"
+   },
+   {
+    "requested_by": "model",
+    "status": "OK",
+    "tool": "validate_ground_target"
+   }
+  ],
+  "validations": [
+   {
+    "name": "risk_signals:safety/2",
+    "status": "PASS"
+   },
+   {
+    "name": "availability",
+    "status": "PASS"
+   },
+   {
+    "name": "decomposition",
+    "status": "PASS"
+   },
+   {
+    "name": "gate:rover_llm_proposal:round0",
+    "status": "ACCEPTED"
+   },
+   {
+    "name": "gate:rover_proposal",
+    "status": "AGREES"
+   }
+  ],
+  "vehicles_contacted": 0,
+  "verifications": [
+   {
+    "data": {
+     "available": false,
+     "failed_checks": [],
+     "start_point": "ROVER_START",
+     "status": "PASS"
+    },
+    "status": "OK",
+    "tool": "validate_ground_target",
+    "tool_call": 2
+   }
+  ]
+ }
+]

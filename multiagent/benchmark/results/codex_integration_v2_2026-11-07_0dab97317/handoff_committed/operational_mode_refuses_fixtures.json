@@ -1,0 +1,146 @@
+{
+ "classification": "BLOCKED_BEFORE_SUBMISSION",
+ "codex_commit": "57a0e303a",
+ "codex_snapshot": "committed 57a0e303a",
+ "commands": [],
+ "coordinator_events": [
+  {
+   "reasons": [
+    "authorization: FIXTURE_AUTHORIZATION_NOT_ACCEPTED_IN_OPERATIONAL_MODE",
+    "codex_v2: AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "envelope": null,
+ "mode": "OPERATIONAL",
+ "movement_executed": false,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [],
+   "stage": "request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [
+    "FIXTURE_AUTHORIZATION_NOT_ACCEPTED_IN_OPERATIONAL_MODE"
+   ],
+   "stage": "authorization",
+   "status": "BLOCKED"
+  },
+  {
+   "reasons": [],
+   "stage": "codex_bridge",
+   "status": "PASS"
+  },
+  {
+   "conversion": {
+    "at": "2026-11-07T09:50:28.274217+00:00",
+    "chain": [
+     "inverse(synthetic_orchard_local<-odom)"
+    ],
+    "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "converted_by": "claude.multiagent.frames2d",
+    "from": {
+     "frame": "synthetic_orchard_local",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "to": {
+     "frame": "odom",
+     "sigma_m": 0.12199692619078564,
+     "x_m": 5.500000000000001,
+     "y_m": -7.0
+    },
+    "valid_until": "2026-11-07T10:50:28.274217+00:00"
+   },
+   "goal_base_link": {
+    "frame": "base_link",
+    "x_m": -2.0,
+    "y_m": -1.0106430996148606e-15
+   },
+   "goal_rover": {
+    "frame": "odom",
+    "sigma_m": 0.12199692619078564,
+    "x_m": 5.500000000000001,
+    "y_m": -7.0
+   },
+   "reasons": [],
+   "stage": "frames",
+   "status": "PASS"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [
+    "AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE"
+   ],
+   "schema_errors": null,
+   "stage": "codex_v2",
+   "status": "WAITING"
+  },
+  {
+   "reasons": [],
+   "request": {
+    "goal": {
+     "command_hz": 10.0,
+     "dwell_s": 1.0,
+     "frame": "odom",
+     "max_samples": 64,
+     "no_progress_s": 10.0,
+     "progress_m": 0.05,
+     "progress_rad": 0.05,
+     "timeout_s": 60.0,
+     "tolerance_m": 0.3,
+     "transform": "IDENTITY_SAME_ACCREDITED_FRAME",
+     "unit": "m",
+     "x_m": 5.500000000000001,
+     "y_m": -7.0,
+     "yaw_rad": -1.5707963267948961,
+     "yaw_tolerance_rad": 0.5
+    },
+    "kind": "ROVER_NAVIGATE_V1",
+    "limits": {
+     "call_timeout_s": 2.0,
+     "max_duration_s": 60.0,
+     "max_forward_mps": 0.3,
+     "max_yaw_rate_rad_s": 0.5,
+     "observation_max_age_s": 0.5,
+     "stop_timeout_s": 2.0,
+     "stopped_angular_rad_s": 0.02,
+     "stopped_linear_mps": 0.02
+    }
+   },
+   "stage": "executor_request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

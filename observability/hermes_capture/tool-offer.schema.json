@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tfg.hermes.tool-offer/1",
+  "title": "Tools offered in one Hermes API request (names only)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "event_type", "event_id", "recorded_at_utc", "run_id", "case_id",
+    "session_ref", "task_ref", "turn_ref", "api_request_ref", "api_call_count", "tool_count",
+    "offered_tool_names", "offered_tool_names_source", "absent_fields", "redacted_fields"
+  ],
+  "properties": {
+    "schema": {"const": "tfg.hermes.tool-offer/1"},
+    "event_type": {"const": "tool_offer"},
+    "event_id": {"type": "string", "format": "uuid"},
+    "recorded_at_utc": {"type": "string", "format": "date-time"},
+    "run_id": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9_.:-]{1,64}$"},
+    "case_id": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9_.:-]{1,64}$"},
+    "session_ref": {"$ref": "#/$defs/ref"},
+    "task_ref": {"$ref": "#/$defs/ref"},
+    "turn_ref": {"$ref": "#/$defs/ref"},
+    "api_request_ref": {"$ref": "#/$defs/ref"},
+    "api_call_count": {"type": ["integer", "null"], "minimum": 0},
+    "tool_count": {"type": ["integer", "null"], "minimum": 0},
+    "offered_tool_names": {
+      "type": ["array", "null"],
+      "items": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9_.:@+-]{1,128}$"}
+    },
+    "offered_tool_names_source": {
+      "enum": ["request_body_tools", "request_body_without_tools", "absent", "unreadable"]
+    },
+    "absent_fields": {"type": "array", "items": {"type": "string"}},
+    "redacted_fields": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "ref": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{16}$"}
+  }
+}

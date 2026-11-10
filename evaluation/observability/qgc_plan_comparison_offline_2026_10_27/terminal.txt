@@ -1,0 +1,143 @@
+$ python -m tools.qgc_plan_compare <original> <saved:01_presentation_reindent_reorder.plan> --out cases/01_presentation_reindent_reorder
+{
+  "status": "NO_SEMANTIC_DIFFERENCES",
+  "counts": {
+    "PRESENTATION": 1,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 0,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}
+[rc 0]
+$ python -m tools.qgc_plan_compare <original> <saved:02_qgc_metadata.plan> --out cases/02_qgc_metadata
+{
+  "status": "NO_SEMANTIC_DIFFERENCES",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 3,
+    "SEMANTIC_CHANGE": 0,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}
+[rc 0]
+$ python -m tools.qgc_plan_compare <original> <saved:03_command_land_to_rtl.plan> --out cases/03_command_land_to_rtl
+{
+  "status": "SEMANTIC_DIFFERENCES",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 2,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}
+[rc 1]
+$ python -m tools.qgc_plan_compare <original> <saved:04_altitude_5_to_15.plan> --out cases/04_altitude_5_to_15
+{
+  "status": "SEMANTIC_DIFFERENCES",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 1,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 1
+  }
+}
+[rc 1]
+$ python -m tools.qgc_plan_compare <original> <saved:05_frame_relative_to_absolute.plan> --out cases/05_frame_relative_to_absolute
+{
+  "status": "SEMANTIC_DIFFERENCES",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 1,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}
+[rc 1]
+$ python -m tools.qgc_plan_compare <original> <saved:06_yaw_null_to_zero.plan> --out cases/06_yaw_null_to_zero
+{
+  "status": "SEMANTIC_DIFFERENCES",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 1,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}
+[rc 1]
+$ python -m tools.qgc_plan_compare <original> <saved:07_speed_change.plan> --out cases/07_speed_change
+{
+  "status": "SEMANTIC_DIFFERENCES",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 1,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}
+[rc 1]
+$ python -m tools.qgc_plan_compare <original> <saved:08_land_removed.plan> --out cases/08_land_removed
+{
+  "status": "SEMANTIC_DIFFERENCES",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 0,
+    "ADDED": 0,
+    "REMOVED": 1,
+    "UNDETERMINED": 0
+  }
+}
+[rc 1]
+$ python -m tools.qgc_plan_compare <original> <saved:09_unknown_field.plan> --out cases/09_unknown_field
+{
+  "status": "UNDETERMINED",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 0,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 1
+  }
+}
+[rc 1]
+$ python -m tools.qgc_plan_compare <original> <saved:10_nan_token.plan> --out cases/10_nan_token
+{
+  "status": "UNDETERMINED",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 0,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 2
+  }
+}
+[rc 1]
+$ python -m tools.qgc_plan_compare <original> <saved:11_unreadable.plan> --out cases/11_unreadable
+{
+  "status": "UNREADABLE_SAVED",
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 0,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}
+[rc 2]

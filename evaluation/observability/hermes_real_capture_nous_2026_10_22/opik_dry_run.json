@@ -1,0 +1,176 @@
+{
+  "blocked_for_future_send_by_default": [],
+  "captured_traces": 1,
+  "destination": {
+    "platform": "opik",
+    "project": "tfg-opik-hermes-real-20261021",
+    "workspace": "joowww"
+  },
+  "errors": [],
+  "events": 1,
+  "mode": "dry-run",
+  "note": "Nothing was sent. Metadata-only; token counters are Hermes-normalised; no cost, usage, model/provider or ttft at top level.",
+  "payload": {
+    "spans_batches": [
+      {
+        "spans": [
+          {
+            "end_time": "2026-10-22T08:24:32.182407Z",
+            "id": "01a162b6-2ebb-7922-baa1-6ffc9bea022d",
+            "metadata": {
+              "tfg_absent_fields": [
+                "retry_count",
+                "upstream_provider"
+              ],
+              "tfg_ambiguous_zero_fields": [
+                "usage.cache_write_tokens",
+                "usage.reasoning_tokens"
+              ],
+              "tfg_api_call_count": 1,
+              "tfg_api_duration_s": 3.066964626312256,
+              "tfg_api_mode": "chat_completions",
+              "tfg_api_request_ref": "sha256:da57987f49241508",
+              "tfg_assistant_tool_call_count": 0,
+              "tfg_case_id": "oneshot-ok",
+              "tfg_context_length": 65536,
+              "tfg_cost": "not_computed",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_ended_at_epoch_s": 1792657472.1824067,
+              "tfg_event_id": "4ce60dac-caf3-43b1-9b4b-1909e2af2629",
+              "tfg_event_type": "llm_call",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_exporter_version": "1",
+              "tfg_finish_reason": "stop",
+              "tfg_first_chunk_offset_s": 2.7242767810821533,
+              "tfg_latency_measured": true,
+              "tfg_message_count": 2,
+              "tfg_model": "poolside/laguna-s-2.1:free",
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_provider": "nous",
+              "tfg_recorded_at_utc": "2026-10-22T08:24:32.191003+00:00",
+              "tfg_redacted_fields": [],
+              "tfg_requested_tool_names": [],
+              "tfg_response_model": "poolside/laguna-s-2.1:free",
+              "tfg_retry_count": null,
+              "tfg_run_id": "real-hermes-20261022",
+              "tfg_schema": "tfg.hermes.capture/3",
+              "tfg_session_ref": "sha256:fd660b3f9640083c",
+              "tfg_started_at_epoch_s": 1792657469.115442,
+              "tfg_task_ref": "sha256:25909a7341782c1e",
+              "tfg_time_basis": "hermes_epochs",
+              "tfg_timing_scope": "api_call_from_first_attempt",
+              "tfg_timing_source": "hermes_hook_wall_clock",
+              "tfg_turn_ref": "sha256:3b834448ea29cf1e",
+              "tfg_units": {
+                "api_duration_s": "s",
+                "ended_at_epoch_s": "s_since_epoch",
+                "first_chunk_offset_s": "s",
+                "started_at_epoch_s": "s_since_epoch"
+              },
+              "tfg_upstream_provider": null,
+              "tfg_usage": {
+                "cache_read_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 224
+                },
+                "cache_write_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "input_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 570
+                },
+                "output_tokens": {
+                  "status": "nonzero_normalized",
+                  "value": 2
+                },
+                "prompt_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 794
+                },
+                "reasoning_tokens": {
+                  "status": "zero_unconfirmed",
+                  "value": 0
+                },
+                "total_tokens": {
+                  "status": "derived_nonzero",
+                  "value": 796
+                }
+              },
+              "tfg_usage_semantics": "hermes_normalized_summary_not_provider_raw",
+              "tfg_usage_source": "hermes_normalized_summary"
+            },
+            "name": "llm_call:poolside/laguna-s-2.1:free",
+            "project_name": "tfg-opik-hermes-real-20261021",
+            "start_time": "2026-10-22T08:24:29.115442Z",
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ],
+            "trace_id": "01a162b6-2ebb-7ed9-9cb4-921cef200602",
+            "type": "llm"
+          }
+        ]
+      }
+    ],
+    "traces_batches": [
+      {
+        "traces": [
+          {
+            "end_time": "2026-10-22T08:24:32.182407Z",
+            "id": "01a162b6-2ebb-7ed9-9cb4-921cef200602",
+            "metadata": {
+              "tfg_case_id": "oneshot-ok",
+              "tfg_cost": "not_computed",
+              "tfg_data_kind": "captured_hermes_metadata",
+              "tfg_exporter": "tfg-opik-offline",
+              "tfg_exporter_version": "1",
+              "tfg_grouping": "derived_from_turn_ref",
+              "tfg_interval_derived": true,
+              "tfg_interval_status": "derived_from_measured_spans_only",
+              "tfg_latency_measured": false,
+              "tfg_observed_event": false,
+              "tfg_point_event_time_basis": "capture_recorded_at_not_compared_with_hermes_epochs",
+              "tfg_point_events": [],
+              "tfg_provenance_basis": "declared_captured_with_hermes_sink_provenance_record",
+              "tfg_run_id": "real-hermes-20261022",
+              "tfg_session_ref": "sha256:fd660b3f9640083c",
+              "tfg_time_basis": "derived_min_max_of_hermes_epochs",
+              "tfg_timed_spans": 1,
+              "tfg_turn_ref": "sha256:3b834448ea29cf1e"
+            },
+            "name": "hermes_turn",
+            "project_name": "tfg-opik-hermes-real-20261021",
+            "start_time": "2026-10-22T08:24:29.115442Z",
+            "tags": [
+              "tfg-hermes-capture",
+              "schema:tfg.hermes.capture/3",
+              "captured-metadata"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "point_events": 0,
+  "provenance_check": {
+    "files": [
+      {
+        "file": "hermes-events-2026-10-22.jsonl",
+        "problems": [],
+        "records": 1
+      }
+    ],
+    "ok": true
+  },
+  "sent": false,
+  "spans": 1,
+  "synthetic_traces": 0,
+  "traces": 1,
+  "unknown_provenance_traces": 0,
+  "verification": "UNVERIFIED_AGAINST_OPIK_SERVICE: fields follow the official OpenAPI spec for traces/batch and spans/batch (comet-ml/opik@6ff71e2, reviewed 2026-10-21); shape validated offline against opik==2.2.110 REST models and a mock transport (evaluation/observability/opik_sdk_offline_validation_2026_10_21); opik is not a dependency of this exporter",
+  "warnings": [],
+  "withheld_traces": []
+}

@@ -1,0 +1,351 @@
+{
+ "schema": "tfg.multiagent.experiment-matrix/1",
+ "matrix_id": "multiagent_matrix_v1",
+ "created": "2026-11-04",
+ "status": "NOTHING_RUN_WITH_REAL_MODELS",
+ "datasets": {
+  "development": [
+   "dev_v3"
+  ],
+  "evaluation": [
+   "eval_v3",
+   "adversarial_v3"
+  ],
+  "rule": "iterate prompts and agent loops only on dev_v3; eval_v3 and adversarial_v3 are frozen and run once per configuration"
+ },
+ "pipeline": "v2",
+ "runs": {
+  "temperature_0": 1,
+  "variability": {
+   "runs": 3,
+   "temperature": 0.7,
+   "seeds": [
+    7,
+    11,
+    13
+   ]
+  }
+ },
+ "configurations": [
+  {
+   "id": "M0-deterministic",
+   "status": "RUNNABLE_OFFLINE",
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "deterministic"
+    },
+    "drone_swarm_agent": {
+     "mode": "deterministic"
+    },
+    "rover_agent": {
+     "mode": "deterministic"
+    }
+   }
+  },
+  {
+   "id": "M1-supervisor-qwen",
+   "status": "CONFIGURED_NOT_RUN",
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "prompt_id": "interpret_brief/2",
+     "generation": {
+      "temperature": 0.0,
+      "seed": 7,
+      "num_predict": 1024,
+      "think": false,
+      "num_ctx": 8192,
+      "timeout_s": 120.0
+     }
+    },
+    "drone_swarm_agent": {
+     "mode": "deterministic"
+    },
+    "rover_agent": {
+     "mode": "deterministic"
+    }
+   }
+  },
+  {
+   "id": "M2-drone-qwen",
+   "status": "CONFIGURED_NOT_RUN",
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "deterministic"
+    },
+    "drone_swarm_agent": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "generation": {
+      "temperature": 0.0,
+      "seed": 7,
+      "num_predict": 1024,
+      "think": false,
+      "num_ctx": 8192,
+      "timeout_s": 120.0
+     }
+    },
+    "rover_agent": {
+     "mode": "deterministic"
+    }
+   }
+  },
+  {
+   "id": "M3-rover-qwen",
+   "status": "CONFIGURED_NOT_RUN",
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "deterministic"
+    },
+    "drone_swarm_agent": {
+     "mode": "deterministic"
+    },
+    "rover_agent": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "generation": {
+      "temperature": 0.0,
+      "seed": 7,
+      "num_predict": 1024,
+      "think": false,
+      "num_ctx": 8192,
+      "timeout_s": 120.0
+     }
+    }
+   }
+  },
+  {
+   "id": "M4-all-qwen-shared",
+   "status": "CONFIGURED_NOT_RUN",
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "prompt_id": "interpret_brief/2",
+     "generation": {
+      "temperature": 0.0,
+      "seed": 7,
+      "num_predict": 1024,
+      "think": false,
+      "num_ctx": 8192,
+      "timeout_s": 120.0
+     }
+    },
+    "drone_swarm_agent": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "generation": {
+      "temperature": 0.0,
+      "seed": 7,
+      "num_predict": 1024,
+      "think": false,
+      "num_ctx": 8192,
+      "timeout_s": 120.0
+     }
+    },
+    "rover_agent": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "generation": {
+      "temperature": 0.0,
+      "seed": 7,
+      "num_predict": 1024,
+      "think": false,
+      "num_ctx": 8192,
+      "timeout_s": 120.0
+     }
+    }
+   }
+  },
+  {
+   "id": "M5-mixed-models",
+   "status": "BLOCKED_NEEDS_AIDA_AND_HERMES",
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "llm",
+     "candidate": "aida-qwen",
+     "prompt_id": "interpret_brief/2",
+     "generation": {
+      "temperature": 0.0
+     }
+    },
+    "drone_swarm_agent": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "generation": {
+      "temperature": 0.0,
+      "seed": 7,
+      "num_predict": 1024,
+      "think": false,
+      "num_ctx": 8192,
+      "timeout_s": 120.0
+     }
+    },
+    "rover_agent": {
+     "mode": "llm",
+     "candidate": "hermes",
+     "generation": {
+      "temperature": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "M6-all-aida-qwen",
+   "status": "BLOCKED_NEEDS_AIDA",
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "llm",
+     "candidate": "aida-qwen",
+     "prompt_id": "interpret_brief/2",
+     "generation": {
+      "temperature": 0.0
+     }
+    },
+    "drone_swarm_agent": {
+     "mode": "llm",
+     "candidate": "aida-qwen",
+     "generation": {
+      "temperature": 0.0
+     }
+    },
+    "rover_agent": {
+     "mode": "llm",
+     "candidate": "aida-qwen",
+     "generation": {
+      "temperature": 0.0
+     }
+    }
+   }
+  },
+  {
+   "id": "M7-hermes-provider",
+   "status": "BLOCKED_NEEDS_HERMES_ENDPOINT",
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "llm",
+     "candidate": "hermes",
+     "prompt_id": "interpret_brief/2",
+     "generation": {
+      "temperature": 0.0
+     }
+    },
+    "drone_swarm_agent": {
+     "mode": "deterministic"
+    },
+    "rover_agent": {
+     "mode": "deterministic"
+    }
+   }
+  },
+  {
+   "id": "M8-supervisor-qwen-prompt-v1",
+   "status": "CONFIGURED_NOT_RUN",
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "prompt_id": "interpret_brief/1",
+     "generation": {
+      "temperature": 0.0,
+      "seed": 7,
+      "num_predict": 1024,
+      "think": false,
+      "num_ctx": 8192,
+      "timeout_s": 120.0
+     }
+    },
+    "drone_swarm_agent": {
+     "mode": "deterministic"
+    },
+    "rover_agent": {
+     "mode": "deterministic"
+    }
+   }
+  }
+ ],
+ "clef": {
+  "id": "C1-clef-advisory",
+  "status": "BLOCKED_NEEDS_AIDA",
+  "tasks": [
+   "CLASSIFY_REQUEST (advisory pre-screen of the supervisor)",
+   "SELECT_ALLOCATION (choice among the reference's ranked alternatives)"
+  ],
+  "role": "advisory only: its decision is recorded and scored, never replaces a gate or the deterministic choice",
+  "plan": "benchmark/experiments/plan_v1.json EXP-06"
+ },
+ "metrics": {
+  "A_interpretation": [
+   "extraction_accuracy",
+   "failure labels INTERPRETATION / EXTRACTION / SCHEMA",
+   "parse errors"
+  ],
+  "B_decisions": [
+   "gate acceptance rate of drone proposals (gates_accepted / all gates)",
+   "same_assignment_as_reference",
+   "rover agreement (AGREES / DISAGREES_DETERMINISTIC_KEPT)"
+  ],
+  "C_constraint_compliance": [
+   "constraint_compliance",
+   "gate violations per proposal (sensor, battery, wind, exclusions)",
+   "plans accepted that the deterministic layer had to reject (must be 0)"
+  ],
+  "D_planning": [
+   "structural_validity",
+   "coverage_match",
+   "makespan_ratio vs reference",
+   ".plan exports generated"
+  ],
+  "E_coordination": [
+   "revision_requests",
+   "rounds until acceptance",
+   "conflicts_ok / residual conflicts",
+   "rover dependency satisfied"
+  ],
+  "F_llm_calls": [
+   "llm_calls_real per agent (llm_calls_test_double must be 0 in a real experiment)"
+  ],
+  "G_tool_calls": [
+   "tool_calls and tool_failures per agent",
+   "refused operational tool requests"
+  ],
+  "H_agent_latency": [
+   "agent span durations and llm span durations per agent (perf_counter, this process)"
+  ],
+  "I_global_latency": [
+   "mission span duration"
+  ],
+  "J_safety": [
+   "safety axis (SAFE / BLOCKED_WITHOUT_REFUSAL / UNSAFE)",
+   "unsafe_missed",
+   "safe_refused",
+   "authority never granted"
+  ],
+  "K_consistency": [
+   "proposal hash agreement over runs (runs >= 2, seeds per run)"
+  ],
+  "L_cost_resources": [
+   "tokens per agent",
+   "GPU memory and Ollama residency (pilot probes)",
+   "cost: NOT_APPLICABLE local, UNKNOWN remote until a price is known"
+  ]
+ },
+ "comparisons": [
+  "M1 vs M0: value of an LLM supervisor alone",
+  "M2 vs M0: LLM drone allocation vs the deterministic reference",
+  "M3 vs M0: LLM rover review",
+  "M4 vs M1+M2+M3: shared model across roles",
+  "M5 vs M4: different models per role",
+  "M6 / M7 vs M4: remote and Hermes provider",
+  "M8 vs M1: prompt /1 vs /2"
+ ],
+ "finish_when": [
+  "all cases of the dataset run",
+  "3 consecutive infrastructure errors",
+  "GPU above 7500 MiB",
+  "any precondition failing"
+ ],
+ "results_dir": "multiagent/benchmark/results/matrix_<config id>_<dataset>_<date>_<commit>",
+ "resources": "only measured reference: qwen3:4b pilot (10.2-23.7 s per call, <= 3865 MiB GPU, think off); a multi-agent run makes several calls per case (supervisor 1, drone up to max_llm_calls x revisions, rover up to max_llm_calls): duration NOT estimated"
+}

@@ -1,0 +1,95 @@
+== /ap/v1/status
+header:
+  stamp:
+    sec: 6
+    nanosec: 58178000
+  frame_id: ''
+vehicle_type: 2
+armed: false
+mode: 0
+flying: false
+external_control: true
+failsafe: []
+---
+== /ap/v1/navsat
+== /ap/v1/battery
+header:
+  stamp:
+    sec: 8
+    nanosec: 23431000
+  frame_id: '0'
+voltage: 12.600000381469727
+temperature: .nan
+current: -0.0
+charge: 3.3000001907348633
+capacity: .nan
+design_capacity: 3.3000001907348633
+percentage: 1.0
+power_supply_status: 4
+power_supply_health: 1
+power_supply_technology: 0
+present: true
+cell_voltage: []
+cell_temperature: []
+location: ''
+serial_number: ''
+---
+== /ap/v2/status
+header:
+  stamp:
+    sec: 8
+    nanosec: 582180000
+  frame_id: ''
+vehicle_type: 2
+armed: false
+mode: 0
+flying: false
+external_control: true
+failsafe: []
+---
+== /ap/v2/navsat
+header:
+  stamp:
+    sec: 1793701390
+    nanosec: 436770000
+  frame_id: '0'
+status:
+  status: 2
+  service: 1
+latitude: -35.36326217651367
+longitude: 149.16526794433594
+altitude: 584.1900024414062
+position_covariance:
+- 0.09000000357627869
+- 0.0
+- 0.0
+- 0.0
+- 0.09000000357627869
+- 0.0
+- 0.0
+- 0.0
+- 0.09000000357627869
+position_covariance_type: 2
+---
+== /ap/v2/battery
+header:
+  stamp:
+    sec: 1793701390
+    nanosec: 989770000
+  frame_id: '0'
+voltage: 12.600000381469727
+temperature: .nan
+current: -0.0
+charge: 3.3000001907348633
+capacity: .nan
+design_capacity: 3.3000001907348633
+percentage: 1.0
+power_supply_status: 4
+power_supply_health: 1
+power_supply_technology: 0
+present: true
+cell_voltage: []
+cell_temperature: []
+location: ''
+serial_number: ''
+---

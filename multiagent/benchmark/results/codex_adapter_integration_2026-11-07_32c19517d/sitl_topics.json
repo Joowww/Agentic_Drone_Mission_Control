@@ -1,0 +1,60 @@
+{
+ "ingestible_statuses": [
+  "ACCREDITED_BY_INGESTION",
+  "DECLARED_BY_TEST"
+ ],
+ "namespaces": {
+  "/ap/v1": {
+   "autopilot": "ArduCopter",
+   "sysid": 1,
+   "vehicle_id": "drone_01"
+  },
+  "/ap/v2": {
+   "autopilot": "ArduCopter",
+   "sysid": 2,
+   "vehicle_id": "drone_02"
+  },
+  "/ap/v3": {
+   "autopilot": "ArduRover",
+   "sysid": 3,
+   "vehicle_id": "rover_01"
+  }
+ },
+ "topics": {
+  "/ap/v1/status": {
+   "direction": "TELEMETRY",
+   "evidence": "feature/ardupilot-ros2 7e8855f6a scripts/check_sim.sh (topic list)",
+   "msg_type": null,
+   "status": "BASELINE_CONFIRMED",
+   "vehicle_id": "drone_01"
+  },
+  "/ap/v2/status": {
+   "direction": "TELEMETRY",
+   "evidence": "feature/ardupilot-ros2 7e8855f6a scripts/check_sim.sh (topic list)",
+   "msg_type": null,
+   "status": "BASELINE_CONFIRMED",
+   "vehicle_id": "drone_02"
+  },
+  "/ap/v3/cmd_vel": {
+   "direction": "COMMAND",
+   "evidence": "feature/ardupilot-ros2 7e8855f6a results/validation_3_vehicles.md (subscription)",
+   "msg_type": null,
+   "status": "BASELINE_CONFIRMED",
+   "vehicle_id": "rover_01"
+  },
+  "/ap/v3/status": {
+   "direction": "TELEMETRY",
+   "evidence": "2e206f1fa tools/rover_control.py, tools/rover_environment_identity.py",
+   "msg_type": null,
+   "status": "REFERENCED_BY_CODEX_CODE",
+   "vehicle_id": "rover_01"
+  },
+  "/rover1/odometry": {
+   "direction": "TELEMETRY",
+   "evidence": "2e206f1fa tools/rover_control.py (ros_gz_bridge from /model/rover1/odometry)",
+   "msg_type": "nav_msgs/msg/Odometry",
+   "status": "REFERENCED_BY_CODEX_CODE",
+   "vehicle_id": "rover_01"
+  }
+ }
+}

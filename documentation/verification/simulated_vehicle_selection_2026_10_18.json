@@ -1,0 +1,101 @@
+{
+  "date_local": "2026-10-18",
+  "base_commit": "041d266afe95b7c8e32de06467510d1b3be3d09f",
+  "branch": "feature/hermes-integration",
+  "scope": "Offline implementation of mission-selected SITL vehicle; no Docker, simulation, flight, LLM provider or operational MCP",
+  "mapping": {
+    "drone_01": "v1",
+    "drone_02": "v2"
+  },
+  "max_project_flight_executions": 1,
+  "tests": [
+    {
+      "command": ".venv/bin/python -m pytest -q tests/test_simulated_vehicle_selection.py tests/test_simulation_mission_executor.py tests/test_virtual_preflight.py tests/test_virtual_preflight_jobs.py tests/test_vehicle_execution_lock.py tests/test_ros2_flight_control.py tests/test_mission_execution_gate.py tests/test_hermes_mcp_server.py",
+      "actual_result": "163 passed in 4.20s"
+    },
+    {
+      "command": ".venv/bin/python -m pytest -q",
+      "actual_result": "388 passed in 11.70s"
+    }
+  ],
+  "new_test_cases": 42,
+  "test_evidence_limits": "Controls/readiness/Popen are doubles. Actual Python graph/executor/SDK dispatch/OS file locks exercised; not proof of operational v2 flight or LLM fidelity.",
+  "runtime_and_previous_evidence_files_preserved": 192,
+  "runtime_and_evidence_inventory_sha256": "dcab9d474849deaf31227d1e5ba95ad6c5ce3e8e2a201606736526498ae0cf4d",
+  "previous_runtime_and_evidence_set_unchanged": true,
+  "modified_files": [
+    ".hermes/skills/tfg-mission-control/SKILL.md",
+    "docs/async-virtual-preflight.md",
+    "docs/virtual-preflight.md",
+    "documentation/development_log.md",
+    "graph/virtual_preflight_graph.py",
+    "graph/virtual_preflight_state.py",
+    "planning/verified_preflight.py",
+    "reporting/virtual_preflight_analysis.py",
+    "tests/test_hermes_mcp_server.py",
+    "tests/test_mission_execution_gate.py",
+    "tests/test_ros2_flight_control.py",
+    "tests/test_simulation_mission_executor.py",
+    "tests/test_vehicle_execution_lock.py",
+    "tests/test_virtual_preflight.py",
+    "tests/test_virtual_preflight_jobs.py",
+    "tools/guarded_demo.py",
+    "tools/hermes_mcp_server.py",
+    "tools/mission_execution_gate.py",
+    "tools/mission_response_views.py",
+    "tools/mission_state.py",
+    "tools/ros2_flight_control.py",
+    "tools/simulation_mission_executor.py",
+    "tools/vehicle_execution_lock.py",
+    "tools/virtual_preflight.py",
+    "tools/virtual_preflight_jobs.py",
+    "tools/virtual_preflight_worker.py"
+  ],
+  "new_files": [
+    "docs/simulated-vehicle-selection.md",
+    "documentation/verification/simulated_vehicle_selection_2026_10_18.json",
+    "missions/examples/simulation_navigation_drone02.json",
+    "tests/test_simulated_vehicle_selection.py",
+    "tools/simulated_vehicle.py"
+  ],
+  "tracked_diff_check": "clean",
+  "untracked_diff_check": "all five new files clean; metadata rechecked after write",
+  "registered_tools": 17,
+  "schema_hash_method": "SDK list_tools name/input_schema sorted keys compact UTF-8 JSON; ordered tool list",
+  "registered_input_schemas_sha256": "a7102e858c349855ed8143cdbf3359976950f2cbe08cd99f9a2d20b52404d980",
+  "mcp_contract": "Tool names/arguments preserved; vehicle binding derived from mission. In-process registered tests only; no live stdio connection.",
+  "new_identity_contract": {
+    "job_schema_version": 2,
+    "report_schema_version": "1.1",
+    "new_logical_field": "vehicle_id",
+    "interface_field_in_raw": "vehicle",
+    "selection_fields": [
+      "vehicle_id",
+      "simulated_vehicle"
+    ],
+    "global_restriction": "global_flight_restriction"
+  },
+  "example": {
+    "path": "missions/examples/simulation_navigation_drone02.json",
+    "sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+    "observed_pure_validation": {
+      "mission_status": "FEASIBLE",
+      "execution_status": "APPROVED",
+      "errors": [],
+      "failure_reasons": [],
+      "qgc_plan_path": null
+    },
+    "flight_executed": false
+  },
+  "intentional_compatibility_limits": [
+    "Legacy simultaneous shell demo disabled by wrapper/child verification before subprocess.",
+    "ROS flight primitives require a matching live project execution authority.",
+    "Old report bytes/hashes and v1 analysis semantics are retained; missing logical identities stay unknown."
+  ],
+  "pending": [
+    "Authorized operational rehearsal of drone_02/v2 with actual AP_DDS/Gazebo remains untested.",
+    "No simultaneous flights, vehicle separation, agriculture, speed tracking, hardware, .plan loading, WP3 cause resolution or host-restart resilience demonstrated.",
+    "Cooperative project exclusion does not control external/manual ROS/QGC or guarantee mixed-version hot deployment.",
+    "Hash association does not solve all TOCTOU; acceptance never grants consent to another flight."
+  ]
+}

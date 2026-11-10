@@ -1,0 +1,50 @@
+ Container tfg-dist-app-run-75a12cc30378 Creating 
+ Container tfg-dist-app-run-75a12cc30378 Created 
+{
+  "site_id": "dronelab",
+  "version": 1,
+  "site_status": "TEMPLATE_PENDING_MEASUREMENT",
+  "status": "INCOMPLETE",
+  "errors": [],
+  "missing": [
+    "zone PERIMETER.polygon",
+    "zone EXCLUSION_1.polygon",
+    "zone PAD_1.polygon",
+    "zone ROVER_BAY.polygon",
+    "zone DRIVABLE.polygon",
+    "point ORIGIN.x_m/y_m",
+    "point TAKEOFF_A.x_m/y_m",
+    "point TAKEOFF_B.x_m/y_m",
+    "point ROVER_START.x_m/y_m",
+    "point POI_1.x_m/y_m",
+    "point POI_2.x_m/y_m",
+    "point POI_3.x_m/y_m",
+    "point POI_4.x_m/y_m"
+  ],
+  "warnings": [],
+  "geographic_references": {
+    "complete": false,
+    "missing": [
+      "geo_reference.latitude/longitude",
+      "local_frame.y_axis_bearing_deg",
+      "vertical_reference.origin_ground_amsl_m"
+    ],
+    "field_verified_declared": false
+  },
+  "capabilities": {
+    "local_design": false,
+    "sitl_geographic_export": false,
+    "field_export": false
+  },
+  "export_blocks": {
+    "sitl": [
+      "site INCOMPLETE"
+    ],
+    "field": [
+      "site INCOMPLETE",
+      "site, geo/vertical reference and frame orientation are not all VERIFIED_DECLARED"
+    ]
+  },
+  "note": "VERIFIED_DECLARED is a declaration in the file, not an authentication"
+}
+

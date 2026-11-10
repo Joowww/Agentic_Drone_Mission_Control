@@ -1,0 +1,19 @@
+check	result	detail
+01_hermes_version	PASS	 Network tfg-dist_test Creating 
+02_mcp_server_starts	PASS	SERVER_TOOLS 27 (the server publishes all; Hermes must offer 2)
+04_planning_safe	PASS	test home planning-safe
+05_tampered_config_refused	PASS	rc=2
+06_toolsets_override_refused	PASS	rc=2
+07_only_planning_tools_offered	FAIL	offered: none
+08_persisted	FAIL	drafts=0 finalizations=0 rc=1
+09_strict_export_refused	FAIL	no REFUSED qgc_export found
+10_status_after_container_removed	FAIL	see 10_status.log
+11_invalid_response	PASS	rc=1; no new finalization
+12_timeout_cancel	PASS	provider silent; Ctrl+C after 20 s; rc=1; no new finalization
+13_provider_absent	PASS	rc=1; no new finalization
+14_write_error	PASS	rc=1; nothing written, no finalization claimed by the store
+15_ollama_double_extraction	PASS	ChatOllama via OLLAMA_HOST -> MissionPlanDraft
+16_ollama_invalid_rejected	PASS	REJECTED OutputParserException
+17_menu_provider_absent	PASS	menu option 3 reports [PLANNER ERROR] and continues
+18_no_secrets_in_logs	PASS	no credential patterns in /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/planning_checks_1
+19_no_credentials_in_image	FAIL	see 19_image_secrets.log

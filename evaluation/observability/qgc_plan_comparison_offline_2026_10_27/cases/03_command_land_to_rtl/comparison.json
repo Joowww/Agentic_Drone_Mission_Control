@@ -1,0 +1,31 @@
+{
+  "schema": "tfg.qgc-plan-comparison/1",
+  "original_sha256": "692c8075133ef62bdb4a051892387ce62213fb2c8ae3a905904d2f157d142c8d",
+  "saved_sha256": "ef75af23695282eac664c2d18121575296381e48c4f67c2d0e6c00599c42fb6d",
+  "verdict_scope": "comparison of two files only; not a QGroundControl or vehicle compatibility verdict",
+  "status": "SEMANTIC_DIFFERENCES",
+  "differences": [
+    {
+      "category": "SEMANTIC_CHANGE",
+      "path": "/mission/items/4/command",
+      "original": 21,
+      "saved": 20,
+      "detail": "command NAV_LAND -> NAV_RETURN_TO_LAUNCH: value changed (Δ=-1)"
+    },
+    {
+      "category": "SEMANTIC_CHANGE",
+      "path": "/mission/items/4/frame",
+      "original": 3,
+      "saved": 2,
+      "detail": "frame: value changed (Δ=-1)"
+    }
+  ],
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 0,
+    "SEMANTIC_CHANGE": 2,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}

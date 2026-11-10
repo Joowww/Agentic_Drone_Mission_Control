@@ -1,0 +1,135 @@
+[
+  {
+    "widget": "W1",
+    "title_reported_before": "Volumen diario: trazas y spans llm",
+    "title_reported_after": "Volum diari — traces i crides LLM",
+    "file": "sql_original/W1.sql",
+    "sha256": "ee8237019cb1505e92167de66d35ca63d2a4499fa3adf41fe6237e5644dedc62",
+    "textual_checks": {
+      "project_id_in_sql": false,
+      "tag_captured": true,
+      "excl_synthetic": true,
+      "excl_unknown": true,
+      "type_llm": true,
+      "window": true,
+      "source_filter": true,
+      "limit": null,
+      "derived_fields_used": [],
+      "subselects_without_tag_filter": 0
+    }
+  },
+  {
+    "widget": "W2",
+    "title_reported_before": "Latencia spans llm P50/P90/P99 (s) — n=1, no representativa",
+    "title_reported_after": "Latència LLM — P50/P90/P99",
+    "file": "sql_original/W2.sql",
+    "sha256": "d12110c33354aa221ff5f979192c1d948744ce87822916e740a4450d2c1c7461",
+    "textual_checks": {
+      "project_id_in_sql": false,
+      "tag_captured": true,
+      "excl_synthetic": true,
+      "excl_unknown": true,
+      "type_llm": true,
+      "window": true,
+      "source_filter": true,
+      "limit": null,
+      "derived_fields_used": [],
+      "subselects_without_tag_filter": 0
+    }
+  },
+  {
+    "widget": "W3",
+    "title_reported_before": "Errores por fecha y tipo",
+    "title_reported_after": "Errors per data i tipus",
+    "file": "sql_original/W3.sql",
+    "sha256": "704f033f169fb97b6fe81ca315e592e2732f2b10a70e834ebed45e039ca2dfe5",
+    "textual_checks": {
+      "project_id_in_sql": false,
+      "tag_captured": true,
+      "excl_synthetic": true,
+      "excl_unknown": true,
+      "type_llm": false,
+      "window": true,
+      "source_filter": true,
+      "limit": null,
+      "derived_fields_used": [],
+      "subselects_without_tag_filter": 0
+    }
+  },
+  {
+    "widget": "W4",
+    "title_reported_before": "Tokens entrada/salida/caché por ejecución (zero_unconfirmed sin barra)",
+    "title_reported_after": "Tokens d’entrada, sortida i memòria cau per execució",
+    "file": "sql_original/W4.sql",
+    "sha256": "5f33355ff03c8c2caebe91f4565fab5de68e8762428fddbadf338dd8fb3b04b1",
+    "textual_checks": {
+      "project_id_in_sql": false,
+      "tag_captured": true,
+      "excl_synthetic": true,
+      "excl_unknown": true,
+      "type_llm": true,
+      "window": true,
+      "source_filter": true,
+      "limit": "400",
+      "derived_fields_used": [],
+      "subselects_without_tag_filter": 0
+    }
+  },
+  {
+    "widget": "W5",
+    "title_reported_before": "Detalle tokens tfg_usage (valor + estado)",
+    "title_reported_after": "Detall dels tokens — valor i estat",
+    "file": "sql_original/W5.sql",
+    "sha256": "8b628efa5b1ecfedbf0ed9bdcfd6cba965aa96578423c138ad14947395e824ac",
+    "textual_checks": {
+      "project_id_in_sql": false,
+      "tag_captured": true,
+      "excl_synthetic": true,
+      "excl_unknown": true,
+      "type_llm": true,
+      "window": true,
+      "source_filter": true,
+      "limit": "200",
+      "derived_fields_used": [],
+      "subselects_without_tag_filter": 0
+    }
+  },
+  {
+    "widget": "W6",
+    "title_reported_before": "Recuento por tfg_data_kind",
+    "title_reported_after": "Procedència de les dades",
+    "file": "sql_original/W6.sql",
+    "sha256": "18a4abaf865843ab8848aad0d4c1b1ce5cd994620c6c9f379e51a17b513a1c20",
+    "textual_checks": {
+      "project_id_in_sql": false,
+      "tag_captured": true,
+      "excl_synthetic": true,
+      "excl_unknown": true,
+      "type_llm": false,
+      "window": true,
+      "source_filter": true,
+      "limit": null,
+      "derived_fields_used": [],
+      "subselects_without_tag_filter": 0
+    }
+  },
+  {
+    "widget": "W7",
+    "title_reported_before": "Cobertura por tfg_usage_source",
+    "title_reported_after": "Cobertura dels comptadors d’ús",
+    "file": "sql_original/W7.sql",
+    "sha256": "3878bfaa837903bebeca27515336d5fd361864a901e72e5e9703f1733840a8d4",
+    "textual_checks": {
+      "project_id_in_sql": false,
+      "tag_captured": true,
+      "excl_synthetic": true,
+      "excl_unknown": true,
+      "type_llm": true,
+      "window": true,
+      "source_filter": true,
+      "limit": null,
+      "derived_fields_used": [],
+      "subselects_without_tag_filter": 0
+    }
+  }
+]

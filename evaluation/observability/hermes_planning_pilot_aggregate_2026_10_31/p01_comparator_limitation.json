@@ -1,0 +1,13 @@
+{
+  "case": "P01",
+  "key": "planning-pilot-p01-r01",
+  "comparator_limitation": "The explanation flags ANSWER_EXECUTION_STATUS_DIFFERS x2 arise because Hermes' JSON uses the literal key \"validation.execution_status\" (the prompt named the field that way) with the correct value APPROVED, while reporting.hermes_planning_pilot reads only \"execution_status\" or a nested \"validation\" object. Heuristic limitation; NOT changed during the batch; the flags stay in the sealed acceptance.",
+  "answer_values": {
+    "agri_demo_001_h1_sector_a": "APPROVED",
+    "agri_demo_001_h1_sector_b": "APPROVED"
+  },
+  "source": {
+    "file": "evaluation/observability/hermes_planning_pilot_remaining_nous_2026_10_31/planning-pilot-p01-r01.tool_calls_observed.json",
+    "sha256": "c37c85d8223ceb6293826510789574724451e49c45a1f3b1664123f367ae756f"
+  }
+}

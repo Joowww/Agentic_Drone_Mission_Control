@@ -1,0 +1,76 @@
+{
+ "checked_at_utc": "2026-11-06T22:46:39.068801+00:00",
+ "checks": {
+  "gpu_has_room": true,
+  "gpu_nearly_idle": true,
+  "main_checkout_quiet_20min": false,
+  "model_installed_with_expected_digest": true,
+  "no_external_endpoint": true,
+  "no_host_simulation_process": true,
+  "no_other_gpu_process": true,
+  "no_recent_vehicle_lock_activity": true,
+  "no_simulation_process_in_container": true,
+  "no_simulation_process_over_5s": true,
+  "no_vehicle_reservation": true,
+  "ollama_answers_locally": true,
+  "worktree_clean": true
+ },
+ "facts": {
+  "container": {
+   "matches": [],
+   "processes": [
+    "57611               1-17:56:31          bash"
+   ],
+   "status": "RUNNING (Up 3 days)"
+  },
+  "git_status": "",
+  "gpu": {
+   "memory_total_mib": 8192.0,
+   "memory_used_mib": 1.0,
+   "status": "MEASURED",
+   "utilization_pct": 0.0
+  },
+  "gpu_compute_apps": [],
+  "host_sim_processes": [],
+  "main_checkout_recent_files": [
+   "tools/rover_pipe_session.py",
+   "tools/simulation_lifecycle.py",
+   "tools/rover_passive_phases.py",
+   "tests/test_rover_passive_vertical_integration.py",
+   "tests/test_rover_passive_scope_start.py",
+   "tests/test_rover_passive_phases.py"
+  ],
+  "model": {
+   "capabilities": [
+    "completion",
+    "tools",
+    "thinking"
+   ],
+   "details": {
+    "context_length": 262144,
+    "embedding_length": 2560,
+    "families": [
+     "qwen3"
+    ],
+    "family": "qwen3",
+    "format": "gguf",
+    "parameter_size": "4.0B",
+    "parent_model": "",
+    "quantization_level": "Q4_K_M"
+   },
+   "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+   "model": "qwen3:4b",
+   "modified_at": "2026-09-22T09:51:28.383089367+02:00",
+   "name": "qwen3:4b",
+   "size": 2497293931
+  },
+  "ollama_version": {
+   "version": "0.34.2"
+  },
+  "recent_vehicle_locks": [],
+  "reservations_original_checkout": [],
+  "sampled_sim_processes": []
+ },
+ "ok": false,
+ "schema": "tfg.multiagent.agents-pilot-preconditions/1"
+}

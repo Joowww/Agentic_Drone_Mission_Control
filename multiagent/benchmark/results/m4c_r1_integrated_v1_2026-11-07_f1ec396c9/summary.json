@@ -1,0 +1,96 @@
+{
+ "budget": {
+  "limit": 6,
+  "log": [
+   {
+    "at_utc": "2026-11-06T23:05:17.436701+00:00",
+    "latency_s": 39.75360152099165,
+    "n": 1,
+    "real": true,
+    "role": "mission_orchestrator",
+    "usage": {
+     "completion_tokens": 331,
+     "prompt_tokens": 1423
+    }
+   },
+   {
+    "at_utc": "2026-11-06T23:05:57.296853+00:00",
+    "latency_s": 18.902969890012173,
+    "n": 2,
+    "real": true,
+    "role": "drone_swarm_agent",
+    "usage": {
+     "completion_tokens": 206,
+     "prompt_tokens": 1331
+    }
+   },
+   {
+    "at_utc": "2026-11-06T23:06:16.391527+00:00",
+    "latency_s": 11.22344866298954,
+    "n": 3,
+    "real": true,
+    "role": "rover_agent",
+    "usage": {
+     "completion_tokens": 110,
+     "prompt_tokens": 1047
+    }
+   },
+   {
+    "at_utc": "2026-11-06T23:06:28.572349+00:00",
+    "latency_s": 10.289927020989126,
+    "n": 4,
+    "real": true,
+    "role": "rover_agent",
+    "usage": {
+     "completion_tokens": 123,
+     "prompt_tokens": 1095
+    }
+   }
+  ],
+  "per_role": {
+   "drone_swarm_agent": 1,
+   "mission_orchestrator": 1,
+   "rover_agent": 2
+  },
+  "real_calls_used": 4
+ },
+ "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+ "commands_sent": 0,
+ "commit": "f1ec396c9528554a7ee4d465b8545af43c470b16",
+ "criteria": {
+  "C0_safety": true,
+  "C0b_provenance": true,
+  "C1_supervisor": true,
+  "C2_drone": true,
+  "C2_drone_phase": "FIRST_ROUND",
+  "C3_rover_wait": true,
+  "C4_rover_plan": true,
+  "C5_integrated": true,
+  "fallbacks": {
+   "drone": false,
+   "rover_phase_b_kept_deterministic": false
+  }
+ },
+ "data_kind": "REAL_LOCAL_LLM (agents) + SYNTHETIC_TEST (image) + TEST_FIXTURE (events)",
+ "finished_utc": "2026-11-06T23:06:39.093493+00:00",
+ "manifest_sha256": "c500cb89fe2c285a5231a95c1da00e6ccf51712bb302b0fc000847a34cfa5219",
+ "physical_effect": false,
+ "pilot_id": "m4c_r1_integrated_v1",
+ "role_outcomes": {
+  "drone_swarm_agent": "MODEL_SUCCESS_FIRST_ROUND",
+  "mission_orchestrator": "MODEL_SUCCESS_FIRST_ROUND",
+  "rover_agent_phase_a": "MODEL_SUCCESS_FIRST_ROUND",
+  "rover_agent_phase_b": "MODEL_SUCCESS_FIRST_ROUND"
+ },
+ "safety_policy": "safety/4",
+ "started_utc": "2026-11-06T23:05:17.422176+00:00",
+ "status_ladder": {
+  "detection_obtained": true,
+  "execution_authorized": false,
+  "mission_physically_completed": false,
+  "movement_executed": false,
+  "planning_completed": true,
+  "proposal_validated": true,
+  "target_spatially_validated": true
+ }
+}

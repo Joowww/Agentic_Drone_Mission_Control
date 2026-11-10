@@ -1,0 +1,64 @@
+{
+ "budget": {
+  "limit": 6,
+  "log": [
+   {
+    "at_utc": "2026-11-06T17:03:50.922318+00:00",
+    "latency_s": 11.489812314976007,
+    "n": 1,
+    "real": true,
+    "role": "mission_orchestrator",
+    "usage": {
+     "completion_tokens": 312,
+     "prompt_tokens": 921
+    }
+   },
+   {
+    "at_utc": "2026-11-06T17:04:02.603414+00:00",
+    "latency_s": 1.591937274002703,
+    "n": 2,
+    "real": true,
+    "role": "rover_agent",
+    "usage": {
+     "completion_tokens": 106,
+     "prompt_tokens": 1035
+    }
+   }
+  ],
+  "per_role": {
+   "mission_orchestrator": 1,
+   "rover_agent": 1
+  },
+  "real_calls_used": 2
+ },
+ "classification": "DEPENDENCY_IMPOSSIBLE",
+ "commands_sent": 0,
+ "commit": "b9da2e22b03be737d2b87344fa565e2010e52dc0",
+ "criteria": {
+  "C1_supervisor": false,
+  "C2_drone": false,
+  "C2_drone_phase": "NOT_ACCEPTED",
+  "C3_rover_wait": true,
+  "C4_rover_plan": false,
+  "C5_integrated": false,
+  "fallbacks": {
+   "drone": true,
+   "rover_phase_b_kept_deterministic": false
+  }
+ },
+ "data_kind": "REAL_LOCAL_LLM (agents) + SYNTHETIC_TEST (image) + TEST_FIXTURE (events)",
+ "finished_utc": "2026-11-06T17:04:04.840349+00:00",
+ "manifest_sha256": "cd5c094006c57f9d55f685901e81116a5d8a3b942300ddf709d30d884315b13e",
+ "physical_effect": false,
+ "pilot_id": "m4_integrated_v1",
+ "started_utc": "2026-11-06T17:03:50.906126+00:00",
+ "status_ladder": {
+  "detection_obtained": true,
+  "execution_authorized": false,
+  "mission_physically_completed": false,
+  "movement_executed": false,
+  "planning_completed": false,
+  "proposal_validated": false,
+  "target_spatially_validated": true
+ }
+}

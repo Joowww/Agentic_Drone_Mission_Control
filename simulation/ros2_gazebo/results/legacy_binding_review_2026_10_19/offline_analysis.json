@@ -1,0 +1,86 @@
+{
+  "scope": "Local artifacts only. No telemetry, Docker probe or application",
+  "inspection_sha256": "60a17c81680ea58864cd98c92f3d1102acfc8907d9d7ad89393f7d04b0eab844",
+  "bytes": 53756,
+  "current_readonly_query": {
+    "evidence_state": "EXPIRED",
+    "application_eligible": false,
+    "application": null,
+    "requires_legacy_environment_confirmation": true
+  },
+  "association_review": {
+    "original_execution_environment_bound": false,
+    "requires_legacy_environment_confirmation": true,
+    "association_source": "POSTHOC_IDENTITY_REFERENCE",
+    "assumptions_not_machine_verified": [
+      "Docker deployment/selector continuity since original execution",
+      "No container substitution or metadata clone/restore",
+      "Recorded host and Docker wall clocks comparable"
+    ],
+    "reasons": [],
+    "original_activity": [
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/job.json",
+        "sha256": "5a7bb17f1acdeaf15936b0658208341c9690b3533a503ac899d2ba1ddc6a1b4c",
+        "field": "started_at",
+        "value": "2026-10-18T21:14:38.208705+00:00"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/467f7ec6-b2a6-4b68-9d97-766d85732f8e/report.json",
+        "sha256": "d967bc138c2c9a9834ba0a845417139a491c01953bd9690b610a10ac7b155451",
+        "field": "execution_started_at",
+        "value": "2026-10-18T21:14:47.032411+00:00"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/job.json",
+        "sha256": "9b03a3b4e93029b2c7c2cb519f731220d3da492dd316976a7535e2aaebc1de5a",
+        "field": "started_at",
+        "value": "2026-10-18T21:18:42.230989+00:00"
+      },
+      {
+        "path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/report.json",
+        "sha256": "2ab1614fbec51fc827dc108d6cc863c212d0f5595a21c5ff91526791ec259a61",
+        "field": "execution_started_at",
+        "value": "2026-10-18T21:18:50.566241+00:00"
+      }
+    ],
+    "chronology": {
+      "earliest_activity_at": "2026-10-18T21:14:38.208705+00:00",
+      "latest_activity_start_at": "2026-10-18T21:18:50.566241+00:00",
+      "latest_recorded_finish_at": "2026-10-18T21:19:09.145298+00:00",
+      "container_created_before_activity": true,
+      "container_stopped_after_activity_began": true,
+      "identity_reference_after_activity_started": true,
+      "stop_covers_recorded_finish": true,
+      "clock_basis": "CONDITIONAL_ON_OPERATOR_REVIEW_OF_WALL_CLOCKS"
+    },
+    "status": "AWAITING_OPERATOR_CONTINUITY_REVIEW"
+  },
+  "corroborating_archived_metadata": {
+    "path": "simulation/ros2_gazebo/results/sequential_preflight_diagnostic_2026_10_18/c6eeb645-17d2-4081-9afb-cecfd23af393/read_only_observations/final_metadata.json",
+    "sha256": "94f67e645254a8440946a59b6c02d53c8a02f42d0a0dd5d4ed1856edc2ccdfc7",
+    "captured_at_utc": "2026-10-18T21:43:59.856353+00:00",
+    "host_boot_id": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc",
+    "docker_state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 6735,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-16T16:41:55.313301992Z",
+      "FinishedAt": "2026-10-16T16:36:02.1877012Z"
+    },
+    "exact_started_at_match": true,
+    "container_id_recorded_in_that_archive": false,
+    "engine_id_recorded_in_that_archive": false
+  },
+  "host_boot_id_at_original_execution": "cbb1fa33-db15-4014-a06b-484e3f0b0dcc",
+  "host_boot_id_at_inspection": "f4b6327f-8e51-43b5-9e72-7d0206aacb37",
+  "docker_engine_id_at_inspection": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+  "historical_engine_identity_known": false,
+  "original_execution_container_binding_recorded": false
+}

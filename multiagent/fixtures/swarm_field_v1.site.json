@@ -1,0 +1,435 @@
+{
+ "schema": "tfg.site/1",
+ "site_id": "synthetic_swarm_field",
+ "version": 1,
+ "name": "Synthetic swarm field (multi-agent prototype)",
+ "status": "SYNTHETIC",
+ "provenance": {
+  "kind": "SYNTHETIC",
+  "source": "multiagent prototype, 04/11/2026",
+  "notes": "not a real place; five pads for 1-5 drones"
+ },
+ "local_frame": {
+  "frame_id": "synthetic_swarm_field_local",
+  "convention": "ENU_ROTATED",
+  "origin_point_id": "ORIGIN",
+  "y_axis_bearing_deg": 0.0,
+  "orientation_verification": "SYNTHETIC",
+  "orientation_source": "synthetic"
+ },
+ "geo_reference": {
+  "latitude": -35.363262,
+  "longitude": 149.165237,
+  "horizontal_datum": "WGS84",
+  "source": "same synthetic origin as synthetic_orchard_v2",
+  "uncertainty_m": null,
+  "verification": "SYNTHETIC"
+ },
+ "vertical_reference": {
+  "origin_ground_amsl_m": 584.0,
+  "vertical_datum": "synthetic",
+  "terrain": "DECLARED_FLAT",
+  "source": "synthetic",
+  "uncertainty_m": null,
+  "verification": "SYNTHETIC"
+ },
+ "vertical_limits": {
+  "max_altitude_m": 30.0,
+  "reference": "above_site_origin_ground",
+  "source": "synthetic"
+ },
+ "operation_perimeter": {
+  "zone_id": "PERIMETER",
+  "polygon": [
+   [
+    -45,
+    -22
+   ],
+   [
+    65,
+    -22
+   ],
+   [
+    65,
+    55
+   ],
+   [
+    -45,
+    55
+   ]
+  ],
+  "verification": "SYNTHETIC",
+  "uncertainty_m": null,
+  "description": "synthetic field"
+ },
+ "exclusions": [
+  {
+   "zone_id": "TREE_ROW",
+   "polygon": [
+    [
+     0,
+     20
+    ],
+    [
+     40,
+     20
+    ],
+    [
+     40,
+     22
+    ],
+    [
+     0,
+     22
+    ]
+   ],
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "synthetic tree row, full height",
+   "kind": "obstacle",
+   "applies_to": [
+    "air",
+    "ground"
+   ]
+  },
+  {
+   "zone_id": "POND",
+   "polygon": [
+    [
+     -35,
+     28
+    ],
+    [
+     -25,
+     28
+    ],
+    [
+     -25,
+     38
+    ],
+    [
+     -35,
+     38
+    ]
+   ],
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "synthetic no-fly pond",
+   "kind": "no_fly",
+   "applies_to": [
+    "air"
+   ]
+  }
+ ],
+ "takeoff_landing_zones": [
+  {
+   "zone_id": "PAD_1",
+   "polygon": [
+    [
+     -32,
+     -17
+    ],
+    [
+     -28,
+     -17
+    ],
+    [
+     -28,
+     -13
+    ],
+    [
+     -32,
+     -13
+    ]
+   ],
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "pad 1"
+  },
+  {
+   "zone_id": "PAD_2",
+   "polygon": [
+    [
+     -17,
+     -17
+    ],
+    [
+     -13,
+     -17
+    ],
+    [
+     -13,
+     -13
+    ],
+    [
+     -17,
+     -13
+    ]
+   ],
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "pad 2"
+  },
+  {
+   "zone_id": "PAD_3",
+   "polygon": [
+    [
+     -2,
+     -17
+    ],
+    [
+     2,
+     -17
+    ],
+    [
+     2,
+     -13
+    ],
+    [
+     -2,
+     -13
+    ]
+   ],
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "pad 3"
+  },
+  {
+   "zone_id": "PAD_4",
+   "polygon": [
+    [
+     13,
+     -17
+    ],
+    [
+     17,
+     -17
+    ],
+    [
+     17,
+     -13
+    ],
+    [
+     13,
+     -13
+    ]
+   ],
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "pad 4"
+  },
+  {
+   "zone_id": "PAD_5",
+   "polygon": [
+    [
+     28,
+     -17
+    ],
+    [
+     32,
+     -17
+    ],
+    [
+     32,
+     -13
+    ],
+    [
+     28,
+     -13
+    ]
+   ],
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "pad 5"
+  }
+ ],
+ "rover_start_zones": [
+  {
+   "zone_id": "ROVER_BAY",
+   "polygon": [
+    [
+     -5,
+     -10
+    ],
+    [
+     5,
+     -10
+    ],
+    [
+     5,
+     -6
+    ],
+    [
+     -5,
+     -6
+    ]
+   ],
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "rover bay"
+  }
+ ],
+ "rover_drivable_area": {
+  "zone_id": "DRIVABLE",
+  "polygon": [
+   [
+    -44,
+    -21
+   ],
+   [
+    64,
+    -21
+   ],
+   [
+    64,
+    15
+   ],
+   [
+    -44,
+    15
+   ]
+  ],
+  "verification": "SYNTHETIC",
+  "uncertainty_m": null,
+  "description": "south of the tree row"
+ },
+ "points": [
+  {
+   "point_id": "ORIGIN",
+   "kind": "reference",
+   "x_m": 0.0,
+   "y_m": 0.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null
+  },
+  {
+   "point_id": "TAKEOFF_1",
+   "kind": "planned_takeoff",
+   "x_m": -30.0,
+   "y_m": -15.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "zone_id": "PAD_1"
+  },
+  {
+   "point_id": "TAKEOFF_2",
+   "kind": "planned_takeoff",
+   "x_m": -15.0,
+   "y_m": -15.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "zone_id": "PAD_2"
+  },
+  {
+   "point_id": "TAKEOFF_3",
+   "kind": "planned_takeoff",
+   "x_m": 0.0,
+   "y_m": -15.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "zone_id": "PAD_3"
+  },
+  {
+   "point_id": "TAKEOFF_4",
+   "kind": "planned_takeoff",
+   "x_m": 15.0,
+   "y_m": -15.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "zone_id": "PAD_4"
+  },
+  {
+   "point_id": "TAKEOFF_5",
+   "kind": "planned_takeoff",
+   "x_m": 30.0,
+   "y_m": -15.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "zone_id": "PAD_5"
+  },
+  {
+   "point_id": "ROVER_START",
+   "kind": "rover_start",
+   "x_m": 0.0,
+   "y_m": -8.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "zone_id": "ROVER_BAY"
+  },
+  {
+   "point_id": "POI_1",
+   "kind": "poi",
+   "x_m": -30.0,
+   "y_m": 5.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null
+  },
+  {
+   "point_id": "POI_2",
+   "kind": "poi",
+   "x_m": -15.0,
+   "y_m": 10.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null
+  },
+  {
+   "point_id": "POI_3",
+   "kind": "poi",
+   "x_m": 0.0,
+   "y_m": 5.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null
+  },
+  {
+   "point_id": "POI_4",
+   "kind": "poi",
+   "x_m": 15.0,
+   "y_m": 10.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null
+  },
+  {
+   "point_id": "POI_5",
+   "kind": "poi",
+   "x_m": 30.0,
+   "y_m": 5.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null
+  },
+  {
+   "point_id": "POI_6",
+   "kind": "poi",
+   "x_m": 45.0,
+   "y_m": 10.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null
+  },
+  {
+   "point_id": "POI_7",
+   "kind": "poi",
+   "x_m": -10.0,
+   "y_m": 35.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "north of the tree row, west side"
+  },
+  {
+   "point_id": "POI_8",
+   "kind": "poi",
+   "x_m": 50.0,
+   "y_m": 35.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "north-east, around the tree row"
+  },
+  {
+   "point_id": "POI_9",
+   "kind": "poi",
+   "x_m": 3.0,
+   "y_m": 5.0,
+   "verification": "SYNTHETIC",
+   "uncertainty_m": null,
+   "description": "3 m from POI_3: two drones cannot work there at the same time"
+  }
+ ]
+}

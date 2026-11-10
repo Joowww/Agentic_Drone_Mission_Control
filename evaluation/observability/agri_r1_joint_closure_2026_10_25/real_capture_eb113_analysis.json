@@ -1,0 +1,84 @@
+{
+  "status": "ANALYZED",
+  "movement_authorized": false,
+  "source_association_verified": false,
+  "trial_manifest_sha256": "42ab6eb1046f4f0983441b1c4949d4ade27444a015301b0829acdd39082a7a86",
+  "journal_sha256": "949ccef9f204e433ff8d79e1d47f6fe6041e298b96df1c88b1093abde74b25ca",
+  "capture_schema": "tfg.rover.passive-capture/2",
+  "pose_fields_present": false,
+  "odometry": {
+    "schema": "tfg.rover.odometry-summary/1",
+    "status": "BLOCKED",
+    "movement_authorized": false,
+    "source_association_verified": false,
+    "capture_schema": "tfg.rover.passive-capture/2",
+    "sampling_policy": "RESERVE_BOTH_STREAMS",
+    "max_samples": 20,
+    "termination": "SAMPLE_LIMIT",
+    "omitted_odometry_by_quota": 3,
+    "capture_selection": [
+      "best_effort KeepLast(5) subscription; dropped messages are not counted",
+      "one callback handled per spin, with a graph query per sample",
+      "termination SAMPLE_LIMIT",
+      "3 odometry samples omitted by quota"
+    ],
+    "groups": [
+      {
+        "message_publisher_gid": "010feb7d1e1b545800000000000014030000000000000000",
+        "rmw_implementation_identifier": "rmw_fastrtps_cpp",
+        "frame_id": "odom",
+        "child_frame_id": "base_link",
+        "retained_samples": 19,
+        "complete_with_fields": 0,
+        "incomplete": 0,
+        "with_nonfinite": 0,
+        "header_stamp_interval_ns": {
+          "n": 18,
+          "min": 20000000,
+          "max": 20000000,
+          "median": 20000000.0
+        },
+        "covered_header_span_ns": 360000000,
+        "covered_receipt_span_ns": 22776255927,
+        "header_stamp_repeats_or_regressions": 0,
+        "receipt_interval_steady_ns": {
+          "n": 18,
+          "min": 111083529,
+          "max": 7197645437,
+          "median": 146976855.0
+        },
+        "fields": "NOT_RECORDED (schema tfg.rover.passive-capture/2)"
+      }
+    ],
+    "sources_merged": false,
+    "limits": [
+      "retained samples only; the complete stream's rate, loss and jitter are NOT inferable",
+      "header-stamp and receipt intervals differ in meaning (message clock vs steady receipt); a difference may be simulation speed or queueing and is not attributed",
+      "positions/velocities in the message's own frames; frames and units NOT validated",
+      "declared covariance zero is not certainty",
+      "no identity, model, transformation, stop or arrival"
+    ],
+    "r1_reportable": [
+      "rest dispersion of position/orientation per group",
+      "residual linear/angular speed",
+      "header-stamp and receipt intervals (separately)",
+      "frame-name stability",
+      "declared covariances"
+    ],
+    "r1_pending": [
+      "approval of arrival tolerance and stop thresholds",
+      "verified frame transformation",
+      "publisher/model/SYSID association",
+      "complete-stream rate and loss",
+      "arrival, dwell and progress (need a movement trial)"
+    ]
+  },
+  "r1_contrastable": {},
+  "r1_needs_wider_design": [
+    "complete-stream rate, loss and jitter (the collector is selective and capped at 20 samples in reserve mode)",
+    "dispersion during motion and at the target, progress and dwell (need a movement trial)",
+    "frame transformation and physical identity (need the three-vehicle check and the identity chain)",
+    "any threshold approval: 20 samples of one session are not a basis for approving R1 parameters"
+  ],
+  "note": "Metrics describe retained samples of one session; no identity, transformation or approval."
+}

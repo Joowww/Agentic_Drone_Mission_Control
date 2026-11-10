@@ -1,0 +1,506 @@
+[
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "m4c_r1_sealed_plan",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "REPLAY",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "REJECTED",
+  "case": "duplicate_objective",
+  "commands": 0,
+  "drones": 2,
+  "findings": [
+   "DUPLICATE_OBJECTIVE",
+   "DUPLICATE_POINT",
+   "PLAN_MODIFIED_AFTER_VALIDATION",
+   "SENSOR_NOT_AVAILABLE"
+  ],
+  "identical_rebuild": false,
+  "kind": "NEGATIVE_MUTATION"
+ },
+ {
+  "adapter": "REJECTED",
+  "case": "altitude_beyond_site_limit",
+  "commands": 0,
+  "drones": 2,
+  "findings": [
+   "ROUTE_NOT_FEASIBLE"
+  ],
+  "identical_rebuild": true,
+  "kind": "NEGATIVE_MUTATION"
+ },
+ {
+  "adapter": "REJECTED",
+  "case": "sensor_not_available",
+  "commands": 0,
+  "drones": 2,
+  "findings": [
+   "PLAN_MODIFIED_AFTER_VALIDATION",
+   "SENSOR_NOT_AVAILABLE",
+   "UNMET_DEPENDENCY"
+  ],
+  "identical_rebuild": false,
+  "kind": "NEGATIVE_MUTATION"
+ },
+ {
+  "adapter": "REJECTED",
+  "case": "unmet_dependency",
+  "commands": 0,
+  "drones": 2,
+  "findings": [
+   "UNMET_DEPENDENCY"
+  ],
+  "identical_rebuild": true,
+  "kind": "NEGATIVE_MUTATION"
+ },
+ {
+  "adapter": "REJECTED",
+  "case": "modified_after_validation",
+  "commands": 0,
+  "drones": 2,
+  "findings": [
+   "PLAN_MODIFIED_AFTER_VALIDATION"
+  ],
+  "identical_rebuild": false,
+  "kind": "NEGATIVE_MUTATION"
+ },
+ {
+  "adapter": "REJECTED",
+  "case": "schedule_inconsistent",
+  "commands": 0,
+  "drones": 2,
+  "findings": [
+   "SCHEDULE_INCONSISTENT"
+  ],
+  "identical_rebuild": true,
+  "kind": "NEGATIVE_MUTATION"
+ },
+ {
+  "adapter": "REJECTED",
+  "case": "not_planned",
+  "commands": 0,
+  "drones": 0,
+  "findings": [
+   "PROPOSAL_NOT_PLANNED"
+  ],
+  "identical_rebuild": true,
+  "kind": "NEGATIVE_MUTATION"
+ },
+ {
+  "adapter": "CANCELLED",
+  "case": "cancelled",
+  "commands": 0,
+  "drones": 0,
+  "findings": [
+   "MISSION_CANCELLED"
+  ],
+  "identical_rebuild": true,
+  "kind": "NEGATIVE_MUTATION"
+ },
+ {
+  "adapter": "PENDING_PARAMETERS",
+  "case": "no_georeference",
+  "commands": 0,
+  "drones": 2,
+  "findings": [
+   "GEOREFERENCE_MISSING"
+  ],
+  "identical_rebuild": true,
+  "kind": "NEGATIVE_MUTATION"
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_red_target",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_yellow_target",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_no_target",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_disallowed_color",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_ambiguous_detection",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_missing_depth",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_missing_camera_pose",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_wrong_frame",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_stale_observation",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_impossible_dependency",
+  "commands": 0,
+  "delays": {
+   "drone_02": 0.0
+  },
+  "drones": 1,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 0,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SINGLE_VEHICLE",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "NOT_APPLICABLE",
+  "sitl_delays": null,
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_unassigned_objective",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [
+   "UNASSIGNED_OBJECTIVE"
+  ],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_missing_localization",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_mission_cancelled",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_duplicate_observation",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_tool_error",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "PLANNING_VALID",
+  "case": "scenario_unauthorized_execution",
+  "commands": 0,
+  "delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "drones": 2,
+  "findings": [],
+  "identical_rebuild": true,
+  "initial_conflicts": 16,
+  "kind": "SCRIPTED_AGENTS",
+  "realization": "SEQUENTIAL_H2",
+  "request_with_fixture_statement": "READY_TO_REQUEST_EXECUTION",
+  "request_without_statement": "PENDING_AUTHORIZATION",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "sitl_delays": {
+   "drone_01": 45.0,
+   "drone_02": 0.0
+  },
+  "submitted": false
+ },
+ {
+  "adapter": "REJECTED",
+  "case": "scenario_supervisor_refuses",
+  "commands": 0,
+  "drones": 0,
+  "findings": [
+   "PROPOSAL_NOT_PLANNED"
+  ],
+  "identical_rebuild": true,
+  "kind": "SCRIPTED_AGENTS"
+ }
+]

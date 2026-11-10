@@ -1,0 +1,57 @@
+{
+  "run_id": {
+    "source": "/preflights/0/identity/run_id",
+    "kind": "text",
+    "null_or_absent": "null/absent -> UNKNOWN"
+  },
+  "historical_status": {
+    "source": "/preflights/0/record/result_status",
+    "kind": "text",
+    "null_or_absent": "null/absent -> UNKNOWN"
+  },
+  "mission_id": {
+    "source": "/preflights/0/identity/mission_id",
+    "kind": "text",
+    "null_or_absent": "null/absent -> UNKNOWN"
+  },
+  "vehicle_id": {
+    "source": "/preflights/0/identity/vehicle_id",
+    "kind": "text",
+    "null_or_absent": "null/absent -> UNKNOWN"
+  },
+  "simulated_vehicle": {
+    "source": "/preflights/0/identity/simulated_vehicle",
+    "kind": "text",
+    "null_or_absent": "null/absent -> UNKNOWN"
+  },
+  "planned_waypoint_ids": {
+    "source": "/preflights/0/plan/planned_waypoint_ids",
+    "kind": "list of text",
+    "null_or_absent": "null/absent -> UNKNOWN"
+  },
+  "reached_waypoint_ids": {
+    "source": "/preflights/0/executor_facts/reached_waypoint_ids",
+    "kind": "list of text",
+    "null_or_absent": "null/absent -> UNKNOWN"
+  },
+  "return_to_home": {
+    "source": "/preflights/0/executor_facts/return_to_home",
+    "kind": "boolean",
+    "null_or_absent": "null/absent -> UNKNOWN; never taken from acceptance_criteria"
+  },
+  "mission_landed_event_recorded": {
+    "source": "/preflights/0/executor_facts/mission_landing_events",
+    "kind": "boolean",
+    "null_or_absent": "true if an event has landed=true; false if the list is empty; null/absent -> UNKNOWN; never taken from recovery_after_failure"
+  },
+  "recovery_landing_completed": {
+    "source": "/preflights/0/recovery_after_failure/landing_completed",
+    "kind": "boolean",
+    "null_or_absent": "null/absent -> UNKNOWN"
+  },
+  "current_availability": {
+    "source": "/readiness_now",
+    "kind": "text",
+    "null_or_absent": "UNKNOWN unless the result holds a current check; UNKNOWN_NOT_CHECKED -> UNKNOWN"
+  }
+}

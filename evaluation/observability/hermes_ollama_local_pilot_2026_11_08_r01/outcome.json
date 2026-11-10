@@ -1,0 +1,28 @@
+{
+  "finalizations": 0,
+  "flight_consent": null,
+  "llm_calls": 4,
+  "llm_errors": 0,
+  "mission_validated": false,
+  "models_seen": [
+    "qwen3-4b-instruct-64k"
+  ],
+  "providers_seen": [
+    "custom"
+  ],
+  "tool_calls": [
+    {
+      "duration_ms_measured": 21,
+      "error_type": "tool_error",
+      "status": "error",
+      "tool_name": "mcp__tfg_demo_planning__update_mission_draft"
+    },
+    {
+      "duration_ms_measured": 71,
+      "error_type": null,
+      "status": "ok",
+      "tool_name": "mcp__tfg_demo_planning__update_mission_draft"
+    }
+  ],
+  "tool_isolation_verdict": "PLANNING_CALLS_NOT_AS_EXPECTED"
+}

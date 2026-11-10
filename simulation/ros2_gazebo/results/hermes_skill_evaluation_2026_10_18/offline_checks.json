@@ -1,0 +1,82 @@
+{
+  "prepared_context_not_session_evidence": {
+    "skill_version": "1.0.1",
+    "suite_version": "1.0.1",
+    "skill_sha256": "2111edf465a288de2f9c6b93c780fc64ffa83933f88b0de6e0c567868c6651d7",
+    "registry_tool_count": 17,
+    "catalog_sha256": "46667ae80cb8eba73e8776e2d022ce1485fb30974c9052dc4476eebc0d115a25",
+    "catalog_hash_method": "SDK list_tools name/description/input_schema, ordered list, sorted object keys, compact UTF-8 JSON; offline metadata only",
+    "instructions_sha256": "4d9f34c988c32722e2038315a15bd58b5fe4b2a3932df5e35dacd036b14896ec"
+  },
+  "scope": "Offline, no operational MCP/LLM/container/flight; tests use registered in-process tools and temporary storage",
+  "tests": [
+    {
+      "command": ".venv/bin/python -m pytest -q tests/test_hermes_attribution_contract.py tests/test_hermes_conversation_contracts.py tests/test_partial_geometry_planning.py tests/test_hermes_mcp_server.py",
+      "result": "62 passed in 2.90s"
+    },
+    {
+      "command": ".venv/bin/python -m pytest -q tests/test_hermes_attribution_contract.py tests/test_hermes_conversation_contracts.py tests/test_partial_geometry_planning.py tests/test_hermes_mcp_server.py tests/test_mission_response_views.py",
+      "result": "91 passed in 3.28s"
+    },
+    {
+      "command": ".venv/bin/python -m pytest -q",
+      "result": "346 passed in 8.86s"
+    }
+  ],
+  "tracked_diff_check": "clean",
+  "new_file_diff_checks": [
+    ".hermes/skills/tfg-mission-control/SKILL.md",
+    "docs/hermes-domain-evaluation.md",
+    "documentation/verification/hermes_domain_context_2026_10_18.json",
+    "evaluation/hermes_conversation/run.schema.json",
+    "evaluation/hermes_conversation/run.template.json",
+    "evaluation/hermes_conversation/scenarios.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/README.md",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifact_verification.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/docs/hermes-domain-evaluation.md",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/evaluation/hermes_conversation/run.schema.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/evaluation/hermes_conversation/run.template.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/evaluation/hermes_conversation/scenarios.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/finalization.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/mission.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/parcela_loma_001.plan",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/source_draft.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/2d709a5d-dca4-46aa-8369-e580088242ee/source_draft_state.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/draft.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/002867e8-6d7b-447b-9ffe-0087176b18a6/draft_state.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/finalization.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/drafts/1f84f808-c688-48c9-b7da-1b1c4b29c094/8be78baa-4cf4-4f65-8531-9388d030c3ed/mission.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/parcela_loma_001.plan",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/preflights/4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4/job.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/preflights/4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4/mission.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/artifacts/missions/generated/preflights/4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4/report.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/assessment.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/context/skill_before_1.0.0.md",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/manifest.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/offline_checks.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/run_record.json",
+    "simulation/ros2_gazebo/results/hermes_skill_evaluation_2026_10_18/transcript_selected_excerpts.json",
+    "tests/test_hermes_attribution_contract.py",
+    "tests/test_hermes_conversation_contracts.py"
+  ],
+  "preexisting_files_checked": 144,
+  "preexisting_unchanged_count": 141,
+  "intentional_evaluation_pack_changes": [
+    "evaluation/hermes_conversation/scenarios.json",
+    "evaluation/hermes_conversation/run.template.json",
+    "evaluation/hermes_conversation/run.schema.json"
+  ],
+  "development_log_previous_content": "unchanged prefix",
+  "previous_evidence_exact_copies": 37,
+  "previous_copies_and_originals_sha256": "all match",
+  "new_exact_source_copies": 17,
+  "all_new_copies_and_context_hashes": "match",
+  "record_schema": "valid TRANSCRIPT_ONLY / INSUFFICIENT_EVIDENCE; old and current versions accepted",
+  "guide_prompts": "all ten match pack, one line each",
+  "artifact_verification": "see artifact_verification.json; final state and source integrity checked without exporting",
+  "limits": [
+    "Tests do not evaluate LLM behavior.",
+    "Transcript excerpts are not a complete raw export or structured MCP trace.",
+    "No current readiness or vehicle restriction observation is performed."
+  ]
+}

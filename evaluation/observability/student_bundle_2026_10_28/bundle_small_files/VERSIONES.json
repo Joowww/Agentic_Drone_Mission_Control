@@ -1,0 +1,97 @@
+{
+  "bundle": "tfg-entrega-estudiantes-2026.10.28",
+  "created_utc": "2026-10-28T08:20:38+00:00",
+  "status": "LOCAL_HANDOFF_NOT_PUBLISHED",
+  "images": [
+    {
+      "tag": "tfg/app:2026.10.27-r2",
+      "compose_profile": "app",
+      "state": "USABLE_OFFLINE",
+      "purpose": "Herramientas offline: consulta del escenario conservado, demo SINTÉTICA, validación de emplazamientos, exportación y verificación de paquetes, comparación de .plan e informes. Sin red ni proveedor LLM.",
+      "image_id": "sha256:a86dae081f3fb3013abec5198e319ef82b38fea4ff5d54f3dbfbfed0a77d307b",
+      "platform": "linux/amd64",
+      "platform_manifest": "sha256:d2f4db45c0e0647a9606ed78b61d5aaf78b60aaddcf097b9fcdb9bb9fe3af9e7",
+      "config_digest": "sha256:c5743721399ff2b9bb60360263c9b819e756a6ebb6c99b999acb51e3278f6bed",
+      "created": "2026-10-27T17:51:56.387832894Z",
+      "unpacked_size_bytes": 344697164,
+      "labels": {
+        "org.opencontainers.image.description": "Offline agri_demo_001 scenario tools (no simulator, no LLM provider)",
+        "org.opencontainers.image.title": "tfg-app",
+        "org.opencontainers.image.version": "2026.10.27-r2",
+        "tfg.apt.snapshot": "20261024T000000Z",
+        "tfg.python.constraints": "constraints-verified.txt"
+      },
+      "archive": "imagenes/tfg-app-2026.10.27-r2.tar",
+      "archive_bytes": 80016896,
+      "archive_sha256": "21e29dd0be427f318d618a078fcac9abea7e2b1bdf01dc8559c7075339e392e8",
+      "archive_contains": "image index (= image_id) with the linux/amd64 manifest and BuildKit's SLSA provenance attestation (mode=min)",
+      "build_evidence_in_source_repository": "evaluation/observability/app_container_build_2026_10_27_r2"
+    },
+    {
+      "tag": "tfg/qgroundcontrol:5.1.5",
+      "compose_profile": "qgc",
+      "state": "USABLE_OFFLINE",
+      "purpose": "QGroundControl 5.1.5 (AppImage oficial) para abrir y guardar .plan sin red ni dispositivos. Necesita WSLg/X11.",
+      "image_id": "sha256:c6a5c57a1552b9e92b741e6ffc15d2d0754d80b47e9a657727f9b467f738f314",
+      "platform": "linux/amd64",
+      "platform_manifest": "sha256:7fe95f5d5e9913293941bc1865ca4c993100b6970d4cb4531d87a0f5365d3e73",
+      "config_digest": "sha256:402fc70b2fc4408e67ab06f6c7080f86a4031c629e997f0a7b3f46067f27cd7e",
+      "created": "2026-10-27T16:24:11.237080796Z",
+      "unpacked_size_bytes": 1196821033,
+      "labels": {
+        "org.opencontainers.image.source": "https://github.com/mavlink/qgroundcontrol/releases/tag/v5.1.5",
+        "org.opencontainers.image.title": "tfg-qgroundcontrol",
+        "org.opencontainers.image.version": "5.1.5",
+        "tfg.apt.snapshot": "20261024T000000Z",
+        "tfg.qgc.appimage.sha256": "9a47e4cf269d9e4f897f582f6b19aa7ebf1e9e67c9d68a532a45b541354bc344",
+        "tfg.qgc.commit": "3a67d31f0c36bf3fe38ec52970d250a89d0aaf67"
+      },
+      "archive": "imagenes/tfg-qgroundcontrol-5.1.5.tar",
+      "archive_bytes": 328596480,
+      "archive_sha256": "43dcec3c2d2ce446adc01cd24b10b3899da6ee095a1773fb69a6479385dabdce",
+      "archive_contains": "image index (= image_id) with the linux/amd64 manifest and BuildKit's SLSA provenance attestation (mode=min)",
+      "build_evidence_in_source_repository": "evaluation/observability/qgc_container_build_2026_10_27"
+    },
+    {
+      "tag": "tfg/planner:2026.10.28",
+      "compose_profile": "planning",
+      "state": "NEEDS_OWN_PROVIDER_ACCOUNT_AND_NETWORK",
+      "purpose": "Hermes d923a5eb + servidor MCP del proyecto restringido a update_mission_draft y finalize_mission_draft. Necesita la cuenta propia del estudiante en el proveedor (nous) y conexión a él; sin credenciales incluidas.",
+      "image_id": "sha256:e2c4513e4ca6982c5d7c88811d4df647d6d7c35055f284104f3aa0f0077e2112",
+      "platform": "linux/amd64",
+      "platform_manifest": "sha256:7d1b5fa656953cb6e2191cf8eeddd8f50e00f370f212bf110b5979d8e6b09e53",
+      "config_digest": "sha256:cd12f7df24072f19e81143669dc14309a4ac5e98ea75d310d8d3069c4ded5d3e",
+      "created": "2026-10-28T07:55:27.610226828Z",
+      "unpacked_size_bytes": 2133433634,
+      "labels": {
+        "org.opencontainers.image.description": "Planning profile: Hermes + project MCP server restricted to planning tools",
+        "org.opencontainers.image.title": "tfg-planner",
+        "org.opencontainers.image.version": "2026.10.28",
+        "tfg.apt.snapshot": "20261024T000000Z",
+        "tfg.hermes.commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8"
+      },
+      "archive": "imagenes/tfg-planner-2026.10.28.tar",
+      "archive_bytes": 483151360,
+      "archive_sha256": "65ca83a4892c382e76931cdbd80e9aa3dc401589606e91b5178d240d852f7048",
+      "archive_contains": "image index (= image_id) with the linux/amd64 manifest and BuildKit's SLSA provenance attestation (mode=min)",
+      "build_evidence_in_source_repository": "evaluation/observability/planner_container_build_2026_10_28"
+    }
+  ],
+  "not_included": {
+    "ollama": "ollama/ollama:0.34.2@sha256:da6e0dc5651df159e45686fd663c4dbe1624a52c44d7280eeac1551d8f865532 and the qwen3:4b model: optional, never pulled or started in this project",
+    "simulator": "not distributed: it only exists in a hand-made mutable container",
+    "credentials_sessions": "none: Hermes login goes to the student's own hermes-home volume"
+  },
+  "compose": "compose.yaml (derived from deploy/compose.yaml of the source repository: same services, images and restrictions for the delivered images; no build sections, no dev profile, no test doubles; project name tfg-estudiante)",
+  "scripts": {
+    "scripts/student_walkthrough.sh": "unchanged copy of deploy/app/student_walkthrough.sh"
+  },
+  "examples": "ejemplos/missions/: copies extracted from /opt/tfg/missions of tfg/app:2026.10.27-r2, equal to its /opt/tfg-provenance/files.sha256",
+  "provenance_caveat": "The attestation's vcs revision (app, qgc) is the repository HEAD at build time; the images were built from a working tree with untracked files, so that commit alone does not reproduce them. The planner was built from a frozen copy and carries no vcs revision.",
+  "pending_before_public_distribution": [
+    "license",
+    "versioning of the distributable set",
+    "test on a second computer",
+    "publication (registry)"
+  ]
+}

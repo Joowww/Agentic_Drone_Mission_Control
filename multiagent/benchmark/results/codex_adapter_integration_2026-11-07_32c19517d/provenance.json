@@ -1,0 +1,45 @@
+{
+ "codex_committed": {
+  "commit": "57a0e303a",
+  "contract_sha256": {
+   "schemas/rover-mission-execution-v2.schema.json": "39c2a5f232f8ca3b7fc95f5216bb7bc7ec323829e4be251586f7f4ab37089d89",
+   "tools/rover_agent_adapter.py": "357c1bea3b647372495901ff8e09cf97392bbda5c732b2e37ff02ba7771cedd0",
+   "tools/rover_control.py": "22d74f75e42f8d01964afd8dee5b067e935d75c4abf4be65c306c522cae16002",
+   "tools/rover_ground_executor.py": "a5db83999263790c7e7d34e5fe6952b91f339d0883facb6e965c462a06c7958d",
+   "tools/rover_mission_payload.py": "a9a7d77ca1ba5d506b0bd405c2ddeb1d6094237abb11203c0b4f4a163faed59d"
+  }
+ },
+ "codex_reviewed": {
+  "commit": "2e206f1fa",
+  "contract_sha256_before_patch": {
+   "schemas/rover-mission-execution-v2.schema.json": "39c2a5f232f8ca3b7fc95f5216bb7bc7ec323829e4be251586f7f4ab37089d89",
+   "tools/rover_agent_adapter.py": "357c1bea3b647372495901ff8e09cf97392bbda5c732b2e37ff02ba7771cedd0",
+   "tools/rover_control.py": "22d74f75e42f8d01964afd8dee5b067e935d75c4abf4be65c306c522cae16002",
+   "tools/rover_ground_executor.py": "a5db83999263790c7e7d34e5fe6952b91f339d0883facb6e965c462a06c7958d",
+   "tools/rover_mission_payload.py": "a9a7d77ca1ba5d506b0bd405c2ddeb1d6094237abb11203c0b4f4a163faed59d"
+  },
+  "patch": "docs/checkpoints/2026-11-07-rover-protected-review.patch",
+  "patch_sha256": "551eb1fefebcaf31ee635472859d8dee3809755d635dd98a717919996eb3a594"
+ },
+ "codex_working_tree": "never read for execution, never written (snapshots come from git objects)",
+ "data_kinds": [
+  "TEST_FIXTURE",
+  "SYNTHETIC_SENSOR",
+  "sealed M4c-r1 request (read-only)",
+  "Hermes .plan I/O"
+ ],
+ "generated_utc": "2026-11-07T16:08:05.946175+00:00",
+ "multiagent_branch": "feature/multiagent-opik-evaluation",
+ "multiagent_commit": "32c19517d66784716ca5bebd69aa2e7653714c70",
+ "multiagent_tree_clean": true,
+ "not_done": [
+  "no LLM call",
+  "no SITL/Gazebo",
+  "no MAVLink",
+  "no vehicle",
+  "no Opik publication",
+  "no real authorization (fixture records only, refused in OPERATIONAL mode)"
+ ],
+ "python": "3.12.3",
+ "schema": "tfg.multiagent.integration-v2-evidence/1"
+}

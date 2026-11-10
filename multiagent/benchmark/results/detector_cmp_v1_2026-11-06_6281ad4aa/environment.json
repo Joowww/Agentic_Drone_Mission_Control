@@ -1,0 +1,9 @@
+{
+ "commit": "6281ad4aa",
+ "cpu": "Intel(R) Core(TM) i9-10980HK CPU @ 2.40GHz, 16 logical CPUs (WSL2)",
+ "memory": "ru_maxrss of each process (includes interpreter and libraries; approximate)",
+ "opencv_env": "isolated venv outside the repository (scratchpad), Python 3.12.3, packages: numpy==2.1.3, opencv-python-headless==4.10.0.84 (multiagent/benchmark/detector_cmp_requirements.txt)",
+ "os": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+ "python_detector_env": "shared project venv (read-only use, nothing installed), Python 3.12.3",
+ "timing": "time.perf_counter around detect() only (image already decoded), median of 3 repeats per image; one process per detector, sequential, machine otherwise idle-ish (not controlled)"
+}

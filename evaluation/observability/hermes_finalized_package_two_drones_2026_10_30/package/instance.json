@@ -1,0 +1,605 @@
+{
+  "aerial": [
+    {
+      "approval_inherited": false,
+      "association": {
+        "selected_by": "operator (explicit assignment)",
+        "site": "synthetic_hermes_rehearsal v1",
+        "takeoff_point": "TAKEOFF_A"
+      },
+      "blocks": [],
+      "derivation": {
+        "declared_home_of_finalized_mission": {
+          "altitude_m": 0.0,
+          "latitude": 41.275,
+          "longitude": 1.987
+        },
+        "frame": "synthetic_hermes_rehearsal_local",
+        "method": "north/east offsets of each waypoint from the finalized mission's own home (tools.simulation_mission_mapper._calculate_local_offset_metres) placed on the selected planned_takeoff point of the site frame (enu_rotated_local_linear_111320_cos_origin_v1)",
+        "offsets_vs_finalized_geometry_max_diff_m": 0.0,
+        "takeoff_local_xy_m": [
+          -6.0,
+          -6.0
+        ],
+        "takeoff_point": "TAKEOFF_A",
+        "waypoints": [
+          {
+            "altitude_m_relative_to_home": 5.0,
+            "latitude": -35.3632440337765,
+            "local_xy_m": [
+              -10.0,
+              2.0
+            ],
+            "longitude": 149.16512684522286,
+            "offset_east_m": -4.0,
+            "offset_north_m": 8.0,
+            "waypoint_id": "WP1"
+          },
+          {
+            "altitude_m_relative_to_home": 5.0,
+            "latitude": -35.3631721688825,
+            "local_xy_m": [
+              -10.0,
+              10.0
+            ],
+            "longitude": 149.16512684522286,
+            "offset_east_m": -4.0,
+            "offset_north_m": 16.0,
+            "waypoint_id": "WP2"
+          }
+        ]
+      },
+      "deterministic_validation": {
+        "errors": [],
+        "execution_status": "APPROVED",
+        "failure_reasons": [],
+        "mission_status": "FEASIBLE",
+        "sitl_executor_compatibility_errors": []
+      },
+      "mission_id": "agri_demo_001_h1_sector_a_on_synthetic_hermes_rehearsal_v1_TAKEOFF_A",
+      "mission_sha256": "b215a38bc3322fe958d2443e559665782fcbe0985295a0b47f7a927d6aa2fe91",
+      "planned_home": {
+        "amsl_m": 584.0,
+        "amsl_source": "site vertical_reference.origin_ground_amsl_m (DECLARED_FLAT); not the effective home",
+        "latitude": -35.3633158986705,
+        "longitude": 149.1651709071337
+      },
+      "source": {
+        "draft_id": "e31bd08d-19ed-440e-b815-94f8b9c062d5",
+        "draft_revision": 1,
+        "files_sha256": {
+          "finalization.json": "6e471ab9502973a632bffc85590e25156b0a65db18e9fbccaf2922f4e82e0b9b",
+          "mission.json": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+          "source_draft.json": "b676f5cd9e0a57278027e6d13b7a0def26935d3531cdf697d274991931cf46c4",
+          "source_draft_state.json": "d1819dd1a92e6086ea1a04764fd0b74344e401152be02a9969bca6598880bb24"
+        },
+        "finalization_id": "0b6af58a-943c-4f06-a631-1a55d4a66d6d",
+        "flight_consent": "NOT_GRANTED",
+        "geometry_revision": 1,
+        "hermes_run_id": "real-hermes-planning-container-20261028-r2",
+        "in_hermes_final_answer": true,
+        "integrity": "VERIFIED_LOCAL_HASHES",
+        "kind": "HERMES_FINALIZATION",
+        "mission_id": "agri_demo_001_h1_sector_a",
+        "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+        "provenance_status": "UNVERIFIED_AGENT_INPUT",
+        "record_sha256": "6e471ab9502973a632bffc85590e25156b0a65db18e9fbccaf2922f4e82e0b9b",
+        "relocated_from": "/opt/tfg/missions/generated/drafts/e31bd08d-19ed-440e-b815-94f8b9c062d5/0b6af58a-943c-4f06-a631-1a55d4a66d6d",
+        "store": "evaluation/observability/planning_container_real_2026_10_28_r2/store",
+        "validation_at_finalization": {
+          "execution_status": "APPROVED",
+          "mission_status": "FEASIBLE",
+          "qgc_export": "REFUSED"
+        }
+      },
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "perimeter TAKEOFF_A -> WP1",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion CENTRAL_HEDGE TAKEOFF_A -> WP1",
+            "detail": "clearance 6.708 m to CENTRAL_HEDGE vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion NORTH_ROW TAKEOFF_A -> WP1",
+            "detail": "clearance 14.000 m to NORTH_ROW vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "perimeter WP1 -> WP2",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion CENTRAL_HEDGE WP1 -> WP2",
+            "detail": "clearance 8.000 m to CENTRAL_HEDGE vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion NORTH_ROW WP1 -> WP2",
+            "detail": "clearance 6.000 m to NORTH_ROW vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "perimeter WP2 -> TAKEOFF_A (return)",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion CENTRAL_HEDGE WP2 -> TAKEOFF_A (return)",
+            "detail": "clearance 5.578 m to CENTRAL_HEDGE vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion NORTH_ROW WP2 -> TAKEOFF_A (return)",
+            "detail": "clearance 6.000 m to NORTH_ROW vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "takeoff in takeoff/landing zone",
+            "detail": "PAD_A",
+            "status": "PASS"
+          },
+          {
+            "check": "vertical limit",
+            "detail": "5.0 m above effective home vs 30.0 m above origin ground (declared flat)",
+            "status": "PASS"
+          }
+        ],
+        "labels": [
+          "TAKEOFF_A",
+          "WP1",
+          "WP2",
+          "TAKEOFF_A (return)"
+        ],
+        "margin": {
+          "kind": "DECLARED_PLANNING_MARGIN",
+          "missing_inputs": [
+            "point TAKEOFF_A.uncertainty_m",
+            "vehicle.horizontal_position_uncertainty_m",
+            "vehicle.max_horizontal_extent_m",
+            "zone CENTRAL_HEDGE.uncertainty_m",
+            "zone NORTH_ROW.uncertainty_m",
+            "zone PERIMETER.uncertainty_m"
+          ],
+          "planning_margin_m": 1.0,
+          "status": "NOT_ACCREDITED"
+        },
+        "route_local": [
+          [
+            -6.0,
+            -6.0
+          ],
+          [
+            -9.999999999992403,
+            1.9999999996988436
+          ],
+          [
+            -9.999999999992403,
+            10.000000000188663
+          ],
+          [
+            -6.0,
+            -6.0
+          ]
+        ],
+        "scope": "planned straight lines, including the return to the planned takeoff coordinate at the mission altitude (as exported: NAV_LAND with location, no RTL); not the flown trajectory",
+        "status": "PASS",
+        "unchecked": []
+      },
+      "task_id": "HERMES_drone_01",
+      "vehicle_id": "drone_01",
+      "waypoint_by_point": {
+        "POI_A1": "WP1",
+        "POI_A2": "WP2"
+      }
+    },
+    {
+      "approval_inherited": false,
+      "association": {
+        "selected_by": "operator (explicit assignment)",
+        "site": "synthetic_hermes_rehearsal v1",
+        "takeoff_point": "TAKEOFF_B"
+      },
+      "blocks": [],
+      "derivation": {
+        "declared_home_of_finalized_mission": {
+          "altitude_m": 0.0,
+          "latitude": 41.275,
+          "longitude": 1.987
+        },
+        "frame": "synthetic_hermes_rehearsal_local",
+        "method": "north/east offsets of each waypoint from the finalized mission's own home (tools.simulation_mission_mapper._calculate_local_offset_metres) placed on the selected planned_takeoff point of the site frame (enu_rotated_local_linear_111320_cos_origin_v1)",
+        "offsets_vs_finalized_geometry_max_diff_m": 0.0,
+        "takeoff_local_xy_m": [
+          6.0,
+          -6.0
+        ],
+        "takeoff_point": "TAKEOFF_B",
+        "waypoints": [
+          {
+            "altitude_m_relative_to_home": 5.0,
+            "latitude": -35.3632440337765,
+            "local_xy_m": [
+              10.0,
+              2.0
+            ],
+            "longitude": 149.16534715477712,
+            "offset_east_m": 4.0,
+            "offset_north_m": 8.0,
+            "waypoint_id": "WP1"
+          },
+          {
+            "altitude_m_relative_to_home": 5.0,
+            "latitude": -35.3631721688825,
+            "local_xy_m": [
+              10.0,
+              10.0
+            ],
+            "longitude": 149.16534715477712,
+            "offset_east_m": 4.0,
+            "offset_north_m": 16.0,
+            "waypoint_id": "WP2"
+          }
+        ]
+      },
+      "deterministic_validation": {
+        "errors": [],
+        "execution_status": "APPROVED",
+        "failure_reasons": [],
+        "mission_status": "FEASIBLE",
+        "sitl_executor_compatibility_errors": []
+      },
+      "mission_id": "agri_demo_001_h1_sector_b_on_synthetic_hermes_rehearsal_v1_TAKEOFF_B",
+      "mission_sha256": "c8f7c80e4d387294f2d8ff1c2a778c8cd5547a5e41fef54207552329f6bb6c79",
+      "planned_home": {
+        "amsl_m": 584.0,
+        "amsl_source": "site vertical_reference.origin_ground_amsl_m (DECLARED_FLAT); not the effective home",
+        "latitude": -35.3633158986705,
+        "longitude": 149.16530309286628
+      },
+      "source": {
+        "draft_id": "c244d68c-819e-4324-b99a-7d299b97081d",
+        "draft_revision": 1,
+        "files_sha256": {
+          "finalization.json": "f310a354792cc6751ad2519a480585855b508cb251455d2db88d5e1b5d2c0f59",
+          "mission.json": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+          "source_draft.json": "e37077dc8c238b376f1af63183d28d27a7e2bd16d0201098c583671ea95f4d4e",
+          "source_draft_state.json": "10bd90eabcef008c73675208547b150025ce9a08eba5d9a3e24c8e49c257cb91"
+        },
+        "finalization_id": "dd6055ee-5090-40c9-98b9-d0b8cb85e93a",
+        "flight_consent": "NOT_GRANTED",
+        "geometry_revision": 1,
+        "hermes_run_id": "real-hermes-planning-container-20261028-r2",
+        "in_hermes_final_answer": true,
+        "integrity": "VERIFIED_LOCAL_HASHES",
+        "kind": "HERMES_FINALIZATION",
+        "mission_id": "agri_demo_001_h1_sector_b",
+        "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+        "provenance_status": "UNVERIFIED_AGENT_INPUT",
+        "record_sha256": "f310a354792cc6751ad2519a480585855b508cb251455d2db88d5e1b5d2c0f59",
+        "relocated_from": "/opt/tfg/missions/generated/drafts/c244d68c-819e-4324-b99a-7d299b97081d/dd6055ee-5090-40c9-98b9-d0b8cb85e93a",
+        "store": "evaluation/observability/planning_container_real_2026_10_28_r2/store",
+        "validation_at_finalization": {
+          "execution_status": "APPROVED",
+          "mission_status": "FEASIBLE",
+          "qgc_export": "REFUSED"
+        }
+      },
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "perimeter TAKEOFF_B -> WP1",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion CENTRAL_HEDGE TAKEOFF_B -> WP1",
+            "detail": "clearance 6.708 m to CENTRAL_HEDGE vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion NORTH_ROW TAKEOFF_B -> WP1",
+            "detail": "clearance 14.000 m to NORTH_ROW vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "perimeter WP1 -> WP2",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion CENTRAL_HEDGE WP1 -> WP2",
+            "detail": "clearance 8.000 m to CENTRAL_HEDGE vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion NORTH_ROW WP1 -> WP2",
+            "detail": "clearance 6.000 m to NORTH_ROW vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "perimeter WP2 -> TAKEOFF_B (return)",
+            "detail": "inside",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion CENTRAL_HEDGE WP2 -> TAKEOFF_B (return)",
+            "detail": "clearance 5.578 m to CENTRAL_HEDGE vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "exclusion NORTH_ROW WP2 -> TAKEOFF_B (return)",
+            "detail": "clearance 6.000 m to NORTH_ROW vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "takeoff in takeoff/landing zone",
+            "detail": "PAD_B",
+            "status": "PASS"
+          },
+          {
+            "check": "vertical limit",
+            "detail": "5.0 m above effective home vs 30.0 m above origin ground (declared flat)",
+            "status": "PASS"
+          }
+        ],
+        "labels": [
+          "TAKEOFF_B",
+          "WP1",
+          "WP2",
+          "TAKEOFF_B (return)"
+        ],
+        "margin": {
+          "kind": "DECLARED_PLANNING_MARGIN",
+          "missing_inputs": [
+            "point TAKEOFF_B.uncertainty_m",
+            "vehicle.horizontal_position_uncertainty_m",
+            "vehicle.max_horizontal_extent_m",
+            "zone CENTRAL_HEDGE.uncertainty_m",
+            "zone NORTH_ROW.uncertainty_m",
+            "zone PERIMETER.uncertainty_m"
+          ],
+          "planning_margin_m": 1.0,
+          "status": "NOT_ACCREDITED"
+        },
+        "route_local": [
+          [
+            6.0,
+            -6.0
+          ],
+          [
+            9.999999999992403,
+            1.9999999996988436
+          ],
+          [
+            9.999999999992403,
+            10.000000000188663
+          ],
+          [
+            6.0,
+            -6.0
+          ]
+        ],
+        "scope": "planned straight lines, including the return to the planned takeoff coordinate at the mission altitude (as exported: NAV_LAND with location, no RTL); not the flown trajectory",
+        "status": "PASS",
+        "unchecked": []
+      },
+      "task_id": "HERMES_drone_02",
+      "vehicle_id": "drone_02",
+      "waypoint_by_point": {
+        "POI_B1": "WP1",
+        "POI_B2": "WP2"
+      }
+    }
+  ],
+  "coordination": {
+    "dependencies": [
+      {
+        "after": "HERMES_drone_01",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "HERMES_drone_02"
+      },
+      {
+        "after": "HERMES_drone_01",
+        "condition": "POI_REACHED",
+        "point": "POI_A1",
+        "task_id": "R1"
+      }
+    ],
+    "errors": [],
+    "mode": "SEQUENTIAL",
+    "note": "dependencies are conditions on OBSERVED outcomes held by the coordinator; never a time wait. Individual .plan files do not coordinate vehicles.",
+    "order": [
+      "HERMES_drone_01",
+      "HERMES_drone_02",
+      "R1"
+    ],
+    "status": "PASS"
+  },
+  "ground": [
+    {
+      "execution": "outside this package: R1 coordinator gates unchanged",
+      "export": "FORMAT_PENDING: no rover exporter; a .plan is not assumed",
+      "frame_transform_to_rover": "NOT_ACCREDITED (site frame -> rover odometry frame)",
+      "kind": "VISIT_AND_STOP",
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "target in drivable area",
+            "detail": "DRIVABLE",
+            "status": "PASS"
+          },
+          {
+            "check": "straight line within drivable area",
+            "detail": "the aerial perimeter is never used for the rover",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion CENTRAL_HEDGE",
+            "detail": "clearance 5.381 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion NORTH_ROW",
+            "detail": "clearance 14.000 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion STORE",
+            "detail": "clearance 12.000 m vs margin 1.0 m",
+            "status": "PASS"
+          }
+        ],
+        "line_local": [
+          [
+            0.0,
+            -9.5
+          ],
+          [
+            -9.999999999992403,
+            1.9999999996988436
+          ]
+        ],
+        "margin": {
+          "kind": "DECLARED_PLANNING_MARGIN",
+          "missing_inputs": [
+            "point ROVER_START.uncertainty_m",
+            "vehicle.horizontal_position_uncertainty_m",
+            "vehicle.max_horizontal_extent_m",
+            "zone DRIVABLE.uncertainty_m"
+          ],
+          "planning_margin_m": 1.0,
+          "status": "NOT_ACCREDITED"
+        },
+        "scope": "straight planned line only; no path planner; rover frame transform not accredited",
+        "status": "PASS"
+      },
+      "start_point": "ROVER_START",
+      "target_definition": "POI_A1 = WP1 of HERMES_drone_01 (scenario binding), re-based on the site",
+      "target_point": "POI_A1",
+      "task_id": "R1",
+      "vehicle_id": "rover_01"
+    }
+  ],
+  "inputs": {
+    "assignments": [
+      {
+        "takeoff_point": "TAKEOFF_A",
+        "vehicle_id": "drone_01"
+      },
+      {
+        "takeoff_point": "TAKEOFF_B",
+        "vehicle_id": "drone_02"
+      }
+    ],
+    "finalized_missions": {
+      "drone_01": {
+        "draft_id": "e31bd08d-19ed-440e-b815-94f8b9c062d5",
+        "finalization_id": "0b6af58a-943c-4f06-a631-1a55d4a66d6d",
+        "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+        "record_sha256": "6e471ab9502973a632bffc85590e25156b0a65db18e9fbccaf2922f4e82e0b9b"
+      },
+      "drone_02": {
+        "draft_id": "c244d68c-819e-4324-b99a-7d299b97081d",
+        "finalization_id": "dd6055ee-5090-40c9-98b9-d0b8cb85e93a",
+        "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+        "record_sha256": "f310a354792cc6751ad2519a480585855b508cb251455d2db88d5e1b5d2c0f59"
+      }
+    },
+    "fleet": {
+      "id": "agri_demo_fleet",
+      "sha256": "9a2ffcfa2539a17c7e4b746ed485e949e0a905096c936b7b2ffaf0c938ce41c1",
+      "version": 2
+    },
+    "hermes_run": {
+      "evidence": "evaluation/observability/planning_container_real_2026_10_28_r2",
+      "files_sha256": {
+        "execute_result.json": "593b14d7e8f82be048e946870e1fc39a6172180d351ff28f083db81c558a1475",
+        "review_result.json": "19d519adf6bef21793846fdd52a7b063275c45cd2d37e7bfcb88bf4fab12de9a"
+      },
+      "hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
+      "hermes_invocations": 1,
+      "manifest_sha256": "7e952d76302ebf1c177e0be6318cb3d848c5d8b3c7ad932b86d5f6315c1c3edf",
+      "model": "poolside/laguna-s-2.1:free",
+      "provider": "nous",
+      "return_code": 0,
+      "review_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "run_id": "real-hermes-planning-container-20261028-r2"
+    },
+    "planning_margin_m": 1.0,
+    "rover": {
+      "start_point": "ROVER_START",
+      "vehicle_id": "rover_01"
+    },
+    "scenario_binding": {
+      "association_basis": "POI order of the H1 request; geometry verified against H0",
+      "path": "evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json",
+      "scenario_id": "agri_demo_001",
+      "sha256": "b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf"
+    },
+    "site": {
+      "id": "synthetic_hermes_rehearsal",
+      "sha256": "61d47a4ed5889942f4f5916506377d27f342d29e92a3809eec79337d7445949f",
+      "status": "SYNTHETIC",
+      "version": 1
+    }
+  },
+  "instance_id": "729489664a9615d5",
+  "joint_spatial": {
+    "frame": "synthetic_hermes_rehearsal_local",
+    "pairs": [
+      {
+        "min_horizontal_distance_m": 12.0,
+        "pair": [
+          "HERMES_drone_01",
+          "HERMES_drone_02"
+        ],
+        "simultaneous_execution": "NOT_CLEARED",
+        "temporal_deconfliction": "NOT_EVALUATED"
+      }
+    ]
+  },
+  "provenance": "HERMES_FINALIZED_ON_SYNTHETIC",
+  "references": {
+    "effective_home": "NOT_OBSERVED (ArduPilot sets it at arming)",
+    "estimator_origin": "NOT_OBSERVED",
+    "finalized_mission_home": "declared in each finalized mission; kept in its source copy and replaced by the takeoff point in the derived one",
+    "gazebo_spawn": "not related to the site frame (no accredited transform)",
+    "planned_takeoff": "the planned_takeoff point the operator assigned to each vehicle",
+    "rover_start": "the rover_start point the operator named",
+    "site_origin": "ORIGIN"
+  },
+  "schema": "tfg.scenario-instance/1",
+  "site_validation": {
+    "capabilities": {
+      "field_export": false,
+      "local_design": true,
+      "sitl_geographic_export": true
+    },
+    "errors": [],
+    "export_blocks": {
+      "field": [
+        "SYNTHETIC site: never a proposal for hardware"
+      ],
+      "sitl": []
+    },
+    "geographic_references": {
+      "complete": true,
+      "field_verified_declared": false,
+      "missing": []
+    },
+    "missing": [],
+    "note": "VERIFIED_DECLARED is a declaration in the file, not an authentication",
+    "site_id": "synthetic_hermes_rehearsal",
+    "site_status": "SYNTHETIC",
+    "status": "VALID",
+    "version": 1,
+    "warnings": []
+  }
+}

@@ -1,0 +1,4 @@
+# Local derivative of qwen3:4b with the context window Hermes Agent requires (>= 64000 tokens).
+# Reuses the installed qwen3:4b weights: `ollama create` downloads nothing and does not change qwen3:4b.
+FROM qwen3:4b
+PARAMETER num_ctx 65536

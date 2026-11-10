@@ -1,0 +1,33 @@
+// Template (docs/repository-map.md#vista-en-vs-code). files.exclude hides historical or generated folders in the
+// Explorer only; paths do not change and agents still read them. search.exclude inherits files.exclude, so the
+// same historical patterns are set to false there: they stay hidden in the Explorer but appear in normal searches.
+// Only tool caches and the Hermes build tarball stay out of searches. Merge into .vscode/settings.json (add these
+// keys inside your own files.exclude and search.exclude blocks); do not overwrite your own settings.
+{
+    "files.exclude": {
+        "**/__pycache__": true,
+        ".pytest_cache": true,
+        ".coverage": true,
+        "deploy/planner/vendor": true,
+        "missions/generated": true,
+        "documentation/development_log.md": true,
+        "evaluation/hermes_conversation": true,
+        "evaluation/hermes_native_usage_2026_10_21": true,
+        "evaluation/observability/hermes_*": true,
+        "evaluation/observability/opik_*": true,
+        "evaluation/observability/langsmith_*": true,
+        "evaluation/observability/mission_report_*": true,
+        "evaluation/observability/agri_site_fleet_export_2026_10_27": true
+    },
+    "search.exclude": {
+        "missions/generated": false,
+        "documentation/development_log.md": false,
+        "evaluation/hermes_conversation": false,
+        "evaluation/hermes_native_usage_2026_10_21": false,
+        "evaluation/observability/hermes_*": false,
+        "evaluation/observability/opik_*": false,
+        "evaluation/observability/langsmith_*": false,
+        "evaluation/observability/mission_report_*": false,
+        "evaluation/observability/agri_site_fleet_export_2026_10_27": false
+    }
+}

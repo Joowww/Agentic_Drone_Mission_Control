@@ -1,0 +1,175 @@
+[
+ {
+  "event": {
+   "at": "2026-11-06T16:18:01.019523+00:00",
+   "phase": "INTERPRETED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "INTERPRETED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T16:18:01.019523+00:00",
+   "phase": "AERIAL_PLANNED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AERIAL_PLANNED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T16:18:01.019523+00:00",
+   "phase": "VALIDATED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T16:18:01.519523+00:00",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "HEARTBEAT"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T16:18:03.019523+00:00",
+   "event_id": "obs-event-1",
+   "observation_id": "red_target-obs-1",
+   "source": "TEST_FIXTURE",
+   "type": "OBSERVATION"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "red_target-obs-1",
+    "state": "TARGET_VALIDATED",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "TARGET_VALIDATED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T16:18:04.019523+00:00",
+   "point": "POI_3",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "AERIAL_POINT_REACHED"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "red_target-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "TARGET_VALIDATED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T16:18:05.019523+00:00",
+   "phase": "GROUND_PLANNED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "red_target-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "GROUND_PLANNED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T16:18:05.019523+00:00",
+   "phase": "GROUND_VALIDATED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "red_target-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "GROUND_VALIDATED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T16:18:05.019523+00:00",
+   "phase": "AUTHORIZATION_REQUESTED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "red_target-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "AUTHORIZATION_REQUESTED",
+  "outcome": "APPLIED",
+  "reason": null
+ }
+]

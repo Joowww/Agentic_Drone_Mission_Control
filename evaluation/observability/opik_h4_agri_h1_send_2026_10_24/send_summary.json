@@ -1,0 +1,61 @@
+{
+  "schema": "tfg.opik-send-summary/1",
+  "capture": "evaluation/observability/agri_planning_h1_nous_2026_10_24/capture/hermes-events-2026-10-24.jsonl",
+  "destination": {
+    "platform": "opik",
+    "project": "tfg-opik-hermes-real-20261021",
+    "workspace": "joowww"
+  },
+  "endpoint": "https://www.comet.com/opik/api",
+  "traces": 1,
+  "spans": 3,
+  "batches_planned": 2,
+  "batches": [
+    {
+      "outcome": "http_accepted",
+      "http_status": 204,
+      "response_body_bytes": 0,
+      "index": 0,
+      "kind": "traces",
+      "items": 1,
+      "elapsed_wall_s": 0.675,
+      "recorded": true
+    },
+    {
+      "outcome": "http_accepted",
+      "http_status": 204,
+      "response_body_bytes": 0,
+      "index": 1,
+      "kind": "spans",
+      "items": 3,
+      "elapsed_wall_s": 0.62,
+      "recorded": true
+    }
+  ],
+  "http_statuses_received": [
+    204,
+    204
+  ],
+  "status": "ALL_BATCHES_HTTP_ACCEPTED",
+  "uncertain_reason": null,
+  "not_attempted_batches": 0,
+  "record_complete": true,
+  "record_failure": null,
+  "error_body_status": "not_needed_no_non_2xx_response",
+  "send_rc": 0,
+  "send_stderr_bytes": 0,
+  "exporter_note": "No automatic retry. HTTP 2xx is not proof of storage or of exactly-once delivery; ids are deterministic, and how Opik treats a repeated id is not verified.",
+  "originals_outside_repository": {
+    "send_report.json": "12dfcc055ad25aac8cecec007aad677b1f0d4c87e6b050e19296efaad18cc57d",
+    "send_record.jsonl": "0440d19ef0ea1d06bfe32162239012e6e8ee7c37c32815777689611c958c7737",
+    "send.rc": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "send.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "excluded": [
+    "API key (never written by the exporter)",
+    "error body (not needed: no non-2xx response)",
+    "absolute local paths of the private directory"
+  ],
+  "h3_sent": false,
+  "operator_visual_verification": "PENDING"
+}

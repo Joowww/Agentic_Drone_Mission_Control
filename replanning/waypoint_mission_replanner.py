@@ -117,6 +117,8 @@ def generate_waypoint_replan(
         "status"
     ) == "unsafe":
         unsafe_legs = []
+        vertical_legs = []
+        repeated_legs = []
 
         for leg in flight_analysis.get(
             "leg_results",
@@ -127,12 +129,49 @@ def generate_waypoint_replan(
                 {},
             )
 
+            label = f"{leg['from']} -> {leg['to']}"
+
             if result.get(
+                "status"
+            ) == "not_modelled":
+                vertical_legs.append(
+                    label
+                )
+
+            elif result.get(
+                "status"
+            ) == "no_displacement":
+                repeated_legs.append(
+                    label
+                )
+
+            elif result.get(
                 "status"
             ) != "success":
                 unsafe_legs.append(
-                    f"{leg['from']} -> {leg['to']}"
+                    label
                 )
+
+        if vertical_legs:
+            actions.append(
+                "Add horizontal displacement to or remove "
+                "the following vertical-only route legs, "
+                "which the current model does not evaluate: "
+                + ", ".join(
+                    vertical_legs
+                )
+                + "."
+            )
+
+        if repeated_legs:
+            actions.append(
+                "Remove the repeated point in the following "
+                "route legs without displacement: "
+                + ", ".join(
+                    repeated_legs
+                )
+                + "."
+            )
 
         if unsafe_legs:
             actions.append(

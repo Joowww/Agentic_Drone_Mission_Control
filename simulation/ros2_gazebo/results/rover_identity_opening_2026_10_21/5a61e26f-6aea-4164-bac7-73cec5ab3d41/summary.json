@@ -1,0 +1,233 @@
+{
+  "status": "BLOCKED",
+  "reason": "PASSIVE_WORKER_FAILED_CALLBACK_CONTRACT",
+  "evidence_id": "5a61e26f-6aea-4164-bac7-73cec5ab3d41",
+  "opening_count": 1,
+  "precheck": "CLEAR",
+  "atomic_precheck": "CLEAR",
+  "start_status": "SUCCESS",
+  "start_lifecycle_id": "692f2736-a98e-43d5-ab60-7bf3880635e4",
+  "stop_lifecycle_id": "073958ba-5438-4378-b683-1922a6eb2552",
+  "worker_observed": {
+    "context_sha256": "27cddac323f923343c55cdda45f82bfe8ca8a2ae8fd51b270aa05d4b64742763",
+    "worker": {
+      "pid": 91,
+      "start_ticks": 754003,
+      "boot_id": "51f3835d-91d2-4044-a115-2dcb8c14768a"
+    },
+    "state": "BLOCKED",
+    "ros": {},
+    "movement_authorized": false,
+    "heartbeat_monotonic_s": 7558.635680167,
+    "error": "TypeError: PassiveObserver.callback.<locals>.receive() missing 1 required positional argument: 'info'"
+  },
+  "launch_alive_at_capture": true,
+  "worker_alive_at_capture": false,
+  "observed_process_topology": [
+    {
+      "pid": 206,
+      "start_ticks": 754242,
+      "ppid": 90,
+      "state": "S",
+      "boot_id": "51f3835d-91d2-4044-a115-2dcb8c14768a",
+      "argv": [
+        "/root/ardu_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent",
+        "udp4",
+        "--middleware",
+        "dds",
+        "--verbose",
+        "4",
+        "--port",
+        "2019",
+        "--ros-args",
+        "-r",
+        "__node:=micro_ros_agent",
+        "-r",
+        "__ns:=/drone1"
+      ]
+    },
+    {
+      "pid": 208,
+      "start_ticks": 754243,
+      "ppid": 90,
+      "state": "S",
+      "boot_id": "51f3835d-91d2-4044-a115-2dcb8c14768a",
+      "argv": [
+        "arducopter",
+        "--model",
+        "json",
+        "--speedup",
+        "1",
+        "--slave",
+        "0",
+        "--sim-address=127.0.0.1",
+        "--instance",
+        "0",
+        "--defaults",
+        "/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm",
+        "--use_sim_time",
+        "True",
+        "--synthetic-clock",
+        "--sysid",
+        "1"
+      ]
+    },
+    {
+      "pid": 218,
+      "start_ticks": 754244,
+      "ppid": 90,
+      "state": "S",
+      "boot_id": "51f3835d-91d2-4044-a115-2dcb8c14768a",
+      "argv": [
+        "arducopter",
+        "--model",
+        "json",
+        "--speedup",
+        "1",
+        "--slave",
+        "0",
+        "--sim-address=127.0.0.1",
+        "--instance",
+        "1",
+        "--defaults",
+        "/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm",
+        "--use_sim_time",
+        "True",
+        "--synthetic-clock",
+        "--sysid",
+        "2"
+      ]
+    },
+    {
+      "pid": 228,
+      "start_ticks": 754247,
+      "ppid": 90,
+      "state": "S",
+      "boot_id": "51f3835d-91d2-4044-a115-2dcb8c14768a",
+      "argv": [
+        "ardurover",
+        "--model",
+        "json",
+        "--speedup",
+        "1",
+        "--slave",
+        "0",
+        "--sim-address=127.0.0.1",
+        "--instance",
+        "2",
+        "--defaults",
+        "/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover-skid.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm",
+        "--use_sim_time",
+        "True",
+        "--synthetic-clock",
+        "--sysid",
+        "3"
+      ]
+    }
+  ],
+  "unknown": {
+    "status_and_odometry_samples": "NOT_COLLECTED_WORKER_FAILED_BEFORE_RECORDING",
+    "per_message_gids": "NOT_OBSERVED",
+    "frames_units": "NOT_OBSERVED_EXPECTED_CONTRACT_ONLY",
+    "active_bridge_yaml": "NOT_COLLECTED_AFTER_WORKER_FAILURE",
+    "effective_dds_parameters_xrce_session": "NOT_VERIFIED_NO_SERVICE_CALLS",
+    "armed_flying_ground_contact": "NOT_OBSERVED",
+    "gui_visual_confirmation": "NOT_OBSERVED"
+  },
+  "source_association_verified": false,
+  "movement_authorized": false,
+  "vehicle_service_calls": 0,
+  "vehicle_control_commands": 0,
+  "stop_status": "SUCCESS",
+  "cleanup": {
+    "success": true,
+    "signals": [
+      {
+        "pid": 90,
+        "start_ticks": 754001,
+        "signal": "SIGINT"
+      },
+      {
+        "pid": 199,
+        "start_ticks": 754242,
+        "signal": "SIGTERM"
+      },
+      {
+        "pid": 202,
+        "start_ticks": 754242,
+        "signal": "SIGTERM"
+      },
+      {
+        "pid": 199,
+        "start_ticks": 754242,
+        "signal": "SIGKILL"
+      }
+    ],
+    "errors": [],
+    "unattributed_auxiliaries": [],
+    "remaining": []
+  },
+  "postcheck": {
+    "status": "CLEAR_NO_RECOGNIZED_RUNTIME_PROCESSES",
+    "started_at_utc": "2026-10-21T08:35:53.393508+00:00",
+    "guards": {},
+    "environment": {
+      "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+      "name": "/tfg-ardupilot-gazebo",
+      "created_at": "2026-10-02T07:28:34.87176229Z",
+      "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+      "state": {
+        "Dead": false,
+        "Error": "",
+        "ExitCode": 0,
+        "FinishedAt": "2026-10-21T06:18:55.300888Z",
+        "OOMKilled": false,
+        "Paused": false,
+        "Pid": 36004,
+        "Restarting": false,
+        "Running": true,
+        "StartedAt": "2026-10-21T08:24:48.062034411Z",
+        "Status": "running"
+      },
+      "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+      "context": "default",
+      "endpoint": "default \"unix:///var/run/docker.sock\"",
+      "status": "ACTIVE"
+    },
+    "processes": {
+      "host": {
+        "candidates": [],
+        "errors": []
+      },
+      "container": {
+        "candidates": [],
+        "errors": []
+      }
+    },
+    "readiness_service_checks": "NOT_CALLED_NO_SERVICES_CONSTRAINT",
+    "finished_at_utc": "2026-10-21T08:35:54.534966+00:00"
+  },
+  "offline_tests": {
+    "passed": 79,
+    "log": "offline-tests.log",
+    "limitation": "Doubles did not detect installed rclpy one-argument callback incompatibility"
+  },
+  "offline_source_finding": {
+    "file": "deployed-sources/04-executors.py",
+    "lines": [
+      398,
+      402,
+      405,
+      407
+    ],
+    "finding": "Installed _take_subscription returns msg_info[0]; _execute_subscription calls sub.callback(msg) with one argument. Deployed passive callback requires (message, info). No fix or retry performed."
+  },
+  "notes": [
+    "Start SUCCESS is infrastructure lifecycle success, not worker identity verification or readiness API result.",
+    "Cleanup escalated SIGINT/SIGTERM/SIGKILL through the protected supervisor; no manual signals.",
+    "Container remains running after simulation cleanup; post-scan found no recognized project runtime processes and no active guards.",
+    "Ephemeral collection helper is archived at closing version; per-command records preserve the actual read-only command arguments and streams.",
+    "No functional project source, observability file, dependency or development_log was edited in this task."
+  ],
+  "finished_at_utc": "2026-10-21T08:42:49.837962+00:00"
+}

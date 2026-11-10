@@ -1,0 +1,57 @@
+{
+  "fields": {
+    "input_tokens": {
+      "value": 570,
+      "availability": "PRESENT_NATIVE_REPORT",
+      "raw_provider_usage_retained": false
+    },
+    "output_tokens": {
+      "value": 2,
+      "availability": "PRESENT_NATIVE_REPORT",
+      "raw_provider_usage_retained": false
+    },
+    "cache_read_tokens": {
+      "value": 224,
+      "availability": "PRESENT_NATIVE_REPORT",
+      "raw_provider_usage_retained": false
+    },
+    "cache_write_tokens": {
+      "value": 0,
+      "availability": "PRESENT_NATIVE_ZERO_NOT_PROVIDER_ZERO_PROOF",
+      "raw_provider_usage_retained": false
+    },
+    "reasoning_tokens": {
+      "value": 0,
+      "availability": "PRESENT_NATIVE_ZERO_NOT_PROVIDER_ZERO_PROOF",
+      "raw_provider_usage_retained": false
+    },
+    "total_tokens": {
+      "value": 796,
+      "availability": "PRESENT_NATIVE_REPORT",
+      "raw_provider_usage_retained": false
+    },
+    "api_calls": {
+      "value": 1,
+      "availability": "PRESENT_NATIVE_REPORT",
+      "raw_provider_usage_retained": false
+    },
+    "service_tier": {
+      "value": null,
+      "availability": "PRESENT_NATIVE_NULL",
+      "raw_provider_usage_retained": false
+    }
+  },
+  "normalized_counters": "Hermes normalizes provider usage; input can be derived by subtracting cache buckets. Raw wire usage was not captured.",
+  "main_total_formula": "CanonicalUsage.total_tokens = input_tokens + cache_read_tokens + cache_write_tokens + output_tokens",
+  "auxiliary_total_formula": "oneshot._auxiliary_report: auxiliary.total_tokens = auxiliary.input_tokens + auxiliary.output_tokens (does not add auxiliary cache buckets)",
+  "aggregate_total_formula": "native total_including_auxiliary.total_tokens = main.total_tokens + auxiliary.total_tokens; do not reinterpret as verified billable usage",
+  "api_calls_semantics": "turn_usage.record_response_usage counts completed provider attempts; native auxiliary counts are separate. These are not a complete count of wire HTTP attempts or retries.",
+  "internal_retries": "UNKNOWN: no retry counter or wire log was collected; one CLI invocation is not proof of one HTTP request",
+  "cost": "Hermes reported estimated_cost_usd=0.0 with cost_status=estimated and cost_source=provider_models_api; actual billed cost UNKNOWN",
+  "source_hashes": {
+    "agent/turn_usage.py": "eead64e0b584521ab118094af5ebee7d886f30c2c4ff6984e6a2b8e1a4b276f3",
+    "agent/usage_pricing.py": "6fc01dafad5d6b78262ad9117cfa51fb9f89313c4f62cb04ca327459db2ce61a",
+    "hermes_cli/oneshot.py": "ebd2bc6a320f24fa94249dab37a0776f4d32c92bb7ac3f6c7193f14eefecfdc9"
+  },
+  "plugin_capture": "No plugin events collected or claimed. Parent opt-in flag was not 1; no assertion about child plugin registration/dispatch is made."
+}

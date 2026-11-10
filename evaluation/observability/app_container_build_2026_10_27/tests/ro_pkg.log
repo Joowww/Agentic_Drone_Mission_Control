@@ -1,0 +1,17 @@
+ Container tfg-dist-app-run-72285a248acc Creating 
+ Container tfg-dist-app-run-72285a248acc Created 
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/opt/tfg/tools/scenario_package.py", line 394, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/tfg/tools/scenario_package.py", line 371, in main
+    build_package(bundle, args.out, target=target, approval=approval)
+  File "/opt/tfg/tools/scenario_package.py", line 186, in build_package
+    staging = Path(tempfile.mkdtemp(prefix=".package-", dir=out.parent))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/tempfile.py", line 523, in mkdtemp
+    _os.mkdir(file, 0o700)
+PermissionError: [Errno 13] Permission denied: '/work/.package-9i3epatw'
+

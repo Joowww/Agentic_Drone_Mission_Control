@@ -1,0 +1,54 @@
+{
+ "cases": [
+  {
+   "case_id": "D01",
+   "expected": "PROPOSED_PENDING_AUTHORIZATION",
+   "llm": {
+    "agent_success": true,
+    "failure_kind": null,
+    "pass": true,
+    "status": "PROPOSED_PENDING_AUTHORIZATION"
+   },
+   "m0": {
+    "pass": true,
+    "status": "PROPOSED_PENDING_AUTHORIZATION"
+   },
+   "same_status": true
+  },
+  {
+   "case_id": "D05",
+   "expected": "INFEASIBLE",
+   "llm": {
+    "agent_success": false,
+    "failure_kind": "MODEL",
+    "pass": true,
+    "status": "INFEASIBLE"
+   },
+   "m0": {
+    "pass": true,
+    "status": "INFEASIBLE"
+   },
+   "same_status": true
+  },
+  {
+   "case_id": "D13",
+   "expected": "PARTIAL_PENDING_AUTHORIZATION",
+   "llm": {
+    "agent_success": false,
+    "failure_kind": "MODEL",
+    "pass": true,
+    "status": "PARTIAL_PENDING_AUTHORIZATION"
+   },
+   "m0": {
+    "pass": true,
+    "status": "PARTIAL_PENDING_AUTHORIZATION"
+   },
+   "same_status": true
+  }
+ ],
+ "llm_agent_success": 1,
+ "llm_pass": 3,
+ "m0_pass": 3,
+ "n": 3,
+ "note": "same cases, delegation, criteria and information; n=3: preliminary, no statistics"
+}

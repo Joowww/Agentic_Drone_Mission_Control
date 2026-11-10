@@ -1,0 +1,37 @@
+{
+  "schema": "tfg.rover-transport-reader/1",
+  "prepared": false,
+  "status": "BLOCKED",
+  "binary": {
+    "path": "/tmp/tfg-receiver-build-20261027-a/rover_observation_receiver",
+    "sha256": "119159b4bba18fd193e0664ad1be6f1f96e491d122c0d951384ae3e9ced3fe98"
+  },
+  "max_samples": 20,
+  "duration_s": 120,
+  "max_wire_bytes": 458752,
+  "source_hashes": {
+    "tools/rover_identity_probe/observation_receiver.cpp": "9477a9bcd788f7d3fe7481ded8b4c47a5a1de75dbdda8639eb1e2687d4f3419f",
+    "tools/rover_identity_probe/session_context.hpp": "f3d5b3858721e1a637479a4ee0b19ae2df7c1130982a3dd18b717a506a49e869",
+    "tools/rover_identity_probe/parameter_rpc.hpp": "26d84b937f8d3edd3fd3a95893d64b0554ee151cfffb8287bff5f088d7625910",
+    "tools/rover_identity_probe/CMakeLists.txt": "f5d73af6db8ec705927120a74834f6279704ab7b09a587d0d689728494d9d8e9",
+    "tools/rover_passive_rclcpp/collector_core.hpp": "5c52f9cbf55bb5c80fcdc5414cb64eef5313add9a2c25be74a4a82072ec34abe",
+    "tools/rover_passive_rclcpp/observer.hpp": "e5d14f78d5d72db2f0a957aa9311f1e7da75e18cb491c3ecc5a5096f8539c951",
+    "tools/rover_observation_stream.py": "e13b1750a3d079704904b772089c0eaca65ea8cbbfc7cd0f8c04508e9836b924",
+    "tools/rover_xrce_trace/passive_trial.py": "266748e3daa0a9da92d16e5815c2f4c2b2ea2b5e9bc9ef3fcbf2f70afe1f6078",
+    "tools/rover_xrce_trace/selection.py": "3b6ba7527a80830b87cc9f631dbc62ddf975ad063a70589e507cb94c595de154",
+    "tools/rover_xrce_trace/prepare_identity.py": "ca60a17614e8ae4c295e2f97d929ced41b0329389566e74f8231c4affe93bb0a",
+    "tools/rover_xrce_trace/prepare.py": "a43b4ead080359ba8f16f67ff4ac01f67e12ea59d5a48346703fcfb824cc7787",
+    "tools/rover_xrce_trace/identity_trace.hpp": "672d1f92a399e93a501089d24760111c142dce24cee081b2eb736dcd5bcea1d9",
+    "tools/rover_xrce_trace/build.sh": "ab022afcf542bff00f9dbbaeae929f7bf522191298647ca66e730f2cf999134f",
+    "tools/rover_xrce_trace/build_identity.sh": "a489461d69ef428b37c8d453099e8759a570dcb4112ad3d278960b9492b88898"
+  },
+  "native_dependencies": {},
+  "agent_selection_sha256": "4658bbe7b17e936c5204f542f4887faf8e93f1bab6665b73eea6595aa69d0601",
+  "gaps": [
+    "Original receiver and RPC build logs/source snapshots were not sealed; matching ELF hashes do not prove correspondence to current sources.",
+    "Native dependency binaries/header closure not pinned or revalidated; container remains stopped.",
+    "Bridge/model artifacts not revalidated in this closure; no operational selection."
+  ],
+  "executed": false,
+  "movement_authorized": false
+}

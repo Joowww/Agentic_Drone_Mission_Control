@@ -1,0 +1,64 @@
+[
+    {
+        "Id": "sha256:c6a5c57a1552b9e92b741e6ffc15d2d0754d80b47e9a657727f9b467f738f314",
+        "RepoTags": [
+            "tfg/qgroundcontrol:5.1.5"
+        ],
+        "RepoDigests": [
+            "tfg/qgroundcontrol@sha256:c6a5c57a1552b9e92b741e6ffc15d2d0754d80b47e9a657727f9b467f738f314"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-27T16:24:11.237080796Z",
+        "Config": {
+            "User": "1000:1000",
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "QT_QPA_PLATFORM=xcb",
+                "QT_X11_NO_MITSHM=1",
+                "LIBGL_ALWAYS_SOFTWARE=1",
+                "HOME=/home/qgc"
+            ],
+            "Entrypoint": [
+                "/opt/tfg/entrypoint.sh"
+            ],
+            "Labels": {
+                "org.opencontainers.image.source": "https://github.com/mavlink/qgroundcontrol/releases/tag/v5.1.5",
+                "org.opencontainers.image.title": "tfg-qgroundcontrol",
+                "org.opencontainers.image.version": "5.1.5",
+                "tfg.apt.snapshot": "20261024T000000Z",
+                "tfg.qgc.appimage.sha256": "9a47e4cf269d9e4f897f582f6b19aa7ebf1e9e67c9d68a532a45b541354bc344",
+                "tfg.qgc.commit": "3a67d31f0c36bf3fe38ec52970d250a89d0aaf67"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 1196821033,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:bec87777bc2fb2edcdf9af11df1531469e7df911309c1413082b18fcb8610278",
+                "sha256:0d642fb6f8a4e7404a17e6db9f7276314db77d5998d98b2c72e30d1c1e229613",
+                "sha256:f7e3192eb7a4bfd0360bc5e0654e3d1624324ed7ca349aa028064d9eb50758da",
+                "sha256:2efc9b73cce40add6af1275a2dbaf4d2dba4809c9b585a5a3e8064c69c9eb786",
+                "sha256:6b6bcc3714923219d6066a3bf726f4e5a94922ceeeb861adda5f2dcbdbe1796d"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-27T16:24:38.732778744Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:c6a5c57a1552b9e92b741e6ffc15d2d0754d80b47e9a657727f9b467f738f314",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "qp0c6m73v9qw2qhk9h2fiio5g",
+                    "CreatedAt": "2026-10-27T16:24:44.414028341Z"
+                }
+            ]
+        }
+    }
+]

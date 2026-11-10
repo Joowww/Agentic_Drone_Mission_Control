@@ -1,0 +1,121 @@
+{
+  "status": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+  "tool_execution": {
+    "calls": 1,
+    "reasons": [],
+    "status": "OK"
+  },
+  "factual": {
+    "parse": "JSON_OBJECT",
+    "scenario_status": "match",
+    "r1_status": "match",
+    "r1_dependency": "match",
+    "runs[2f7db1f6].vehicle_id": "match",
+    "runs[2f7db1f6].simulated_vehicle": "match",
+    "runs[2f7db1f6].mission_id": "match",
+    "runs[2f7db1f6].status": "match",
+    "runs[2f7db1f6].result_status": "match",
+    "runs[2f7db1f6].reached_points": "match",
+    "runs[2f7db1f6].return_home": "match",
+    "runs[2f7db1f6].landing": "match",
+    "runs[2f7db1f6].executor_started_at": "match",
+    "runs[2f7db1f6].executor_finished_at": "match",
+    "runs[febf7c4f].vehicle_id": "match",
+    "runs[febf7c4f].simulated_vehicle": "match",
+    "runs[febf7c4f].mission_id": "match",
+    "runs[febf7c4f].status": "match",
+    "runs[febf7c4f].result_status": "match",
+    "runs[febf7c4f].reached_points": "match",
+    "runs[febf7c4f].return_home": "match",
+    "runs[febf7c4f].landing": "match",
+    "runs[febf7c4f].executor_started_at": "match",
+    "runs[febf7c4f].executor_finished_at": "match"
+  },
+  "critical": {
+    "scenario_complete": "match",
+    "sequence_order": "match",
+    "order_basis": "match",
+    "r1_commands_sent": "match",
+    "r1_movement_authorized": "match",
+    "claims.images_captured": "match",
+    "claims.detections_made": "match",
+    "claims.speed_commanded": "match",
+    "claims.speed_measured": "match",
+    "claims.simultaneous_flight": "match",
+    "claims.common_frame_validated": "match",
+    "claims.current_permissions_checked": "match"
+  },
+  "failed_keys": [],
+  "classifications": [],
+  "score": 1.0,
+  "score_note": "reported only; any critical or factual failure rejects the answer regardless of score",
+  "explanation_review": {
+    "heuristic_flags": [],
+    "method": "keyword heuristics, NOT semantic validation",
+    "semantic_review": "REQUIRED_HUMAN"
+  },
+  "view_status": "OK",
+  "answer": {
+    "scenario_status": "AERIAL_COMPLETED_GROUND_PENDING",
+    "scenario_complete": false,
+    "sequence_order": [
+      "drone_01",
+      "drone_02"
+    ],
+    "order_basis": "EXECUTION_TIMESTAMPS",
+    "runs": [
+      {
+        "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+        "vehicle_id": "drone_01",
+        "simulated_vehicle": "v1",
+        "mission_id": "agri_demo_001_h1_sector_a",
+        "status": "COMPLETED",
+        "result_status": "PASSED",
+        "reached_points": [
+          "POI_A1",
+          "POI_A2"
+        ],
+        "return_home": "CONFIRMED",
+        "landing": "MISSION_LANDING_CONFIRMED",
+        "executor_started_at": "2026-10-24T12:51:28.380152+00:00",
+        "executor_finished_at": "2026-10-24T12:55:42.138208+00:00"
+      },
+      {
+        "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+        "vehicle_id": "drone_02",
+        "simulated_vehicle": "v2",
+        "mission_id": "agri_demo_001_h1_sector_b",
+        "status": "COMPLETED",
+        "result_status": "PASSED",
+        "reached_points": [
+          "POI_B1",
+          "POI_B2"
+        ],
+        "return_home": "CONFIRMED",
+        "landing": "MISSION_LANDING_CONFIRMED",
+        "executor_started_at": "2026-10-24T12:55:50.243976+00:00",
+        "executor_finished_at": "2026-10-24T12:59:50.905810+00:00"
+      }
+    ],
+    "r1_status": "BLOCKED_PENDING",
+    "r1_dependency": "MET",
+    "r1_commands_sent": false,
+    "r1_movement_authorized": false,
+    "claims": {
+      "images_captured": false,
+      "detections_made": false,
+      "speed_commanded": false,
+      "speed_measured": false,
+      "simultaneous_flight": false,
+      "common_frame_validated": false,
+      "current_permissions_checked": false
+    },
+    "evidence_source": "H1 binding record + verified sequence query + scenario summary",
+    "explanation": "Dos drones volaron en secuencia acreditada por marcas de tiempo de ejecución: drone_01 (v1) cubrió sector A y alcanzó POI_A1 y POI_A2, luego regresó y aterrizó (CONFIRMED/MISSION_LANDING_CONFIRMED); drone_02 (v2) cubrió sector B y alcanzó POI_B1 y POI_B2, también con regreso y aterrizaje confirmados. La ordenación se acredita por timestamps: las ventanas de ejecutor son disjuntas, el coordinador despachó el hijo 2 tras el resultado PASSED del hijo 1, y el primer comando de aterrizaje precede al comando de armamento del segundo. El escenario no está completo porque la tarea de tierra R1 (rover_01) permanece BLOCKED_PENDING: su dependencia está MET (la secuencia COMPLETED y POI_A1 REACHED), pero MET no autoriza movimiento. Los límites que impiden afirmar más son: percepción sin imágenes ni detecciones reales, sin velocidad ni frame común validado, vuelo simultáneo no validado, autorización operativa como declaración de operador sin autenticar, y la cadena de identidad del rover no establecida. No se enviaron comandos al rover ni se autorizó su movimiento."
+  },
+  "scope": {
+    "record": "historical",
+    "current_availability": "NOT_CHECKED",
+    "operational_authorization": false
+  }
+}

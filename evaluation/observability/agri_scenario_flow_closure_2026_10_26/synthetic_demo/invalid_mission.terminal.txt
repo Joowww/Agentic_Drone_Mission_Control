@@ -1,0 +1,25 @@
+
+[ESCENARIO agri_demo_001] modo demo · origen SYNTHETIC · variante invalid_mission · sin órdenes ni procesos operativos · Ctrl+C para salir
+
+[load_artifacts] trabajando · espera: conserved H1/H2 artifacts, verified by their manifests
+[load_artifacts] resultado: LOADED · motivo: 2 missions; binding record SYNTHETIC_DE
+
+[bind_and_validate] trabajando · espera: deterministic validation, execution compatibility and H0 geometry of each mission
+[bind_and_validate] resultado: REJECTED · motivo: 1 validation error for MissionDefinition
+route
+  Value error, A waypoint route requires at least one waypoint. [type=value_error, input_value={'mode': 'waypoints', 'di... 'return_to_home': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/value_error
+
+[report] trabajando · espera: deterministic rendering of the view, the R1 preparation and the R1 record
+[report] resultado: REJECTED · motivo: scenario complete: False
+
+[ESCENARIO agri_demo_001] origen: SYNTHETIC · modo: demo
+Estado del flujo: REJECTED (última etapa report)
+Escenario: sin vista; completo: no
+Coordinador R1: None; aceptación: sin resultado
+Motivo: ARTIFACT_REJECTED: 1 validation error for MissionDefinition
+route
+  Value error, A waypoint route requires at least one waypoint. [type=value_error, input_value={'mode': 'waypoints', 'di... 'return_to_home': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/value_error
+Informe: no escrito (sin --out)
+Registro del flujo: evaluation/observability/agri_scenario_flow_closure_2026_10_26/synthetic_demo/invalid_mission/flow_record.json

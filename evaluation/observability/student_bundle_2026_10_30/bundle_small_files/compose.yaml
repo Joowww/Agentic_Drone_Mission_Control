@@ -1,0 +1,122 @@
+# Student bundle 2026.10.30 (PARTIAL: no simulator yet): the services of the project's deploy/compose.yaml for the
+# delivered images, with the same restrictions, but without build sections, the development profile (sources mounted
+# over the image), the test doubles or the development-only local-LLM menu. AI planning is Hermes only.
+# Paths are relative to this directory; nothing refers to a source repository.
+#
+# Project name tfg-estudiante: its hermes-home volume belongs to whoever uses this bundle on that computer; it never
+# reuses another project's volume, sessions or provider login.
+#
+# Every host directory below must exist before starting (nothing is created for you) and is chosen by the student:
+#   TFG_WORK_DIR        results of app (and /work of the hermes service)
+#   QGC_PLAN_DIR        plans QGC opens, read-only (e.g. $TFG_WORK_DIR/paquete_1/plans)
+#   QGC_SAVE_DIR        where QGC saves its copy
+#   TFG_PLANNING_STORE  drafts, finalizations, missions and reports of the planning profile (written by hermes;
+#                       mounted READ-ONLY at /planning_store in app; unset there: ./almacen_vacio)
+# Unset, each one points to a non-existent *_not_set directory and the service refuses to start.
+#
+# Profiles:
+#   app       offline tools: no network, read-only root, writes only to /work; reads the planning store at
+#             /planning_store (read-only) to package Hermes finalizations (scenario_package package-finalized).
+#   qgc       QGroundControl 5.1.5 for the offline .plan import: no network, no devices, read-only plans.
+#   planning  hermes: the project's MCP server restricted to update_mission_draft and finalize_mission_draft; needs
+#             the student's own provider account and network to the provider.
+#   (no simulator: not distributed yet.)
+name: tfg-estudiante
+
+x-app: &app
+  image: tfg/app:2026.10.30
+  # No network namespace: no LLM provider, Opik, simulator or vehicle is reachable.
+  network_mode: none
+  user: "${TFG_UID:-1000}:${TFG_GID:-1000}"
+  read_only: true
+  init: true  # Ctrl+C / docker stop reach Python, which keeps durable records and reports the interruption
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  tmpfs:
+    - /tmp:mode=1777
+
+x-planner: &planner
+  image: tfg/planner:2026.10.28
+  user: "${TFG_UID:-1000}:${TFG_GID:-1000}"
+  read_only: true
+  init: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  tmpfs:
+    - /tmp:mode=1777
+  volumes:
+    # Drafts, finalizations, missions and reports of the project stores (only this directory is writable).
+    - type: bind
+      source: ${TFG_PLANNING_STORE:-./TFG_PLANNING_STORE_not_set}
+      target: /opt/tfg/missions/generated
+      bind: {create_host_path: false}
+    - type: bind
+      source: ${TFG_WORK_DIR:-./TFG_WORK_DIR_not_set}
+      target: /work
+      bind: {create_host_path: false}
+    # Hermes homes: planning sessions and the student's own provider login (never in the image or this bundle).
+    - hermes-home:/hermes
+
+services:
+  qgc:
+    profiles: ["qgc"]
+    image: tfg/qgroundcontrol:5.1.5
+    # No network namespace at all: no vehicle, SITL, UDP 14550 or ZeroConf endpoint is reachable,
+    # whatever QGC settings say. The display is reached through the X11 unix socket only.
+    network_mode: none
+    user: "${TFG_UID:-1000}:${TFG_GID:-1000}"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    tmpfs:
+      - /tmp:mode=1777
+      - /home/qgc:uid=${TFG_UID:-1000},gid=${TFG_GID:-1000},mode=0700
+    environment:
+      DISPLAY: ${DISPLAY:-:0}
+    volumes:
+      # WSLg (or native Linux) X server socket, read-only; no xhost, no TCP display, no GPU device.
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+        read_only: true
+        bind: {create_host_path: false}
+      # Plans to open, read-only: QGC cannot overwrite the package.
+      - type: bind
+        source: ${QGC_PLAN_DIR:-./QGC_PLAN_DIR_not_set}
+        target: /data/plan
+        read_only: true
+        bind: {create_host_path: false}
+      # The only writable place: where QGC saves its copy. Must exist before starting.
+      - type: bind
+        source: ${QGC_SAVE_DIR:-./QGC_SAVE_DIR_not_set}
+        target: /data/saved
+        bind: {create_host_path: false}
+
+  app:
+    <<: *app
+    profiles: ["app"]
+    volumes:
+      - type: bind
+        source: ${TFG_WORK_DIR:-./TFG_WORK_DIR_not_set}
+        target: /work
+        bind: {create_host_path: false}
+      # The student's planning store, READ-ONLY; packages and reports go to /work.
+      - type: bind
+        source: ${TFG_PLANNING_STORE:-./almacen_vacio}
+        target: /planning_store
+        read_only: true
+        bind: {create_host_path: false}
+
+  # ---- planning profile -----------------------------------------------------------------------------------
+  hermes:
+    <<: *planner
+    profiles: ["planning"]
+    # Egress only for the model provider; not attached to any simulator or vehicle network.
+    networks: [provider]
+    command: ["/opt/tfg/deploy/planner/hermes_home.py", "run"]
+
+volumes:
+  hermes-home:
+
+networks:
+  provider: {}

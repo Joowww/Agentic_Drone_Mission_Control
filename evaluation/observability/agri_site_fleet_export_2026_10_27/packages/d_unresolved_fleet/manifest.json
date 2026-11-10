@@ -1,0 +1,377 @@
+{
+  "approval": {
+    "mismatches": [],
+    "status": "ABSENT"
+  },
+  "artifacts": [
+    {
+      "conversion": {
+        "geofence": "empty: site perimeter/exclusions are NOT exported as a fence (FENCE_* not verified)",
+        "items": [
+          {
+            "doJumpId": 1,
+            "note": "ArduCopter climbs from its current location; the item's lat/lon are the planned home",
+            "source": "takeoff to the first waypoint altitude (as the SITL executor does)"
+          },
+          {
+            "doJumpId": 2,
+            "note": "REQUESTED maximum speed; runs when the preceding NAV item completes; not validated",
+            "source": "POI_1.speed_kmh=10.0"
+          },
+          {
+            "doJumpId": 3,
+            "source": "POI_1"
+          },
+          {
+            "doJumpId": 4,
+            "source": "POI_2"
+          },
+          {
+            "doJumpId": 5,
+            "note": "returns to the EFFECTIVE home (last arming position) or nearest rally point; lands only if RTL_ALT_FINAL_M (RTL_ALT_FINAL on older builds) is 0; climbs to RTL_ALT_M first",
+            "source": "return_to_home"
+          }
+        ],
+        "precision": {
+          "altitude_decimals": 3,
+          "latlon_decimals": 8,
+          "transport": "MISSION_ITEM_INT carries degE7 (~1.1 cm); see verifier"
+        },
+        "profile": "QGC_PLAN_ARDUCOPTER_V1",
+        "speed": {
+          "hoverSpeed_cruiseSpeed_mps": 9.722,
+          "meaning": "QGC planning fields; not converted into a commanded speed by this exporter"
+        }
+      },
+      "mission_file": "missions/A1.drone_01.mission.json",
+      "mission_id": "agri_poi_visit_unresolved_fleet_v1_synthetic_orchard_v1_A1",
+      "mission_sha256": "00629d388b5fa86960e97e041c2e12807fc60e85c671b7b631c5dbd560b97457",
+      "plan_file": "plans/drone_01.plan",
+      "plan_sha256": "4aa76b2973c74e0e9c53139b8577d1216d511bc5389a26e389a3d6c9491f2056",
+      "planned_home": {
+        "amsl_m": 584.0,
+        "amsl_source": "site vertical_reference.origin_ground_amsl_m (DECLARED_FLAT); not the effective home",
+        "latitude": -35.3633158986705,
+        "longitude": 149.16519293808915
+      },
+      "profile": "QGC_PLAN_ARDUCOPTER_V1",
+      "reasons": [],
+      "state": "GENERATED",
+      "task_id": "A1",
+      "vehicle_id": "drone_01",
+      "verification": {
+        "checks": [
+          {
+            "check": "top level",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "mission header",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "plannedHomePosition (lat, lon, AMSL)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "numbering",
+            "detail": "doJumpId 1..n",
+            "ok": true
+          },
+          {
+            "check": "simple items only",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "takeoff first",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "waypoint count",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "waypoint POI_1",
+            "detail": "frame 3 (relative to effective home), lat/lon/alt",
+            "ok": true
+          },
+          {
+            "check": "waypoint POI_2",
+            "detail": "frame 3 (relative to effective home), lat/lon/alt",
+            "ok": true
+          },
+          {
+            "check": "degE7 transport quantization below 2 cm",
+            "detail": "max 0.363 cm",
+            "ok": true
+          },
+          {
+            "check": "requested speeds as DO_CHANGE_SPEED",
+            "detail": "[2.778] m/s",
+            "ok": true
+          },
+          {
+            "check": "ends with RTL",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "no unexpected commands",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "read back by the project importer",
+            "detail": "2 waypoints, RTL True; importer warnings: ['MAV_CMD_NAV_TAKEOFF was not converted into a horizontal waypoint. Vertical takeoff dynamics are not modelled yet.']",
+            "ok": true
+          }
+        ],
+        "max_degE7_quantization_m": 0.003631,
+        "status": "VERIFIED_OFFLINE"
+      }
+    },
+    {
+      "mission_id": null,
+      "mission_sha256": null,
+      "profile": null,
+      "reasons": [
+        "mini_drone_01: future mini drone (unknown)"
+      ],
+      "state": "COMPATIBILITY_PENDING",
+      "task_id": "A2",
+      "vehicle_id": "mini_drone_01"
+    },
+    {
+      "mission_id": null,
+      "mission_sha256": null,
+      "profile": null,
+      "reasons": [
+        "vehicle drone_99 is not in the fleet"
+      ],
+      "state": "BLOCKED_MISSING_DATA",
+      "task_id": "A3",
+      "vehicle_id": "drone_99"
+    }
+  ],
+  "coordination": {
+    "dependencies": [
+      {
+        "after": "A1",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "A2"
+      },
+      {
+        "after": "A1",
+        "condition": "POI_REACHED",
+        "point": "POI_1",
+        "task_id": "R1"
+      },
+      {
+        "after": "A2",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "R1"
+      },
+      {
+        "after": "A2",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "A3"
+      }
+    ],
+    "errors": [
+      "A3: vehicle drone_99 is not in fleet agri_demo_fleet"
+    ],
+    "mode": "SEQUENTIAL",
+    "note": "dependencies are conditions on OBSERVED outcomes held by the coordinator; never a time wait. Individual .plan files do not coordinate vehicles.",
+    "order": [
+      "A1",
+      "A2",
+      "A3",
+      "R1"
+    ],
+    "status": "FAIL"
+  },
+  "deployment_blockers": [
+    "PARTIAL package",
+    "operator approval ABSENT",
+    "imported_in_qgroundcontrol: NOT_DONE",
+    "uploaded_to_vehicle: NOT_DONE",
+    "read_back_from_vehicle: NOT_DONE",
+    "executed: NOT_DONE"
+  ],
+  "deployment_ready": false,
+  "files": {
+    "export_report.md": "0a9f56bd093252dd27dea75dd7480909193e7a5b7858feb6790cb92881d847b8",
+    "fleet.json": "45b09915aa95e48726e27bd5e3fb33c3018bb40e42593712f34a4068655a296c",
+    "instance.json": "dbc176aeaacb288667209f084f697ec448a733dfe4358e1d9c4d6cea76365f64",
+    "missions/A1.drone_01.mission.json": "00629d388b5fa86960e97e041c2e12807fc60e85c671b7b631c5dbd560b97457",
+    "plans/drone_01.plan": "4aa76b2973c74e0e9c53139b8577d1216d511bc5389a26e389a3d6c9491f2056",
+    "site.json": "0db007e872c8c9d04ae4cc24b733d7753dfbd7e814fe3ab725ee580785e3eb05",
+    "template.json": "6435f1a2cf905d471297f8bfe5058e21a6069f08a40cd8dadc888c05db9bd659"
+  },
+  "ground_tasks": [
+    {
+      "execution": "outside this package: R1 coordinator gates unchanged",
+      "export": "FORMAT_PENDING: no rover exporter; a .plan is not assumed",
+      "frame_transform_to_rover": "NOT_ACCREDITED (site frame -> rover odometry frame)",
+      "kind": "VISIT_AND_STOP",
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "target in drivable area",
+            "detail": "DRIVABLE",
+            "status": "PASS"
+          },
+          {
+            "check": "straight line within drivable area",
+            "detail": "the aerial perimeter is never used for the rover",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion TREE_ROW_1",
+            "detail": "clearance 7.211 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion SHED",
+            "detail": "clearance 17.088 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion DITCH",
+            "detail": "clearance 14.000 m vs margin 1.0 m",
+            "status": "PASS"
+          }
+        ],
+        "line_local": [
+          [
+            1.0,
+            -1.5
+          ],
+          [
+            -4.0,
+            4.0
+          ]
+        ],
+        "margin": {
+          "kind": "DECLARED_PLANNING_MARGIN",
+          "missing_inputs": [
+            "point POI_1.uncertainty_m",
+            "point ROVER_START.uncertainty_m",
+            "vehicle.horizontal_position_uncertainty_m",
+            "vehicle.max_horizontal_extent_m",
+            "zone DRIVABLE.uncertainty_m"
+          ],
+          "planning_margin_m": 1.0,
+          "status": "NOT_ACCREDITED"
+        },
+        "scope": "straight planned line only; no path planner; rover frame transform not accredited",
+        "status": "PASS"
+      },
+      "start_point": "ROVER_START",
+      "target_point": "POI_1",
+      "task_id": "R1",
+      "vehicle_id": "rover_01"
+    }
+  ],
+  "inputs": {
+    "fleet": {
+      "id": "agri_demo_fleet",
+      "sha256": "45b09915aa95e48726e27bd5e3fb33c3018bb40e42593712f34a4068655a296c",
+      "version": 1
+    },
+    "site": {
+      "id": "synthetic_orchard",
+      "sha256": "0db007e872c8c9d04ae4cc24b733d7753dfbd7e814fe3ab725ee580785e3eb05",
+      "status": "SYNTHETIC",
+      "version": 1
+    },
+    "template": {
+      "id": "agri_poi_visit_unresolved_fleet",
+      "sha256": "6435f1a2cf905d471297f8bfe5058e21a6069f08a40cd8dadc888c05db9bd659",
+      "version": 1
+    }
+  },
+  "instance_id": "b39bcceac2e07385",
+  "joint_spatial": {
+    "frame": "synthetic_orchard_local",
+    "pairs": [
+      {
+        "min_horizontal_distance_m": 8.0,
+        "pair": [
+          "A1",
+          "A2"
+        ],
+        "simultaneous_execution": "NOT_CLEARED",
+        "temporal_deconfliction": "NOT_EVALUATED"
+      },
+      {
+        "min_horizontal_distance_m": 8.0,
+        "pair": [
+          "A1",
+          "A3"
+        ],
+        "simultaneous_execution": "NOT_CLEARED",
+        "temporal_deconfliction": "NOT_EVALUATED"
+      },
+      {
+        "min_horizontal_distance_m": 0.0,
+        "pair": [
+          "A2",
+          "A3"
+        ],
+        "simultaneous_execution": "NOT_CLEARED",
+        "temporal_deconfliction": "NOT_EVALUATED"
+      }
+    ]
+  },
+  "lifecycle": {
+    "executed": "NOT_DONE",
+    "exported": "DONE",
+    "imported_in_qgroundcontrol": "NOT_DONE",
+    "read_back_from_vehicle": "NOT_DONE",
+    "uploaded_to_vehicle": "NOT_DONE",
+    "verified_offline": "DONE"
+  },
+  "limitations": [
+    "checks cover planned straight lines, not flown trajectories, unknown obstacles or collisions",
+    "relative altitudes refer to the EFFECTIVE home set at arming, not to plannedHomePosition",
+    "requested speeds are DO_CHANGE_SPEED requests, not validated speeds",
+    "landing after RTL depends on RTL_ALT_FINAL(_M) = 0; RTL first climbs to RTL_ALT(_M); not verified",
+    "no geofence exported; ArduPilot version of the SITL image not recorded",
+    "individual .plan files do not coordinate vehicles; order and dependencies live in the coordinator"
+  ],
+  "package_status": "PARTIAL",
+  "provenance": "SYNTHETIC",
+  "references": {
+    "effective_home": "NOT_OBSERVED (ArduPilot sets it at arming)",
+    "estimator_origin": "NOT_OBSERVED",
+    "gazebo_spawn": "not related to the site frame (no accredited transform)",
+    "planned_takeoff": "site points of kind planned_takeoff",
+    "rover_start": "site points of kind rover_start",
+    "site_origin": "ORIGIN"
+  },
+  "schema": "tfg.scenario-package/1",
+  "site": {
+    "id": "synthetic_orchard",
+    "sha256": "0db007e872c8c9d04ae4cc24b733d7753dfbd7e814fe3ab725ee580785e3eb05",
+    "status": "SYNTHETIC",
+    "validation": "VALID",
+    "version": 1
+  },
+  "target": "SITL_REHEARSAL",
+  "vehicles": [
+    "drone_01",
+    "drone_99",
+    "mini_drone_01",
+    "rover_01"
+  ]
+}

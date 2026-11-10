@@ -1,0 +1,46 @@
+{
+  "finalizations": 1,
+  "flight_consent": "NOT_GRANTED",
+  "llm_calls": 7,
+  "llm_errors": 0,
+  "mission_validated": true,
+  "models_seen": [
+    "qwen3-4b-instruct-64k"
+  ],
+  "providers_seen": [
+    "custom"
+  ],
+  "tool_calls": [
+    {
+      "duration_ms_measured": 78,
+      "error_type": null,
+      "status": "ok",
+      "tool_name": "mcp__tfg_demo_planning__update_mission_draft"
+    },
+    {
+      "duration_ms_measured": 13,
+      "error_type": null,
+      "status": "ok",
+      "tool_name": "mcp__tfg_demo_planning__finalize_mission_draft"
+    },
+    {
+      "duration_ms_measured": 65,
+      "error_type": null,
+      "status": "ok",
+      "tool_name": "mcp__tfg_demo_planning__update_mission_draft"
+    },
+    {
+      "duration_ms_measured": 27,
+      "error_type": null,
+      "status": "ok",
+      "tool_name": "mcp__tfg_demo_planning__update_mission_draft"
+    },
+    {
+      "duration_ms_measured": 23,
+      "error_type": null,
+      "status": "ok",
+      "tool_name": "mcp__tfg_demo_planning__finalize_mission_draft"
+    }
+  ],
+  "tool_isolation_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS"
+}

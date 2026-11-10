@@ -1,0 +1,318 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-11-03-11-25-48-392170-tfg-gz-5737
+[INFO] [launch]: Default logging verbosity is set to INFO
+namespace:        rover1
+transport:        udp4
+middleware:       dds
+verbose:          4
+discovery:        7400
+port:             2039
+command:          ardurover
+model:            json
+speedup:          1
+slave:            0
+sim_address:      127.0.0.1
+instance:         2
+defaults:         /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover-skid.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+use_instance_dir: True
+use_sim_time:     True
+synthetic_clock:  True
+sysid:            3
+cwd:              /2
+command:          mavproxy.py
+master:           tcp:127.0.0.1:5780
+sitl:             127.0.0.1:5521
+out:              127.0.0.1:14570
+console:          False
+map:              False
+[INFO] [gz sim-1]: process started with pid [5781]
+[INFO] [robot_state_publisher-2]: process started with pid [5783]
+[INFO] [parameter_bridge-3]: process started with pid [5786]
+[INFO] [micro_ros_agent-4]: process started with pid [5788]
+[INFO] [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5]: process started with pid [5790]
+[INFO] [exec -6]: process started with pid [5792]
+[INFO] [create-7]: process started with pid [5794]
+[INFO] [relay-8]: process started with pid [5796]
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Setting SIM_SPEEDUP=1.000000
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Ignoring obsolete command-line parameter '-S'/'--synthetic-clock'. Synthetic clock mode is now always enabled.
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Setting MAV_SYSID=3
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Starting SITL: JSON
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] JSON control interface set to 127.0.0.1:9022
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Starting sketch 'Rover'
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Starting SITL input
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Using Irlock at port : 9025
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Using \clock topic for DDS timing: enabled
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] bind port 5780 for SERIAL0
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] SERIAL0 on TCP port 5780
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Waiting for connection ....
+[micro_ros_agent-4] [35m[1793705149.240861][m info     | [34mUDPv4AgentLinux.cpp[m | [37minit                    [m | [32mrunning...[m             | port: 2039
+[micro_ros_agent-4] [35m[1793705149.242205][m info     | [34mRoot.cpp          [m | [37mset_verbose_level       [m | [32mlogger setup[m           | verbose_level: 4
+[create-7] [INFO] [1793705149.345051468] [rover1.ros_gz_sim]: Requesting list of world names.
+[robot_state_publisher-2] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper"]/joint[@name="front_left_motor_asm_joint"]/physics/ode/provide_feedback:<data-string>:L192]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[robot_state_publisher-2] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper"]/joint[@name="wildthumper/imu_joint"]/axis/use_parent_model_frame:<data-string>:L1756]: XML Element[use_parent_model_frame], child of element[axis], not defined in SDF. Copying[use_parent_model_frame] as children of [axis].
+[robot_state_publisher-2] [WARN] [1793705149.710847644] [sdformat_urdf]: SDFormat link [imu_link] has a <sensor>, but URDF does not support this
+[robot_state_publisher-2] [WARN] [1793705149.711548583] [sdformat_urdf]: SDFormat Joint [front_left_motor_asm_joint] given non-default value for <spring_stiffness>, but URDF does not support this
+[robot_state_publisher-2] [WARN] [1793705149.711710988] [sdformat_urdf]: SDFormat Joint [front_right_motor_asm_joint] given non-default value for <spring_stiffness>, but URDF does not support this
+[robot_state_publisher-2] [WARN] [1793705149.711762713] [sdformat_urdf]: SDFormat Joint [mid_left_motor_asm_joint] given non-default value for <spring_stiffness>, but URDF does not support this
+[robot_state_publisher-2] [WARN] [1793705149.711817595] [sdformat_urdf]: SDFormat Joint [mid_right_motor_asm_joint] given non-default value for <spring_stiffness>, but URDF does not support this
+[robot_state_publisher-2] [WARN] [1793705149.711883575] [sdformat_urdf]: SDFormat Joint [rear_left_motor_asm_joint] given non-default value for <spring_stiffness>, but URDF does not support this
+[robot_state_publisher-2] [WARN] [1793705149.711929293] [sdformat_urdf]: SDFormat Joint [rear_right_motor_asm_joint] given non-default value for <spring_stiffness>, but URDF does not support this
+[robot_state_publisher-2] [WARN] [1793705149.750396030] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1793705149.756822392] [rover1.robot_state_publisher]: got segment base_link
+[robot_state_publisher-2] [INFO] [1793705149.757270203] [rover1.robot_state_publisher]: got segment front_left_motor_asm_link
+[robot_state_publisher-2] [INFO] [1793705149.757318975] [rover1.robot_state_publisher]: got segment front_left_wheel_link
+[robot_state_publisher-2] [INFO] [1793705149.757601021] [rover1.robot_state_publisher]: got segment front_right_motor_asm_link
+[robot_state_publisher-2] [INFO] [1793705149.757658550] [rover1.robot_state_publisher]: got segment front_right_wheel_link
+[robot_state_publisher-2] [INFO] [1793705149.757675147] [rover1.robot_state_publisher]: got segment front_small_chassis_link
+[robot_state_publisher-2] [INFO] [1793705149.757686551] [rover1.robot_state_publisher]: got segment front_wheel_chassis_short_link
+[robot_state_publisher-2] [INFO] [1793705149.757697853] [rover1.robot_state_publisher]: got segment imu_link
+[robot_state_publisher-2] [INFO] [1793705149.757708850] [rover1.robot_state_publisher]: got segment mid_left_motor_asm_link
+[robot_state_publisher-2] [INFO] [1793705149.757719643] [rover1.robot_state_publisher]: got segment mid_left_wheel_link
+[robot_state_publisher-2] [INFO] [1793705149.757731047] [rover1.robot_state_publisher]: got segment mid_right_motor_asm_link
+[robot_state_publisher-2] [INFO] [1793705149.757744385] [rover1.robot_state_publisher]: got segment mid_right_wheel_link
+[robot_state_publisher-2] [INFO] [1793705149.757755179] [rover1.robot_state_publisher]: got segment mid_wheel_chassis_long_link
+[robot_state_publisher-2] [INFO] [1793705149.757765972] [rover1.robot_state_publisher]: got segment rear_left_motor_asm_link
+[robot_state_publisher-2] [INFO] [1793705149.757776765] [rover1.robot_state_publisher]: got segment rear_left_wheel_link
+[robot_state_publisher-2] [INFO] [1793705149.757787965] [rover1.robot_state_publisher]: got segment rear_right_motor_asm_link
+[robot_state_publisher-2] [INFO] [1793705149.757799064] [rover1.robot_state_publisher]: got segment rear_right_wheel_link
+[robot_state_publisher-2] [INFO] [1793705149.757810060] [rover1.robot_state_publisher]: got segment rear_small_chassis_link
+[robot_state_publisher-2] [INFO] [1793705149.757820650] [rover1.robot_state_publisher]: got segment rear_wheel_chassis_short_link
+[robot_state_publisher-2] [INFO] [1793705149.757832563] [rover1.robot_state_publisher]: got segment top_chassis_link
+[exec -6] Connect tcp:127.0.0.1:5780 source_system=255
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Connection on serial port 5780
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover-skid.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] bind port 5782 for SERIAL1
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] SERIAL1 on TCP port 5782
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] bind port 5783 for SERIAL2
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] SERIAL2 on TCP port 5783
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover-skid.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Home: -35.363262 149.165237 alt=584.000000m hdg=353.000000
+[exec -6] Log Directory: 
+[exec -6] Telemetry log: mav.tlog
+[exec -6] Waiting for heartbeat from tcp:127.0.0.1:5780
+[gz sim-1] [1;32m[Msg] [0m[1;32mGazebo Sim Server v[0m[1;32m8.15.0[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLoading SDF world file[[0m[1;32m/root/ardu_ws/install/ardupilot_gz_gazebo/share/ardupilot_gz_gazebo/worlds/runway.sdf[0m[1;32m].[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing entity system service on [[0m[1;32m/[0m[1;32mentity/system/add[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [Physics.cc:1004] [0m[1;36mLoaded [[0m[1;36mgz::physics::dartsim::Plugin[0m[1;36m] from library [[0m[1;36m/usr/lib/x86_64-linux-gnu/gz-physics-7/engine-plugins/libgz-physics-dartsim-plugin.so[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Physics[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:697] [0m[1;36mConfiguring Sensors system[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:557] [0m[1;36mSensorsPrivate::Run[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Sensors[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:532] [0m[1;36mSensorsPrivate::RenderThread started[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:337] [0m[1;36mWaiting for init[0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mCreate[0m[1;32m service on [[0m[1;32m/world/runway/create_multiple[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mCreate[0m[1;32m service on [[0m[1;32m/world/runway/create_multiple/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mRemove[0m[1;32m service on [[0m[1;32m/world/runway/remove[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mRemove[0m[1;32m service on [[0m[1;32m/world/runway/remove/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPose[0m[1;32m service on [[0m[1;32m/world/runway/set_pose[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPose[0m[1;32m service on [[0m[1;32m/world/runway/set_pose/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPose[0m[1;32m service on [[0m[1;32m/world/runway/set_pose_vector[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPose[0m[1;32m service on [[0m[1;32m/world/runway/set_pose_vector/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLight configuration[0m[1;32m service on [[0m[1;32m/world/runway/light_config[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLight configuration[0m[1;32m service on [[0m[1;32m/world/runway/light_config/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPhysics[0m[1;32m service on [[0m[1;32m/world/runway/set_physics[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPhysics[0m[1;32m service on [[0m[1;32m/world/runway/set_physics/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mSphericalCoordinates[0m[1;32m service on [[0m[1;32m/world/runway/set_spherical_coordinates[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mSphericalCoordinates[0m[1;32m service on [[0m[1;32m/world/runway/set_spherical_coordinates/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mEnable collision[0m[1;32m service on [[0m[1;32m/world/runway/enable_collision[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mEnable collision[0m[1;32m service on [[0m[1;32m/world/runway/enable_collision/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mDisable collision[0m[1;32m service on [[0m[1;32m/world/runway/disable_collision[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mDisable collision[0m[1;32m service on [[0m[1;32m/world/runway/disable_collision/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mMaterial[0m[1;32m service on [[0m[1;32m/world/runway/visual_config[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mMaterial[0m[1;32m service on [[0m[1;32m/world/runway/visual_config/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[parameter_bridge-3] [INFO] [1793705150.908364560] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[create-7] [INFO] [1793705150.929011042] [rover1.ros_gz_sim]: Waiting messages on topic [robot_description].
+[parameter_bridge-3] [INFO] [1793705150.940613919] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/rover1/joint_state (gz.msgs.Model) -> joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[create-7] [INFO] [1793705150.943404370] [rover1.ros_gz_sim]: Requested creation of entity.
+[create-7] [INFO] [1793705150.943492870] [rover1.ros_gz_sim]: OK creation of entity.
+[parameter_bridge-3] [INFO] [1793705150.949864874] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/rover1/odometry (gz.msgs.Odometry) -> odometry (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1793705150.958249566] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/rover1/pose (gz.msgs.Pose_V) -> gz/tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1793705150.963978545] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/rover1/pose_static (gz.msgs.Pose_V) -> gz/tf_static (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1793705150.965722576] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/rover1/link/imu_link/sensor/imu_sensor/imu (gz.msgs.IMU) -> imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1793705150.971116293] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/rover1/link/base_link/sensor/magnetometer_sensor/magnetometer (gz.msgs.Magnetometer) -> magnetometer (sensor_msgs/msg/MagneticField)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1793705150.976758605] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/rover1/link/base_link/sensor/navsat_sensor/navsat (gz.msgs.NavSat) -> navsat (sensor_msgs/msg/NavSatFix)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1793705150.982271272] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/rover1/link/base_link/sensor/navsat_sensor/navsat (gz.msgs.NavSat) -> gpsfix (gps_msgs/msg/GPSFix)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1793705150.988970085] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/rover1/battery/linear_battery/state (gz.msgs.BatteryState) -> battery (sensor_msgs/msg/BatteryState)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1793705150.994315732] [rover1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/lidar (gz.msgs.LaserScan) -> scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[INFO] [create-7]: process has finished cleanly [pid 5794]
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] No JSON sensor message received, resending servos
+[gz sim-1] [1;32m[Msg] [0m[1;32mMaterial[0m[1;32m service on [[0m[1;32m/world/runway/wheel_slip[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mMaterial[0m[1;32m service on [[0m[1;32m/world/runway/wheel_slip/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::UserCommands[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::SceneBroadcaster[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::AirPressure[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::AirSpeed[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Altimeter[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Imu[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Magnetometer.cc:261] [0m[1;36mMagnetometer: using param [use_units_gauss: [0m[1;36m1[0m[1;36m].[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Magnetometer.cc:269] [0m[1;36mMagnetometer: using param [use_earth_frame_ned: [0m[1;36m1[0m[1;36m].[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Magnetometer[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::NavSat[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLoaded level [[0m[1;32mdefault[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing world controls on [[0m[1;32m/world/runway[0m[1;32m/control], [[0m[1;32m/world/runway[0m[1;32m/control/state] and [[0m[1;32m/world/runway[0m[1;32m/playback/control][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing GUI information on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mgui/info[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mWorld [[0m[1;32mrunway[0m[1;32m] initialized with [[0m[1;32m1ms[0m[1;32m] physics profile.[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing world SDF generation service on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mgenerate_world_sdf[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing world names on [[0m[1;32m/gazebo/worlds[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mResource path add service on [[0m[1;32m/gazebo/resource_paths/add[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mResource path get service on [[0m[1;32m/gazebo/resource_paths/get[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mResource path resolve service on [[0m[1;32m/gazebo/resource_paths/resolve[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mResource paths published on [[0m[1;32m/gazebo/resource_paths[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServer control service on [[0m[1;32m/server_control[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mFound no publishers on /stats, adding root stats topic[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mFound no publishers on /clock, adding root clock topic[0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:627] [0m[1;36mCreating PostUpdate worker threads: [0m[1;36m9[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m0[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m1[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m2[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m3[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m4[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m5[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m6[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m7[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper"]/joint[@name="front_left_motor_asm_joint"]/physics/ode/provide_feedback:<data-string>:L192]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[gz sim-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper"]/joint[@name="wildthumper/imu_joint"]/axis/use_parent_model_frame:<data-string>:L1756]: XML Element[use_parent_model_frame], child of element[axis], not defined in SDF. Copying[use_parent_model_frame] as children of [axis].
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::JointStatePublisher[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mOdometryPublisher publishing odometry on [[0m[1;32m/model/rover1/odometry[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mOdometryPublisher publishing odometry with covariance on [[0m[1;32m/model/rover1/odometry_with_covariance[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mOdometryPublisher publishing Pose_V (TF) on [[0m[1;32m/model/rover1/pose[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::OdometryPublisher[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/rover1/joint/front_left_wheel_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/rover1/joint/front_right_wheel_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/rover1/joint/mid_left_wheel_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/rover1/joint/mid_right_wheel_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/rover1/joint/rear_left_wheel_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/rover1/joint/rear_right_wheel_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mArduPilotPlugin[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [UserCommands.cc:1093] [0m[1;36mCreated entity [[0m[1;36m11[0m[1;36m] named [[0m[1;36mrover1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [ImuSensor.cc:150] [0m[1;36mIMU data for [[0m[1;36mrover1::imu_link::imu_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/rover1/link/imu_link/sensor/imu_sensor/imu[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing scene information on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mscene/info[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing graph information on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mscene/graph[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing full state on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mstate[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing full state (async) on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mstate_async[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPublishing scene information on [[0m[1;32m/world/runway/scene/info[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPublishing entity deletions on [[0m[1;32m/world/runway/scene/deletion[0m[1;32m][0m[1;32m[0m
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] No JSON sensor message received, resending servos
+[gz sim-1] [1;33m[Wrn] [ArduPilotPlugin.cc:1599] [0m[1;33mArduPilot controller has reset[0m
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] JSON received:
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 	timestamp
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 	imu: gyro
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 	imu: accel_body
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 	position
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 	quaternion
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 	velocity
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 	no_time_sync
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 	no_lockstep
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] 
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Forcing use_time_sync=0
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] validate_structures:536: Validating structures
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover-skid.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover-skid.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover-skid.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[exec -6] AP: ArduRover V4.8.0-dev (755258db)
+[exec -6] AP: e88f7d8019be4ab9bb66919a37e50793
+[exec -6] AP: Calibrating barometer
+[exec -6] Warning, time moved backwards. Restarting timer.
+[robot_state_publisher-2] [WARN] [1793705153.066223663] [rover1.robot_state_publisher]: Moved backwards in time, re-publishing joint transforms!
+[exec -6] link 1 down
+[exec -6] Detected vehicle 3:1 on link 0
+[exec -6] link 1 OK
+[exec -6] online system 3
+[exec -6] INITIALISING> Mode INITIALISING
+[exec -6] AP: ArduRover V4.8.0-dev (755258db)
+[exec -6] AP: e88f7d8019be4ab9bb66919a37e50793
+[exec -6] Received 1279 parameters (ftp)
+[exec -6] Saved 1279 parameters to mav_3_1.parm
+[exec -6] Received 1279 parameters (ftp)
+[exec -6] Saved 1279 parameters to mav_0_1.parm
+[exec -6] AP: Barometer 1 calibration complete
+[exec -6] AP: Barometer 2 calibration complete
+[exec -6] AP: Beginning INS calibration. Do not move vehicle
+[exec -6] AP: INS: alloc 6144 bytes for ISB (free=524288)
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 -5] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover-skid.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[exec -6] MANUAL> AP: ArduPilot Ready
+[exec -6] AP: DDS: initializing...
+[exec -6] AP: DDS: Using UDP
+[exec -6] AP: RCInput: decoding UDP (Pulses)
+[exec -6] AP: Set HOME to -35.36329 149.1652 at 584.09m
+[exec -6] AP: Field Elevation Set: 584m
+[exec -6] fence present
+[exec -6] Mode MANUAL
+[exec -6] Flight battery 100 percent
+[exec -6] AP: EKF3 IMU0 initialised
+[exec -6] AP: EKF3 IMU1 initialised
+[exec -6] AP: EKF3 IMU0 tilt alignment complete
+[exec -6] AP: EKF3 IMU1 tilt alignment complete
+[exec -6] AP: EKF3 IMU0 MAG0 initial yaw alignment complete
+[exec -6] AP: EKF3 IMU1 MAG0 initial yaw alignment complete
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] AP: GPS 1: probing for u-blox at 230400 baud
+[exec -6] AP: GPS 1: detected u-blox
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] Received 1299 parameters
+[exec -6] Saved 1279 parameters to mav_3_1.parm
+[robot_state_publisher-2] [WARN] [1793705182.834724702] [rover1.robot_state_publisher]: Moved backwards in time, re-publishing joint transforms!
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] AP: EKF3 IMU0 origin set
+[exec -6] AP: EKF3 IMU1 origin set
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] AP: DDS: No ping response, exiting
+[robot_state_publisher-2] [WARN] [1793705212.634412175] [rover1.robot_state_publisher]: Moved backwards in time, re-publishing joint transforms!
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] Flight battery 100 percent
+[exec -6] AP: EKF3 IMU0 is using GPS
+[exec -6] AP: EKF3 IMU1 is using GPS
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] AP: DDS: No ping response, exiting
+[robot_state_publisher-2] [WARN] [1793705242.413455316] [rover1.robot_state_publisher]: Moved backwards in time, re-publishing joint transforms!
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] AP: DDS: No ping response, exiting
+[gz sim-1] [1;33m[Wrn] [ArduPilotPlugin.cc:1599] [0m[1;33mArduPilot controller has reset[0m
+[exec -6] AP: DDS: No ping response, exiting
+[robot_state_publisher-2] [WARN] [1793705272.186865560] [rover1.robot_state_publisher]: Moved backwards in time, re-publishing joint transforms!
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Flight battery 100 percent
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] AP: DDS: No ping response, exiting
+[robot_state_publisher-2] [WARN] [1793705301.966398200] [rover1.robot_state_publisher]: Moved backwards in time, re-publishing joint transforms!
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] AP: DDS: No ping response, exiting
+[exec -6] AP: DDS: No ping response, exiting
+[robot_state_publisher-2] [WARN] [1793705331.741284485] [rover1.robot_state_publisher]: Moved backwards in time, re-publishing joint transforms!
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Warning, time moved backwards. Restarting timer.
+[exec -6] Flight battery 100 percent
+[exec -6] AP: DDS: No ping response, exiting

@@ -1,0 +1,41 @@
+[
+ {
+  "event": {
+   "at": "2026-11-06T20:29:08.325272+00:00",
+   "phase": "INTERPRETED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "INTERPRETED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:29:08.325272+00:00",
+   "detail": "UNSAFE_REQUEST (DETERMINISTIC_TEXT:BYPASS_AUTHORIZATION): skip the authorization; UNSAFE_REQUEST (DETERMINISTIC_TEXT:IMMEDIATE_EXECUTION): start right now",
+   "phase": "REFUSED_BY_SUPERVISOR",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "REFUSED_BY_SUPERVISOR",
+  "outcome": "APPLIED",
+  "reason": null
+ }
+]

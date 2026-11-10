@@ -1,0 +1,906 @@
+{
+ "committed/CLAUDE_FRAMES2D/aerial_dependency_failed": {
+  "categories": [
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/authorization_revoked": {
+  "categories": [
+   "AUTHORIZATION",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "AUTHORIZATION_REVOKED",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/boot_changed": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_BOOT_CHANGED"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/goal_already_in_rover_frame": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "GOAL_ALREADY_IN_ROVER_FRAME",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "NO_GOAL_IN_ROVER_FRAME",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "SAME_FRAME"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/localization_lost": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "NO_ACCREDITED_ROVER_LOCALIZATION",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_LOCALIZATION_NOT_ACCREDITED"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/localization_stale": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "LOCALIZATION_STALE",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_LOCALIZATION_STALE"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/observation_expired": {
+  "categories": [
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/observation_withdrawn": {
+  "categories": [
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/pose_of_another_rover": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_IDENTITY_MISMATCH"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/scope_of_another_plan": {
+  "categories": [
+   "AUTHORIZATION",
+   "EXECUTOR_POLICY",
+   "SCOPE"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE",
+   "LIMITS_MISMATCH",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "PLAN_ID_MISMATCH",
+   "PLAN_SHA256_MISMATCH",
+   "SCOPE_MISMATCH"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/synthetic_complete": {
+  "applied_conversions": 1,
+  "classification": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+  "commands": 0,
+  "conversion_problems": [],
+  "transform_status": "APPLIED_ONCE"
+ },
+ "committed/CLAUDE_FRAMES2D/transform_not_accredited": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CHAIN_NOT_USABLE",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "NO_GOAL_IN_ROVER_FRAME",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CLAUDE_FRAMES2D/uncertainty_too_high": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "LOCALIZATION_UNCERTAINTY_EXCEEDS_OPERATOR_LIMIT",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "UNCERTAINTY_TOO_HIGH"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/aerial_dependency_failed": {
+  "categories": [
+   "CONVERSION",
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/authorization_revoked": {
+  "categories": [
+   "AUTHORIZATION",
+   "CONVERSION",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "AUTHORIZATION_REVOKED",
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/boot_changed": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_BOOT_CHANGED"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/goal_already_in_rover_frame": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "GOAL_ALREADY_IN_ROVER_FRAME",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "SAME_FRAME"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/localization_lost": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_LOCALIZATION_NOT_ACCREDITED"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/localization_stale": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LOCALIZATION_STALE",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_LOCALIZATION_STALE"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/observation_expired": {
+  "categories": [
+   "CONVERSION",
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/observation_withdrawn": {
+  "categories": [
+   "CONVERSION",
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/owner_not_declared": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CONVERSION_OWNER_NOT_DECLARED",
+   "NO_GOAL_IN_ROVER_FRAME",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/pose_of_another_rover": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_IDENTITY_MISMATCH"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/scope_of_another_plan": {
+  "categories": [
+   "AUTHORIZATION",
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "SCOPE"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE",
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LIMITS_MISMATCH",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "PLAN_ID_MISMATCH",
+   "PLAN_SHA256_MISMATCH",
+   "SCOPE_MISMATCH"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/synthetic_complete": {
+  "applied_conversions": 0,
+  "classification": "V2_READY_AWAITING_CODEX_ADAPTER",
+  "commands": 0,
+  "conversion_problems": [],
+  "transform_status": "REQUIRED_NOT_APPLIED"
+ },
+ "committed/CODEX_ADAPTER/transform_not_accredited": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CHAIN_NOT_USABLE",
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "committed/CODEX_ADAPTER/uncertainty_too_high": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LOCALIZATION_UNCERTAINTY_EXCEEDS_OPERATOR_LIMIT",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "UNCERTAINTY_TOO_HIGH"
+  ],
+  "commands": 0
+ },
+ "committed/M4c-r1": {
+  "categories": [
+   "AUTHORIZATION",
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION",
+   "PLAN"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "commands": 0,
+  "provenance": {
+   "aerial_assignments": {
+    "drone_01": [
+     "POI_1"
+    ],
+    "drone_02": [
+     "POI_3"
+    ]
+   },
+   "agents_recorded_as": "REAL_LOCAL_LLM",
+   "coordinator_ground": {
+    "observation_id": "red_target-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   },
+   "dependencies": [
+    {
+     "after": "AIR_drone_02",
+     "condition": "POI_REACHED",
+     "point": "POI_3",
+     "task_id": "GROUND_rover_01"
+    },
+    {
+     "after": "AIR_drone_01",
+     "condition": "COMPLETED",
+     "task_id": "GROUND_rover_01"
+    }
+   ],
+   "drone_gate_accepted": true,
+   "evidence": "m4c_r1_integrated_v1_2026-11-07_f1ec396c9",
+   "ground_target": {
+    "map_frame": "synthetic_orchard_local",
+    "matched_poi": "POI_3",
+    "object_class": "red_card",
+    "point_from": "BACK_PROJECTED_GROUND_PLANE_ASSUMPTION",
+    "sigma_m": 0.12,
+    "target_id": "red_card_1",
+    "x_m": 8.0,
+    "y_m": 4.0,
+    "z_m": 0.0
+   },
+   "kind": "SEALED_REAL_RUN_READ_ONLY",
+   "new_llm_calls": 0,
+   "request_problems": [
+    "NO_NAVIGATION_PLAN: speed and timeout were not set by a human"
+   ],
+   "result_sha256": "f8480c4197eb7cbd76a53679e86b768247cf307f5da646bf0d6f865464ed1852",
+   "rover_gate_accepted": true,
+   "separation": "DECONFLICTED_BY_START_DELAY",
+   "supervisor": {
+    "final": "PROPOSED_PENDING_AUTHORIZATION",
+    "phase_a": "PROPOSED_PENDING_AUTHORIZATION",
+    "safety_policy": "safety/4"
+   }
+  }
+ },
+ "reviewed/CLAUDE_FRAMES2D/aerial_dependency_failed": {
+  "categories": [
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/authorization_revoked": {
+  "categories": [
+   "AUTHORIZATION",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "AUTHORIZATION_REVOKED",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/boot_changed": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_BOOT_CHANGED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/goal_already_in_rover_frame": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "GOAL_ALREADY_IN_ROVER_FRAME",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "NO_GOAL_IN_ROVER_FRAME",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "SAME_FRAME"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/localization_lost": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "NO_ACCREDITED_ROVER_LOCALIZATION",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_LOCALIZATION_NOT_ACCREDITED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/localization_stale": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "LOCALIZATION_STALE",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_LOCALIZATION_STALE"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/observation_expired": {
+  "categories": [
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/observation_withdrawn": {
+  "categories": [
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/pose_of_another_rover": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_IDENTITY_MISMATCH"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/scope_of_another_plan": {
+  "categories": [
+   "AUTHORIZATION",
+   "EXECUTOR_POLICY",
+   "SCOPE"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE",
+   "LIMITS_MISMATCH",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "PLAN_ID_MISMATCH",
+   "PLAN_SHA256_MISMATCH",
+   "SCOPE_MISMATCH"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/synthetic_complete": {
+  "applied_conversions": 1,
+  "classification": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+  "commands": 0,
+  "conversion_problems": [],
+  "transform_status": "APPLIED_ONCE"
+ },
+ "reviewed/CLAUDE_FRAMES2D/transform_not_accredited": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CHAIN_NOT_USABLE",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "NO_GOAL_IN_ROVER_FRAME",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CLAUDE_FRAMES2D/uncertainty_too_high": {
+  "categories": [
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "LOCALIZATION_UNCERTAINTY_EXCEEDS_OPERATOR_LIMIT",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "UNCERTAINTY_TOO_HIGH"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/aerial_dependency_failed": {
+  "categories": [
+   "CONVERSION",
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/authorization_revoked": {
+  "categories": [
+   "AUTHORIZATION",
+   "CONVERSION",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "AUTHORIZATION_REVOKED",
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/boot_changed": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_BOOT_CHANGED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/goal_already_in_rover_frame": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "GOAL_ALREADY_IN_ROVER_FRAME",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "SAME_FRAME"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/localization_lost": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_LOCALIZATION_NOT_ACCREDITED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/localization_stale": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LOCALIZATION_STALE",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_LOCALIZATION_STALE"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/observation_expired": {
+  "categories": [
+   "CONVERSION",
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/observation_withdrawn": {
+  "categories": [
+   "CONVERSION",
+   "COORDINATOR",
+   "EXECUTOR_POLICY"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "GROUND_TASK_NOT_READY",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/owner_not_declared": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CONVERSION_OWNER_NOT_DECLARED",
+   "NO_GOAL_IN_ROVER_FRAME",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/pose_of_another_rover": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "ROVER_IDENTITY_MISMATCH"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/scope_of_another_plan": {
+  "categories": [
+   "AUTHORIZATION",
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "SCOPE"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE",
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LIMITS_MISMATCH",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "PLAN_ID_MISMATCH",
+   "PLAN_SHA256_MISMATCH",
+   "SCOPE_MISMATCH"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/synthetic_complete": {
+  "applied_conversions": 0,
+  "classification": "V2_READY_AWAITING_CODEX_ADAPTER",
+  "commands": 0,
+  "conversion_problems": [],
+  "transform_status": "REQUIRED_NOT_APPLIED"
+ },
+ "reviewed/CODEX_ADAPTER/transform_not_accredited": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CHAIN_NOT_USABLE",
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "OPERATIONAL_ROVER_POLICY_DISABLED"
+  ],
+  "commands": 0
+ },
+ "reviewed/CODEX_ADAPTER/uncertainty_too_high": {
+  "categories": [
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codes": [
+   "CODEX_ADAPTER_NOT_IN_SNAPSHOT",
+   "CONVERSION_DELEGATED_TO_CODEX_ADAPTER",
+   "LOCALIZATION_UNCERTAINTY_EXCEEDS_OPERATOR_LIMIT",
+   "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "UNCERTAINTY_TOO_HIGH"
+  ],
+  "commands": 0
+ },
+ "reviewed/M4c-r1": {
+  "categories": [
+   "AUTHORIZATION",
+   "CONVERSION",
+   "EXECUTOR_POLICY",
+   "FRAMES",
+   "LOCALIZATION",
+   "PLAN"
+  ],
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "commands": 0,
+  "provenance": {
+   "aerial_assignments": {
+    "drone_01": [
+     "POI_1"
+    ],
+    "drone_02": [
+     "POI_3"
+    ]
+   },
+   "agents_recorded_as": "REAL_LOCAL_LLM",
+   "coordinator_ground": {
+    "observation_id": "red_target-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   },
+   "dependencies": [
+    {
+     "after": "AIR_drone_02",
+     "condition": "POI_REACHED",
+     "point": "POI_3",
+     "task_id": "GROUND_rover_01"
+    },
+    {
+     "after": "AIR_drone_01",
+     "condition": "COMPLETED",
+     "task_id": "GROUND_rover_01"
+    }
+   ],
+   "drone_gate_accepted": true,
+   "evidence": "m4c_r1_integrated_v1_2026-11-07_f1ec396c9",
+   "ground_target": {
+    "map_frame": "synthetic_orchard_local",
+    "matched_poi": "POI_3",
+    "object_class": "red_card",
+    "point_from": "BACK_PROJECTED_GROUND_PLANE_ASSUMPTION",
+    "sigma_m": 0.12,
+    "target_id": "red_card_1",
+    "x_m": 8.0,
+    "y_m": 4.0,
+    "z_m": 0.0
+   },
+   "kind": "SEALED_REAL_RUN_READ_ONLY",
+   "new_llm_calls": 0,
+   "request_problems": [
+    "NO_NAVIGATION_PLAN: speed and timeout were not set by a human"
+   ],
+   "result_sha256": "f8480c4197eb7cbd76a53679e86b768247cf307f5da646bf0d6f865464ed1852",
+   "rover_gate_accepted": true,
+   "separation": "DECONFLICTED_BY_START_DELAY",
+   "supervisor": {
+    "final": "PROPOSED_PENDING_AUTHORIZATION",
+    "phase_a": "PROPOSED_PENDING_AUTHORIZATION",
+    "safety_policy": "safety/4"
+   }
+  }
+ }
+}

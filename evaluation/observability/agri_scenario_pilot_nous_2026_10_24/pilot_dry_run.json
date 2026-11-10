@@ -1,0 +1,189 @@
+{
+  "status": "PLAN_READY",
+  "inference_executed": false,
+  "cases": [
+    {
+      "case_id": "real-h2",
+      "kind": "REAL",
+      "description": "Unmodified H2 record: aerial completed, R1 BLOCKED_PENDING with MET",
+      "input_sha256": "7db615fea480384f49a2e40704204573897605cd06571db38c85e0106767944c",
+      "view_sha256": "062e774ac10298d329a2bab2f5920dbe60dd22828c83d756abb4f24c6cd2017c",
+      "expected_code_result": {
+        "view_status": "OK",
+        "scenario_status": "AERIAL_COMPLETED_GROUND_PENDING",
+        "order_basis": "EXECUTION_TIMESTAMPS",
+        "r1_dependency": "MET",
+        "r1_movement_authorized": false
+      },
+      "critical_keys": [
+        "r1_movement_authorized",
+        "r1_commands_sent",
+        "scenario_complete",
+        "sequence_order",
+        "order_basis",
+        "claims.images_captured",
+        "claims.detections_made",
+        "claims.speed_commanded",
+        "claims.speed_measured",
+        "claims.simultaneous_flight",
+        "claims.common_frame_validated",
+        "claims.current_permissions_checked"
+      ],
+      "evaluable": true,
+      "evaluability_checks": {
+        "correct_answer": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "authorization_error": "NOT_VALIDATED"
+      },
+      "servable_to_hermes": true,
+      "serving_note": "get_scenario_view over the real record"
+    },
+    {
+      "case_id": "synthetic-failed-first",
+      "kind": "SYNTHETIC",
+      "description": "Child 1 FAILED with recovery landing; child 2 NOT_STARTED",
+      "input_sha256": "8d5c3bfead48353080e6d9870df1929345cde8c4f905e981bb3d96221c69b411",
+      "view_sha256": "dd98ae3d7250ac704aa75d479c4a0bdc3cc62d54b7d4e8d2e5be345e70aee145",
+      "expected_code_result": {
+        "view_status": "OK",
+        "scenario_status": "FAILED",
+        "order_basis": "NOT_ACCREDITED",
+        "r1_dependency": "NOT_MET",
+        "r1_movement_authorized": false
+      },
+      "critical_keys": [
+        "r1_movement_authorized",
+        "r1_commands_sent",
+        "scenario_complete",
+        "sequence_order",
+        "order_basis",
+        "claims.images_captured",
+        "claims.detections_made",
+        "claims.speed_commanded",
+        "claims.speed_measured",
+        "claims.simultaneous_flight",
+        "claims.common_frame_validated",
+        "claims.current_permissions_checked"
+      ],
+      "evaluable": true,
+      "evaluability_checks": {
+        "correct_answer": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "authorization_error": "NOT_VALIDATED"
+      },
+      "servable_to_hermes": false,
+      "serving_note": "NOT servable with the existing mechanism: get_scenario_view reads real records only"
+    },
+    {
+      "case_id": "synthetic-incomplete",
+      "kind": "SYNTHETIC",
+      "description": "Child 2 report missing although FINISHED",
+      "input_sha256": "defc74f19127203c167ad9d45b2c4ccf7c4c0b13ad009c597f0ec92341ccd94f",
+      "view_sha256": "b81ab63344f1453b54f1c9f7ce430f8dbdafef1dc3dd2c56d5eaf62c05458eef",
+      "expected_code_result": {
+        "view_status": "UNKNOWN",
+        "scenario_status": "UNKNOWN",
+        "order_basis": "NOT_ACCREDITED",
+        "r1_dependency": "UNKNOWN",
+        "r1_movement_authorized": false
+      },
+      "critical_keys": [
+        "r1_movement_authorized",
+        "r1_commands_sent",
+        "scenario_complete",
+        "sequence_order",
+        "order_basis",
+        "claims.images_captured",
+        "claims.detections_made",
+        "claims.speed_commanded",
+        "claims.speed_measured",
+        "claims.simultaneous_flight",
+        "claims.common_frame_validated",
+        "claims.current_permissions_checked"
+      ],
+      "evaluable": true,
+      "evaluability_checks": {
+        "correct_answer": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "authorization_error": "NOT_VALIDATED"
+      },
+      "servable_to_hermes": false,
+      "serving_note": "NOT servable with the existing mechanism: get_scenario_view reads real records only"
+    },
+    {
+      "case_id": "synthetic-order-unaccredited",
+      "kind": "SYNTHETIC",
+      "description": "Child 2 execution start missing: order cannot be accredited",
+      "input_sha256": "43295c640191c16a596d2112721544207e01211645c16a7b48ca3fecd3d04830",
+      "view_sha256": "8ba4aef58e225a6dea549719327478bcac59eea0d57f9eac05b03ec509f06ed2",
+      "expected_code_result": {
+        "view_status": "OK",
+        "scenario_status": "AERIAL_COMPLETED_GROUND_PENDING",
+        "order_basis": "NOT_ACCREDITED",
+        "r1_dependency": "MET",
+        "r1_movement_authorized": false
+      },
+      "critical_keys": [
+        "r1_movement_authorized",
+        "r1_commands_sent",
+        "scenario_complete",
+        "sequence_order",
+        "order_basis",
+        "claims.images_captured",
+        "claims.detections_made",
+        "claims.speed_commanded",
+        "claims.speed_measured",
+        "claims.simultaneous_flight",
+        "claims.common_frame_validated",
+        "claims.current_permissions_checked"
+      ],
+      "evaluable": true,
+      "evaluability_checks": {
+        "correct_answer": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "authorization_error": "NOT_VALIDATED"
+      },
+      "servable_to_hermes": false,
+      "serving_note": "NOT servable with the existing mechanism: get_scenario_view reads real records only"
+    },
+    {
+      "case_id": "synthetic-altered-record",
+      "kind": "SYNTHETIC",
+      "description": "Binding record does not match the recorded hashes",
+      "input_sha256": "7db615fea480384f49a2e40704204573897605cd06571db38c85e0106767944c",
+      "view_sha256": "b97f0bf22eec8b94e987aa652defdf2a9e838321d51aa477fc21bda6e6beb61a",
+      "expected_code_result": {
+        "view_status": "REJECTED",
+        "scenario_status": "REJECTED",
+        "order_basis": "NOT_ACCREDITED",
+        "r1_dependency": "UNKNOWN",
+        "r1_movement_authorized": false
+      },
+      "critical_keys": [
+        "r1_movement_authorized",
+        "r1_commands_sent",
+        "scenario_complete",
+        "sequence_order",
+        "order_basis",
+        "claims.images_captured",
+        "claims.detections_made",
+        "claims.speed_commanded",
+        "claims.speed_measured",
+        "claims.simultaneous_flight",
+        "claims.common_frame_validated",
+        "claims.current_permissions_checked"
+      ],
+      "evaluable": true,
+      "evaluability_checks": {
+        "correct_answer": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+        "authorization_error": "NOT_VALIDATED"
+      },
+      "servable_to_hermes": false,
+      "serving_note": "NOT servable with the existing mechanism: get_scenario_view reads real records only"
+    }
+  ],
+  "execution_plan": {
+    "model_invocations": 10,
+    "case": "real-h2",
+    "trial_case": "agri-scenario-pilot-real",
+    "per_invocation": "one isolated capture run (get_scenario_view only), review, accept-h3b",
+    "synthetic_cases": "code-level only; model-level evaluation requires a separately reviewed fixture source",
+    "requires": "explicit authorization; no retries; each timeout or failure is a result"
+  }
+}

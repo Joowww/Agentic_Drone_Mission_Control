@@ -1,0 +1,16 @@
+{
+  "source_hashes": {
+    "hermes_cli/_parser.py": "75fa3070d9cdcbeaa3fc1424e9c3dba06a403b9d43c74aaccc3b82829edf366c",
+    "hermes_cli/oneshot.py": "ebd2bc6a320f24fa94249dab37a0776f4d32c92bb7ac3f6c7193f14eefecfdc9",
+    "hermes_cli/mcp_startup.py": "1d36dc9ff5ba0d8f7a51b366aa7799a94316fc04c486a9252315ff5d4d034be6",
+    "toolsets.py": "7674a11eeebcc06b7c83c816fca0bc6982107870f5615375d2ffc5dbe6044eaa",
+    "model_tools.py": "fbb40d0058e3edd6c4e1608b8db9e922aaf38d2c9d0438c3811c6d6b01b45340",
+    "agent/agent_init.py": "9f8c91db2ae36194dcd0e187d8ef237fd8337ef35b8f4eb22b4faf6cf6575187"
+  },
+  "oneshot": "-z returns final response only; --usage-file is native JSON usage output",
+  "tool_selection": "catalog is desktop-only; CLI platform subtraction removes its tools",
+  "mcp_selection": "-t catalog restricts MCP startup to literal catalog; no configured key matches",
+  "shell_hooks_configured": false,
+  "proof_scope": "installed source inspection; no wire capture or plugin instrumentation",
+  "version_query": "hermes --version succeeded via usual launcher; initial sandbox lock denial was not an inference attempt"
+}

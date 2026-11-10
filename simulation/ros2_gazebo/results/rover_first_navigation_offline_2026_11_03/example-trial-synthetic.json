@@ -1,0 +1,114 @@
+{
+ "NOTE": "SYNTHETIC offline example built from a sealed-test binding fixture; NOT a live session, NOT an authorization",
+ "request": {
+  "kind": "ROVER_NAVIGATE_V1",
+  "profile": "rover_only",
+  "limits": {
+   "max_forward_mps": 0.3,
+   "max_yaw_rate_rad_s": 0.5,
+   "max_duration_s": 60.0,
+   "call_timeout_s": 2.0,
+   "stop_timeout_s": 8.0,
+   "observation_max_age_s": 1.0,
+   "stopped_linear_mps": 0.03,
+   "stopped_angular_rad_s": 0.03
+  },
+  "goal": {
+   "x_m": 0.0027746490599606646,
+   "y_m": -2.000560483244171,
+   "yaw_rad": 1.5667755669013355,
+   "frame": "odom",
+   "unit": "m",
+   "transform": "IDENTITY_SAME_ACCREDITED_FRAME",
+   "tolerance_m": 0.25,
+   "yaw_tolerance_rad": 3.141592653589793,
+   "dwell_s": 1.0,
+   "command_hz": 2.0,
+   "timeout_s": 45.0,
+   "no_progress_s": 15.0,
+   "progress_m": 0.05,
+   "progress_rad": 0.05,
+   "max_samples": 256
+  },
+  "preparation": {
+   "kind": "GUIDED_ARM_AFTER_STATIONARY_V1",
+   "timeout_s": 20.0
+  },
+  "finalization": {
+   "kind": "DISARM_AFTER_OBSERVED_STOP_V1",
+   "timeout_s": 10.0
+  },
+  "preparation_safety": {
+   "binding_sha256": "9c80c60c87a0295027bcb38bed732506ae4d8ac2dcd354ebfa957d5e144fa8fb",
+   "pose_frame": "odom",
+   "max_slope_rad": 0.2
+  }
+ },
+ "sitl_scope_fields": [
+  "binding_evidence_sha256",
+  "environment_execution",
+  "goal_sha256",
+  "host_boot_id",
+  "interface",
+  "lifecycle_id",
+  "max_trials",
+  "mission_sha256",
+  "profile",
+  "schema",
+  "simulation_only",
+  "vehicle_id"
+ ],
+ "candidate": {
+  "vehicle_id": "rover_01",
+  "rover_mission": {
+   "value": {
+    "sha256": "f0098cb2e9502b3ad815001f98b6d5a127201c639ccf24ba0db7e4c1f91e1de9"
+   }
+  },
+  "target_in_rover_frame": {
+   "value": {
+    "x_m": 0.0027746490599606646,
+    "y_m": -2.000560483244171,
+    "frame": "odom"
+   }
+  },
+  "frame_transform": {
+   "value": {
+    "status": "VERIFIED",
+    "to_frame": "odom",
+    "sha256": "b196fbb937f8f617ae9dfc469bc4120d758a916c80a363fcef673b5b97513319",
+    "derivation_sha256": "f00cc61f2cde383ac0217c7f4d41ab8daaf5fc53ba46ffc4b16f8d8ecd3e86f1",
+    "goal_sha256": "e0493b63d1a8015e42ea4e9beb82250a85e4af9948cf81b639e65c3c147c4c98",
+    "start_evidence_sha256": "cff1475bcac4d76f30513a77f865d515216755edc0f72c3c826988f9efde1923",
+    "method": "SE2_OFFSET_FROM_OBSERVED_START_POSE"
+   }
+  },
+  "preparation_policy": {
+   "value": {
+    "kind": "GUIDED_ARM_AFTER_STATIONARY_V1",
+    "timeout_s": 20.0
+   }
+  },
+  "finalization_policy": {
+   "value": {
+    "kind": "DISARM_AFTER_OBSERVED_STOP_V1",
+    "timeout_s": 10.0
+   }
+  }
+ },
+ "templates": {
+  "admission_authorization": {
+   "mission_sha256": "f0098cb2e9502b3ad815001f98b6d5a127201c639ccf24ba0db7e4c1f91e1de9",
+   "request_fingerprint": null,
+   "statement": "<<JOEL_STATEMENT_REQUIRED>>"
+  },
+  "coordination_authorization": {
+   "source": "OPERATOR_DECLARED",
+   "statement": "<<JOEL_STATEMENT_REQUIRED>>",
+   "candidate_sha256": "f1f9c41005757b309bc556a264ceacc4bd8aa8e4e5bda8cbc436af99adfd2819",
+   "mission_sha256": "f0098cb2e9502b3ad815001f98b6d5a127201c639ccf24ba0db7e4c1f91e1de9",
+   "session_id": "72f47371-6d7f-4980-abe8-b7c72a9ce533"
+  }
+ },
+ "dry_run_with_synthetic_facts": "DRY_RUN_ELIGIBLE_EXCEPT_POLICY_FLAG"
+}

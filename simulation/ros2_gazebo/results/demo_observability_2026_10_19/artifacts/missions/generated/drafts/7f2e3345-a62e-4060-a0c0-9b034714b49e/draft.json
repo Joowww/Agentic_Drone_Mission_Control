@@ -1,0 +1,84 @@
+{
+  "geometry_intent": {
+    "mode": "rectangle",
+    "home_latitude": 41.0,
+    "home_longitude": 2.0,
+    "home_altitude_m": 0.0,
+    "altitude_reference": "relative_to_home",
+    "altitude_m": 8.0,
+    "return_to_home": true,
+    "close_route": true,
+    "offsets": null,
+    "length_m": 40.0,
+    "width_m": 20.0,
+    "orientation_deg": 90.0,
+    "traversal": "clockwise",
+    "home_position": "center"
+  },
+  "mission_id": null,
+  "name": "Demo Reunion",
+  "vehicle_id": "drone_02",
+  "vehicle_type": "multirotor",
+  "autopilot": "ArduPilot",
+  "cruise_speed_kmh": 36.0,
+  "battery_percent": 100.0,
+  "battery_consumption_percent_per_minute": 1.5,
+  "objective_type": "custom",
+  "objective_target": "demonstracion_rectangular",
+  "objective_description": null,
+  "home_latitude": 41.0,
+  "home_longitude": 2.0,
+  "home_altitude_m": 0.0,
+  "waypoints": [
+    {
+      "waypoint_id": "WP1",
+      "latitude": 41.0000898311175,
+      "longitude": 1.9997619452042132,
+      "altitude_m": 8.0,
+      "speed_kmh": null,
+      "action": "navigate"
+    },
+    {
+      "waypoint_id": "WP2",
+      "latitude": 41.0000898311175,
+      "longitude": 2.0002380547957865,
+      "altitude_m": 8.0,
+      "speed_kmh": null,
+      "action": "navigate"
+    },
+    {
+      "waypoint_id": "WP3",
+      "latitude": 40.9999101688825,
+      "longitude": 2.0002380547957865,
+      "altitude_m": 8.0,
+      "speed_kmh": null,
+      "action": "navigate"
+    },
+    {
+      "waypoint_id": "WP4",
+      "latitude": 40.9999101688825,
+      "longitude": 1.9997619452042132,
+      "altitude_m": 8.0,
+      "speed_kmh": null,
+      "action": "navigate"
+    },
+    {
+      "waypoint_id": "WP5",
+      "latitude": 41.0000898311175,
+      "longitude": 1.9997619452042132,
+      "altitude_m": 8.0,
+      "speed_kmh": null,
+      "action": "navigate"
+    }
+  ],
+  "return_to_home": true,
+  "wind_speed_kmh": 10.0,
+  "wind_direction_from": null,
+  "wind_direction_from_deg": 0.0,
+  "minimum_battery_reserve_percent": 20.0,
+  "maximum_wind_speed_kmh": 15.0,
+  "maximum_altitude_m": 120.0,
+  "low_battery_action": null,
+  "unsafe_wind_action": null,
+  "communication_loss_action": null
+}

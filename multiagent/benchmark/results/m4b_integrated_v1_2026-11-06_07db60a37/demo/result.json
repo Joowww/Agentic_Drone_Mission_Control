@@ -1,0 +1,112 @@
+{
+ "aerial_tasks": [],
+ "agent_records": {
+  "drone": {
+   "accepted_by_gate": null,
+   "decision_record": null,
+   "final_allocation_from": "DETERMINISTIC_REFERENCE",
+   "llm_calls": null,
+   "violations": null
+  },
+  "phase_b_aerial": null,
+  "rover_phase_a": {
+   "accepted_by_gate": null,
+   "contract": null,
+   "decision_record": null,
+   "llm_calls": null,
+   "proposal": null,
+   "reason": null,
+   "status": null
+  },
+  "rover_phase_b": {
+   "accepted_by_gate": null,
+   "agreement": null,
+   "contract": null,
+   "decision_record": null,
+   "llm_calls": null,
+   "proposal": null,
+   "reason": null,
+   "status": null
+  },
+  "supervisor": {
+   "brief": null,
+   "brief_planned_in_phase_a": null,
+   "data_kind": "MODEL_OUTPUT",
+   "json_valid": true,
+   "model": "qwen3:4b",
+   "parse_error": "MODEL_REPLY_NOT_A_BRIEF: 1 errors",
+   "reasons": [
+    "BRIEF_REJECTED: MODEL_REPLY_NOT_A_BRIEF: 1 errors"
+   ],
+   "status": "NEEDS_CLARIFICATION"
+  }
+ },
+ "as_expected": false,
+ "classification": "MISSION_NEEDS_CLARIFICATION",
+ "commands_sent": 0,
+ "console": [
+  "[  0.00s] operator      mission: Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated.",
+  "[  0.00s] supervisor    ... interpreting and delegating (agents: REAL_MODELS)",
+  "[  9.64s] supervisor    status NEEDS_CLARIFICATION (safety/4); 0 aerial task(s); ground objectives waiting: []",
+  "[  9.64s] rover_agent   phase A: not run (the supervisor did not plan the mission)",
+  "[  9.64s] supervisor    mission ends here: NEEDS_CLARIFICATION: ['BRIEF_REJECTED: MODEL_REPLY_NOT_A_BRIEF: 1 errors']",
+  "[  9.64s] result        MISSION_NEEDS_CLARIFICATION (NOT AS EXPECTED: PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION); commands sent 0"
+ ],
+ "coordinator": {
+  "aerial": {},
+  "commands_sent": 0,
+  "events": 2,
+  "executing": [],
+  "ground": {},
+  "mission": "CLARIFICATION_REQUESTED",
+  "mission_reason": "BRIEF_REJECTED: MODEL_REPLY_NOT_A_BRIEF: 1 errors",
+  "note": "offline coordination states only; nothing here moves a vehicle",
+  "separation": null,
+  "unassigned_objectives": []
+ },
+ "detection": {
+  "ambiguous": [],
+  "detections": [],
+  "rejected": [],
+  "status": "NOT_RUN"
+ },
+ "execution_request": null,
+ "executor": [],
+ "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+ "geometry": null,
+ "geometry_refusal": null,
+ "observation_gate": {
+  "reasons": null,
+  "status": null,
+  "target": null
+ },
+ "physical_effect": false,
+ "provenance": {
+  "agents": "REAL_LOCAL_LLM",
+  "events": "TEST_FIXTURE",
+  "image": "NOT_RENDERED (no plan, no flight)",
+  "simulation": "OFFLINE_SIMULATION (no SITL, no sensor)"
+ },
+ "request_problems": [],
+ "scenario": "red_target",
+ "schema": "tfg.multiagent.precision-demo/1",
+ "status_ladder": {
+  "detection_obtained": false,
+  "execution_authorized": false,
+  "mission_physically_completed": false,
+  "movement_executed": false,
+  "planning_completed": false,
+  "proposal_validated": false,
+  "target_spatially_validated": false
+ },
+ "supervisor": {
+  "final": null,
+  "phase_a": "NEEDS_CLARIFICATION",
+  "reasons": [
+   "BRIEF_REJECTED: MODEL_REPLY_NOT_A_BRIEF: 1 errors"
+  ],
+  "safety_policy": "safety/4"
+ },
+ "unassigned": [],
+ "what": "red card below drone_02 near POI_3"
+}

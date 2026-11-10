@@ -1,0 +1,13 @@
+step	rc	result	detail
+00_outside_repo	0	PASS	/tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_30/bundle
+01_sha256sum	0	PASS	imagenes/tfg-app-2026.10.30.tar: OK
+02_load_and_ids	0	PASS	MATCH tfg/app:2026.10.30
+03_compose_config	0	PASS	CONFIG_OK
+04_synthetic_finalizations	0	PASS	"status": "VALIDATED"
+05_store_read_only_no_socket	0	PASS	STORE_READ_ONLY
+06_package_two_plans	0	PASS	HERMES_drone_01 drone_01: GENERATED
+07_verify	0	PASS	"status": "INTEGRITY_VERIFIED"
+08_altered_input_refused	2	PASS	[REFUSED] ValueError: Mission sidecar/path/hash does not match its snapshot
+09_store_unchanged	0	PASS	rc=0
+10_results_persist_after_down	0	PASS	"status": "INTEGRITY_VERIFIED"
+11_default_empty_store	0	PASS	EMPTY_DEFAULT ['LEEME.txt']

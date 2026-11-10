@@ -1,0 +1,14 @@
+project tfg-estudiante services ['app', 'hermes', 'ollama', 'planner-menu', 'qgc']
+app bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/results -> /work rw
+hermes bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/planning_store -> /opt/tfg/missions/generated rw
+hermes bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/results -> /work rw
+hermes volume hermes-home -> /hermes rw
+ollama volume ollama-models -> /root/.ollama rw
+planner-menu bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/planning_store -> /opt/tfg/missions/generated rw
+planner-menu bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/results -> /work rw
+planner-menu volume hermes-home -> /hermes rw
+qgc bind /tmp/.X11-unix -> /tmp/.X11-unix ro
+qgc bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/bundle/QGC_PLAN_DIR_not_set -> /data/plan ro
+qgc bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/bundle/QGC_SAVE_DIR_not_set -> /data/saved rw
+volumes ['hermes-home', 'ollama-models'] ['tfg-estudiante_hermes-home', 'tfg-estudiante_ollama-models']
+PATHS_OK

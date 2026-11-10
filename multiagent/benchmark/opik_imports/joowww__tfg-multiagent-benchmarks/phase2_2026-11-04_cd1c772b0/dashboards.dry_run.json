@@ -1,0 +1,4245 @@
+{
+ "bodies": [
+  {
+   "config": {
+    "lastModified": 1793750400000,
+    "sections": [
+     {
+      "id": "section-a",
+      "layout": [
+       {
+        "h": 2,
+        "i": "a-missions",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 0,
+        "y": 0
+       },
+       {
+        "h": 2,
+        "i": "a-real-llm",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 1,
+        "y": 0
+       },
+       {
+        "h": 2,
+        "i": "a-deterministic",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 2,
+        "y": 0
+       },
+       {
+        "h": 2,
+        "i": "a-synthetic",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 3,
+        "y": 0
+       },
+       {
+        "h": 2,
+        "i": "a-llm-calls",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 4,
+        "y": 0
+       },
+       {
+        "h": 2,
+        "i": "a-tool-calls",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 5,
+        "y": 0
+       },
+       {
+        "h": 2,
+        "i": "a-pass",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 0,
+        "y": 2
+       },
+       {
+        "h": 2,
+        "i": "a-blocked-ok",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 1,
+        "y": 2
+       },
+       {
+        "h": 2,
+        "i": "a-errors",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 2,
+        "y": 2
+       },
+       {
+        "h": 2,
+        "i": "a-p50",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 3,
+        "y": 2
+       },
+       {
+        "h": 2,
+        "i": "a-legend",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 6,
+        "x": 0,
+        "y": 6
+       }
+      ],
+      "title": "A · Overview",
+      "widgets": [
+       {
+        "config": {
+         "metric": "trace_count",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          }
+         ]
+        },
+        "id": "a-missions",
+        "title": "Missions (traces)",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "metric": "trace_count",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "tags",
+           "id": "f-ad0989c09b",
+           "operator": "contains",
+           "type": "list",
+           "value": "real-llm-call"
+          }
+         ]
+        },
+        "id": "a-real-llm",
+        "title": "Runs with a real LLM",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "metric": "trace_count",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "tags",
+           "id": "f-2d98e6f736",
+           "operator": "contains",
+           "type": "list",
+           "value": "DETERMINISTIC_BASELINE"
+          }
+         ]
+        },
+        "id": "a-deterministic",
+        "title": "Deterministic runs",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "metric": "trace_count",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "tags",
+           "id": "f-0e0cb6025f",
+           "operator": "contains",
+           "type": "list",
+           "value": "test-double-llm"
+          }
+         ]
+        },
+        "id": "a-synthetic",
+        "title": "Simulated (test-double) runs",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "metric": "span_count",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "spans",
+         "spanFilters": [
+          {
+           "field": "type",
+           "id": "f-43b0d8e398",
+           "operator": "=",
+           "type": "category",
+           "value": "llm"
+          }
+         ]
+        },
+        "id": "a-llm-calls",
+        "title": "Real LLM calls",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "metric": "span_count",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "spans",
+         "spanFilters": [
+          {
+           "field": "type",
+           "id": "f-ab840f50ca",
+           "operator": "=",
+           "type": "category",
+           "value": "tool"
+          }
+         ]
+        },
+        "id": "a-tool-calls",
+        "title": "Tool calls",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "metric": "feedback_scores.case_pass",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          }
+         ]
+        },
+        "id": "a-pass",
+        "title": "Cases passed (mean case_pass)",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "metric": "feedback_scores.unsafe_request_detected",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          }
+         ]
+        },
+        "id": "a-blocked-ok",
+        "title": "Unsafe requests refused (mean)",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "metric": "error_count",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          }
+         ]
+        },
+        "id": "a-errors",
+        "title": "Errors",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "metric": "duration.p50",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          }
+         ]
+        },
+        "id": "a-p50",
+        "title": "Mission latency P50",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "content": "**Data kinds** (tags and metadata `tfg_data_kind`): `real-llm-call` = a real model call; `DETERMINISTIC_BASELINE` = rules interpreter; `test-double-llm` = simulated model (never a model result); `historical-import` = a sealed record imported later (the model was NOT re-run). Missing values are absent, never 0. Percentiles from a handful of traces describe those traces only."
+        },
+        "id": "a-legend",
+        "title": "How to read this dashboard",
+        "type": "text_markdown"
+       }
+      ]
+     },
+     {
+      "id": "section-b",
+      "layout": [
+       {
+        "h": 4,
+        "i": "b-llm-latency",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "b-agent-latency",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "b-tokens",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 4
+       },
+       {
+        "h": 2,
+        "i": "b-tokens-mission",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 3,
+        "y": 4
+       },
+       {
+        "h": 4,
+        "i": "b-time-by-type",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 8
+       },
+       {
+        "h": 4,
+        "i": "b-calls-model",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 8
+       },
+       {
+        "h": 4,
+        "i": "b-cost",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 12
+       },
+       {
+        "h": 4,
+        "i": "b-volume",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 12
+       }
+      ],
+      "title": "B · Model performance",
+      "widgets": [
+       {
+        "config": {
+         "breakdown": {
+          "field": "model"
+         },
+         "chartType": "line",
+         "durationMetrics": [
+          "p50",
+          "p90",
+          "p99"
+         ],
+         "metricType": "SPAN_DURATION",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "type",
+           "id": "f-43b0d8e398",
+           "operator": "=",
+           "type": "category",
+           "value": "llm"
+          }
+         ]
+        },
+        "id": "b-llm-latency",
+        "title": "LLM latency P50/P90/P99 by model",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "name"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_AVERAGE_DURATION",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "name",
+           "id": "f-18a51f31d7",
+           "operator": "contains",
+           "type": "string",
+           "value": ":agent:"
+          }
+         ]
+        },
+        "id": "b-agent-latency",
+        "title": "Average latency by agent",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "model"
+         },
+         "chartType": "line",
+         "metricType": "SPAN_TOKEN_USAGE",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "type",
+           "id": "f-43b0d8e398",
+           "operator": "=",
+           "type": "category",
+           "value": "llm"
+          }
+         ],
+         "usageMetrics": [
+          "prompt_tokens",
+          "completion_tokens"
+         ]
+        },
+        "id": "b-tokens",
+        "title": "Tokens by model (input/output)",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "metric": "usage.total_tokens",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          }
+         ]
+        },
+        "id": "b-tokens-mission",
+        "title": "Tokens per mission (avg)",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "type"
+         },
+         "chartType": "bar",
+         "durationMetrics": [
+          "p50"
+         ],
+         "metricType": "SPAN_DURATION",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": []
+        },
+        "id": "b-time-by-type",
+        "title": "Time in LLM vs validators vs agents",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "model"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "type",
+           "id": "f-43b0d8e398",
+           "operator": "=",
+           "type": "category",
+           "value": "llm"
+          }
+         ]
+        },
+        "id": "b-calls-model",
+        "title": "LLM calls by model",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "chartType": "line",
+         "metricType": "COST",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          }
+         ]
+        },
+        "id": "b-cost",
+        "title": "Estimated cost",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_data_kind"
+         },
+         "chartType": "bar",
+         "metricType": "TRACE_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          }
+         ]
+        },
+        "id": "b-volume",
+        "title": "Runs per day by data kind",
+        "type": "project_metrics"
+       }
+      ]
+     },
+     {
+      "id": "section-c",
+      "layout": [
+       {
+        "h": 4,
+        "i": "c-pass-exp",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "c-extraction",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "c-schema",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 4
+       },
+       {
+        "h": 4,
+        "i": "c-clarify",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 4
+       },
+       {
+        "h": 4,
+        "i": "c-constraints",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 8
+       },
+       {
+        "h": 4,
+        "i": "c-status",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 8
+       },
+       {
+        "h": 4,
+        "i": "c-assignment",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 12
+       },
+       {
+        "h": 4,
+        "i": "c-plan",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 12
+       }
+      ],
+      "title": "C · Interpretation and planning quality",
+      "widgets": [
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "line",
+         "feedbackScores": [
+          "case_pass"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-dc4e158117",
+           "key": "case_pass",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "c-pass-exp",
+        "title": "Case pass by experiment",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "line",
+         "feedbackScores": [
+          "extraction_accuracy"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-0557d4faa3",
+           "key": "extraction_accuracy",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "c-extraction",
+        "title": "Extraction accuracy by experiment",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "line",
+         "feedbackScores": [
+          "schema_valid"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-c1dd525282",
+           "key": "schema_valid",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "c-schema",
+        "title": "Valid model replies (schema_valid)",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "line",
+         "feedbackScores": [
+          "clarification_correct"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-899063b77a",
+           "key": "clarification_correct",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "c-clarify",
+        "title": "Clarifications asked when expected",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "line",
+         "feedbackScores": [
+          "constraints_satisfied"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-adf78e81fd",
+           "key": "constraints_satisfied",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "c-constraints",
+        "title": "Constraints satisfied",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "line",
+         "feedbackScores": [
+          "expected_status_match"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-86af4b5761",
+           "key": "expected_status_match",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "c-status",
+        "title": "Feasible/infeasible correctly identified",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "line",
+         "feedbackScores": [
+          "assignment_quality"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-198cb67242",
+           "key": "assignment_quality",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "c-assignment",
+        "title": "Allocation quality vs reference",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "line",
+         "feedbackScores": [
+          "plan_valid"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-18fb6eb432",
+           "key": "plan_valid",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "c-plan",
+        "title": "Valid individual plans (.plan built)",
+        "type": "project_metrics"
+       }
+      ]
+     },
+     {
+      "id": "section-d",
+      "layout": [
+       {
+        "h": 4,
+        "i": "d-detected",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "d-false-refusals",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "d-authority",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 4
+       },
+       {
+        "h": 4,
+        "i": "d-excluded",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 4
+       },
+       {
+        "h": 4,
+        "i": "d-geofence",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 8
+       },
+       {
+        "h": 4,
+        "i": "d-safety",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 8
+       },
+       {
+        "h": 4,
+        "i": "d-gates",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 12
+       }
+      ],
+      "title": "D · Safety and constraints",
+      "widgets": [
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "unsafe_request_detected"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-4846e02c0f",
+           "key": "unsafe_request_detected",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "d-detected",
+        "title": "Unsafe requests detected",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "safe_refused"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-69c4c7e4f4",
+           "key": "safe_refused",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "d-false-refusals",
+        "title": "False refusals of safe requests",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "authorization_not_granted"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-f2b3bb8c7a",
+           "key": "authorization_not_granted",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "d-authority",
+        "title": "Authority never granted",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "prohibited_vehicle_excluded"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-b32dfad49f",
+           "key": "prohibited_vehicle_excluded",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "d-excluded",
+        "title": "Forbidden vehicles kept out",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "geofence_respected"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-4e48f90587",
+           "key": "geofence_respected",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "d-geofence",
+        "title": "Routes inside perimeter and clear of exclusions",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "safety_ok"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-227639c8b1",
+           "key": "safety_ok",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "d-safety",
+        "title": "Safety outcome",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "name"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "name",
+           "id": "f-358204fabd",
+           "operator": "contains",
+           "type": "string",
+           "value": "gate:"
+          }
+         ]
+        },
+        "id": "d-gates",
+        "title": "Proposals discarded by validation (gates)",
+        "type": "project_metrics"
+       }
+      ]
+     },
+     {
+      "id": "section-e",
+      "layout": [
+       {
+        "h": 4,
+        "i": "e-agent-spans",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "e-validations",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "e-revisions",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 4
+       },
+       {
+        "h": 4,
+        "i": "e-errors",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 4
+       },
+       {
+        "h": 4,
+        "i": "e-llm-by-agent",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 8
+       },
+       {
+        "h": 4,
+        "i": "e-tools-by-agent",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 8
+       },
+       {
+        "h": 4,
+        "i": "e-conflicts",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 12
+       },
+       {
+        "h": 4,
+        "i": "e-resolved",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 12
+       },
+       {
+        "h": 4,
+        "i": "e-replan",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 16
+       },
+       {
+        "h": 4,
+        "i": "e-replan-ok",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 16
+       },
+       {
+        "h": 4,
+        "i": "e-fallback",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 20
+       },
+       {
+        "h": 4,
+        "i": "e-dependency",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 20
+       },
+       {
+        "h": 2,
+        "i": "e-note",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 6,
+        "x": 0,
+        "y": 24
+       }
+      ],
+      "title": "E · Multi-agent coordination",
+      "widgets": [
+       {
+        "config": {
+         "breakdown": {
+          "field": "name"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "name",
+           "id": "f-18a51f31d7",
+           "operator": "contains",
+           "type": "string",
+           "value": ":agent:"
+          }
+         ]
+        },
+        "id": "e-agent-spans",
+        "title": "Agent steps by agent",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "name"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "name",
+           "id": "f-2904520ef3",
+           "operator": "contains",
+           "type": "string",
+           "value": ":validation:"
+          }
+         ]
+        },
+        "id": "e-validations",
+        "title": "Validations by agent",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "name"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "name",
+           "id": "f-75b28c41e4",
+           "operator": "contains",
+           "type": "string",
+           "value": "revision_request"
+          }
+         ]
+        },
+        "id": "e-revisions",
+        "title": "Revision requests",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "name"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_ERROR_RATE",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "name",
+           "id": "f-5fbb2b3315",
+           "operator": "contains",
+           "type": "string",
+           "value": ":"
+          }
+         ]
+        },
+        "id": "e-errors",
+        "title": "Error rate by agent",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "name"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "type",
+           "id": "f-43b0d8e398",
+           "operator": "=",
+           "type": "category",
+           "value": "llm"
+          }
+         ]
+        },
+        "id": "e-llm-by-agent",
+        "title": "LLM calls by agent",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "name"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "type",
+           "id": "f-ab840f50ca",
+           "operator": "=",
+           "type": "category",
+           "value": "tool"
+          }
+         ]
+        },
+        "id": "e-tools-by-agent",
+        "title": "Tool calls by agent",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "conflicts_detected"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-f0674e146d",
+           "key": "conflicts_detected",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "e-conflicts",
+        "title": "Spatio-temporal conflicts detected",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "conflicts_resolved"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-c71e0c1b3a",
+           "key": "conflicts_resolved",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "e-resolved",
+        "title": "Conflicts resolved",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "replanning_required"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-fdd62ab206",
+           "key": "replanning_required",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "e-replan",
+        "title": "Replanning required",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "replanning_success"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-1dbc7e010f",
+           "key": "replanning_success",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "e-replan-ok",
+        "title": "Replanning success",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "fallback_used"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-c72552a9bb",
+           "key": "fallback_used",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "e-fallback",
+        "title": "Deterministic fallback used",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_experiment_id"
+         },
+         "chartType": "bar",
+         "feedbackScores": [
+          "dependency_valid"
+         ],
+         "metricType": "FEEDBACK_SCORES",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "feedback_scores",
+           "id": "f-476089bfe6",
+           "key": "dependency_valid",
+           "operator": "is_not_empty",
+           "type": "feedback_scores_number",
+           "value": ""
+          }
+         ]
+        },
+        "id": "e-dependency",
+        "title": "Drone-rover dependencies valid",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "content": "Everything here is planning and validation. No vehicle was armed, uploaded or moved; every proposal stayed PENDING_AUTHORIZATION."
+        },
+        "id": "e-note",
+        "title": "Planning, not execution",
+        "type": "text_markdown"
+       }
+      ]
+     },
+     {
+      "id": "section-g",
+      "layout": [
+       {
+        "h": 4,
+        "i": "g-kinds",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 0
+       },
+       {
+        "h": 2,
+        "i": "g-imported",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 1,
+        "x": 3,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "g-models",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 4
+       }
+      ],
+      "title": "G · Provenance and reproducibility",
+      "widgets": [
+       {
+        "config": {
+         "breakdown": {
+          "field": "metadata",
+          "metadataKey": "tfg_data_kind"
+         },
+         "chartType": "bar",
+         "metricType": "TRACE_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          }
+         ]
+        },
+        "id": "g-kinds",
+        "title": "Real vs deterministic vs simulated",
+        "type": "project_metrics"
+       },
+       {
+        "config": {
+         "metric": "trace_count",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "source": "traces",
+         "traceFilters": [
+          {
+           "field": "tags",
+           "id": "f-1cadf984a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "tfg-multiagent"
+          },
+          {
+           "field": "tags",
+           "id": "f-bd718484a9",
+           "operator": "contains",
+           "type": "list",
+           "value": "historical-import"
+          }
+         ]
+        },
+        "id": "g-imported",
+        "title": "Historical imports",
+        "type": "project_stats_card"
+       },
+       {
+        "config": {
+         "breakdown": {
+          "field": "model"
+         },
+         "chartType": "bar",
+         "metricType": "SPAN_COUNT",
+         "projectId": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+         "spanFilters": [
+          {
+           "field": "type",
+           "id": "f-43b0d8e398",
+           "operator": "=",
+           "type": "category",
+           "value": "llm"
+          }
+         ]
+        },
+        "id": "g-models",
+        "title": "Model versions in use",
+        "type": "project_metrics"
+       }
+      ]
+     }
+    ],
+    "version": 4
+   },
+   "description": "TFG multi-agent and LLM evaluation: overview, model performance, quality, safety, coordination and provenance. Sections A-E, G. Experiments in the companion dashboard.",
+   "name": "TFG — Multiagent & LLM Evaluation",
+   "project_name": "tfg-multiagent-benchmarks",
+   "type": "multi_project"
+  },
+  {
+   "config": {
+    "lastModified": 1793750400000,
+    "sections": [
+     {
+      "id": "section-f",
+      "layout": [
+       {
+        "h": 4,
+        "i": "f-radar",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "f-bars",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 3,
+        "y": 0
+       },
+       {
+        "h": 4,
+        "i": "f-leaderboard",
+        "maxH": 12,
+        "maxW": 6,
+        "minH": 2,
+        "minW": 1,
+        "w": 3,
+        "x": 0,
+        "y": 4
+       }
+      ],
+      "title": "F · Experiment comparison",
+      "widgets": [
+       {
+        "config": {
+         "chartType": "radar",
+         "feedbackScores": [
+          "case_pass",
+          "extraction_accuracy",
+          "schema_valid",
+          "safety_ok",
+          "expected_status_match"
+         ],
+         "filters": [],
+         "maxExperimentsCount": "10"
+        },
+        "id": "f-radar",
+        "title": "Experiments: quality profile",
+        "type": "experiments_feedback_scores"
+       },
+       {
+        "config": {
+         "chartType": "bar",
+         "feedbackScores": [
+          "case_pass",
+          "extraction_accuracy",
+          "schema_valid",
+          "safety_ok",
+          "expected_status_match",
+          "unsafe_request_detected",
+          "safe_refused"
+         ],
+         "filters": [],
+         "maxExperimentsCount": "10"
+        },
+        "id": "f-bars",
+        "title": "Experiments: scores side by side",
+        "type": "experiments_feedback_scores"
+       },
+       {
+        "config": {
+         "enableRanking": true,
+         "filters": [],
+         "maxRows": 20,
+         "rankingDirection": true,
+         "rankingMetric": "case_pass"
+        },
+        "id": "f-leaderboard",
+        "title": "Experiment leaderboard",
+        "type": "experiment_leaderboard"
+       }
+      ]
+     }
+    ],
+    "version": 4
+   },
+   "description": "Section F: experiment comparison (same dataset only).",
+   "name": "TFG — Multiagent & LLM Evaluation · Experiments",
+   "type": "experiments"
+  }
+ ],
+ "contract": {
+  "commit": "df61dd21c66e",
+  "dashboard_types_sha256_prefix": "91c661339b6bc5bd",
+  "openapi_sha256_prefix": "4fb9c28ad1d1b456",
+  "read_on": "2026-11-04",
+  "repository": "comet-ml/opik",
+  "status": "VERIFIED_AGAINST_PUBLIC_SOURCE_AT_COMMIT; service-verified only for traces/spans batch and GETs",
+  "templates_sha256_prefix": "665b803c9bd2672a"
+ },
+ "spec": [
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "trace_count",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-missions",
+   "limitations": "counts imports and new runs alike",
+   "metric": "trace count",
+   "section": "A",
+   "source": "traces tagged tfg-multiagent",
+   "sufficiency": ">= 1 trace",
+   "title": "Missions (traces)",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "traces",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "trace_count",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "tags",
+      "id": "f-ad0989c09b",
+      "operator": "contains",
+      "type": "list",
+      "value": "real-llm-call"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains real-llm-call"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-real-llm",
+   "limitations": "test-double runs carry test-double-llm instead",
+   "metric": "trace count",
+   "section": "A",
+   "source": "traces",
+   "sufficiency": ">= 1",
+   "title": "Runs with a real LLM",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "traces",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "trace_count",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "tags",
+      "id": "f-2d98e6f736",
+      "operator": "contains",
+      "type": "list",
+      "value": "DETERMINISTIC_BASELINE"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains DETERMINISTIC_BASELINE"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-deterministic",
+   "limitations": "only after the rules baseline is imported",
+   "metric": "trace count",
+   "section": "A",
+   "source": "traces",
+   "sufficiency": ">= 1",
+   "title": "Deterministic runs",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "traces",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "trace_count",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "tags",
+      "id": "f-0e0cb6025f",
+      "operator": "contains",
+      "type": "list",
+      "value": "test-double-llm"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains test-double-llm"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-synthetic",
+   "limitations": "simulated runs are never uploaded without authorization",
+   "metric": "trace count",
+   "section": "A",
+   "source": "traces",
+   "sufficiency": "0 expected today",
+   "title": "Simulated (test-double) runs",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "traces",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "span_count",
+    "source": "spans",
+    "spanFilters": [
+     {
+      "field": "type",
+      "id": "f-43b0d8e398",
+      "operator": "=",
+      "type": "category",
+      "value": "llm"
+     }
+    ]
+   },
+   "filters": [
+    "type = llm"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-llm-calls",
+   "limitations": "only real calls are llm spans; test doubles are general spans",
+   "metric": "span count (type llm)",
+   "section": "A",
+   "source": "spans",
+   "sufficiency": ">= 1",
+   "title": "Real LLM calls",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "calls",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "span_count",
+    "source": "spans",
+    "spanFilters": [
+     {
+      "field": "type",
+      "id": "f-ab840f50ca",
+      "operator": "=",
+      "type": "category",
+      "value": "tool"
+     }
+    ]
+   },
+   "filters": [
+    "type = tool"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-tool-calls",
+   "limitations": "historical rules interpreter steps are tool spans; LLM-agent tools appear with live runs",
+   "metric": "span count (type tool)",
+   "section": "A",
+   "source": "spans",
+   "sufficiency": ">= 1",
+   "title": "Tool calls",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "calls",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "feedback_scores.case_pass",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-pass",
+   "limitations": "needs the score upload; a mean over different datasets mixes difficulties",
+   "metric": "case_pass",
+   "section": "A",
+   "source": "trace feedback scores",
+   "sufficiency": "scores uploaded",
+   "title": "Cases passed (mean case_pass)",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "fraction",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "feedback_scores.unsafe_request_detected",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     }
+    ]
+   },
+   "filters": [
+    "score present"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-blocked-ok",
+   "limitations": "a refusal is not proof of correct interpretation (see section D)",
+   "metric": "unsafe_request_detected",
+   "section": "A",
+   "source": "trace feedback scores (only refusal cases carry it)",
+   "sufficiency": ">= 5 refusal cases",
+   "title": "Unsafe requests refused (mean)",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "fraction",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "error_count",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-errors",
+   "limitations": "infrastructure errors only; failed cases are not errors",
+   "metric": "error_count",
+   "section": "A",
+   "source": "traces",
+   "sufficiency": ">= 1",
+   "title": "Errors",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "traces",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "duration.p50",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-p50",
+   "limitations": "historical imports keep their original times",
+   "metric": "mission_latency_s",
+   "section": "A",
+   "source": "trace duration (recorded)",
+   "sufficiency": "with 1 trace P50 = P99: no variability can be read; meaningful from ~10 traces per group",
+   "title": "Mission latency P50",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "s",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "content": "**Data kinds** (tags and metadata `tfg_data_kind`): `real-llm-call` = a real model call; `DETERMINISTIC_BASELINE` = rules interpreter; `test-double-llm` = simulated model (never a model result); `historical-import` = a sealed record imported later (the model was NOT re-run). Missing values are absent, never 0. Percentiles from a handful of traces describe those traces only."
+   },
+   "filters": [],
+   "grouping": "none (single value over the filtered set)",
+   "id": "a-legend",
+   "limitations": "none",
+   "metric": "none (explanatory text)",
+   "section": "A",
+   "source": "static",
+   "sufficiency": "always",
+   "title": "How to read this dashboard",
+   "type": "text_markdown",
+   "ui_supported": true,
+   "unit": "not applicable (text)",
+   "visualization": "markdown"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "model"
+    },
+    "chartType": "line",
+    "durationMetrics": [
+     "p50",
+     "p90",
+     "p99"
+    ],
+    "metricType": "SPAN_DURATION",
+    "spanFilters": [
+     {
+      "field": "type",
+      "id": "f-43b0d8e398",
+      "operator": "=",
+      "type": "category",
+      "value": "llm"
+     }
+    ]
+   },
+   "filters": [
+    "type = llm"
+   ],
+   "grouping": "model",
+   "id": "b-llm-latency",
+   "limitations": "needs native model (E07 needs the prepared PATCH)",
+   "metric": "llm_latency_s",
+   "section": "B",
+   "source": "llm spans (native model)",
+   "sufficiency": "with 1 trace P50 = P99: no variability can be read; meaningful from ~10 traces per group",
+   "title": "LLM latency P50/P90/P99 by model",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "s",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "name"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_AVERAGE_DURATION",
+    "spanFilters": [
+     {
+      "field": "name",
+      "id": "f-18a51f31d7",
+      "operator": "contains",
+      "type": "string",
+      "value": ":agent:"
+     }
+    ]
+   },
+   "filters": [
+    "name contains :agent:"
+   ],
+   "grouping": "span name",
+   "id": "b-agent-latency",
+   "limitations": "historical agents were deterministic (milliseconds)",
+   "metric": "agent_latency_s",
+   "section": "B",
+   "source": "agent spans",
+   "sufficiency": ">= 5 runs per agent",
+   "title": "Average latency by agent",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "s",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "model"
+    },
+    "chartType": "line",
+    "metricType": "SPAN_TOKEN_USAGE",
+    "spanFilters": [
+     {
+      "field": "type",
+      "id": "f-43b0d8e398",
+      "operator": "=",
+      "type": "category",
+      "value": "llm"
+     }
+    ],
+    "usageMetrics": [
+     "prompt_tokens",
+     "completion_tokens"
+    ]
+   },
+   "filters": [
+    "type = llm"
+   ],
+   "grouping": "model",
+   "id": "b-tokens",
+   "limitations": "needs native usage; E07 only after the PATCH; never estimated",
+   "metric": "input_tokens, output_tokens",
+   "section": "B",
+   "source": "llm span native usage",
+   "sufficiency": "native usage present",
+   "title": "Tokens by model (input/output)",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "tokens",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "usage.total_tokens",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "b-tokens-mission",
+   "limitations": "deterministic traces have no tokens and are excluded, not counted as 0",
+   "metric": "total_tokens",
+   "section": "B",
+   "source": "trace usage (sum of spans)",
+   "sufficiency": "native usage present",
+   "title": "Tokens per mission (avg)",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "tokens",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "type"
+    },
+    "chartType": "bar",
+    "durationMetrics": [
+     "p50"
+    ],
+    "metricType": "SPAN_DURATION",
+    "spanFilters": []
+   },
+   "filters": [],
+   "grouping": "span type",
+   "id": "b-time-by-type",
+   "limitations": "validations are general spans like agent steps",
+   "metric": "span duration by type",
+   "section": "B",
+   "source": "spans",
+   "sufficiency": ">= 5 traces",
+   "title": "Time in LLM vs validators vs agents",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "s",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "model"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_COUNT",
+    "spanFilters": [
+     {
+      "field": "type",
+      "id": "f-43b0d8e398",
+      "operator": "=",
+      "type": "category",
+      "value": "llm"
+     }
+    ]
+   },
+   "filters": [
+    "type = llm"
+   ],
+   "grouping": "model",
+   "id": "b-calls-model",
+   "limitations": "needs native model",
+   "metric": "llm_calls",
+   "section": "B",
+   "source": "llm spans",
+   "sufficiency": ">= 1",
+   "title": "LLM calls by model",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "calls",
+   "visualization": "bar"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "run",
+   "id": "b-gpu",
+   "limitations": "whole-GPU reading, not per process",
+   "metric": "gpu_memory_mib",
+   "section": "B",
+   "source": "pilot resource probes (metadata only)",
+   "sufficiency": "probes recorded",
+   "title": "GPU memory around calls",
+   "type": null,
+   "ui_supported": false,
+   "unit": "MiB",
+   "visualization": "table"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "chartType": "line",
+    "metricType": "COST",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "b-cost",
+   "limitations": "local runs have no cost: an empty chart is correct, not 0",
+   "metric": "estimated_cost",
+   "section": "B",
+   "source": "native total_estimated_cost",
+   "sufficiency": "a remote model with a price",
+   "title": "Estimated cost",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "USD",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_data_kind"
+    },
+    "chartType": "bar",
+    "metricType": "TRACE_COUNT",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent"
+   ],
+   "grouping": "metadata tfg_data_kind",
+   "id": "b-volume",
+   "limitations": "historical imports keep their original dates",
+   "metric": "trace count",
+   "section": "B",
+   "source": "traces",
+   "sufficiency": ">= 2 days of runs",
+   "title": "Runs per day by data kind",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "traces",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "line",
+    "feedbackScores": [
+     "case_pass"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-dc4e158117",
+      "key": "case_pass",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent",
+    "score case_pass present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "c-pass-exp",
+   "limitations": "compare only experiments over the same dataset",
+   "metric": "case_pass",
+   "section": "C",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 10 cases per experiment",
+   "title": "Case pass by experiment",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "line",
+    "feedbackScores": [
+     "extraction_accuracy"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-0557d4faa3",
+      "key": "extraction_accuracy",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent",
+    "score extraction_accuracy present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "c-extraction",
+   "limitations": "absent when the reply was rejected (not 0)",
+   "metric": "extraction_accuracy",
+   "section": "C",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 10 cases per experiment",
+   "title": "Extraction accuracy by experiment",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "line",
+    "feedbackScores": [
+     "schema_valid"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-c1dd525282",
+      "key": "schema_valid",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent",
+    "score schema_valid present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "c-schema",
+   "limitations": "LLM runs only",
+   "metric": "schema_valid",
+   "section": "C",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 10 cases per experiment",
+   "title": "Valid model replies (schema_valid)",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "line",
+    "feedbackScores": [
+     "clarification_correct"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-899063b77a",
+      "key": "clarification_correct",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent",
+    "score clarification_correct present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "c-clarify",
+   "limitations": "only where applicable",
+   "metric": "clarification_correct",
+   "section": "C",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 10 cases per experiment",
+   "title": "Clarifications asked when expected",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "line",
+    "feedbackScores": [
+     "constraints_satisfied"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-adf78e81fd",
+      "key": "constraints_satisfied",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent",
+    "score constraints_satisfied present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "c-constraints",
+   "limitations": "only cases with tasks",
+   "metric": "constraints_satisfied",
+   "section": "C",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 10 cases per experiment",
+   "title": "Constraints satisfied",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "line",
+    "feedbackScores": [
+     "expected_status_match"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-86af4b5761",
+      "key": "expected_status_match",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent",
+    "score expected_status_match present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "c-status",
+   "limitations": "per decision class",
+   "metric": "expected_status_match",
+   "section": "C",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 10 cases per experiment",
+   "title": "Feasible/infeasible correctly identified",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "line",
+    "feedbackScores": [
+     "assignment_quality"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-198cb67242",
+      "key": "assignment_quality",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent",
+    "score assignment_quality present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "c-assignment",
+   "limitations": "only cases with aerial plans",
+   "metric": "assignment_quality",
+   "section": "C",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 10 cases per experiment",
+   "title": "Allocation quality vs reference",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "line"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "line",
+    "feedbackScores": [
+     "plan_valid"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-18fb6eb432",
+      "key": "plan_valid",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent",
+    "score plan_valid present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "c-plan",
+   "limitations": "only cases with aerial plans",
+   "metric": "plan_valid",
+   "section": "C",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 10 cases per experiment",
+   "title": "Valid individual plans (.plan built)",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "line"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "primary label",
+   "id": "c-failure-origin",
+   "limitations": "not a native Opik field",
+   "metric": "failure taxonomy",
+   "section": "C",
+   "source": "analysis_v2 failures + benchmark rows",
+   "sufficiency": ">= 1 failure",
+   "title": "Failures by origin (interpreter / planner / infrastructure)",
+   "type": null,
+   "ui_supported": false,
+   "unit": "cases",
+   "visualization": "stacked table"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "unsafe_request_detected"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-4846e02c0f",
+      "key": "unsafe_request_detected",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score unsafe_request_detected present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "d-detected",
+   "limitations": "refusal cases only",
+   "metric": "unsafe_request_detected",
+   "section": "D",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Unsafe requests detected",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "safe_refused"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-69c4c7e4f4",
+      "key": "safe_refused",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score safe_refused present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "d-false-refusals",
+   "limitations": "non-refusal cases only",
+   "metric": "safe_refused",
+   "section": "D",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "False refusals of safe requests",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "authorization_not_granted"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-f2b3bb8c7a",
+      "key": "authorization_not_granted",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score authorization_not_granted present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "d-authority",
+   "limitations": "must stay 1",
+   "metric": "authorization_not_granted",
+   "section": "D",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Authority never granted",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "prohibited_vehicle_excluded"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-b32dfad49f",
+      "key": "prohibited_vehicle_excluded",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score prohibited_vehicle_excluded present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "d-excluded",
+   "limitations": "v3 availability cases",
+   "metric": "prohibited_vehicle_excluded",
+   "section": "D",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Forbidden vehicles kept out",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "geofence_respected"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-4e48f90587",
+      "key": "geofence_respected",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score geofence_respected present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "d-geofence",
+   "limitations": "planning check",
+   "metric": "geofence_respected",
+   "section": "D",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Routes inside perimeter and clear of exclusions",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "safety_ok"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-227639c8b1",
+      "key": "safety_ok",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score safety_ok present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "d-safety",
+   "limitations": "a block is not a correct interpretation",
+   "metric": "safety_ok",
+   "section": "D",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Safety outcome",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "bar"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "experiment",
+   "id": "d-missed",
+   "limitations": "a miss is not an execution: nothing was authorized",
+   "metric": "unsafe_request_missed (derived)",
+   "section": "D",
+   "source": "1 - unsafe_request_detected",
+   "sufficiency": "refusal cases",
+   "title": "Unsafe requests missed",
+   "type": null,
+   "ui_supported": false,
+   "unit": "cases",
+   "visualization": "table"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "constraint",
+   "id": "d-constraints-kind",
+   "limitations": "parsed from recorded reasons",
+   "metric": "reasons",
+   "section": "D",
+   "source": "sealed rows (reasons) + v3 criteria",
+   "sufficiency": ">= 1",
+   "title": "Rejections by constraint (battery, wind, geofence, availability, self-authorization)",
+   "type": null,
+   "ui_supported": false,
+   "unit": "cases",
+   "visualization": "table"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "name"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_COUNT",
+    "spanFilters": [
+     {
+      "field": "name",
+      "id": "f-358204fabd",
+      "operator": "contains",
+      "type": "string",
+      "value": "gate:"
+     }
+    ]
+   },
+   "filters": [
+    "name contains gate:"
+   ],
+   "grouping": "span name",
+   "id": "d-gates",
+   "limitations": "status ACCEPTED/REJECTED is in metadata; historical pilot has no gates",
+   "metric": "gate spans",
+   "section": "D",
+   "source": "validation spans named gate:*",
+   "sufficiency": "LLM-agent runs",
+   "title": "Proposals discarded by validation (gates)",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "spans",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "name"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_COUNT",
+    "spanFilters": [
+     {
+      "field": "name",
+      "id": "f-18a51f31d7",
+      "operator": "contains",
+      "type": "string",
+      "value": ":agent:"
+     }
+    ]
+   },
+   "filters": [
+    "name contains :agent:"
+   ],
+   "grouping": "span name",
+   "id": "e-agent-spans",
+   "limitations": "planned tasks, not vehicle executions",
+   "metric": "span_count",
+   "section": "E",
+   "source": "spans",
+   "sufficiency": ">= 1 run",
+   "title": "Agent steps by agent",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "spans",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "name"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_COUNT",
+    "spanFilters": [
+     {
+      "field": "name",
+      "id": "f-2904520ef3",
+      "operator": "contains",
+      "type": "string",
+      "value": ":validation:"
+     }
+    ]
+   },
+   "filters": [
+    "name contains :validation:"
+   ],
+   "grouping": "span name",
+   "id": "e-validations",
+   "limitations": "includes deconfliction attempts",
+   "metric": "span_count",
+   "section": "E",
+   "source": "spans",
+   "sufficiency": ">= 1 run",
+   "title": "Validations by agent",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "spans",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "name"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_COUNT",
+    "spanFilters": [
+     {
+      "field": "name",
+      "id": "f-75b28c41e4",
+      "operator": "contains",
+      "type": "string",
+      "value": "revision_request"
+     }
+    ]
+   },
+   "filters": [
+    "name contains revision_request"
+   ],
+   "grouping": "span name",
+   "id": "e-revisions",
+   "limitations": "LLM-agent runs only",
+   "metric": "span_count",
+   "section": "E",
+   "source": "spans",
+   "sufficiency": ">= 1 run",
+   "title": "Revision requests",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "spans",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "name"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_ERROR_RATE",
+    "spanFilters": [
+     {
+      "field": "name",
+      "id": "f-5fbb2b3315",
+      "operator": "contains",
+      "type": "string",
+      "value": ":"
+     }
+    ]
+   },
+   "filters": [
+    "name contains :"
+   ],
+   "grouping": "span name",
+   "id": "e-errors",
+   "limitations": "infrastructure and tool errors",
+   "metric": "span_error_rate",
+   "section": "E",
+   "source": "spans",
+   "sufficiency": ">= 1 run",
+   "title": "Error rate by agent",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "spans",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "name"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_COUNT",
+    "spanFilters": [
+     {
+      "field": "type",
+      "id": "f-43b0d8e398",
+      "operator": "=",
+      "type": "category",
+      "value": "llm"
+     }
+    ]
+   },
+   "filters": [
+    "type = llm"
+   ],
+   "grouping": "span name (agent:llm:step)",
+   "id": "e-llm-by-agent",
+   "limitations": "real calls only",
+   "metric": "llm_calls",
+   "section": "E",
+   "source": "llm spans",
+   "sufficiency": ">= 1",
+   "title": "LLM calls by agent",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "calls",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "name"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_COUNT",
+    "spanFilters": [
+     {
+      "field": "type",
+      "id": "f-ab840f50ca",
+      "operator": "=",
+      "type": "category",
+      "value": "tool"
+     }
+    ]
+   },
+   "filters": [
+    "type = tool"
+   ],
+   "grouping": "span name",
+   "id": "e-tools-by-agent",
+   "limitations": "agent tools appear only with LLM-agent runs",
+   "metric": "tool_calls",
+   "section": "E",
+   "source": "tool spans",
+   "sufficiency": ">= 1",
+   "title": "Tool calls by agent",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "calls",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "conflicts_detected"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-f0674e146d",
+      "key": "conflicts_detected",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score conflicts_detected present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "e-conflicts",
+   "limitations": "planning-time coordination; no vehicle moved",
+   "metric": "conflicts_detected",
+   "section": "E",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Spatio-temporal conflicts detected",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean / count",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "conflicts_resolved"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-c71e0c1b3a",
+      "key": "conflicts_resolved",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score conflicts_resolved present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "e-resolved",
+   "limitations": "planning-time coordination; no vehicle moved",
+   "metric": "conflicts_resolved",
+   "section": "E",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Conflicts resolved",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean / count",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "replanning_required"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-fdd62ab206",
+      "key": "replanning_required",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score replanning_required present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "e-replan",
+   "limitations": "planning-time coordination; no vehicle moved",
+   "metric": "replanning_required",
+   "section": "E",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Replanning required",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean / count",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "replanning_success"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-1dbc7e010f",
+      "key": "replanning_success",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score replanning_success present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "e-replan-ok",
+   "limitations": "planning-time coordination; no vehicle moved",
+   "metric": "replanning_success",
+   "section": "E",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Replanning success",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean / count",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "fallback_used"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-c72552a9bb",
+      "key": "fallback_used",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score fallback_used present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "e-fallback",
+   "limitations": "planning-time coordination; no vehicle moved",
+   "metric": "fallback_used",
+   "section": "E",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Deterministic fallback used",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean / count",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_experiment_id"
+    },
+    "chartType": "bar",
+    "feedbackScores": [
+     "dependency_valid"
+    ],
+    "metricType": "FEEDBACK_SCORES",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "feedback_scores",
+      "id": "f-476089bfe6",
+      "key": "dependency_valid",
+      "operator": "is_not_empty",
+      "type": "feedback_scores_number",
+      "value": ""
+     }
+    ]
+   },
+   "filters": [
+    "score dependency_valid present"
+   ],
+   "grouping": "metadata tfg_experiment_id",
+   "id": "e-dependency",
+   "limitations": "planning-time coordination; no vehicle moved",
+   "metric": "dependency_valid",
+   "section": "E",
+   "source": "trace feedback scores",
+   "sufficiency": ">= 5 applicable cases",
+   "title": "Drone-rover dependencies valid",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "mean / count",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "content": "Everything here is planning and validation. No vehicle was armed, uploaded or moved; every proposal stayed PENDING_AUTHORIZATION."
+   },
+   "filters": [],
+   "grouping": "none (single value over the filtered set)",
+   "id": "e-note",
+   "limitations": "none",
+   "metric": "none (explanatory text)",
+   "section": "E",
+   "source": "static",
+   "sufficiency": "always",
+   "title": "Planning, not execution",
+   "type": "text_markdown",
+   "ui_supported": true,
+   "unit": "not applicable (text)",
+   "visualization": "markdown"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "metadata",
+     "metadataKey": "tfg_data_kind"
+    },
+    "chartType": "bar",
+    "metricType": "TRACE_COUNT",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains tfg-multiagent"
+   ],
+   "grouping": "metadata tfg_data_kind",
+   "id": "g-kinds",
+   "limitations": "kind is the recorded provenance label",
+   "metric": "trace count",
+   "section": "G",
+   "source": "traces",
+   "sufficiency": ">= 1",
+   "title": "Real vs deterministic vs simulated",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "traces",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "metric": "trace_count",
+    "source": "traces",
+    "traceFilters": [
+     {
+      "field": "tags",
+      "id": "f-1cadf984a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "tfg-multiagent"
+     },
+     {
+      "field": "tags",
+      "id": "f-bd718484a9",
+      "operator": "contains",
+      "type": "list",
+      "value": "historical-import"
+     }
+    ]
+   },
+   "filters": [
+    "tags contains historical-import"
+   ],
+   "grouping": "none (single value over the filtered set)",
+   "id": "g-imported",
+   "limitations": "imports never re-ran a model",
+   "metric": "trace count",
+   "section": "G",
+   "source": "traces",
+   "sufficiency": ">= 1",
+   "title": "Historical imports",
+   "type": "project_stats_card",
+   "ui_supported": true,
+   "unit": "traces",
+   "visualization": "stat card"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "breakdown": {
+     "field": "model"
+    },
+    "chartType": "bar",
+    "metricType": "SPAN_COUNT",
+    "spanFilters": [
+     {
+      "field": "type",
+      "id": "f-43b0d8e398",
+      "operator": "=",
+      "type": "category",
+      "value": "llm"
+     }
+    ]
+   },
+   "filters": [
+    "type = llm"
+   ],
+   "grouping": "model",
+   "id": "g-models",
+   "limitations": "digests are in metadata (tfg_model.version)",
+   "metric": "llm spans",
+   "section": "G",
+   "source": "native model",
+   "sufficiency": "native model present",
+   "title": "Model versions in use",
+   "type": "project_metrics",
+   "ui_supported": true,
+   "unit": "calls",
+   "visualization": "bar"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "dataset / experiment",
+   "id": "g-digests",
+   "limitations": "not a native Opik field: generated offline",
+   "metric": "provenance table",
+   "section": "G",
+   "source": "sealed records, manifests, ledger",
+   "sufficiency": "always",
+   "title": "Model digests, prompt versions, dataset hashes, seeds",
+   "type": null,
+   "ui_supported": false,
+   "unit": "not applicable (table of mixed values)",
+   "visualization": "table"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "dataset / experiment",
+   "id": "g-token-coverage",
+   "limitations": "not a native Opik field: generated offline",
+   "metric": "coverage",
+   "section": "G",
+   "source": "sealed records, manifests, ledger",
+   "sufficiency": "always",
+   "title": "Token coverage (LLM spans with reported usage)",
+   "type": null,
+   "ui_supported": false,
+   "unit": "not applicable (table of mixed values)",
+   "visualization": "table"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "dataset / experiment",
+   "id": "g-metric-coverage",
+   "limitations": "not a native Opik field: generated offline",
+   "metric": "coverage",
+   "section": "G",
+   "source": "sealed records, manifests, ledger",
+   "sufficiency": "always",
+   "title": "Metric coverage (observed / not evaluated / not applicable)",
+   "type": null,
+   "ui_supported": false,
+   "unit": "not applicable (table of mixed values)",
+   "visualization": "table"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "dataset / experiment",
+   "id": "g-integrity",
+   "limitations": "not a native Opik field: generated offline",
+   "metric": "integrity",
+   "section": "G",
+   "source": "sealed records, manifests, ledger",
+   "sufficiency": "always",
+   "title": "Evidence integrity (seals) and import verification (ledger)",
+   "type": null,
+   "ui_supported": false,
+   "unit": "not applicable (table of mixed values)",
+   "visualization": "table"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "chartType": "radar",
+    "feedbackScores": [
+     "case_pass",
+     "extraction_accuracy",
+     "schema_valid",
+     "safety_ok",
+     "expected_status_match"
+    ],
+    "filters": [],
+    "maxExperimentsCount": "10"
+   },
+   "filters": [],
+   "grouping": "experiment",
+   "id": "f-radar",
+   "limitations": "only experiments with uploaded items and scores",
+   "metric": "case_pass, extraction_accuracy, schema_valid, safety_ok, expected_status_match",
+   "section": "F",
+   "source": "experiment scores",
+   "sufficiency": "2+ experiments over the same dataset",
+   "title": "Experiments: quality profile",
+   "type": "experiments_feedback_scores",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "radar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "chartType": "bar",
+    "feedbackScores": [
+     "case_pass",
+     "extraction_accuracy",
+     "schema_valid",
+     "safety_ok",
+     "expected_status_match",
+     "unsafe_request_detected",
+     "safe_refused"
+    ],
+    "filters": [],
+    "maxExperimentsCount": "10"
+   },
+   "filters": [],
+   "grouping": "experiment",
+   "id": "f-bars",
+   "limitations": "means hide per-case differences: see the per-case table",
+   "metric": "core + safety",
+   "section": "F",
+   "source": "experiment scores",
+   "sufficiency": "2+ experiments",
+   "title": "Experiments: scores side by side",
+   "type": "experiments_feedback_scores",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "bar"
+  },
+  {
+   "automation": "API_CONFIG",
+   "config": {
+    "enableRanking": true,
+    "filters": [],
+    "maxRows": 20,
+    "rankingDirection": true,
+    "rankingMetric": "case_pass"
+   },
+   "filters": [],
+   "grouping": "experiment",
+   "id": "f-leaderboard",
+   "limitations": "ranking only within the same dataset; no winner from 11 cases",
+   "metric": "case_pass",
+   "section": "F",
+   "source": "experiments",
+   "sufficiency": "2+ experiments",
+   "title": "Experiment leaderboard",
+   "type": "experiment_leaderboard",
+   "ui_supported": true,
+   "unit": "mean",
+   "visualization": "table"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "candidate / case",
+   "id": "f-per-case",
+   "limitations": "Opik's experiment compare view gives the per-case view interactively; scatter and taxonomy are generated offline",
+   "metric": "case table",
+   "section": "F",
+   "source": "experiments + sealed rows",
+   "sufficiency": "equivalent cases and criteria",
+   "title": "Per-case comparison (Case ID x candidate)",
+   "type": null,
+   "ui_supported": false,
+   "unit": "not applicable (table of mixed values)",
+   "visualization": "table / scatter"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "candidate / case",
+   "id": "f-latency-vs-acc",
+   "limitations": "Opik's experiment compare view gives the per-case view interactively; scatter and taxonomy are generated offline",
+   "metric": "scatter",
+   "section": "F",
+   "source": "experiments + sealed rows",
+   "sufficiency": "equivalent cases and criteria",
+   "title": "Latency vs accuracy",
+   "type": null,
+   "ui_supported": false,
+   "unit": "not applicable (table of mixed values)",
+   "visualization": "table / scatter"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "candidate / case",
+   "id": "f-safety-vs-acc",
+   "limitations": "Opik's experiment compare view gives the per-case view interactively; scatter and taxonomy are generated offline",
+   "metric": "scatter",
+   "section": "F",
+   "source": "experiments + sealed rows",
+   "sufficiency": "equivalent cases and criteria",
+   "title": "Safety vs accuracy",
+   "type": null,
+   "ui_supported": false,
+   "unit": "not applicable (table of mixed values)",
+   "visualization": "table / scatter"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "candidate / case",
+   "id": "f-consistency",
+   "limitations": "Opik's experiment compare view gives the per-case view interactively; scatter and taxonomy are generated offline",
+   "metric": "needs runs >= 2",
+   "section": "F",
+   "source": "experiments + sealed rows",
+   "sufficiency": "equivalent cases and criteria",
+   "title": "Repetitions and consistency",
+   "type": null,
+   "ui_supported": false,
+   "unit": "not applicable (table of mixed values)",
+   "visualization": "table / scatter"
+  },
+  {
+   "automation": "LOCAL_PREVIEW",
+   "config": null,
+   "filters": [],
+   "grouping": "candidate / case",
+   "id": "f-failures",
+   "limitations": "Opik's experiment compare view gives the per-case view interactively; scatter and taxonomy are generated offline",
+   "metric": "taxonomy",
+   "section": "F",
+   "source": "experiments + sealed rows",
+   "sufficiency": "equivalent cases and criteria",
+   "title": "Failure distribution by candidate",
+   "type": null,
+   "ui_supported": false,
+   "unit": "not applicable (table of mixed values)",
+   "visualization": "table / scatter"
+  }
+ ]
+}

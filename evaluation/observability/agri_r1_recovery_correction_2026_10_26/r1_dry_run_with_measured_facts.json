@@ -1,0 +1,236 @@
+{
+  "schema": "tfg.agri-r1-preparation/1",
+  "task_id": "R1",
+  "dry_run": true,
+  "inputs_include_test_doubles": [],
+  "executor_kind": "ROVER_GROUND_EXECUTOR",
+  "stages": {
+    "dependency": "MET",
+    "eligibility": "NOT_ELIGIBLE",
+    "authorization": "ABSENT",
+    "admission": "NOT_REQUESTED",
+    "execution": "NOT_STARTED"
+  },
+  "conditions": [
+    {
+      "name": "view_verified",
+      "stage": "dependency",
+      "status": "SATISFIED",
+      "detail": "view status OK"
+    },
+    {
+      "name": "sequence_completed",
+      "stage": "dependency",
+      "status": "SATISFIED",
+      "detail": "sequence FINISHED/PASSED, scenario AERIAL_COMPLETED_GROUND_PENDING"
+    },
+    {
+      "name": "target_reached_by_drone_01",
+      "stage": "dependency",
+      "status": "SATISFIED",
+      "detail": "POI_A1: {'vehicle_id': 'drone_01', 'status': 'REACHED'}"
+    }
+  ],
+  "eligibility": [
+    {
+      "name": "dependency_met",
+      "status": "SATISFIED",
+      "detail": "dependency MET"
+    },
+    {
+      "name": "required_data_present",
+      "status": "NOT_SATISFIED",
+      "detail": "missing: target_in_rover_frame, ground_tolerance_m, rover_mission, completion_evidence, frame_transform, execution_limits"
+    },
+    {
+      "name": "executor_accepts_navigation_request",
+      "status": "SATISFIED",
+      "detail": "ROVER_GROUND_EXECUTOR: ROVER_NAVIGATE_V1"
+    },
+    {
+      "name": "operational_rover_policy_enabled",
+      "status": "NOT_SATISFIED",
+      "detail": "ROVER_GROUND_EXECUTOR: OPERATIONAL_ROVER_ENABLED"
+    }
+  ],
+  "deferred_to_executor": [
+    {
+      "name": "rover_identity_readiness_reservation",
+      "status": "DEFERRED_TO_EXECUTOR_GATES",
+      "detail": "checked by the executor when it runs; not asserted here"
+    }
+  ],
+  "blockers": [
+    "required_data_present",
+    "operational_rover_policy_enabled"
+  ],
+  "missing_data": {
+    "target_in_rover_frame": "POI_A1 expressed for rover_01 in a validated common frame (H1 offsets are relative to drone_01's own launch position; common_frame.validated is false)",
+    "ground_tolerance_m": "horizontal tolerance at which a ground verification counts as reached",
+    "rover_mission": "a validated rover_01/v3 (ugv, ArduPilot) mission definition and its SHA-256",
+    "completion_evidence": "which attributed observation proves the rover verified POI_A1 (source, frame, timing)",
+    "frame_transform": "a VERIFIED transformation (sha256, from_frame, to_frame) from POI_A1's definition (offsets from drone_01's observed launch) to the target frame; never assumed",
+    "execution_limits": "operator-approved rover_limits (RoverLimits fields) and controller parameters (yaw_rad, yaw_tolerance_rad, command_hz, max_samples, progress_rad) of ROVER_NAVIGATE_V1"
+  },
+  "proposed_parameters": {
+    "status": "PROPOSED_NOT_APPROVED",
+    "arrival_tolerance_m": 2.0,
+    "dwell_s": 5.0,
+    "max_sample_gap_s": 1.0,
+    "min_dwell_samples": 6,
+    "stopped_linear_mps": 0.05,
+    "stopped_angular_rad_s": 0.05,
+    "max_decision_age_s": 1.0,
+    "global_timeout_s": 120.0,
+    "no_progress_window_s": 10.0,
+    "min_progress_m": 0.5
+  },
+  "measured_facts": {
+    "status": "OBSERVED",
+    "source": "PASSIVE_CAPTURE simulation/ros2_gazebo/results/rover_worker_lifecycle_2026_10_25/4ac58516-8fad-457e-918e-253483a2d728 (origin as declared by its trial)",
+    "accredits": false,
+    "trial_manifest_sha256": "a88a09f9cfcce654709a6524eb30da3867408e8c48b8e7631dd7b8c7d9bdf8a5",
+    "journal_sha256": "13811afdfe8b20b71e3b5f1ff595c546ebdc5ff5c4919ef77424216d679a3f18",
+    "capture_schema": "tfg.rover.passive-capture/3",
+    "completion_evidence": {
+      "footer_capture_complete": null,
+      "receipt_capture_complete": true,
+      "returncode": 0,
+      "data_present_both_streams": true,
+      "termination": "SAMPLE_LIMIT",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "selection": [
+      "best_effort KeepLast(5) subscription; dropped messages are not counted",
+      "one callback handled per spin, with a graph query per sample",
+      "termination SAMPLE_LIMIT"
+    ],
+    "groups": [
+      {
+        "source": {
+          "message_publisher_gid": "010feb7d3c06f84c00000000000014030000000000000000",
+          "frame_id": "odom",
+          "child_frame_id": "base_link"
+        },
+        "retained_samples": 19,
+        "complete_with_fields": 19,
+        "with_nonfinite": 0,
+        "position_m": {
+          "x": {
+            "min": -0.0012413615396634312,
+            "max": -0.0012346256118826464,
+            "pstdev": 2.1042053951619594e-06
+          },
+          "y": {
+            "min": -3.000423987567238,
+            "max": -3.000404449920009,
+            "pstdev": 6.085076316650721e-06
+          },
+          "z": {
+            "min": 0.09491469784655701,
+            "max": 0.09492817730644805,
+            "pstdev": 4.169981167014745e-06
+          }
+        },
+        "orientation_deg_mean": {
+          "roll": 1.4172322949285665e-05,
+          "pitch": 0.5458786776031094,
+          "yaw": 89.76945578157658
+        },
+        "max_abs_quaternion_xy": 0.003377140470460522,
+        "linear_speed_mps_max": 0.00015607120718399883,
+        "angular_rate_rad_s_max": 0.0,
+        "all_zero_declared_covariances": 38,
+        "header_span_s": 0.36,
+        "receipt_span_s": 18.637393562,
+        "retained_receipt_interval_max_s": 4.504853058
+      }
+    ],
+    "requirements": {
+      "target_in_rover_frame": {
+        "observed_data": null,
+        "accredited": false
+      },
+      "rover_mission": {
+        "observed_data": null,
+        "accredited": false
+      },
+      "dwell_s": {
+        "observed_data": null,
+        "accredited": false
+      },
+      "min_dwell_samples": {
+        "observed_data": null,
+        "accredited": false
+      },
+      "max_decision_age_s": {
+        "observed_data": null,
+        "accredited": false
+      },
+      "global_timeout_s": {
+        "observed_data": null,
+        "accredited": false
+      },
+      "no_progress_window_s": {
+        "observed_data": null,
+        "accredited": false
+      },
+      "min_progress_m": {
+        "observed_data": null,
+        "accredited": false
+      },
+      "ground_tolerance_m": {
+        "observed_data": "odom->base_link (19 samples): rest dispersion pstdev x 2.1e-06 m, y 6.09e-06 m",
+        "accredited": false
+      },
+      "arrival_tolerance_m": {
+        "observed_data": "odom->base_link (19 samples): rest dispersion pstdev x 2.1e-06 m, y 6.09e-06 m",
+        "accredited": false
+      },
+      "completion_evidence": {
+        "observed_data": "odom->base_link (19 samples): odometry with pose/twist fields from one GID 010feb7d3c06f84c00000000000014030000000000000000; identity not accredited",
+        "accredited": false
+      },
+      "frame_transform": {
+        "observed_data": "odom->base_link (19 samples): frame names only; no transformation",
+        "accredited": false
+      },
+      "execution_limits": {
+        "observed_data": "odom->base_link (19 samples): residual speed max 0.000156 m/s; mean pitch 0.546 deg, max abs(q.x), abs(q.y) 0.00338 at rest",
+        "accredited": false
+      },
+      "stopped_linear_mps": {
+        "observed_data": "odom->base_link (19 samples): residual speed max 0.000156 m/s, angular 0 rad/s (same source)",
+        "accredited": false
+      },
+      "stopped_angular_rad_s": {
+        "observed_data": "odom->base_link (19 samples): residual speed max 0.000156 m/s, angular 0 rad/s (same source)",
+        "accredited": false
+      },
+      "max_sample_gap_s": {
+        "observed_data": "odom->base_link (19 samples): retained-sample receipt interval max 4.5 s (selection, not stream loss)",
+        "accredited": false
+      }
+    },
+    "does_not_provide": [
+      "a frame transformation: frame names and a position numerically close to the declared spawn are not one",
+      "arrival, progress or dwell: there was no movement and no target",
+      "approval of any threshold: retained samples of one session at rest are a contrast, not a basis",
+      "a real-time factor or the cause of the gap between header stamps and receipt times",
+      "physical rest independent of the source: the speeds come from the same odometry",
+      "certainty from declared zero covariances",
+      "publisher, model or SYSID identity"
+    ]
+  },
+  "candidate": null,
+  "candidate_sha256": null,
+  "ground_result": null,
+  "r1_status": "BLOCKED_PENDING",
+  "scenario_complete": false,
+  "movement_authorized": false,
+  "commands_sent": false,
+  "admission_created": false,
+  "reservation_created": false,
+  "note": "dry-run: MET is a precondition only; authorization and admission belong to the operator and the existing ground executor gates, which this function never calls"
+}

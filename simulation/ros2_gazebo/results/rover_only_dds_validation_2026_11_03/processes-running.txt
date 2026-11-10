@@ -1,0 +1,12 @@
+    PID    PPID ELAPSED COMMAND
+      1       0    9837 bash
+    237       1    8518 /usr/bin/python3 -c from ros2cli.daemon.daemonize import main; main() --name ros2-daemon --ros-domain-id 0 --rmw-implementation rmw_fastrtps_cpp
+   8655       1      24 /usr/bin/python3 /opt/ros/humble/bin/ros2 launch ardupilot_gz_bringup tfg_rover_only.launch.py rviz:=false gui:=false
+   8699    8655      23 /bin/sh -c ruby /usr/bin/gz sim -v4 -s -r /root/ardu_ws/install/ardupilot_gz_gazebo/share/ardupilot_gz_gazebo/worlds/runway.sdf --force-version 8
+   8701    8655      23 /root/ardu_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent udp4 --middleware dds --verbose 4 --port 2019 --ros-args -r __node:=micro_ros_agent -r __ns:=/rover1
+   8702    8699      23 gz sim -v4 -s -r /root/ardu_ws/install/ardupilot_gz_gazebo/share/ardupilot_gz_gazebo/worlds/runway.sdf
+   8704    8655      23 /opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __ns:=/rover1 --params-file /tmp/launch_params_y9unm11a --params-file /tmp/launch_params_yqsly3ok -r /tf:=tf -r /tf_static:=tf_s
+   8706    8655      23 /root/ardu_ws/install/ros_gz_bridge/lib/ros_gz_bridge/parameter_bridge --ros-args -r __ns:=/rover1 --params-file /tmp/launch_params_zem74gll
+   8708    8655      23 ardurover --model json --speedup 1 --slave 0 --sim-address=127.0.0.1 --instance 2 --defaults /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/
+   8710    8655      23 /usr/bin/python3 /usr/local/bin/mavproxy.py --out 127.0.0.1:14570 --out 127.0.0.1:14551 --master tcp:127.0.0.1:5780 --sitl 127.0.0.1:5521 --non-interactive
+   8714    8655      23 /opt/ros/humble/lib/topic_tools/relay gz/tf tf --ros-args -r __ns:=/rover1

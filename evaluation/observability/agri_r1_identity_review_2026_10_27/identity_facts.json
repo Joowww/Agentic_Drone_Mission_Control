@@ -1,0 +1,159 @@
+{
+  "schema": "tfg.rover-identity-facts/1",
+  "status": "OBSERVED",
+  "accredits": false,
+  "movement_authorized": false,
+  "session_id": "e837942d-61b0-428e-8505-ef6ddca38037",
+  "evidence_id": "1cb9d86a-659b-4aa8-b7b1-214d2202210f",
+  "manifest_sha256": "4d9558a2e31b9ea2ec42eca6d8b18cc007ce2cf4049bab011fa561ad59e34faf",
+  "files_verified": 164,
+  "identity_complete": false,
+  "odometry_gids": [
+    "010feb7d3d1c6d3700000000000014030000000000000000"
+  ],
+  "facts": [
+    {
+      "id": "odometry_to_bridge",
+      "title": "Odometría → bridge",
+      "state": "OBSERVED",
+      "scope": "PULSE_AND_POI_A1",
+      "detail": "GID de las 3 muestras retenidas de /rover1/odometry = GID del bridge_publisher (pid 7229, /model/rover1/odometry)",
+      "not_accredited": "el modelo que origina la odometría ni la parada física",
+      "codex": {
+        "result": "SAMPLE_TO_BRIDGE_PROCESS_OBSERVED",
+        "limitation": "Does not attribute model or physical stop"
+      },
+      "sources": [
+        "reader/journal.jsonl",
+        "container-capture/trace.log"
+      ]
+    },
+    {
+      "id": "plugin_to_entity",
+      "title": "Plugin → entidad",
+      "state": "OBSERVED",
+      "scope": "PULSE_AND_POI_A1",
+      "detail": "entidad 67 («rover1» en el catálogo de escena de la misma sesión) carga gz::sim::systems::OdometryPublisher, ArduPilotPlugin; socket JSON 127.0.0.1:9022; 3 envíos FDM",
+      "not_accredited": "la unión traza↔catálogo es por id de entidad dentro de una sesión; la traza no registra el nombre del modelo",
+      "codex": {
+        "result": "EXACT_RUNTIME_ENTITY_CONTEXT_OBSERVED",
+        "limitation": "Actual JSON socket/destination observed; no receiving SITL ownership attribution"
+      },
+      "sources": [
+        "container-capture/trace.log",
+        "reader/journal.jsonl (scene_catalog)"
+      ]
+    },
+    {
+      "id": "parameters",
+      "title": "Parámetros (SYSID)",
+      "state": "RECEIVED_ATTRIBUTION_PENDING",
+      "scope": "PULSE_AND_POI_A1",
+      "detail": "valor 3 recibido (etiqueta de la matriz de Codex); GUID del solicitante cero en la respuesta pública; GUIDs nativos distintos",
+      "not_accredited": "que la respuesta proceda del mismo XRCE/SITL que publica el Status",
+      "codex": {
+        "result": "VALUE_3_RECEIVED_ATTRIBUTION_UNKNOWN",
+        "limitation": "Public response requester GUID is zero; native request/reply GUIDs differ; never join by sequence 1 or endpoint"
+      },
+      "sources": [
+        "reader-analysis.json"
+      ]
+    },
+    {
+      "id": "fdm_receiver",
+      "title": "Receptor FDM",
+      "state": "NOT_ACCREDITED",
+      "scope": "PULSE_AND_POI_A1",
+      "detail": "destino de los envíos FDM: 127.0.0.1:60575; filas de socket relevantes: inodos retenidos 0, propietarios 0",
+      "not_accredited": "qué proceso SITL recibe esos envíos (peer → inode/FD → proceso no observado)",
+      "codex": {
+        "result": "NOT_OBSERVED",
+        "limitation": "Zero relevant rows; old reader did not establish EOF, so full-table absence/unicity is not proven"
+      },
+      "sources": [
+        "container-capture/trace.log",
+        "socket-metrics.json"
+      ]
+    },
+    {
+      "id": "odometry_to_model",
+      "title": "Odometría → modelo",
+      "state": "UNKNOWN",
+      "scope": "PULSE_AND_POI_A1",
+      "detail": "OdometryPublisher de la entidad 67 con odom_topic None; el bridge lee /model/rover1/odometry",
+      "not_accredited": "la correspondencia por defecto del plugin con ese topic",
+      "codex": {
+        "result": "UNKNOWN",
+        "limitation": "Attached odometry plugin omits odom_topic; installed default/implementation mapping not yet accredited"
+      },
+      "sources": [
+        "container-capture/trace.log",
+        "executed-helpers/bridge-config.yaml"
+      ]
+    },
+    {
+      "id": "frames",
+      "title": "Marcos y transformación del objetivo",
+      "state": "NOT_ACCREDITED",
+      "scope": "POI_A1_ONLY",
+      "detail": "candidato numérico SE(2) descriptivo; sin error, origen, reloj ni fuente acreditados",
+      "not_accredited": "frame_transform; no lo necesita un pulso en el marco del cuerpo",
+      "codex": {
+        "result": "NUMERIC_CANDIDATE_NOT_ACCREDITED",
+        "limitation": "Error/origin/clock/source requirements missing; unrelated agricultural transform is not required for a body-frame pulse"
+      },
+      "sources": [
+        "frame-numeric-candidate.json"
+      ]
+    },
+    {
+      "id": "reception",
+      "title": "Recepción",
+      "state": "CLOSED_PARTIAL_COVERAGE",
+      "scope": "PULSE_AND_POI_A1",
+      "detail": "rc 0, reader_closed True; 14 muestras retenidas de 20; 6/9 streams",
+      "not_accredited": "cobertura completa de recepción (NavSat ausente en esta ventana)",
+      "codex": {
+        "result": "CLOSED_RC0_14_OF_20_6_OF_9_STREAMS",
+        "limitation": "NavSat absent in this window despite committed native NavSat writers; not full reception coverage"
+      },
+      "sources": [
+        "reader/journal.jsonl",
+        "reader/journal.jsonl.receipt.json",
+        "passive-session/reader-result.json"
+      ]
+    },
+    {
+      "id": "monitor",
+      "title": "Monitor",
+      "state": "INCOMPLETE",
+      "scope": "PULSE_AND_POI_A1",
+      "detail": "rc 1; Model server exit not observed by monitor",
+      "not_accredited": "la captura completa del monitor (no se completa retrospectivamente)",
+      "codex": {
+        "result": "LIFECYCLE_SUCCESS_MONITOR_INCOMPLETE_RC1",
+        "limitation": "Model server not gone when monitor finalized; protected cleanup later escalated and completed. No retrospective capture completion"
+      },
+      "sources": [
+        "container-capture/monitor.json",
+        "container-capture/monitor_exit.json"
+      ]
+    },
+    {
+      "id": "lifecycle_stop",
+      "title": "Parada lifecycle",
+      "state": "SUCCESS",
+      "scope": "PULSE_AND_POI_A1",
+      "detail": "operación stop FINISHED, perfil two_drones_rover",
+      "not_accredited": "nada sobre el monitor: son resultados separados",
+      "codex": {
+        "result": "LIFECYCLE_SUCCESS_MONITOR_INCOMPLETE_RC1",
+        "limitation": "Model server not gone when monitor finalized; protected cleanup later escalated and completed. No retrospective capture completion"
+      },
+      "sources": [
+        "passive-session/stop-result.json"
+      ]
+    }
+  ],
+  "not_contemporaneous_with": "otras sesiones (p. ej. la captura /3 del 25/10): sus GID y muestras no se combinan"
+}

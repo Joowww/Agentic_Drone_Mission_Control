@@ -1,0 +1,20 @@
+    PID    PPID ELAPSED COMMAND
+      1       0    1371 bash
+    193       1      53 /usr/bin/python3 /opt/ros/humble/bin/ros2 launch ardupilot_gz_bringup tfg_demo_2drones.launch.py rviz:=false gui:=false
+    237       1      52 /usr/bin/python3 -c from ros2cli.daemon.daemonize import main; main() --name ros2-daemon --ros-domain-id 0 --rmw-implementation rmw_fastrtps_cpp
+    248     193      52 /bin/sh -c ruby /usr/bin/gz sim -v4 -s -r /root/ardu_ws/install/ardupilot_gz_gazebo/share/ardupilot_gz_gazebo/worlds/runway.sdf --force-version 8
+    250     193      52 /opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __ns:=/drone1 --params-file /tmp/launch_params_qplmllx_ --params-file /tmp/launch_params_n_zg7m3p 
+    251     248      52 gz sim -v4 -s -r /root/ardu_ws/install/ardupilot_gz_gazebo/share/ardupilot_gz_gazebo/worlds/runway.sdf
+    253     193      52 /root/ardu_ws/install/ros_gz_bridge/lib/ros_gz_bridge/parameter_bridge --ros-args -r __ns:=/drone1 --params-file /tmp/launch_params_587onoqv
+    255     193      52 /root/ardu_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent udp4 --middleware dds --verbose 4 --port 2019 --ros-args -r __node:=micro_ros_agent -r __ns:=/drone1
+    257     193      52 arducopter --model json --speedup 1 --slave 0 --sim-address=127.0.0.1 --instance 0 --defaults /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/co
+    259     193      52 /usr/bin/python3 /usr/local/bin/mavproxy.py --out 127.0.0.1:14550 --out 127.0.0.1:14551 --master tcp:127.0.0.1:5760 --sitl 127.0.0.1:5501 --non-interactive
+    263     193      52 /opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args -r __ns:=/drone2 --params-file /tmp/launch_params_052jekgj --params-file /tmp/launch_params_rcpjmtx4 
+    265     193      52 /root/ardu_ws/install/ros_gz_bridge/lib/ros_gz_bridge/parameter_bridge --ros-args -r __ns:=/drone2 --params-file /tmp/launch_params_uc18knuk
+    267     193      52 arducopter --model json --speedup 1 --slave 0 --sim-address=127.0.0.1 --instance 1 --defaults /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/co
+    269     193      52 /usr/bin/python3 /usr/local/bin/mavproxy.py --out 127.0.0.1:14560 --out 127.0.0.1:14551 --master tcp:127.0.0.1:5770 --sitl 127.0.0.1:5511 --non-interactive
+    279     193      51 /opt/ros/humble/lib/topic_tools/relay gz/tf tf --ros-args -r __ns:=/drone1
+    285     193      51 /opt/ros/humble/lib/topic_tools/relay gz/tf tf --ros-args -r __ns:=/drone2
+    977       0       0 bash -c ps -eo pid,ppid,etimes,args --sort=pid | cut -c1-200
+    983     977       0 ps -eo pid,ppid,etimes,args --sort=pid
+    984     977       0 cut -c1-200

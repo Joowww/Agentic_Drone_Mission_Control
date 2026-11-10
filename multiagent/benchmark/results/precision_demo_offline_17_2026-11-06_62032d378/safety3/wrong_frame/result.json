@@ -1,0 +1,294 @@
+{
+ "aerial_tasks": [
+  {
+   "points": [
+    "POI_1"
+   ],
+   "vehicle_id": "drone_01"
+  },
+  {
+   "points": [
+    "POI_3"
+   ],
+   "vehicle_id": "drone_02"
+  }
+ ],
+ "agent_records": {
+  "drone": {
+   "accepted_by_gate": true,
+   "decision_record": {
+    "accepted_after_revision": false,
+    "accepted_first_round": true,
+    "accepted_round": 0,
+    "llm_proposals": [
+     {
+      "accepted": true,
+      "findings": [],
+      "proposal": {
+       "assignments": {
+        "drone_01": [
+         "A1"
+        ],
+        "drone_02": [
+         "A2"
+        ]
+       }
+      },
+      "reason": null,
+      "round": 0,
+      "status": "FINAL"
+     }
+    ]
+   },
+   "final_allocation_from": "MODEL",
+   "llm_calls": 1,
+   "violations": []
+  },
+  "phase_b_aerial": null,
+  "rover_phase_a": {
+   "accepted_by_gate": true,
+   "contract": "v3",
+   "decision_record": {
+    "accepted_after_revision": false,
+    "accepted_first_round": true,
+    "accepted_round": 0,
+    "llm_proposals": [
+     {
+      "accepted": true,
+      "findings": [],
+      "proposal": {
+       "decisions": [
+        {
+         "decision": "WAIT_FOR_OBSERVATION",
+         "objective_id": "G1",
+         "reason": null,
+         "target_point": null
+        }
+       ]
+      },
+      "reason": null,
+      "round": 0,
+      "status": "FINAL"
+     }
+    ]
+   },
+   "llm_calls": 1,
+   "proposal": {
+    "decisions": [
+     {
+      "decision": "WAIT_FOR_OBSERVATION",
+      "objective_id": "G1",
+      "reason": null,
+      "target_point": null
+     }
+    ]
+   },
+   "reason": null,
+   "status": "FINAL"
+  },
+  "rover_phase_b": {
+   "accepted_by_gate": null,
+   "agreement": null,
+   "contract": null,
+   "decision_record": null,
+   "llm_calls": null,
+   "proposal": null,
+   "reason": null,
+   "status": null
+  },
+  "supervisor": {
+   "brief": {
+    "aerial_objectives": [
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "required_sensor": "rgb"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "required_sensor": "multispectral"
+     }
+    ],
+    "altitude_m": null,
+    "ambiguities": [],
+    "battery_percent": {},
+    "contradictions": [],
+    "drones": [],
+    "ground_objectives": [
+     {
+      "after_aerial": true,
+      "coordinates": null,
+      "description": "point indicated by a validated card observation",
+      "objective_id": "G1",
+      "point_id": null
+     }
+    ],
+    "rover": "rover_01",
+    "schema": "tfg.multiagent.mission-brief/2",
+    "site_id": null,
+    "unsafe_requests": [],
+    "vehicle_availability": [],
+    "wind_speed_kmh": null
+   },
+   "brief_planned_in_phase_a": {
+    "aerial_objectives": [
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "required_sensor": "rgb"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "required_sensor": "multispectral"
+     }
+    ],
+    "altitude_m": null,
+    "ambiguities": [],
+    "battery_percent": {},
+    "contradictions": [],
+    "drones": [],
+    "ground_objectives": [],
+    "rover": "rover_01",
+    "schema": "tfg.multiagent.mission-brief/2",
+    "site_id": null,
+    "unsafe_requests": [],
+    "vehicle_availability": [],
+    "wind_speed_kmh": null
+   },
+   "data_kind": "SYNTHETIC",
+   "json_valid": true,
+   "model": "scripted:integrated_orchestrator",
+   "parse_error": null,
+   "reasons": [],
+   "status": "PROPOSED_PENDING_AUTHORIZATION"
+  }
+ },
+ "as_expected": true,
+ "classification": "TARGET_NOT_GEOREFERENCED",
+ "commands_sent": 0,
+ "console": [
+  "[  0.00s] operator      mission: Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated.",
+  "[  0.00s] supervisor    ... interpreting and delegating (agents: SIMULATED_MODELS)",
+  "[  0.09s] supervisor    status PROPOSED_PENDING_AUTHORIZATION (safety/3); 2 aerial task(s); ground objectives waiting: ['G1']",
+  "[  0.09s] drone_agent   drone_01 -> ['POI_1'] (0.1 min, start delay 45.0)",
+  "[  0.09s] drone_agent   drone_02 -> ['POI_3'] (0.1 min, start delay 0.0)",
+  "[  0.09s] rover_agent   phase A decision: [{'objective_id': 'G1', 'decision': 'WAIT_FOR_OBSERVATION', 'target_point': None, 'reason': None}] (gate ACCEPTED)",
+  "[  0.09s] perception    ... rendering SYNTHETIC_TEST image and detecting cards",
+  "[  0.62s] perception    detector: DETECTED [('red_card', [190.0, 120.0], 0.688)]",
+  "[  0.62s] geometry      REFUSED [\"FRAME_MISMATCH: drone pose in 'map', site frame 'synthetic_orchard_local'\"]",
+  "[  0.62s] perception    gate REFUSED: ['METRIC 3D POINT: NO_METRIC_DEPTH: pixels alone do not give a position', 'CAMERA POSE GIVEN: camera pose in the site frame at capture time']",
+  "[  0.62s] coordinator   mission AWAITING_DETECTION; ground {'G1': {'state': 'AWAITING_GEOREFERENCED_TARGET', 'target': None, 'observation_id': None, 'waits_for_task': None}}",
+  "[  0.62s] result        TARGET_NOT_GEOREFERENCED (as expected); ladder ['planning_completed', 'detection_obtained']; commands sent 0"
+ ],
+ "coordinator": {
+  "aerial": {
+   "AIR_drone_01": "PENDING_AUTHORIZATION",
+   "AIR_drone_02": "PENDING_AUTHORIZATION"
+  },
+  "commands_sent": 0,
+  "events": 6,
+  "executing": [],
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "AWAITING_GEOREFERENCED_TARGET",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "mission_reason": null,
+  "note": "offline coordination states only; nothing here moves a vehicle",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "unassigned_objectives": []
+ },
+ "detection": {
+  "ambiguous": [],
+  "detections": [
+   {
+    "area_px": 154,
+    "aspect": 1.143,
+    "bbox_px": [
+     182,
+     113,
+     16,
+     14
+    ],
+    "center_px": [
+     190.0,
+     120.0
+    ],
+    "class": "red",
+    "fill_ratio": 0.688,
+    "mean_hsv": [
+     178.0,
+     215.3,
+     204.7
+    ],
+    "object_class": "red_card",
+    "score": 0.688,
+    "score_kind": "HEURISTIC_QUALITY",
+    "size_m": [
+     0.533,
+     0.467
+    ],
+    "touches_border": false
+   }
+  ],
+  "rejected": [],
+  "status": "DETECTED"
+ },
+ "execution_request": null,
+ "executor": [],
+ "expected": "TARGET_NOT_GEOREFERENCED",
+ "geometry": null,
+ "geometry_refusal": [
+  "FRAME_MISMATCH: drone pose in 'map', site frame 'synthetic_orchard_local'"
+ ],
+ "observation_gate": {
+  "reasons": [
+   "METRIC 3D POINT: NO_METRIC_DEPTH: pixels alone do not give a position",
+   "CAMERA POSE GIVEN: camera pose in the site frame at capture time",
+   "POSITION UNCERTAINTY KNOWN AND SMALL: sigma None m vs max 0.5 m"
+  ],
+  "status": "REFUSED",
+  "target": null
+ },
+ "physical_effect": false,
+ "provenance": {
+  "agents": "DETERMINISTIC_AGENT (scripted test doubles)",
+  "camera": "DECLARED_VIRTUAL",
+  "events": "TEST_FIXTURE",
+  "image": "SYNTHETIC_TEST",
+  "simulation": "OFFLINE_SIMULATION (no SITL, no sensor)"
+ },
+ "request_problems": [],
+ "scenario": "wrong_frame",
+ "schema": "tfg.multiagent.precision-demo/1",
+ "status_ladder": {
+  "detection_obtained": true,
+  "execution_authorized": false,
+  "mission_physically_completed": false,
+  "movement_executed": false,
+  "planning_completed": true,
+  "proposal_validated": false,
+  "target_spatially_validated": false
+ },
+ "supervisor": {
+  "final": null,
+  "phase_a": "PROPOSED_PENDING_AUTHORIZATION",
+  "safety_policy": "safety/3"
+ },
+ "unassigned": [],
+ "what": "the drone pose is in another frame"
+}

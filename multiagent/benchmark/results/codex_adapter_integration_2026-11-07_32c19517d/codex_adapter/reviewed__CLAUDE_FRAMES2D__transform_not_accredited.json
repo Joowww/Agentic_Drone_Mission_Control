@@ -1,0 +1,222 @@
+{
+ "classification": "BLOCKED_BEFORE_SUBMISSION",
+ "codex_commit": "57a0e303a",
+ "codex_snapshot": "2e206f1fa+551eb1fefebc",
+ "commands": [],
+ "conversion_owner": "CLAUDE_FRAMES2D",
+ "coordinator_events": [
+  {
+   "detail": [
+    "frames: CHAIN_NOT_USABLE: synthetic_orchard_local<-odom: NOT_ACCREDITED; synthetic_orchard_local<-odom: PROVENANCE_MISSING",
+    "codex_v2: LOCALIZATION_MISSING_OR_UNVALIDATED",
+    "executor_request: NO_GOAL_IN_ROVER_FRAME",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "reasons": [
+    "frames: CHAIN_NOT_USABLE",
+    "NO_POSITION: codex_v2: LOCALIZATION_MISSING_OR_UNVALIDATED",
+    "executor_request: NO_GOAL_IN_ROVER_FRAME",
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "envelope": null,
+ "error_categories": [
+  "EXECUTOR_POLICY",
+  "FRAMES",
+  "LOCALIZATION"
+ ],
+ "errors": [
+  {
+   "category": "FRAMES",
+   "code": "CHAIN_NOT_USABLE",
+   "detail": "CHAIN_NOT_USABLE: synthetic_orchard_local<-odom: NOT_ACCREDITED; synthetic_orchard_local<-odom: PROVENANCE_MISSING",
+   "stage": "frames"
+  },
+  {
+   "category": "LOCALIZATION",
+   "code": "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "detail": "LOCALIZATION_MISSING_OR_UNVALIDATED",
+   "stage": "codex_v2"
+  },
+  {
+   "category": "FRAMES",
+   "code": "NO_GOAL_IN_ROVER_FRAME",
+   "detail": "NO_GOAL_IN_ROVER_FRAME",
+   "stage": "executor_request"
+  },
+  {
+   "category": "EXECUTOR_POLICY",
+   "code": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "detail": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "stage": "executor_admit"
+  }
+ ],
+ "mode": "OFFLINE_TEST",
+ "movement_executed": false,
+ "provenance": null,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [],
+   "stage": "request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "authorization",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "codex_bridge",
+   "status": "PASS"
+  },
+  {
+   "conversion": null,
+   "goal_base_link": null,
+   "goal_handoff": {
+    "applied_conversions": [],
+    "constraints": {
+     "authorized_area_site_frame": [
+      [
+       -10.0,
+       -10.0
+      ],
+      [
+       30.0,
+       -10.0
+      ],
+      [
+       30.0,
+       30.0
+      ],
+      [
+       -10.0,
+       30.0
+      ]
+     ],
+     "human": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 60.0
+     },
+     "operator": {
+      "localization_max_age_s": 2.0,
+      "localization_max_uncertainty_m": 0.3,
+      "max_distance_m": 5.0,
+      "max_total_sigma_m": 0.5
+     }
+    },
+    "conversion_owner": "CLAUDE_FRAMES2D",
+    "delegated_checks": [],
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "frame_identity": {
+     "rover_frame_expected": "odom",
+     "site_frame": "synthetic_orchard_local"
+    },
+    "goal_rover": null,
+    "goal_site": {
+     "frame": "synthetic_orchard_local",
+     "point_id": "POI_3",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "boot_id": "rover-boot-1",
+     "frame": "odom",
+     "observed_at": "2026-11-07T16:08:08.885834+00:00",
+     "sigma_m": 0.05,
+     "source": "TEST_FIXTURE_LOCALIZATION",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "state": "ACCREDITED",
+     "vehicle_id": "rover_01"
+    },
+    "observation": {
+     "data_kind": "TEST_FIXTURE observation from a SYNTHETIC_TEST image",
+     "observation_id": "red_target-obs-1",
+     "observed_at": "2026-11-07T16:08:07.085834+00:00",
+     "original_pose": {
+      "chain": [
+       "synthetic_orchard_local",
+       "drone_02/base_link",
+       "cam_down_fixture_optical"
+      ],
+      "frame": "synthetic_orchard_local",
+      "pose_source": "TEST_FIXTURE"
+     },
+     "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+     "source": "perception gate (detector on a SYNTHETIC_TEST image)",
+     "uncertainty_m": 0.12
+    },
+    "schema": "tfg.multiagent.rover-goal-handoff/1",
+    "transform_required": {
+     "from": "synthetic_orchard_local",
+     "reference": null,
+     "status": "REQUIRED_NOT_APPLIED",
+     "to": "odom"
+    },
+    "vehicle": {
+     "boot_id": "rover-boot-1",
+     "vehicle_id": "rover_01"
+    }
+   },
+   "goal_rover": null,
+   "reasons": [
+    "CHAIN_NOT_USABLE: synthetic_orchard_local<-odom: NOT_ACCREDITED; synthetic_orchard_local<-odom: PROVENANCE_MISSING"
+   ],
+   "stage": "frames",
+   "status": "REFUSED"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [
+    "LOCALIZATION_MISSING_OR_UNVALIDATED"
+   ],
+   "schema_errors": [],
+   "stage": "codex_v2",
+   "status": "REJECTED"
+  },
+  {
+   "reasons": [
+    "NO_GOAL_IN_ROVER_FRAME"
+   ],
+   "stage": "executor_request",
+   "status": "NOT_REACHED"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+[
+    {
+        "Id": "sha256:e2c4513e4ca6982c5d7c88811d4df647d6d7c35055f284104f3aa0f0077e2112",
+        "RepoTags": [
+            "tfg/planner:2026.10.28"
+        ],
+        "RepoDigests": [
+            "tfg/planner@sha256:e2c4513e4ca6982c5d7c88811d4df647d6d7c35055f284104f3aa0f0077e2112"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-28T07:55:27.610226828Z",
+        "Config": {
+            "User": "1000:1000",
+            "Env": [
+                "PATH=/opt/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONUNBUFFERED=1",
+                "HOME=/tmp/home",
+                "HERMES_HOME=/hermes/planning",
+                "TFG_PROFILE=planning"
+            ],
+            "Entrypoint": [
+                "python3",
+                "/opt/tfg/deploy/app/entry.py"
+            ],
+            "Cmd": [
+                "/opt/tfg/deploy/planner/hermes_home.py",
+                "status"
+            ],
+            "WorkingDir": "/opt/tfg",
+            "Labels": {
+                "org.opencontainers.image.description": "Planning profile: Hermes + project MCP server restricted to planning tools",
+                "org.opencontainers.image.title": "tfg-planner",
+                "org.opencontainers.image.version": "2026.10.28",
+                "tfg.apt.snapshot": "20261024T000000Z",
+                "tfg.hermes.commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8"
+            },
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 2133433634,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:bec87777bc2fb2edcdf9af11df1531469e7df911309c1413082b18fcb8610278",
+                "sha256:ca58f42ae10396ca8179755f36eb5135c4a8098bfbfa6dc34274b230c537ac4d",
+                "sha256:13b04cf868feb0115e9a4564953f196dba9755452a548f746afd856865b2eebd",
+                "sha256:152913b0f1214195c59661ee9c1e09e65760070e9279d8f35e18638e5a11fa2f",
+                "sha256:7dd768005858dea6ae55d49c45a5ba8aac5334e277232e740382e5285f311236",
+                "sha256:5604cb5b8a78019bc3b064ce8017a7553355a16a5e88ff446a9841f58b632d2d",
+                "sha256:d11e4d7f64ce672fbd102c5962b51d11644646c109ebd6dec48f594c6f835d89",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-28T07:55:55.995878088Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:e2c4513e4ca6982c5d7c88811d4df647d6d7c35055f284104f3aa0f0077e2112",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "bm1bgtunitkvvf8j5fu83cjrp",
+                    "CreatedAt": "2026-10-28T07:56:00.862240664Z"
+                }
+            ]
+        }
+    }
+]

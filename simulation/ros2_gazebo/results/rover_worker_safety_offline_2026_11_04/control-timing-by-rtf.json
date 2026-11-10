@@ -1,0 +1,314 @@
+{
+  "input": "SYNTHETIC cadences, 2 Hz simulated status",
+  "rows": [
+    {
+      "rtf": 1.0,
+      "status_hz_wall": 2.0,
+      "status": "VIABLE",
+      "reasons": [],
+      "limits": {
+        "max_forward_mps": 0.25,
+        "max_yaw_rate_rad_s": 0.5,
+        "max_duration_s": 60.0,
+        "call_timeout_s": 2.0,
+        "stop_timeout_s": 8.0,
+        "observation_max_age_s": 0.95,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "frequencies": {
+        "status_hz_sim": 2.0,
+        "status_hz_wall": 2.0,
+        "rtf": 1.0,
+        "command_hz_requested": 2.0,
+        "command_hz_effective_max": 2.0
+      },
+      "derivation": {
+        "status_period_wall_s": 0.5,
+        "status_wait_needed_s": 0.625,
+        "worker_wait_per_call_s": 1.4,
+        "observation_age_needed_s": 0.925,
+        "distance_during_age_m": 0.2375,
+        "tolerance_m": 0.25,
+        "travel_wall_s": 4.0,
+        "stop_timeout_s": 8.0
+      }
+    },
+    {
+      "rtf": 0.7,
+      "status_hz_wall": 1.4,
+      "status": "VIABLE",
+      "reasons": [],
+      "limits": {
+        "max_forward_mps": 0.25,
+        "max_yaw_rate_rad_s": 0.5,
+        "max_duration_s": 60.0,
+        "call_timeout_s": 2.0,
+        "stop_timeout_s": 8.0,
+        "observation_max_age_s": 1.2,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "frequencies": {
+        "status_hz_sim": 2.0,
+        "status_hz_wall": 1.4,
+        "rtf": 0.7,
+        "command_hz_requested": 2.0,
+        "command_hz_effective_max": 1.4
+      },
+      "derivation": {
+        "status_period_wall_s": 0.7142857142857143,
+        "status_wait_needed_s": 0.8928571428571429,
+        "worker_wait_per_call_s": 1.4,
+        "observation_age_needed_s": 1.1928571428571428,
+        "distance_during_age_m": 0.21,
+        "tolerance_m": 0.25,
+        "travel_wall_s": 5.714285714285714,
+        "stop_timeout_s": 8.0
+      }
+    },
+    {
+      "rtf": 0.6,
+      "status_hz_wall": 1.2,
+      "status": "VIABLE",
+      "reasons": [],
+      "limits": {
+        "max_forward_mps": 0.3,
+        "max_yaw_rate_rad_s": 0.5,
+        "max_duration_s": 60.0,
+        "call_timeout_s": 2.0,
+        "stop_timeout_s": 8.0,
+        "observation_max_age_s": 1.35,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "frequencies": {
+        "status_hz_sim": 2.0,
+        "status_hz_wall": 1.2,
+        "rtf": 0.6,
+        "command_hz_requested": 2.0,
+        "command_hz_effective_max": 1.2
+      },
+      "derivation": {
+        "status_period_wall_s": 0.8333333333333334,
+        "status_wait_needed_s": 1.0416666666666667,
+        "worker_wait_per_call_s": 1.4,
+        "observation_age_needed_s": 1.3416666666666668,
+        "distance_during_age_m": 0.243,
+        "tolerance_m": 0.25,
+        "travel_wall_s": 5.555555555555555,
+        "stop_timeout_s": 8.0
+      }
+    },
+    {
+      "rtf": 0.55,
+      "status_hz_wall": 1.1,
+      "status": "VIABLE",
+      "reasons": [],
+      "limits": {
+        "max_forward_mps": 0.3,
+        "max_yaw_rate_rad_s": 0.5,
+        "max_duration_s": 60.0,
+        "call_timeout_s": 2.0,
+        "stop_timeout_s": 8.0,
+        "observation_max_age_s": 1.45,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "frequencies": {
+        "status_hz_sim": 2.0,
+        "status_hz_wall": 1.1,
+        "rtf": 0.55,
+        "command_hz_requested": 2.0,
+        "command_hz_effective_max": 1.1
+      },
+      "derivation": {
+        "status_period_wall_s": 0.9090909090909091,
+        "status_wait_needed_s": 1.1363636363636362,
+        "worker_wait_per_call_s": 1.4,
+        "observation_age_needed_s": 1.4363636363636363,
+        "distance_during_age_m": 0.23925,
+        "tolerance_m": 0.25,
+        "travel_wall_s": 6.0606060606060606,
+        "stop_timeout_s": 8.0
+      }
+    },
+    {
+      "rtf": 0.53,
+      "status_hz_wall": 1.06,
+      "status": "VIABLE",
+      "reasons": [],
+      "limits": {
+        "max_forward_mps": 0.3,
+        "max_yaw_rate_rad_s": 0.5,
+        "max_duration_s": 60.0,
+        "call_timeout_s": 2.0,
+        "stop_timeout_s": 8.5,
+        "observation_max_age_s": 1.5,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "frequencies": {
+        "status_hz_sim": 2.0,
+        "status_hz_wall": 1.06,
+        "rtf": 0.53,
+        "command_hz_requested": 2.0,
+        "command_hz_effective_max": 1.06
+      },
+      "derivation": {
+        "status_period_wall_s": 0.9433962264150942,
+        "status_wait_needed_s": 1.1792452830188678,
+        "worker_wait_per_call_s": 1.4,
+        "observation_age_needed_s": 1.4792452830188678,
+        "distance_during_age_m": 0.2385,
+        "tolerance_m": 0.25,
+        "travel_wall_s": 6.289308176100628,
+        "stop_timeout_s": 8.5
+      }
+    },
+    {
+      "rtf": 0.52,
+      "status_hz_wall": 1.04,
+      "status": "NOT_VIABLE",
+      "reasons": [
+        "OBSERVATION_AGE_ABOVE_HARD_CAP"
+      ],
+      "limits": {
+        "max_forward_mps": 0.3,
+        "max_yaw_rate_rad_s": 0.5,
+        "max_duration_s": 60.0,
+        "call_timeout_s": 2.0,
+        "stop_timeout_s": 8.5,
+        "observation_max_age_s": 1.55,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "frequencies": {
+        "status_hz_sim": 2.0,
+        "status_hz_wall": 1.04,
+        "rtf": 0.52,
+        "command_hz_requested": 2.0,
+        "command_hz_effective_max": 1.04
+      },
+      "derivation": {
+        "status_period_wall_s": 0.9615384615384615,
+        "status_wait_needed_s": 1.2019230769230769,
+        "worker_wait_per_call_s": 1.4,
+        "observation_age_needed_s": 1.501923076923077,
+        "distance_during_age_m": 0.24180000000000001,
+        "tolerance_m": 0.25,
+        "travel_wall_s": 6.410256410256411,
+        "stop_timeout_s": 8.5
+      }
+    },
+    {
+      "rtf": 0.5,
+      "status_hz_wall": 1.0,
+      "status": "NOT_VIABLE",
+      "reasons": [
+        "OBSERVATION_AGE_ABOVE_HARD_CAP"
+      ],
+      "limits": {
+        "max_forward_mps": 0.3,
+        "max_yaw_rate_rad_s": 0.5,
+        "max_duration_s": 60.0,
+        "call_timeout_s": 2.0,
+        "stop_timeout_s": 9.0,
+        "observation_max_age_s": 1.55,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "frequencies": {
+        "status_hz_sim": 2.0,
+        "status_hz_wall": 1.0,
+        "rtf": 0.5,
+        "command_hz_requested": 2.0,
+        "command_hz_effective_max": 1.0
+      },
+      "derivation": {
+        "status_period_wall_s": 1.0,
+        "status_wait_needed_s": 1.25,
+        "worker_wait_per_call_s": 1.4,
+        "observation_age_needed_s": 1.55,
+        "distance_during_age_m": 0.23249999999999998,
+        "tolerance_m": 0.25,
+        "travel_wall_s": 6.666666666666667,
+        "stop_timeout_s": 9.0
+      }
+    },
+    {
+      "rtf": 0.4,
+      "status_hz_wall": 0.8,
+      "status": "NOT_VIABLE",
+      "reasons": [
+        "NO_NEW_STATUS_WITHIN_ONE_CALL",
+        "OBSERVATION_AGE_ABOVE_HARD_CAP",
+        "STOP_CANNOT_OBSERVE_TWO_NEW_STATUS_IN_BUDGET"
+      ],
+      "limits": {
+        "max_forward_mps": 0.3,
+        "max_yaw_rate_rad_s": 0.5,
+        "max_duration_s": 60.0,
+        "call_timeout_s": 2.0,
+        "stop_timeout_s": 12.0,
+        "observation_max_age_s": 1.9,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "frequencies": {
+        "status_hz_sim": 2.0,
+        "status_hz_wall": 0.8,
+        "rtf": 0.4,
+        "command_hz_requested": 2.0,
+        "command_hz_effective_max": 0.8
+      },
+      "derivation": {
+        "status_period_wall_s": 1.25,
+        "status_wait_needed_s": 1.5625,
+        "worker_wait_per_call_s": 1.4,
+        "observation_age_needed_s": 1.8625,
+        "distance_during_age_m": 0.22799999999999998,
+        "tolerance_m": 0.25,
+        "travel_wall_s": 8.333333333333334,
+        "stop_timeout_s": 12.0
+      }
+    },
+    {
+      "rtf": 0.3,
+      "status_hz_wall": 0.6,
+      "status": "NOT_VIABLE",
+      "reasons": [
+        "NO_NEW_STATUS_WITHIN_ONE_CALL",
+        "OBSERVATION_AGE_ABOVE_HARD_CAP",
+        "STOP_CANNOT_OBSERVE_TWO_NEW_STATUS_IN_BUDGET"
+      ],
+      "limits": {
+        "max_forward_mps": 0.3,
+        "max_yaw_rate_rad_s": 0.5,
+        "max_duration_s": 60.0,
+        "call_timeout_s": 2.0,
+        "stop_timeout_s": 12.0,
+        "observation_max_age_s": 2.4,
+        "stopped_linear_mps": 0.03,
+        "stopped_angular_rad_s": 0.03
+      },
+      "frequencies": {
+        "status_hz_sim": 2.0,
+        "status_hz_wall": 0.6,
+        "rtf": 0.3,
+        "command_hz_requested": 2.0,
+        "command_hz_effective_max": 0.6
+      },
+      "derivation": {
+        "status_period_wall_s": 1.6666666666666667,
+        "status_wait_needed_s": 2.0833333333333335,
+        "worker_wait_per_call_s": 1.4,
+        "observation_age_needed_s": 2.3833333333333333,
+        "distance_during_age_m": 0.216,
+        "tolerance_m": 0.25,
+        "travel_wall_s": 11.11111111111111,
+        "stop_timeout_s": 12.0
+      }
+    }
+  ]
+}

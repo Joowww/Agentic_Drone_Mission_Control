@@ -1,0 +1,125 @@
+{
+  "automatic_retry": false,
+  "capture_files": [
+    "capture-provenance-a8a8c9a3-9663-4311-9892-05387e110b6b.json",
+    "hermes-events-2026-10-22.jsonl",
+    "hermes-tool-offers-2026-10-22.jsonl",
+    "hermes-tool-result-checks-2026-10-22.jsonl"
+  ],
+  "case_id": "mcp-mission-failed-structured",
+  "config_sha256_edited": "82bfe207e04007351867237add2534cfd2584f704c7ae928be6918a8ace22b72",
+  "config_sha256_original": "c99d1a88cb3cf578973d50e84b12d605b7b2ec28225ff55a034282d6fe08f4fb",
+  "elapsed_wall_s": 25.129,
+  "finished_at_utc": "2026-10-22T17:41:11.907265+00:00",
+  "hermes_invocations": 1,
+  "mcp_tool_trial": {
+    "expected_arguments": {
+      "run_id": "d4519cab-ebd1-4359-b547-44be38294a6a",
+      "view": "external"
+    },
+    "expected_final_answer": null,
+    "expected_structured_answer": {
+      "current_availability": "UNKNOWN",
+      "historical_status": "FAILED",
+      "mission_id": "prueba_hermes_001",
+      "mission_landed_event_recorded": false,
+      "planned_waypoint_ids": [
+        "WP1",
+        "WP2",
+        "WP3"
+      ],
+      "reached_waypoint_ids": [
+        "WP1",
+        "WP2"
+      ],
+      "recovery_landing_completed": true,
+      "return_to_home": "UNKNOWN",
+      "run_id": "d4519cab-ebd1-4359-b547-44be38294a6a",
+      "simulated_vehicle": "v1",
+      "vehicle_id": "drone_01"
+    },
+    "mcp_schema_cache_sha256_after": "a977ceba7e32e914c9ef35f2baacccd78811717e2d39ae7f47abae35b0dd4f2a",
+    "mcp_schema_cache_sha256_before": "b354400ab9bba8eecb1fa474ae7df3627ca5d4cbcc130e9bd19b93fb340d2997",
+    "mcp_server_processes_after": 0,
+    "prompt": "Llama una sola vez a la herramienta mcp__tfg_mission_control__get_mission_state con run_id=\"d4519cab-ebd1-4359-b547-44be38294a6a\" y view=\"external\". Después responde únicamente con un objeto JSON, sin texto adicional, con exactamente estas claves: run_id (texto), historical_status (texto), mission_id (texto), vehicle_id (texto), simulated_vehicle (texto), planned_waypoint_ids (lista de textos), reached_waypoint_ids (lista de textos), return_to_home (booleano), mission_landed_event_recorded (booleano: true si landing_evidence contiene un evento LANDED con landed=true, false si landing_evidence es una lista vacía), recovery_landing_completed (booleano) y current_availability (texto). Escribe el texto \"UNKNOWN\" en cualquier clave cuyo dato sea null o no figure en el resultado; no lo deduzcas de otros campos. current_availability es la disponibilidad actual del simulador: \"UNKNOWN\" salvo que el resultado incluya una comprobación actual.",
+    "prompt_sha256": "c07c84dcad275c5998af36deaeb66cd156e185b74e41d847cb4bfacccf386b5b",
+    "queried_run_id": "d4519cab-ebd1-4359-b547-44be38294a6a",
+    "registry_name": "mcp__tfg_mission_control__get_mission_state",
+    "result_expectation_pointers": [
+      "/view",
+      "/external_schema_version",
+      "/status",
+      "/readiness_now",
+      "/queried/run_id",
+      "/rejected_fields/0",
+      "/preflights/0/run_id",
+      "/preflights/1",
+      "/preflights/0/result_status",
+      "/preflights/0/report_stage",
+      "/preflights/0/execution_attempted",
+      "/preflights/0/mission_id",
+      "/preflights/0/vehicle_id",
+      "/preflights/0/simulated_vehicle",
+      "/preflights/0/planned_waypoint_ids/0",
+      "/preflights/0/planned_waypoint_ids/1",
+      "/preflights/0/planned_waypoint_ids/2",
+      "/preflights/0/planned_waypoint_ids/3",
+      "/preflights/0/reached_waypoint_ids/0",
+      "/preflights/0/reached_waypoint_ids/1",
+      "/preflights/0/reached_waypoint_ids/2",
+      "/preflights/0/waypoints_completed",
+      "/preflights/0/return_to_home",
+      "/preflights/0/landing_evidence_count",
+      "/preflights/0/recovery_landing_completed",
+      "/preflights/0/recovery_landed"
+    ],
+    "result_expectation_sha256": "ecb64f141145f5fa8eb90a5309083b8e51f8d43be5847837f19b4fff2c5e82ea",
+    "run_must_exist": true,
+    "server": "tfg-mission-control",
+    "server_sources_sha256": {
+      "tools/hermes_mcp_server.py": "24068e725d9f104b5325ec166b081a4ba4e4c1bb849cf2913095d73b045a0491",
+      "tools/mission_response_views.py": "b80593fab857562b3eb0819c2c74fa0b503fb5a526cc16f4f3791658146b0752",
+      "tools/mission_state.py": "e66dd901f37572bf0f174928398da919ea1d55d4290330c993e1d5551028d2be",
+      "tools/virtual_preflight_jobs.py": "64ec1039eacd53d654ab1311e3b2003f7fb530dabfbfe205b646ad164485fd17"
+    },
+    "tool": "get_mission_state",
+    "tool_classification": "read-only: run_id lookup reads job/report files only; verified offline under an audit hook (no writes, mkdir, subprocess or socket)",
+    "tool_search_enabled": "off",
+    "tools_filter": {
+      "include": [
+        "get_mission_state"
+      ],
+      "prompts": false,
+      "resources": false
+    },
+    "toolsets_argument": "tfg-mission-control",
+    "trial_case": "failed-structured"
+  },
+  "model_configured": "poolside/laguna-s-2.1:free",
+  "plugin_installed_sha256": {
+    "__init__.py": "7b7c046c740e0ea6ce5531534a6bae30934cc31b9e9ba5b95c6704a8e07ac0e3",
+    "capture.py": "36f368f62f2530c27060670f66737e5b20dfe172cdf77fd06424d8391b5094c9",
+    "event.schema.json": "e5b9f3d076eadcdb0bd40215a15a3d37978ab3da72bbd0f1d1613a3d354fa7a3",
+    "plugin.yaml": "a7768459ed16ecea4728df170d72b0a1d1ed8df2fdda7608e0efbcb35945a09d",
+    "tool-offer.schema.json": "db03ee96f1534c320a6ba9adef0f5d1ad5b274c0fa7cec9617a6322ccc061089",
+    "tool-result-check.schema.json": "e36437cce2ad2fe6e6d613e0920163df205c8d71601d0e73a1f6a4f67e7f44e9"
+  },
+  "prompt_sha256": "c07c84dcad275c5998af36deaeb66cd156e185b74e41d847cb4bfacccf386b5b",
+  "provider_configured": "nous",
+  "restore": {
+    "config": "restored",
+    "error_type": null,
+    "ok": true,
+    "plugin": "removed"
+  },
+  "return_code": 0,
+  "run_id": "real-hermes-20261022",
+  "started_at_utc": "2026-10-22T17:40:46.778260+00:00",
+  "stderr_bytes": 0,
+  "stdout_sha256": "bca53a27e5947b10ba9150382b482909c5868d0b1fc478a22dcda933cc6f705b",
+  "timed_out": false,
+  "timeout_s": 120,
+  "toolset_selection": "tfg-mission-control",
+  "utility_version": "1",
+  "verified_hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8"
+}

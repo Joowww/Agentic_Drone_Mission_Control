@@ -1,0 +1,29 @@
+{
+  "schema": "tfg.explanation-review/1",
+  "review_kind": "CHATGPT_ASSISTED_REVIEW",
+  "relayed_by": "Joel (chat, 2026-10-24)",
+  "human_review_by_joel": "NOT_RECORDED_AS_COMPLETED",
+  "automatic_status_unchanged": "STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED",
+  "reviewed_answer": "hermes_stdout.txt",
+  "observations_verbatim": [
+    "invierte armado y despegue de drone_02",
+    "cita una comprobación que no corresponde a la vista",
+    "describe de forma incompleta la dependencia MET",
+    "“volvieron a ejecutarse” puede sugerir otra ejecución",
+    "la frase sobre superposición es ambigua frente al orden acreditado"
+  ],
+  "classification": {
+    "factual_errors": [
+      "inverted arm/takeoff for drone_02",
+      "check not present in the view"
+    ],
+    "incomplete": [
+      "MET dependency (omits sequence COMPLETED)"
+    ],
+    "ambiguous": [
+      "implied re-execution",
+      "overlap wording versus accredited order"
+    ]
+  },
+  "conclusion": "explanation contains factual errors and ambiguities; the original answer and the automatic result are preserved; the model was not invoked again"
+}

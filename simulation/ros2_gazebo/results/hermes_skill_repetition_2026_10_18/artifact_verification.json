@@ -1,0 +1,178 @@
+{
+  "draft_id": "f4463a1d-d4b1-4d9e-b986-809a5c43f28a",
+  "finalization_id": "0dde4214-9cca-4514-9176-25607adaea39",
+  "draft_revision": 4,
+  "geometry_revision": 4,
+  "draft_sha256": "7eaea46fd943844c7ad7b66fc8cc641a31aedb42fc317e93bca0a447cbeb85df",
+  "mission_sha256": "79776aa32284026a0eb0554cb600fc7ae70e1a0bdea4b36a721a475aec4086ba",
+  "finalization_record_sha256": "af54546ec61c71c5e19e5d158d4deceb5f6b2ddf15d2cdb8ff6951f4dfa1a03c",
+  "plan_sha256": "0b716f703eae5c187a3d2759de1133af32630236ca43087e170c90ed1c2a199c",
+  "integrity": "VERIFIED_LOCAL_HASHES",
+  "current_draft_matches_snapshot": true,
+  "current_state_matches_snapshot": true,
+  "route_matches_generator": true,
+  "geometry_intent": {
+    "mode": "rectangle",
+    "home_latitude": 41.0,
+    "home_longitude": 2.0,
+    "home_altitude_m": 0.0,
+    "altitude_reference": "relative_to_home",
+    "altitude_m": 8.0,
+    "return_to_home": true,
+    "close_route": true,
+    "offsets": null,
+    "length_m": 40.0,
+    "width_m": 20.0,
+    "orientation_deg": 90.0,
+    "traversal": "clockwise",
+    "home_position": "center"
+  },
+  "local_coordinates": [
+    {
+      "waypoint_id": "WP1",
+      "north_m": 10.000000000019043,
+      "east_m": -20.000000000004228,
+      "altitude_m": 8.0,
+      "quadrant": "northwest"
+    },
+    {
+      "waypoint_id": "WP2",
+      "north_m": 10.000000000019043,
+      "east_m": 19.999999999985576,
+      "altitude_m": 8.0,
+      "quadrant": "northeast"
+    },
+    {
+      "waypoint_id": "WP3",
+      "north_m": -10.000000000019043,
+      "east_m": 19.999999999985576,
+      "altitude_m": 8.0,
+      "quadrant": "southeast"
+    },
+    {
+      "waypoint_id": "WP4",
+      "north_m": -10.000000000019043,
+      "east_m": -20.000000000004228,
+      "altitude_m": 8.0,
+      "quadrant": "southwest"
+    },
+    {
+      "waypoint_id": "WP5",
+      "north_m": 10.000000000019043,
+      "east_m": -20.000000000004228,
+      "altitude_m": 8.0,
+      "quadrant": "northwest"
+    }
+  ],
+  "edges": [
+    {
+      "from": "WP1",
+      "to": "WP2",
+      "local_m": 39.999999999989804,
+      "spherical_m": 39.95505881578419,
+      "initial_bearing_deg": 89.99984382161921
+    },
+    {
+      "from": "WP2",
+      "to": "WP3",
+      "local_m": 20.000000000038085,
+      "spherical_m": 19.97755663559911,
+      "initial_bearing_deg": 180.0
+    },
+    {
+      "from": "WP3",
+      "to": "WP4",
+      "local_m": 39.999999999989804,
+      "spherical_m": 39.95516772624253,
+      "initial_bearing_deg": 270.00015617744793
+    },
+    {
+      "from": "WP4",
+      "to": "WP5",
+      "local_m": 20.000000000038085,
+      "spherical_m": 19.97755663559911,
+      "initial_bearing_deg": 0.0
+    }
+  ],
+  "signed_area_east_north_m2": -800.0000000013194,
+  "signed_area_interpretation": "Negative in east/north coordinates = clockwise; local planar model",
+  "closed_at_first_vertex": true,
+  "return_requested": true,
+  "home_is_center_of_four_unique_vertices": true,
+  "saved_validation": {
+    "mission_id": "parcela_loma_repeticion_001",
+    "mission_status": "FEASIBLE",
+    "execution_status": "APPROVED",
+    "qgc_plan_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/drafts/f4463a1d-d4b1-4d9e-b986-809a5c43f28a/0dde4214-9cca-4514-9176-25607adaea39/parcela_loma_repeticion_001.plan",
+    "failure_reasons": [],
+    "errors": [],
+    "replan_status": "",
+    "replan_actions": []
+  },
+  "recomputed_validation_without_export": {
+    "mission_id": "parcela_loma_repeticion_001",
+    "mission_status": "FEASIBLE",
+    "execution_status": "APPROVED",
+    "qgc_plan_path": null,
+    "failure_reasons": [],
+    "errors": [],
+    "replan_status": "",
+    "replan_actions": []
+  },
+  "pending": {
+    "route_generation": [],
+    "mission_finalization": []
+  },
+  "plan_matches_pure_exporter": true,
+  "qgc_commands": [
+    22,
+    16,
+    16,
+    16,
+    16,
+    16,
+    20
+  ],
+  "extra_root_plan_exists_at_review": false,
+  "coordinate_summary_comparison": {
+    "source": "Visible final assistant response in raw finalization transcript; numeric labels rounded there",
+    "file_order": [
+      "NW",
+      "NE",
+      "SE",
+      "SW",
+      "NW"
+    ],
+    "assistant_order": [
+      "NE",
+      "NW",
+      "SW",
+      "SE",
+      "NE"
+    ],
+    "mismatched_waypoint_labels": [
+      "WP1",
+      "WP2",
+      "WP3",
+      "WP4",
+      "WP5"
+    ],
+    "file_winding": "clockwise",
+    "assistant_list_winding": "counterclockwise",
+    "extra_error": "Assistant WP2 says northwest but offsets -10m N,+20m E describe southeast"
+  },
+  "rtl_semantics": {
+    "json": "return_to_home=true expresses requested return; does not prove autopilot RTL mode",
+    "plan": "Exporter maps return to command 20 (MAV_CMD_NAV_RETURN_TO_LAUNCH); this plan contains it",
+    "executor": "Existing source sends launch-position target then LAND; no autopilot RTL activation implied",
+    "execution": "No operational execution performed by this review; artifact is planning/export evidence only"
+  },
+  "limitations": [
+    "Final state cannot prove intermediate orientation was left pending.",
+    "File absence of a root export alone does not prove no redundant calls occurred.",
+    "Raw transcript lacks full structured argument/result objects.",
+    "Source labels do not authenticate dialogue fidelity.",
+    "No current readiness or vehicle restriction observation.",
+    "Local model is approximate; independent spherical distances are reported separately from requested dimensions."
+  ]
+}

@@ -1,0 +1,34 @@
+Starting Hermes login via Nous Portal...
+Portal: http://fake-provider:8000
+Traceback (most recent call last):
+  File "/opt/hermes/agent/.venv/bin/hermes", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/opt/hermes/agent/hermes_cli/main.py", line 3615, in main
+    rc = args.func(args)
+  File "/opt/hermes/agent/hermes_cli/main.py", line 1858, in _cmd
+    result = getattr(importlib.import_module(module), attr)(args)
+  File "/opt/hermes/agent/hermes_cli/auth_commands.py", line 911, in auth_command
+    handler(args)
+    ~~~~~~~^^^^^^
+  File "/opt/hermes/agent/hermes_cli/auth_commands.py", line 407, in auth_add_command
+    entry = _add_credential(args, provider, pool, requested_type)
+  File "/opt/hermes/agent/hermes_cli/auth_commands.py", line 423, in _add_credential
+    return _add_nous_oauth_credential(args, provider)
+  File "/opt/hermes/agent/hermes_cli/auth_commands.py", line 342, in _add_nous_oauth_credential
+    creds = auth_mod._nous_device_code_login(
+        portal_base_url=getattr(args, "portal_url", None),
+    ...<2 lines>...
+        open_browser=not getattr(args, "no_browser", False), timeout_seconds=timeout,
+        insecure=bool(getattr(args, "insecure", False)), ca_bundle=getattr(args, "ca_bundle", None))
+  File "/opt/hermes/agent/hermes_cli/auth_nous.py", line 1408, in _nous_device_code_login
+    device_data = _request_device_code(
+        client=client, portal_base_url=portal_base_url, client_id=client_id, scope=scope)
+  File "/opt/hermes/agent/hermes_cli/auth_device_flow.py", line 262, in _request_device_code
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/hermes/agent/.venv/lib/python3.14/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'http://fake-provider:8000/api/oauth/device/code'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+

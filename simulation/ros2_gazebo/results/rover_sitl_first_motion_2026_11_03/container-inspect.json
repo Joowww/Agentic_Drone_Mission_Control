@@ -1,0 +1,47 @@
+{
+  "Id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+  "Name": "/tfg-ardupilot-gazebo",
+  "Image": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+  "Created": "2026-10-02T07:28:34.87176229Z",
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 255,
+    "Error": "",
+    "StartedAt": "2026-10-31T13:13:00.83481649Z",
+    "FinishedAt": "2026-11-01T11:53:00.8670071Z"
+  },
+  "Entrypoint": [
+    "/ros_entrypoint.sh"
+  ],
+  "Cmd": [
+    "bash"
+  ],
+  "Mounts": [
+    {
+      "Source": "/home/joelm/TFG/ardupilot_ros2_ws",
+      "Destination": "/root/ardu_ws",
+      "RW": true
+    },
+    {
+      "Source": "/tmp/.X11-unix",
+      "Destination": "/tmp/.X11-unix",
+      "RW": true
+    },
+    {
+      "Source": "/home/joelm/TFG/Agentic_Drone_Mission_Control",
+      "Destination": "/workspace/tfg",
+      "RW": true
+    },
+    {
+      "Source": "/usr/lib/wsl",
+      "Destination": "/usr/lib/wsl",
+      "RW": false
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.1",
+  "report_persisted": true,
+  "expected_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+  "persist_progress": true,
+  "source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/input.json",
+  "source_artifact": null,
+  "run_id": "1b69dfc7-0707-4b68-a009-062610418fe4",
+  "run_directory": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4",
+  "snapshot_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/mission.json",
+  "report_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/1b69dfc7-0707-4b68-a009-062610418fe4/report.json",
+  "mission_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+  "mission_identity": {
+    "mission_id": "simulation_navigation_drone02",
+    "name": "SITL navigation on drone_02",
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "vehicle_selection": {
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "expected_vehicle_selection": {
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "status": "ERROR",
+  "stage": "execute",
+  "reasons": [
+    "Executor raised FlightControlError: ROS2 command failed with return code 124:\n; outcome unknown."
+  ],
+  "validation": {
+    "mission_id": "simulation_navigation_drone02",
+    "mission_status": "FEASIBLE",
+    "execution_status": "APPROVED",
+    "qgc_plan_path": null,
+    "failure_reasons": [],
+    "errors": [],
+    "replan_status": "",
+    "replan_actions": []
+  },
+  "readiness": {
+    "ready": true,
+    "status": "READY",
+    "return_code": 0,
+    "message": "Simulation is healthy and both drones are ready.",
+    "output": "========================================\n TFG - Simulation Check\n========================================\n\n[1/5] Docker container...\n[PASS] Container running.\n\n[2/5] Gazebo server...\n[PASS] Gazebo runway world running.\n\n[3/5] ArduPilot processes...\n[PASS] 2 ArduCopter processes running.\n\n[4/5] ROS 2 vehicle interfaces...\n\n[PASS] /ap/v1/status\n[PASS] /ap/v2/status\n\n[5/5] Pre-arm checks...\n\n[PASS] /ap/v1 - Vehicle is Armable\n[PASS] /ap/v2 - Vehicle is Armable\n\n========================================\n SIMULATION HEALTHY\n========================================\n\nDrone 1 -> READY\nDrone 2 -> READY"
+  },
+  "compatibility_errors": [],
+  "executor_result": null,
+  "execution_attempted": true,
+  "analysis": null,
+  "started_at": "2026-10-18T21:14:36.484712+00:00",
+  "execution_started_at": "2026-10-18T21:18:50.566241+00:00",
+  "execution_finished_at": "2026-10-18T21:19:09.141109+00:00",
+  "transitions": [
+    {
+      "node": "snapshot",
+      "started_at": "2026-10-18T21:18:42.242915+00:00",
+      "finished_at": "2026-10-18T21:18:42.245750+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "validate",
+      "started_at": "2026-10-18T21:18:42.247779+00:00",
+      "finished_at": "2026-10-18T21:18:42.252449+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "check_readiness",
+      "started_at": "2026-10-18T21:18:42.253373+00:00",
+      "finished_at": "2026-10-18T21:18:50.562581+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "compatibility",
+      "started_at": "2026-10-18T21:18:50.563847+00:00",
+      "finished_at": "2026-10-18T21:18:50.564459+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "execute",
+      "started_at": "2026-10-18T21:18:50.565451+00:00",
+      "finished_at": "2026-10-18T21:19:09.141206+00:00",
+      "status": "ERROR"
+    },
+    {
+      "node": "write_report",
+      "started_at": "2026-10-18T21:19:09.143212+00:00",
+      "finished_at": "2026-10-18T21:19:09.143212+00:00",
+      "status": "ERROR"
+    }
+  ],
+  "finished_at": "2026-10-18T21:19:09.143212+00:00",
+  "scope": "Gazebo/ArduPilot SITL, simulated v2 only; at most one project-wide flight",
+  "hardware_authorized": false,
+  "subsequent_execution_authorized": false,
+  "replan_proposals": []
+}

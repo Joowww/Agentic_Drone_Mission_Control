@@ -1,0 +1,11 @@
+# HEAD 83a147d: inputs/qgroundcontrol_exporter.py at HEAD (legacy), run from a scratch copy; working tree untouched
+$ git show HEAD:inputs/qgroundcontrol_exporter.py | sha256sum
+1e3fa8fb7954563e54da0d4befbddd8e42479c123946bcdecd0dc7df8ef47111  -
+missions/examples/precision_agriculture_demo.json
+  mission actions: ['navigate', 'survey', 'take_photo'] speeds km/h: [30.0, 25.0, 25.0] autopilot: PX4
+  LEGACY items: ['NAV_TAKEOFF', 'NAV_WAYPOINT', 'NAV_WAYPOINT', 'NAV_WAYPOINT', 'NAV_RETURN_TO_LAUNCH']
+  LEGACY plannedHomePosition: [41.275, 1.987, 0.0] (mission home altitude_m is relative: 0.0)
+missions/examples/agri_demo_001_sector_a.json
+  mission actions: ['navigate', 'navigate'] speeds km/h: [10.0, 10.0] autopilot: ArduPilot
+  LEGACY items: ['NAV_TAKEOFF', 'NAV_WAYPOINT', 'NAV_WAYPOINT', 'NAV_RETURN_TO_LAUNCH']
+  LEGACY plannedHomePosition: [41.275, 1.987, 0.0] (mission home altitude_m is relative: 0.0)

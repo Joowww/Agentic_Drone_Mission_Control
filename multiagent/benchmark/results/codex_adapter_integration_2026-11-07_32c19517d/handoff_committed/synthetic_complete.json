@@ -1,0 +1,697 @@
+{
+ "classification": "READY_TO_SUBMIT_EXECUTOR_POLICY_BLOCKED",
+ "codex_commit": "57a0e303a",
+ "codex_snapshot": "committed 57a0e303a",
+ "commands": [],
+ "conversion_owner": "CLAUDE_FRAMES2D",
+ "coordinator_events": [
+  {
+   "detail": [
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED",
+    "dry_run: No physical adapter is implemented; plan is not sent"
+   ],
+   "reasons": [
+    "executor_admit: OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  {
+   "feedback_type": "GROUND_TASK_REFUSED_BY_EXECUTOR",
+   "type": "EXECUTOR_FEEDBACK"
+  }
+ ],
+ "envelope": {
+  "authorization": {
+   "mode": "OFFLINE_TEST",
+   "operator_status": "AUTHENTICATED",
+   "receipt_sha256": "cd5920d0f08a2dd624b550aedeb091180e33662e201f23bb751087a4c634ed51",
+   "record_id": "abac8f15908e2c2a7cb3f9dc366269ab02a6d08f6c64e8a11c5be60c4b495ca8",
+   "record_source": "TEST_FIXTURE"
+  },
+  "codex": {
+   "executor_request": {
+    "goal": {
+     "command_hz": 10.0,
+     "dwell_s": 1.0,
+     "frame": "odom",
+     "max_samples": 64,
+     "no_progress_s": 10.0,
+     "progress_m": 0.05,
+     "progress_rad": 0.05,
+     "timeout_s": 60.0,
+     "tolerance_m": 0.3,
+     "transform": "IDENTITY_SAME_ACCREDITED_FRAME",
+     "unit": "m",
+     "x_m": 5.500000000000001,
+     "y_m": -7.0,
+     "yaw_rad": -1.5707963267948961,
+     "yaw_tolerance_rad": 0.5
+    },
+    "kind": "ROVER_NAVIGATE_V1",
+    "limits": {
+     "call_timeout_s": 2.0,
+     "max_duration_s": 60.0,
+     "max_forward_mps": 0.3,
+     "max_yaw_rate_rad_s": 0.5,
+     "observation_max_age_s": 0.5,
+     "stop_timeout_s": 2.0,
+     "stopped_angular_rad_s": 0.02,
+     "stopped_linear_mps": 0.02
+    }
+   },
+   "snapshot": "committed 57a0e303a",
+   "v2_decision": "READY_TO_SUBMIT",
+   "v2_payload": {
+    "authorization": {
+     "authorization_receipt_sha256": "cd5920d0f08a2dd624b550aedeb091180e33662e201f23bb751087a4c634ed51",
+     "bridge_scope_sha256": "43a9e4c756800ca8535b1978b755eb48a164f66478b12207e9f74fba0e6677af",
+     "human_authorized": true,
+     "operator_id": "TEST_FIXTURE_OPERATOR",
+     "operator_status": "AUTHENTICATED",
+     "revocation_status": "ACTIVE",
+     "scope_sha256": "c658877157902284700292f08aa5378ba31e661b249afe14b4f37775f5eda1e4"
+    },
+    "constraints": {
+     "max_distance_m": 5.0,
+     "plan_id": "NAV-8c96ebc60b6e831a"
+    },
+    "dependencies": [
+     "AIR_drone_02:POI_REACHED:POI_3"
+    ],
+    "executor": {
+     "id": "codex-protected-ardurover-executor",
+     "version": "unbound"
+    },
+    "goal": {
+     "conditional": false,
+     "frame": "synthetic_orchard_local",
+     "objective": "reach_agent_declared_point:POI_3",
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "frame": "odom",
+     "observed_at_utc": "2026-11-07T16:08:10.398272+00:00",
+     "source": "TEST_FIXTURE_LOCALIZATION",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "transform": {
+      "expires_at_utc": "2026-11-07T17:08:10.598272+00:00",
+      "matrix": [
+       [
+        6.123233995736766e-17,
+        -1.0,
+        1.0
+       ],
+       [
+        1.0,
+        6.123233995736766e-17,
+        -1.5
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ],
+      "not_before_utc": "2026-11-07T15:08:10.598272+00:00",
+      "source": "TEST_FIXTURE_SURVEY",
+      "source_frame": "odom",
+      "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "target_frame": "synthetic_orchard_local",
+      "uncertainty_m": 0.02,
+      "uncertainty_rad": 0.001,
+      "validated": true
+     },
+     "uncertainty_m": 0.05,
+     "validated": true,
+     "x_m": 5.5,
+     "y_m": -5.0
+    },
+    "mission": {
+     "id": "GROUND_rover_01",
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "operator_limits": {
+     "localization_max_age_s": 2.0,
+     "localization_max_uncertainty_m": 0.3,
+     "max_distance_m": 5.0,
+     "max_speed_mps": 0.3,
+     "timeout_s": 60.0
+    },
+    "plan_id": "NAV-8c96ebc60b6e831a",
+    "plan_sha256": "0805183af5e493f248a40753b3092f49fe7ad3f9e22b121933220b0bd962b221",
+    "provenance": {
+     "source": "claude-rover-executor-bridge",
+     "source_sha256": "f265b07bb3fe10fac5a69a823e22425ca5e34f34a5e78645033e03fed700d68d"
+    },
+    "rover": {
+     "platform": "ArduRover SITL",
+     "vehicle_id": "rover_01"
+    },
+    "schema": "tfg.rover.mission-execution/2",
+    "stop_conditions": [
+     "HUMAN_STOP",
+     "AUTHORIZATION_EXPIRED",
+     "ODOMETRY_STALE",
+     "LOCALIZATION_LOST",
+     "FAILSAFE_ACTIVE",
+     "TIMEOUT",
+     "MISSION_CANCELLED",
+     "OBSERVATION_INVALIDATED"
+    ],
+    "validity": {
+     "expires_at_utc": "2026-11-07T16:09:10.598272+00:00",
+     "not_before_utc": "2026-11-07T16:08:10.598272+00:00"
+    }
+   }
+  },
+  "commands": [],
+  "conversion": {
+   "at": "2026-11-07T16:08:10.598272+00:00",
+   "chain": [
+    "inverse(synthetic_orchard_local<-odom)"
+   ],
+   "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+   "converted_by": "claude.multiagent.frames2d",
+   "from": {
+    "frame": "synthetic_orchard_local",
+    "sigma_m": 0.12,
+    "x_m": 8.0,
+    "y_m": 4.0
+   },
+   "to": {
+    "frame": "odom",
+    "sigma_m": 0.12199692619078564,
+    "x_m": 5.500000000000001,
+    "y_m": -7.0
+   },
+   "valid_until": "2026-11-07T17:08:10.598272+00:00"
+  },
+  "conversion_owner": "CLAUDE_FRAMES2D",
+  "coordinator_state": "READY_FOR_AUTHORIZATION",
+  "dependencies": [
+   {
+    "after": "AIR_drone_02",
+    "condition": "POI_REACHED",
+    "point": "POI_3",
+    "task_id": "GROUND_rover_01"
+   }
+  ],
+  "goal_handoff": {
+   "applied_conversions": [
+    {
+     "at": "2026-11-07T16:08:10.598272+00:00",
+     "chain": [
+      "inverse(synthetic_orchard_local<-odom)"
+     ],
+     "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+     "converted_by": "claude.multiagent.frames2d",
+     "from": {
+      "frame": "synthetic_orchard_local",
+      "sigma_m": 0.12,
+      "x_m": 8.0,
+      "y_m": 4.0
+     },
+     "to": {
+      "frame": "odom",
+      "sigma_m": 0.12199692619078564,
+      "x_m": 5.500000000000001,
+      "y_m": -7.0
+     },
+     "valid_until": "2026-11-07T17:08:10.598272+00:00"
+    }
+   ],
+   "constraints": {
+    "authorized_area_site_frame": [
+     [
+      -10.0,
+      -10.0
+     ],
+     [
+      30.0,
+      -10.0
+     ],
+     [
+      30.0,
+      30.0
+     ],
+     [
+      -10.0,
+      30.0
+     ]
+    ],
+    "human": {
+     "max_speed_mps": 0.3,
+     "timeout_s": 60.0
+    },
+    "operator": {
+     "localization_max_age_s": 2.0,
+     "localization_max_uncertainty_m": 0.3,
+     "max_distance_m": 5.0,
+     "max_total_sigma_m": 0.5
+    }
+   },
+   "conversion_owner": "CLAUDE_FRAMES2D",
+   "delegated_checks": [],
+   "dependencies": [
+    {
+     "after": "AIR_drone_02",
+     "condition": "POI_REACHED",
+     "point": "POI_3",
+     "task_id": "GROUND_rover_01"
+    }
+   ],
+   "frame_identity": {
+    "rover_frame_expected": "odom",
+    "site_frame": "synthetic_orchard_local"
+   },
+   "goal_rover": {
+    "frame": "odom",
+    "sigma_m": 0.12199692619078564,
+    "x_m": 5.500000000000001,
+    "y_m": -7.0
+   },
+   "goal_site": {
+    "frame": "synthetic_orchard_local",
+    "point_id": "POI_3",
+    "sigma_m": 0.12,
+    "x_m": 8.0,
+    "y_m": 4.0
+   },
+   "localization": {
+    "boot_id": "rover-boot-1",
+    "frame": "odom",
+    "observed_at": "2026-11-07T16:08:10.398272+00:00",
+    "sigma_m": 0.05,
+    "source": "TEST_FIXTURE_LOCALIZATION",
+    "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "state": "ACCREDITED",
+    "vehicle_id": "rover_01"
+   },
+   "observation": {
+    "data_kind": "TEST_FIXTURE observation from a SYNTHETIC_TEST image",
+    "observation_id": "red_target-obs-1",
+    "observed_at": "2026-11-07T16:08:08.598272+00:00",
+    "original_pose": {
+     "chain": [
+      "synthetic_orchard_local",
+      "drone_02/base_link",
+      "cam_down_fixture_optical"
+     ],
+     "frame": "synthetic_orchard_local",
+     "pose_source": "TEST_FIXTURE"
+    },
+    "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "source": "perception gate (detector on a SYNTHETIC_TEST image)",
+    "uncertainty_m": 0.12
+   },
+   "schema": "tfg.multiagent.rover-goal-handoff/1",
+   "transform_required": {
+    "from": "synthetic_orchard_local",
+    "reference": {
+     "accredited": true,
+     "chain": [
+      "inverse(synthetic_orchard_local<-odom)"
+     ],
+     "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+     "codex_matrix": {
+      "expires_at_utc": "2026-11-07T17:08:10.598272+00:00",
+      "matrix": [
+       [
+        6.123233995736766e-17,
+        1.0,
+        1.5
+       ],
+       [
+        -1.0,
+        6.123233995736766e-17,
+        1.0
+       ],
+       [
+        0.0,
+        0.0,
+        1.0
+       ]
+      ],
+      "not_before_utc": "2026-11-07T15:08:10.598272+00:00",
+      "source": "TEST_FIXTURE_SURVEY",
+      "source_frame": "synthetic_orchard_local",
+      "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "target_frame": "odom",
+      "uncertainty_m": 0.0200810856280232,
+      "uncertainty_rad": 0.001,
+      "validated": true
+     },
+     "goal_sigma_after_transform_m": 0.12199692619078564,
+     "sigma_m": 0.0200810856280232,
+     "sigma_rad": 0.001,
+     "source_frame": "synthetic_orchard_local",
+     "target_frame": "odom",
+     "valid_until": "2026-11-07T17:08:10.598272+00:00"
+    },
+    "status": "APPLIED_ONCE",
+    "to": "odom"
+   },
+   "vehicle": {
+    "boot_id": "rover-boot-1",
+    "vehicle_id": "rover_01"
+   }
+  },
+  "limits": {
+   "human": {
+    "max_speed_mps": 0.3,
+    "timeout_s": 60.0
+   },
+   "operator": {
+    "localization_max_age_s": 2.0,
+    "localization_max_uncertainty_m": 0.3,
+    "max_distance_m": 5.0,
+    "max_total_sigma_m": 0.5
+   }
+  },
+  "mission_id": "GROUND_rover_01",
+  "movement_authorized": false,
+  "observation": {
+   "data_kind": "TEST_FIXTURE observation from a SYNTHETIC_TEST image",
+   "observation_id": "red_target-obs-1",
+   "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "plan_id": "NAV-8c96ebc60b6e831a",
+  "proposal_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "rover_id": "rover_01",
+  "schema": "tfg.multiagent.rover-submission/1",
+  "scope": {
+   "bridge_scope_sha256": "43a9e4c756800ca8535b1978b755eb48a164f66478b12207e9f74fba0e6677af",
+   "codex_plan_sha256": "0805183af5e493f248a40753b3092f49fe7ad3f9e22b121933220b0bd962b221",
+   "codex_scope_sha256": "c658877157902284700292f08aa5378ba31e661b249afe14b4f37775f5eda1e4"
+  },
+  "status": "READY_TO_SUBMIT_NOT_EXECUTED",
+  "target": {
+   "point_id": "POI_3",
+   "site_goal": {
+    "frame": "synthetic_orchard_local",
+    "sigma_m": 0.12,
+    "x_m": 8.0,
+    "y_m": 4.0
+   }
+  },
+  "validity": {
+   "expires_at_utc": "2026-11-07T16:09:10.598272+00:00",
+   "not_before_utc": "2026-11-07T16:08:10.598272+00:00"
+  }
+ },
+ "error_categories": [
+  "EXECUTOR_POLICY"
+ ],
+ "errors": [
+  {
+   "category": "EXECUTOR_POLICY",
+   "code": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "detail": "OPERATIONAL_ROVER_POLICY_DISABLED",
+   "stage": "executor_admit"
+  }
+ ],
+ "mode": "OFFLINE_TEST",
+ "movement_executed": false,
+ "provenance": null,
+ "schema": "tfg.multiagent.rover-handoff/1",
+ "stages": [
+  {
+   "reasons": [],
+   "stage": "request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "coordinator",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "authorization",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "stage": "codex_bridge",
+   "status": "PASS"
+  },
+  {
+   "conversion": {
+    "at": "2026-11-07T16:08:10.598272+00:00",
+    "chain": [
+     "inverse(synthetic_orchard_local<-odom)"
+    ],
+    "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "converted_by": "claude.multiagent.frames2d",
+    "from": {
+     "frame": "synthetic_orchard_local",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "to": {
+     "frame": "odom",
+     "sigma_m": 0.12199692619078564,
+     "x_m": 5.500000000000001,
+     "y_m": -7.0
+    },
+    "valid_until": "2026-11-07T17:08:10.598272+00:00"
+   },
+   "goal_base_link": {
+    "frame": "base_link",
+    "x_m": -2.0,
+    "y_m": -1.0106430996148606e-15
+   },
+   "goal_handoff": {
+    "applied_conversions": [
+     {
+      "at": "2026-11-07T16:08:10.598272+00:00",
+      "chain": [
+       "inverse(synthetic_orchard_local<-odom)"
+      ],
+      "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "converted_by": "claude.multiagent.frames2d",
+      "from": {
+       "frame": "synthetic_orchard_local",
+       "sigma_m": 0.12,
+       "x_m": 8.0,
+       "y_m": 4.0
+      },
+      "to": {
+       "frame": "odom",
+       "sigma_m": 0.12199692619078564,
+       "x_m": 5.500000000000001,
+       "y_m": -7.0
+      },
+      "valid_until": "2026-11-07T17:08:10.598272+00:00"
+     }
+    ],
+    "constraints": {
+     "authorized_area_site_frame": [
+      [
+       -10.0,
+       -10.0
+      ],
+      [
+       30.0,
+       -10.0
+      ],
+      [
+       30.0,
+       30.0
+      ],
+      [
+       -10.0,
+       30.0
+      ]
+     ],
+     "human": {
+      "max_speed_mps": 0.3,
+      "timeout_s": 60.0
+     },
+     "operator": {
+      "localization_max_age_s": 2.0,
+      "localization_max_uncertainty_m": 0.3,
+      "max_distance_m": 5.0,
+      "max_total_sigma_m": 0.5
+     }
+    },
+    "conversion_owner": "CLAUDE_FRAMES2D",
+    "delegated_checks": [],
+    "dependencies": [
+     {
+      "after": "AIR_drone_02",
+      "condition": "POI_REACHED",
+      "point": "POI_3",
+      "task_id": "GROUND_rover_01"
+     }
+    ],
+    "frame_identity": {
+     "rover_frame_expected": "odom",
+     "site_frame": "synthetic_orchard_local"
+    },
+    "goal_rover": {
+     "frame": "odom",
+     "sigma_m": 0.12199692619078564,
+     "x_m": 5.500000000000001,
+     "y_m": -7.0
+    },
+    "goal_site": {
+     "frame": "synthetic_orchard_local",
+     "point_id": "POI_3",
+     "sigma_m": 0.12,
+     "x_m": 8.0,
+     "y_m": 4.0
+    },
+    "localization": {
+     "boot_id": "rover-boot-1",
+     "frame": "odom",
+     "observed_at": "2026-11-07T16:08:10.398272+00:00",
+     "sigma_m": 0.05,
+     "source": "TEST_FIXTURE_LOCALIZATION",
+     "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+     "state": "ACCREDITED",
+     "vehicle_id": "rover_01"
+    },
+    "observation": {
+     "data_kind": "TEST_FIXTURE observation from a SYNTHETIC_TEST image",
+     "observation_id": "red_target-obs-1",
+     "observed_at": "2026-11-07T16:08:08.598272+00:00",
+     "original_pose": {
+      "chain": [
+       "synthetic_orchard_local",
+       "drone_02/base_link",
+       "cam_down_fixture_optical"
+      ],
+      "frame": "synthetic_orchard_local",
+      "pose_source": "TEST_FIXTURE"
+     },
+     "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+     "source": "perception gate (detector on a SYNTHETIC_TEST image)",
+     "uncertainty_m": 0.12
+    },
+    "schema": "tfg.multiagent.rover-goal-handoff/1",
+    "transform_required": {
+     "from": "synthetic_orchard_local",
+     "reference": {
+      "accredited": true,
+      "chain": [
+       "inverse(synthetic_orchard_local<-odom)"
+      ],
+      "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "codex_matrix": {
+       "expires_at_utc": "2026-11-07T17:08:10.598272+00:00",
+       "matrix": [
+        [
+         6.123233995736766e-17,
+         1.0,
+         1.5
+        ],
+        [
+         -1.0,
+         6.123233995736766e-17,
+         1.0
+        ],
+        [
+         0.0,
+         0.0,
+         1.0
+        ]
+       ],
+       "not_before_utc": "2026-11-07T15:08:10.598272+00:00",
+       "source": "TEST_FIXTURE_SURVEY",
+       "source_frame": "synthetic_orchard_local",
+       "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+       "target_frame": "odom",
+       "uncertainty_m": 0.0200810856280232,
+       "uncertainty_rad": 0.001,
+       "validated": true
+      },
+      "goal_sigma_after_transform_m": 0.12199692619078564,
+      "sigma_m": 0.0200810856280232,
+      "sigma_rad": 0.001,
+      "source_frame": "synthetic_orchard_local",
+      "target_frame": "odom",
+      "valid_until": "2026-11-07T17:08:10.598272+00:00"
+     },
+     "status": "APPLIED_ONCE",
+     "to": "odom"
+    },
+    "vehicle": {
+     "boot_id": "rover-boot-1",
+     "vehicle_id": "rover_01"
+    }
+   },
+   "goal_rover": {
+    "frame": "odom",
+    "sigma_m": 0.12199692619078564,
+    "x_m": 5.500000000000001,
+    "y_m": -7.0
+   },
+   "reasons": [],
+   "stage": "frames",
+   "status": "PASS"
+  },
+  {
+   "commands": [],
+   "movement_authorized": false,
+   "reasons": [],
+   "schema_errors": [
+    "['authorization']: {'bridge_scope_sha256': '43a9e4c756800ca8535b1978b755eb48a164f66478b12207e9f74fba0e6677af', 'human_authorized': True, 'operator_id': 'TEST_FIXTURE_OPERATOR', 'o"
+   ],
+   "stage": "codex_v2",
+   "status": "PASS"
+  },
+  {
+   "reasons": [],
+   "request": {
+    "goal": {
+     "command_hz": 10.0,
+     "dwell_s": 1.0,
+     "frame": "odom",
+     "max_samples": 64,
+     "no_progress_s": 10.0,
+     "progress_m": 0.05,
+     "progress_rad": 0.05,
+     "timeout_s": 60.0,
+     "tolerance_m": 0.3,
+     "transform": "IDENTITY_SAME_ACCREDITED_FRAME",
+     "unit": "m",
+     "x_m": 5.500000000000001,
+     "y_m": -7.0,
+     "yaw_rad": -1.5707963267948961,
+     "yaw_tolerance_rad": 0.5
+    },
+    "kind": "ROVER_NAVIGATE_V1",
+    "limits": {
+     "call_timeout_s": 2.0,
+     "max_duration_s": 60.0,
+     "max_forward_mps": 0.3,
+     "max_yaw_rate_rad_s": 0.5,
+     "observation_max_age_s": 0.5,
+     "stop_timeout_s": 2.0,
+     "stopped_angular_rad_s": 0.02,
+     "stopped_linear_mps": 0.02
+    }
+   },
+   "stage": "executor_request",
+   "status": "PASS"
+  },
+  {
+   "reasons": [
+    "OPERATIONAL_ROVER_POLICY_DISABLED"
+   ],
+   "stage": "executor_admit",
+   "status": "BLOCKED"
+  },
+  {
+   "physical_effect": false,
+   "reasons": [
+    "No physical adapter is implemented; plan is not sent"
+   ],
+   "stage": "dry_run",
+   "status": "REFUSED"
+  }
+ ]
+}

@@ -1,0 +1,164 @@
+{
+ "aerial": {
+  "agent": "drone_swarm_agent",
+  "clarifications": [
+   "A1: MISSING_COORDINATES: the objective names no site point and gives no coordinates"
+  ],
+  "evidence": {
+   "allocation_source": "DETERMINISTIC_REFERENCE",
+   "battery_percent_declared": {},
+   "coordination": null,
+   "coordination_attempts": [],
+   "drones_considered": [
+    "drone_01",
+    "drone_02"
+   ],
+   "model_proposal_check": null,
+   "note": "allocation is offline planning; no coordination in flight is implied",
+   "reference": null,
+   "replanned_for_coordination": false,
+   "wind_speed_kmh": 0.0
+  },
+  "incompatible": [],
+  "movement_authorized": false,
+  "pending_authorization": true,
+  "proposals": [],
+  "schema": "tfg.multiagent.agent-result/1",
+  "status": "NEEDS_CLARIFICATION"
+ },
+ "authorization": {
+  "by": null,
+  "granted": false,
+  "how": "each task separately through the existing entries and gates",
+  "required": true
+ },
+ "brief": {
+  "aerial_objectives": [
+   {
+    "coordinates": null,
+    "description": "inspect the two closest points to the shed",
+    "objective_id": "A1",
+    "point_id": null,
+    "required_sensor": null
+   }
+  ],
+  "altitude_m": null,
+  "battery_percent": {},
+  "contradictions": [],
+  "drones": [],
+  "ground_objectives": [],
+  "rover": null,
+  "schema": "tfg.multiagent.mission-brief/1",
+  "site_id": null,
+  "unsafe_requests": [],
+  "wind_speed_kmh": null
+ },
+ "commands_sent": 0,
+ "context": {
+  "context_id": "orchard_two_drones_v2",
+  "fleet": "agri_demo_fleet v2",
+  "provenance": "SYNTHETIC",
+  "site": "synthetic_orchard v2"
+ },
+ "coordination": null,
+ "data_kind": "SYNTHETIC",
+ "elapsed_s": 0.004496811976423487,
+ "ground": {
+  "agent": "rover_agent",
+  "clarifications": [],
+  "evidence": {},
+  "incompatible": [],
+  "movement_authorized": false,
+  "pending_authorization": true,
+  "proposals": [],
+  "schema": "tfg.multiagent.agent-result/1",
+  "status": "NO_TASKS"
+ },
+ "interpretation": {
+  "availability": {
+   "clarifications": [],
+   "excluded_from_planning": [],
+   "levels": [
+    "DECLARED_TEXT",
+    "INVENTORY",
+    "OPERATIONAL (not established here)"
+   ],
+   "operational_availability": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+   "schema": "tfg.multiagent.availability/1",
+   "vehicles": [
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "drone_01"
+    },
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "drone_02"
+    },
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "rover_01"
+    }
+   ]
+  },
+  "contract_valid": true,
+  "final_reason": "A1: MISSING_COORDINATES: the objective names no site point and gives no coordinates",
+  "final_status": "NEEDS_CLARIFICATION",
+  "json_valid": null,
+  "model_reply_sha256": null,
+  "operator_text": "Inspect the two closest points to the shed.",
+  "operator_text_sha256": "bb4e2ad053d1d3cebb4ba88b62a6a1ab3e4b40bb52573cfe49cf4e69da24af69",
+  "parse_error": null,
+  "risk_signals": [],
+  "safety_decision": {
+   "authority_granted": false,
+   "decided_by": "deterministic orchestrator policy",
+   "decision": "NO_UNSAFE_SIGNAL",
+   "policy": "safety/2"
+  }
+ },
+ "interpreter": {
+  "data_kind": "DETERMINISTIC",
+  "latency_s": 9.64829814620316e-05,
+  "model": "rules-interpreter",
+  "provider": "deterministic",
+  "version": "1"
+ },
+ "joint_spatial": [],
+ "mission_id": "M-68f39747bd84a82f",
+ "movement_authorized": false,
+ "pipeline": "v2",
+ "proposal_sha256": "c6cbed19c11eac8ec55bb0d5d02c9e0ffe4c7098e3d9446493f0726cc88c0790",
+ "reasons": [
+  "A1: MISSING_COORDINATES: the objective names no site point and gives no coordinates"
+ ],
+ "schema": "tfg.multiagent.global-proposal/1",
+ "status": "NEEDS_CLARIFICATION",
+ "swarm_coordination": null,
+ "tasks": [],
+ "template": null,
+ "vehicles_contacted": 0
+}

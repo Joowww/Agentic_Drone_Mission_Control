@@ -1,0 +1,112 @@
+--- a/include/uxr/agent/client/ProxyClient.hpp
++++ b/include/uxr/agent/client/ProxyClient.hpp
+@@ -70,0 +71,2 @@
++    unsigned long long tfg_client_instance() const noexcept { return tfg_client_instance_; }
++
+@@ -131,0 +134 @@
++    unsigned long long tfg_client_instance_;
+--- a/src/cpp/client/ProxyClient.cpp
++++ b/src/cpp/client/ProxyClient.cpp
+@@ -0,0 +1 @@
++#include <uxr/agent/diagnostic/trace.hpp>
+@@ -41 +42,2 @@
+-    : representation_(representation)
++    : tfg_client_instance_(tfg_xrce_trace::next_id())
++    , representation_(representation)
+@@ -498,0 +501,3 @@
++    tfg_xrce_trace::Scope trace_scope(tfg_client_instance_,
++        conversion::clientkey_to_raw(representation_.client_key()),
++        static_cast<unsigned>(representation_.session_id()), conversion::objectid_to_raw(object_id));
+@@ -548,0 +554 @@
++    trace_scope.commit(rv);
+--- a/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp
++++ b/src/cpp/middleware/fastdds/FastDDSMiddleware.cpp
+@@ -0,0 +1,2 @@
++#include <uxr/agent/diagnostic/trace.hpp>
++#include <rmw_fastrtps_shared_cpp/create_rmw_gid.hpp>
+@@ -351,0 +354,13 @@
++                if (tfg_xrce_trace::enabled()) {
++                    try {
++                        const auto* native = emplace_res.first->second->ptr();
++                        const auto gid = rmw_fastrtps_shared_cpp::create_rmw_gid("rmw_fastrtps_cpp", native->guid());
++                        const auto& guid = native->guid();
++                        std::string native_hex = tfg_xrce_trace::hex(guid.guidPrefix.value, 12) +
++                            tfg_xrce_trace::hex(guid.entityId.value, 4);
++                        tfg_xrce_trace::writer(datawriter_id, native_hex,
++                            tfg_xrce_trace::hex(gid.data, sizeof(gid.data)), gid.implementation_identifier,
++                            native->get_topic()->get_name(), native->get_topic()->get_type_name(),
++                            (**it_publisher->second->get_participant())->get_domain_id());
++                    } catch (...) { tfg_xrce_trace::emit("\"event\":\"trace_error\",\"incomplete\":true"); }
++                }
+@@ -377,0 +393,13 @@
++                if (tfg_xrce_trace::enabled()) {
++                    try {
++                        const auto* native = emplace_res.first->second->ptr();
++                        const auto gid = rmw_fastrtps_shared_cpp::create_rmw_gid("rmw_fastrtps_cpp", native->guid());
++                        const auto& guid = native->guid();
++                        std::string native_hex = tfg_xrce_trace::hex(guid.guidPrefix.value, 12) +
++                            tfg_xrce_trace::hex(guid.entityId.value, 4);
++                        tfg_xrce_trace::writer(datawriter_id, native_hex,
++                            tfg_xrce_trace::hex(gid.data, sizeof(gid.data)), gid.implementation_identifier,
++                            native->get_topic()->get_name(), native->get_topic()->get_type_name(),
++                            (**it_publisher->second->get_participant())->get_domain_id());
++                    } catch (...) { tfg_xrce_trace::emit("\"event\":\"trace_error\",\"incomplete\":true"); }
++                }
+@@ -407 +435,14 @@
+-                    callback_factory_.execute_callbacks(Middleware::Kind::FASTDDS,
++                    if (tfg_xrce_trace::enabled()) {
++                    try {
++                        const auto* native = emplace_res.first->second->ptr();
++                        const auto gid = rmw_fastrtps_shared_cpp::create_rmw_gid("rmw_fastrtps_cpp", native->guid());
++                        const auto& guid = native->guid();
++                        std::string native_hex = tfg_xrce_trace::hex(guid.guidPrefix.value, 12) +
++                            tfg_xrce_trace::hex(guid.entityId.value, 4);
++                        tfg_xrce_trace::writer(datawriter_id, native_hex,
++                            tfg_xrce_trace::hex(gid.data, sizeof(gid.data)), gid.implementation_identifier,
++                            native->get_topic()->get_name(), native->get_topic()->get_type_name(),
++                            (**it_publisher->second->get_participant())->get_domain_id());
++                    } catch (...) { tfg_xrce_trace::emit("\"event\":\"trace_error\",\"incomplete\":true"); }
++                }
++                callback_factory_.execute_callbacks(Middleware::Kind::FASTDDS,
+--- a/src/cpp/processor/Processor.cpp
++++ b/src/cpp/processor/Processor.cpp
+@@ -0,0 +1 @@
++#include <uxr/agent/diagnostic/peer_endpoint.hpp>
+@@ -100,0 +102,5 @@
++            if (tfg_xrce_trace::enabled()) {
++                input_packet.message->tfg_diagnostic_peer_ = tfg_xrce_trace::received_peer(
++                    client->tfg_client_instance(), conversion::clientkey_to_raw(client->get_client_key()),
++                    static_cast<unsigned>(client->get_session_id()), input_packet.source);
++            }
+@@ -103,0 +110,8 @@
++                tfg_xrce_trace::PeerScope tfg_peer_scope;
++                if (tfg_xrce_trace::enabled()) {
++                    tfg_peer_scope.bind(client->tfg_client_instance(),
++                        conversion::clientkey_to_raw(client->get_client_key()), static_cast<unsigned>(client->get_session_id()),
++                        tfg_xrce_trace::peer_from_message(input_packet.message->tfg_diagnostic_peer_,
++                            client->tfg_client_instance(), conversion::clientkey_to_raw(client->get_client_key()),
++                            static_cast<unsigned>(client->get_session_id())));
++                }
+@@ -716,0 +731,7 @@
++        // Reassembly does not preserve the source of every fragment. Never
++        // inherit the last fragment's peer as whole-message provenance.
++        tfg_xrce_trace::PeerScope tfg_unknown_fragment;
++        if (tfg_xrce_trace::enabled()) {
++            tfg_unknown_fragment.bind(client.tfg_client_instance(),
++                conversion::clientkey_to_raw(client.get_client_key()), static_cast<unsigned>(client.get_session_id()), {});
++        }
+--- a/include/uxr/agent/message/InputMessage.hpp
++++ b/include/uxr/agent/message/InputMessage.hpp
+@@ -0,0 +1 @@
++#include <uxr/agent/diagnostic/trace.hpp>
+@@ -29,0 +31,2 @@
++    tfg_xrce_trace::MessagePeer tfg_diagnostic_peer_;
++
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -605,0 +606,5 @@
++
++# TFG opt-in diagnostic dependency. No callbacks removed, no payload tracing.
++find_package(rmw_fastrtps_shared_cpp REQUIRED)
++target_include_directories(microxrcedds_agent PRIVATE ${rmw_fastrtps_shared_cpp_INCLUDE_DIRS})
++target_link_libraries(microxrcedds_agent PRIVATE ${rmw_fastrtps_shared_cpp_LIBRARIES})

@@ -1,0 +1,67 @@
+{
+  "automatic_retry": false,
+  "capture_files": [
+    "capture-provenance-ae548c01-99f2-4614-a774-bfe816b11f1c.json",
+    "hermes-events-2026-10-22.jsonl",
+    "hermes-tool-offers-2026-10-22.jsonl"
+  ],
+  "case_id": "mcp-get-mission-state",
+  "config_sha256_edited": "b7c9e418bfac5e7cc857ebe5e3355f7f117bf5da64d94f217da8eceb1c015c3c",
+  "config_sha256_original": "c99d1a88cb3cf578973d50e84b12d605b7b2ec28225ff55a034282d6fe08f4fb",
+  "elapsed_wall_s": 27.247,
+  "finished_at_utc": "2026-10-22T16:40:36.009197+00:00",
+  "hermes_invocations": 1,
+  "mcp_tool_trial": {
+    "expected_tool_status": "NOT_FOUND",
+    "mcp_schema_cache_sha256_after": "b642aa395f37abb54abf52598b5a5a49c1f3569190b1daf2421614d1a0bf9b1c",
+    "mcp_schema_cache_sha256_before": "d2168860e2d99db9281621725c080b4abc68a1520d1258e10a771f53cfdc5394",
+    "mcp_server_processes_after": 0,
+    "neutral_run_id": "00000000-0000-4000-8000-000000000000",
+    "prompt": "Llama una sola vez a la herramienta mcp__tfg_mission_control__get_mission_state con run_id=\"00000000-0000-4000-8000-000000000000\" y view=\"summary\". Después responde únicamente con el valor del campo status del resultado.",
+    "prompt_sha256": "f0c45b0a97bbf7439360b0e0b1c774c7245a353c2836bd70cdc66d9310f6015b",
+    "registry_name": "mcp__tfg_mission_control__get_mission_state",
+    "server": "tfg-mission-control",
+    "server_sources_sha256": {
+      "tools/hermes_mcp_server.py": "8d531d4b5ebf5a231cc6335cb8380dfecd74d1475e06a6428f2f00a9b04cbd6c",
+      "tools/mission_response_views.py": "b80593fab857562b3eb0819c2c74fa0b503fb5a526cc16f4f3791658146b0752",
+      "tools/mission_state.py": "6137f000ed2344f7b5abcc1bfb85d67efe937dfb0bc534df09612dd92297617e",
+      "tools/virtual_preflight_jobs.py": "64ec1039eacd53d654ab1311e3b2003f7fb530dabfbfe205b646ad164485fd17"
+    },
+    "tool": "get_mission_state",
+    "tool_classification": "read-only: run_id lookup reads job/report files only; verified offline under an audit hook (no writes, mkdir, subprocess or socket)",
+    "tools_filter": {
+      "include": [
+        "get_mission_state"
+      ],
+      "prompts": false,
+      "resources": false
+    },
+    "toolsets_argument": "tfg-mission-control"
+  },
+  "model_configured": "poolside/laguna-s-2.1:free",
+  "plugin_installed_sha256": {
+    "__init__.py": "7b7c046c740e0ea6ce5531534a6bae30934cc31b9e9ba5b95c6704a8e07ac0e3",
+    "capture.py": "0c2b7a0aebc195b71112233117e90f56bee594e9f6e66415ab8b38e0aa6cbd02",
+    "event.schema.json": "e5b9f3d076eadcdb0bd40215a15a3d37978ab3da72bbd0f1d1613a3d354fa7a3",
+    "plugin.yaml": "f66e2bb0e227f0884173492fa9d7de81ddd7e1d41284078589f013e88a20bdd7",
+    "tool-offer.schema.json": "db03ee96f1534c320a6ba9adef0f5d1ad5b274c0fa7cec9617a6322ccc061089"
+  },
+  "prompt_sha256": "f0c45b0a97bbf7439360b0e0b1c774c7245a353c2836bd70cdc66d9310f6015b",
+  "provider_configured": "nous",
+  "restore": {
+    "config": "restored",
+    "error_type": null,
+    "ok": true,
+    "plugin": "removed"
+  },
+  "return_code": 0,
+  "run_id": "real-hermes-20261022",
+  "started_at_utc": "2026-10-22T16:40:08.765221+00:00",
+  "stderr_bytes": 0,
+  "stdout_sha256": "f03bb5c006fd9109fce277156316178ce18f23573b72243ba5e218c12b55f40f",
+  "timed_out": false,
+  "timeout_s": 120,
+  "toolset_selection": "tfg-mission-control",
+  "utility_version": "1",
+  "verified_hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8"
+}

@@ -1,0 +1,1045 @@
+{
+  "case": "local-planning-demo",
+  "limits": [
+    "one run is not a reliability or performance measurement",
+    "token counters are Hermes-normalized; zeros may be unconfirmed",
+    "offered = tool names in each request body, not a provider-side check",
+    "the mission verdict comes from finalization.json, never from the model's text"
+  ],
+  "per_turn": {
+    "pilot-20261108-r02-t1": {
+      "comparative": {
+        "data_kinds": {
+          "captured_hermes_metadata": 5
+        },
+        "groups": [
+          {
+            "case_id": "mcp-local-planning-demo",
+            "cost": {
+              "computed": false,
+              "reason": "no declared tariffs"
+            },
+            "experiment": "pilot-20261108-r02-t1",
+            "failures": {
+              "calls_sharing_api_request_with_an_error": 0,
+              "error_types": {},
+              "llm_error_count": 0,
+              "status_codes": {}
+            },
+            "first_chunk_offset_s": {
+              "caveat": "equals time-to-first-chunk only when the call had no retry",
+              "stats": {
+                "max": 6.1361448764801025,
+                "mean": 4.874251921971639,
+                "median": 4.539318561553955,
+                "min": 3.9472923278808594,
+                "n": 3,
+                "sum": 14.622755765914917
+              }
+            },
+            "latency_s": {
+              "basis": "hermes_hook_wall_clock",
+              "excluded": {},
+              "scope": "api_call_from_first_attempt (includes retries)",
+              "stats": {
+                "max": 10.769398927688599,
+                "mean": 7.1496232350667315,
+                "median": 6.138580560684204,
+                "min": 4.540890216827393,
+                "n": 3,
+                "sum": 21.448869705200195
+              }
+            },
+            "model": "custom/qwen3-4b-instruct-64k",
+            "sample_size": {
+              "calls_with_measured_latency": 3,
+              "calls_with_usage": 3,
+              "calls_without_measured_latency": 0,
+              "calls_without_usage": 0,
+              "llm_calls": 3,
+              "llm_errors": 0
+            },
+            "tokens": {
+              "derived_sums_not_additive_with_counters": {
+                "prompt_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "derived_sum_computed_by_hermes",
+                  "nonzero_values": {
+                    "max": 20014,
+                    "mean": 12758.333333333334,
+                    "median": 12833,
+                    "min": 5428,
+                    "n": 3,
+                    "sum": 38275
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 20014,
+                    "mean": 12758.333333333334,
+                    "median": 12833,
+                    "min": 5428,
+                    "n": 3,
+                    "sum": 38275
+                  },
+                  "status_counts": {
+                    "derived_nonzero": 3
+                  }
+                },
+                "total_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "derived_sum_computed_by_hermes",
+                  "nonzero_values": {
+                    "max": 20313,
+                    "mean": 12979.666666666666,
+                    "median": 12903,
+                    "min": 5723,
+                    "n": 3,
+                    "sum": 38939
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 20313,
+                    "mean": 12979.666666666666,
+                    "median": 12903,
+                    "min": 5723,
+                    "n": 3,
+                    "sum": 38939
+                  },
+                  "status_counts": {
+                    "derived_nonzero": 3
+                  }
+                }
+              },
+              "normalized_counters": {
+                "cache_read_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": {
+                    "max": 12902,
+                    "mean": 6776.333333333333,
+                    "median": 5455,
+                    "min": 1972,
+                    "n": 3,
+                    "sum": 20329
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 12902,
+                    "mean": 6776.333333333333,
+                    "median": 5455,
+                    "min": 1972,
+                    "n": 3,
+                    "sum": 20329
+                  },
+                  "status_counts": {
+                    "nonzero_normalized": 3
+                  }
+                },
+                "cache_write_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": null,
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 0,
+                    "mean": 0.0,
+                    "median": 0,
+                    "min": 0,
+                    "n": 3,
+                    "sum": 0
+                  },
+                  "status_counts": {
+                    "zero_unconfirmed": 3
+                  }
+                },
+                "input_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": {
+                    "max": 7378,
+                    "mean": 5982.0,
+                    "median": 7112,
+                    "min": 3456,
+                    "n": 3,
+                    "sum": 17946
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 7378,
+                    "mean": 5982.0,
+                    "median": 7112,
+                    "min": 3456,
+                    "n": 3,
+                    "sum": 17946
+                  },
+                  "status_counts": {
+                    "nonzero_normalized": 3
+                  }
+                },
+                "output_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": {
+                    "max": 299,
+                    "mean": 221.33333333333334,
+                    "median": 295,
+                    "min": 70,
+                    "n": 3,
+                    "sum": 664
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 299,
+                    "mean": 221.33333333333334,
+                    "median": 295,
+                    "min": 70,
+                    "n": 3,
+                    "sum": 664
+                  },
+                  "status_counts": {
+                    "nonzero_normalized": 3
+                  }
+                },
+                "reasoning_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": null,
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 0,
+                    "mean": 0.0,
+                    "median": 0,
+                    "min": 0,
+                    "n": 3,
+                    "sum": 0
+                  },
+                  "status_counts": {
+                    "zero_unconfirmed": 3
+                  }
+                }
+              },
+              "semantics": "Hermes-normalised summaries, not raw provider usage"
+            }
+          }
+        ],
+        "tools": [
+          {
+            "case_id": "mcp-local-planning-demo",
+            "duration_source_counts": {
+              "hermes_reported_ms": 2
+            },
+            "experiment": "pilot-20261108-r02-t1",
+            "measured_duration_ms": {
+              "max": 78,
+              "mean": 45.5,
+              "median": 45.5,
+              "min": 13,
+              "n": 2,
+              "sum": 91
+            },
+            "note": "only duration_source=hermes_reported_ms counts as measured; 0 and timeout values are not",
+            "status_counts": {
+              "ok": 2
+            },
+            "tool_calls": 2
+          }
+        ]
+      },
+      "comparative_kinds": [
+        "captured_hermes_metadata"
+      ],
+      "events_read": 5,
+      "excluded_from_comparison": {},
+      "summary_version": "1"
+    },
+    "pilot-20261108-r02-t2": {
+      "comparative": {
+        "data_kinds": {
+          "captured_hermes_metadata": 7
+        },
+        "groups": [
+          {
+            "case_id": "mcp-local-planning-demo",
+            "cost": {
+              "computed": false,
+              "reason": "no declared tariffs"
+            },
+            "experiment": "pilot-20261108-r02-t2",
+            "failures": {
+              "calls_sharing_api_request_with_an_error": 0,
+              "error_types": {},
+              "llm_error_count": 0,
+              "status_codes": {}
+            },
+            "first_chunk_offset_s": {
+              "caveat": "equals time-to-first-chunk only when the call had no retry",
+              "stats": {
+                "max": 9.280019521713257,
+                "mean": 5.383317589759827,
+                "median": 4.92931604385376,
+                "min": 2.3946187496185303,
+                "n": 4,
+                "sum": 21.533270359039307
+              }
+            },
+            "latency_s": {
+              "basis": "hermes_hook_wall_clock",
+              "excluded": {},
+              "scope": "api_call_from_first_attempt (includes retries)",
+              "stats": {
+                "max": 15.736710548400879,
+                "mean": 8.274255275726318,
+                "median": 7.481640458106995,
+                "min": 2.3970296382904053,
+                "n": 4,
+                "sum": 33.09702110290527
+              }
+            },
+            "model": "custom/qwen3-4b-instruct-64k",
+            "sample_size": {
+              "calls_with_measured_latency": 4,
+              "calls_with_usage": 4,
+              "calls_without_measured_latency": 0,
+              "calls_without_usage": 0,
+              "llm_calls": 4,
+              "llm_errors": 0
+            },
+            "tokens": {
+              "derived_sums_not_additive_with_counters": {
+                "prompt_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "derived_sum_computed_by_hermes",
+                  "nonzero_values": {
+                    "max": 32033,
+                    "mean": 25419.25,
+                    "median": 24603.5,
+                    "min": 20437,
+                    "n": 4,
+                    "sum": 101677
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 32033,
+                    "mean": 25419.25,
+                    "median": 24603.5,
+                    "min": 20437,
+                    "n": 4,
+                    "sum": 101677
+                  },
+                  "status_counts": {
+                    "derived_nonzero": 4
+                  }
+                },
+                "total_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "derived_sum_computed_by_hermes",
+                  "nonzero_values": {
+                    "max": 32403,
+                    "mean": 25627.75,
+                    "median": 24805.0,
+                    "min": 20498,
+                    "n": 4,
+                    "sum": 102511
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 32403,
+                    "mean": 25627.75,
+                    "median": 24805.0,
+                    "min": 20498,
+                    "n": 4,
+                    "sum": 102511
+                  },
+                  "status_counts": {
+                    "derived_nonzero": 4
+                  }
+                }
+              },
+              "normalized_counters": {
+                "cache_read_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": {
+                    "max": 27104,
+                    "mean": 22515.25,
+                    "median": 21322.5,
+                    "min": 20312,
+                    "n": 4,
+                    "sum": 90061
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 27104,
+                    "mean": 22515.25,
+                    "median": 21322.5,
+                    "min": 20312,
+                    "n": 4,
+                    "sum": 90061
+                  },
+                  "status_counts": {
+                    "nonzero_normalized": 4
+                  }
+                },
+                "cache_write_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": null,
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 0,
+                    "mean": 0.0,
+                    "median": 0.0,
+                    "min": 0,
+                    "n": 4,
+                    "sum": 0
+                  },
+                  "status_counts": {
+                    "zero_unconfirmed": 4
+                  }
+                },
+                "input_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": {
+                    "max": 4929,
+                    "mean": 2904.0,
+                    "median": 3281.0,
+                    "min": 125,
+                    "n": 4,
+                    "sum": 11616
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 4929,
+                    "mean": 2904.0,
+                    "median": 3281.0,
+                    "min": 125,
+                    "n": 4,
+                    "sum": 11616
+                  },
+                  "status_counts": {
+                    "nonzero_normalized": 4
+                  }
+                },
+                "output_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": {
+                    "max": 370,
+                    "mean": 208.5,
+                    "median": 201.5,
+                    "min": 61,
+                    "n": 4,
+                    "sum": 834
+                  },
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 370,
+                    "mean": 208.5,
+                    "median": 201.5,
+                    "min": 61,
+                    "n": 4,
+                    "sum": 834
+                  },
+                  "status_counts": {
+                    "nonzero_normalized": 4
+                  }
+                },
+                "reasoning_tokens": {
+                  "absent_or_redacted": 0,
+                  "kind": "hermes_normalized_provider_counter",
+                  "nonzero_values": null,
+                  "received_values_including_unconfirmed_zeros": {
+                    "max": 0,
+                    "mean": 0.0,
+                    "median": 0.0,
+                    "min": 0,
+                    "n": 4,
+                    "sum": 0
+                  },
+                  "status_counts": {
+                    "zero_unconfirmed": 4
+                  }
+                }
+              },
+              "semantics": "Hermes-normalised summaries, not raw provider usage"
+            }
+          }
+        ],
+        "tools": [
+          {
+            "case_id": "mcp-local-planning-demo",
+            "duration_source_counts": {
+              "hermes_reported_ms": 3
+            },
+            "experiment": "pilot-20261108-r02-t2",
+            "measured_duration_ms": {
+              "max": 65,
+              "mean": 38.333333333333336,
+              "median": 27,
+              "min": 23,
+              "n": 3,
+              "sum": 115
+            },
+            "note": "only duration_source=hermes_reported_ms counts as measured; 0 and timeout values are not",
+            "status_counts": {
+              "ok": 3
+            },
+            "tool_calls": 3
+          }
+        ]
+      },
+      "comparative_kinds": [
+        "captured_hermes_metadata"
+      ],
+      "events_read": 7,
+      "excluded_from_comparison": {},
+      "summary_version": "1"
+    }
+  },
+  "provenance_check": {
+    "files": [
+      {
+        "file": "hermes-events-2026-11-08.jsonl",
+        "problems": [],
+        "records": 2
+      }
+    ],
+    "ok": true
+  },
+  "summary": {
+    "comparative": {
+      "data_kinds": {
+        "captured_hermes_metadata": 12
+      },
+      "groups": [
+        {
+          "case_id": "mcp-local-planning-demo",
+          "cost": {
+            "computed": false,
+            "reason": "no declared tariffs"
+          },
+          "experiment": "pilot-20261108-r02-t1",
+          "failures": {
+            "calls_sharing_api_request_with_an_error": 0,
+            "error_types": {},
+            "llm_error_count": 0,
+            "status_codes": {}
+          },
+          "first_chunk_offset_s": {
+            "caveat": "equals time-to-first-chunk only when the call had no retry",
+            "stats": {
+              "max": 6.1361448764801025,
+              "mean": 4.874251921971639,
+              "median": 4.539318561553955,
+              "min": 3.9472923278808594,
+              "n": 3,
+              "sum": 14.622755765914917
+            }
+          },
+          "latency_s": {
+            "basis": "hermes_hook_wall_clock",
+            "excluded": {},
+            "scope": "api_call_from_first_attempt (includes retries)",
+            "stats": {
+              "max": 10.769398927688599,
+              "mean": 7.1496232350667315,
+              "median": 6.138580560684204,
+              "min": 4.540890216827393,
+              "n": 3,
+              "sum": 21.448869705200195
+            }
+          },
+          "model": "custom/qwen3-4b-instruct-64k",
+          "sample_size": {
+            "calls_with_measured_latency": 3,
+            "calls_with_usage": 3,
+            "calls_without_measured_latency": 0,
+            "calls_without_usage": 0,
+            "llm_calls": 3,
+            "llm_errors": 0
+          },
+          "tokens": {
+            "derived_sums_not_additive_with_counters": {
+              "prompt_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "derived_sum_computed_by_hermes",
+                "nonzero_values": {
+                  "max": 20014,
+                  "mean": 12758.333333333334,
+                  "median": 12833,
+                  "min": 5428,
+                  "n": 3,
+                  "sum": 38275
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 20014,
+                  "mean": 12758.333333333334,
+                  "median": 12833,
+                  "min": 5428,
+                  "n": 3,
+                  "sum": 38275
+                },
+                "status_counts": {
+                  "derived_nonzero": 3
+                }
+              },
+              "total_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "derived_sum_computed_by_hermes",
+                "nonzero_values": {
+                  "max": 20313,
+                  "mean": 12979.666666666666,
+                  "median": 12903,
+                  "min": 5723,
+                  "n": 3,
+                  "sum": 38939
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 20313,
+                  "mean": 12979.666666666666,
+                  "median": 12903,
+                  "min": 5723,
+                  "n": 3,
+                  "sum": 38939
+                },
+                "status_counts": {
+                  "derived_nonzero": 3
+                }
+              }
+            },
+            "normalized_counters": {
+              "cache_read_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 12902,
+                  "mean": 6776.333333333333,
+                  "median": 5455,
+                  "min": 1972,
+                  "n": 3,
+                  "sum": 20329
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 12902,
+                  "mean": 6776.333333333333,
+                  "median": 5455,
+                  "min": 1972,
+                  "n": 3,
+                  "sum": 20329
+                },
+                "status_counts": {
+                  "nonzero_normalized": 3
+                }
+              },
+              "cache_write_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": null,
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 0,
+                  "mean": 0.0,
+                  "median": 0,
+                  "min": 0,
+                  "n": 3,
+                  "sum": 0
+                },
+                "status_counts": {
+                  "zero_unconfirmed": 3
+                }
+              },
+              "input_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 7378,
+                  "mean": 5982.0,
+                  "median": 7112,
+                  "min": 3456,
+                  "n": 3,
+                  "sum": 17946
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 7378,
+                  "mean": 5982.0,
+                  "median": 7112,
+                  "min": 3456,
+                  "n": 3,
+                  "sum": 17946
+                },
+                "status_counts": {
+                  "nonzero_normalized": 3
+                }
+              },
+              "output_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 299,
+                  "mean": 221.33333333333334,
+                  "median": 295,
+                  "min": 70,
+                  "n": 3,
+                  "sum": 664
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 299,
+                  "mean": 221.33333333333334,
+                  "median": 295,
+                  "min": 70,
+                  "n": 3,
+                  "sum": 664
+                },
+                "status_counts": {
+                  "nonzero_normalized": 3
+                }
+              },
+              "reasoning_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": null,
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 0,
+                  "mean": 0.0,
+                  "median": 0,
+                  "min": 0,
+                  "n": 3,
+                  "sum": 0
+                },
+                "status_counts": {
+                  "zero_unconfirmed": 3
+                }
+              }
+            },
+            "semantics": "Hermes-normalised summaries, not raw provider usage"
+          }
+        },
+        {
+          "case_id": "mcp-local-planning-demo",
+          "cost": {
+            "computed": false,
+            "reason": "no declared tariffs"
+          },
+          "experiment": "pilot-20261108-r02-t2",
+          "failures": {
+            "calls_sharing_api_request_with_an_error": 0,
+            "error_types": {},
+            "llm_error_count": 0,
+            "status_codes": {}
+          },
+          "first_chunk_offset_s": {
+            "caveat": "equals time-to-first-chunk only when the call had no retry",
+            "stats": {
+              "max": 9.280019521713257,
+              "mean": 5.383317589759827,
+              "median": 4.92931604385376,
+              "min": 2.3946187496185303,
+              "n": 4,
+              "sum": 21.533270359039307
+            }
+          },
+          "latency_s": {
+            "basis": "hermes_hook_wall_clock",
+            "excluded": {},
+            "scope": "api_call_from_first_attempt (includes retries)",
+            "stats": {
+              "max": 15.736710548400879,
+              "mean": 8.274255275726318,
+              "median": 7.481640458106995,
+              "min": 2.3970296382904053,
+              "n": 4,
+              "sum": 33.09702110290527
+            }
+          },
+          "model": "custom/qwen3-4b-instruct-64k",
+          "sample_size": {
+            "calls_with_measured_latency": 4,
+            "calls_with_usage": 4,
+            "calls_without_measured_latency": 0,
+            "calls_without_usage": 0,
+            "llm_calls": 4,
+            "llm_errors": 0
+          },
+          "tokens": {
+            "derived_sums_not_additive_with_counters": {
+              "prompt_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "derived_sum_computed_by_hermes",
+                "nonzero_values": {
+                  "max": 32033,
+                  "mean": 25419.25,
+                  "median": 24603.5,
+                  "min": 20437,
+                  "n": 4,
+                  "sum": 101677
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 32033,
+                  "mean": 25419.25,
+                  "median": 24603.5,
+                  "min": 20437,
+                  "n": 4,
+                  "sum": 101677
+                },
+                "status_counts": {
+                  "derived_nonzero": 4
+                }
+              },
+              "total_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "derived_sum_computed_by_hermes",
+                "nonzero_values": {
+                  "max": 32403,
+                  "mean": 25627.75,
+                  "median": 24805.0,
+                  "min": 20498,
+                  "n": 4,
+                  "sum": 102511
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 32403,
+                  "mean": 25627.75,
+                  "median": 24805.0,
+                  "min": 20498,
+                  "n": 4,
+                  "sum": 102511
+                },
+                "status_counts": {
+                  "derived_nonzero": 4
+                }
+              }
+            },
+            "normalized_counters": {
+              "cache_read_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 27104,
+                  "mean": 22515.25,
+                  "median": 21322.5,
+                  "min": 20312,
+                  "n": 4,
+                  "sum": 90061
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 27104,
+                  "mean": 22515.25,
+                  "median": 21322.5,
+                  "min": 20312,
+                  "n": 4,
+                  "sum": 90061
+                },
+                "status_counts": {
+                  "nonzero_normalized": 4
+                }
+              },
+              "cache_write_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": null,
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 0,
+                  "mean": 0.0,
+                  "median": 0.0,
+                  "min": 0,
+                  "n": 4,
+                  "sum": 0
+                },
+                "status_counts": {
+                  "zero_unconfirmed": 4
+                }
+              },
+              "input_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 4929,
+                  "mean": 2904.0,
+                  "median": 3281.0,
+                  "min": 125,
+                  "n": 4,
+                  "sum": 11616
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 4929,
+                  "mean": 2904.0,
+                  "median": 3281.0,
+                  "min": 125,
+                  "n": 4,
+                  "sum": 11616
+                },
+                "status_counts": {
+                  "nonzero_normalized": 4
+                }
+              },
+              "output_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 370,
+                  "mean": 208.5,
+                  "median": 201.5,
+                  "min": 61,
+                  "n": 4,
+                  "sum": 834
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 370,
+                  "mean": 208.5,
+                  "median": 201.5,
+                  "min": 61,
+                  "n": 4,
+                  "sum": 834
+                },
+                "status_counts": {
+                  "nonzero_normalized": 4
+                }
+              },
+              "reasoning_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": null,
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 0,
+                  "mean": 0.0,
+                  "median": 0.0,
+                  "min": 0,
+                  "n": 4,
+                  "sum": 0
+                },
+                "status_counts": {
+                  "zero_unconfirmed": 4
+                }
+              }
+            },
+            "semantics": "Hermes-normalised summaries, not raw provider usage"
+          }
+        }
+      ],
+      "tools": [
+        {
+          "case_id": "mcp-local-planning-demo",
+          "duration_source_counts": {
+            "hermes_reported_ms": 2
+          },
+          "experiment": "pilot-20261108-r02-t1",
+          "measured_duration_ms": {
+            "max": 78,
+            "mean": 45.5,
+            "median": 45.5,
+            "min": 13,
+            "n": 2,
+            "sum": 91
+          },
+          "note": "only duration_source=hermes_reported_ms counts as measured; 0 and timeout values are not",
+          "status_counts": {
+            "ok": 2
+          },
+          "tool_calls": 2
+        },
+        {
+          "case_id": "mcp-local-planning-demo",
+          "duration_source_counts": {
+            "hermes_reported_ms": 3
+          },
+          "experiment": "pilot-20261108-r02-t2",
+          "measured_duration_ms": {
+            "max": 65,
+            "mean": 38.333333333333336,
+            "median": 27,
+            "min": 23,
+            "n": 3,
+            "sum": 115
+          },
+          "note": "only duration_source=hermes_reported_ms counts as measured; 0 and timeout values are not",
+          "status_counts": {
+            "ok": 3
+          },
+          "tool_calls": 3
+        }
+      ]
+    },
+    "comparative_kinds": [
+      "captured_hermes_metadata"
+    ],
+    "events_read": 12,
+    "excluded_from_comparison": {},
+    "summary_version": "1"
+  },
+  "tool_isolation": {
+    "api_requests_with_offer_record": 7,
+    "executed": "EXECUTED_NO_ERROR_DETECTED_BY_HERMES",
+    "final_response": "NOT_EVALUATED_ARTIFACTS_JUDGED_BY_BINDING",
+    "limits": [
+      "offered = tool names in each request body (pre_api_request), not a provider-side check",
+      "status 'ok' means Hermes detected no error in a result, not that a mission is valid",
+      "acceptance = bind-h1 (missions) or accept-h3 (scenario answer) on this session's data"
+    ],
+    "llm_calls": 7,
+    "llm_errors": 0,
+    "offered": "ONLY_TRIAL_TOOL_OFFERED",
+    "requested": "TRIAL_TOOL_REQUESTED",
+    "requested_tool_names": [
+      "mcp__tfg_demo_planning__update_mission_draft",
+      "mcp__tfg_demo_planning__finalize_mission_draft",
+      "mcp__tfg_demo_planning__update_mission_draft",
+      "mcp__tfg_demo_planning__update_mission_draft",
+      "mcp__tfg_demo_planning__finalize_mission_draft"
+    ],
+    "result_check": "NOT_APPLICABLE",
+    "tool_calls": [
+      {
+        "duration_ms_measured": 78,
+        "error_type": null,
+        "status": "ok",
+        "tool_name": "mcp__tfg_demo_planning__update_mission_draft"
+      },
+      {
+        "duration_ms_measured": 13,
+        "error_type": null,
+        "status": "ok",
+        "tool_name": "mcp__tfg_demo_planning__finalize_mission_draft"
+      },
+      {
+        "duration_ms_measured": 65,
+        "error_type": null,
+        "status": "ok",
+        "tool_name": "mcp__tfg_demo_planning__update_mission_draft"
+      },
+      {
+        "duration_ms_measured": 27,
+        "error_type": null,
+        "status": "ok",
+        "tool_name": "mcp__tfg_demo_planning__update_mission_draft"
+      },
+      {
+        "duration_ms_measured": 23,
+        "error_type": null,
+        "status": "ok",
+        "tool_name": "mcp__tfg_demo_planning__finalize_mission_draft"
+      }
+    ],
+    "trial_case": "local-planning-demo",
+    "verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS"
+  },
+  "tool_offers": {
+    "offered_tool_names": [
+      [
+        "mcp__tfg_demo_planning__finalize_mission_draft",
+        "mcp__tfg_demo_planning__update_mission_draft"
+      ],
+      [
+        "mcp__tfg_demo_planning__finalize_mission_draft",
+        "mcp__tfg_demo_planning__update_mission_draft"
+      ],
+      [
+        "mcp__tfg_demo_planning__finalize_mission_draft",
+        "mcp__tfg_demo_planning__update_mission_draft"
+      ],
+      [
+        "mcp__tfg_demo_planning__finalize_mission_draft",
+        "mcp__tfg_demo_planning__update_mission_draft"
+      ],
+      [
+        "mcp__tfg_demo_planning__finalize_mission_draft",
+        "mcp__tfg_demo_planning__update_mission_draft"
+      ],
+      [
+        "mcp__tfg_demo_planning__finalize_mission_draft",
+        "mcp__tfg_demo_planning__update_mission_draft"
+      ],
+      [
+        "mcp__tfg_demo_planning__finalize_mission_draft",
+        "mcp__tfg_demo_planning__update_mission_draft"
+      ]
+    ],
+    "records": 7
+  }
+}

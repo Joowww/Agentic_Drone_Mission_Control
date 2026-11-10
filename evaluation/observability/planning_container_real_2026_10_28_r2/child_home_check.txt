@@ -1,0 +1,4 @@
+container HERMES_HOME: /hermes/trial
+child HERMES_HOME env: /hermes/trial
+child get_hermes_home(): /hermes/trial
+(image runner builds the child env as dict(os.environ); checked 28/10/2026 with --network none, no model request)

@@ -1,0 +1,131 @@
+{
+  "status": "NOT_VALIDATED",
+  "tool_execution": {
+    "calls": 1,
+    "reasons": [],
+    "status": "OK"
+  },
+  "factual": {
+    "parse": "JSON_OBJECT",
+    "scenario_status": "match",
+    "r1_status": "match",
+    "r1_dependency": "match",
+    "runs[2f7db1f6].vehicle_id": "match",
+    "runs[2f7db1f6].simulated_vehicle": "match",
+    "runs[2f7db1f6].mission_id": "match",
+    "runs[2f7db1f6].status": "match",
+    "runs[2f7db1f6].result_status": "match",
+    "runs[2f7db1f6].reached_points": "match",
+    "runs[2f7db1f6].return_home": "match",
+    "runs[2f7db1f6].landing": "match",
+    "runs[2f7db1f6].executor_started_at": "match",
+    "runs[2f7db1f6].executor_finished_at": "match",
+    "runs[febf7c4f].vehicle_id": "match",
+    "runs[febf7c4f].simulated_vehicle": "match",
+    "runs[febf7c4f].mission_id": "match",
+    "runs[febf7c4f].status": "match",
+    "runs[febf7c4f].result_status": "match",
+    "runs[febf7c4f].reached_points": "match",
+    "runs[febf7c4f].return_home": "match",
+    "runs[febf7c4f].landing": "match",
+    "runs[febf7c4f].executor_started_at": "match",
+    "runs[febf7c4f].executor_finished_at": "match"
+  },
+  "critical": {
+    "scenario_complete": "match",
+    "sequence_order": "match",
+    "order_basis": "match",
+    "r1_commands_sent": "match",
+    "r1_movement_authorized": "match",
+    "claims.images_captured": "mismatch",
+    "claims.detections_made": "mismatch",
+    "claims.speed_commanded": "mismatch",
+    "claims.speed_measured": "mismatch",
+    "claims.simultaneous_flight": "match",
+    "claims.common_frame_validated": "match",
+    "claims.current_permissions_checked": "mismatch"
+  },
+  "failed_keys": [
+    "claims.current_permissions_checked",
+    "claims.detections_made",
+    "claims.images_captured",
+    "claims.speed_commanded",
+    "claims.speed_measured"
+  ],
+  "classifications": [
+    "CRITICAL_KEY_INCORRECT"
+  ],
+  "score": 0.857,
+  "score_note": "reported only; any critical or factual failure rejects the answer regardless of score",
+  "explanation_review": {
+    "heuristic_flags": [
+      "may_claim_measured_or_commanded_speed"
+    ],
+    "method": "keyword heuristics, NOT semantic validation",
+    "semantic_review": "REQUIRED_HUMAN"
+  },
+  "view_status": "OK",
+  "answer": {
+    "scenario_status": "AERIAL_COMPLETED_GROUND_PENDING",
+    "scenario_complete": false,
+    "sequence_order": [
+      "drone_01",
+      "drone_02"
+    ],
+    "order_basis": "EXECUTION_TIMESTAMPS",
+    "runs": [
+      {
+        "run_id": "2f7db1f6-ef92-4302-b1ae-ec5566e24757",
+        "vehicle_id": "drone_01",
+        "simulated_vehicle": "v1",
+        "mission_id": "agri_demo_001_h1_sector_a",
+        "status": "COMPLETED",
+        "result_status": "PASSED",
+        "reached_points": [
+          "POI_A1",
+          "POI_A2"
+        ],
+        "return_home": "CONFIRMED",
+        "landing": "MISSION_LANDING_CONFIRMED",
+        "executor_started_at": "2026-10-24T12:51:28.380152+00:00",
+        "executor_finished_at": "2026-10-24T12:55:42.138208+00:00"
+      },
+      {
+        "run_id": "febf7c4f-27c8-4486-bd3b-63ce0a5f261a",
+        "vehicle_id": "drone_02",
+        "simulated_vehicle": "v2",
+        "mission_id": "agri_demo_001_h1_sector_b",
+        "status": "COMPLETED",
+        "result_status": "PASSED",
+        "reached_points": [
+          "POI_B1",
+          "POI_B2"
+        ],
+        "return_home": "CONFIRMED",
+        "landing": "MISSION_LANDING_CONFIRMED",
+        "executor_started_at": "2026-10-24T12:55:50.243976+00:00",
+        "executor_finished_at": "2026-10-24T12:59:50.905810+00:00"
+      }
+    ],
+    "r1_status": "BLOCKED_PENDING",
+    "r1_dependency": "MET",
+    "r1_commands_sent": false,
+    "r1_movement_authorized": false,
+    "claims": {
+      "images_captured": null,
+      "detections_made": null,
+      "speed_commanded": null,
+      "speed_measured": null,
+      "simultaneous_flight": false,
+      "common_frame_validated": false,
+      "current_permissions_checked": null
+    },
+    "evidence_source": "evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json (sha256 b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf) y reportes de ejecución vía AP_DDS",
+    "explanation": "El escenario registró dos vuelos aéreos secuenciales (no simultáneos) ejecutados sobre SITL: primero drone_01 (v1), que alcanzó POI_A1 y POI_A2, ejecutó regreso a casa y aterrizaje confirmado (executor 12:51:28 a 12:55:42 UTC); luego drone_02 (v2), que alcanzó POI_B1 y POI_B2, regresó y aterrizó confirmado (executor 12:55:50 a 12:59:50 UTC). El orden está acreditado por marcas de tiempo de ejecución (no por tiempos de admisión de trabajo): el despacho del coordinador de drone_02 ocurrió a las 12:55:42.21580, después de que drone_01 reportara PASSED a las 12:55:42.177521. Todos los POI declarados (A1, A2, B1, B2) aparecen como REACHED. El regreso a casa y el aterrizaje están confirmados para ambos drones en el registro de comandos completo. El escenario no está completo porque la tarea terrestre R1 sobre el rover_01 sigue en estado BLOCKED_PENDING: la dependencia (secuencia COMPLETED y POI_A1 REACHED por drone_01) está MET (satisfecha), pero eso no autoriza movimiento del rover. El rover permanece bloqueado por las siguientes limitaciones no superadas: cadena de identidad del rover (cliente XRCE a instancia SITL/SYSID y puente/modelo) no establecida, no hay punto de entrada público de rover con autorización y reservas, el control del rover ofrece solo velocidad/rotación acotada (sin navegación a posición) y la puerta de ejecución cubre únicamente el perfil two_drones. Por tanto, el escenario aéreo concluyó pero la fase terrestre no pudo iniciarse. No se registran imágenes, detecciones, velocidad comandada o medida real, la validación de marco común es falso y la cadena de permisos actual no se verificó; el registro es puramente histórico (scope NOT_CHECKED para disponibilidad/restricciones/permiso actual)."
+  },
+  "scope": {
+    "record": "historical",
+    "current_availability": "NOT_CHECKED",
+    "operational_authorization": false
+  }
+}

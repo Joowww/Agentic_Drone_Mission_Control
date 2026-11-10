@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.1",
+  "report_persisted": true,
+  "expected_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+  "persist_progress": true,
+  "source_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/7162bce5-3635-4a76-bf02-6a5a22612aab/input.json",
+  "source_artifact": null,
+  "run_id": "7162bce5-3635-4a76-bf02-6a5a22612aab",
+  "run_directory": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/7162bce5-3635-4a76-bf02-6a5a22612aab",
+  "snapshot_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/7162bce5-3635-4a76-bf02-6a5a22612aab/mission.json",
+  "report_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/7162bce5-3635-4a76-bf02-6a5a22612aab/report.json",
+  "mission_sha256": "ce94effedb4c977b0db3c64e41d4a2b86bba9a78c494cfeda4305d069d54bebb",
+  "mission_identity": {
+    "mission_id": "simulation_navigation_drone02",
+    "name": "SITL navigation on drone_02",
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "vehicle_selection": {
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "expected_vehicle_selection": {
+    "vehicle_id": "drone_02",
+    "simulated_vehicle": "v2"
+  },
+  "status": "PASSED",
+  "stage": "analyze",
+  "reasons": [],
+  "validation": {
+    "mission_id": "simulation_navigation_drone02",
+    "mission_status": "FEASIBLE",
+    "execution_status": "APPROVED",
+    "qgc_plan_path": null,
+    "failure_reasons": [],
+    "errors": [],
+    "replan_status": "",
+    "replan_actions": []
+  },
+  "readiness": {
+    "ready": true,
+    "status": "READY",
+    "return_code": 0,
+    "message": "Simulation is healthy and both drones are ready.",
+    "output": "========================================\n TFG - Simulation Check\n========================================\n\n[1/5] Docker container...\n[PASS] Container running.\n\n[2/5] Gazebo server...\n[PASS] Gazebo runway world running.\n\n[3/5] ArduPilot processes...\n[PASS] 2 ArduCopter processes running.\n\n[4/5] ROS 2 vehicle interfaces...\n\n[PASS] /ap/v1/status\n[PASS] /ap/v2/status\n\n[5/5] Pre-arm checks...\n\n[PASS] /ap/v1 - Vehicle is Armable\n[PASS] /ap/v2 - Vehicle is Armable\n\n========================================\n SIMULATION HEALTHY\n========================================\n\nDrone 1 -> READY\nDrone 2 -> READY"
+  },
+  "compatibility_errors": [],
+  "executor_result": {
+    "success": true,
+    "status": "COMPLETED",
+    "stage": "MISSION_EXECUTION",
+    "mission_id": "simulation_navigation_drone02",
+    "vehicle": "v2",
+    "vehicle_id": "drone_02",
+    "simulation_origin": {
+      "latitude": -35.36326217651367,
+      "longitude": 149.1652374267578,
+      "altitude_amsl_m": 584.0
+    },
+    "launch_position": {
+      "latitude": -35.36326217651367,
+      "longitude": 149.16526794433594,
+      "altitude_amsl_m": 584.1900024414062
+    },
+    "waypoints_completed": 3,
+    "return_to_home": true,
+    "events": [
+      {
+        "event": "GUIDED_MODE",
+        "success": true
+      },
+      {
+        "event": "ARM",
+        "success": true
+      },
+      {
+        "event": "TAKEOFF_COMMAND",
+        "success": true,
+        "altitude_m": 5.0
+      },
+      {
+        "event": "TAKEOFF_REACHED",
+        "reached": true,
+        "target_altitude_m": 5.0,
+        "altitude_amsl_m": 588.9599609375,
+        "altitude_error_m": 0.23004150390625
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP1",
+        "success": true
+      },
+      {
+        "event": "WAYPOINT_REACHED",
+        "reached": true,
+        "waypoint_id": "WP1",
+        "horizontal_error_m": 0.3967705046808455,
+        "altitude_error_m": 0.0,
+        "final_position": {
+          "latitude": -35.36323165893555,
+          "longitude": 149.16526794433594,
+          "altitude_amsl_m": 589.1900024414062
+        }
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP2",
+        "success": true
+      },
+      {
+        "event": "WAYPOINT_REACHED",
+        "reached": true,
+        "waypoint_id": "WP2",
+        "horizontal_error_m": 0.22777375324517357,
+        "altitude_error_m": 0.0,
+        "final_position": {
+          "latitude": -35.36323547363281,
+          "longitude": 149.16529846191406,
+          "altitude_amsl_m": 589.1900024414062
+        }
+      },
+      {
+        "event": "WAYPOINT_COMMAND",
+        "waypoint_id": "WP3",
+        "success": true
+      },
+      {
+        "event": "WAYPOINT_REACHED",
+        "reached": true,
+        "waypoint_id": "WP3",
+        "horizontal_error_m": 0.48068103430828996,
+        "altitude_error_m": 0.010009765625,
+        "final_position": {
+          "latitude": -35.36326599121094,
+          "longitude": 149.16529846191406,
+          "altitude_amsl_m": 589.2000122070312
+        }
+      },
+      {
+        "event": "RETURN_HOME_COMMAND",
+        "success": true
+      },
+      {
+        "event": "RETURN_HOME_REACHED",
+        "reached": true,
+        "waypoint_id": "SIMULATION_HOME",
+        "horizontal_error_m": 0.0,
+        "altitude_error_m": 0.0,
+        "final_position": {
+          "latitude": -35.36326217651367,
+          "longitude": 149.16526794433594,
+          "altitude_amsl_m": 589.1900024414062
+        }
+      },
+      {
+        "event": "LAND_COMMAND",
+        "success": true
+      },
+      {
+        "event": "LANDED",
+        "landed": true,
+        "armed": false,
+        "flying": false,
+        "final_position": {
+          "latitude": -35.36326217651367,
+          "longitude": 149.16526794433594,
+          "altitude_amsl_m": 584.1900024414062
+        }
+      }
+    ],
+    "final_position": {
+      "latitude": -35.36326217651367,
+      "longitude": 149.16526794433594,
+      "altitude_amsl_m": 584.1900024414062
+    },
+    "message": "Mission completed and vehicle landed successfully."
+  },
+  "execution_attempted": true,
+  "analysis": {
+    "passed": true,
+    "checks": {
+      "completed": true,
+      "identity": true,
+      "no_failure_or_recovery": true,
+      "count_and_return_flag": true,
+      "event_sequence": true,
+      "commands_confirmed": true,
+      "all_waypoints_reached": true,
+      "return_home_reached": true,
+      "takeoff_reached": true,
+      "landed_and_disarmed": true,
+      "position_evidence_consistent": true
+    },
+    "expected_waypoint_ids": [
+      "WP1",
+      "WP2",
+      "WP3"
+    ],
+    "observed_waypoint_ids": [
+      "WP1",
+      "WP2",
+      "WP3"
+    ],
+    "tolerances": {
+      "horizontal_m": 1.0,
+      "altitude_m": 0.75
+    },
+    "reasons": []
+  },
+  "started_at": "2026-10-18T17:34:26.794699+00:00",
+  "execution_started_at": "2026-10-18T17:34:40.657446+00:00",
+  "execution_finished_at": "2026-10-18T17:39:26.629183+00:00",
+  "transitions": [
+    {
+      "node": "snapshot",
+      "started_at": "2026-10-18T17:34:29.457177+00:00",
+      "finished_at": "2026-10-18T17:34:29.501462+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "validate",
+      "started_at": "2026-10-18T17:34:29.503332+00:00",
+      "finished_at": "2026-10-18T17:34:29.510678+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "check_readiness",
+      "started_at": "2026-10-18T17:34:29.511769+00:00",
+      "finished_at": "2026-10-18T17:34:40.654018+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "compatibility",
+      "started_at": "2026-10-18T17:34:40.654825+00:00",
+      "finished_at": "2026-10-18T17:34:40.655411+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "execute",
+      "started_at": "2026-10-18T17:34:40.656533+00:00",
+      "finished_at": "2026-10-18T17:39:26.629441+00:00",
+      "status": "RUNNING"
+    },
+    {
+      "node": "analyze",
+      "started_at": "2026-10-18T17:39:26.633939+00:00",
+      "finished_at": "2026-10-18T17:39:26.636659+00:00",
+      "status": "PASSED"
+    },
+    {
+      "node": "write_report",
+      "started_at": "2026-10-18T17:39:26.637756+00:00",
+      "finished_at": "2026-10-18T17:39:26.637756+00:00",
+      "status": "PASSED"
+    }
+  ],
+  "finished_at": "2026-10-18T17:39:26.637756+00:00",
+  "scope": "Gazebo/ArduPilot SITL, simulated v2 only; at most one project-wide flight",
+  "hardware_authorized": false,
+  "subsequent_execution_authorized": false,
+  "replan_proposals": []
+}

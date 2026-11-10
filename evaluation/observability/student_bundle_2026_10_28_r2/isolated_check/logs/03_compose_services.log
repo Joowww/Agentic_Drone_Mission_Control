@@ -1,0 +1,9 @@
+services ['app', 'hermes', 'qgc'] volumes ['hermes-home'] networks ['provider']
+app bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_r2_2026_10_28/results -> /work rw
+hermes bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_r2_2026_10_28/planning_store -> /opt/tfg/missions/generated rw
+hermes bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_r2_2026_10_28/results -> /work rw
+hermes volume hermes-home -> /hermes rw
+qgc bind /tmp/.X11-unix -> /tmp/.X11-unix ro
+qgc bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_r2_2026_10_28/bundle/QGC_PLAN_DIR_not_set -> /data/plan ro
+qgc bind /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_r2_2026_10_28/bundle/QGC_SAVE_DIR_not_set -> /data/saved rw
+SERVICES_OK

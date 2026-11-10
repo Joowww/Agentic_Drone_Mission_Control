@@ -1,0 +1,646 @@
+{
+  "approval": {
+    "mismatches": [],
+    "status": "ABSENT"
+  },
+  "artifacts": [
+    {
+      "conversion": {
+        "geofence": "empty: site perimeter/exclusions are NOT exported as a fence (FENCE_* not verified)",
+        "items": [
+          {
+            "doJumpId": 1,
+            "source": "takeoff to the first waypoint altitude (as the SITL executor does)"
+          },
+          {
+            "doJumpId": 2,
+            "source": "WP1"
+          },
+          {
+            "doJumpId": 3,
+            "source": "WP2"
+          },
+          {
+            "doJumpId": 4,
+            "source": "return_to_home -> land at the planned home coordinate"
+          }
+        ],
+        "label_scope": "EXACT: the named element of the file equals the corresponding element of the mission (or of the H2 record where stated). It does not claim dynamic equivalence with H2, QGroundControl or vehicle compatibility, or any flight guarantee. CONDITIONED: the element is present but its effect depends on something outside the file (autopilot parameters, arming position). NOT_IN_PLAN: not expressed.",
+        "precision": {
+          "altitude_decimals": 3,
+          "latlon_decimals": 8,
+          "transport": "MISSION_ITEM_INT carries degE7 (~1.1 cm); see verifier"
+        },
+        "profile": "QGC_PLAN_ARDUCOPTER_V2",
+        "semantics": [
+          {
+            "detail": "NAV_TAKEOFF to the first waypoint altitude, relative to the EFFECTIVE home (set at arming); equals the executor's launch-relative target only if armed at the planned takeoff position",
+            "element": "takeoff",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "item lat/lon/alt equal the mission waypoint values (8 decimals; degE7 transport quantization reported); says nothing about the flown path",
+            "element": "waypoint coordinate values",
+            "status": "EXACT"
+          },
+          {
+            "detail": "ArduCopter accepts within WP_RADIUS_M and does not stop at a waypoint followed by another navigation item (hold 0); the H2 executor sent targets one by one and accepted at 1.0 m horizontal / 0.75 m vertical",
+            "element": "waypoint acceptance",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "param1 = 0, matching the mission model, which has no hold field; the vehicle's dwell is not implied (see waypoint acceptance)",
+            "element": "hold parameter",
+            "status": "EXACT"
+          },
+          {
+            "detail": "not specified by the mission (param4 NaN): WP_YAW_BEHAVIOR decides; the executor commanded no yaw either",
+            "element": "yaw",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "no speed requested: autopilot WP_SPD applies",
+            "element": "speed",
+            "status": "NOT_IN_PLAN"
+          },
+          {
+            "detail": "NAV_LAND coordinate = the planned home coordinate; the executor returned to the OBSERVED launch position, equal only if the vehicle launches at the planned coordinate. The motion differs: H2 sent a GUIDED target and waited within 1.0 m before LAND; ArduCopter flies the NAV_LAND leg at the current altitude, then descends (not RTL, not the effective home)",
+            "element": "return coordinate",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "an explicit NAV_LAND item is present, as H2 always commanded LAND; it does not depend on RTL_ALT_FINAL_M. Descent and touchdown behaviour depend on LAND_* parameters",
+            "element": "landing command",
+            "status": "EXACT"
+          },
+          {
+            "detail": "low battery / wind / link loss actions are autopilot parameters (FS_*), not mission items; the mission's failsafe block is not expressed",
+            "element": "failsafe actions",
+            "status": "NOT_IN_PLAN"
+          },
+          {
+            "detail": "battery, wind and constraints are validation inputs only",
+            "element": "planning inputs",
+            "status": "NOT_IN_PLAN"
+          }
+        ],
+        "speed_fields": {
+          "hoverSpeed_cruiseSpeed_mps": 9.722,
+          "meaning": "QGC planning fields; not converted into a commanded speed"
+        }
+      },
+      "mission_file": "missions/HERMES_drone_01.drone_01.mission.json",
+      "mission_id": "agri_demo_001_h1_sector_a_on_synthetic_hermes_rehearsal_v1_TAKEOFF_A",
+      "mission_sha256": "b215a38bc3322fe958d2443e559665782fcbe0985295a0b47f7a927d6aa2fe91",
+      "plan_file": "plans/drone_01.plan",
+      "plan_sha256": "e5815ac0a03f8f40d804d49e194d77877bbdd058ced1da5b2f0252c8ecd94095",
+      "planned_home": {
+        "amsl_m": 584.0,
+        "amsl_source": "site vertical_reference.origin_ground_amsl_m (DECLARED_FLAT); not the effective home",
+        "latitude": -35.3633158986705,
+        "longitude": 149.1651709071337
+      },
+      "profile": "QGC_PLAN_ARDUCOPTER_V2",
+      "reasons": [],
+      "state": "GENERATED",
+      "task_id": "HERMES_drone_01",
+      "vehicle_id": "drone_01",
+      "verification": {
+        "checks": [
+          {
+            "check": "top level",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "mission header",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "plannedHomePosition (lat, lon, AMSL)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "numbering",
+            "detail": "doJumpId 1..n",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 1 (22)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 2 (16)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 3 (16)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 4 (21)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "command sequence",
+            "detail": "[22, 16, 16, 21]",
+            "ok": true
+          },
+          {
+            "check": "item 1 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 2 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 3 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 4 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "degE7 transport quantization below 2 cm",
+            "detail": "max 0.454 cm",
+            "ok": true
+          }
+        ],
+        "compatibility": "NOT_ESTABLISHED: not imported in QGroundControl, not uploaded, not read back from a vehicle",
+        "importer_readback": {
+          "losses": [
+            "MAV_CMD_NAV_TAKEOFF was not converted into a horizontal waypoint. Vertical takeoff dynamics are not modelled yet.",
+            "MAV_CMD_NAV_LAND was converted to a navigation endpoint. Landing dynamics are not modelled yet.",
+            "NAV_LAND represented as an extra navigation waypoint; landing and return meaning lost"
+          ],
+          "note": "our own importer; it is not QGroundControl and shares the project's assumptions",
+          "status": "REDUCED",
+          "waypoint_geometry": "MATCH"
+        },
+        "max_degE7_quantization_m": 0.004539,
+        "status": "FILE_MATCHES_EXPECTATIONS"
+      }
+    },
+    {
+      "conversion": {
+        "geofence": "empty: site perimeter/exclusions are NOT exported as a fence (FENCE_* not verified)",
+        "items": [
+          {
+            "doJumpId": 1,
+            "source": "takeoff to the first waypoint altitude (as the SITL executor does)"
+          },
+          {
+            "doJumpId": 2,
+            "source": "WP1"
+          },
+          {
+            "doJumpId": 3,
+            "source": "WP2"
+          },
+          {
+            "doJumpId": 4,
+            "source": "return_to_home -> land at the planned home coordinate"
+          }
+        ],
+        "label_scope": "EXACT: the named element of the file equals the corresponding element of the mission (or of the H2 record where stated). It does not claim dynamic equivalence with H2, QGroundControl or vehicle compatibility, or any flight guarantee. CONDITIONED: the element is present but its effect depends on something outside the file (autopilot parameters, arming position). NOT_IN_PLAN: not expressed.",
+        "precision": {
+          "altitude_decimals": 3,
+          "latlon_decimals": 8,
+          "transport": "MISSION_ITEM_INT carries degE7 (~1.1 cm); see verifier"
+        },
+        "profile": "QGC_PLAN_ARDUCOPTER_V2",
+        "semantics": [
+          {
+            "detail": "NAV_TAKEOFF to the first waypoint altitude, relative to the EFFECTIVE home (set at arming); equals the executor's launch-relative target only if armed at the planned takeoff position",
+            "element": "takeoff",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "item lat/lon/alt equal the mission waypoint values (8 decimals; degE7 transport quantization reported); says nothing about the flown path",
+            "element": "waypoint coordinate values",
+            "status": "EXACT"
+          },
+          {
+            "detail": "ArduCopter accepts within WP_RADIUS_M and does not stop at a waypoint followed by another navigation item (hold 0); the H2 executor sent targets one by one and accepted at 1.0 m horizontal / 0.75 m vertical",
+            "element": "waypoint acceptance",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "param1 = 0, matching the mission model, which has no hold field; the vehicle's dwell is not implied (see waypoint acceptance)",
+            "element": "hold parameter",
+            "status": "EXACT"
+          },
+          {
+            "detail": "not specified by the mission (param4 NaN): WP_YAW_BEHAVIOR decides; the executor commanded no yaw either",
+            "element": "yaw",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "no speed requested: autopilot WP_SPD applies",
+            "element": "speed",
+            "status": "NOT_IN_PLAN"
+          },
+          {
+            "detail": "NAV_LAND coordinate = the planned home coordinate; the executor returned to the OBSERVED launch position, equal only if the vehicle launches at the planned coordinate. The motion differs: H2 sent a GUIDED target and waited within 1.0 m before LAND; ArduCopter flies the NAV_LAND leg at the current altitude, then descends (not RTL, not the effective home)",
+            "element": "return coordinate",
+            "status": "CONDITIONED"
+          },
+          {
+            "detail": "an explicit NAV_LAND item is present, as H2 always commanded LAND; it does not depend on RTL_ALT_FINAL_M. Descent and touchdown behaviour depend on LAND_* parameters",
+            "element": "landing command",
+            "status": "EXACT"
+          },
+          {
+            "detail": "low battery / wind / link loss actions are autopilot parameters (FS_*), not mission items; the mission's failsafe block is not expressed",
+            "element": "failsafe actions",
+            "status": "NOT_IN_PLAN"
+          },
+          {
+            "detail": "battery, wind and constraints are validation inputs only",
+            "element": "planning inputs",
+            "status": "NOT_IN_PLAN"
+          }
+        ],
+        "speed_fields": {
+          "hoverSpeed_cruiseSpeed_mps": 9.722,
+          "meaning": "QGC planning fields; not converted into a commanded speed"
+        }
+      },
+      "mission_file": "missions/HERMES_drone_02.drone_02.mission.json",
+      "mission_id": "agri_demo_001_h1_sector_b_on_synthetic_hermes_rehearsal_v1_TAKEOFF_B",
+      "mission_sha256": "c8f7c80e4d387294f2d8ff1c2a778c8cd5547a5e41fef54207552329f6bb6c79",
+      "plan_file": "plans/drone_02.plan",
+      "plan_sha256": "df2e0d6681c8695fc23bc7bda18ae45214c2403c625fcd934a90e38447853740",
+      "planned_home": {
+        "amsl_m": 584.0,
+        "amsl_source": "site vertical_reference.origin_ground_amsl_m (DECLARED_FLAT); not the effective home",
+        "latitude": -35.3633158986705,
+        "longitude": 149.16530309286628
+      },
+      "profile": "QGC_PLAN_ARDUCOPTER_V2",
+      "reasons": [],
+      "state": "GENERATED",
+      "task_id": "HERMES_drone_02",
+      "vehicle_id": "drone_02",
+      "verification": {
+        "checks": [
+          {
+            "check": "top level",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "mission header",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "plannedHomePosition (lat, lon, AMSL)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "numbering",
+            "detail": "doJumpId 1..n",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 1 (22)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 2 (16)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 3 (16)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "MAVLink item 4 (21)",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "command sequence",
+            "detail": "[22, 16, 16, 21]",
+            "ok": true
+          },
+          {
+            "check": "item 1 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 2 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 3 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "item 4 matches the mission",
+            "detail": "",
+            "ok": true
+          },
+          {
+            "check": "degE7 transport quantization below 2 cm",
+            "detail": "max 0.454 cm",
+            "ok": true
+          }
+        ],
+        "compatibility": "NOT_ESTABLISHED: not imported in QGroundControl, not uploaded, not read back from a vehicle",
+        "importer_readback": {
+          "losses": [
+            "MAV_CMD_NAV_TAKEOFF was not converted into a horizontal waypoint. Vertical takeoff dynamics are not modelled yet.",
+            "MAV_CMD_NAV_LAND was converted to a navigation endpoint. Landing dynamics are not modelled yet.",
+            "NAV_LAND represented as an extra navigation waypoint; landing and return meaning lost"
+          ],
+          "note": "our own importer; it is not QGroundControl and shares the project's assumptions",
+          "status": "REDUCED",
+          "waypoint_geometry": "MATCH"
+        },
+        "max_degE7_quantization_m": 0.004539,
+        "status": "FILE_MATCHES_EXPECTATIONS"
+      }
+    }
+  ],
+  "coordination": {
+    "dependencies": [
+      {
+        "after": "HERMES_drone_01",
+        "condition": "COMPLETED",
+        "point": null,
+        "task_id": "HERMES_drone_02"
+      },
+      {
+        "after": "HERMES_drone_01",
+        "condition": "POI_REACHED",
+        "point": "POI_A1",
+        "task_id": "R1"
+      }
+    ],
+    "errors": [],
+    "mode": "SEQUENTIAL",
+    "note": "dependencies are conditions on OBSERVED outcomes held by the coordinator; never a time wait. Individual .plan files do not coordinate vehicles.",
+    "order": [
+      "HERMES_drone_01",
+      "HERMES_drone_02",
+      "R1"
+    ],
+    "status": "PASS"
+  },
+  "deployment_blockers": [
+    "R1 FORMAT_PENDING",
+    "operator approval ABSENT",
+    "imported_in_qgroundcontrol: NOT_DONE",
+    "uploaded_to_vehicle: NOT_DONE",
+    "read_back_from_vehicle: NOT_DONE",
+    "executed: NOT_DONE"
+  ],
+  "deployment_ready": false,
+  "files": {
+    "export_report.md": "e28bd8c384a9f9b3aea2eaa9292f9c43e231e77a96f67417ee4c05292cfbfb30",
+    "fleet.json": "9a2ffcfa2539a17c7e4b746ed485e949e0a905096c936b7b2ffaf0c938ce41c1",
+    "hermes/drone_01/finalization.json": "6e471ab9502973a632bffc85590e25156b0a65db18e9fbccaf2922f4e82e0b9b",
+    "hermes/drone_01/mission.json": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+    "hermes/drone_01/source_draft.json": "b676f5cd9e0a57278027e6d13b7a0def26935d3531cdf697d274991931cf46c4",
+    "hermes/drone_01/source_draft_state.json": "d1819dd1a92e6086ea1a04764fd0b74344e401152be02a9969bca6598880bb24",
+    "hermes/drone_02/finalization.json": "f310a354792cc6751ad2519a480585855b508cb251455d2db88d5e1b5d2c0f59",
+    "hermes/drone_02/mission.json": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+    "hermes/drone_02/source_draft.json": "e37077dc8c238b376f1af63183d28d27a7e2bd16d0201098c583671ea95f4d4e",
+    "hermes/drone_02/source_draft_state.json": "10bd90eabcef008c73675208547b150025ce9a08eba5d9a3e24c8e49c257cb91",
+    "hermes/run/execute_result.json": "593b14d7e8f82be048e946870e1fc39a6172180d351ff28f083db81c558a1475",
+    "hermes/run/review_result.json": "19d519adf6bef21793846fdd52a7b063275c45cd2d37e7bfcb88bf4fab12de9a",
+    "instance.json": "ea3295ac6b7cad9790f7422264bb17eb894c95210ee3faae208025e0ce855f8b",
+    "missions/HERMES_drone_01.drone_01.mission.json": "b215a38bc3322fe958d2443e559665782fcbe0985295a0b47f7a927d6aa2fe91",
+    "missions/HERMES_drone_02.drone_02.mission.json": "c8f7c80e4d387294f2d8ff1c2a778c8cd5547a5e41fef54207552329f6bb6c79",
+    "plans/drone_01.plan": "e5815ac0a03f8f40d804d49e194d77877bbdd058ced1da5b2f0252c8ecd94095",
+    "plans/drone_02.plan": "df2e0d6681c8695fc23bc7bda18ae45214c2403c625fcd934a90e38447853740",
+    "scenario_binding.json": "b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf",
+    "site.json": "61d47a4ed5889942f4f5916506377d27f342d29e92a3809eec79337d7445949f"
+  },
+  "ground_tasks": [
+    {
+      "execution": "outside this package: R1 coordinator gates unchanged",
+      "export": "FORMAT_PENDING: no rover exporter; a .plan is not assumed",
+      "frame_transform_to_rover": "NOT_ACCREDITED (site frame -> rover odometry frame)",
+      "kind": "VISIT_AND_STOP",
+      "spatial_validation": {
+        "checks": [
+          {
+            "check": "target in drivable area",
+            "detail": "DRIVABLE",
+            "status": "PASS"
+          },
+          {
+            "check": "straight line within drivable area",
+            "detail": "the aerial perimeter is never used for the rover",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion CENTRAL_HEDGE",
+            "detail": "clearance 5.381 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion NORTH_ROW",
+            "detail": "clearance 14.000 m vs margin 1.0 m",
+            "status": "PASS"
+          },
+          {
+            "check": "ground exclusion STORE",
+            "detail": "clearance 12.000 m vs margin 1.0 m",
+            "status": "PASS"
+          }
+        ],
+        "line_local": [
+          [
+            0.0,
+            -9.5
+          ],
+          [
+            -9.999999999992403,
+            1.9999999996988436
+          ]
+        ],
+        "margin": {
+          "kind": "DECLARED_PLANNING_MARGIN",
+          "missing_inputs": [
+            "point ROVER_START.uncertainty_m",
+            "vehicle.horizontal_position_uncertainty_m",
+            "vehicle.max_horizontal_extent_m",
+            "zone DRIVABLE.uncertainty_m"
+          ],
+          "planning_margin_m": 1.0,
+          "status": "NOT_ACCREDITED"
+        },
+        "scope": "straight planned line only; no path planner; rover frame transform not accredited",
+        "status": "PASS"
+      },
+      "start_point": "ROVER_START",
+      "target_definition": "POI_A1 = WP1 of HERMES_drone_01 (scenario binding), re-based on the site",
+      "target_point": "POI_A1",
+      "task_id": "R1",
+      "vehicle_id": "rover_01"
+    }
+  ],
+  "inputs": {
+    "assignments": [
+      {
+        "takeoff_point": "TAKEOFF_A",
+        "vehicle_id": "drone_01"
+      },
+      {
+        "takeoff_point": "TAKEOFF_B",
+        "vehicle_id": "drone_02"
+      }
+    ],
+    "finalized_missions": {
+      "drone_01": {
+        "draft_id": "e31bd08d-19ed-440e-b815-94f8b9c062d5",
+        "finalization_id": "0b6af58a-943c-4f06-a631-1a55d4a66d6d",
+        "mission_sha256": "321ad647ab9c2af536905d541675580df20e0e7a5e9be129841c8f894166b30d",
+        "record_sha256": "6e471ab9502973a632bffc85590e25156b0a65db18e9fbccaf2922f4e82e0b9b"
+      },
+      "drone_02": {
+        "draft_id": "c244d68c-819e-4324-b99a-7d299b97081d",
+        "finalization_id": "dd6055ee-5090-40c9-98b9-d0b8cb85e93a",
+        "mission_sha256": "079e25a302423996f168b65c8b2e03157fda0c9ad9b743fb64e8ea7b8c955472",
+        "record_sha256": "f310a354792cc6751ad2519a480585855b508cb251455d2db88d5e1b5d2c0f59"
+      }
+    },
+    "fleet": {
+      "id": "agri_demo_fleet",
+      "sha256": "9a2ffcfa2539a17c7e4b746ed485e949e0a905096c936b7b2ffaf0c938ce41c1",
+      "version": 2
+    },
+    "hermes_run": {
+      "evidence": "evaluation/observability/planning_container_real_2026_10_28_r2",
+      "files_sha256": {
+        "execute_result.json": "593b14d7e8f82be048e946870e1fc39a6172180d351ff28f083db81c558a1475",
+        "review_result.json": "19d519adf6bef21793846fdd52a7b063275c45cd2d37e7bfcb88bf4fab12de9a"
+      },
+      "hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
+      "hermes_invocations": 1,
+      "manifest_sha256": "7e952d76302ebf1c177e0be6318cb3d848c5d8b3c7ad932b86d5f6315c1c3edf",
+      "model": "poolside/laguna-s-2.1:free",
+      "provider": "nous",
+      "return_code": 0,
+      "review_verdict": "PLANNING_CALLS_WITHIN_ALLOWED_TOOLS",
+      "run_id": "real-hermes-planning-container-20261028-r2"
+    },
+    "planning_margin_m": 1.0,
+    "rover": {
+      "start_point": "ROVER_START",
+      "vehicle_id": "rover_01"
+    },
+    "scenario_binding": {
+      "association_basis": "POI order of the H1 request; geometry verified against H0",
+      "path": "evaluation/observability/agri_planning_h1_nous_2026_10_24/h1_binding.json",
+      "scenario_id": "agri_demo_001",
+      "sha256": "b28fceb02c5f05ae16cc13045d25c099c834210a848c918cc9576315a0a9cedf"
+    },
+    "site": {
+      "id": "synthetic_hermes_rehearsal",
+      "sha256": "61d47a4ed5889942f4f5916506377d27f342d29e92a3809eec79337d7445949f",
+      "status": "SYNTHETIC",
+      "version": 1
+    }
+  },
+  "instance_id": "729489664a9615d5",
+  "joint_spatial": {
+    "frame": "synthetic_hermes_rehearsal_local",
+    "pairs": [
+      {
+        "min_horizontal_distance_m": 12.0,
+        "pair": [
+          "HERMES_drone_01",
+          "HERMES_drone_02"
+        ],
+        "simultaneous_execution": "NOT_CLEARED",
+        "temporal_deconfliction": "NOT_EVALUATED"
+      }
+    ]
+  },
+  "layers": {
+    "deployment_approval": "ABSENT",
+    "geometric_validation": "VALID",
+    "measurement_provenance": "SYNTHETIC",
+    "operator_declaration": "SYNTHETIC"
+  },
+  "lifecycle": {
+    "executed": "NOT_DONE",
+    "exported": "DONE",
+    "file_checks": "FILE_MATCHES_EXPECTATIONS; importer readback REDUCED",
+    "imported_in_qgroundcontrol": "NOT_DONE",
+    "read_back_from_vehicle": "NOT_DONE",
+    "uploaded_to_vehicle": "NOT_DONE"
+  },
+  "limitations": [
+    "checks cover planned straight lines, not flown trajectories, unknown obstacles or collisions",
+    "relative altitudes refer to the EFFECTIVE home set at arming, not to plannedHomePosition",
+    "requested speeds are DO_CHANGE_SPEED requests, not validated speeds",
+    "the .plan returns to a planned COORDINATE and lands (NAV_LAND); it does not use RTL",
+    "no geofence exported",
+    "individual .plan files do not coordinate vehicles; order and dependencies live in the coordinator",
+    "our importer reads the file back with losses (TAKEOFF dropped, LAND reduced to a waypoint)"
+  ],
+  "package_status": "COMPLETE_OFFLINE",
+  "pending_conditions": [
+    "operator approval ABSENT",
+    "HERMES_drone_01: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)",
+    "HERMES_drone_02: margin NOT_ACCREDITED (DECLARED_PLANNING_MARGIN 1.0 m)",
+    "conditioned or not in the .plan: failsafe actions, planning inputs, return coordinate, speed, takeoff, waypoint acceptance, yaw",
+    "autopilot parameters not read: WP_RADIUS_M (waypoint acceptance), WP_YAW_BEHAVIOR (yaw), WP_SPD (default speed), FS_* (failsafe actions), LAND_SPD_MS / descent (landing rate)",
+    "QGroundControl version unknown; imported_in_qgroundcontrol: NOT_DONE, uploaded_to_vehicle: NOT_DONE, read_back_from_vehicle: NOT_DONE, executed: NOT_DONE"
+  ],
+  "provenance": "HERMES_FINALIZED_ON_SYNTHETIC",
+  "references": {
+    "effective_home": "NOT_OBSERVED (ArduPilot sets it at arming)",
+    "estimator_origin": "NOT_OBSERVED",
+    "finalized_mission_home": "declared in each finalized mission; kept in its source copy and replaced by the takeoff point in the derived one",
+    "gazebo_spawn": "not related to the site frame (no accredited transform)",
+    "planned_takeoff": "the planned_takeoff point the operator assigned to each vehicle",
+    "rover_start": "the rover_start point the operator named",
+    "site_origin": "ORIGIN"
+  },
+  "schema": "tfg.scenario-package/1",
+  "site": {
+    "id": "synthetic_hermes_rehearsal",
+    "sha256": "61d47a4ed5889942f4f5916506377d27f342d29e92a3809eec79337d7445949f",
+    "status": "SYNTHETIC",
+    "validation": "VALID",
+    "version": 1
+  },
+  "target": "SITL_REHEARSAL",
+  "vehicles": [
+    "drone_01",
+    "drone_02",
+    "rover_01"
+  ],
+  "versions": {
+    "ardupilot_executed": "ArduCopter/ArduRover V4.8.0-dev (755258db) as reported by SITL in logs of 20-26/10/2026 (e.g. results/gui_control_two_drones_2026_10_25, rover_identity_trial_2026_10_26; image sha256:5d5de3c6...); the H2 record of 24/10 keeps no firmware version or image id",
+    "ardupilot_source_consulted": "local clean tree at 755258dbb452 (~/TFG/ardupilot_ros2_ws/src/ardupilot)",
+    "physical_vehicles": "UNKNOWN",
+    "qgroundcontrol": "UNKNOWN: no installation found; plan format from the QGC master documentation (27/10/2026)"
+  }
+}

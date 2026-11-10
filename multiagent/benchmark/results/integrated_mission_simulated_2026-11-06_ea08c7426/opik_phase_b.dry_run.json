@@ -1,0 +1,1594 @@
+{
+ "bodies": {
+  "spans": [
+   {
+    "spans": [
+     {
+      "end_time": "2026-11-06T11:27:03.419904Z",
+      "id": "01a1b09c-b8fb-7a93-8be8-0a72a967e5de",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 5.115600652061403e-05,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [],
+       "tfg_status": "ACCEPTED"
+      },
+      "name": "mission_orchestrator:validation:observation_gate",
+      "output": {
+       "data_kind": "TEST_FIXTURE",
+       "failed": [],
+       "observation_id": "fixture-drone_02-POI_3",
+       "target": {
+        "map_frame": "synthetic_orchard_local",
+        "matched_poi": "POI_3",
+        "object_class": "red_card",
+        "point_from": "BACK_PROJECTED_STEREO",
+        "sigma_m": 0.18,
+        "target_id": "card_red_1",
+        "x_m": 8.0,
+        "y_m": 4.0,
+        "z_m": 0.0
+       }
+      },
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.419853Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.498849Z",
+      "id": "01a1b09c-b8fc-7796-a258-7994891f9bab",
+      "input": {
+       "text": "Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated."
+      },
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.07883216202026233,
+       "tfg_execution": "AGENT_STEP",
+       "tfg_kind": "agent",
+       "tfg_model": {
+        "data_kind": "DETERMINISTIC",
+        "model": "supervisor-brief-update/1",
+        "provider": "deterministic",
+        "version": "1"
+       },
+       "tfg_stage": [
+        "global_result",
+        "mission_orchestrator"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "mission_orchestrator:agent:mission",
+      "output": {
+       "proposal_sha256": "e4f92af5c46ace5f18a8a579e41ff6b442acece6533c95bd3560658ab8a4135a",
+       "status": "PROPOSED_PENDING_AUTHORIZATION",
+       "tasks": [
+        {
+         "state": "PENDING_AUTHORIZATION",
+         "task_id": "AIR_drone_01",
+         "vehicle_id": "drone_01"
+        },
+        {
+         "state": "PENDING_AUTHORIZATION",
+         "task_id": "AIR_drone_02",
+         "vehicle_id": "drone_02"
+        },
+        {
+         "state": "PENDING_AUTHORIZATION",
+         "task_id": "GROUND_rover_01",
+         "vehicle_id": "rover_01"
+        }
+       ]
+      },
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.420017Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.421865Z",
+      "id": "01a1b09c-b8fd-7ea7-940d-de1256bd8f09",
+      "input": {
+       "text": "Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated."
+      },
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.00027911399956792593,
+       "tfg_execution": "TOOL_CALL",
+       "tfg_kind": "tool",
+       "tfg_model": {
+        "data_kind": "DETERMINISTIC",
+        "model": "supervisor-brief-update/1",
+        "provider": "deterministic",
+        "version": "1"
+       },
+       "tfg_stage": [
+        "llm_interpretation"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "mission_orchestrator:tool:interpret",
+      "output": {
+       "aerial_objectives": [
+        {
+         "coordinates": null,
+         "description": null,
+         "objective_id": "A1",
+         "point_id": "POI_1",
+         "required_sensor": "rgb"
+        },
+        {
+         "coordinates": null,
+         "description": null,
+         "objective_id": "A2",
+         "point_id": "POI_3",
+         "required_sensor": "multispectral"
+        }
+       ],
+       "altitude_m": null,
+       "ambiguities": [],
+       "battery_percent": {},
+       "contradictions": [],
+       "drones": [],
+       "ground_objectives": [
+        {
+         "after_aerial": true,
+         "coordinates": null,
+         "description": "target of observation fixture-drone_02-POI_3 (red_card, TEST_FIXTURE)",
+         "objective_id": "G1",
+         "point_id": "POI_3"
+        }
+       ],
+       "rover": "rover_01",
+       "schema": "tfg.multiagent.mission-brief/2",
+       "site_id": null,
+       "unsafe_requests": [],
+       "vehicle_availability": [],
+       "wind_speed_kmh": null
+      },
+      "parent_span_id": "01a1b09c-b8fc-7796-a258-7994891f9bab",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.421586Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "tool"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.422862Z",
+      "id": "01a1b09c-b8fe-709e-b620-f86a86966d2a",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 6.780988769605756e-06,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [
+        "safety_validation"
+       ],
+       "tfg_status": "PASS"
+      },
+      "name": "mission_orchestrator:validation:risk_signals:safety/2",
+      "output": [],
+      "parent_span_id": "01a1b09c-b8fc-7796-a258-7994891f9bab",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.422855Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.423523Z",
+      "id": "01a1b09c-b8ff-7848-bca5-60781d15dcb8",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.00014110200572758913,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [
+        "safety_validation"
+       ],
+       "tfg_status": "PASS"
+      },
+      "name": "mission_orchestrator:validation:availability",
+      "output": {
+       "clarifications": [],
+       "excluded_from_planning": [],
+       "levels": [
+        "DECLARED_TEXT",
+        "INVENTORY",
+        "OPERATIONAL (not established here)"
+       ],
+       "operational_availability": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+       "schema": "tfg.multiagent.availability/1",
+       "vehicles": [
+        {
+         "conflicts": [],
+         "declared_by_text": null,
+         "deterministic_text_reading": null,
+         "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+         "inventory": "AVAILABLE",
+         "inventory_source": "operating context (SYNTHETIC)",
+         "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+         "planning": "AVAILABLE",
+         "quote": null,
+         "vehicle_id": "drone_01"
+        },
+        {
+         "conflicts": [],
+         "declared_by_text": null,
+         "deterministic_text_reading": null,
+         "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+         "inventory": "AVAILABLE",
+         "inventory_source": "operating context (SYNTHETIC)",
+         "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+         "planning": "AVAILABLE",
+         "quote": null,
+         "vehicle_id": "drone_02"
+        },
+        {
+         "conflicts": [],
+         "declared_by_text": null,
+         "deterministic_text_reading": null,
+         "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+         "inventory": "AVAILABLE",
+         "inventory_source": "operating context (SYNTHETIC)",
+         "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+         "planning": "AVAILABLE",
+         "quote": null,
+         "vehicle_id": "rover_01"
+        }
+       ]
+      },
+      "parent_span_id": "01a1b09c-b8fc-7796-a258-7994891f9bab",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.423382Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.424443Z",
+      "id": "01a1b09c-b900-7f12-80ac-4d8d33d71cc0",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 1.2464995961636305e-05,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [],
+       "tfg_status": "PASS"
+      },
+      "name": "mission_orchestrator:validation:decomposition",
+      "output": {
+       "aerial": [
+        "A1",
+        "A2"
+       ],
+       "ground": [
+        "G1"
+       ]
+      },
+      "parent_span_id": "01a1b09c-b8fc-7796-a258-7994891f9bab",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.424431Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.492404Z",
+      "id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "input": {
+       "objectives": [
+        {
+         "coordinates": null,
+         "description": null,
+         "objective_id": "A1",
+         "point_id": "POI_1",
+         "required_sensor": "rgb"
+        },
+        {
+         "coordinates": null,
+         "description": null,
+         "objective_id": "A2",
+         "point_id": "POI_3",
+         "required_sensor": "multispectral"
+        }
+       ],
+       "wind_speed_kmh": 0.0
+      },
+      "metadata": {
+       "tfg_agent": "drone_swarm_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.06754334399010986,
+       "tfg_execution": "AGENT_STEP",
+       "tfg_kind": "agent",
+       "tfg_model": null,
+       "tfg_stage": [
+        "drone_swarm_agent",
+        "objective_allocation"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "drone_swarm_agent:agent:plan_aerial",
+      "output": {
+       "clarifications": [],
+       "incompatible": [],
+       "proposals": [
+        {
+         "mission_sha256": "fe13b0916fd220101125aba803c14a20fd6f48475d3a0a2c514ace1af74c65e7",
+         "poi_sequence": [
+          "POI_1"
+         ],
+         "vehicle_id": "drone_01"
+        },
+        {
+         "mission_sha256": "984df468a86b40fc6919aedc43523fce58a16615bf6d85763f9e6a6e2cb3a58b",
+         "poi_sequence": [
+          "POI_3"
+         ],
+         "vehicle_id": "drone_02"
+        }
+       ],
+       "status": "PROPOSED_PENDING_AUTHORIZATION"
+      },
+      "parent_span_id": "01a1b09c-b8fc-7796-a258-7994891f9bab",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.424861Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.433526Z",
+      "id": "01a1b09c-b909-7c59-897e-60d099d5a252",
+      "input": {
+       "arguments": {},
+       "requested_by": "runtime"
+      },
+      "metadata": {
+       "tfg_agent": "drone_swarm_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.00043268201989121735,
+       "tfg_execution": "TOOL_CALL",
+       "tfg_kind": "tool",
+       "tfg_model": null,
+       "tfg_stage": [
+        "tool_calls"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "drone_swarm_agent:tool:tool:drone_capabilities",
+      "output": {
+       "drones": [
+        {
+         "available": true,
+         "battery_percent": 100.0,
+         "max_wind_kmh": 30.0,
+         "sensors": [
+          "rgb"
+         ],
+         "takeoff_point": "TAKEOFF_A",
+         "vehicle_id": "drone_01"
+        },
+        {
+         "available": true,
+         "battery_percent": 60.0,
+         "max_wind_kmh": 20.0,
+         "sensors": [
+          "multispectral"
+         ],
+         "takeoff_point": "TAKEOFF_B",
+         "vehicle_id": "drone_02"
+        }
+       ],
+       "objectives": [
+        {
+         "eligible_drones": [
+          "drone_01"
+         ],
+         "objective_id": "A1",
+         "point_id": "POI_1",
+         "required_sensor": "rgb"
+        },
+        {
+         "eligible_drones": [
+          "drone_02"
+         ],
+         "objective_id": "A2",
+         "point_id": "POI_3",
+         "required_sensor": "multispectral"
+        }
+       ],
+       "site_points": {
+        "POI_1": [
+         -4.0,
+         5.0
+        ],
+        "POI_2": [
+         -4.0,
+         18.0
+        ],
+        "POI_3": [
+         8.0,
+         4.0
+        ],
+        "POI_4": [
+         25.0,
+         4.0
+        ],
+        "POI_5": [
+         20.0,
+         20.0
+        ],
+        "TAKEOFF_A": [
+         -4.0,
+         -6.0
+        ],
+        "TAKEOFF_B": [
+         4.0,
+         -6.0
+        ]
+       },
+       "wind_speed_kmh": 0.0
+      },
+      "parent_span_id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.433093Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "tool"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.435056Z",
+      "id": "01a1b09c-b90a-73e4-a033-9f3f8c9eb94f",
+      "input": {
+       "context_tools": [
+        "drone_capabilities"
+       ],
+       "contract": "single_shot"
+      },
+      "metadata": {
+       "tfg_agent": "drone_swarm_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.0002839009976014495,
+       "tfg_execution": "TEST_DOUBLE_LLM_CALL",
+       "tfg_kind": "llm",
+       "tfg_model": {
+        "data_kind": "SYNTHETIC",
+        "model": "scripted:single_shot_drone",
+        "provider": "test-double",
+        "version": "fixture"
+       },
+       "tfg_stage": [],
+       "tfg_status": "OK"
+      },
+      "name": "drone_swarm_agent:llm:drone_swarm_agent:single_shot",
+      "output": {
+       "explanation": "eligible drones",
+       "proposal": {
+        "assignments": {
+         "drone_01": [
+          "A1"
+         ],
+         "drone_02": [
+          "A2"
+         ]
+        }
+       },
+       "verify": [
+        {
+         "arguments": {
+          "sequence": [
+           "POI_1"
+          ],
+          "vehicle_id": "drone_01"
+         },
+         "tool": "validate_route"
+        },
+        {
+         "arguments": {
+          "sequence": [
+           "POI_3"
+          ],
+          "vehicle_id": "drone_02"
+         },
+         "tool": "validate_route"
+        },
+        {
+         "arguments": {
+          "assignments": {
+           "drone_01": [
+            "A1"
+           ],
+           "drone_02": [
+            "A2"
+           ]
+          }
+         },
+         "tool": "check_separation"
+        }
+       ]
+      },
+      "parent_span_id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.434772Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic",
+       "test-double-llm"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.439852Z",
+      "id": "01a1b09c-b90b-7808-849a-6bab4330cce5",
+      "input": {
+       "arguments": {
+        "sequence": [
+         "POI_1"
+        ],
+        "vehicle_id": "drone_01"
+       },
+       "requested_by": "model"
+      },
+      "metadata": {
+       "tfg_agent": "drone_swarm_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.004747036000480875,
+       "tfg_execution": "TOOL_CALL",
+       "tfg_kind": "tool",
+       "tfg_model": null,
+       "tfg_stage": [
+        "tool_calls"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "drone_swarm_agent:tool:tool:validate_route",
+      "output": {
+       "flight_minutes": 0.08476191886635631,
+       "length_m": 22.0,
+       "mission_status": "FEASIBLE",
+       "reasons": [],
+       "resolved_from_objective_ids": [],
+       "sequence": [
+        "POI_1"
+       ],
+       "status": "FEASIBLE",
+       "vehicle_id": "drone_01"
+      },
+      "parent_span_id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.435105Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "tool"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.445102Z",
+      "id": "01a1b09c-b90f-79da-bcdc-e44887545628",
+      "input": {
+       "arguments": {
+        "sequence": [
+         "POI_3"
+        ],
+        "vehicle_id": "drone_02"
+       },
+       "requested_by": "model"
+      },
+      "metadata": {
+       "tfg_agent": "drone_swarm_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.005190487019717693,
+       "tfg_execution": "TOOL_CALL",
+       "tfg_kind": "tool",
+       "tfg_model": null,
+       "tfg_stage": [
+        "tool_calls"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "drone_swarm_agent:tool:tool:validate_route",
+      "output": {
+       "flight_minutes": 0.08606594662526162,
+       "length_m": 21.540659228538015,
+       "mission_status": "FEASIBLE",
+       "reasons": [],
+       "resolved_from_objective_ids": [],
+       "sequence": [
+        "POI_3"
+       ],
+       "status": "FEASIBLE",
+       "vehicle_id": "drone_02"
+      },
+      "parent_span_id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.439912Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "tool"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.456252Z",
+      "id": "01a1b09c-b915-72bc-8f6d-7de43987bf3a",
+      "input": {
+       "arguments": {
+        "assignments": {
+         "drone_01": [
+          "A1"
+         ],
+         "drone_02": [
+          "A2"
+         ]
+        }
+       },
+       "requested_by": "model"
+      },
+      "metadata": {
+       "tfg_agent": "drone_swarm_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.011104338016593829,
+       "tfg_execution": "TOOL_CALL",
+       "tfg_kind": "tool",
+       "tfg_model": null,
+       "tfg_stage": [
+        "tool_calls"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "drone_swarm_agent:tool:tool:check_separation",
+      "output": {
+       "conflict_examples": [
+        {
+         "kind": "DRONE_DRONE",
+         "min_distance_m": 8.0,
+         "required_m": 8.5,
+         "segments": [
+          "TAKEOFF_A climb",
+          "TAKEOFF_B climb"
+         ],
+         "time_overlap_s": [
+          -3.0,
+          15.0
+         ],
+         "vehicles": [
+          "drone_01",
+          "drone_02"
+         ]
+        },
+        {
+         "kind": "DRONE_DRONE",
+         "min_distance_m": 8.0,
+         "required_m": 8.5,
+         "segments": [
+          "TAKEOFF_A climb",
+          "TAKEOFF_B -> POI_3"
+         ],
+         "time_overlap_s": [
+          5.0,
+          15.0
+         ],
+         "vehicles": [
+          "drone_01",
+          "drone_02"
+         ]
+        },
+        {
+         "kind": "DRONE_DRONE",
+         "min_distance_m": 8.0,
+         "required_m": 8.5,
+         "segments": [
+          "TAKEOFF_A climb",
+          "POI_3 -> TAKEOFF_B (return)"
+         ],
+         "time_overlap_s": [
+          8.1,
+          15.0
+         ],
+         "vehicles": [
+          "drone_01",
+          "drone_02"
+         ]
+        }
+       ],
+       "initial_conflicts": 16,
+       "reason": null,
+       "schedule": {
+        "drone_01": {
+         "nominal_end_s": 75.09,
+         "start_delay_s": 45.0
+        },
+        "drone_02": {
+         "nominal_end_s": 30.16,
+         "start_delay_s": 0.0
+        }
+       },
+       "status": "DECONFLICTED_BY_START_DELAY"
+      },
+      "parent_span_id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.445148Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "tool"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.474055Z",
+      "id": "01a1b09c-b932-7fe3-9efa-4874bc5698f2",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 2.6724999770522118e-05,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [
+        "replanning"
+       ],
+       "tfg_status": "ACCEPTED"
+      },
+      "name": "mission_orchestrator:validation:gate:drone_proposal:round0",
+      "output": {
+       "proposal": {
+        "assignments": {
+         "drone_01": [
+          "A1"
+         ],
+         "drone_02": [
+          "A2"
+         ]
+        }
+       },
+       "same_as_reference": true,
+       "separation": "DECONFLICTED_BY_START_DELAY",
+       "violations": []
+      },
+      "parent_span_id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.474028Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.491718Z",
+      "id": "01a1b09c-b943-7055-ae12-3556e01a8934",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "drone_swarm_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 9.323700214736164e-05,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [
+        "swarm_coordination"
+       ],
+       "tfg_status": "DECONFLICTED_BY_START_DELAY"
+      },
+      "name": "drone_swarm_agent:validation:deconfliction:CHOSEN",
+      "output": {
+       "conflicts": [
+        {
+         "kind": "DRONE_DRONE",
+         "min_distance_m": 8.0,
+         "required_m": 8.5,
+         "segments": [
+          "TAKEOFF_A climb",
+          "TAKEOFF_B climb"
+         ],
+         "time_overlap_s": [
+          -3.0,
+          15.0
+         ],
+         "vehicles": [
+          "drone_01",
+          "drone_02"
+         ]
+        },
+        {
+         "kind": "DRONE_DRONE",
+         "min_distance_m": 8.0,
+         "required_m": 8.5,
+         "segments": [
+          "TAKEOFF_A climb",
+          "TAKEOFF_B -> POI_3"
+         ],
+         "time_overlap_s": [
+          5.0,
+          15.0
+         ],
+         "vehicles": [
+          "drone_01",
+          "drone_02"
+         ]
+        },
+        {
+         "kind": "DRONE_DRONE",
+         "min_distance_m": 8.0,
+         "required_m": 8.5,
+         "segments": [
+          "TAKEOFF_A climb",
+          "POI_3 -> TAKEOFF_B (return)"
+         ],
+         "time_overlap_s": [
+          8.1,
+          15.0
+         ],
+         "vehicles": [
+          "drone_01",
+          "drone_02"
+         ]
+        },
+        {
+         "kind": "DRONE_DRONE",
+         "min_distance_m": 8.0,
+         "required_m": 8.5,
+         "segments": [
+          "TAKEOFF_A climb",
+          "TAKEOFF_B (return) landing"
+         ],
+         "time_overlap_s": [
+          9.13,
+          15.0
+         ],
+         "vehicles": [
+          "drone_01",
+          "drone_02"
+         ]
+        },
+        {
+         "kind": "DRONE_DRONE",
+         "min_distance_m": 8.0,
+         "required_m": 8.5,
+         "segments": [
+          "TAKEOFF_A -> POI_1",
+          "TAKEOFF_B climb"
+         ],
+         "time_overlap_s": [
+          5.0,
+          15.0
+         ],
+         "vehicles": [
+          "drone_01",
+          "drone_02"
+         ]
+        }
+       ],
+       "schedule": {
+        "drone_01": {
+         "nominal_end_s": 75.09,
+         "start_delay_s": 45.0
+        },
+        "drone_02": {
+         "nominal_end_s": 30.16,
+         "start_delay_s": 0.0
+        }
+       }
+      },
+      "parent_span_id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.491625Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.492011Z",
+      "id": "01a1b09c-b943-7c44-b5cf-26d3c7777d6c",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "drone_swarm_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 1.874699955806136e-05,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [],
+       "tfg_status": "FEASIBLE"
+      },
+      "name": "drone_swarm_agent:validation:mission:drone_01",
+      "output": {
+       "export": {
+        "items": 4,
+        "plan_sha256": "e609bf401dc299f8fdea93b81b44d3c92fdb60242f5e5dc6ec94cf35ab388989",
+        "profile": "QGC_PLAN_ARDUCOPTER_V2",
+        "status": "GENERATED"
+       },
+       "mission_sha256": "fe13b0916fd220101125aba803c14a20fd6f48475d3a0a2c514ace1af74c65e7"
+      },
+      "parent_span_id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.491992Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.492202Z",
+      "id": "01a1b09c-b944-7dc7-b741-a83f2394d31e",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "drone_swarm_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 1.5955010894685984e-05,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [],
+       "tfg_status": "FEASIBLE"
+      },
+      "name": "drone_swarm_agent:validation:mission:drone_02",
+      "output": {
+       "export": {
+        "items": 4,
+        "plan_sha256": "4c0d7823aee25e63e77b936eae74d2aa9b4a358e6c25511a6ad211b7b9704e37",
+        "profile": "QGC_PLAN_ARDUCOPTER_V2",
+        "status": "GENERATED"
+       },
+       "mission_sha256": "984df468a86b40fc6919aedc43523fce58a16615bf6d85763f9e6a6e2cb3a58b"
+      },
+      "parent_span_id": "01a1b09c-b900-796e-8115-e57c12d893d2",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.492186Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.496617Z",
+      "id": "01a1b09c-b945-7ef2-b806-4c4f88ce51d9",
+      "input": {
+       "objectives": [
+        {
+         "after_aerial": true,
+         "coordinates": null,
+         "description": "target of observation fixture-drone_02-POI_3 (red_card, TEST_FIXTURE)",
+         "objective_id": "G1",
+         "point_id": "POI_3"
+        }
+       ],
+       "rover": "rover_01"
+      },
+      "metadata": {
+       "tfg_agent": "rover_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.003502140985801816,
+       "tfg_execution": "AGENT_STEP",
+       "tfg_kind": "agent",
+       "tfg_model": null,
+       "tfg_stage": [
+        "rover_agent"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "rover_agent:agent:plan_ground",
+      "output": {
+       "clarifications": [],
+       "incompatible": [],
+       "proposals": [
+        {
+         "after_aerial_point": "POI_3",
+         "availability": "DECLARED_SYNTHETIC",
+         "execution": "NOT_EXECUTED: R1 coordinator + operator authorization + executor gates",
+         "export": "FORMAT_PENDING: no rover exporter",
+         "frame_transform_to_rover": "NOT_ACCREDITED (site frame -> rover odometry)",
+         "kind": "VISIT_AND_STOP",
+         "objective_ids": [
+          "G1"
+         ],
+         "ros2_commands_sent": 0,
+         "spatial_status": "PASS",
+         "start_point": "ROVER_START",
+         "state": "PENDING_AUTHORIZATION",
+         "target_point": "POI_3",
+         "task_id": "GROUND_rover_01",
+         "vehicle_id": "rover_01"
+        }
+       ],
+       "status": "PROPOSED_PENDING_AUTHORIZATION"
+      },
+      "parent_span_id": "01a1b09c-b8fc-7796-a258-7994891f9bab",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.493115Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.493365Z",
+      "id": "01a1b09c-b945-733c-b99c-94744c81da2c",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "rover_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 4.388013621792197e-06,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [],
+       "tfg_status": "PASS"
+      },
+      "name": "rover_agent:validation:ground_route:rover_01->POI_3",
+      "output": [],
+      "parent_span_id": "01a1b09c-b945-7ef2-b806-4c4f88ce51d9",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.493361Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.493943Z",
+      "id": "01a1b09c-b945-765e-9af6-68a028e14b1e",
+      "input": {
+       "arguments": {},
+       "requested_by": "runtime"
+      },
+      "metadata": {
+       "tfg_agent": "rover_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.0004549200239125639,
+       "tfg_execution": "TOOL_CALL",
+       "tfg_kind": "tool",
+       "tfg_model": null,
+       "tfg_stage": [
+        "tool_calls"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "rover_agent:tool:tool:rover_capabilities",
+      "output": {
+       "aerial_points_proposed": [
+        "POI_1",
+        "POI_3"
+       ],
+       "available": true,
+       "declared_pois": [
+        "POI_1",
+        "POI_2",
+        "POI_3",
+        "POI_4",
+        "POI_5"
+       ],
+       "localization": {
+        "accredited_live_localization": false,
+        "note": "a plan to a declared POI only; executing it needs a verified pose source",
+        "source": "start point declared in the operating context (synthetic)"
+       },
+       "rover": "rover_01",
+       "start_point": "ROVER_START",
+       "status": "OK"
+      },
+      "parent_span_id": "01a1b09c-b945-7ef2-b806-4c4f88ce51d9",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.493488Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "tool"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.495182Z",
+      "id": "01a1b09c-b946-7d06-be50-d70a4fe3f46c",
+      "input": {
+       "context_tools": [
+        "rover_capabilities"
+       ],
+       "contract": "single_shot"
+      },
+      "metadata": {
+       "tfg_agent": "rover_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.0003445299807935953,
+       "tfg_execution": "TEST_DOUBLE_LLM_CALL",
+       "tfg_kind": "llm",
+       "tfg_model": {
+        "data_kind": "SYNTHETIC",
+        "model": "scripted:single_shot_rover",
+        "provider": "test-double",
+        "version": "fixture"
+       },
+       "tfg_stage": [],
+       "tfg_status": "OK"
+      },
+      "name": "rover_agent:llm:rover_agent:single_shot",
+      "output": {
+       "explanation": "declared targets only",
+       "proposal": {
+        "insufficient_information": [],
+        "tasks": [
+         {
+          "after_aerial_point": "POI_3",
+          "objective_id": "G1",
+          "target_point": "POI_3"
+         }
+        ]
+       },
+       "verify": [
+        {
+         "arguments": {
+          "target_point": "POI_3"
+         },
+         "tool": "validate_ground_target"
+        },
+        {
+         "arguments": {
+          "aerial_points": [
+           "POI_1",
+           "POI_3"
+          ],
+          "point": "POI_3"
+         },
+         "tool": "check_dependency"
+        }
+       ]
+      },
+      "parent_span_id": "01a1b09c-b945-7ef2-b806-4c4f88ce51d9",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.494837Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic",
+       "test-double-llm"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.495977Z",
+      "id": "01a1b09c-b947-783f-a31c-29ba23e4ee6e",
+      "input": {
+       "arguments": {
+        "target_point": "POI_3"
+       },
+       "requested_by": "model"
+      },
+      "metadata": {
+       "tfg_agent": "rover_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.0007466980023309588,
+       "tfg_execution": "TOOL_CALL",
+       "tfg_kind": "tool",
+       "tfg_model": null,
+       "tfg_stage": [
+        "tool_calls"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "rover_agent:tool:tool:validate_ground_target",
+      "output": {
+       "available": true,
+       "failed_checks": [],
+       "start_point": "ROVER_START",
+       "status": "PASS"
+      },
+      "parent_span_id": "01a1b09c-b945-7ef2-b806-4c4f88ce51d9",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.495230Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "tool"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.496488Z",
+      "id": "01a1b09c-b948-7f63-b59f-2b58b54e9f1c",
+      "input": {
+       "arguments": {
+        "aerial_points": [
+         "POI_1",
+         "POI_3"
+        ],
+        "point": "POI_3"
+       },
+       "requested_by": "model"
+      },
+      "metadata": {
+       "tfg_agent": "rover_agent",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 0.0004727689956780523,
+       "tfg_execution": "TOOL_CALL",
+       "tfg_kind": "tool",
+       "tfg_model": null,
+       "tfg_stage": [
+        "tool_calls"
+       ],
+       "tfg_status": "OK"
+      },
+      "name": "rover_agent:tool:tool:check_dependency",
+      "output": {
+       "aerial_points_proposed": [
+        "POI_1",
+        "POI_3"
+       ],
+       "point": "POI_3",
+       "reached_by_a_proposed_drone_task": true
+      },
+      "parent_span_id": "01a1b09c-b945-7ef2-b806-4c4f88ce51d9",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.496015Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "tool"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.496569Z",
+      "id": "01a1b09c-b948-7734-b89b-eee32ba306ce",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 1.3362005120143294e-05,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [
+        "rover_review"
+       ],
+       "tfg_status": "AGREES"
+      },
+      "name": "mission_orchestrator:validation:gate:rover_proposal",
+      "output": {
+       "deterministic": [
+        [
+         "G1",
+         "POI_3",
+         "POI_3"
+        ]
+       ],
+       "proposed": [
+        [
+         "G1",
+         "POI_3",
+         "POI_3"
+        ]
+       ]
+      },
+      "parent_span_id": "01a1b09c-b945-7ef2-b806-4c4f88ce51d9",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.496556Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.497488Z",
+      "id": "01a1b09c-b949-7a18-b928-fbd450b16a1d",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 4.6869972720742226e-06,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [
+        "swarm_coordination"
+       ],
+       "tfg_status": "PASS"
+      },
+      "name": "mission_orchestrator:validation:coordination_checks",
+      "output": [],
+      "parent_span_id": "01a1b09c-b8fc-7796-a258-7994891f9bab",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.497483Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     },
+     {
+      "end_time": "2026-11-06T11:27:03.497524Z",
+      "id": "01a1b09c-b949-7913-b042-ffe2bcaf8a34",
+      "input": null,
+      "metadata": {
+       "tfg_agent": "mission_orchestrator",
+       "tfg_duration_clock": "PERF_COUNTER_THIS_PROCESS",
+       "tfg_duration_s": 1.964499824680388e-05,
+       "tfg_execution": "DETERMINISTIC_VALIDATION",
+       "tfg_kind": "validation",
+       "tfg_model": null,
+       "tfg_stage": [
+        "swarm_coordination"
+       ],
+       "tfg_status": "INFO"
+      },
+      "name": "mission_orchestrator:validation:joint_spatial",
+      "output": [
+       {
+        "min_horizontal_distance_m": 8.0,
+        "pair": [
+         "AIR_drone_01",
+         "AIR_drone_02"
+        ],
+        "simultaneous_execution": "NOT_CLEARED",
+        "temporal_deconfliction": "NOT_EVALUATED"
+       }
+      ],
+      "parent_span_id": "01a1b09c-b8fc-7796-a258-7994891f9bab",
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.497504Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ],
+      "trace_id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "type": "general"
+     }
+    ]
+   }
+  ],
+  "traces": [
+   {
+    "traces": [
+     {
+      "end_time": "2026-11-06T11:27:03.498849Z",
+      "id": "01a1b09c-b8fb-7356-89e5-409624af68ce",
+      "input": null,
+      "metadata": {
+       "tfg_agent_metrics": {
+        "drone_swarm_agent": {
+         "agent_span_s": 0.06754334399010986,
+         "llm_calls_real": 0,
+         "llm_calls_test_double": 1,
+         "tokens": 0,
+         "tool_calls": 4,
+         "tool_failures": 0,
+         "unresolved_deconfliction": 0
+        },
+        "mission_orchestrator": {
+         "agent_span_s": 0.07883216202026233,
+         "gates_accepted": 1,
+         "gates_rejected": 0,
+         "llm_calls_real": 0,
+         "llm_calls_test_double": 0,
+         "revision_requests": 0,
+         "tokens": 0,
+         "tool_calls": 1,
+         "tool_failures": 0
+        },
+        "rover_agent": {
+         "agent_span_s": 0.003502140985801816,
+         "llm_calls_real": 0,
+         "llm_calls_test_double": 1,
+         "tokens": 0,
+         "tool_calls": 3,
+         "tool_failures": 0
+        }
+       },
+       "tfg_cost": "UNKNOWN",
+       "tfg_data_kind": "synthetic_fixture",
+       "tfg_experiment": null,
+       "tfg_experiment_id": null,
+       "tfg_generation": {
+        "deterministic": true
+       },
+       "tfg_mission_id": "pending",
+       "tfg_model": null,
+       "tfg_payload_verification": "UNVERIFIED_AGAINST_OPIK_SERVICE",
+       "tfg_prompt": {
+        "sha256": "6228d827a5ba1fd9a98bf88afb45fb5d06c3d07e82062e7507ff3251ac1a59ea",
+        "template_id": null
+       },
+       "tfg_resources": {
+        "gpu_memory": "NOT_MEASURED"
+       },
+       "tfg_run_id": "eb0a43a3-2795-4bdf-964c-38ffd6b3803d",
+       "tfg_send_status": "DRY_RUN_NOT_SENT",
+       "tfg_spans": 25,
+       "tfg_stages_not_executed": [],
+       "tfg_validators": [
+        {
+         "agent": "mission_orchestrator",
+         "name": "observation_gate",
+         "status": "ACCEPTED"
+        },
+        {
+         "agent": "mission_orchestrator",
+         "name": "risk_signals:safety/2",
+         "status": "PASS"
+        },
+        {
+         "agent": "mission_orchestrator",
+         "name": "availability",
+         "status": "PASS"
+        },
+        {
+         "agent": "mission_orchestrator",
+         "name": "decomposition",
+         "status": "PASS"
+        },
+        {
+         "agent": "mission_orchestrator",
+         "name": "gate:drone_proposal:round0",
+         "status": "ACCEPTED"
+        },
+        {
+         "agent": "drone_swarm_agent",
+         "name": "deconfliction:CHOSEN",
+         "status": "DECONFLICTED_BY_START_DELAY"
+        },
+        {
+         "agent": "drone_swarm_agent",
+         "name": "mission:drone_01",
+         "status": "FEASIBLE"
+        },
+        {
+         "agent": "drone_swarm_agent",
+         "name": "mission:drone_02",
+         "status": "FEASIBLE"
+        },
+        {
+         "agent": "rover_agent",
+         "name": "ground_route:rover_01->POI_3",
+         "status": "PASS"
+        },
+        {
+         "agent": "mission_orchestrator",
+         "name": "gate:rover_proposal",
+         "status": "AGREES"
+        },
+        {
+         "agent": "mission_orchestrator",
+         "name": "coordination_checks",
+         "status": "PASS"
+        },
+        {
+         "agent": "mission_orchestrator",
+         "name": "joint_spatial",
+         "status": "INFO"
+        }
+       ]
+      },
+      "name": "multiagent:observation_gate",
+      "output": {
+       "data_kind": "TEST_FIXTURE",
+       "failed": [],
+       "observation_id": "fixture-drone_02-POI_3",
+       "target": {
+        "map_frame": "synthetic_orchard_local",
+        "matched_poi": "POI_3",
+        "object_class": "red_card",
+        "point_from": "BACK_PROJECTED_STEREO",
+        "sigma_m": 0.18,
+        "target_id": "card_red_1",
+        "x_m": 8.0,
+        "y_m": 4.0,
+        "z_m": 0.0
+       }
+      },
+      "project_name": "tfg-multiagent-benchmarks",
+      "start_time": "2026-11-06T11:27:03.419853Z",
+      "tags": [
+       "tfg-multiagent",
+       "schema:tfg.multiagent.trace/1",
+       "synthetic"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "destination": {
+  "key": "opik:joowww/tfg-multiagent-benchmarks",
+  "platform": "opik",
+  "project": "tfg-multiagent-benchmarks",
+  "workspace": "joowww"
+ },
+ "errors": [],
+ "paths": {
+  "spans": "/v1/private/spans/batch",
+  "traces": "/v1/private/traces/batch"
+ },
+ "send": "not implemented here: use observability.opik_export.send with its gate, after authorization",
+ "status": "DRY_RUN_NOT_SENT",
+ "trace_kinds": [
+  "synthetic_fixture"
+ ]
+}

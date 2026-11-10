@@ -1,0 +1,14 @@
+step	rc	result	detail
+00_outside_repo	0	PASS	/tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/isolated_2026_10_28/bundle
+01_sha256sum	0	PASS	imagenes/tfg-planner-2026.10.28.tar: OK
+02_docker_load	0	PASS	3 archives loaded
+03_image_ids	0	PASS	MATCH tfg/planner:2026.10.28
+04_compose_config	0	PASS	PATHS_OK
+05_offline_query	0	PASS	Escenario: AERIAL_COMPLETED_GROUND_PENDING
+06_package_from_extracted_inputs	0	PASS	A2 drone_02: GENERATED
+07_package_verify	0	PASS	"status": "INTEGRITY_VERIFIED"
+08_qgc_would_mount_package	0	PASS	/data/plan
+09_planner_fresh_volume_no_login	1	PASS	Credenciales del proveedor (auth.json): ABSENT
+10_planning_store_write_direct_tools	0	PASS	finalize
+11_store_reread_new_container	1	PASS	finalización
+14_down_keeps_results	0	PASS	paquete_1

@@ -1,0 +1,74 @@
+{
+  "git": {
+    "branch": "feature/rover-sitl-first-motion",
+    "head": "ddbb7c33ebbd53ec69801bc80efe44c1b1b7a722",
+    "status_porcelain": "?? simulation/ros2_gazebo/results/rover_sitl_first_motion_2026_11_03/"
+  },
+  "profile": {
+    "active_default": "two_drones",
+    "rover_vehicles": [
+      {
+        "vehicle_id": "rover_01",
+        "interface": "v3",
+        "robot_name": "rover1",
+        "launch_model": "WILD_THUMPER",
+        "sitl_executable": "ardurover",
+        "mission_executor_supported": false
+      }
+    ],
+    "launch_file": "tfg_demo.launch.py",
+    "ports": [
+      5760,
+      5770,
+      5780
+    ]
+  },
+  "executor_facts": {
+    "schema": "tfg.rover.executor-facts/1",
+    "policy_enabled": false,
+    "navigation_request_supported": true,
+    "navigation_kind": "ROVER_NAVIGATE_V1",
+    "pulse_request_supported": true,
+    "pulse_kind": "ROVER_PULSE_V1",
+    "recoverable_start": "EXPLICIT_AUTHORIZED_SYNCHRONOUS_MAIN_THREAD_NO_SPAWN",
+    "finalization_policies": [
+      "DISARM_AFTER_OBSERVED_STOP_V1"
+    ],
+    "worker_entry": "tools.rover_ground_executor.run_ground_worker",
+    "deadline_contract": "POSIX_MAIN_THREAD_PLUS_NATIVE_FINITE_APIS",
+    "authorization_basis": "UNVERIFIED_EXPLICIT_DECLARATIONS_NOT_AUTHENTICATION"
+  },
+  "admit_ground_trial": {
+    "status": "BLOCKED",
+    "reason": "OPERATIONAL_ROVER_POLICY_DISABLED"
+  },
+  "start_ground_trial": {
+    "status": "BLOCKED",
+    "reason": "OPERATIONAL_ROVER_POLICY_DISABLED_OR_NO_ADAPTER"
+  },
+  "run_root_unchanged": true,
+  "navigation_preparation_rejected": "Exact navigation request required",
+  "navigation_requires_preexisting_arm": true,
+  "arm_and_guided_only_for_pulse_preparation": true,
+  "legacy_identity_guard": "Rover source identity BLOCKED: Identity worker record absent; evidence not collected",
+  "motion_binding_producers_outside_tests": [],
+  "host_rclpy_available": false,
+  "lock_root_files": [
+    "history",
+    "history/88f0dfab-2cbd-489b-bd98-30f88b0256b8",
+    "history/88f0dfab-2cbd-489b-bd98-30f88b0256b8/sequence.json",
+    "history/88f0dfab-2cbd-489b-bd98-30f88b0256b8/v2.json",
+    "registry.lock",
+    "v1.execution.lock"
+  ],
+  "reservations": {
+    "v1": null,
+    "v2": null,
+    "v3": null
+  },
+  "diagnostic_session": {
+    "state": "CLOSED",
+    "lifecycle_id": "891dab60-75f4-4008-b63d-2623ca5221a4",
+    "closed_by": "458609b3-7692-4282-ad93-5753005feded"
+  }
+}

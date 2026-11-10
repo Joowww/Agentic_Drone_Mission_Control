@@ -1,0 +1,71 @@
+[
+    {
+        "Id": "sha256:a86dae081f3fb3013abec5198e319ef82b38fea4ff5d54f3dbfbfed0a77d307b",
+        "RepoTags": [
+            "tfg/app:2026.10.27-r2"
+        ],
+        "RepoDigests": [
+            "tfg/app@sha256:a86dae081f3fb3013abec5198e319ef82b38fea4ff5d54f3dbfbfed0a77d307b"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-27T17:51:56.387832894Z",
+        "Config": {
+            "User": "1000:1000",
+            "Env": [
+                "PATH=/opt/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONUNBUFFERED=1",
+                "HOME=/tmp/home",
+                "TFG_PROFILE=offline"
+            ],
+            "Entrypoint": [
+                "python3",
+                "/opt/tfg/deploy/app/entry.py"
+            ],
+            "Cmd": [
+                "main.py"
+            ],
+            "WorkingDir": "/opt/tfg",
+            "Labels": {
+                "org.opencontainers.image.description": "Offline agri_demo_001 scenario tools (no simulator, no LLM provider)",
+                "org.opencontainers.image.title": "tfg-app",
+                "org.opencontainers.image.version": "2026.10.27-r2",
+                "tfg.apt.snapshot": "20261024T000000Z",
+                "tfg.python.constraints": "constraints-verified.txt"
+            },
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 344697164,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:bec87777bc2fb2edcdf9af11df1531469e7df911309c1413082b18fcb8610278",
+                "sha256:92e319e4e5c3b618a785c9536769f786d1ada26c5ede55fcc5a6451a0d8369e2",
+                "sha256:a5648e6758e8329317e25dba3e10858aada37dd3f2cd140036dfd9ffd3d01592",
+                "sha256:098c2a70938ac27237f75584478219dfac486f2319e0c299b5530e250f6ba7ec",
+                "sha256:8916cfab5961e456a55656036dd6a72e541afe8d77471384f1666f064b2f28e1",
+                "sha256:002416d20dee5057129d1dc3b8f532c131a2205e92a8083eb261abb4171654c8",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-27T17:51:56.732057468Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:a86dae081f3fb3013abec5198e319ef82b38fea4ff5d54f3dbfbfed0a77d307b",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "30vs7rfpetbpbg95b3mu3ihrv",
+                    "CreatedAt": "2026-10-27T17:51:56.924117827Z"
+                }
+            ]
+        }
+    }
+]

@@ -1,0 +1,5 @@
+# Model for the local Hermes demo: Qwen3 4B Instruct 2507 (Q4_K_M), without a reasoning phase,
+# with the context window Hermes Agent requires (it refuses models with less than 64000 tokens).
+# `ollama create` reuses the weights of qwen3:4b-instruct-2507-q4_K_M and downloads nothing.
+FROM qwen3:4b-instruct-2507-q4_K_M
+PARAMETER num_ctx 65536

@@ -1,0 +1,38 @@
+........................................................................ [  7%]
+........................................................................ [ 14%]
+........................................................................ [ 21%]
+........................................................................ [ 28%]
+........................................................................ [ 35%]
+........................................................................ [ 42%]
+.....F.........ss.....ss................................................ [ 50%]
+........................................................................ [ 57%]
+........................................................................ [ 64%]
+........................................................................ [ 71%]
+........................................................................ [ 78%]
+........................................................................ [ 85%]
+........................................................................ [ 93%]
+.....................................................................    [100%]
+=================================== FAILURES ===================================
+________ test_explicit_proof_file_is_usable_by_existing_locked_precheck ________
+
+closed_failed = ({'target': {'descriptor': {'manifest': {'schema': 'tfg.xrce-agent-selection/3', 'engine_id': 'fixture', 'container_id...ile_is_us0/closure-archive'), PosixPath('/tmp/pytest-of-joelm/pytest-4/test_explicit_proof_file_is_us0/start-archive'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x75351718be60>
+tmp_path = PosixPath('/tmp/pytest-of-joelm/pytest-4/test_explicit_proof_file_is_us0')
+
+    def test_explicit_proof_file_is_usable_by_existing_locked_precheck(closed_failed,monkeypatch,tmp_path):
+        records,_,_=closed_failed
+        path=tmp_path/'reference.json';dump(path,records['historical_evidence'])
+        current={'complete':True,'observed_monotonic':10,'restriction':None,'guards':{},'other_sessions':[],'host_processes':[],'host_boot_id':'synthetic'}
+        monkeypatch.setattr(d,'current_records',lambda context:(copy.deepcopy(records),copy.deepcopy(current)))
+        monkeypatch.setattr(d.ProjectDisposition,'query',lambda self:{'status':'NOT_ATTEMPTED'})
+        monkeypatch.setattr(d.time,'monotonic',lambda:10)
+        result=d.current_diagnostic_precheck(evidence=path)
+>       assert result['historical_classification']['start_outcome']=='FAILED_START_INFRASTRUCTURE_CLOSED'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'start_outcome'
+
+tests/test_rover_failed_close_classification.py:163: KeyError
+=========================== short test summary info ============================
+SKIPPED [4] tests/test_rover_failed_operational_close.py:91: Failed-start protected-stop invariant; successful layout covered separately
+FAILED tests/test_rover_failed_close_classification.py::test_explicit_proof_file_is_usable_by_existing_locked_precheck
+1 failed, 1000 passed, 4 skipped in 382.28s (0:06:22)

@@ -1,0 +1,141 @@
+{
+  "kind": "OFFLINE_PREVIEW_NOT_A_HISTORICAL_HTTP_CAPTURE",
+  "note": "Real langsmith Client with a fake HTTP session; nothing was sent. Future payload for the agent test.",
+  "langsmith_version": "0.14.11",
+  "destination_requested": {
+    "mode": "agent",
+    "agent_id": "tfg-synthetic",
+    "agent_environment": "local",
+    "lrn": "lrn:agents/tfg-synthetic/environments/local"
+  },
+  "sdk_warnings": [
+    "LangSmithBetaWarning"
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "url": "https://eu.api.smith.langchain.com/runs",
+      "header_names": [
+        "Accept",
+        "Content-Type",
+        "User-Agent",
+        "x-api-key"
+      ],
+      "destination_fields": {
+        "address": "lrn:agents/tfg-synthetic/environments/local"
+      },
+      "id": "a9b215b9-8ea1-52e0-84a4-e8acbacab2e3",
+      "run_type": "chain",
+      "name": "SYNTHETIC · hermes_turn",
+      "body_keys": [
+        "address",
+        "dotted_order",
+        "end_time",
+        "events",
+        "extra",
+        "id",
+        "inputs",
+        "name",
+        "outputs",
+        "run_type",
+        "start_time",
+        "tags",
+        "trace_id"
+      ]
+    },
+    {
+      "method": "POST",
+      "url": "https://eu.api.smith.langchain.com/runs",
+      "header_names": [
+        "Accept",
+        "Content-Type",
+        "User-Agent",
+        "x-api-key"
+      ],
+      "destination_fields": {
+        "address": "lrn:agents/tfg-synthetic/environments/local"
+      },
+      "id": "72923aae-a642-5880-a3f9-20d6f1e5d0fd",
+      "run_type": "llm",
+      "name": "SYNTHETIC · llm_call:SYNTHETIC-model",
+      "body_keys": [
+        "address",
+        "dotted_order",
+        "end_time",
+        "extra",
+        "id",
+        "inputs",
+        "name",
+        "outputs",
+        "parent_run_id",
+        "run_type",
+        "start_time",
+        "tags",
+        "trace_id"
+      ]
+    },
+    {
+      "method": "POST",
+      "url": "https://eu.api.smith.langchain.com/runs",
+      "header_names": [
+        "Accept",
+        "Content-Type",
+        "User-Agent",
+        "x-api-key"
+      ],
+      "destination_fields": {
+        "address": "lrn:agents/tfg-synthetic/environments/local"
+      },
+      "id": "cd77e897-c75d-5a36-b3c8-67e97920d1b4",
+      "run_type": "llm",
+      "name": "SYNTHETIC · llm_call:SYNTHETIC-model",
+      "body_keys": [
+        "address",
+        "dotted_order",
+        "end_time",
+        "extra",
+        "id",
+        "inputs",
+        "name",
+        "outputs",
+        "parent_run_id",
+        "run_type",
+        "start_time",
+        "tags",
+        "trace_id"
+      ]
+    },
+    {
+      "method": "POST",
+      "url": "https://eu.api.smith.langchain.com/runs",
+      "header_names": [
+        "Accept",
+        "Content-Type",
+        "User-Agent",
+        "x-api-key"
+      ],
+      "destination_fields": {
+        "address": "lrn:agents/tfg-synthetic/environments/local"
+      },
+      "id": "dfa445c4-6ea1-5854-9b26-e39ebf068f98",
+      "run_type": "llm",
+      "name": "SYNTHETIC · llm_error:SYNTHETIC-model",
+      "body_keys": [
+        "address",
+        "dotted_order",
+        "end_time",
+        "error",
+        "extra",
+        "id",
+        "inputs",
+        "name",
+        "outputs",
+        "parent_run_id",
+        "run_type",
+        "start_time",
+        "tags",
+        "trace_id"
+      ]
+    }
+  ]
+}

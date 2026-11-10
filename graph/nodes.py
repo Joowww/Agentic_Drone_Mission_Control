@@ -132,7 +132,7 @@ def battery_check_node(
 
     result = check_battery_safety(
         flight_time_minutes=flight_result[
-            "flight_time_minutes"
+            "flight_time_minutes_exact"
         ],
         battery_percent=state["battery_percent"],
         consumption_percent_per_minute=state[

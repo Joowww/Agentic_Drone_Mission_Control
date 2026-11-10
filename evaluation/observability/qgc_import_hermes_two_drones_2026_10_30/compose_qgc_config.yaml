@@ -1,0 +1,98 @@
+name: tfg-dist
+services:
+  qgc:
+    profiles:
+      - qgc
+    build:
+      context: /home/joelm/TFG/Agentic_Drone_Mission_Control/deploy/qgc
+      dockerfile: Dockerfile
+    cap_drop:
+      - ALL
+    environment:
+      DISPLAY: :0
+    image: tfg/qgroundcontrol:5.1.5
+    network_mode: none
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:mode=1777
+      - /home/qgc:uid=1000,gid=1000,mode=0700
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /home/joelm/TFG/Agentic_Drone_Mission_Control/evaluation/observability/hermes_finalized_package_two_drones_2026_10_30/package/plans
+        target: /data/plan
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: /home/joelm/TFG/Agentic_Drone_Mission_Control/evaluation/observability/qgc_import_hermes_two_drones_2026_10_30/qgc_saved
+        target: /data/saved
+        bind:
+          create_host_path: false
+x-app:
+  cap_drop:
+    - ALL
+  image: tfg/app:2026.10.28
+  init: true
+  network_mode: none
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  tmpfs:
+    - /tmp:mode=1777
+  user: 1000:1000
+x-planner:
+  cap_drop:
+    - ALL
+  image: tfg/planner:2026.10.28
+  init: true
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  tmpfs:
+    - /tmp:mode=1777
+  user: 1000:1000
+  volumes:
+    - bind:
+        create_host_path: false
+      source: ../work/planning_store
+      target: /opt/tfg/missions/generated
+      type: bind
+    - bind:
+        create_host_path: false
+      source: ../work
+      target: /work
+      type: bind
+    - hermes-home:/hermes
+x-planner-test:
+  cap_drop:
+    - ALL
+  image: tfg/planner:2026.10.28
+  init: true
+  networks:
+    - test
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  tmpfs:
+    - /tmp:mode=1777
+  user: 1000:1000
+  volumes:
+    - bind:
+        create_host_path: false
+      source: ../work/planning_store
+      target: /opt/tfg/missions/generated
+      type: bind
+    - bind:
+        create_host_path: false
+      source: ../work
+      target: /work
+      type: bind

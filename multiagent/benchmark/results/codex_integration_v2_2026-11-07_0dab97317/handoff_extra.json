@@ -1,0 +1,179 @@
+{
+ "committed/conversion_owner_codex_adapter": {
+  "classification": "V2_READY_EXECUTOR_REQUEST_INCOMPLETE",
+  "codex_v2": {
+   "reasons": [],
+   "status": "PASS"
+  },
+  "commands": [],
+  "conversion": {
+   "applied_here": false,
+   "owner": "CODEX_ADAPTER",
+   "reasons": [],
+   "site_goal": {
+    "frame": "synthetic_orchard_local",
+    "sigma_m": 0.12,
+    "x_m": 8.0,
+    "y_m": 4.0
+   },
+   "transform": {
+    "expires_at_utc": "2026-11-07T10:50:31.333626+00:00",
+    "matrix": [
+     [
+      6.123233995736766e-17,
+      -1.0,
+      1.0
+     ],
+     [
+      1.0,
+      6.123233995736766e-17,
+      -1.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "not_before_utc": "2026-11-07T08:50:31.333626+00:00",
+    "source": "TEST_FIXTURE_SURVEY",
+    "source_frame": "odom",
+    "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "target_frame": "synthetic_orchard_local",
+    "uncertainty_m": 0.02,
+    "uncertainty_rad": 0.001,
+    "validated": true
+   }
+  },
+  "executor_request": {
+   "reasons": [
+    "CONVERSION_DELEGATED_TO_CODEX_ADAPTER: no rover-frame goal is built on this side"
+   ],
+   "status": "NOT_REACHED"
+  }
+ },
+ "reviewed/codex_ledger_fixture_grant": {
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codex_v2": {
+   "reasons": [
+    "OPERATOR_NOT_AUTHENTICATED"
+   ],
+   "status": "REJECTED"
+  },
+  "commands": [],
+  "conversion": {
+   "at": "2026-11-07T09:50:34.212333+00:00",
+   "chain": [
+    "inverse(synthetic_orchard_local<-odom)"
+   ],
+   "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+   "converted_by": "claude.multiagent.frames2d",
+   "from": {
+    "frame": "synthetic_orchard_local",
+    "sigma_m": 0.12,
+    "x_m": 8.0,
+    "y_m": 4.0
+   },
+   "to": {
+    "frame": "odom",
+    "sigma_m": 0.12199692619078564,
+    "x_m": 5.500000000000001,
+    "y_m": -7.0
+   },
+   "valid_until": "2026-11-07T10:50:34.212333+00:00"
+  },
+  "executor_request": {
+   "reasons": [],
+   "status": "PASS"
+  }
+ },
+ "reviewed/codex_ledger_revoked_grant": {
+  "classification": "BLOCKED_BEFORE_SUBMISSION",
+  "codex_v2": {
+   "reasons": [
+    "RECEIPT_REFUSED_BY_LEDGER: AuthorizationError: AUTHORIZATION_NOT_ACTIVE",
+    "AUTHENTICATED_OPERATOR_RECEIPT_UNAVAILABLE"
+   ],
+   "status": "WAITING"
+  },
+  "commands": [],
+  "conversion": {
+   "at": "2026-11-07T09:50:34.230972+00:00",
+   "chain": [
+    "inverse(synthetic_orchard_local<-odom)"
+   ],
+   "chain_source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+   "converted_by": "claude.multiagent.frames2d",
+   "from": {
+    "frame": "synthetic_orchard_local",
+    "sigma_m": 0.12,
+    "x_m": 8.0,
+    "y_m": 4.0
+   },
+   "to": {
+    "frame": "odom",
+    "sigma_m": 0.12199692619078564,
+    "x_m": 5.500000000000001,
+    "y_m": -7.0
+   },
+   "valid_until": "2026-11-07T10:50:34.230972+00:00"
+  },
+  "executor_request": {
+   "reasons": [],
+   "status": "PASS"
+  }
+ },
+ "reviewed/conversion_owner_codex_adapter": {
+  "classification": "V2_READY_EXECUTOR_REQUEST_INCOMPLETE",
+  "codex_v2": {
+   "reasons": [],
+   "status": "PASS"
+  },
+  "commands": [],
+  "conversion": {
+   "applied_here": false,
+   "owner": "CODEX_ADAPTER",
+   "reasons": [],
+   "site_goal": {
+    "frame": "synthetic_orchard_local",
+    "sigma_m": 0.12,
+    "x_m": 8.0,
+    "y_m": 4.0
+   },
+   "transform": {
+    "expires_at_utc": "2026-11-07T10:50:32.951357+00:00",
+    "matrix": [
+     [
+      6.123233995736766e-17,
+      -1.0,
+      1.0
+     ],
+     [
+      1.0,
+      6.123233995736766e-17,
+      -1.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "not_before_utc": "2026-11-07T08:50:32.951357+00:00",
+    "source": "TEST_FIXTURE_SURVEY",
+    "source_frame": "odom",
+    "source_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "target_frame": "synthetic_orchard_local",
+    "uncertainty_m": 0.02,
+    "uncertainty_rad": 0.001,
+    "validated": true
+   }
+  },
+  "executor_request": {
+   "reasons": [
+    "CONVERSION_DELEGATED_TO_CODEX_ADAPTER: no rover-frame goal is built on this side"
+   ],
+   "status": "NOT_REACHED"
+  }
+ }
+}

@@ -1,0 +1,232 @@
+[
+ {
+  "event": {
+   "at": "2026-11-06T20:28:51.831893+00:00",
+   "phase": "INTERPRETED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "INTERPRETED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:51.831893+00:00",
+   "phase": "AERIAL_PLANNED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AERIAL_PLANNED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:51.831893+00:00",
+   "phase": "VALIDATED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:52.331893+00:00",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "HEARTBEAT"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:53.831893+00:00",
+   "event_id": "obs-event-1",
+   "observation_id": "missing_localization-obs-1",
+   "source": "TEST_FIXTURE",
+   "type": "OBSERVATION"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "missing_localization-obs-1",
+    "state": "TARGET_VALIDATED",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "TARGET_VALIDATED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:54.831893+00:00",
+   "point": "POI_3",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "AERIAL_POINT_REACHED"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "missing_localization-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "TARGET_VALIDATED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:55.831893+00:00",
+   "phase": "GROUND_PLANNED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "missing_localization-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "GROUND_PLANNED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:55.831893+00:00",
+   "phase": "GROUND_VALIDATED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "missing_localization-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "GROUND_VALIDATED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:55.831893+00:00",
+   "phase": "AUTHORIZATION_REQUESTED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "missing_localization-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "AUTHORIZATION_REQUESTED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:56.831893+00:00",
+   "reasons": [
+    "NO_POSITION_SOURCE: the vehicle declares no position source; it cannot go to a coordinate",
+    "FRAME_MISMATCH: vehicle state in None, plan in 'synthetic_orchard_local' (site-frame to odometry transform not accredited)",
+    "NO_POSITION: the vehicle reports no position",
+    "ODOMETRY_STALE: last state older than 1.0 s",
+    "VEHICLE_NOT_HEALTHY: No hardware driver or sensor source configured",
+    "SPEED_NOT_WITHIN_CAPABILITY: 0.2 vs None",
+    "DRY_RUN_ADAPTER: no physical adapter exists (JetRacerDryRunAdapter refuses execute)"
+   ],
+   "source": "TEST_FIXTURE",
+   "type": "EXECUTOR_PRECONDITIONS"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "missing_localization-obs-1",
+    "state": "WAITING_FOR_ROVER_LOCALIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "AUTHORIZATION_REQUESTED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:56.831893+00:00",
+   "expected_scope": "fde7e3e44a6478b9019e89901940002db6a4cd9eef4d79b2c3419abedd161f3d",
+   "human_authorized": true,
+   "preconditions": [
+    "NO_POSITION_SOURCE: the vehicle declares no position source; it cannot go to a coordinate",
+    "FRAME_MISMATCH: vehicle state in None, plan in 'synthetic_orchard_local' (site-frame to odometry transform not accredited)",
+    "NO_POSITION: the vehicle reports no position",
+    "ODOMETRY_STALE: last state older than 1.0 s",
+    "VEHICLE_NOT_HEALTHY: No hardware driver or sensor source configured",
+    "SPEED_NOT_WITHIN_CAPABILITY: 0.2 vs None",
+    "DRY_RUN_ADAPTER: no physical adapter exists (JetRacerDryRunAdapter refuses execute)"
+   ],
+   "scope_sha256": "fde7e3e44a6478b9019e89901940002db6a4cd9eef4d79b2c3419abedd161f3d",
+   "source": "TEST_FIXTURE",
+   "type": "AUTHORIZATION"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "missing_localization-obs-1",
+    "state": "WAITING_FOR_ROVER_LOCALIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "EXECUTION_BLOCKED",
+  "outcome": "APPLIED",
+  "reason": null
+ }
+]

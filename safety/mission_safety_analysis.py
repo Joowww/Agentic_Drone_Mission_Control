@@ -68,10 +68,53 @@ def evaluate_mission_safety(
     )
 
     if flight_status != "success":
-        failure_reasons.append(
-            "One or more route legs cannot be flown "
-            "under the current conditions."
-        )
+        legs_by_status = {}
+
+        for leg in flight_analysis.get(
+            "leg_results",
+            [],
+        ):
+            leg_status = leg[
+                "flight_result"
+            ].get("status")
+
+            if leg_status != "success":
+                legs_by_status.setdefault(
+                    leg_status,
+                    [],
+                ).append(
+                    f"{leg['from']} -> {leg['to']}"
+                )
+
+        if "not_modelled" in legs_by_status:
+            failure_reasons.append(
+                "Vertical-only route legs ("
+                + ", ".join(
+                    legs_by_status["not_modelled"]
+                )
+                + ") are not evaluated: the current "
+                "flight-time model covers horizontal "
+                "motion only."
+            )
+
+        if "no_displacement" in legs_by_status:
+            failure_reasons.append(
+                "Route legs without displacement ("
+                + ", ".join(
+                    legs_by_status["no_displacement"]
+                )
+                + ") repeat the previous point's "
+                "position and altitude."
+            )
+
+        if set(legs_by_status) - {
+            "not_modelled",
+            "no_displacement",
+        }:
+            failure_reasons.append(
+                "One or more route legs cannot be flown "
+                "under the current conditions."
+            )
 
     if wind_result.get(
         "status"

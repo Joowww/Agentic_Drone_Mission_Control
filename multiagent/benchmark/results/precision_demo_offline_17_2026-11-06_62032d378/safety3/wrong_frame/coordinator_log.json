@@ -1,0 +1,118 @@
+[
+ {
+  "event": {
+   "at": "2026-11-06T20:28:48.938521+00:00",
+   "phase": "INTERPRETED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "INTERPRETED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:48.938521+00:00",
+   "phase": "AERIAL_PLANNED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AERIAL_PLANNED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:48.938521+00:00",
+   "phase": "VALIDATED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:49.438521+00:00",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "HEARTBEAT"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:50.938521+00:00",
+   "event_id": "obs-event-1",
+   "observation_id": "wrong_frame-obs-1",
+   "source": "TEST_FIXTURE",
+   "type": "OBSERVATION"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "AWAITING_GEOREFERENCED_TARGET",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED_REFUSED_OBSERVATION",
+  "reason": "METRIC 3D POINT: NO_METRIC_DEPTH: pixels alone do not give a position; CAMERA POSE GIVEN: camera pose in the site frame at capture time"
+ },
+ {
+  "event": {
+   "at": "2026-11-06T20:28:51.938521+00:00",
+   "point": "POI_3",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "AERIAL_POINT_REACHED"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "AWAITING_GEOREFERENCED_TARGET",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ }
+]

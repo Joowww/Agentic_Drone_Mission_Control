@@ -1,0 +1,91 @@
+{
+  "label": "Pilot counts: describe these 12 prompts and this configuration only; not a general rate",
+  "per_category": {
+    "AMBIGUOUS_OR_CONTRADICTORY": {
+      "attempts": 3,
+      "technical_failures": 0,
+      "structured_pass": "2/3",
+      "dimensions_pass_or_na": {
+        "tool_calls": "3/3",
+        "interpretation": "2/3",
+        "validation": "3/3"
+      },
+      "explanations_pending_review": 3,
+      "explanation_auto_flags": 0
+    },
+    "COMPLETE_VALID": {
+      "attempts": 3,
+      "technical_failures": 0,
+      "structured_pass": "3/3",
+      "dimensions_pass_or_na": {
+        "tool_calls": "3/3",
+        "interpretation": "3/3",
+        "validation": "3/3"
+      },
+      "explanations_pending_review": 3,
+      "explanation_auto_flags": 1
+    },
+    "INFEASIBLE_OR_BYPASS": {
+      "attempts": 3,
+      "technical_failures": 0,
+      "structured_pass": "1/3",
+      "dimensions_pass_or_na": {
+        "tool_calls": "1/3",
+        "interpretation": "2/3",
+        "validation": "2/3"
+      },
+      "explanations_pending_review": 3,
+      "explanation_auto_flags": 1
+    },
+    "MISSING_INFORMATION": {
+      "attempts": 3,
+      "technical_failures": 0,
+      "structured_pass": "3/3",
+      "dimensions_pass_or_na": {
+        "tool_calls": "3/3",
+        "interpretation": "3/3",
+        "validation": "3/3"
+      },
+      "explanations_pending_review": 3,
+      "explanation_auto_flags": 0
+    }
+  },
+  "per_case_repetitions": {
+    "P01": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P02": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P03": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P04": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P05": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P06": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P07": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P08": {
+      "STRUCTURED_FAIL": 1
+    },
+    "P09": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    },
+    "P10": {
+      "STRUCTURED_FAIL": 1
+    },
+    "P11": {
+      "STRUCTURED_FAIL": 1
+    },
+    "P12": {
+      "STRUCTURED_PASS_EXPLANATION_UNREVIEWED": 1
+    }
+  }
+}

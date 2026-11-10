@@ -1,0 +1,100 @@
+{
+  "status": "SATISFIED",
+  "precheck_satisfied": true,
+  "historical_classification": {
+    "status": "BLOCKED",
+    "pointer_classification": "HISTORY_INCOMPLETE_PRESENT_REVIEW",
+    "historical_freshness_reconstructed": false,
+    "diagnostic_capture": "INCOMPLETE"
+  },
+  "disposition_consumed": true,
+  "conditions": {
+    "fresh_observation": true,
+    "host_window_complete": true,
+    "reader_complete": true,
+    "no_restrictions": true,
+    "no_guards": true,
+    "no_other_sessions": true,
+    "no_host_processes": true,
+    "host_identity_known": true,
+    "audit_available": true,
+    "no_container_processes": true,
+    "resource_context": true,
+    "resource_duration": true,
+    "resource_complete": true,
+    "resources_free": true,
+    "reader_version": true,
+    "resource_scope": true
+  },
+  "disposition_checks": {
+    "audit_completed": true,
+    "same_descriptor": true,
+    "scope_digest_matches": true,
+    "scope_matches": true,
+    "authorization_matches": true,
+    "authority_flags_preserved": true,
+    "successor_link_valid": true,
+    "current_assessment_valid": true
+  },
+  "scope_changed_fields": [],
+  "disposition_assessment_reason": null,
+  "reason": "Current diagnostic precheck passed; separate start authorization required",
+  "opening_authorized": false,
+  "movement_authorized": false,
+  "source_association_verified": false,
+  "sources": [
+    {
+      "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/diagnostic_agent_session.json",
+      "read_at_utc": "2026-11-03T11:20:35.477491+00:00"
+    },
+    {
+      "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/simulation_lifecycle/891dab60-75f4-4008-b63d-2623ca5221a4/rover_environment_reference.json",
+      "read_at_utc": "2026-11-03T11:20:35.477628+00:00"
+    },
+    {
+      "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/simulation_lifecycle/891dab60-75f4-4008-b63d-2623ca5221a4/operation.json",
+      "read_at_utc": "2026-11-03T11:20:35.731183+00:00"
+    },
+    {
+      "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/simulation_lifecycle/458609b3-7692-4282-ad93-5753005feded/operation.json",
+      "read_at_utc": "2026-11-03T11:20:35.731280+00:00"
+    },
+    {
+      "source": "reconciliation_environment.inspect_environment",
+      "read_at_utc": "2026-11-03T11:20:36.087275+00:00",
+      "read_monotonic": 64166.187306009
+    },
+    {
+      "source": "sim_processes.readonly_inventory in exact container",
+      "read_at_utc": "2026-11-03T11:20:36.320207+00:00",
+      "read_monotonic": 64166.420252353
+    },
+    {
+      "source": "reconciliation_environment metadata/boot recheck after inventory",
+      "read_at_utc": "2026-11-03T11:20:36.710012+00:00",
+      "read_monotonic": 64166.810043172
+    },
+    {
+      "source": "host /proc relevant role inventory; vehicle_execution_lock.process_identity",
+      "read_at_utc": "2026-11-03T11:20:36.713055+00:00",
+      "read_monotonic": 64166.813091227
+    },
+    {
+      "source": "vehicle_locks/*.json and vehicle_execution_lock.restriction",
+      "read_at_utc": "2026-11-03T11:20:36.713258+00:00",
+      "read_monotonic": 64166.81329267
+    }
+  ],
+  "audit_state": "DISPOSED_DIAGNOSTICALLY_INCOMPLETE",
+  "current_environment_execution": {
+    "persistent_identity": {
+      "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+      "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+      "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+      "name": "/tfg-ardupilot-gazebo",
+      "created_at": "2026-10-02T07:28:34.87176229Z"
+    },
+    "container_started_at": "2026-11-03T09:44:02.9887145Z",
+    "container_boot_id": "fd538729-f4ea-4193-a6a3-f5f000fdd14b"
+  }
+}

@@ -1,0 +1,68 @@
+== ardurover argv
+ardurover --model json --speedup 1 --slave 0 --sim-address=127.0.0.1 --instance 2 --defaults /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/rover-skid.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 3 
+== gz model --list
+
+Requesting state for world [runway]...
+
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id:<data-string>:L282]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id:<data-string>:L806]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper_with_lidar"]/joint[@name="front_left_motor_asm_joint"]/physics/ode/provide_feedback:<data-string>:L215]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper_with_lidar"]/joint[@name="imu_joint"]/axis/use_parent_model_frame:<data-string>:L2007]: XML Element[use_parent_model_frame], child of element[axis], not defined in SDF. Copying[use_parent_model_frame] as children of [axis].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper_with_lidar"]/link[@name="base_scan"]/sensor[@name="lidar"]/gz_frame_id:<data-string>:L2096]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper_with_lidar"]/joint[@name="base_scan_joint"]/axis/use_parent_model_frame:<data-string>:L2116]: XML Element[use_parent_model_frame], child of element[axis], not defined in SDF. Copying[use_parent_model_frame] as children of [axis].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id:<data-string>:L282]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id:<data-string>:L806]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+Available models:
+    - runway
+    - drone2
+    - rover1
+    - drone1
+== gz model rover1 (pose/links, read-only)
+
+Requesting state for world [runway]...
+
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id:<data-string>:L282]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id:<data-string>:L806]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper_with_lidar"]/joint[@name="front_left_motor_asm_joint"]/physics/ode/provide_feedback:<data-string>:L215]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper_with_lidar"]/joint[@name="imu_joint"]/axis/use_parent_model_frame:<data-string>:L2007]: XML Element[use_parent_model_frame], child of element[axis], not defined in SDF. Copying[use_parent_model_frame] as children of [axis].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper_with_lidar"]/link[@name="base_scan"]/sensor[@name="lidar"]/gz_frame_id:<data-string>:L2096]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="wildthumper_with_lidar"]/joint[@name="base_scan_joint"]/axis/use_parent_model_frame:<data-string>:L2116]: XML Element[use_parent_model_frame], child of element[axis], not defined in SDF. Copying[use_parent_model_frame] as children of [axis].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id:<data-string>:L282]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id:<data-string>:L806]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+Model: [67]
+  - Name: rover1
+  - Pose [ XYZ (m) ] [ RPY (rad) ]:
+    [-0.001244 -3.000450 0.094909]
+    [0.000000 0.009537 1.566770]
+== topic info /ap/v3/status
+Type: ardupilot_msgs/msg/Status
+Publisher count: 1
+Node name: ap_v3
+Node namespace: /
+Endpoint type: PUBLISHER
+  Reliability: RELIABLE
+Subscription count: 1
+Node name: tfg_rover_identity_observer
+Node namespace: /rover1
+Endpoint type: SUBSCRIPTION
+  Reliability: BEST_EFFORT
+== topic info /ap/v3/pose/filtered
+Type: geometry_msgs/msg/PoseStamped
+Publisher count: 1
+Node name: ap_v3
+Node namespace: /
+Endpoint type: PUBLISHER
+  Reliability: BEST_EFFORT
+Subscription count: 0
+== topic info /rover1/odometry
+Type: nav_msgs/msg/Odometry
+Publisher count: 1
+Node name: ros_gz_bridge
+Node namespace: /rover1
+Endpoint type: PUBLISHER
+  Reliability: RELIABLE
+Subscription count: 1
+Node name: tfg_rover_identity_observer
+Node namespace: /rover1
+Endpoint type: SUBSCRIPTION
+  Reliability: BEST_EFFORT

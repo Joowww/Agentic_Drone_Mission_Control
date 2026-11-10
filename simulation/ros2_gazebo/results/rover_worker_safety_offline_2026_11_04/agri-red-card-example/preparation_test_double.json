@@ -1,0 +1,178 @@
+{
+  "admission_created": false,
+  "blockers": [],
+  "candidate": {
+    "completion_evidence": {
+      "source": "TEST_DOUBLE synthetic policy",
+      "value": "rover_01 odometry (/rover1/odometry, odom) within tolerance, stop and disarm observed by the executor"
+    },
+    "depends_on_binding": {
+      "path": null,
+      "sha256": "SYNTHETIC_DEMO"
+    },
+    "depends_on_sequence": "0df8dec9-6b2f-5a18-be4a-4a5221389a82",
+    "execution_limits": {
+      "source": "TEST_DOUBLE synthetic derived limits",
+      "value": {
+        "controller": {
+          "command_hz": 2.0,
+          "max_samples": 256,
+          "progress_rad": 0.05,
+          "yaw_rad": 0.0,
+          "yaw_tolerance_rad": 3.141592653589793
+        },
+        "rover_limits": {
+          "call_timeout_s": 2.0,
+          "max_duration_s": 60.0,
+          "max_forward_mps": 0.3,
+          "max_yaw_rate_rad_s": 0.5,
+          "observation_max_age_s": 1.0,
+          "stop_timeout_s": 8.0,
+          "stopped_angular_rad_s": 0.03,
+          "stopped_linear_mps": 0.03
+        }
+      }
+    },
+    "frame_transform": {
+      "source": "TEST_DOUBLE synthetic transform SYNTHETIC_TEST",
+      "value": {
+        "from_frame": "drone_launch_enu",
+        "sha256": "bc1952d124eb31d954cc75e574eed34fcbafe75804a3e5540eb3dbe11613c150",
+        "status": "VERIFIED",
+        "to_frame": "odom"
+      }
+    },
+    "ground_tolerance_m": {
+      "source": "TEST_DOUBLE synthetic policy",
+      "value": 0.25
+    },
+    "rover_mission": {
+      "source": "TEST_DOUBLE synthetic rover mission file",
+      "value": {
+        "path": "missions/examples/rover_first_navigation_sitl.json",
+        "sha256": "f0098cb2e9502b3ad815001f98b6d5a127201c639ccf24ba0db7e4c1f91e1de9"
+      }
+    },
+    "target_in_rover_frame": {
+      "source": "TEST_DOUBLE synthetic drone observation example-red-card-001 (c8c8ce133929)",
+      "value": {
+        "frame": "odom",
+        "x_m": 1.0,
+        "y_m": 0.0
+      }
+    },
+    "target_point": "POI_A1",
+    "task_id": "R1",
+    "vehicle_id": "rover_01",
+    "visit_parameters": {
+      "arrival_tolerance_m": 2.0,
+      "dwell_s": 5.0,
+      "global_timeout_s": 120.0,
+      "max_decision_age_s": 1.0,
+      "max_sample_gap_s": 1.0,
+      "min_dwell_samples": 6,
+      "min_progress_m": 0.5,
+      "no_progress_window_s": 10.0,
+      "status": "PROPOSED_NOT_APPROVED",
+      "stopped_angular_rad_s": 0.05,
+      "stopped_linear_mps": 0.05
+    }
+  },
+  "candidate_sha256": "27c3d822672af0f2df1c3d2d34f8af0013a51ee66a75ff33365e0f51dced1f22",
+  "commands_sent": false,
+  "conditions": [
+    {
+      "detail": "view status OK",
+      "name": "view_verified",
+      "stage": "dependency",
+      "status": "SATISFIED"
+    },
+    {
+      "detail": "sequence FINISHED/PASSED, scenario AERIAL_COMPLETED_GROUND_PENDING",
+      "name": "sequence_completed",
+      "stage": "dependency",
+      "status": "SATISFIED"
+    },
+    {
+      "detail": "POI_A1: {'vehicle_id': 'drone_01', 'status': 'REACHED'}",
+      "name": "target_reached_by_drone_01",
+      "stage": "dependency",
+      "status": "SATISFIED"
+    }
+  ],
+  "deferred_to_executor": [
+    {
+      "detail": "checked by the executor when it runs; not asserted here",
+      "name": "rover_identity_readiness_reservation",
+      "status": "DEFERRED_TO_EXECUTOR_GATES"
+    }
+  ],
+  "dry_run": true,
+  "eligibility": [
+    {
+      "detail": "dependency MET",
+      "name": "dependency_met",
+      "status": "SATISFIED"
+    },
+    {
+      "detail": "all present",
+      "name": "required_data_present",
+      "status": "SATISFIED"
+    },
+    {
+      "detail": "TEST_DOUBLE: TEST_DOUBLE ROVER_NAVIGATE_V1",
+      "name": "executor_accepts_navigation_request",
+      "status": "SATISFIED"
+    },
+    {
+      "detail": "TEST_DOUBLE: OPERATIONAL_ROVER_ENABLED",
+      "name": "operational_rover_policy_enabled",
+      "status": "SATISFIED"
+    }
+  ],
+  "executor_kind": "TEST_DOUBLE",
+  "ground_result": null,
+  "identity_facts": {
+    "status": "NOT_PROVIDED"
+  },
+  "inputs_include_test_doubles": [
+    "completion_evidence",
+    "execution_limits",
+    "frame_transform",
+    "ground_tolerance_m",
+    "rover_mission",
+    "target_in_rover_frame"
+  ],
+  "measured_facts": {
+    "requirements": {},
+    "status": "NOT_PROVIDED"
+  },
+  "missing_data": {},
+  "movement_authorized": false,
+  "note": "dry-run: MET is a precondition only; authorization and admission belong to the operator and the existing ground executor gates, which this function never calls",
+  "proposed_parameters": {
+    "arrival_tolerance_m": 2.0,
+    "dwell_s": 5.0,
+    "global_timeout_s": 120.0,
+    "max_decision_age_s": 1.0,
+    "max_sample_gap_s": 1.0,
+    "min_dwell_samples": 6,
+    "min_progress_m": 0.5,
+    "no_progress_window_s": 10.0,
+    "status": "PROPOSED_NOT_APPROVED",
+    "stopped_angular_rad_s": 0.05,
+    "stopped_linear_mps": 0.05
+  },
+  "r1_status": "BLOCKED_PENDING",
+  "reservation_created": false,
+  "scenario_complete": false,
+  "schema": "tfg.agri-r1-preparation/1",
+  "stages": {
+    "admission": "NOT_REQUESTED",
+    "authorization": "ABSENT",
+    "dependency": "MET",
+    "eligibility": "ELIGIBLE",
+    "execution": "NOT_STARTED"
+  },
+  "task_id": "R1"
+}

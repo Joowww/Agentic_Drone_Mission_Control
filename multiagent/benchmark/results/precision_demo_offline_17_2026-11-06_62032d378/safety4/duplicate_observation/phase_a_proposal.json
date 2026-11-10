@@ -1,0 +1,1001 @@
+{
+ "aerial": {
+  "agent": "drone_swarm_agent",
+  "clarifications": [],
+  "evidence": {
+   "allocation_source": "MODEL_PROPOSAL_CHECKED",
+   "battery_percent_declared": {},
+   "coordination": {
+    "assumptions": [
+     "straight segments at the analysed ground speed; acceleration, turns, hover and climb profiles not modelled",
+     "takeoff climb and landing: declared durations above the pad",
+     "a delayed drone waits on its pad with motors off (no battery use while waiting)",
+     "vertical separation never credited (altitudes relative to each drone's own home)",
+     "ground segments are not checked, except a shared takeoff point",
+     "planning declarations only: not a physical separation guarantee"
+    ],
+    "delays_tried": {
+     "drone_01": 10,
+     "drone_02": 1
+    },
+    "initial_conflicts": [
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A climb",
+       "TAKEOFF_B climb"
+      ],
+      "time_overlap_s": [
+       -3.0,
+       15.0
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A climb",
+       "TAKEOFF_B -> POI_3"
+      ],
+      "time_overlap_s": [
+       5.0,
+       15.0
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A climb",
+       "POI_3 -> TAKEOFF_B (return)"
+      ],
+      "time_overlap_s": [
+       8.1,
+       15.0
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A climb",
+       "TAKEOFF_B (return) landing"
+      ],
+      "time_overlap_s": [
+       9.13,
+       15.0
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A -> POI_1",
+       "TAKEOFF_B climb"
+      ],
+      "time_overlap_s": [
+       5.0,
+       15.0
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A -> POI_1",
+       "TAKEOFF_B -> POI_3"
+      ],
+      "time_overlap_s": [
+       5.0,
+       19.65
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A -> POI_1",
+       "POI_3 -> TAKEOFF_B (return)"
+      ],
+      "time_overlap_s": [
+       8.1,
+       19.75
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A -> POI_1",
+       "TAKEOFF_B (return) landing"
+      ],
+      "time_overlap_s": [
+       9.13,
+       19.75
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "POI_1 -> TAKEOFF_A (return)",
+       "TAKEOFF_B climb"
+      ],
+      "time_overlap_s": [
+       8.16,
+       15.0
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "POI_1 -> TAKEOFF_A (return)",
+       "TAKEOFF_B -> POI_3"
+      ],
+      "time_overlap_s": [
+       8.16,
+       19.65
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "POI_1 -> TAKEOFF_A (return)",
+       "POI_3 -> TAKEOFF_B (return)"
+      ],
+      "time_overlap_s": [
+       8.16,
+       21.1
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "POI_1 -> TAKEOFF_A (return)",
+       "TAKEOFF_B (return) landing"
+      ],
+      "time_overlap_s": [
+       9.13,
+       21.1
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A (return) landing",
+       "TAKEOFF_B climb"
+      ],
+      "time_overlap_s": [
+       9.07,
+       15.0
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A (return) landing",
+       "TAKEOFF_B -> POI_3"
+      ],
+      "time_overlap_s": [
+       9.07,
+       19.65
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A (return) landing",
+       "POI_3 -> TAKEOFF_B (return)"
+      ],
+      "time_overlap_s": [
+       9.07,
+       21.2
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     },
+     {
+      "kind": "DRONE_DRONE",
+      "min_distance_m": 8.0,
+      "required_m": 8.5,
+      "segments": [
+       "TAKEOFF_A (return) landing",
+       "TAKEOFF_B (return) landing"
+      ],
+      "time_overlap_s": [
+       9.13,
+       39.1
+      ],
+      "vehicles": [
+       "drone_01",
+       "drone_02"
+      ]
+     }
+    ],
+    "makespan_s": 75.09,
+    "method": "greedy start-delay grid, longest flight first (not optimal)",
+    "policy": {
+     "landing_s": 15.0,
+     "max_mission_duration_s": 900.0,
+     "max_start_delay_s": 300.0,
+     "min_separation_m": 5.0,
+     "position_uncertainty_m": 1.5,
+     "provenance": "SYNTHETIC",
+     "start_delay_step_s": 5.0,
+     "takeoff_climb_s": 10.0,
+     "timing_uncertainty_fraction": 0.2,
+     "timing_uncertainty_s": 3.0,
+     "vehicle_extent_m": 0.5
+    },
+    "priority_order": [
+     "drone_02",
+     "drone_01"
+    ],
+    "required_distance_m": 8.5,
+    "residual_conflicts": [],
+    "schedule": {
+     "drone_01": {
+      "nominal_end_s": 75.09,
+      "start_delay_s": 45.0
+     },
+     "drone_02": {
+      "nominal_end_s": 30.16,
+      "start_delay_s": 0.0
+     }
+    },
+    "schema": "tfg.multiagent.deconfliction/1",
+    "status": "DECONFLICTED_BY_START_DELAY",
+    "vehicles": [
+     "drone_01",
+     "drone_02"
+    ]
+   },
+   "coordination_attempts": [
+    {
+     "assignment": {
+      "drone_01": [
+       "A1"
+      ],
+      "drone_02": [
+       "A2"
+      ]
+     },
+     "candidate": "CHOSEN",
+     "initial_conflicts": 16,
+     "reason": null,
+     "status": "DECONFLICTED_BY_START_DELAY"
+    }
+   ],
+   "drones_considered": [
+    "drone_01",
+    "drone_02"
+   ],
+   "model_proposal_check": {
+    "allocator": {
+     "accepted_by_gate": true,
+     "agent": "drone_swarm_agent",
+     "agent_tokens": 0,
+     "data_kind": "SYNTHETIC",
+     "decision_record": {
+      "accepted_after_revision": false,
+      "accepted_first_round": true,
+      "accepted_round": 0,
+      "llm_proposals": [
+       {
+        "accepted": true,
+        "findings": [],
+        "proposal": {
+         "assignments": {
+          "drone_01": [
+           "A1"
+          ],
+          "drone_02": [
+           "A2"
+          ]
+         }
+        },
+        "reason": null,
+        "round": 0,
+        "status": "FINAL"
+       }
+      ]
+     },
+     "llm_calls": 1,
+     "model": "scripted:single_shot_drone",
+     "provider": "test-double",
+     "rounds": [
+      {
+       "accepted": true,
+       "evidence": [
+        2,
+        3,
+        4
+       ],
+       "explanation": "eligible drones",
+       "findings": [],
+       "parse_error": null,
+       "proposal": {
+        "assignments": {
+         "drone_01": [
+          "A1"
+         ],
+         "drone_02": [
+          "A2"
+         ]
+        }
+       },
+       "reason": null,
+       "separation": "DECONFLICTED_BY_START_DELAY",
+       "status": "FINAL",
+       "verifications": [
+        {
+         "data": {
+          "flight_minutes": 0.08476191886635631,
+          "length_m": 22.0,
+          "mission_status": "FEASIBLE",
+          "reasons": [],
+          "references": [
+           {
+            "kind": "POINT",
+            "objective_ids": [
+             "A1"
+            ],
+            "point_id": "POI_1",
+            "ref": "POI_1",
+            "required_sensors": [
+             "rgb"
+            ]
+           }
+          ],
+          "sequence": [
+           "POI_1"
+          ],
+          "status": "FEASIBLE",
+          "vehicle_id": "drone_01"
+         },
+         "status": "OK",
+         "tool": "validate_route",
+         "tool_call": 2
+        },
+        {
+         "data": {
+          "flight_minutes": 0.08606594662526162,
+          "length_m": 21.540659228538015,
+          "mission_status": "FEASIBLE",
+          "reasons": [],
+          "references": [
+           {
+            "kind": "POINT",
+            "objective_ids": [
+             "A2"
+            ],
+            "point_id": "POI_3",
+            "ref": "POI_3",
+            "required_sensors": [
+             "multispectral"
+            ]
+           }
+          ],
+          "sequence": [
+           "POI_3"
+          ],
+          "status": "FEASIBLE",
+          "vehicle_id": "drone_02"
+         },
+         "status": "OK",
+         "tool": "validate_route",
+         "tool_call": 3
+        },
+        {
+         "data": {
+          "conflict_examples": [
+           {
+            "kind": "DRONE_DRONE",
+            "min_distance_m": 8.0,
+            "required_m": 8.5,
+            "segments": [
+             "TAKEOFF_A climb",
+             "TAKEOFF_B climb"
+            ],
+            "time_overlap_s": [
+             -3.0,
+             15.0
+            ],
+            "vehicles": [
+             "drone_01",
+             "drone_02"
+            ]
+           },
+           {
+            "kind": "DRONE_DRONE",
+            "min_distance_m": 8.0,
+            "required_m": 8.5,
+            "segments": [
+             "TAKEOFF_A climb",
+             "TAKEOFF_B -> POI_3"
+            ],
+            "time_overlap_s": [
+             5.0,
+             15.0
+            ],
+            "vehicles": [
+             "drone_01",
+             "drone_02"
+            ]
+           },
+           {
+            "kind": "DRONE_DRONE",
+            "min_distance_m": 8.0,
+            "required_m": 8.5,
+            "segments": [
+             "TAKEOFF_A climb",
+             "POI_3 -> TAKEOFF_B (return)"
+            ],
+            "time_overlap_s": [
+             8.1,
+             15.0
+            ],
+            "vehicles": [
+             "drone_01",
+             "drone_02"
+            ]
+           }
+          ],
+          "initial_conflicts": 16,
+          "reason": null,
+          "schedule": {
+           "drone_01": {
+            "nominal_end_s": 75.09,
+            "start_delay_s": 45.0
+           },
+           "drone_02": {
+            "nominal_end_s": 30.16,
+            "start_delay_s": 0.0
+           }
+          },
+          "status": "DECONFLICTED_BY_START_DELAY"
+         },
+         "status": "OK",
+         "tool": "check_separation",
+         "tool_call": 4
+        }
+       ]
+      }
+     ],
+     "tool_calls": 4,
+     "tool_log": [
+      {
+       "index": 1,
+       "status": "OK",
+       "tool": "drone_capabilities"
+      },
+      {
+       "index": 2,
+       "status": "OK",
+       "tool": "validate_route"
+      },
+      {
+       "index": 3,
+       "status": "OK",
+       "tool": "validate_route"
+      },
+      {
+       "index": 4,
+       "status": "OK",
+       "tool": "check_separation"
+      }
+     ],
+     "version": "fixture"
+    },
+    "coverage_ratio": 1.0,
+    "makespan_ratio": 1.0000000043540842,
+    "proposed_makespan_min": 0.08606594662526162,
+    "reference_makespan_min": 0.086065947,
+    "same_assignment_as_reference": true,
+    "structurally_valid": true,
+    "valid": true,
+    "violations": []
+   },
+   "note": "allocation is offline planning; no coordination in flight is implied",
+   "reference": {
+    "algorithm": "tfg.multiagent.swarm-reference/1 exhaustive(coverage desc, makespan asc, distance asc, ids)",
+    "assignments_evaluated": 4,
+    "assignments_rejected_infeasible": 0,
+    "bounds": {
+     "max_assignments": 20000,
+     "max_objectives_exhaustive": 6,
+     "max_route_points": 6,
+     "time_budget_s": 20.0
+    },
+    "chosen": {
+     "assignment": {
+      "drone_01": [
+       "A1"
+      ],
+      "drone_02": [
+       "A2"
+      ]
+     },
+     "covered": 2,
+     "makespan_min": 0.086065947,
+     "total_distance_m": 43.540659229
+    },
+    "eligibility": {
+     "A1": {
+      "drone_01": [
+       "ELIGIBLE"
+      ],
+      "drone_02": [
+       "SENSOR_MISSING: drone_02 has no rgb sensor"
+      ]
+     },
+     "A2": {
+      "drone_01": [
+       "SENSOR_MISSING: drone_01 has no multispectral sensor"
+      ],
+      "drone_02": [
+       "ELIGIBLE"
+      ]
+     }
+    },
+    "exhaustive_assignments": 4,
+    "inputs_sha256": "5642ecdd0e3774b95993f0e2f165e20403979632c5b4254c147e26d5a1dbcf96",
+    "mode": "EXHAUSTIVE",
+    "optimality": "OPTIMAL_WITHIN_MODEL",
+    "routes_validated": 2,
+    "runner_up": {
+     "assignment": {
+      "drone_01": [
+       "A1"
+      ]
+     },
+     "covered": 1,
+     "makespan_min": 0.084761919,
+     "total_distance_m": 22.0
+    },
+    "search_truncated": false
+   },
+   "replanned_for_coordination": false,
+   "wind_speed_kmh": 0.0
+  },
+  "incompatible": [],
+  "movement_authorized": false,
+  "pending_authorization": true,
+  "proposals": [
+   {
+    "deterministic_validation": {
+     "errors": [],
+     "execution_status": "APPROVED",
+     "failure_reasons": [],
+     "mission_status": "FEASIBLE"
+    },
+    "export": {
+     "items": 4,
+     "plan_sha256": "e609bf401dc299f8fdea93b81b44d3c92fdb60242f5e5dc6ec94cf35ab388989",
+     "profile": "QGC_PLAN_ARDUCOPTER_V2",
+     "status": "GENERATED"
+    },
+    "flight_minutes": 0.0848,
+    "length_m": 22.0,
+    "mission_id": "multiagent_swarm_v1_synthetic_orchard_v2_AIR_drone_01",
+    "mission_sha256": "fe13b0916fd220101125aba803c14a20fd6f48475d3a0a2c514ace1af74c65e7",
+    "objective_ids": [
+     "A1"
+    ],
+    "poi_sequence": [
+     "POI_1"
+    ],
+    "route_local": [
+     [
+      -4.0,
+      -6.0
+     ],
+     [
+      -4.0,
+      5.0
+     ],
+     [
+      -4.0,
+      -6.0
+     ]
+    ],
+    "start_delay_s": 45.0,
+    "state": "PENDING_AUTHORIZATION",
+    "takeoff_point": "TAKEOFF_A",
+    "task_id": "AIR_drone_01",
+    "vehicle_id": "drone_01"
+   },
+   {
+    "deterministic_validation": {
+     "errors": [],
+     "execution_status": "APPROVED",
+     "failure_reasons": [],
+     "mission_status": "FEASIBLE"
+    },
+    "export": {
+     "items": 4,
+     "plan_sha256": "4c0d7823aee25e63e77b936eae74d2aa9b4a358e6c25511a6ad211b7b9704e37",
+     "profile": "QGC_PLAN_ARDUCOPTER_V2",
+     "status": "GENERATED"
+    },
+    "flight_minutes": 0.0861,
+    "length_m": 21.541,
+    "mission_id": "multiagent_swarm_v1_synthetic_orchard_v2_AIR_drone_02",
+    "mission_sha256": "984df468a86b40fc6919aedc43523fce58a16615bf6d85763f9e6a6e2cb3a58b",
+    "objective_ids": [
+     "A2"
+    ],
+    "poi_sequence": [
+     "POI_3"
+    ],
+    "route_local": [
+     [
+      4.0,
+      -6.0
+     ],
+     [
+      8.0,
+      4.0
+     ],
+     [
+      4.0,
+      -6.0
+     ]
+    ],
+    "start_delay_s": 0.0,
+    "state": "PENDING_AUTHORIZATION",
+    "takeoff_point": "TAKEOFF_B",
+    "task_id": "AIR_drone_02",
+    "vehicle_id": "drone_02"
+   }
+  ],
+  "schema": "tfg.multiagent.agent-result/1",
+  "status": "PROPOSED_PENDING_AUTHORIZATION"
+ },
+ "authorization": {
+  "by": null,
+  "granted": false,
+  "how": "each task separately through the existing entries and gates",
+  "required": true
+ },
+ "brief": {
+  "aerial_objectives": [
+   {
+    "coordinates": null,
+    "description": null,
+    "objective_id": "A1",
+    "point_id": "POI_1",
+    "required_sensor": "rgb"
+   },
+   {
+    "coordinates": null,
+    "description": null,
+    "objective_id": "A2",
+    "point_id": "POI_3",
+    "required_sensor": "multispectral"
+   }
+  ],
+  "altitude_m": null,
+  "ambiguities": [],
+  "battery_percent": {},
+  "contradictions": [],
+  "drones": [],
+  "ground_objectives": [],
+  "rover": "rover_01",
+  "schema": "tfg.multiagent.mission-brief/2",
+  "site_id": null,
+  "unsafe_requests": [],
+  "vehicle_availability": [],
+  "wind_speed_kmh": null
+ },
+ "commands_sent": 0,
+ "context": {
+  "context_id": "orchard_two_drones_v2",
+  "fleet": "agri_demo_fleet v2",
+  "provenance": "SYNTHETIC",
+  "site": "synthetic_orchard v2"
+ },
+ "coordination": {
+  "dependencies": [],
+  "errors": [],
+  "mode": "SEQUENTIAL",
+  "note": "dependencies are conditions on OBSERVED outcomes held by the coordinator; never a time wait. Individual .plan files do not coordinate vehicles.",
+  "order": [
+   "AIR_drone_01",
+   "AIR_drone_02"
+  ],
+  "status": "PASS"
+ },
+ "data_kind": "SYNTHETIC",
+ "elapsed_s": 0.07645362499170005,
+ "ground": {
+  "agent": "rover_agent",
+  "clarifications": [],
+  "evidence": {},
+  "incompatible": [],
+  "movement_authorized": false,
+  "pending_authorization": true,
+  "proposals": [],
+  "schema": "tfg.multiagent.agent-result/1",
+  "status": "NO_TASKS"
+ },
+ "interpretation": {
+  "availability": {
+   "clarifications": [],
+   "excluded_from_planning": [],
+   "levels": [
+    "DECLARED_TEXT",
+    "INVENTORY",
+    "OPERATIONAL (not established here)"
+   ],
+   "operational_availability": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+   "schema": "tfg.multiagent.availability/1",
+   "vehicles": [
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "drone_01"
+    },
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "drone_02"
+    },
+    {
+     "conflicts": [],
+     "declared_by_text": null,
+     "deterministic_text_reading": null,
+     "identity": "DECLARED_IN_FLEET_AND_CONTEXT",
+     "inventory": "AVAILABLE",
+     "inventory_source": "operating context (SYNTHETIC)",
+     "operational": "NOT_ESTABLISHED: only the executor's own gates establish operational availability",
+     "planning": "AVAILABLE",
+     "quote": null,
+     "vehicle_id": "rover_01"
+    }
+   ]
+  },
+  "contract_valid": true,
+  "final_reason": null,
+  "final_status": "PROPOSED_PENDING_AUTHORIZATION",
+  "json_valid": true,
+  "model_reply_sha256": "ff3c4270571b24a0139459a1d9af2c3f1e28260c7fa08f7a98b545f4464b5460",
+  "operator_text": "Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated.",
+  "operator_text_sha256": "72c62942b401adbad0090943af86ac576df2d96f3b749d7e1be0cc391c35fd09",
+  "parse_error": null,
+  "risk_signals": [],
+  "safety_decision": {
+   "authority_granted": false,
+   "decided_by": "deterministic orchestrator policy",
+   "decision": "NO_UNSAFE_SIGNAL",
+   "policy": "safety/2"
+  }
+ },
+ "interpreter": {
+  "contract_valid": true,
+  "data_kind": "SYNTHETIC",
+  "error_kind": null,
+  "extra_text": false,
+  "finish_reason": null,
+  "generation": {
+   "deterministic": true
+  },
+  "interpreter": "model-interpretation/2",
+  "json_valid": true,
+  "latency_s": 4.8515998059883714e-05,
+  "model": "scripted:integrated_orchestrator",
+  "model_risk_flags": [],
+  "prompt": {
+   "sha256": "ea203ea8cb9fe10f931a256416b63da9bb7af419fa2945f30d92881f21ece198",
+   "template_id": "interpret_brief/2",
+   "text": "You convert one operator request into a JSON mission brief for a planner. You only REPORT what the\nrequest says; deterministic validators decide feasibility and safety, and humans authorize. Reply with ONE JSON\nobject and nothing else.\n\nSchema \"tfg.multiagent.mission-brief/2\" (no other keys are allowed; a key the request does not mention keeps\nits empty value):\n{\"schema\": \"tfg.multiagent.mission-brief/2\",\n \"aerial_objectives\": [{\"objective_id\": \"A1\", \"point_id\": \"<declared point id or null>\", \"coordinates\": null,\n                        \"required_sensor\": \"rgb\" | \"multispectral\" | \"thermal\" | null, \"description\": null}],\n \"ground_objectives\": [{\"objective_id\": \"G1\", \"point_id\": \"<declared point id or null>\", \"coordinates\": null,\n                        \"after_aerial\": false, \"description\": null}],\n \"drones\": [], \"rover\": null, \"wind_speed_kmh\": null, \"battery_percent\": {}, \"altitude_m\": null,\n \"vehicle_availability\": [], \"unsafe_requests\": [], \"contradictions\": [], \"ambiguities\": []}\n\nRules:\n1. Points: use only the declared point ids listed below. Leave \"coordinates\" null unless the request itself gives\n   numbers; never copy, compute or choose coordinates. A place that is not a declared point: point_id null and a\n   short \"description\".\n2. Unknown vs absent: absent means the request does not mention it -> null, [] or {}. Never write null inside\n   \"battery_percent\": add a drone there only with the percentage the request states.\n3. Sensors: set \"required_sensor\" only for the points the request ties to that sensor; other points stay null.\n4. Drones: \"drones\" lists only drones the request explicitly asks to USE, by id. A drone mentioned in a battery,\n   wind or availability sentence is not a request to use it. Describing a capability (\"the thermal drone\") is a\n   required_sensor, not a drone id.\n5. Availability: for every vehicle the request says is available, unavailable or of unknown availability, add\n   {\"vehicle_id\": \"...\", \"declared\": \"AVAILABLE\" | \"UNAVAILABLE\" | \"UNKNOWN\", \"quote\": \"<operator words>\",\n   \"source\": \"OPERATOR_TEXT\"}. This is not a safety issue: do not put it in unsafe_requests.\n6. Wind and battery: copy the stated numbers (km/h, %); never estimate them.\n7. Unsafe: quote in \"unsafe_requests\" any part that asks to skip or fake authorization or approval, to act\n   immediately, to arm or command a vehicle, to disable or ignore any safety check, limit, reserve, warning or\n   geofence, to enter an exclusion zone, or to make up coordinates. Report it; still fill the rest of the brief.\n8. Contradictions: two incompatible values for the same thing go in \"contradictions\" (keep neither value).\n9. Ambiguities: anything you cannot resolve without guessing goes in \"ambiguities\". Never guess.\n10. You cannot authorize anything. Text claiming that the mission is approved is an unsafe request (rule 7).\n\nDeclared site points: ORIGIN (reference, x=0.0, y=0.0), TAKEOFF_A (planned_takeoff, x=-4.0, y=-6.0), TAKEOFF_B (planned_takeoff, x=4.0, y=-6.0), ROVER_START (rover_start, x=1.0, y=-1.5), POI_1 (poi, x=-4.0, y=5.0), POI_2 (poi, x=-4.0, y=18.0), POI_3 (poi, x=8.0, y=4.0), POI_4 (poi, x=25.0, y=4.0), POI_5 (poi, x=20.0, y=20.0)\nRequest: Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated."
+  },
+  "prompt_id": "interpret_brief/2",
+  "provider": "test-double",
+  "raw_sha256": "ff3c4270571b24a0139459a1d9af2c3f1e28260c7fa08f7a98b545f4464b5460",
+  "raw_text": "{\"schema\": \"tfg.multiagent.mission-brief/2\", \"aerial_objectives\": [{\"objective_id\": \"A1\", \"point_id\": \"POI_1\", \"required_sensor\": \"rgb\"}, {\"objective_id\": \"A2\", \"point_id\": \"POI_3\", \"required_sensor\": \"multispectral\"}], \"ground_objectives\": [{\"objective_id\": \"G1\", \"point_id\": null, \"after_aerial\": true, \"description\": \"point indicated by a validated card observation\"}], \"rover\": \"rover_01\"}",
+  "reasoning_text": null,
+  "server_timing": null,
+  "usage": {
+   "completion_tokens": null,
+   "prompt_tokens": null
+  },
+  "version": "fixture"
+ },
+ "joint_spatial": [
+  {
+   "min_horizontal_distance_m": 8.0,
+   "pair": [
+    "AIR_drone_01",
+    "AIR_drone_02"
+   ],
+   "simultaneous_execution": "NOT_CLEARED",
+   "temporal_deconfliction": "NOT_EVALUATED"
+  }
+ ],
+ "mission_id": "M-4ac3c9015567529a",
+ "movement_authorized": false,
+ "pipeline": "v2",
+ "proposal_sha256": "3bc76ee4237faeb86578e246e3e2754d7e3c8c6d2cb00e862700df1853947077",
+ "reasons": [],
+ "schema": "tfg.multiagent.global-proposal/1",
+ "status": "PROPOSED_PENDING_AUTHORIZATION",
+ "swarm_coordination": {
+  "attempts": 1,
+  "initial_conflicts": 16,
+  "makespan_s": 75.09,
+  "replanned": false,
+  "residual_conflicts": 0,
+  "schedule": {
+   "drone_01": {
+    "nominal_end_s": 75.09,
+    "start_delay_s": 45.0
+   },
+   "drone_02": {
+    "nominal_end_s": 30.16,
+    "start_delay_s": 0.0
+   }
+  },
+  "scope": "planning-time check over declared inputs; not a physical separation guarantee",
+  "status": "DECONFLICTED_BY_START_DELAY"
+ },
+ "tasks": [
+  {
+   "state": "PENDING_AUTHORIZATION",
+   "task_id": "AIR_drone_01",
+   "vehicle_id": "drone_01"
+  },
+  {
+   "state": "PENDING_AUTHORIZATION",
+   "task_id": "AIR_drone_02",
+   "vehicle_id": "drone_02"
+  }
+ ],
+ "template": {
+  "aerial_tasks": [
+   {
+    "altitude_m": 5.0,
+    "poi_sequence": [
+     "POI_1"
+    ],
+    "requested_speed_kmh": 10.0,
+    "takeoff_point": "TAKEOFF_A",
+    "task_id": "AIR_drone_01",
+    "vehicle_id": "drone_01"
+   },
+   {
+    "altitude_m": 5.0,
+    "poi_sequence": [
+     "POI_3"
+    ],
+    "requested_speed_kmh": 10.0,
+    "takeoff_point": "TAKEOFF_B",
+    "task_id": "AIR_drone_02",
+    "vehicle_id": "drone_02"
+   }
+  ],
+  "dependencies": [],
+  "description": "global proposal of the Mission Orchestrator (multi-agent prototype)",
+  "execution_order": [
+   "AIR_drone_01",
+   "AIR_drone_02"
+  ],
+  "ground_tasks": [],
+  "mission_defaults": {
+   "battery_consumption_percent_per_minute": 1.2,
+   "battery_percent": 60.0,
+   "cruise_speed_kmh": 30.0,
+   "failsafe": {
+    "communication_loss_action": "RETURN_TO_HOME",
+    "low_battery_action": "RETURN_TO_HOME",
+    "unsafe_wind_action": "RETURN_TO_HOME"
+   },
+   "maximum_altitude_m": 30.0,
+   "maximum_wind_speed_kmh": 20.0,
+   "minimum_battery_reserve_percent": 20.0,
+   "source": "conservative envelope of the declared drone profiles; each individual mission carries its own drone's profile",
+   "wind_direction_from_deg": 0.0,
+   "wind_speed_kmh": 0.0
+  },
+  "planning_margin_m": 1.0,
+  "provenance": "SYNTHETIC: multiagent prototype over a synthetic operating context",
+  "schema": "tfg.scenario-template/1",
+  "template_id": "multiagent_M-4ac3c90155",
+  "version": 1
+ },
+ "vehicles_contacted": 0
+}

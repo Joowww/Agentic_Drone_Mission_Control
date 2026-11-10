@@ -1,0 +1,28 @@
+== [1] Hermes y servidor MCP presentes en la imagen (sin red, sin inferencia)
+   PASS · Hermes Agent vunknown (2026.9.24)
+   PASS · SERVER_TOOLS 27 (the server publishes all; Hermes must offer 2)
+== [2] Restricción de herramientas (configuración comprobada antes de arrancar Hermes)
+   PASS · provider custom at the fake provider
+   PASS · test home planning-safe
+   PASS · rc=2
+   PASS · rc=2
+== [3] Doble: planificación completa (update → finalize) con el servidor MCP real
+   FAIL · offered: mcp__tfg_mission_control__finalize_mission_draft,mcp__tfg_mission_control__update_mission_draft;
+   FAIL · drafts=1 finalizations=0 rc=0
+   FAIL · no REFUSED qgc_export found
+   FAIL · see 10_status.log
+== [4] Doble: respuesta inválida, timeout con cancelación y proveedor ausente (nada nuevo se da por terminado)
+   PASS · rc=2; no new finalization
+   PASS · provider silent; Ctrl+C after 20 s; rc=130; no new finalization
+   PASS · rc=2; no new finalization
+== [5] Doble: error de escritura del almacén (solo lectura)
+   PASS · rc=0; nothing written, no finalization claimed by the store
+== [6] Recorrido Ollama del menú (opciones 1/3) contra el doble
+   PASS · ChatOllama via OLLAMA_HOST -> MissionPlanDraft
+   PASS · REJECTED OutputParserException
+   PASS · menu option 3 reports [PLANNER ERROR] and continues
+== [7] Secretos
+   PASS · no credential patterns in /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/planning_checks_2
+   PASS · no auth.json/.env/keys; empty planning home in the image
+
+Resumen: /tmp/claude-1000/-home-joelm-TFG-Agentic-Drone-Mission-Control/9f34a360-10f9-4576-9e3b-0719b9c991b9/scratchpad/planning_checks_2/checks.tsv · fallos: 4 (TEST DOUBLES: nada de esto es una inferencia real)

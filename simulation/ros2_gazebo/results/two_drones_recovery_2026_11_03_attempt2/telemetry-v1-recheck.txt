@@ -1,0 +1,48 @@
+== /ap/v1/navsat (30 s)
+header:
+  stamp:
+    sec: 1793701392
+    nanosec: 36770000
+  frame_id: '0'
+status:
+  status: 2
+  service: 1
+latitude: -35.36326217651367
+longitude: 149.1652069091797
+altitude: 584.1900024414062
+position_covariance:
+- 0.09000000357627869
+- 0.0
+- 0.0
+- 0.0
+- 0.09000000357627869
+- 0.0
+- 0.0
+- 0.0
+- 0.09000000357627869
+position_covariance_type: 2
+---
+rc=0
+== /ap/v1/pose/filtered (30 s)
+header:
+  stamp:
+    sec: 1793701392
+    nanosec: 164770000
+  frame_id: base_link
+pose:
+  position:
+    x: 0.0
+    y: 0.0
+    z: -0.0
+  orientation:
+    x: 7.668940043004113e-07
+    y: -7.609447720824392e-07
+    z: 0.7018446922302246
+    w: 0.7123299837112427
+---
+rc=0
+== /ap/v1/navsat publishers
+Publisher count: 1
+Node name: ap_v1
+Node namespace: /
+  Reliability: BEST_EFFORT

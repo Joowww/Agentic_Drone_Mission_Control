@@ -1,0 +1,131 @@
+{
+  "label": "TEST_DOUBLE scenarios for driver_v2.tool_disposition (no Hermes, no provider)",
+  "scenarios": {
+    "1_only_authorized": {
+      "expected_stop": false,
+      "disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "rejected_unauthorized_requests": [],
+        "executed": [
+          "mcp__tfg_mission_control__update_mission_draft",
+          "mcp__tfg_mission_control__finalize_mission_draft"
+        ],
+        "executed_outside": [],
+        "offered_outside": false,
+        "stop": false
+      },
+      "ok": true
+    },
+    "2_unauthorized_requested_and_rejected": {
+      "expected_stop": false,
+      "disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "read_file",
+          "mcp__tfg_mission_control__update_mission_draft"
+        ],
+        "rejected_unauthorized_requests": [
+          "read_file"
+        ],
+        "executed": [
+          "mcp__tfg_mission_control__update_mission_draft"
+        ],
+        "executed_outside": [],
+        "offered_outside": false,
+        "stop": false
+      },
+      "ok": true
+    },
+    "3_unauthorized_offered": {
+      "expected_stop": true,
+      "disposition": {
+        "offered": "OTHER_OR_UNREADABLE_TOOLS_OFFERED",
+        "requested": [
+          "mcp__tfg_mission_control__update_mission_draft"
+        ],
+        "rejected_unauthorized_requests": [],
+        "executed": [
+          "mcp__tfg_mission_control__update_mission_draft"
+        ],
+        "executed_outside": [],
+        "offered_outside": true,
+        "stop": true
+      },
+      "ok": true
+    },
+    "4a_unauthorized_executed_plugin_event": {
+      "expected_stop": true,
+      "disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "read_file"
+        ],
+        "rejected_unauthorized_requests": [],
+        "executed": [
+          "read_file",
+          "read_file"
+        ],
+        "executed_outside": [
+          "read_file"
+        ],
+        "offered_outside": false,
+        "stop": true
+      },
+      "ok": true
+    },
+    "4b_unauthorized_executed_session_only": {
+      "expected_stop": true,
+      "disposition": {
+        "offered": "ONLY_TRIAL_TOOL_OFFERED",
+        "requested": [
+          "read_file"
+        ],
+        "rejected_unauthorized_requests": [],
+        "executed": [
+          "read_file"
+        ],
+        "executed_outside": [
+          "read_file"
+        ],
+        "offered_outside": false,
+        "stop": true
+      },
+      "ok": true
+    }
+  },
+  "real_segment1_p10": {
+    "label": "REAL data of segment 1, re-classified offline; segment 1 itself is unchanged",
+    "expected_stop": false,
+    "disposition": {
+      "offered": "ONLY_TRIAL_TOOL_OFFERED",
+      "requested": [
+        "read_file",
+        "read_file",
+        "mcp__tfg_mission_control__update_mission_draft",
+        "mcp__tfg_mission_control__finalize_mission_draft",
+        "mcp__tfg_mission_control__update_mission_draft",
+        "mcp__tfg_mission_control__finalize_mission_draft"
+      ],
+      "rejected_unauthorized_requests": [
+        "read_file",
+        "read_file"
+      ],
+      "executed": [
+        "mcp__tfg_mission_control__update_mission_draft",
+        "mcp__tfg_mission_control__finalize_mission_draft",
+        "mcp__tfg_mission_control__update_mission_draft",
+        "mcp__tfg_mission_control__finalize_mission_draft"
+      ],
+      "executed_outside": [],
+      "offered_outside": false,
+      "stop": false
+    },
+    "ok": true
+  },
+  "all_ok": true,
+  "driver_v2_sha256": "f4006f222b584055c12e363b6778ce8f146ed19e0dfbfd7a3f516f575ff31323"
+}

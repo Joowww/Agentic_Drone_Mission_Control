@@ -1,0 +1,231 @@
+diff --git a/simulation/ros2_gazebo/scripts/sim_processes.py b/simulation/ros2_gazebo/scripts/sim_processes.py
+index b6525b9c1..c0e2e8297 100644
+--- a/simulation/ros2_gazebo/scripts/sim_processes.py
++++ b/simulation/ros2_gazebo/scripts/sim_processes.py
+@@ -47,6 +47,7 @@ class Process:
+     tagged: bool = False
+     zombie: bool = False
+     diagnostic_selection_sha256: str | None = None
++    passive_session_id: str | None = None
+ 
+     @property
+     def identity(self):
+@@ -62,11 +63,15 @@ def read_process(pid: int, proc_root=Path("/proc")) -> Process | None:
+         environment = (directory / "environ").read_bytes().split(b"\0")
+         tagged = f"{MARKER}={PROJECT}".encode() in environment
+         selection = None
++        passive_session = None
+         for item in environment:
++            if item.startswith(b'TFG_PASSIVE_SESSION_ID='):
++                try:passive_session=item.split(b'=',1)[1].decode('ascii')
++                except UnicodeDecodeError:pass
+             if item.startswith(b'TFG_DIAGNOSTIC_AGENT='):
+                 try:selection = diagnostic_api().digest(json.loads(item.split(b'=',1)[1]))
+                 except (ValueError,TypeError):pass
+-        return Process(pid, int(fields[1]), int(fields[19]), argv, tagged, fields[0] == "Z", selection)
++        return Process(pid, int(fields[1]), int(fields[19]), argv, tagged, fields[0] == "Z", selection, passive_session)
+     except (FileNotFoundError, ProcessLookupError):
+         return None
+ 
+@@ -98,6 +103,15 @@ def select_owned(table: dict[int, Process], remembered: set[tuple[int, int]]) ->
+             return owned
+ 
+ 
++def select_passive_session_owned(table, session_id, remembered=()):
++    """Select only the exact passive-session marker and its descendants."""
++    owned={pid:p for pid,p in table.items() if p.passive_session_id==session_id or p.identity in remembered}
++    while True:
++        children={pid:p for pid,p in table.items() if p.ppid in owned}
++        added=children.keys()-owned.keys();owned.update(children)
++        if not added:return owned
++
++
+ def select_session_owned(table, selection_sha256, remembered=()):
+     """Exact inherited descriptor or descendants of identities established here."""
+     def compatible(p):return p.diagnostic_selection_sha256 in (None,selection_sha256)
+@@ -168,9 +182,18 @@ def protected_pids(table: dict[int, Process]) -> set[int]:
+     return protected
+ 
+ 
+-def save_state(identities: set[tuple[int, int]]) -> None:
++def save_state(identities: set[tuple[int, int]], *, session_id=None, profile=None) -> None:
++    previous={}
++    if STATE.exists():
++        previous=json.loads(STATE.read_text())
++        if previous.get('project')!=PROJECT:raise ValueError('Process state belongs to another project')
++    value={"project":PROJECT,"identities":sorted(identities)}
++    session_id=session_id if session_id is not None else previous.get('passive_session_id')
++    profile=profile if profile is not None else previous.get('profile')
++    if session_id is not None:value['passive_session_id']=session_id
++    if profile is not None:value['profile']=profile
+     temporary = STATE.with_suffix(".tmp")
+-    temporary.write_text(json.dumps({"project": PROJECT, "identities": sorted(identities)}))
++    temporary.write_text(json.dumps(value))
+     temporary.replace(STATE)
+ 
+ 
+@@ -186,6 +209,17 @@ def remembered_identities() -> set[tuple[int, int]]:
+ def shutdown(*, scan=snapshot, send=os.kill, read=read_process,
+              monotonic=time.monotonic, sleep=time.sleep) -> dict:
+     remembered = remembered_identities()
++    passive_session_fence=os.environ.get('TFG_PASSIVE_SESSION_ID')
++    passive_boot_fence=os.environ.get('TFG_PASSIVE_SESSION_BOOT_ID')
++    state=json.loads(STATE.read_text()) if STATE.exists() else None
++    if passive_session_fence:
++        if (str(UUID(passive_session_fence))!=passive_session_fence
++                or os.environ.get('TFG_SIM_PROFILE')!='rover_only'
++                or not isinstance(state,dict) or state.get('passive_session_id')!=passive_session_fence
++                or state.get('profile')!='rover_only' or not remembered
++                or not passive_boot_fence
++                or Path('/proc/sys/kernel/random/boot_id').read_text().strip()!=passive_boot_fence):
++            raise ValueError('Passive STOP session/boot/process-state fence mismatch; no signals')
+     boot_fence = os.environ.get('TFG_DIAGNOSTIC_CLOSE_BOOT_ID')
+     selection_fence = None
+     if boot_fence:
+@@ -226,6 +260,10 @@ def shutdown(*, scan=snapshot, send=os.kill, read=read_process,
+                 or current.argv!=process.argv or current.diagnostic_selection_sha256!=process.diagnostic_selection_sha256):
+             errors.append('Close process/session context changed; no signal')
+             return
++        if passive_session_fence and (Path('/proc/sys/kernel/random/boot_id').read_text().strip()!=passive_boot_fence
++                or current.passive_session_id!=passive_session_fence or current.argv!=process.argv):
++            errors.append('Passive STOP process/session context changed; no signal')
++            return
+         try:
+             send(process.pid, sig)
+             sent.append({"pid": process.pid, "start_ticks": process.start_ticks, "signal": sig.name,
+@@ -264,7 +302,15 @@ def shutdown(*, scan=snapshot, send=os.kill, read=read_process,
+             if not any(p.identity in observers for p in owned.values()):break
+             sleep(0.1)
+     final_table, remaining = discover()
+-    ambiguous = unattributed_auxiliaries(final_table, remaining) if selection_fence else unattributed_auxiliaries(final_table, select_owned(final_table, remembered))
++    if selection_fence:
++        ambiguous=unattributed_auxiliaries(final_table,remaining)
++    elif passive_session_fence:
++        ambiguous=unattributed_auxiliaries(final_table,remaining)
++        foreign=[p for p in final_table.values() if not p.zombie and p.pid not in remaining
++                 and (p.tagged or is_project_launch(p)) and p.passive_session_id!=passive_session_fence]
++        ambiguous.extend(foreign)
++    else:
++        ambiguous=unattributed_auxiliaries(final_table,select_owned(final_table,remembered))
+     if selection_fence:
+         # Other project sessions must never be signaled or cleared incidentally.
+         ambiguous = list({p.pid:p for p in [*ambiguous,*select_owned(final_table,remembered).values()]
+@@ -415,6 +461,13 @@ def verify_acquisition():
+ 
+ def start(profile="two_drones") -> dict:
+     selected = get_profile(profile)
++    passive_session_id=None
++    if selected.name=='rover_only':
++        context=json.loads(os.environ.get('TFG_SIM_START_CONTEXT','{}'))
++        passive_session_id=context.get('lifecycle_id')
++        if (not isinstance(passive_session_id,str) or str(UUID(passive_session_id))!=passive_session_id or context.get('profile')!='rover_only'
++                or os.environ.get('TFG_PASSIVE_SESSION_ID')!=passive_session_id):
++            raise ValueError('rover_only launch lacks exact protected passive lifecycle context')
+     table = snapshot()
+     owned = select_owned(table, remembered_identities())
+     if owned or unattributed_auxiliaries(table, owned):
+@@ -456,7 +509,11 @@ def start(profile="two_drones") -> dict:
+         diagnostic_api().atomic_record(Path(diagnostic['prefix'])/'launch.json',
+             {'process':{'pid':process.pid,'start_ticks':process.start_ticks,
+                         'boot_id':Path('/proc/sys/kernel/random/boot_id').read_text().strip()}})
+-    save_state({process.identity} | ({observed_watcher.identity} if watcher else set()))
++    identities={process.identity} | ({observed_watcher.identity} if watcher else set())
++    if passive_session_id:
++        save_state(identities,session_id=passive_session_id,profile=selected.name)
++    else:
++        save_state(identities)
+     PID_FILE.write_text(str(child.pid))  # compatibility only; never used to select a victim
+     rover_identity = start_rover_identity(process, environment) if selected.name == "two_drones_rover" else None
+     if diagnostic:
+@@ -512,14 +569,28 @@ def start_rover_identity(launch_process, environment):
+             'context_path': str(context_path), 'record_path': str(root/'worker.json'),
+             'log_path': str(root/'worker.log'), 'scope': 'READ_ONLY_IDENTITY_NOT_MOVEMENT'}
+ 
++def verify_empty(profile, *, scan=snapshot):
++    """Read-only pre-start check used instead of the historical cleanup step."""
++    selected=get_profile(profile)
++    table=scan();owned=select_owned(table,remembered_identities())
++    ambiguous=unattributed_auxiliaries(table,owned)
++    if owned or ambiguous:
++        raise RuntimeError('Existing/ambiguous project processes prevent scoped START; no cleanup attempted')
++    return {'success':True,'profile':selected.name,'owned':[],'ambiguous':[],
++            'cleanup_performed':False,'movement_authorized':False}
++
++
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("action", choices=("start", "stop", "verify-start", "verify-acquisition"))
++    parser.add_argument("action", choices=("start", "stop", "verify-start", "verify-acquisition", "verify-empty"))
+     parser.add_argument("--profile", default=os.environ.get("TFG_SIM_PROFILE", "two_drones"))
+     args = parser.parse_args()
+     try:
+         selected = get_profile(args.profile)
+-        result = verify_acquisition() if args.action=="verify-acquisition" else verify_start_log() if args.action=="verify-start" else start(selected.name) if args.action == "start" else shutdown()
++        result = (verify_acquisition() if args.action=="verify-acquisition" else
++                  verify_start_log() if args.action=="verify-start" else
++                  verify_empty(selected.name) if args.action=="verify-empty" else
++                  start(selected.name) if args.action == "start" else shutdown())
+     except Exception as exc:
+         result = {"success": False, "error": f"{type(exc).__name__}: {exc}"}
+     print(json.dumps(result))
+diff --git a/simulation/ros2_gazebo/scripts/start_sim_backend.sh b/simulation/ros2_gazebo/scripts/start_sim_backend.sh
+index 4227125de..e9e1457db 100644
+--- a/simulation/ros2_gazebo/scripts/start_sim_backend.sh
++++ b/simulation/ros2_gazebo/scripts/start_sim_backend.sh
+@@ -32,11 +32,11 @@ CONTAINER_SOURCE_LAUNCH="/root/ardu_ws/src/ardupilot_gz/$LAUNCH_PACKAGE/launch/$
+ CONTAINER_INSTALL_LAUNCH="/root/ardu_ws/install/$LAUNCH_PACKAGE/share/$LAUNCH_PACKAGE/launch/$LAUNCH_FILE"
+ 
+ ROVER_CONTEXT_ENV=()
+-if [[ "$PROFILE" == "two_drones_rover" && -z "${TFG_SIM_START_CONTEXT:-}" ]]; then
++if [[ "$PROFILE" == "two_drones_rover" || "$PROFILE" == "rover_only" ]] && [[ -z "${TFG_SIM_START_CONTEXT:-}" ]]; then
+     echo "[ERROR] Missing protected rover environment reference."
+     exit 1
+ fi
+-if [[ "$PROFILE" == "two_drones_rover" ]]; then
++if [[ "$PROFILE" == "two_drones_rover" || "$PROFILE" == "rover_only" ]]; then
+     ROVER_CONTEXT_ENV=(-e "TFG_SIM_START_CONTEXT=$TFG_SIM_START_CONTEXT")
+ fi
+ 
+@@ -75,10 +75,15 @@ else
+     docker start "$CONTAINER" >/dev/null
+ fi
+ 
+-echo "[2/6] Stopping previous simulation processes..."
++echo "[2/6] Checking previous simulation processes..."
+ 
+ docker cp "$PROJECT_DIR/tools/simulation_profiles.py" "$CONTAINER:/tmp/tfg_simulation_profiles.py" >/dev/null
+ docker cp "$SCRIPT_DIR/sim_processes.py" "$CONTAINER:/tmp/tfg_sim_processes.py" >/dev/null
++if [[ "$PROFILE" == "rover_only" ]]; then
++    docker exec -e TFG_SIM_PROFILE="$PROFILE" "$CONTAINER" python3 /tmp/tfg_sim_processes.py verify-empty
++else
++    docker exec -e TFG_SIM_PROFILE="${TFG_SIM_PROFILE-two_drones}" "$CONTAINER" python3 /tmp/tfg_sim_processes.py stop
++fi
+ if [[ "$PROFILE" == "two_drones_rover" ]]; then
+     docker cp "$PROJECT_DIR/tools/rover_environment_identity.py" "$CONTAINER:/tmp/tfg_rover_environment_identity.py" >/dev/null
+     docker cp "$PROJECT_DIR/tools/rover_identity_worker.py" "$CONTAINER:/tmp/tfg_rover_identity_worker.py" >/dev/null
+@@ -143,7 +148,11 @@ docker cp \
+ 
+ echo "[5/6] Starting Gazebo + ArduPilot..."
+ 
+-docker exec -e TFG_SIM_GUI="${TFG_SIM_GUI:-true}" -e TFG_SIM_PROFILE="$PROFILE" "${ROVER_CONTEXT_ENV[@]}" "${DIAGNOSTIC_ENV[@]}" "$CONTAINER" bash -lc '
++PASSIVE_SESSION_ENV=()
++if [[ -n "${TFG_PASSIVE_SESSION_ID:-}" ]]; then
++    PASSIVE_SESSION_ENV=(-e "TFG_PASSIVE_SESSION_ID=$TFG_PASSIVE_SESSION_ID")
++fi
++docker exec -e TFG_SIM_GUI="${TFG_SIM_GUI:-true}" -e TFG_SIM_PROFILE="$PROFILE" "${ROVER_CONTEXT_ENV[@]}" "${DIAGNOSTIC_ENV[@]}" "${PASSIVE_SESSION_ENV[@]}" "$CONTAINER" bash -lc '
+ source /opt/ros/humble/setup.bash
+ source /root/ardu_ws/install/setup.bash
+ 
+diff --git a/simulation/ros2_gazebo/scripts/stop_sim_backend.sh b/simulation/ros2_gazebo/scripts/stop_sim_backend.sh
+index 73b034d1d..5f2efaf16 100644
+--- a/simulation/ros2_gazebo/scripts/stop_sim_backend.sh
++++ b/simulation/ros2_gazebo/scripts/stop_sim_backend.sh
+@@ -37,6 +37,8 @@ docker cp "$SCRIPT_DIR/sim_processes.py" "$CONTAINER:/tmp/tfg_sim_processes.py"
+ docker exec -e TFG_SIM_PROFILE="${TFG_SIM_PROFILE-two_drones}" \
+     -e "TFG_DIAGNOSTIC_CLOSE_TARGET=${TFG_DIAGNOSTIC_CLOSE_TARGET:-}" \
+     -e "TFG_DIAGNOSTIC_CLOSE_BOOT_ID=${TFG_DIAGNOSTIC_CLOSE_BOOT_ID:-}" \
++    -e "TFG_PASSIVE_SESSION_ID=${TFG_PASSIVE_SESSION_ID:-}" \
++    -e "TFG_PASSIVE_SESSION_BOOT_ID=${TFG_PASSIVE_SESSION_BOOT_ID:-}" \
+     "$CONTAINER" python3 /tmp/tfg_sim_processes.py stop
+ 
+ echo "SIMULATION STOPPED: no live processes attributable to the project remain."

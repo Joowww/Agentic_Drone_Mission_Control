@@ -1,0 +1,133 @@
+{
+ "operations": [
+  {
+   "authorization_needed": "explicit: the 10 case ids, the two hashes, joowww/tfg-multiagent-benchmarks",
+   "body_sha256": {
+    "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+    "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+   },
+   "endpoint": [
+    "/v1/private/traces/batch",
+    "SERVICE_VERIFIED_204",
+    "/v1/private/spans/batch",
+    "SERVICE_VERIFIED_204"
+   ],
+   "id": "OP-1",
+   "notes": "opik_bridge.send_import(max_traces=10); then verify each trace id",
+   "prerequisites": [],
+   "status": "PREPARED_NOT_SENT",
+   "what": "send the 10 pending qwen3:4b traces (E07 excluded)"
+  },
+  {
+   "authorization_needed": "explicit: the 11 rules trace ids and hashes",
+   "body_sha256": {
+    "spans": "ef501f06bf86edf70b4294f92ccab1751130afea7ca98ffb9888e001e77503e6",
+    "traces": "ec205c8b771eec1e96ee1e4f481da009e928699dcbbce805491c6935a4990c13"
+   },
+   "endpoint": [
+    "/v1/private/traces/batch",
+    "SERVICE_VERIFIED_204",
+    "/v1/private/spans/batch",
+    "SERVICE_VERIFIED_204"
+   ],
+   "id": "OP-2",
+   "notes": "no tokens or cost; type tool for the interpreter step",
+   "prerequisites": [],
+   "status": "PREPARED_NOT_SENT",
+   "what": "send the 11 rules traces (DETERMINISTIC_BASELINE)"
+  },
+  {
+   "authorization_needed": "explicit: modifies a remote span already sent",
+   "body_sha256": {
+    "body": "585106e8b3b491415f813c280fab48c1bc14a27f96fe7a65ba7ff01f145792f5"
+   },
+   "endpoint": "/v1/private/spans/01a1a76e-e362-7a07-8e04-d5e753b9091b",
+   "id": "OP-3",
+   "notes": "endpoint SPEC_ONLY; Opik may attempt cost estimation from provider+model: verify no cost appears",
+   "prerequisites": [],
+   "status": "PREPARED_NOT_SENT",
+   "what": "PATCH E07's LLM span to native model/provider/usage"
+  },
+  {
+   "authorization_needed": "explicit: score names and count",
+   "body_sha256": {
+    "body": "6612007920d4ed04f778b0f664ffe78a09c5dcd0978da5ac042323d8fc267dbd"
+   },
+   "endpoint": "/v1/private/traces/feedback-scores",
+   "id": "OP-4",
+   "notes": "SPEC_ONLY; scores for unsent traces must be filtered out before sending",
+   "prerequisites": [
+    "OP-1",
+    "OP-2 (for their traces)"
+   ],
+   "status": "PREPARED_NOT_SENT",
+   "what": "upload feedback scores of the traces present"
+  },
+  {
+   "authorization_needed": "explicit: dataset names",
+   "body_sha256": {
+    "adversarial_v3": {
+     "dataset": "410aead1d6948b344bd1eb9164add4b5f97fd26c5678c5d194766d2680d634e9",
+     "items": "108333f7b8fe58b6b25abf77c1cb8180fa90c67c719da606c3f1a7a10046a742"
+    },
+    "dev_v3": {
+     "dataset": "622cd7643d28590d177b73f214c596d79f7b0fef8cac2f4eaabb0ca4ca8c7f41",
+     "items": "7d30f6dbe2e30386f612d8d7b5d5c12169f81d523284bc43560d302ea669a22b"
+    },
+    "eval_v2": {
+     "dataset": "5313c9d11cb0b51f43cf9c178bd11e645d31dab29391c793db9e9899d9826d1a",
+     "items": "02aead7dc95af2837f02dca038bac9736f99ac75753583823db57afb9e5ac893"
+    },
+    "eval_v3": {
+     "dataset": "edccead6be5cc3a5dd941abccbb6168062498c08e719fd3bec83e536ac9e396f",
+     "items": "7a7ed2a13bb69a3a1fe7e5696ae8a5829662866dba4b2c59947e214dec593ca1"
+    }
+   },
+   "endpoint": "POST /v1/private/datasets + PUT /v1/private/datasets/items",
+   "id": "OP-5",
+   "notes": "SPEC_ONLY; try one dataset with one item first and read it back",
+   "prerequisites": [],
+   "status": "PREPARED_NOT_SENT",
+   "what": "create the 4 datasets and their items"
+  },
+  {
+   "authorization_needed": "explicit",
+   "body_sha256": {
+    "eval_v2@2 | ollama:qwen3:4b | interpret_brief/1 | pipeline v1 | pilot_v1": {
+     "experiment": "9954d0e25ec42e62222cff7f97e6d8f1873763c614be57921eabad999dcdc872",
+     "items": "94c2ff87a39ac0a841abf51efafe98df1e8c2c2b60496817f99d2c23e1495f1c"
+    },
+    "eval_v2@2 | rules | no-prompt | pipeline v1 | pilot_v1": {
+     "experiment": "ceb37443ad41ba7e087067e82721db36a497c5d31ee8dcc1ca20d97bfc8019c5",
+     "items": "35b7a1ab0c6f2561ea6a6e223d431a8bda0d871a44c7a0e5bc31068ac07a2f88"
+    }
+   },
+   "endpoint": "POST /v1/private/experiments + POST /v1/private/experiments/items",
+   "id": "OP-6",
+   "notes": "SPEC_ONLY",
+   "prerequisites": [
+    "OP-1",
+    "OP-2",
+    "OP-5"
+   ],
+   "status": "PREPARED_NOT_SENT",
+   "what": "create the 2 executed experiments and link items to traces"
+  },
+  {
+   "authorization_needed": "explicit",
+   "body_sha256": {
+    "TFG — Multiagent & LLM Evaluation": "3637f54b2f5f1cd83d1a177e23ed717d14d69805c2c5610c8343bade1a208f06",
+    "TFG — Multiagent & LLM Evaluation · Experiments": "00d371f9a842be121c36071b24abb43e829a0b7a02e7b03e38d8d3c19e605dc6"
+   },
+   "endpoint": "/v1/private/dashboards",
+   "id": "OP-7",
+   "notes": "config shape from the frontend; open once in the UI; manual creation is the fallback",
+   "prerequisites": [
+    "OP-1..OP-6 for data to show"
+   ],
+   "status": "PREPARED_NOT_SENT",
+   "what": "create the 2 dashboards"
+  }
+ ],
+ "status": "NOTHING_SENT"
+}

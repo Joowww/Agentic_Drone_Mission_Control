@@ -1,0 +1,681 @@
+Date: 2026-10-29 CET
+[12:18:33.450] weston 9.0.0
+               https://wayland.freedesktop.org
+               Bug reports to: https://gitlab.freedesktop.org/wayland/weston/issues/
+               Build: 9.0.0-213-g04d436c7
+[12:18:33.450] Command line: /usr/bin/weston --backend=rdp-backend.so --modules=wslgd-notify.so --xwayland --socket=wayland-0 --shell=rdprail-shell.so --log=/mnt/wslg/weston.log --logger-scopes=log,rdp-backend,rdprail-shell
+[12:18:33.450] OS: Linux, 6.18.33.2-microsoft-standard-WSL2, #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026, x86_64
+[12:18:33.450] warning: XDG_RUNTIME_DIR "/mnt/wslg/runtime-dir" is not configured
+correctly.  Unix access mode must be 0700 (current mode is 777),
+and must be owned by the user (current owner is UID 1000).
+Refer to your distribution on how to get it, or
+http://www.freedesktop.org/wiki/Specifications/basedir-spec
+on how to implement it.
+[12:18:33.450] Using config file '/home/wslg/.config/weston.ini'
+[12:18:33.450] Output repaint window is 7 ms maximum.
+[12:18:33.450] Loading module '/usr/lib/libweston-9/rdp-backend.so'
+[12:18:33.459] using FreeRDP version 2.4.0
+Date: 2026-10-29 CET
+[12:18:33.459] RDP backend: WESTON_RDP_DEBUG_LEVEL: 3
+[12:18:33.459] RDP backend: rdp_monitor_refresh_rate: 60000
+[12:18:33.459] RDP backend: timer resolution tv_sec:0 tv_nsec:1
+[12:18:33.459] RDP backend: Environment dump - start
+[12:18:33.459]   WSL2_DEFAULT_APP_ICON=/usr/share/icons/wsl/linux.png
+[12:18:33.459]   SHELL=/bin/bash
+[12:18:33.459]   WSL2_GUI_APPS_ENABLED=1
+[12:18:33.459]   WSL_DISTRO_NAME=
+[12:18:33.459]   WSL2_VM_ID=648AB821-D66A-4EE0-828D-B660C1457377
+[12:18:33.459]   XCURSOR_PATH=/mnt/wslg/distro/usr/share/icons:/usr/share/icons
+[12:18:33.459]   XCURSOR_SIZE=16
+[12:18:33.459]   WLOG_APPENDER=file
+[12:18:33.459]   NAME=MSI
+[12:18:33.459]   PWD=/home/wslg
+[12:18:33.459]   LOGNAME=wslg
+[12:18:33.459]   WSL_FEATURE_FLAGS=34
+[12:18:33.460]   WSL2_USER_PROFILE=C:\Users\joelm
+[12:18:33.460]   WSL2_DISTRO_NAME=Ubuntu
+[12:18:33.460]   _=/usr/bin/weston
+[12:18:33.460]   PULSE_AUDIO_RDP_SINK=/mnt/wslg/PulseAudioRDPSink
+[12:18:33.460]   HOME=/home/wslg
+[12:18:33.460]   WSLG_SERVICE_ID=00000002-FACB-11E6-BD58-64006A7986D3
+[12:18:33.460]   WAYLAND_DISPLAY=wayland-0
+[12:18:33.460]   USE_VSOCK=3
+[12:18:33.460]   WSL2_DEFAULT_APP_OVERLAY_ICON=/usr/share/icons/wsl/linux.png
+[12:18:33.460]   USER=wslg
+[12:18:33.460]   DISPLAY=:0
+[12:18:33.460]   SHLVL=0
+[12:18:33.460]   WSLGD_NOTIFY_SOCKET=/mnt/wslg/weston-notify.sock
+[12:18:33.460]   WLOG_FILEAPPENDER_OUTPUT_FILE_PATH=/mnt/wslg
+[12:18:33.460]   XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
+[12:18:33.460]   WSL2_SHARED_MEMORY_OB_DIRECTORY=WSL\648AB821-D66A-4EE0-828D-B660C1457377\wslg
+[12:18:33.460]   XCURSOR_THEME=whiteglass
+[12:18:33.460]   PATH=/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+[12:18:33.460]   WESTON_DISABLE_ABSTRACT_FD=1
+[12:18:33.460]   WLOG_FILEAPPENDER_OUTPUT_FILE_NAME=wlog.log
+[12:18:33.460]   PULSE_AUDIO_RDP_SOURCE=/mnt/wslg/PulseAudioRDPSource
+[12:18:33.460]   PULSE_SERVER=unix:/mnt/wslg/PulseServer
+[12:18:33.460]   WSL2_INSTALL_PATH=C:\Program Files\WSL
+[12:18:33.460]   WSL2_SHARED_MEMORY_MOUNT_POINT=/mnt/shared_memory
+[12:18:33.460]   WESTON_CONFIG_FILE=/home/wslg/.config/weston.ini
+[12:18:33.460] RDP backend: Environment dump - end
+[12:18:33.460] RDP backend: FreeRDP version: 2.4.0
+[12:18:33.460] Using external fd for incoming connections: 3
+[12:18:33.460] Default head is being added
+[12:18:33.460] Registered plugin API 'weston_rdprail_api_v1' of size 72
+[12:18:33.460] RDPAPPLIST_MODULEDIR is set to /usr/lib/rdpapplist
+[12:18:33.460] RDP backend: use_rdpapplist = 1
+[12:18:33.467] RDP backend: use_gfxredir = 1
+[12:18:33.467] RDP backend: enable_hi_dpi_support = 1
+[12:18:33.467] RDP backend: enable_fractional_hi_dpi_support = 0
+[12:18:33.467] RDP backend: enable_fractional_hi_dpi_roundup = 0
+[12:18:33.467] RDP backend: debug_desktop_scaling_factor = 0
+[12:18:33.467] RDP backend: enable_window_zorder_sync = 1
+[12:18:33.467] RDP backend: enable_window_snap_arrange = 1
+[12:18:33.467] RDP backend: enable_window_shadow_remoting = 1
+[12:18:33.467] RDP backend: enable_display_power_by_screenupdate = 0
+[12:18:33.467] RDP backend: enable_distro_name_title = 1
+[12:18:33.467] RDP backend: enable_copy_warning_title = 1
+[12:18:33.467] Using VSOCK for incoming connections: 3
+[12:18:33.467] Registered plugin API 'weston_rdp_output_api_v1' of size 24
+[12:18:33.468] Head attaching: rdp-0, index:0, is_primary: 1
+[12:18:33.468] Client desktop upper left coordinate (0,0)
+[12:18:33.468] disp_monitor_validate_and_compute_layout:---OUTPUT---
+[12:18:33.468] 	rdpMonitor[0]: x:0, y:0, width:0, height:0, is_primary:1
+[12:18:33.468] 	rdpMonitor[0]: weston x:0, y:0, width:0, height:0
+[12:18:33.468] 	rdpMonitor[0]: physicalWidth:0, physicalHeight:0, orientation:0
+[12:18:33.468] 	rdpMonitor[0]: desktopScaleFactor:0, deviceScaleFactor:0
+[12:18:33.468] 	rdpMonitor[0]: scale:1, clientScale:1.00
+[12:18:33.468] Head mode change:rdp-0 NEW width:0, height:0, scale:1, clientScale:1.000000
+[12:18:33.468] move head/output rdp-0 (0,0) -> (0,0)
+[12:18:33.468] client origin (0,0) is (0,0) in Weston space
+[12:18:33.468] Output 'rdp-0' enabled with head(s) rdp-0
+[12:18:33.468] Compositor capabilities:
+               arbitrary surface rotation: yes
+               screen capture uses y-flip: no
+               presentation clock: CLOCK_MONOTONIC_RAW, id 4
+               presentation clock resolution: 0.000000001 s
+[12:18:33.468] Loading module '/usr/lib/weston/rdprail-shell.so'
+[12:18:33.487] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_DEBUG_LEVEL: 3.
+Date: 2026-10-29 CET
+[12:18:33.487] RDPRAIL-shell: allow-zap:0
+[12:18:33.487] RDPRAIL-shell: allow-alt-f4-to-close-app:1
+[12:18:33.487] RDPRAIL-shell: binding-modifier:none
+[12:18:33.487] RDPRAIL-shell: local-move:0
+[12:18:33.487] RDPRAIL-shell: distro name:Ubuntu (len:6)
+[12:18:33.488] RDPRAIL-shell: WSL2_DEFAULT_APP_ICON:/usr/share/icons/wsl/linux.png (loaded:yes)
+[12:18:33.490] RDPRAIL-shell: WSL2_DEFAULT_APP_OVERLAY_ICON:/usr/share/icons/wsl/linux.png (loaded:yes)
+[12:18:33.490] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_APPEND_DISTRONAME_STARTMEN:1
+[12:18:33.490] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_BLEND_OVERLAY_ICON_APPLIST:1
+[12:18:33.490] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_BLEND_OVERLAY_ICON_TASKBAR:1
+[12:18:33.490] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_USE_WSLPATH:0
+[12:18:33.490] rdp_rail_shell_initialize_notify: shell: distro name: Ubuntu
+[12:18:33.492] app_list_monitor_thread: running in system-distro with user-distro: Ubuntu
+[12:18:33.492] Loading module '/usr/lib/libweston-9/xwayland.so'
+[12:18:33.492] app_list_monitor_thread: open(/proc/self/ns/mnt)
+[12:18:33.492] app_list_monitor_thread: open(/proc/2/ns/mnt)
+[12:18:33.493] app_list_monitor_thread: inotify_add_watch(/usr/share/applications)
+[12:18:33.494] Registered plugin API 'weston_xwayland_v1' of size 32
+[12:18:33.496] app_list_monitor_thread: monitor /usr/share/applications
+[12:18:33.496] Registered plugin API 'weston_xwayland_surface_v1' of size 48
+[12:18:33.496] Not using abstract fd for Xwayland
+[12:18:33.496] xserver listening on display :0
+[12:18:33.496] Loading module '/usr/lib/weston/wslgd-notify.so'
+[12:18:33.497] app_list_monitor_thread: /usr/local/share/applications doesn't exist, skipping.
+[12:18:33.497] ../compositor/wslgd-notify.c: socket connected
+[12:18:33.499] app_list_monitor_thread: inotify_add_watch(/var/lib/snapd/desktop/applications)
+[12:18:33.499] app_list_monitor_thread: monitor /var/lib/snapd/desktop/applications
+[12:18:33.499] app_list_monitor_thread: /var/lib/flatpak/exports/share/applications doesn't exist, skipping.
+[12:18:33.499] app list folder[0]: /usr/share/applications
+[12:18:33.517] desktop file: /usr/share/applications/gz-sim8.desktop
+[12:18:33.517]     Name[en_US]:Gazebo Sim 8 (Ubuntu)
+[12:18:33.517]     Exec:/usr/bin/gz sim --force-version 8
+[12:18:33.517]     TryExec:(null)
+[12:18:33.517]     WorkingDir:(null)
+[12:18:33.517]     Icon name:gz-logo8
+[12:18:33.517]     Icon SVG :1
+[12:18:33.517]     Icon file:/usr/share/icons/hicolor/scalable/apps/gz-logo8.svg
+[12:18:33.517]     Icon image:0x76f8d007ee10
+[12:18:33.517] app list entry updated: Key:gz-sim8, Name:Gazebo Sim 8 (Ubuntu)
+[12:18:33.518] desktop file: /usr/share/applications/vim.desktop is terminal based app
+[12:18:33.518] app list entry failed to update: Key:vim
+[12:18:33.519] free_app_entry(): (null): /usr/share/applications/vim.desktop
+[12:18:33.519] desktop file: /usr/share/applications/info.desktop is terminal based app
+[12:18:33.519] app list entry failed to update: Key:info
+[12:18:33.519] free_app_entry(): (null): /usr/share/applications/info.desktop
+[12:18:33.521] desktop file: /usr/share/applications/python3.12.desktop has NoDisplay specified
+[12:18:33.521] app list entry failed to update: Key:12
+[12:18:33.521] free_app_entry(): (null): /usr/share/applications/python3.12.desktop
+[12:18:33.522] desktop file: /usr/share/applications/snap-handle-link.desktop has NoDisplay specified
+[12:18:33.522] app list entry failed to update: Key:snap-handle-link
+[12:18:33.522] free_app_entry(): (null): /usr/share/applications/snap-handle-link.desktop
+[12:18:33.523] desktop file: /usr/share/applications/byobu.desktop is terminal based app
+[12:18:33.523] app list entry failed to update: Key:byobu
+[12:18:33.523] free_app_entry(): (null): /usr/share/applications/byobu.desktop
+[12:18:33.524] desktop file: /usr/share/applications/io.snapcraft.SessionAgent.desktop has NoDisplay specified
+[12:18:33.524] app list entry failed to update: Key:SessionAgent
+[12:18:33.524] free_app_entry(): (null): /usr/share/applications/io.snapcraft.SessionAgent.desktop
+[12:18:33.524] app list folder[1]: /usr/local/share/applications
+[12:18:33.524] app list folder[2]: /var/lib/snapd/desktop/applications
+[12:18:33.524] app list folder[3]: /var/lib/flatpak/exports/share/applications
+[12:18:33.622] Spawned Xwayland server, pid 25
+[12:18:33.812] xfixes version: 6.0
+[12:18:33.830] created wm, root 912
+[12:18:34.739] Client HandShake buildNumber:26300
+[12:18:34.739] Client: ClientStatus:0x3f5
+[12:18:34.739]      - TS_RAIL_CLIENTSTATUS_ALLOWLOCALMOVESIZE
+[12:18:34.739]      - TS_RAIL_CLIENTSTATUS_ZORDER_SYNC
+[12:18:34.739]      - TS_RAIL_CLIENTSTATUS_WINDOW_RESIZE_MARGIN_SUPPORTED
+[12:18:34.739]      - TS_RAIL_CLIENTSTATUS_HIGH_DPI_ICONS_SUPPORTED
+[12:18:34.739]      - TS_RAIL_CLIENTSTATUS_APPBAR_REMOTING_SUPPORTED
+[12:18:34.739]      - TS_RAIL_CLIENTSTATUS_POWER_DISPLAY_REQUEST_SUPPORTED
+[12:18:34.739]      - TS_RAIL_CLIENTSTATUS_GET_APPID_RESPONSE_EX_SUPPORTED
+[12:18:34.739]      - TS_RAIL_CLIENTSTATUS_BIDIRECTIONAL_CLOAK_SUPPORTED
+[12:18:34.750] Server AppList caps version:4
+[12:18:34.750]     appListProviderName:Ubuntu
+[12:18:34.750]     appListProviderUniqueId:00000002-FACB-11E6-BD58-64006A7986D3
+[12:18:34.771] Client: gfxredir_caps: length:28
+[12:18:34.771] Client: gfxredir_caps[0]: signature:0x53504143
+[12:18:34.771] Client: gfxredir_caps[0]: version:0x1
+[12:18:34.771] Client: gfxredir_caps[0]: length:12
+[12:18:34.771] Client: gfxredir_caps[1]: signature:0x53504143
+[12:18:34.771] Client: gfxredir_caps[1]: version:0x2000
+[12:18:34.771] Client: gfxredir_caps[1]: length:16
+[12:18:34.771] Client: gfxredir_caps[1]: supportedFeatures:0x0
+[12:18:34.771] Client: gfxredir selected caps: version:0x2000
+[12:18:34.781] Client: GrfxCaps count:0xd
+[12:18:34.781] Client: GrfxCaps[0] version:0x80004 length:4 flags:0x0
+[12:18:34.781] 	Version : RDPGFX_CAPVERSION_8
+[12:18:34.781] Client: GrfxCaps[1] version:0x80105 length:4 flags:0x0
+[12:18:34.781] 	Version : RDPGFX_CAPVERSION_81
+[12:18:34.781] Client: GrfxCaps[2] version:0xa0002 length:4 flags:0x0
+[12:18:34.781] 	Version : RDPGFX_CAPVERSION_10
+[12:18:34.781] Client: GrfxCaps[3] version:0xa0200 length:4 flags:0x0
+[12:18:34.781] 	Version : RDPGFX_CAPVERSION_102
+[12:18:34.781] Client: GrfxCaps[4] version:0xa0301 length:4 flags:0x0
+[12:18:34.781] 	Version : RDPGFX_CAPVERSION_103
+[12:18:34.781] Client: GrfxCaps[5] version:0xa0400 length:4 flags:0x0
+[12:18:34.781] 	Version : RDPGFX_CAPVERSION_104
+[12:18:34.781] Client: GrfxCaps[6] version:0xa0502 length:4 flags:0x0
+[12:18:34.781] 	Version : RDPGFX_CAPVERSION_105
+[12:18:34.781] Client: GrfxCaps[7] version:0xa0600 length:4 flags:0x0
+[12:18:34.781] 	Version : RDPGFX_CAPVERSION_106
+[12:18:34.781] Client: GrfxCaps[8] version:0xa0701 length:4 flags:0x0
+[12:18:34.781] 	Version : UNKNOWN(657153)
+[12:18:34.781] Client: GrfxCaps[9] version:0xb0101 length:4 flags:0x0
+[12:18:34.782] 	Version : UNKNOWN(721153)
+[12:18:34.782] Client: GrfxCaps[10] version:0xb0200 length:4 flags:0x0
+[12:18:34.782] 	Version : UNKNOWN(721408)
+[12:18:34.782] Client: GrfxCaps[11] version:0xb0300 length:4 flags:0x800
+[12:18:34.782] 	Version : UNKNOWN(721664)
+[12:18:34.782] Client: GrfxCaps[12] version:0xb0500 length:4 flags:0x800
+[12:18:34.782] 	Version : UNKNOWN(722176)
+[12:18:34.792] xf_peer_adjust_monitor_layout:
+[12:18:34.792]   DesktopWidth:1920, DesktopHeight:1080
+[12:18:34.792]   UseMultimon:0
+[12:18:34.792]   ForceMultimon:0
+[12:18:34.792]   MonitorCount:0
+[12:18:34.792]   HasMonitorAttributes:0
+[12:18:34.792]   HiDefRemoteApp:1
+[12:18:34.792] disp_monitor_sanity_check_layout:---INPUT---
+[12:18:34.792] 	rdpMonitor[0]: x:0, y:0, width:1920, height:1080, is_primary:1
+[12:18:34.792] 	rdpMonitor[0]: physicalWidth:344, physicalHeight:193, orientation:0
+[12:18:34.792] 	rdpMonitor[0]: desktopScaleFactor:125, deviceScaleFactor:100
+[12:18:34.792] 	rdpMonitor[0]: scale:1, client scale :1.00
+[12:18:34.793] kbd_layout:0x40a kbd_type:0x7 kbd_subType:0x0 kbd_functionKeys:0xc
+[12:18:34.793] convert_rdp_keyboard_to_xkb_rule_names: matching model=pc105 layout=es variant=(null) options=(null)
+[12:18:34.803] Client desktop upper left coordinate (0,0)
+[12:18:34.803] disp_monitor_validate_and_compute_layout:---OUTPUT---
+[12:18:34.803] 	rdpMonitor[0]: x:0, y:0, width:1920, height:1080, is_primary:1
+[12:18:34.803] 	rdpMonitor[0]: weston x:0, y:0, width:1920, height:1080
+[12:18:34.803] 	rdpMonitor[0]: physicalWidth:344, physicalHeight:193, orientation:0
+[12:18:34.803] 	rdpMonitor[0]: desktopScaleFactor:0, deviceScaleFactor:100
+[12:18:34.803] 	rdpMonitor[0]: scale:1, clientScale:1.00
+[12:18:34.803] Head mode change:rdp-0 NEW width:1920, height:1080, scale:1, clientScale:1.000000
+[12:18:34.803] move head/output rdp-0 (0,0) -> (0,0)
+[12:18:34.803] client origin (0,0) is (0,0) in Weston space
+[12:18:34.803] Client ExecOrder:0x00000008, Program:dummy-entry, WorkingDir:(null), RemoteApplicationArguments:(null)
+[12:18:34.803] Client ExecOrder launching dummy-entry
+[12:18:34.803] launching 'dummy-entry'
+[12:18:34.806] compositor: executing 'dummy-entry' failed: No such file or directory
+[12:18:34.806] Client: ClientSysparam: filterKeys
+[12:18:34.807] Client: ClientSysparam: toggleKeys:62
+[12:18:34.807] Client: ClientSysparam: stickyKeys:510
+[12:18:34.807] Client: ClientSysparam: caretWidth:1
+[12:18:34.807] Client: ClientSysparam: highContrast
+[12:18:34.807] Client: ClientSysparam: taskbarPos:(left:0, top:1020, right:1920, bottom:1080)
+[12:18:34.807] Client: ClientSysparam: mouseButtonSwap:0
+[12:18:34.807] Client: ClientSysparam: keyboardPref:0
+[12:18:34.807] Client: ClientSysparam: dragFullWindows:1
+[12:18:34.807] Client: ClientSysparam: keyboardCues:0
+[12:18:34.807] Client: ClientSysparam: workArea:(left:0, top:0, right:1920, bottom:1020)
+[12:18:34.807] Translated workarea:(0,0)-(1920,1020) at rdp-0:(0,0)-(1920,1080)
+[12:18:34.807] Client AppList caps version:4
+[12:18:34.807] Client AppList client language id: es_ES
+[12:18:34.807] Client ExecOrder program terminated
+[12:18:34.807] app_list_monitor_thread: startRdpNotifyEvent is signalled. 0 - es_ES
+[12:18:34.807] dummy-entry exited with status 255
+[12:18:34.807] app_list_start_rdp_notify(): client language is changed from en_US to es_ES
+[12:18:34.807] app list folder[0]: /usr/share/applications
+[12:18:34.811] desktop file: /usr/share/applications/gz-sim8.desktop
+[12:18:34.811]     Name[es_ES]:Gazebo Sim 8 (Ubuntu)
+[12:18:34.811]     Exec:/usr/bin/gz sim --force-version 8
+[12:18:34.811]     TryExec:(null)
+[12:18:34.811]     WorkingDir:(null)
+[12:18:34.811]     Icon name:gz-logo8
+[12:18:34.811]     Icon SVG :1
+[12:18:34.811]     Icon file:/usr/share/icons/hicolor/scalable/apps/gz-logo8.svg
+[12:18:34.811]     Icon image:0x76f8d0013bb0
+[12:18:34.811] app list entry updated: Key:gz-sim8, Name:Gazebo Sim 8 (Ubuntu)
+[12:18:34.811] free_app_entry(): Gazebo Sim 8 (Ubuntu): /usr/share/applications/gz-sim8.desktop
+[12:18:34.811] desktop file: /usr/share/applications/vim.desktop is terminal based app
+[12:18:34.811] app list entry failed to update: Key:vim
+[12:18:34.811] free_app_entry(): (null): /usr/share/applications/vim.desktop
+[12:18:34.811] desktop file: /usr/share/applications/info.desktop is terminal based app
+[12:18:34.811] app list entry failed to update: Key:info
+[12:18:34.811] free_app_entry(): (null): /usr/share/applications/info.desktop
+[12:18:34.811] desktop file: /usr/share/applications/python3.12.desktop has NoDisplay specified
+[12:18:34.811] app list entry failed to update: Key:12
+[12:18:34.811] free_app_entry(): (null): /usr/share/applications/python3.12.desktop
+[12:18:34.811] desktop file: /usr/share/applications/snap-handle-link.desktop has NoDisplay specified
+[12:18:34.811] app list entry failed to update: Key:snap-handle-link
+[12:18:34.811] free_app_entry(): (null): /usr/share/applications/snap-handle-link.desktop
+[12:18:34.811] desktop file: /usr/share/applications/byobu.desktop is terminal based app
+[12:18:34.811] app list entry failed to update: Key:byobu
+[12:18:34.811] free_app_entry(): (null): /usr/share/applications/byobu.desktop
+[12:18:34.811] desktop file: /usr/share/applications/io.snapcraft.SessionAgent.desktop has NoDisplay specified
+[12:18:34.811] app list entry failed to update: Key:SessionAgent
+[12:18:34.811] free_app_entry(): (null): /usr/share/applications/io.snapcraft.SessionAgent.desktop
+[12:18:34.811] app list folder[1]: /usr/local/share/applications
+[12:18:34.812] app list folder[2]: /var/lib/snapd/desktop/applications
+[12:18:34.812] app list folder[3]: /var/lib/flatpak/exports/share/applications
+[12:18:34.812] rdp_rail_notify_app_list(): rdp_peer 0x5b3b8080d420
+[12:18:34.812]     inSync: 1
+[12:18:34.812]     syncStart: 1
+[12:18:34.812]     syncEnd: 1
+[12:18:34.812]     newAppId: 1
+[12:18:34.812]     deleteAppId: 0
+[12:18:34.812]     deleteAppProvider: 0
+[12:18:34.812]     associateWindowId: 0
+[12:18:34.812]     appId: gz-sim8
+[12:18:34.812]     appGroup: (null)
+[12:18:34.812]     appExecPath: /usr/bin/gz sim --force-version 8
+[12:18:34.812]     appWorkingDir: (null)
+[12:18:34.812]     appDesc: Gazebo Sim 8 (Ubuntu)
+[12:18:34.812]     appIcon: 0x76f8d0013bb0
+[12:18:34.812]     appProvider: (null)
+[12:18:34.812]     appWindowId: 0x0
+[12:18:33.395] Pulse Audio Sink listener socket on /mnt/wslg/PulseAudioRDPSink
+[12:18:33.397] xfixes selection notify event: owner 2097153
+[12:18:33.397] our window, skipping
+[12:18:37.037] RDP Sink version (1 - 1)
+[12:34:53.879] xfixes selection notify event: owner 2097153
+[12:34:53.880] our window, skipping
+[12:35:30.105] xfixes selection notify event: owner 2097153
+[12:35:30.105] our window, skipping
+[12:36:16.669] xfixes selection notify event: owner 2097153
+[12:36:16.669] our window, skipping
+[12:54:38.498] unable to checkDescriptor for 0x5b3b8080d270
+[12:54:38.509] app_list_monitor_thread: stopRdpNotifyEvent is signalled. 1
+[12:54:38.509] rdp_rail_notify_app_list(): rdp_peer 0x5b3b8080d420
+[12:54:38.509]     inSync: 0
+[12:54:38.509]     syncStart: 0
+[12:54:38.509]     syncEnd: 0
+[12:54:38.509]     newAppId: 0
+[12:54:38.509]     deleteAppId: 0
+[12:54:38.509]     deleteAppProvider: 1
+[12:54:38.509]     associateWindowId: 0
+[12:54:38.509]     appId: (null)
+[12:54:38.509]     appGroup: (null)
+[12:54:38.509]     appExecPath: (null)
+[12:54:38.509]     appWorkingDir: (null)
+[12:54:38.509]     appDesc: (null)
+[12:54:38.509]     appIcon: (nil)
+[12:54:38.509]     appProvider: Ubuntu
+[12:54:38.509]     appWindowId: 0x0
+[12:54:38.521] xfixes selection notify event: owner 2097153
+[12:54:38.521] our window, skipping
+[12:54:38.521] xfixes selection notify event: owner 2097153
+[12:54:38.521] our window, skipping
+[12:56:17.976] Client HandShake buildNumber:26300
+[12:56:17.976] Client: ClientStatus:0x3f5
+[12:56:17.976]      - TS_RAIL_CLIENTSTATUS_ALLOWLOCALMOVESIZE
+[12:56:17.976]      - TS_RAIL_CLIENTSTATUS_ZORDER_SYNC
+[12:56:17.976]      - TS_RAIL_CLIENTSTATUS_WINDOW_RESIZE_MARGIN_SUPPORTED
+[12:56:17.976]      - TS_RAIL_CLIENTSTATUS_HIGH_DPI_ICONS_SUPPORTED
+[12:56:17.976]      - TS_RAIL_CLIENTSTATUS_APPBAR_REMOTING_SUPPORTED
+[12:56:17.976]      - TS_RAIL_CLIENTSTATUS_POWER_DISPLAY_REQUEST_SUPPORTED
+[12:56:17.976]      - TS_RAIL_CLIENTSTATUS_GET_APPID_RESPONSE_EX_SUPPORTED
+[12:56:17.976]      - TS_RAIL_CLIENTSTATUS_BIDIRECTIONAL_CLOAK_SUPPORTED
+[12:56:17.989] Server AppList caps version:4
+[12:56:17.989]     appListProviderName:Ubuntu
+[12:56:17.989]     appListProviderUniqueId:00000002-FACB-11E6-BD58-64006A7986D3
+[12:56:18.033] Client: gfxredir_caps: length:28
+[12:56:18.033] Client: gfxredir_caps[0]: signature:0x53504143
+[12:56:18.033] Client: gfxredir_caps[0]: version:0x1
+[12:56:18.033] Client: gfxredir_caps[0]: length:12
+[12:56:18.033] Client: gfxredir_caps[1]: signature:0x53504143
+[12:56:18.033] Client: gfxredir_caps[1]: version:0x2000
+[12:56:18.033] Client: gfxredir_caps[1]: length:16
+[12:56:18.033] Client: gfxredir_caps[1]: supportedFeatures:0x0
+[12:56:18.033] Client: gfxredir selected caps: version:0x2000
+[12:56:18.055] Client: GrfxCaps count:0xd
+[12:56:18.055] Client: GrfxCaps[0] version:0x80004 length:4 flags:0x0
+[12:56:18.055] 	Version : RDPGFX_CAPVERSION_8
+[12:56:18.055] Client: GrfxCaps[1] version:0x80105 length:4 flags:0x0
+[12:56:18.055] 	Version : RDPGFX_CAPVERSION_81
+[12:56:18.055] Client: GrfxCaps[2] version:0xa0002 length:4 flags:0x0
+[12:56:18.055] 	Version : RDPGFX_CAPVERSION_10
+[12:56:18.055] Client: GrfxCaps[3] version:0xa0200 length:4 flags:0x0
+[12:56:18.055] 	Version : RDPGFX_CAPVERSION_102
+[12:56:18.055] Client: GrfxCaps[4] version:0xa0301 length:4 flags:0x0
+[12:56:18.055] 	Version : RDPGFX_CAPVERSION_103
+[12:56:18.055] Client: GrfxCaps[5] version:0xa0400 length:4 flags:0x0
+[12:56:18.055] 	Version : RDPGFX_CAPVERSION_104
+[12:56:18.055] Client: GrfxCaps[6] version:0xa0502 length:4 flags:0x0
+[12:56:18.055] 	Version : RDPGFX_CAPVERSION_105
+[12:56:18.055] Client: GrfxCaps[7] version:0xa0600 length:4 flags:0x0
+[12:56:18.055] 	Version : RDPGFX_CAPVERSION_106
+[12:56:18.055] Client: GrfxCaps[8] version:0xa0701 length:4 flags:0x0
+[12:56:18.055] 	Version : UNKNOWN(657153)
+[12:56:18.055] Client: GrfxCaps[9] version:0xb0101 length:4 flags:0x0
+[12:56:18.055] 	Version : UNKNOWN(721153)
+[12:56:18.055] Client: GrfxCaps[10] version:0xb0200 length:4 flags:0x0
+[12:56:18.055] 	Version : UNKNOWN(721408)
+[12:56:18.055] Client: GrfxCaps[11] version:0xb0300 length:4 flags:0x800
+[12:56:18.055] 	Version : UNKNOWN(721664)
+[12:56:18.055] Client: GrfxCaps[12] version:0xb0500 length:4 flags:0x800
+[12:56:18.055] 	Version : UNKNOWN(722176)
+[12:56:18.067] xf_peer_adjust_monitor_layout:
+[12:56:18.067]   DesktopWidth:1920, DesktopHeight:1080
+[12:56:18.067]   UseMultimon:0
+[12:56:18.067]   ForceMultimon:0
+[12:56:18.067]   MonitorCount:0
+[12:56:18.067]   HasMonitorAttributes:0
+[12:56:18.067]   HiDefRemoteApp:1
+[12:56:18.067] disp_monitor_sanity_check_layout:---INPUT---
+[12:56:18.067] 	rdpMonitor[0]: x:0, y:0, width:1920, height:1080, is_primary:1
+[12:56:18.067] 	rdpMonitor[0]: physicalWidth:0, physicalHeight:0, orientation:0
+[12:56:18.067] 	rdpMonitor[0]: desktopScaleFactor:0, deviceScaleFactor:0
+[12:56:18.067] 	rdpMonitor[0]: scale:1, client scale :1.00
+[12:56:18.067] kbd_layout:0x40a kbd_type:0x7 kbd_subType:0x0 kbd_functionKeys:0xc
+[12:56:18.067] convert_rdp_keyboard_to_xkb_rule_names: matching model=pc105 layout=es variant=(null) options=(null)
+[12:56:18.075] Client ExecOrder:0x00000008, Program:dummy-entry, WorkingDir:(null), RemoteApplicationArguments:(null)
+[12:56:18.075] Client ExecOrder launching dummy-entry
+[12:56:18.075] launching 'dummy-entry'
+[12:56:18.079] Client: ClientSysparam: filterKeys
+[12:56:18.079] Client: ClientSysparam: toggleKeys:62
+[12:56:18.079] Client: ClientSysparam: stickyKeys:510
+[12:56:18.079] Client: ClientSysparam: caretWidth:1
+[12:56:18.080] Client: ClientSysparam: highContrast
+[12:56:18.080] Client: ClientSysparam: taskbarPos:(left:0, top:1020, right:1920, bottom:1080)
+[12:56:18.080] Client: ClientSysparam: mouseButtonSwap:0
+[12:56:18.080] Client: ClientSysparam: keyboardPref:0
+[12:56:18.080] Client: ClientSysparam: dragFullWindows:1
+[12:56:18.080] Client: ClientSysparam: keyboardCues:0
+[12:56:18.080] Client: ClientSysparam: workArea:(left:0, top:0, right:1920, bottom:1020)
+[12:56:18.080] Translated workarea:(0,0)-(1920,1020) at rdp-0:(0,0)-(1920,1080)
+[12:56:18.080] Client AppList caps version:4
+[12:56:18.080] Client AppList client language id: es_ES
+[12:56:18.080] app_list_monitor_thread: startRdpNotifyEvent is signalled. 0 - es_ES
+[12:56:18.082] compositor: executing 'dummy-entry' failed: No such file or directory
+[12:56:18.084] Client ExecOrder program terminated
+[12:56:18.084] dummy-entry exited with status 255
+[12:56:18.084] rdp_rail_notify_app_list(): rdp_peer 0x5b3b80cd12e0
+[12:56:18.084]     inSync: 1
+[12:56:18.084]     syncStart: 1
+[12:56:18.084]     syncEnd: 1
+[12:56:18.084]     newAppId: 1
+[12:56:18.084]     deleteAppId: 0
+[12:56:18.084]     deleteAppProvider: 0
+[12:56:18.084]     associateWindowId: 0
+[12:56:18.084]     appId: gz-sim8
+[12:56:18.084]     appGroup: (null)
+[12:56:18.084]     appExecPath: /usr/bin/gz sim --force-version 8
+[12:56:18.084]     appWorkingDir: (null)
+[12:56:18.084]     appDesc: Gazebo Sim 8 (Ubuntu)
+[12:56:18.084]     appIcon: 0x76f8d0013bb0
+[12:56:18.084]     appProvider: (null)
+[12:56:18.084]     appWindowId: 0x0
+[12:56:18.744] Pulse Audio Sink listener socket on /mnt/wslg/PulseAudioRDPSink
+[12:56:18.744] xfixes selection notify event: owner 2097153
+[12:56:18.744] our window, skipping
+[12:56:46.249] xfixes selection notify event: owner 2097153
+[12:56:46.249] our window, skipping
+[12:56:52.731] xfixes selection notify event: owner 2097153
+[12:56:52.731] our window, skipping
+[12:57:21.702] xfixes selection notify event: owner 2097153
+[12:57:21.702] our window, skipping
+[13:01:56.853] xfixes selection notify event: owner 2097153
+[13:01:56.853] our window, skipping
+[13:03:14.650] xfixes selection notify event: owner 2097153
+[13:03:14.650] our window, skipping
+[13:08:14.777] xfixes selection notify event: owner 2097153
+[13:08:14.777] our window, skipping
+[13:08:28.149] xfixes selection notify event: owner 2097153
+[13:08:28.149] our window, skipping
+[13:11:23.283] xfixes selection notify event: owner 2097153
+[13:11:23.283] our window, skipping
+[13:13:58.390] xfixes selection notify event: owner 2097153
+[13:13:58.390] our window, skipping
+[13:21:27.338] xfixes selection notify event: owner 2097153
+[13:21:27.338] our window, skipping
+[13:21:59.440] xfixes selection notify event: owner 2097153
+[13:21:59.440] our window, skipping
+[13:23:17.600] xfixes selection notify event: owner 2097153
+[13:23:17.600] our window, skipping
+[13:26:23.940] xfixes selection notify event: owner 2097153
+[13:26:23.940] our window, skipping
+[13:28:11.558] xfixes selection notify event: owner 2097153
+[13:28:11.558] our window, skipping
+[13:28:27.000] xfixes selection notify event: owner 2097153
+[13:28:27.000] our window, skipping
+[13:34:44.128] xfixes selection notify event: owner 2097153
+[13:34:44.128] our window, skipping
+[13:37:23.330] xfixes selection notify event: owner 2097153
+[13:37:23.330] our window, skipping
+[13:37:23.861] xfixes selection notify event: owner 2097153
+[13:37:23.861] our window, skipping
+[13:37:23.893] xfixes selection notify event: owner 2097153
+[13:37:23.893] our window, skipping
+[13:37:23.928] xfixes selection notify event: owner 2097153
+[13:37:23.928] our window, skipping
+[13:40:49.348] xfixes selection notify event: owner 2097153
+[13:40:49.348] our window, skipping
+[13:55:14.045] xfixes selection notify event: owner 2097153
+[13:55:14.045] our window, skipping
+[14:36:16.531] unable to checkDescriptor for 0x5b3b8080ef50
+[14:36:16.548] app_list_monitor_thread: stopRdpNotifyEvent is signalled. 1
+[14:36:16.548] rdp_rail_notify_app_list(): rdp_peer 0x5b3b80cd12e0
+[14:36:16.549]     inSync: 0
+[14:36:16.549]     syncStart: 0
+[14:36:16.549]     syncEnd: 0
+[14:36:16.549]     newAppId: 0
+[14:36:16.549]     deleteAppId: 0
+[14:36:16.549]     deleteAppProvider: 1
+[14:36:16.549]     associateWindowId: 0
+[14:36:16.549]     appId: (null)
+[14:36:16.549]     appGroup: (null)
+[14:36:16.549]     appExecPath: (null)
+[14:36:16.549]     appWorkingDir: (null)
+[14:36:16.549]     appDesc: (null)
+[14:36:16.549]     appIcon: (nil)
+[14:36:16.549]     appProvider: Ubuntu
+[14:36:16.549]     appWindowId: 0x0
+[14:36:16.588] xfixes selection notify event: owner 2097153
+[14:36:16.588] our window, skipping
+[14:36:16.589] xfixes selection notify event: owner 2097153
+[14:36:16.589] our window, skipping
+Date: 2026-10-30 CET
+[09:26:31.726] CreateWndow(): rdp_peer is not initalized
+[09:26:31.732] set_window_icon(): rdp_peer is not initalized
+Date: 2026-10-30 CET
+[09:26:31.732] launching '/usr/libexec/weston-rdprail-shell'
+Date: 2026-10-30 CET
+[09:26:31.740] set_position_from_xwayland: XWM 0, 0; geometry 32, 32; view -32, -32
+Date: 2026-10-30 CET
+[09:26:32.572] weston 9.0.0
+               https://wayland.freedesktop.org
+               Bug reports to: https://gitlab.freedesktop.org/wayland/weston/issues/
+               Build: 9.0.0-213-g04d436c7
+[09:26:32.573] Command line: /usr/bin/weston --backend=rdp-backend.so --modules=wslgd-notify.so --xwayland --socket=wayland-0 --shell=rdprail-shell.so --log=/mnt/wslg/weston.log --logger-scopes=log,rdp-backend,rdprail-shell
+[09:26:32.573] OS: Linux, 6.18.33.2-microsoft-standard-WSL2, #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026, x86_64
+[09:26:32.573] warning: XDG_RUNTIME_DIR "/mnt/wslg/runtime-dir" is not configured
+correctly.  Unix access mode must be 0700 (current mode is 777),
+and must be owned by the user (current owner is UID 1000).
+Refer to your distribution on how to get it, or
+http://www.freedesktop.org/wiki/Specifications/basedir-spec
+on how to implement it.
+[09:26:32.573] Using config file '/home/wslg/.config/weston.ini'
+[09:26:32.574] Output repaint window is 7 ms maximum.
+[09:26:32.574] Loading module '/usr/lib/libweston-9/rdp-backend.so'
+[09:26:32.595] using FreeRDP version 2.4.0
+Date: 2026-10-30 CET
+[09:26:32.595] RDP backend: WESTON_RDP_DEBUG_LEVEL: 3
+[09:26:32.595] RDP backend: rdp_monitor_refresh_rate: 60000
+[09:26:32.595] RDP backend: timer resolution tv_sec:0 tv_nsec:1
+[09:26:32.595] RDP backend: Environment dump - start
+[09:26:32.595]   WSL2_DEFAULT_APP_ICON=/usr/share/icons/wsl/linux.png
+[09:26:32.595]   SHELL=/bin/bash
+[09:26:32.595]   WSL2_GUI_APPS_ENABLED=1
+[09:26:32.595]   WSL_DISTRO_NAME=
+[09:26:32.595]   WSL2_VM_ID=648AB821-D66A-4EE0-828D-B660C1457377
+[09:26:32.595]   XCURSOR_PATH=/mnt/wslg/distro/usr/share/icons:/usr/share/icons
+[09:26:32.595]   XCURSOR_SIZE=16
+[09:26:32.595]   WLOG_APPENDER=file
+[09:26:32.595]   NAME=MSI
+[09:26:32.595]   PWD=/home/wslg
+[09:26:32.595]   LOGNAME=wslg
+[09:26:32.595]   WSL_FEATURE_FLAGS=34
+[09:26:32.595]   WSL2_USER_PROFILE=C:\Users\joelm
+[09:26:32.595]   WSL2_DISTRO_NAME=Ubuntu
+[09:26:32.595]   _=/usr/bin/weston
+[09:26:32.595]   PULSE_AUDIO_RDP_SINK=/mnt/wslg/PulseAudioRDPSink
+[09:26:32.595]   HOME=/home/wslg
+[09:26:32.595]   WSLG_SERVICE_ID=00000002-FACB-11E6-BD58-64006A7986D3
+[09:26:32.595]   WAYLAND_DISPLAY=wayland-0
+[09:26:32.595]   USE_VSOCK=3
+[09:26:32.595]   WSL2_DEFAULT_APP_OVERLAY_ICON=/usr/share/icons/wsl/linux.png
+[09:26:32.595]   USER=wslg
+[09:26:32.595]   DISPLAY=:0
+[09:26:32.596]   SHLVL=0
+[09:26:32.596]   WSLGD_NOTIFY_SOCKET=/mnt/wslg/weston-notify.sock
+[09:26:32.596]   WLOG_FILEAPPENDER_OUTPUT_FILE_PATH=/mnt/wslg
+[09:26:32.596]   XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
+[09:26:32.596]   WSL2_SHARED_MEMORY_OB_DIRECTORY=WSL\648AB821-D66A-4EE0-828D-B660C1457377\wslg
+[09:26:32.596]   XCURSOR_THEME=whiteglass
+[09:26:32.596]   PATH=/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+[09:26:32.596]   WESTON_DISABLE_ABSTRACT_FD=1
+[09:26:32.596]   WLOG_FILEAPPENDER_OUTPUT_FILE_NAME=wlog.log
+[09:26:32.596]   PULSE_AUDIO_RDP_SOURCE=/mnt/wslg/PulseAudioRDPSource
+[09:26:32.596]   PULSE_SERVER=unix:/mnt/wslg/PulseServer
+[09:26:32.596]   WSL2_INSTALL_PATH=C:\Program Files\WSL
+[09:26:32.596]   WSL2_SHARED_MEMORY_MOUNT_POINT=/mnt/shared_memory
+[09:26:32.596]   WESTON_CONFIG_FILE=/home/wslg/.config/weston.ini
+[09:26:32.596] RDP backend: Environment dump - end
+[09:26:32.596] RDP backend: FreeRDP version: 2.4.0
+[09:26:32.596] Using external fd for incoming connections: 3
+[09:26:32.596] Default head is being added
+[09:26:32.596] Registered plugin API 'weston_rdprail_api_v1' of size 72
+[09:26:32.596] RDPAPPLIST_MODULEDIR is set to /usr/lib/rdpapplist
+[09:26:32.596] RDP backend: use_rdpapplist = 1
+[09:26:32.605] RDP backend: use_gfxredir = 1
+[09:26:32.605] RDP backend: enable_hi_dpi_support = 1
+[09:26:32.605] RDP backend: enable_fractional_hi_dpi_support = 0
+[09:26:32.605] RDP backend: enable_fractional_hi_dpi_roundup = 0
+[09:26:32.605] RDP backend: debug_desktop_scaling_factor = 0
+[09:26:32.605] RDP backend: enable_window_zorder_sync = 1
+[09:26:32.605] RDP backend: enable_window_snap_arrange = 1
+[09:26:32.605] RDP backend: enable_window_shadow_remoting = 1
+[09:26:32.605] RDP backend: enable_display_power_by_screenupdate = 0
+[09:26:32.605] RDP backend: enable_distro_name_title = 1
+[09:26:32.605] RDP backend: enable_copy_warning_title = 1
+[09:26:32.605] Using VSOCK for incoming connections: 3
+[09:26:32.608] Registered plugin API 'weston_rdp_output_api_v1' of size 24
+[09:26:32.608] Head attaching: rdp-0, index:0, is_primary: 1
+[09:26:32.608] Client desktop upper left coordinate (0,0)
+[09:26:32.608] disp_monitor_validate_and_compute_layout:---OUTPUT---
+[09:26:32.608] 	rdpMonitor[0]: x:0, y:0, width:0, height:0, is_primary:1
+[09:26:32.608] 	rdpMonitor[0]: weston x:0, y:0, width:0, height:0
+[09:26:32.608] 	rdpMonitor[0]: physicalWidth:0, physicalHeight:0, orientation:0
+[09:26:32.608] 	rdpMonitor[0]: desktopScaleFactor:0, deviceScaleFactor:0
+[09:26:32.608] 	rdpMonitor[0]: scale:1, clientScale:1.00
+[09:26:32.608] Head mode change:rdp-0 NEW width:0, height:0, scale:1, clientScale:1.000000
+[09:26:32.608] move head/output rdp-0 (0,0) -> (0,0)
+[09:26:32.608] client origin (0,0) is (0,0) in Weston space
+[09:26:32.608] Output 'rdp-0' enabled with head(s) rdp-0
+[09:26:32.608] Compositor capabilities:
+               arbitrary surface rotation: yes
+               screen capture uses y-flip: no
+               presentation clock: CLOCK_MONOTONIC_RAW, id 4
+               presentation clock resolution: 0.000000001 s
+[09:26:32.608] Loading module '/usr/lib/weston/rdprail-shell.so'
+[09:26:32.637] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_DEBUG_LEVEL: 3.
+Date: 2026-10-30 CET
+[09:26:32.637] RDPRAIL-shell: allow-zap:0
+[09:26:32.637] RDPRAIL-shell: allow-alt-f4-to-close-app:1
+[09:26:32.637] RDPRAIL-shell: binding-modifier:none
+[09:26:32.637] RDPRAIL-shell: local-move:0
+[09:26:32.637] RDPRAIL-shell: distro name:Ubuntu (len:6)
+[09:26:32.639] RDPRAIL-shell: WSL2_DEFAULT_APP_ICON:/usr/share/icons/wsl/linux.png (loaded:yes)
+[09:26:32.640] RDPRAIL-shell: WSL2_DEFAULT_APP_OVERLAY_ICON:/usr/share/icons/wsl/linux.png (loaded:yes)
+[09:26:32.640] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_APPEND_DISTRONAME_STARTMEN:1
+[09:26:32.640] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_BLEND_OVERLAY_ICON_APPLIST:1
+[09:26:32.640] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_BLEND_OVERLAY_ICON_TASKBAR:1
+[09:26:32.640] RDPRAIL-shell: WESTON_RDPRAIL_SHELL_USE_WSLPATH:0
+[09:26:32.640] rdp_rail_shell_initialize_notify: shell: distro name: Ubuntu
+[09:26:32.642] Loading module '/usr/lib/libweston-9/xwayland.so'
+[09:26:32.642] app_list_monitor_thread: running in system-distro with user-distro: Ubuntu
+[09:26:32.642] app_list_monitor_thread: open(/proc/self/ns/mnt)
+[09:26:32.643] app_list_monitor_thread: open(/proc/2/ns/mnt)
+[09:26:32.643] app_list_monitor_thread: inotify_add_watch(/usr/share/applications)
+[09:26:32.643] app_list_monitor_thread: monitor /usr/share/applications
+[09:26:32.643] app_list_monitor_thread: /usr/local/share/applications doesn't exist, skipping.
+[09:26:32.643] app_list_monitor_thread: inotify_add_watch(/var/lib/snapd/desktop/applications)
+[09:26:32.643] app_list_monitor_thread: monitor /var/lib/snapd/desktop/applications
+[09:26:32.643] app_list_monitor_thread: /var/lib/flatpak/exports/share/applications doesn't exist, skipping.
+[09:26:32.643] app list folder[0]: /usr/share/applications
+[09:26:32.646] Registered plugin API 'weston_xwayland_v1' of size 32
+[09:26:32.646] Registered plugin API 'weston_xwayland_surface_v1' of size 48
+[09:26:32.646] unlinking stale lock file /tmp/.X0-lock
+[09:26:32.646] Not using abstract fd for Xwayland
+[09:26:32.647] xserver listening on display :0
+[09:26:32.647] Loading module '/usr/lib/weston/wslgd-notify.so'
+[09:26:32.647] wet_module_init: connect(/mnt/wslg/weston-notify.sock) failed No such file or directory
+[09:26:32.667] desktop file: /usr/share/applications/gz-sim8.desktop
+[09:26:32.667]     Name[en_US]:Gazebo Sim 8 (Ubuntu)
+[09:26:32.667]     Exec:/usr/bin/gz sim --force-version 8
+[09:26:32.667]     TryExec:(null)
+[09:26:32.667]     WorkingDir:(null)
+[09:26:32.667]     Icon name:gz-logo8
+[09:26:32.667]     Icon SVG :1
+[09:26:32.667]     Icon file:/usr/share/icons/hicolor/scalable/apps/gz-logo8.svg
+[09:26:32.667]     Icon image:0x7353f007e7d0
+[09:26:32.667] app list entry updated: Key:gz-sim8, Name:Gazebo Sim 8 (Ubuntu)
+[09:26:32.667] desktop file: /usr/share/applications/vim.desktop is terminal based app
+[09:26:32.668] app list entry failed to update: Key:vim
+[09:26:32.668] free_app_entry(): (null): /usr/share/applications/vim.desktop
+[09:26:32.668] desktop file: /usr/share/applications/info.desktop is terminal based app
+[09:26:32.668] app list entry failed to update: Key:info
+[09:26:32.668] free_app_entry(): (null): /usr/share/applications/info.desktop
+[09:26:32.668] desktop file: /usr/share/applications/python3.12.desktop has NoDisplay specified
+[09:26:32.668] app list entry failed to update: Key:12
+[09:26:32.668] free_app_entry(): (null): /usr/share/applications/python3.12.desktop
+[09:26:32.668] desktop file: /usr/share/applications/snap-handle-link.desktop has NoDisplay specified
+[09:26:32.668] app list entry failed to update: Key:snap-handle-link
+[09:26:32.668] free_app_entry(): (null): /usr/share/applications/snap-handle-link.desktop
+[09:26:32.668] desktop file: /usr/share/applications/byobu.desktop is terminal based app
+[09:26:32.668] app list entry failed to update: Key:byobu
+[09:26:32.668] free_app_entry(): (null): /usr/share/applications/byobu.desktop
+[09:26:32.668] desktop file: /usr/share/applications/io.snapcraft.SessionAgent.desktop has NoDisplay specified
+[09:26:32.668] app list entry failed to update: Key:SessionAgent
+[09:26:32.668] free_app_entry(): (null): /usr/share/applications/io.snapcraft.SessionAgent.desktop
+[09:26:32.668] app list folder[1]: /usr/local/share/applications
+[09:26:32.668] app list folder[2]: /var/lib/snapd/desktop/applications
+[09:26:32.668] app list folder[3]: /var/lib/flatpak/exports/share/applications
+[09:29:19.703] Spawned Xwayland server, pid 12618
+[09:29:19.962] xfixes version: 6.0
+[09:29:19.974] created wm, root 912
+[09:29:21.793] CreateWndow(): rdp_peer is not initalized
+[09:29:21.793] launching '/usr/libexec/weston-rdprail-shell'
+[09:29:21.831] CreateWndow(): rdp_peer is not initalized
+[09:29:21.846] set_window_icon(): rdp_peer is not initalized

@@ -1,0 +1,35 @@
+
+[ESCENARIO agri_demo_001] modo demo · origen SYNTHETIC · variante lost_admission_response · sin órdenes ni procesos operativos · Ctrl+C para salir
+
+[load_artifacts] trabajando · espera: conserved H1/H2 artifacts, verified by their manifests
+[load_artifacts] resultado: LOADED · motivo: 2 missions; binding record SYNTHETIC_DE
+
+[bind_and_validate] trabajando · espera: deterministic validation, execution compatibility and H0 geometry of each mission
+[bind_and_validate] resultado: BOUND · motivo: drone_01 321ad647ab9c, drone_02 079e25a30242
+
+[aerial_sequence] trabajando · espera: the sequence coordinator's record (read-only; no admission or launch)
+[aerial_sequence] resultado: FINISHED/PASSED · motivo: SYNTHETIC copy of the conserved H2 record, re-identified as 0df8dec9
+
+[scenario_view] trabajando · espera: the scenario interpretation of the sequence against the binding
+[scenario_view] resultado: OK · motivo: scenario AERIAL_COMPLETED_GROUND_PENDING; R1 dependency MET
+
+[hermes_evidence] trabajando · espera: recorded Hermes captures (no inference)
+[hermes_evidence] resultado: SUBSTITUTED · motivo: model provider substituted: no call; the conserved H1 finalizations are the inputs
+
+[r1_prepare] trabajando · espera: R1 inputs, current executor facts and measured facts (dry-run)
+[r1_prepare] resultado: MET/ELIGIBLE · motivo: blockers: none
+
+[r1_coordinate] trabajando · espera: the ground coordinator's record (query: read-only; demo: TEST_DOUBLE executor)
+[r1_coordinate] resultado: VERIFIED_SYNTHETIC · motivo: TimeoutError: TEST_DOUBLE: admission reply lost after the job was created
+
+[report] trabajando · espera: deterministic rendering of the view, the R1 preparation and the R1 record
+[report] resultado: SYNTHETIC_COMPLETE · motivo: scenario complete: False
+
+[ESCENARIO agri_demo_001] origen: SYNTHETIC · modo: demo
+Estado del flujo: COMPLETED_FLOW (última etapa report)
+Escenario: SYNTHETIC_COMPLETE; completo: no; completo solo como demostración sintética
+R1 · dependencia: MET · elegibilidad (vista histórica): BLOCKED_PENDING · elegibilidad (esta preparación): ELIGIBLE
+R1 · autorización: DECLARED_NOT_AUTHENTICATED · solicitud: VERIFIED_SYNTHETIC · ejecución: FINISHED (aceptación VERIFIED)
+Coordinador R1: VERIFIED_SYNTHETIC; aceptación: VERIFIED; motivo: TimeoutError: TEST_DOUBLE: admission reply lost after the job was created
+Informe: evaluation/observability/agri_scenario_flow_closure_2026_10_26/synthetic_demo/lost_admission_response/scenario_report.md
+Registro del flujo: evaluation/observability/agri_scenario_flow_closure_2026_10_26/synthetic_demo/lost_admission_response/flow_record.json

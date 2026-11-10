@@ -1,0 +1,240 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 11.57kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#2 DONE 1.7s
+
+#3 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#3 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#4 ...
+
+#5 [context hermes_src] load .dockerignore
+#5 transferring hermes_src: 2B done
+#5 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#4 DONE 0.9s
+
+#6 [hermes 1/6] ADD --checksum=sha256:600cf9a742aca00d292673b16b5acffaa7b8c269a364ad0c2e79498dcb1fe101     https://github.com/astral-sh/uv/releases/download/0.12.3/uv-x86_64-unknown-linux-gnu.tar.gz /tmp/uv.tar.gz
+#6 DONE 0.0s
+
+#7 [hermes 2/6] ADD --checksum=sha256:0ab3305457051cd3e7c031857e005f1bda17c218a1990567dacaaac6dd1d14f0     https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-x86_64-unknown-linux-gnu-install_only.tar.gz     /tmp/python.tar.gz
+#7 DONE 0.0s
+
+#8 [certs 1/2] FROM docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#8 resolve docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c 0.0s done
+#8 DONE 0.0s
+
+#9 [base 2/2] RUN --mount=type=bind,from=certs,source=/etc/ssl/certs/ca-certificates.crt,target=/run/tfg-ca.crt     sed -i -E "s#^URIs: .*#URIs: https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/#"         /etc/apt/sources.list.d/ubuntu.sources     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt -o APT::Update::Error-Mode=any update     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt install -y --no-install-recommends         python3 python3-venv ca-certificates     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [hermes 1/6] ADD --checksum=sha256:600cf9a742aca00d292673b16b5acffaa7b8c269a364ad0c2e79498dcb1fe101     https://github.com/astral-sh/uv/releases/download/0.12.3/uv-x86_64-unknown-linux-gnu.tar.gz /tmp/uv.tar.gz
+#10 CACHED
+
+#11 [certs 2/2] RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
+#11 CACHED
+
+#12 [hermes 2/6] ADD --checksum=sha256:0ab3305457051cd3e7c031857e005f1bda17c218a1990567dacaaac6dd1d14f0     https://github.com/astral-sh/python-build-standalone/releases/download/20260901/cpython-3.14.7+20260901-x86_64-unknown-linux-gnu-install_only.tar.gz     /tmp/python.tar.gz
+#12 CACHED
+
+#13 [internal] load build context
+#13 transferring context: 246.65kB 0.1s done
+#13 DONE 0.1s
+
+#14 [deps 1/2] COPY requirements.txt requirements-observability.txt constraints-verified.txt /opt/tfg-build/
+#14 CACHED
+
+#15 [deps 2/2] RUN python3 -m venv /opt/venv     && /opt/venv/bin/pip install --no-cache-dir --disable-pip-version-check         --report /opt/tfg-build/pip-install-report.json         -r /opt/tfg-build/requirements.txt -r /opt/tfg-build/requirements-observability.txt         -c /opt/tfg-build/constraints-verified.txt     && /opt/venv/bin/pip freeze --all > /opt/tfg-build/pip-freeze.txt
+#15 CACHED
+
+#16 [stage-4 1/6] COPY --from=deps /opt/venv /opt/venv
+#16 CACHED
+
+#17 [stage-4 2/6] COPY --from=deps /opt/tfg-build/pip-install-report.json /opt/tfg-build/pip-freeze.txt /opt/tfg-provenance/
+#17 CACHED
+
+#18 [context hermes_src] load from client
+#18 transferring hermes_src: 229.58MB 2.1s done
+#18 DONE 2.1s
+
+#19 [hermes 3/6] COPY --from=hermes_src hermes-agent-d923a5eb.tar /tmp/hermes-agent.tar
+#19 DONE 0.6s
+
+#20 [hermes 4/6] COPY deploy/planner/hermes_source.py /tmp/hermes_source.py
+#20 DONE 0.1s
+
+#21 [hermes 5/6] RUN echo "5b668df1d429ab315e1ba857a9ffa00898b5cf066b6d9304b8698d5d300fa7c0  /tmp/hermes-agent.tar" | sha256sum -c -     && python3 /tmp/hermes_source.py verify /tmp/hermes-agent.tar     && mkdir -p /opt/hermes/agent && tar -xf /tmp/hermes-agent.tar -C /opt/hermes/agent --no-same-owner     && rm /tmp/hermes-agent.tar /tmp/hermes_source.py
+#21 1.212 /tmp/hermes-agent.tar: OK
+#21 4.453 VERIFIED hermes-agent d923a5eb487a17c0a68801bba9ef0f56c81040a8 tree 5a064077e8d1de9fc7a4b27efc04f0caa2cb06c0: 18605 files; sha256 5b668df1d429ab315e1ba857a9ffa00898b5cf066b6d9304b8698d5d300fa7c0
+#21 DONE 6.5s
+
+#22 [hermes 6/6] RUN mkdir -p /opt/hermes/python /tmp/uv     && tar -xzf /tmp/uv.tar.gz -C /tmp/uv --strip-components=1     && tar -xzf /tmp/python.tar.gz -C /opt/hermes/python --strip-components=1     && cd /opt/hermes/agent     && UV_PYTHON=/opt/hermes/python/bin/python3 UV_PYTHON_DOWNLOADS=never UV_NO_CACHE=1 UV_LINK_MODE=copy        /tmp/uv/uv sync --frozen --no-dev --extra all     && /opt/hermes/agent/.venv/bin/python -c "import hermes_cli"     && (cd /opt/hermes/agent && find . -path ./.venv -prune -o -type f -print0 | sort -z | xargs -0 sha256sum)         > /opt/hermes/agent-files.sha256     && rm -rf /tmp/uv /tmp/uv.tar.gz /tmp/python.tar.gz
+#22 4.999 Using CPython 3.14.7 interpreter at: /opt/hermes/python/bin/python3
+#22 4.999 Creating virtual environment at: .venv
+#22 5.046    Building hermes-agent @ file:///opt/hermes/agent
+#22 5.482 Downloading pydantic-core (2.0MiB)
+#22 5.483 Downloading nemo-relay (10.1MiB)
+#22 5.484 Downloading pygments (1.2MiB)
+#22 5.485 Downloading pillow (6.6MiB)
+#22 5.490 Downloading firecrawl-anydoc (3.3MiB)
+#22 5.490 Downloading aiohttp (1.7MiB)
+#22 5.491 Downloading cryptography (4.5MiB)
+#22 5.493 Downloading google-api-python-client (14.3MiB)
+#22 5.494 Downloading uvloop (4.1MiB)
+#22 5.496 Downloading resvg-py (1.3MiB)
+#22 5.497 Downloading openai (1.1MiB)
+#22 5.500 Downloading pillow-heif (5.4MiB)
+#22 8.646  Downloaded openai
+#22 8.691  Downloaded pygments
+#22 8.837  Downloaded resvg-py
+#22 9.494  Downloaded aiohttp
+#22 9.586  Downloaded pydantic-core
+#22 11.16  Downloaded firecrawl-anydoc
+#22 13.98  Downloaded uvloop
+#22 16.34  Downloaded cryptography
+#22 16.68  Downloaded pillow-heif
+#22 17.40  Downloaded pillow
+#22 19.85       Built hermes-agent @ file:///opt/hermes/agent
+#22 20.50  Downloaded nemo-relay
+#22 21.53  Downloaded google-api-python-client
+#22 21.53 Prepared 106 packages in 16.50s
+#22 22.74 Installed 106 packages in 1.21s
+#22 22.74  + agent-client-protocol==0.9.0
+#22 22.74  + aiohappyeyeballs==2.7.1
+#22 22.74  + aiohttp==3.14.3
+#22 22.74  + aiosignal==1.4.0
+#22 22.74  + annotated-doc==0.0.5
+#22 22.74  + annotated-types==0.8.0
+#22 22.74  + anyio==4.14.2
+#22 22.74  + attrs==26.1.0
+#22 22.74  + browser-harness==0.1.13
+#22 22.74  + cdp-use==1.4.5
+#22 22.74  + certifi==2026.5.20
+#22 22.74  + cffi==2.1.1
+#22 22.74  + charset-normalizer==3.5.1
+#22 22.74  + click==8.4.2
+#22 22.74  + croniter==6.0.0
+#22 22.74  + cryptography==50.0.1
+#22 22.74  + defusedxml==0.7.1
+#22 22.74  + distro==1.9.0
+#22 22.74  + fastapi==0.133.1
+#22 22.74  + fetch-use==0.4.0
+#22 22.74  + fire==0.7.1
+#22 22.74  + firecrawl-anydoc==0.2.4
+#22 22.74  + frozenlist==1.8.0
+#22 22.74  + google-api-core==2.34.0
+#22 22.74  + google-api-python-client==2.194.0
+#22 22.74  + google-auth==2.55.1
+#22 22.74  + google-auth-httplib2==0.3.1
+#22 22.74  + google-auth-oauthlib==1.3.1
+#22 22.74  + googleapis-common-protos==1.75.1
+#22 22.74  + h11==0.16.0
+#22 22.74  + hermes-agent==0.0.0 (from file:///opt/hermes/agent)
+#22 22.74  + httpcore==1.0.9
+#22 22.74  + httpcore2==2.12.0
+#22 22.74  + httplib2==0.32.0
+#22 22.74  + httptools==0.8.0
+#22 22.74  + httpx==0.28.1
+#22 22.74  + httpx2==2.12.0
+#22 22.74  + idna==3.19
+#22 22.74  + importlib-metadata==8.7.1
+#22 22.74  + jinja2==3.1.6
+#22 22.74  + jiter==0.16.0
+#22 22.74  + jsonschema==4.26.0
+#22 22.74  + jsonschema-specifications==2025.9.1
+#22 22.74  + markdown==3.10.2
+#22 22.74  + markdown-it-py==4.2.0
+#22 22.74  + markupsafe==3.0.3
+#22 22.74  + mcp==2.0.0
+#22 22.74  + mcp-types==2.0.0
+#22 22.74  + mdurl==0.1.2
+#22 22.74  + multidict==6.7.1
+#22 22.74  + nemo-relay==0.10.0
+#22 22.74  + oauthlib==3.3.1
+#22 22.74  + openai==2.24.0
+#22 22.74  + opentelemetry-api==1.39.1
+#22 22.74  + packaging==26.0
+#22 22.74  + pathspec==1.1.1
+#22 22.74  + pillow==12.3.0
+#22 22.74  + pillow-heif==1.6.0
+#22 22.74  + prompt-toolkit==3.0.52
+#22 22.74  + propcache==0.5.2
+#22 22.74  + proto-plus==1.28.3
+#22 22.74  + protobuf==6.33.6
+#22 22.74  + psutil==7.2.2
+#22 22.74  + ptyprocess==0.7.0
+#22 22.74  + pyasn1==0.6.4
+#22 22.74  + pyasn1-modules==0.4.2
+#22 22.74  + pycparser==3.0
+#22 22.74  + pydantic==2.13.4
+#22 22.74  + pydantic-core==2.46.4
+#22 22.74  + pygments==2.21.0
+#22 22.74  + pyjwt==2.13.0
+#22 22.74  + pyparsing==3.3.2
+#22 22.74  + python-dateutil==2.9.0.post0
+#22 22.74  + python-dotenv==1.2.2
+#22 22.74  + python-multipart==0.0.32
+#22 22.74  + pytz==2026.3.post1
+#22 22.74  + referencing==0.37.0
+#22 22.74  + requests==2.33.0
+#22 22.74  + requests-oauthlib==2.0.0
+#22 22.74  + resvg-py==0.4.0
+#22 22.74  + rich==14.3.3
+#22 22.74  + rpds-py==2026.6.3
+#22 22.74  + ruamel-yaml==0.18.16
+#22 22.74  + six==1.17.0
+#22 22.74  + sniffio==1.3.1
+#22 22.74  + snowballstemmer==3.1.1
+#22 22.74  + socksio==1.0.0
+#22 22.74  + sse-starlette==3.4.8
+#22 22.74  + starlette==1.3.1
+#22 22.74  + tenacity==9.1.4
+#22 22.74  + termcolor==3.3.0
+#22 22.74  + tomli-w==1.2.0
+#22 22.74  + tqdm==4.70.0
+#22 22.74  + truststore==0.10.4
+#22 22.74  + typing-extensions==4.16.0
+#22 22.74  + typing-inspection==0.4.4
+#22 22.74  + uritemplate==4.2.0
+#22 22.74  + urllib3==2.7.0
+#22 22.74  + uvicorn==0.41.0
+#22 22.74  + uvloop==0.22.1
+#22 22.74  + watchfiles==1.2.0
+#22 22.74  + wcwidth==0.8.2
+#22 22.74  + websockets==15.0.1
+#22 22.74  + yarl==1.24.5
+#22 22.75  + youtube-transcript-api==1.2.4
+#22 22.75  + zipp==4.1.0
+#22 DONE 29.3s
+
+#23 [stage-4 3/6] COPY --from=hermes /opt/hermes /opt/hermes
+#23 DONE 7.6s
+
+#24 [stage-4 4/6] COPY . /opt/tfg/
+#24 DONE 0.6s
+
+#25 [stage-4 5/6] RUN cd /opt/tfg && find . -type f -print0 | sort -z | xargs -0 sha256sum > /opt/tfg-provenance/files.sha256     && ln -s /opt/venv /opt/tfg/.venv     && install -d -m 0755 /opt/tfg/missions/generated /work     && install -d -o 1000 -g 1000 -m 0700 /hermes /hermes/planning     && chmod -R a+rX,go-w /opt/tfg /opt/tfg-provenance /opt/hermes
+#25 DONE 86.3s
+
+#26 [stage-4 6/6] WORKDIR /opt/tfg
+#26 DONE 0.8s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 58.4s done
+#27 exporting manifest sha256:ba7ebf141943f3b23a57b35cd8cc9a954e112a11ee7b5b72829a73e09a508056 0.0s done
+#27 exporting config sha256:2559d5ee4d169a1f76a7a7ce3bece83ef8e15582d3bfd3a2354578f66f71eefc 0.0s done
+#27 exporting attestation manifest sha256:0039ce219acf08d9b98bbffba1bb2ce9dce1d4d25c4019b9d3707207add02e62 0.0s done
+#27 exporting manifest list sha256:dfca01dbecc5137fc87a5eecb5d1b134471f6974f2999559d7547259d888a4eb 0.0s done
+#27 naming to docker.io/tfg/planner:2026.10.27
+#27 naming to docker.io/tfg/planner:2026.10.27 done
+#27 unpacking to docker.io/tfg/planner:2026.10.27
+#27 unpacking to docker.io/tfg/planner:2026.10.27 25.4s done
+#27 DONE 84.0s
+rc=0

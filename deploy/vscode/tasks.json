@@ -1,0 +1,167 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "TFG App: Menu (container, offline)",
+            "type": "shell",
+            "command": "mkdir -p work && docker compose -f deploy/compose.yaml run --rm app",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": true,
+                "clear": true
+            }
+        },
+        {
+            "label": "TFG App: Query historical scenario",
+            "type": "shell",
+            "command": "mkdir -p work && docker compose -f deploy/compose.yaml run --rm app -m tools.agri_scenario_flow query --out /work/${input:newDir}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": true,
+                "clear": true
+            }
+        },
+        {
+            "label": "TFG App: Synthetic demo",
+            "type": "shell",
+            "command": "mkdir -p work && docker compose -f deploy/compose.yaml run --rm app -m tools.agri_scenario_flow demo --variant ${input:variant} --out /work/${input:newDir}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": true,
+                "clear": true
+            }
+        },
+        {
+            "label": "TFG App: Export and verify SITL package",
+            "type": "shell",
+            "command": "mkdir -p work && docker compose -f deploy/compose.yaml run --rm app -m tools.scenario_package package --template missions/templates/agri_poi_visit_v1.json --site ${input:site} --fleet missions/fleets/agri_demo_fleet.json --target sitl --out /work/${input:newDir} && docker compose -f deploy/compose.yaml run --rm app -m tools.scenario_package verify /work/${input:newDir}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": true,
+                "clear": true
+            }
+        },
+        {
+            "label": "TFG App: Compare .plan files",
+            "type": "shell",
+            "command": "mkdir -p work && docker compose -f deploy/compose.yaml run --rm app -m tools.qgc_plan_compare ${input:originalPlan} ${input:savedPlan} --out /work/${input:newDir}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": true,
+                "clear": true
+            }
+        },
+        {
+            "label": "TFG QGC: Open plans of a package",
+            "type": "shell",
+            "command": "mkdir -p work/${input:saveDir} && QGC_PLAN_DIR=$PWD/work/${input:packageDir}/plans QGC_SAVE_DIR=$PWD/work/${input:saveDir} docker compose -f deploy/compose.yaml run --rm --name tfg-qgc qgc",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true
+            }
+        },
+        {
+            "label": "TFG App: Student walkthrough (all offline steps)",
+            "type": "shell",
+            "command": "deploy/app/student_walkthrough.sh work/${input:newDir}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": true,
+                "clear": true
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "newDir",
+            "type": "promptString",
+            "description": "NEW directory name under work/ (existing ones are refused, never overwritten)"
+        },
+        {
+            "id": "variant",
+            "type": "pickString",
+            "description": "Synthetic demo variant",
+            "default": "complete",
+            "options": [
+                "complete",
+                "lost_admission_response",
+                "stop_uncertain",
+                "first_drone_failed",
+                "poi_not_reached",
+                "transform_absent",
+                "authorization_absent",
+                "executor_refuses",
+                "insufficient_dwell",
+                "sequence_pending",
+                "invalid_mission",
+                "artifact_modified"
+            ]
+        },
+        {
+            "id": "site",
+            "type": "pickString",
+            "description": "site.json",
+            "default": "missions/sites/synthetic_orchard_v1.site.json",
+            "options": [
+                "missions/sites/synthetic_orchard_v1.site.json",
+                "missions/sites/synthetic_orchard_v2.site.json",
+                "missions/sites/dronelab.template.site.json"
+            ]
+        },
+        {
+            "id": "originalPlan",
+            "type": "promptString",
+            "description": "Original .plan (path inside the container, e.g. /work/<package>/plans/drone_01.plan)"
+        },
+        {
+            "id": "savedPlan",
+            "type": "promptString",
+            "description": "QGC-saved .plan (path inside the container, e.g. /work/<save dir>/drone_01.qgc_resaved.plan)"
+        },
+        {
+            "id": "packageDir",
+            "type": "promptString",
+            "description": "Package directory under work/ whose plans/ QGC opens (read-only)"
+        },
+        {
+            "id": "saveDir",
+            "type": "promptString",
+            "description": "Directory under work/ where QGC may save copies"
+        }
+    ]
+}

@@ -1,0 +1,570 @@
+{
+ "destination": "joowww/tfg-multiagent-benchmarks",
+ "schema": "tfg.multiagent.opik-ledger/1",
+ "traces": {
+  "01a1a76e-42f9-72ce-8408-9907fcd429f3": {
+   "at_utc": "2026-11-06T10:30:48.730538+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E01",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "7de4d1364b2380e1aff9b58aa1cf5950b74a7dc133d95899c43b393ce4575d74",
+    "raw_reply_sha256": "702fddd9c42b567ab08420ccdfd00b135972cc3a2ebbb523720586e963b66ef7",
+    "record_trace_sha256": "f435fdbcdbed851ff15f5b5410f4dbba3c61d96ef5aa3d9885e420a99662f70d",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E01.jsonl",
+    "trace_file_sha256": "d1bac5e3141769519834700fab47c79bd397472864fb7b9ff8e94512c60b8921"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  },
+  "01a1a76e-a08b-722f-8911-a00f50bff938": {
+   "at_utc": "2026-11-06T10:30:48.730694+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E04",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "be7db20358e8cd623306e3e04017500f5a5e00c2b6f628d5f5eabe46c900b24c",
+    "raw_reply_sha256": "ba59fadbbb18fe1430537186bc95d6ab7694682517b6c611a3374a8ee8106382",
+    "record_trace_sha256": "e1617674fa5676b9ef809bf11b225981c8330fa9c7bb37652ff67ef4cb340e5c",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E04.jsonl",
+    "trace_file_sha256": "88d2c11d811cf9de41f289ad5b45b4b0493830c38bc81d93fcd1449c9b0a94e1"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  },
+  "01a1a76e-e360-7b24-9ca0-f4088fe20e36": {
+   "at_utc": "2026-11-04T18:36:37.447070+00:00",
+   "authorization": {
+    "authorized_sha256": {
+     "spans": "09af3bc214bae06bc78098ad8593ae86a8959bc4ff840b86e3e710af72b6776e",
+     "traces": "59890857d6824f294c36951b9c1e7abc4fb8a5f03398dc54c2a00ac404323ff5"
+    },
+    "by": "Joel",
+    "not_authorized": "the other ten pilot traces, datasets, experiments",
+    "scope": "only E07, trace 01a1a76e-e360-7b24-9ca0-f4088fe20e36 and its 12 spans"
+   },
+   "case_id": "E07",
+   "http_statuses": [
+    204,
+    204
+   ],
+   "link": "https://www.comet.com/opik/joowww/projects/01a1a77c-fb97-72f1-b2d7-376183ac994b/traces?trace=01a1a76e-e360-7b24-9ca0-f4088fe20e36",
+   "readback": {
+    "api_key_echoed": false,
+    "criterion_no_authorization_no_command": true,
+    "method": "read-only GET projects/{id}, traces/{id}, spans?trace_id&project_id (2026-11-04)",
+    "original_times_kept": true,
+    "real_llm_spans": [
+     "mission_orchestrator:llm:interpret"
+    ],
+    "span_ids_match_sent": true,
+    "spans_found": 12,
+    "trace_tags_match": true
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_E07_20261104T183637Z.jsonl",
+   "send_status": "ALL_BATCHES_HTTP_ACCEPTED",
+   "source": {
+    "prompt_sha256": "2d2cb6eae1a7549cfd25ce6bbcd99c9912f4a8831fbf623850a3aeda9a690c1d",
+    "raw_reply_sha256": "fd2836e4fb7c6ec1feb82d555c9ddf8a4cde0263c206cc4cd3e4b2bba145cb3c",
+    "record_trace_sha256": "6b42696442c7d4bc5e504ce2542c8e2fc06a15b2f37ffffdb1c1aabaebdcb34e",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E07.jsonl",
+    "trace_file_sha256": "6e860e950590a849813c8abf66a2b18933af67e7cde29dba922aec1af1bb2259"
+   },
+   "status": "VERIFIED_PRESENT",
+   "verification": {
+    "at_utc": "2026-11-04T18:38:51.524384+00:00",
+    "found": true,
+    "http_status": 200,
+    "id_matches": true,
+    "metadata_case": "E07",
+    "metadata_import": "HISTORICAL_SEALED_RECORD",
+    "no_secret_in_reply": true,
+    "project_id": "01a1a77c-fb97-72f1-b2d7-376183ac994b",
+    "project_matches": true,
+    "project_name": "tfg-multiagent-benchmarks"
+   }
+  },
+  "01a1a76f-0c63-718d-bd1f-d55a5cb9e22b": {
+   "at_utc": "2026-11-06T10:30:48.730835+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E11",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "ad1abab75c2bcccdbcb740ebac07ed95ad2e9c2f736a387cf9e40cc77782cb26",
+    "raw_reply_sha256": "028e14490b268f509f1ed04c26566f69167b5cf48c72ce3d3f987ec207ccd0e1",
+    "record_trace_sha256": "8565a769bf42fc029a65c9905ee8219fba0b282db61a8c998cf16b34ae00aa36",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E11.jsonl",
+    "trace_file_sha256": "900854cbbe3ac94fc9fb09cd4148b1c9cfb6fd0be0fb204d89516c953b1dba01"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  },
+  "01a1a76f-3630-79b4-9798-92f88ae04807": {
+   "at_utc": "2026-11-06T10:30:48.731002+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E12",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "91474cb8bf1389967a6868d0876a20d050d839cacddf6e18733f658f6b3d72bd",
+    "raw_reply_sha256": "879c177bd02f7feb098fddd903430594db9194b44003d95a0d0bca3659bd4d64",
+    "record_trace_sha256": "c7b8c4c4234cb12e97e9de18537d42c1c99eb2d10d364f14d67ff06e2cd16a85",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E12.jsonl",
+    "trace_file_sha256": "8444f8a669aecff1abea1536cb127e4c5f3826cd7479a241245a6b186597a8ee"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  },
+  "01a1a76f-69e4-7514-b592-8f9f3ea093c1": {
+   "at_utc": "2026-11-06T10:30:48.731140+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E18",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "241c596e2688a0b0fe4913d9700686031ae5741f3d3b0984d16a63708ee511b4",
+    "raw_reply_sha256": "44f78d23120b8fd4c0eb20dfad8863039d15d70b3583cb6e7d1212ce7c655e87",
+    "record_trace_sha256": "932dcd671aaa0848b620cef70da8b09be1b07883795f1e6164bcac0a96d7eea4",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E18.jsonl",
+    "trace_file_sha256": "cdf3eaec33fb722b4efd199ee59376eba486c9fa74fc1e023b96a22b0426fea7"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  },
+  "01a1a76f-c706-70f5-8cd1-47152266139e": {
+   "at_utc": "2026-11-06T10:30:48.731272+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E19",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "d1e8c17d7433ffadbe24de5607fe00045a6845a4ee5fcbc766121e20f8e8a3e5",
+    "raw_reply_sha256": "2780f3b7a0ccf75b6004f165fe1f75fd9208dcc70fd46fb7ca6206eecfe44985",
+    "record_trace_sha256": "e59075528cd585e181465bbfe1a64d997238aa6f41d94c32ae0bfba0ca448d1d",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E19.jsonl",
+    "trace_file_sha256": "023180ad951647058b2e9ecd97481f719f3c8f533957ed07a29ddaa0748644e3"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  },
+  "01a1a76f-f369-7833-a0b3-ea9b12f37707": {
+   "at_utc": "2026-11-06T10:30:48.731403+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E20",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "a0b9a9e8e6981fe4f5ca5a17b750bd652e7d4b86b62d4db4ee54c25400d285f1",
+    "raw_reply_sha256": "1dc474246d19ab562707402235495e3928f41d50e28d599bf0283149848621f0",
+    "record_trace_sha256": "b2b5cf96a302a0754351063abee06a0f5b0bfba944c9ec90ea97abacdbbfceda",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E20.jsonl",
+    "trace_file_sha256": "d33919083c7c9c986727e2ec5f938b462b0bc107ba94d9cf895d5175832fda33"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  },
+  "01a1a770-3262-7a3b-b518-5f07a4317d0a": {
+   "at_utc": "2026-11-06T10:30:48.731532+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E21",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "c680d355f803defcfaec0741f73273f359df8cc1e1145ea5490024950a4c563d",
+    "raw_reply_sha256": "381b57f7677ba34e1675e88cfec73a1bb376a63aeb76c124f07058d7468ba320",
+    "record_trace_sha256": "1587c393c9bfc3c587e762d70e74d48ba9f81349ada8d327153d61ba309c1f6c",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E21.jsonl",
+    "trace_file_sha256": "b1ef9901746d1ca79b429c9c01c924fc92174858db68980c7e9885427c01ba3a"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  },
+  "01a1a770-6e4e-7fb9-b1b1-791fb61c13d7": {
+   "at_utc": "2026-11-06T10:30:48.731662+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E22",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "bb01c017c13d7ea224570a6c0bd5a685fa51dd12a5f34546c6a1f104325633d2",
+    "raw_reply_sha256": "1271d8915f3f26d63629d1cfef0a464f3fd63a532628b4277fcf8735d8b4d1bc",
+    "record_trace_sha256": "01a45f4cf544ca81358f7253402c13133a1163b0e7fcf9b1ceffdceafc5cd8f8",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E22.jsonl",
+    "trace_file_sha256": "1299a540e7c4bc255351484088e6338ac6bc7c2343c3e76fda48a5c6e0bcf3b1"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  },
+  "01a1a770-9a63-7a14-8048-ce0dc1ab9488": {
+   "at_utc": "2026-11-06T10:30:48.731790+00:00",
+   "attempt_outcome": "REJECTED_HTTP_400_READ_BACK_404",
+   "authorization": {
+    "at": "2026-11-06",
+    "attempts": "one per batch, no automatic retry",
+    "authorized_sha256": {
+     "spans": "5399a70196a26f490795a36495de66aea69ca3d24c8eb70b8132d8210bb1e92a",
+     "traces": "0ce48bc0133542083f9ec9b7e8066bc0c32129d6db3c49f542c3fc526a058b00"
+    },
+    "by": "Joel",
+    "max_traces": 10,
+    "not_authorized": "OP-2..OP-7, any change to E07, other traces, projects or workspaces",
+    "operation": "OP-1",
+    "scope": "only the 10 pending qwen3:4b pilot traces (E01 E04 E11 E12 E18 E19 E20 E21 E22 E27), E07 excluded"
+   },
+   "case_id": "E27",
+   "diagnosis": {
+    "cause": "Opik UUIDv7 ingestion window: ids embed the historical start time (2026-11-04T16:39-16:42Z); sent 2026-11-06T10:30Z, ~42 h later, beyond the 24 h window -> 400 'Invalid UUID for id' (TOO_OLD)",
+    "consistent_with": "E07 id embeds 2026-11-04T16:40Z and was accepted at 18:36Z (~2 h)",
+    "resend": "NOT done. These ids can never be accepted again; a new import needs new ids (new hashes) and a new authorization",
+    "source": "comet-ml/opik@df61dd21c66e apps/opik-backend config.yml uuidValidation (window 24h), IdGenerator.validateId, InvalidUUIDExceptionMapper (BAD_REQUEST)",
+    "status": "INFERRED_NOT_CONFIRMED (error body not captured)"
+   },
+   "http_statuses": [
+    400
+   ],
+   "import_generation": 1,
+   "operation": "OP-1",
+   "post_failure_readback": {
+    "api_key_echoed": false,
+    "at_utc": "2026-11-06T10:33:30.707211+00:00",
+    "http": 404,
+    "meaning": "404: the trace is not stored; the 400 rejected the whole traces batch; spans batch never attempted",
+    "method": "read-only GET /v1/private/traces/{id}"
+   },
+   "record": "multiagent/benchmark/opik_imports/joowww__tfg-multiagent-benchmarks/send_OP1_20261106T103041Z.jsonl",
+   "representation": "v2_native_fields",
+   "send_status": "UNCERTAIN",
+   "source": {
+    "prompt_sha256": "109f25c8f79cc44e4ce84b44542a3cf43307a56ff1230dfd43002c3c6bfca79c",
+    "raw_reply_sha256": "3042d728973717da5c47cea3d610b293eaa14262a54305480e2a6e9deb764e1d",
+    "record_trace_sha256": "dd36455a26a15cbd26afaa511eaa59a83c3180b5ac9288c3c6b78bfb9ea3b956",
+    "results_dir": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+    "seal_sha256": "a843976e24f485b886521318d1365f81b6bf27d4309e0361dd703d843fdfa679",
+    "trace_file": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3/qwen/traces/E27.jsonl",
+    "trace_file_sha256": "707bd7cbd97f7d332bb77d9e467f096b1fc146f80c6d2d6b36d9effb64557fa8"
+   },
+   "status": "UNCERTAIN",
+   "superseded_by_operation": "OP-1b (prepared, not authorized)"
+  }
+ }
+}

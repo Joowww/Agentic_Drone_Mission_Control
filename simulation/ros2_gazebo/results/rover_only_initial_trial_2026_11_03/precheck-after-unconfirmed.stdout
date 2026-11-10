@@ -1,0 +1,82 @@
+{
+  "status": "BLOCKED",
+  "precheck_satisfied": false,
+  "reason": "Container inventory query failed; not absence: string>\", line 324, in diagnostic_api\nModuleNotFoundError: No module named 'tools'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 12, in <module>\n  File \"<string>\", line 146, in readonly_inventory\n  File \"<string>\", line 75, in snapshot\n  File \"<string>\", line 76, in <dictcomp>\n  File \"<string>\", line 67, in read_process\n  File \"<string>\", line 327, in diagnostic_api\nModuleNotFoundError: No module named 'tfg_diagnostic_agent'\n",
+  "observation_context": {
+    "started_at_utc": "2026-11-03T11:29:52.610307+00:00",
+    "sources": [
+      {
+        "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/diagnostic_agent_session.json",
+        "read_at_utc": "2026-11-03T11:29:52.610377+00:00"
+      },
+      {
+        "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/simulation_lifecycle/891dab60-75f4-4008-b63d-2623ca5221a4/rover_environment_reference.json",
+        "read_at_utc": "2026-11-03T11:29:52.610556+00:00"
+      },
+      {
+        "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/simulation_lifecycle/891dab60-75f4-4008-b63d-2623ca5221a4/operation.json",
+        "read_at_utc": "2026-11-03T11:29:52.981786+00:00"
+      },
+      {
+        "source": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/simulation_lifecycle/458609b3-7692-4282-ad93-5753005feded/operation.json",
+        "read_at_utc": "2026-11-03T11:29:52.981982+00:00"
+      },
+      {
+        "source": "reconciliation_environment.inspect_environment",
+        "read_at_utc": "2026-11-03T11:29:53.403102+00:00",
+        "read_monotonic": 64727.900718491
+      },
+      {
+        "source": "sim_processes.readonly_inventory in exact container",
+        "read_at_utc": "2026-11-03T11:29:53.599931+00:00",
+        "read_monotonic": 64728.097564425
+      }
+    ],
+    "environment": {
+      "status": "ACTIVE",
+      "operations": [
+        {
+          "operation": "engine_identity",
+          "return_code": 0,
+          "duration_s": 0.37221431200305233,
+          "error": null
+        },
+        {
+          "operation": "named_container_metadata",
+          "return_code": 0,
+          "duration_s": 0.04864278699824354,
+          "error": null
+        }
+      ],
+      "reasons": [],
+      "started_at_utc": "2026-11-03T11:29:52.982093+00:00",
+      "command_timeout_seconds": 3,
+      "stability_check": "CALLER_BRACKETS_COMPLETE_ACQUISITION",
+      "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99",
+      "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+      "name": "/tfg-ardupilot-gazebo",
+      "created_at": "2026-10-02T07:28:34.87176229Z",
+      "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+      "state": {
+        "Dead": false,
+        "Error": "",
+        "ExitCode": 0,
+        "FinishedAt": "2026-11-01T11:53:00.8670071Z",
+        "OOMKilled": false,
+        "Paused": false,
+        "Pid": 57611,
+        "Restarting": false,
+        "Running": true,
+        "StartedAt": "2026-11-03T09:44:02.9887145Z",
+        "Status": "running"
+      },
+      "finished_at_utc": "2026-11-03T11:29:53.403073+00:00"
+    },
+    "inventory_source_sha256": "2c3035f12870878380bd7112f0141f0ec7f16ae1798f7c70e0a1dccb039d5d83",
+    "inventory_return_code": 1,
+    "inventory_stderr": "Traceback (most recent call last):\n  File \"<string>\", line 324, in diagnostic_api\nModuleNotFoundError: No module named 'tools'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 12, in <module>\n  File \"<string>\", line 146, in readonly_inventory\n  File \"<string>\", line 75, in snapshot\n  File \"<string>\", line 76, in <dictcomp>\n  File \"<string>\", line 67, in read_process\n  File \"<string>\", line 327, in diagnostic_api\nModuleNotFoundError: No module named 'tfg_diagnostic_agent'\n"
+  },
+  "opening_authorized": false,
+  "movement_authorized": false,
+  "source_association_verified": false
+}

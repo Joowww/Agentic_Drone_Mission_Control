@@ -1,0 +1,99 @@
+{
+  "run_id": "4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4",
+  "mission_sha256": "fee5185407a7f63810a62f652062454f83790aa2b8a7234f869a7d93eda3a936",
+  "report_sha256": "8137aa9c212fe0b0bfc1d5021ed78cfa2961c4054323df71b4b85157e15ebff3",
+  "source_record_sha256": "fc660719c2c1f520fccc5385ffbcbc930c734d70fe1f760b53f6784d729698be",
+  "workflow_seconds": 480.344587,
+  "executor_seconds": 471.332987,
+  "worker_seconds": 480.244514,
+  "admission_to_worker_claim_seconds": 0.101906,
+  "graph_snapshot_to_report_seconds": 478.73518,
+  "timing_basis": "Persisted UTC wall-clock timestamps; not airborne duration or monotonic measurement",
+  "airborne_seconds": null,
+  "waypoints_completed": 5,
+  "waypoint_horizontal_errors_m": [
+    0.5554993804566188,
+    0.5555001082707238,
+    0.30596565775025153,
+    0.5554993804566188,
+    0.4883621637161278
+  ],
+  "waypoint_altitude_errors_m": [
+    0.030029296875,
+    0.030029296875,
+    0.0,
+    0.010009765625,
+    0.030029296875
+  ],
+  "return_horizontal_error_m": 0.4241749826223707,
+  "return_altitude_error_m": 0.030029296875,
+  "takeoff_altitude_error_m": 0.1099853515625,
+  "landed": {
+    "event": "LANDED",
+    "landed": true,
+    "armed": false,
+    "flying": false,
+    "final_position": {
+      "latitude": -35.36326217651367,
+      "longitude": 149.1652069091797,
+      "altitude_amsl_m": 584.1900024414062
+    }
+  },
+  "acceptance_checks": {
+    "completed": true,
+    "identity": true,
+    "no_failure_or_recovery": true,
+    "count_and_return_flag": true,
+    "event_sequence": true,
+    "commands_confirmed": true,
+    "all_waypoints_reached": true,
+    "return_home_reached": true,
+    "takeoff_reached": true,
+    "landed_and_disarmed": true,
+    "position_evidence_consistent": true
+  },
+  "tolerances": {
+    "horizontal_m": 1.0,
+    "altitude_m": 0.75
+  },
+  "times": {
+    "started_at": "2026-10-18T08:43:15.364053+00:00",
+    "finished_at": "2026-10-18T08:51:15.708640+00:00",
+    "execution_started_at": "2026-10-18T08:43:24.371762+00:00",
+    "execution_finished_at": "2026-10-18T08:51:15.704749+00:00"
+  },
+  "request_index_path": "/home/joelm/TFG/Agentic_Drone_Mission_Control/missions/generated/preflights/requests/d077ff4125b7684c1121f23079e8dab97ce091c94415806ac6e1234a82441a54.json",
+  "request_index": {
+    "run_id": "4bb6a20e-3aff-48ce-8b6f-e66e92a0e6a4",
+    "input_sha256": "fee5185407a7f63810a62f652062454f83790aa2b8a7234f869a7d93eda3a936"
+  },
+  "verification_kind": "Offline validation and executor-result reanalysis; no infrastructure/flight/MCP calls",
+  "source_artifact": {
+    "kind": "finalization",
+    "artifact_id": "8be78baa-4cf4-4f65-8531-9388d030c3ed",
+    "draft_id": "1f84f808-c688-48c9-b7da-1b1c4b29c094",
+    "mission_sha256": "fee5185407a7f63810a62f652062454f83790aa2b8a7234f869a7d93eda3a936",
+    "record_sha256": "fc660719c2c1f520fccc5385ffbcbc930c734d70fe1f760b53f6784d729698be"
+  },
+  "checks_performed": [
+    "verified_source: persisted terminal report, snapshot identity/SHA-256, deterministic validation, exact analysis recomputation",
+    "load_link: source finalization identity, mission/plan/source draft/state hashes and record hash",
+    "byte equality: source mission == admission input == executed snapshot",
+    "request index: request-key digest resolves persisted run_id/input hash",
+    "archive: exact bytes and SHA-256; old entries and copies retained"
+  ],
+  "status": "PASSED",
+  "executor_status": "COMPLETED",
+  "saved_job_state": "FINISHED",
+  "operator_only_observations": {
+    "final_query_job_state": "FINISHED (also corroborated by job.json, not a saved query response)",
+    "final_query_vehicle_restriction": null,
+    "vehicle_restriction_evidence": "Operator transcript only; no saved query response or historical lease-release record found"
+  },
+  "limits": [
+    "Not airborne duration; events have no per-event timestamps",
+    "Admission-to-worker claim is not MCP response latency",
+    "Hashes are local integrity evidence, not signed telemetry or authenticated dialogue",
+    "No inference about old WP3 cause, agriculture, speed tracking, actual .plan loading, host restart survival or hardware"
+  ]
+}

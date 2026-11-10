@@ -1,3 +1,5 @@
+**Índice del repositorio:** [docs/INDEX.md](docs/INDEX.md) (entradas actuales, contenedores, documentación vigente y evidencias).
+
 This repository is not an independent project developed from scratch.
 
 It is a direct evolution of my previous repository:

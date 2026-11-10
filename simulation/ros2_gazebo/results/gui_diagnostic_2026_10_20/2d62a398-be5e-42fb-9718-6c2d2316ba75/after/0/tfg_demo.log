@@ -1,0 +1,1072 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-20-08-55-31-640585-tfg-gz-97
+[INFO] [launch]: Default logging verbosity is set to INFO
+namespace:        drone1
+transport:        udp4
+middleware:       dds
+verbose:          4
+discovery:        7400
+port:             2019
+command:          arducopter
+model:            json
+speedup:          1
+slave:            0
+sim_address:      127.0.0.1
+instance:         0
+defaults:         /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+use_instance_dir: True
+use_sim_time:     True
+synthetic_clock:  True
+sysid:            1
+cwd:              /0
+command:          mavproxy.py
+master:           tcp:127.0.0.1:5760
+sitl:             127.0.0.1:5501
+out:              127.0.0.1:14550
+console:          False
+map:              False
+command:          arducopter
+model:            json
+speedup:          1
+slave:            0
+sim_address:      127.0.0.1
+instance:         1
+defaults:         /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+use_instance_dir: True
+use_sim_time:     True
+synthetic_clock:  True
+sysid:            2
+cwd:              /1
+command:          mavproxy.py
+master:           tcp:127.0.0.1:5770
+sitl:             127.0.0.1:5511
+out:              127.0.0.1:14560
+console:          False
+map:              False
+[INFO] [gz sim-1]: process started with pid [152]
+[INFO] [gz sim-2]: process started with pid [154]
+[INFO] [robot_state_publisher-3]: process started with pid [156]
+[INFO] [parameter_bridge-4]: process started with pid [160]
+[INFO] [micro_ros_agent-5]: process started with pid [162]
+[INFO] [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6]: process started with pid [164]
+[INFO] [exec -7]: process started with pid [166]
+[INFO] [create-8]: process started with pid [168]
+[INFO] [robot_state_publisher-9]: process started with pid [170]
+[INFO] [parameter_bridge-10]: process started with pid [172]
+[INFO] [dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11]: process started with pid [174]
+[INFO] [exec -12]: process started with pid [176]
+[INFO] [create-13]: process started with pid [178]
+[INFO] [relay-14]: process started with pid [180]
+[INFO] [relay-15]: process started with pid [186]
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Setting SIM_SPEEDUP=1.000000
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Ignoring obsolete command-line parameter '-S'/'--synthetic-clock'. Synthetic clock mode is now always enabled.
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Setting MAV_SYSID=2
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Starting SITL: JSON
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] JSON control interface set to 127.0.0.1:9012
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Starting sketch 'ArduCopter'
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Starting SITL input
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Using Irlock at port : 9015
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Using \clock topic for DDS timing: enabled
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Waiting for connection ....
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] bind port 5770 for SERIAL0
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] SERIAL0 on TCP port 5770
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Setting SIM_SPEEDUP=1.000000
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Ignoring obsolete command-line parameter '-S'/'--synthetic-clock'. Synthetic clock mode is now always enabled.
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Setting MAV_SYSID=1
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Starting SITL: JSON
+[micro_ros_agent-5] [35m[1792486532.681255][m info     | [34mUDPv4AgentLinux.cpp[m | [37minit                    [m | [32mrunning...[m             | port: 2019
+[micro_ros_agent-5] [35m[1792486532.682345][m info     | [34mRoot.cpp          [m | [37mset_verbose_level       [m | [32mlogger setup[m           | verbose_level: 4
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] JSON control interface set to 127.0.0.1:9002
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Starting sketch 'ArduCopter'
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Starting SITL input
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Using Irlock at port : 9005
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Using \clock topic for DDS timing: enabled
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Waiting for connection ....
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] bind port 5760 for SERIAL0
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] SERIAL0 on TCP port 5760
+[create-13] [INFO] [1792486532.992173153] [drone2.ros_gz_sim]: Requesting list of world names.
+[create-8] [INFO] [1792486533.120618089] [drone1.ros_gz_sim]: Requesting list of world names.
+[robot_state_publisher-9] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_standoffs"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.sdf:L273]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[robot_state_publisher-3] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_standoffs"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.sdf:L273]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[robot_state_publisher-9] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="gimbal_small_3d"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.sdf:L192]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[robot_state_publisher-9] [WARN] [1792486534.311464880] [sdformat_urdf]: SDFormat link [base_link] has a <sensor>, but URDF does not support this
+[robot_state_publisher-9] [WARN] [1792486534.312004772] [sdformat_urdf]: SDFormat link [imu_link] has a <sensor>, but URDF does not support this
+[robot_state_publisher-9] [WARN] [1792486534.314199223] [sdformat_urdf]: SDFormat link [pitch_link] has a <sensor>, but URDF does not support this
+[robot_state_publisher-9] [WARN] [1792486534.360240145] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-9] [INFO] [1792486534.360418049] [drone2.robot_state_publisher]: got segment base_link
+[robot_state_publisher-9] [INFO] [1792486534.360607016] [drone2.robot_state_publisher]: got segment gimbal_link
+[robot_state_publisher-9] [INFO] [1792486534.360635919] [drone2.robot_state_publisher]: got segment imu_link
+[robot_state_publisher-9] [INFO] [1792486534.360648278] [drone2.robot_state_publisher]: got segment pitch_link
+[robot_state_publisher-9] [INFO] [1792486534.360658444] [drone2.robot_state_publisher]: got segment roll_link
+[robot_state_publisher-9] [INFO] [1792486534.360667912] [drone2.robot_state_publisher]: got segment rotor_0
+[robot_state_publisher-9] [INFO] [1792486534.360677978] [drone2.robot_state_publisher]: got segment rotor_1
+[robot_state_publisher-9] [INFO] [1792486534.360687447] [drone2.robot_state_publisher]: got segment rotor_2
+[robot_state_publisher-9] [INFO] [1792486534.360697613] [drone2.robot_state_publisher]: got segment rotor_3
+[robot_state_publisher-9] [INFO] [1792486534.360708078] [drone2.robot_state_publisher]: got segment yaw_link
+[robot_state_publisher-3] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="gimbal_small_3d"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.sdf:L192]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gz sim-2] QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[robot_state_publisher-3] [WARN] [1792486534.404819759] [sdformat_urdf]: SDFormat link [base_link] has a <sensor>, but URDF does not support this
+[robot_state_publisher-3] [WARN] [1792486534.405023577] [sdformat_urdf]: SDFormat link [imu_link] has a <sensor>, but URDF does not support this
+[robot_state_publisher-3] [WARN] [1792486534.405376495] [sdformat_urdf]: SDFormat link [pitch_link] has a <sensor>, but URDF does not support this
+[robot_state_publisher-3] [WARN] [1792486534.441099070] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-3] [INFO] [1792486534.441278967] [drone1.robot_state_publisher]: got segment base_link
+[robot_state_publisher-3] [INFO] [1792486534.441419198] [drone1.robot_state_publisher]: got segment gimbal_link
+[robot_state_publisher-3] [INFO] [1792486534.441444413] [drone1.robot_state_publisher]: got segment imu_link
+[robot_state_publisher-3] [INFO] [1792486534.441455975] [drone1.robot_state_publisher]: got segment pitch_link
+[robot_state_publisher-3] [INFO] [1792486534.441465044] [drone1.robot_state_publisher]: got segment roll_link
+[robot_state_publisher-3] [INFO] [1792486534.441474014] [drone1.robot_state_publisher]: got segment rotor_0
+[robot_state_publisher-3] [INFO] [1792486534.441482486] [drone1.robot_state_publisher]: got segment rotor_1
+[robot_state_publisher-3] [INFO] [1792486534.441491057] [drone1.robot_state_publisher]: got segment rotor_2
+[robot_state_publisher-3] [INFO] [1792486534.441500127] [drone1.robot_state_publisher]: got segment rotor_3
+[robot_state_publisher-3] [INFO] [1792486534.441509396] [drone1.robot_state_publisher]: got segment yaw_link
+[parameter_bridge-4] [INFO] [1792486534.728253367] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.735417177] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.741226623] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone1/joint_state (gz.msgs.Model) -> joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.743546454] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone2/joint_state (gz.msgs.Model) -> joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.749977718] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/drone1/odometry (gz.msgs.Odometry) -> odometry (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.752952257] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/drone2/odometry (gz.msgs.Odometry) -> odometry (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.760763599] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/drone1/pose (gz.msgs.Pose_V) -> gz/tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.761133759] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/drone2/pose (gz.msgs.Pose_V) -> gz/tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.766790715] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/drone2/pose_static (gz.msgs.Pose_V) -> gz/tf_static (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.768181757] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/drone1/pose_static (gz.msgs.Pose_V) -> gz/tf_static (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.772491126] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone1/link/pitch_link/sensor/camera/image (gz.msgs.Image) -> camera/image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.772676406] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone2/link/pitch_link/sensor/camera/image (gz.msgs.Image) -> camera/image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.777729285] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone2/link/pitch_link/sensor/camera/camera_info (gz.msgs.CameraInfo) -> camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.777728886] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone1/link/pitch_link/sensor/camera/camera_info (gz.msgs.CameraInfo) -> camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.783832647] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone2/link/base_link/sensor/air_pressure_sensor/air_pressure (gz.msgs.FluidPressure) -> air_pressure (sensor_msgs/msg/FluidPressure)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.785231562] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone1/link/base_link/sensor/air_pressure_sensor/air_pressure (gz.msgs.FluidPressure) -> air_pressure (sensor_msgs/msg/FluidPressure)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.797268254] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone1/link/imu_link/sensor/imu_sensor/imu (gz.msgs.IMU) -> imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.798538501] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone2/link/imu_link/sensor/imu_sensor/imu (gz.msgs.IMU) -> imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.805500387] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone2/link/base_link/sensor/magnetometer_sensor/magnetometer (gz.msgs.Magnetometer) -> magnetometer (sensor_msgs/msg/MagneticField)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.811780357] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone1/link/base_link/sensor/magnetometer_sensor/magnetometer (gz.msgs.Magnetometer) -> magnetometer (sensor_msgs/msg/MagneticField)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.812009091] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone2/link/base_link/sensor/navsat_sensor/navsat (gz.msgs.NavSat) -> navsat (sensor_msgs/msg/NavSatFix)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.819154663] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone1/link/base_link/sensor/navsat_sensor/navsat (gz.msgs.NavSat) -> navsat (sensor_msgs/msg/NavSatFix)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.824845505] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone2/link/base_link/sensor/navsat_sensor/navsat (gz.msgs.NavSat) -> gpsfix (gps_msgs/msg/GPSFix)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.832756414] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/runway/model/drone1/link/base_link/sensor/navsat_sensor/navsat (gz.msgs.NavSat) -> gpsfix (gps_msgs/msg/GPSFix)] (Lazy 0)
+[parameter_bridge-10] [INFO] [1792486534.838761205] [drone2.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/drone2/battery/linear_battery/state (gz.msgs.BatteryState) -> battery (sensor_msgs/msg/BatteryState)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792486534.842205272] [drone1.ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/drone1/battery/linear_battery/state (gz.msgs.BatteryState) -> battery (sensor_msgs/msg/BatteryState)] (Lazy 0)
+[exec -12] Connect tcp:127.0.0.1:5770 source_system=255
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Connection on serial port 5770
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] bind port 5772 for SERIAL1
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] SERIAL1 on TCP port 5772
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] bind port 5773 for SERIAL2
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] SERIAL2 on TCP port 5773
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Home: -35.363262 149.165237 alt=584.000000m hdg=353.000000
+[exec -7] Connect tcp:127.0.0.1:5760 source_system=255
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Connection on serial port 5760
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] bind port 5762 for SERIAL1
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] SERIAL1 on TCP port 5762
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] bind port 5763 for SERIAL2
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] SERIAL2 on TCP port 5763
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Home: -35.363262 149.165237 alt=584.000000m hdg=353.000000
+[exec -7] Log Directory: 
+[exec -7] Telemetry log: mav.tlog
+[exec -7] Waiting for heartbeat from tcp:127.0.0.1:5760
+[exec -12] Log Directory: 
+[exec -12] Telemetry log: mav.tlog
+[exec -12] Waiting for heartbeat from tcp:127.0.0.1:5770
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+[gz sim-1] [1;32m[Msg] [0m[1;32mGazebo Sim Server v[0m[1;32m8.15.0[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLoading SDF world file[[0m[1;32m/root/ardu_ws/install/ardupilot_gz_gazebo/share/ardupilot_gz_gazebo/worlds/runway.sdf[0m[1;32m].[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing entity system service on [[0m[1;32m/[0m[1;32mentity/system/add[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [Physics.cc:1004] [0m[1;36mLoaded [[0m[1;36mgz::physics::dartsim::Plugin[0m[1;36m] from library [[0m[1;36m/usr/lib/x86_64-linux-gnu/gz-physics-7/engine-plugins/libgz-physics-dartsim-plugin.so[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Physics[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:697] [0m[1;36mConfiguring Sensors system[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:557] [0m[1;36mSensorsPrivate::Run[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Sensors[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m
+[gz sim-1] [Dbg] [Sensors.cc:532] [0m[1;36m
+[gz sim-1] [Dbg] [Sensors.cc:532] [0m[1;36mSensorsPrivate::RenderThread started[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:337] [0m[1;36mWaiting for init[0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mCreate[0m[1;32m service on [[0m[1;32m/world/runway/create_multiple[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mCreate[0m[1;32m service on [[0m[1;32m/world/runway/create_multiple/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mRemove[0m[1;32m service on [[0m[1;32m/world/runway/remove[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mRemove[0m[1;32m service on [[0m[1;32m/world/runway/remove/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPose[0m[1;32m service on [[0m[1;32m/world/runway/set_pose[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPose[0m[1;32m service on [[0m[1;32m/world/runway/set_pose/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPose[0m[1;32m service on [[0m[1;32m/world/runway/set_pose_vector[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPose[0m[1;32m service on [[0m[1;32m/world/runway/set_pose_vector/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLight configuration[0m[1;32m service on [[0m[1;32m/world/runway/light_config[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLight configuration[0m[1;32m service on [[0m[1;32m/world/runway/light_config/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPhysics[0m[1;32m service on [[0m[1;32m/world/runway/set_physics[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPhysics[0m[1;32m service on [[0m[1;32m/world/runway/set_physics/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mSphericalCoordinates[0m[1;32m service on [[0m[1;32m/world/runway/set_spherical_coordinates[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mSphericalCoordinates[0m[1;32m service on [[0m[1;32m/world/runway/set_spherical_coordinates/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mEnable collision[0m[1;32m service on [[0m[1;32m/world/runway/enable_collision[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mEnable collision[0m[1;32m service on [[0m[1;32m/world/runway/enable_collision/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mDisable collision[0m[1;32m service on [[0m[1;32m/world/runway/disable_collision[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mDisable collision[0m[1;32m service on [[0m[1;32m/world/runway/disable_collision/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mMaterial[0m[1;32m service on [[0m[1;32m/world/runway/visual_config[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mMaterial[0m[1;32m service on [[0m[1;32m/world/runway/visual_config/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[create-8] [INFO] [1792486536.475437442] [drone1.ros_gz_sim]: Waiting messages on topic [robot_description].
+[create-8] [INFO] [1792486536.574288381] [drone1.ros_gz_sim]: Requested creation of entity.
+[create-8] [INFO] [1792486536.574451521] [drone1.ros_gz_sim]: OK creation of entity.
+[create-13] [INFO] [1792486536.578736813] [drone2.ros_gz_sim]: Waiting messages on topic [robot_description].
+[gz sim-1] [1;32m[Msg] [0m[1;32mMaterial[0m[1;32m service on [[0m[1;32m/world/runway/wheel_slip[0m[1;32m] (async)[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mMaterial[0m[1;32m service on [[0m[1;32m/world/runway/wheel_slip/blocking[0m[1;32m] (blocking)[0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::UserCommands[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::SceneBroadcaster[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::AirPressure[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::AirSpeed[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Altimeter[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Imu[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Magnetometer.cc:261] [0m[1;36mMagnetometer: using param [use_units_gauss: [0m[1;36m1[0m[1;36m].[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Magnetometer.cc:269] [0m[1;36mMagnetometer: using param [use_earth_frame_ned: [0m[1;36m1[0m[1;36m].[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::Magnetometer[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::NavSat[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLoaded level [[0m[1;32mdefault[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing world controls on [[0m[1;32m/world/runway[0m[1;32m/control], [[0m[1;32m/world/runway[0m[1;32m/control/state] and [[0m[1;32m/world/runway[0m[1;32m/playback/control][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing GUI information on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mgui/info[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mWorld [[0m[1;32mrunway[0m[1;32m] initialized with [[0m[1;32m1ms[0m[1;32m] physics profile.[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing world SDF generation service on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mgenerate_world_sdf[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing world names on [[0m[1;32m/gazebo/worlds[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mResource path add service on [[0m[1;32m/gazebo/resource_paths/add[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mResource path get service on [[0m[1;32m/gazebo/resource_paths/get[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mResource path resolve service on [[0m[1;32m/gazebo/resource_paths/resolve[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mResource paths published on [[0m[1;32m/gazebo/resource_paths[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServer control service on [[0m[1;32m/server_control[0m[1;32m].[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mFound no publishers on /stats, adding root stats topic[0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mFound no publishers on /clock, adding root clock topic[0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:627] [0m[1;36mCreating PostUpdate worker threads: [0m[1;36m9[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m0[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m1[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m2[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m3[0m[1;36m)[0m[1;36m[0m
+[create-13] [INFO] [1792486536.596459787] [drone2.ros_gz_sim]: Requested creation of entity.
+[create-13] [INFO] [1792486536.596592034] [drone2.ros_gz_sim]: OK creation of entity.
+[INFO] [create-8]: process has finished cleanly [pid 168]
+[INFO] [create-13]: process has finished cleanly [pid 178]
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m4[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m5[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m6[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m7[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_standoffs"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.sdf:L273]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gz sim-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="gimbal_small_3d"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.sdf:L192]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::JointStatePublisher[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mOdometryPublisher publishing odometry on [[0m[1;32m/model/drone1/odometry[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mOdometryPublisher publishing odometry with covariance on [[0m[1;32m/model/drone1/odometry_with_covariance[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mOdometryPublisher publishing Pose_V (TF) on [[0m[1;32m/model/drone1/pose[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::OdometryPublisher[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/drone1/joint/rotor_0_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/drone1/joint/rotor_1_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/drone1/joint/rotor_2_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/drone1/joint/rotor_3_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLinearBatteryPlugin configured. Battery name: [0m[1;32mlipo_3500mAh[0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [LinearBatteryPlugin.cc:412] [0m[1;36mBattery initial voltage: [0m[1;36m12.6[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LinearBatteryPlugin[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32m[[0m[1;32mdrone1[0m[1;32m] [0m[1;32mAdvertising on [0m[1;32m/gimbal/cmd_roll[0m[1;32m.[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32m[[0m[1;32mdrone1[0m[1;32m] [0m[1;32mAdvertising on [0m[1;32m/gimbal/cmd_pitch[0m[1;32m.[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32m[[0m[1;32mdrone1[0m[1;32m] [0m[1;32mAdvertising on [0m[1;32m/gimbal/cmd_yaw[0m[1;32m.[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mArduPilotPlugin[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mJointPositionController subscribing to Double messages on [[0m[1;32m/gimbal/cmd_roll[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:302] [0m[1;36m[JointPositionController] system parameters:[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:303] [0m[1;36mp_gain: [[0m[1;36m2[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:304] [0m[1;36mi_gain: [[0m[1;36m0.1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:305] [0m[1;36md_gain: [[0m[1;36m0.01[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:306] [0m[1;36mi_max: [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:307] [0m[1;36mi_min: [[0m[1;36m-1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:308] [0m[1;36mcmd_max: [[0m[1;36m1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:309] [0m[1;36mcmd_min: [[0m[1;36m-1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:310] [0m[1;36mcmd_offset: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:311] [0m[1;36mTopic: [[0m[1;36m/gimbal/cmd_roll[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:312] [0m[1;36minitial_position: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::JointPositionController[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mJointPositionController subscribing to Double messages on [[0m[1;32m/gimbal/cmd_pitch[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:302] [0m[1;36m[JointPositionController] system parameters:[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:303] [0m[1;36mp_gain: [[0m[1;36m2[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:304] [0m[1;36mi_gain: [[0m[1;36m0.1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:305] [0m[1;36md_gain: [[0m[1;36m0.01[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:306] [0m[1;36mi_max: [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:307] [0m[1;36mi_min: [[0m[1;36m-1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:308] [0m[1;36mcmd_max: [[0m[1;36m1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:309] [0m[1;36mcmd_min: [[0m[1;36m-1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:310] [0m[1;36mcmd_offset: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:311] [0m[1;36mTopic: [[0m[1;36m/gimbal/cmd_pitch[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:312] [0m[1;36minitial_position: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::JointPositionController[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mJointPositionController subscribing to Double messages on [[0m[1;32m/gimbal/cmd_yaw[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:302] [0m[1;36m[JointPositionController] system parameters:[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:303] [0m[1;36mp_gain: [[0m[1;36m2[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:304] [0m[1;36mi_gain: [[0m[1;36m0.1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:305] [0m[1;36md_gain: [[0m[1;36m0.01[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:306] [0m[1;36mi_max: [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:307] [0m[1;36mi_min: [[0m[1;36m-1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:308] [0m[1;36mcmd_max: [[0m[1;36m1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:309] [0m[1;36mcmd_min: [[0m[1;36m-1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:310] [0m[1;36mcmd_offset: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:311] [0m[1;36mTopic: [[0m[1;36m/gimbal/cmd_yaw[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:312] [0m[1;36minitial_position: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::JointPositionController[0m[1;36m] for entity [[0m[1;36m11[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [CameraZoomPlugin.cc:309] [0m[1;36mCameraZoomPlugin attached to sensor [[0m[1;36mcamera[0m[1;36m].[0m
+[gz sim-1] [1;36m[Dbg] [CameraZoomPlugin.cc:380] [0m[1;36mCameraZoomPlugin subscribing to messages on [0m[1;36m[[0m[1;36m/model/drone1/sensor/camera/zoom/cmd_zoom[0m[1;36m][0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mCameraZoomPlugin[0m[1;36m] for entity [[0m[1;36m56[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mGstCameraPlugin: attached to sensor [[0m[1;32mcamera[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mGstCameraPlugin: streaming video to [0m[1;32m127.0.0.1[0m[1;32m:[0m[1;32m5600[0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mGstCameraPlugin[0m[1;36m] for entity [[0m[1;36m56[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [UserCommands.cc:1093] [0m[1;36mCreated entity [[0m[1;36m11[0m[1;36m] named [[0m[1;36mdrone1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:333] [0m[1;36mMesh construction from an SDF has not been implemented yet for [0m[1;36mdartsim. Use AttachMeshShapeFeature to use mesh shapes.[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:865] [0m[1;36mThe geometry element of collision [[0m[1;36mbase_collision[0m[1;36m] [0m[1;36mcouldn't be created[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:333] [0m[1;36mMesh construction from an SDF has not been implemented yet for [0m[1;36mdartsim. Use AttachMeshShapeFeature to use mesh shapes.[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:865] [0m[1;36mThe geometry element of collision [[0m[1;36myaw_collision[0m[1;36m] [0m[1;36mcouldn't be created[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:333] [0m[1;36mMesh construction from an SDF has not been implemented yet for [0m[1;36mdartsim. Use AttachMeshShapeFeature to use mesh shapes.[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:865] [0m[1;36mThe geometry element of collision [[0m[1;36mroll_collision[0m[1;36m] [0m[1;36mcouldn't be created[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:333] [0m[1;36mMesh construction from an SDF has not been implemented yet for [0m[1;36mdartsim. Use AttachMeshShapeFeature to use mesh shapes.[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:865] [0m[1;36mThe geometry element of collision [[0m[1;36mpitch_collision[0m[1;36m] [0m[1;36mcouldn't be created[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:953] [0m[1;36mInitialization needed[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:349] [0m[1;36mInitializing render context[0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLoading plugin [[0m[1;32mgz-rendering-ogre2[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [AltimeterSensor.cc:114] [0m[1;36mAltimeter data for [[0m[1;36mdrone1::base_link::altimeter_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone1/link/base_link/sensor/altimeter_sensor/altimeter[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [ImuSensor.cc:150] [0m[1;36mIMU data for [[0m[1;36mdrone1::imu_link::imu_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone1/link/imu_link/sensor/imu_sensor/imu[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [AirSpeedSensor.cc:125] [0m[1;36mAir speed for [[0m[1;36mdrone1::base_link::air_speed_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone1/link/base_link/sensor/air_speed_sensor/air_speed[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36mworld/runway/model/drone1/link/base_link/sensor/air_speed_sensor/air_speed[Dbg] [AirPressureSensor.cc:126] [0m[1;36mAir pressure for [[0m[1;36mdrone1::base_link::air_pressure_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone1/link/base_link/sensor/air_pressure_sensor/air_pressure[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing scene information on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mscene/info[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing graph information on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mscene/graph[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing full state on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mstate[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [MagnetometerSensor.cc:117] [0m[1;36mMagnetometer data for [[0m[1;36mdrone1::base_link::magnetometer_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone1/link/base_link/sensor/magnetometer_sensor/magnetometer[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mServing full state (async) on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mstate_async[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPublishing scene information on [[0m[1;32m/world/runway/scene/info[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPublishing entity deletions on [[0m[1;32m/world/runway/scene/deletion[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPublishing state changes on [[0m[1;32m/world/runway/state[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPublishing pose messages on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mpose/info[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mPublishing dynamic pose messages on [[0m[1;32m/world/runway[0m[1;32m/[0m[1;32mdynamic_pose/info[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:654] [0m[1;36mExiting postupdate worker thread ([0m[1;36mExiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] [0m[1;36mExiting postupdate worker thread ([0m[1;36mExiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] [0m[1;36m6[0m[1;36m)[0m[1;36m60[0m[1;36mExiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] [0m[1;36m)Exiting postupdate worker thread ([0m[1;36m[0m
+[gz sim-1] [1;36mExiting postupdate worker thread ([0m[1;36m7[0m[1;36mExiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] [0m[1;36mExiting postupdate worker thread ([0m[1;36m3[0m[1;36mExiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] [0m[1;36mExiting postupdate worker thread ([0m[1;36m[0m
+[gz sim-1] [1;36m)[0m[1;36m)1[0m[1;36m)1[0m
+[gz sim-1] [1;36mExiting postupdate worker thread ([0m
+[gz sim-1] [1;36mExiting postupdate worker thread ([0m
+[gz sim-1] [1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36mExiting postupdate worker thread ([0m[1;36m)1[0m
+[gz sim-1] [1;36m[0m
+[gz sim-1] [1;36m4[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m4[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m2[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:627] [0m[1;36mCreating PostUpdate worker threads: [0m[1;36m14[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m0[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m1[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m2[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m3[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m4[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m5[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m6[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m7[0m[1;36m)[0m[1;36m[0m
+[exec -12] link 1 down
+[exec -7] link 1 down
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m8[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m9[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m10[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m11[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m12[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_standoffs"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.sdf:L273]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gz sim-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="gimbal_small_3d"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id://///root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.sdf:L192]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::JointStatePublisher[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mOdometryPublisher publishing odometry on [[0m[1;32m/model/drone2/odometry[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mOdometryPublisher publishing odometry with covariance on [[0m[1;32m/model/drone2/odometry_with_covariance[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mOdometryPublisher publishing Pose_V (TF) on [[0m[1;32m/model/drone2/pose[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::OdometryPublisher[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LiftDrag[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/drone2/joint/rotor_0_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/drone2/joint/rotor_1_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/drone2/joint/rotor_2_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mApplyJointForce subscribing to Double messages on [[0m[1;32m/model/drone2/joint/rotor_3_joint/cmd_force[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::ApplyJointForce[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mLinearBatteryPlugin configured. Battery name: [0m[1;32mlipo_3500mAh[0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [LinearBatteryPlugin.cc:412] [0m[1;36mBattery initial voltage: [0m[1;36m12.6[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::LinearBatteryPlugin[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32m[[0m[1;32mdrone2[0m[1;32m] [0m[1;32mAdvertising on [0m[1;32m/gimbal/cmd_roll[0m[1;32m.[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32m[[0m[1;32mdrone2[0m[1;32m] [0m[1;32mAdvertising on [0m[1;32m/gimbal/cmd_pitch[0m[1;32m.[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32m[[0m[1;32mdrone2[0m[1;32m] [0m[1;32mAdvertising on [0m[1;32m/gimbal/cmd_yaw[0m[1;32m.[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mArduPilotPlugin[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mJointPositionController subscribing to Double messages on [[0m[1;32m/gimbal/cmd_roll[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:302] [0m[1;36m[JointPositionController] system parameters:[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:303] [0m[1;36mp_gain: [[0m[1;36m2[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:304] [0m[1;36mi_gain: [[0m[1;36m0.1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:305] [0m[1;36md_gain: [[0m[1;36m0.01[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:306] [0m[1;36mi_max: [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:307] [0m[1;36mi_min: [[0m[1;36m-1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:308] [0m[1;36mcmd_max: [[0m[1;36m1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:309] [0m[1;36mcmd_min: [[0m[1;36m-1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:310] [0m[1;36mcmd_offset: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:311] [0m[1;36mTopic: [[0m[1;36m/gimbal/cmd_roll[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:312] [0m[1;36minitial_position: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::JointPositionController[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mJointPositionController subscribing to Double messages on [[0m[1;32m/gimbal/cmd_pitch[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:302] [0m[1;36m[JointPositionController] system parameters:[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:303] [0m[1;36mp_gain: [[0m[1;36m2[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:304] [0m[1;36mi_gain: [[0m[1;36m0.1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:305] [0m[1;36md_gain: [[0m[1;36m0.01[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:306] [0m[1;36mi_max: [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:307] [0m[1;36mi_min: [[0m[1;36m-1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:308] [0m[1;36mcmd_max: [[0m[1;36m1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:309] [0m[1;36mcmd_min: [[0m[1;36m-1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:310] [0m[1;36mcmd_offset: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:311] [0m[1;36mTopic: [[0m[1;36m/gimbal/cmd_pitch[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:312] [0m[1;36minitial_position: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::JointPositionController[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mJointPositionController subscribing to Double messages on [[0m[1;32m/gimbal/cmd_yaw[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:302] [0m[1;36m[JointPositionController] system parameters:[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:303] [0m[1;36mp_gain: [[0m[1;36m2[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:304] [0m[1;36mi_gain: [[0m[1;36m0.1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:305] [0m[1;36md_gain: [[0m[1;36m0.01[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:306] [0m[1;36mi_max: [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:307] [0m[1;36mi_min: [[0m[1;36m-1[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;33m[Wrn] [CameraZoomPlugin.cc:218] [0m[1;33mNo scene or camera sensors available.[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:308] [0m[1;36mcmd_max: [[0m[1;36m1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:309] [0m[1;36mcmd_min: [[0m[1;36m-1000[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:310] [0m[1;36mcmd_offset: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:311] [0m[1;36mTopic: [[0m[1;36m/gimbal/cmd_yaw[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:312] [0m[1;36minitial_position: [[0m[1;36m0[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mgz::sim::systems::JointPositionController[0m[1;36m] for entity [[0m[1;36m67[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [CameraZoomPlugin.cc:309] [0m[1;36mCameraZoomPlugin attached to sensor [[0m[1;36mcamera[0m[1;36m].[0m
+[gz sim-1] [1;36m[Dbg] [CameraZoomPlugin.cc:380] [0m[1;36mCameraZoomPlugin subscribing to messages on [0m[1;36m[[0m[1;36m/model/drone2/sensor/camera/zoom/cmd_zoom[0m[1;36m][0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mCameraZoomPlugin[0m[1;36m] for entity [[0m[1;36m112[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mGstCameraPlugin: attached to sensor [[0m[1;32mcamera[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mGstCameraPlugin: streaming video to [0m[1;32m127.0.0.1[0m[1;32m:[0m[1;32m5600[0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SystemManager.cc:80] [0m[1;36mLoaded system [[0m[1;36mGstCameraPlugin[0m[1;36m] for entity [[0m[1;36m112[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [UserCommands.cc:1093] [0m[1;36mCreated entity [[0m[1;36m67[0m[1;36m] named [[0m[1;36mdrone2[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mFound IMU sensor with name [[0m[1;32mimu_link::imu_sensor[0m[1;32m][0m
+[gz sim-1] [1;36m[Dbg] [ArduPilotPlugin.cc:1168] [0m[1;36mComputed IMU topic to be: [0m[1;36mworld/runway/model/drone1/link/imu_link/sensor/imu_sensor/imu[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:376] [0m[1;36mIdentified joint [[0m[1;36mroll_joint[0m[1;36m] as Entity [[0m[1;36m63[0m[1;36m][0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:376] [0m[1;36mIdentified joint [[0m[1;36mpitch_joint[0m[1;36m] as Entity [[0m[1;36m64[0m[1;36m][0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:376] [0m[1;36mIdentified joint [[0m[1;36myaw_joint[0m[1;36m] as Entity [[0m[1;36m62[0m[1;36m][0m
+[gz sim-1] [1;36m[Dbg] [RenderUtil.cc:2646] [0m[1;36mCreate scene [[0m[1;36mscene[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [RenderingIface.cc:156] [0m[1;36mNo scene has been created yet[0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mGstCameraPlugin: camera name [[0m[1;32mdrone1::pitch_link::camera[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:333] [0m[1;36mMesh construction from an SDF has not been implemented yet for [0m[1;36mdartsim. Use AttachMeshShapeFeature to use mesh shapes.[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:865] [0m[1;36mThe geometry element of collision [[0m[1;36mbase_collision[0m[1;36m] [0m[1;36mcouldn't be created[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:333] [0m[1;36mMesh construction from an SDF has not been implemented yet for [0m[1;36mdartsim. Use AttachMeshShapeFeature to use mesh shapes.[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:865] [0m[1;36mThe geometry element of collision [[0m[1;36myaw_collision[0m[1;36m] [0m[1;36mcouldn't be created[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:333] [0m[1;36mMesh construction from an SDF has not been implemented yet for [0m[1;36mdartsim. Use AttachMeshShapeFeature to use mesh shapes.[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:865] [0m[1;36mThe geometry element of collision [[0m[1;36mroll_collision[0m[1;36m] [0m[1;36mcouldn't be created[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:333] [0m[1;36mMesh construction from an SDF has not been implemented yet for [0m[1;36mdartsim. Use AttachMeshShapeFeature to use mesh shapes.[0m
+[gz sim-1] [1;36m[Dbg] [SDFFeatures.cc:865] [0m[1;36mThe geometry element of collision [[0m[1;36mpitch_collision[0m[1;36m] [0m[1;36mcouldn't be created[0m
+[gz sim-1] [1;33m[Wrn] [Component.hh:144] [0m[1;33mTrying to serialize component with data type [[0m[1;33mSt6vectorIdSaIdEE[0m[1;33m], which doesn't have [0m[1;33m`operator<<`. Component will not be serialized.[0m[1;33m[0m
+[gz sim-1] [1;36m[Dbg] [CameraZoomPlugin.cc:502] [0m[1;36mCamera name: [[0m[1;36mdrone1::pitch_link::camera[0m[1;36m].[0m
+[gz sim-1] [1;36m[Dbg] [AltimeterSensor.cc:114] [0m[1;36mAltimeter data for [[0m[1;36mdrone2::base_link::altimeter_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone2/link/base_link/sensor/altimeter_sensor/altimeter[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [ImuSensor.cc:150] [0m[1;36mIMU data for [[0m[1;36mdrone2::imu_link::imu_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone2/link/imu_link/sensor/imu_sensor/imu[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [MagnetometerSensor.cc:117] [0m[1;36mMagnetometer data for [[0m[1;36mdrone2::base_link::magnetometer_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone2/link/base_link/sensor/magnetometer_sensor/magnetometer[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [AirPressureSensor.cc:126] [0m[1;36mAir pressure for [[0m[1;36mdrone2::base_link::air_pressure_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone2/link/base_link/sensor/air_pressure_sensor/air_pressure[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [AirSpeedSensor.cc:125] [0m[1;36mAir speed for [[0m[1;36mdrone2::base_link::air_speed_sensor[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone2/link/base_link/sensor/air_speed_sensor/air_speed[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [EntityComponentManager.cc:1710] [0m[1;36mUpdated state thread iterators: [0m[1;36m16[0m[1;36m threads processing around [0m[1;36m8[0m[1;36m entities each.[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:391] [0m[1;36mRendering Thread initialized[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [Sensors.cc:953] [0m[1;36mInitialization needed[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:654] [0m[1;36mExiting postupdate worker thread ([Dbg] [SimulationRunner.cc:654] [0m[1;36mExiting postupdate worker thread ([0m[1;36m2[0m[1;36m)[0m[1;36m
+[gz sim-1] [Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] [0m[1;36mExiting postupdate worker thread ([0m[1;36mExiting postupdate worker thread ([0m[1;36mExiting postupdate worker thread ([0m[1;36m1[0m[1;36m[0m
+[gz sim-1] [1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36mExiting postupdate worker thread ([0m[1;36mExiting postupdate worker thread ([0m[1;36m1[0m[1;36m11[0m[1;36mExiting postupdate worker thread ([0m[1;36mExiting postupdate worker thread ([0m[1;36m
+[gz sim-1] [Dbg] [SimulationRunner.cc:654] [0m[1;36m[0m
+[gz sim-1] [1;36mExiting postupdate worker thread ([0m[1;36mExiting postupdate worker thread ([0m[1;36m)[0m[1;36m
+[gz sim-1] [Dbg] [SimulationRunner.cc:654] [Dbg] [SimulationRunner.cc:654] [0m[1;36m4[0m[1;36mExiting postupdate worker thread ([0m[1;36m)[0m[1;36m)[0m[1;36m)[0m[1;36mExiting postupdate worker thread ([0m[1;36m)[0m[1;36m7[0m[1;36m9[0m[1;36m[0m
+[gz sim-1] [1;36mExiting postupdate worker thread ([0m[1;36m0[0m[1;36m6[0m[1;36m6[0m[1;36m[0m
+[gz sim-1] [1;36m[0m
+[gz sim-1] [1;36m[0m
+[gz sim-1] [1;36m8[0m[1;36m8[0m[1;36m6[0m[1;36m0[0m[1;36m)[0m[1;36m)[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[0m
+[gz sim-1] [1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[0m
+[gz sim-1] [1;36m)[0m[1;36m)[0m
+[gz sim-1] [1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:627] [0m[1;36mCreating PostUpdate worker threads: [0m[1;36m19[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m0[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m1[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m2[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m3[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m4[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m5[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m6[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;33m[Wrn] [ArduPilotPlugin.cc:1599] [0m[1;33mArduPilot controller has reset[0m
+[gz sim-1] [1;33m[Wrn] [CameraZoomPlugin.cc:218] [0m[1;33mNo scene or camera sensors available.[0m
+[gz sim-1] [1;33m[Wrn] [CameraZoomPlugin.cc:218] [0m[1;33mNo scene or camera sensors available.[0m
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] JSON received:
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	timestamp
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	imu: gyro
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	imu: accel_body
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	position
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	quaternion
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	velocity
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	no_time_sync
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 	no_lockstep
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] 
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Forcing use_time_sync=0
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mbase_visual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mgimbal_visual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31myaw_visual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mroll_visual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mpitch_visual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mbase_visual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mgimbal_visual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31myaw_visual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mroll_visual[0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-1] [1;31m[Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m
+[gz sim-1] [1;33m[Wrn] [Util.cc:884] [0m[1;33mFailed to load mesh from [[0m[1;33mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;33m].[0m[1;33m[0m
+[gz sim-1] [1;31m[Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mpitch_visual[0m[1;31m[0m
+[gz sim-1] [1;33m[Wrn] [Ogre2Camera.cc:423] [0m[1;33mOgre2Camera::SetVisibilityMask: Mask bits [0m[1;33mc0000000[0m[1;33m are set but will be ignored as they conflict with the [0m[1;33mreserved bits used internally by the ogre2 backend.[0m[1;33m[0m
+[gz sim-1] [1;33m[Wrn] [Ogre2Camera.cc:423] [0m[1;33mOgre2Camera::SetVisibilityMask: Mask bits [0m[1;33mc0000000[0m[1;33m are set but will be ignored as they conflict with the [0m[1;33mreserved bits used internally by the ogre2 backend.[0m[1;33m[0m
+[gz sim-1] [1;33m[Wrn] [Ogre2RenderTarget.cc:668] [0m[1;33mAnti-aliasing level of '[0m[1;33m[0m[1;33m' [0m[1;33mis not supported; valid FSAA levels are: [0m[1;33m[ 0 ][0m[1;33m. Setting to 1[0m[1;33m[0m
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+[gz sim-2] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id:<data-string>:L282]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] No JSON sensor message received, resending servos
+[gz sim-2] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id:<data-string>:L806]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gz sim-2] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="imu_link"]/sensor[@name="imu_sensor"]/gz_frame_id:<data-string>:L282]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gz sim-2] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="iris_with_gimbal"]/link[@name="pitch_link"]/sensor[@name="camera"]/gz_frame_id:<data-string>:L806]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] No JSON sensor message received, resending servos
+[gz sim-1] [1;33m[Wrn] [ArduPilotPlugin.cc:1452] [0m[1;33m[[0m[1;33mdrone1[0m[1;33m] [0m[1;33mDrained n packets: [0m[1;33m2[0m[1;33m[0m
+[gz sim-1] [1;33m[Wrn] [ArduPilotPlugin.cc:1452] [0m[1;33m[[0m[1;33mdrone2[0m[1;33m] [0m[1;33mDrained n packets: [0m[1;33m1[0m[1;33m[0m
+[gz sim-1] [1;33m[Wrn] [ArduPilotPlugin.cc:1599] [0m[1;33mArduPilot controller has reset[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m7[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m8[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m9[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m10[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m11[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m12[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m13[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m14[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m15[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m16[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [SimulationRunner.cc:638] [0m[1;36mCreating postupdate worker thread ([0m[1;36m17[0m[1;36m)[0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mFound IMU sensor with name [[0m[1;32mimu_link::imu_sensor[0m[1;32m][0m
+[gz sim-1] [1;36m[Dbg] [ArduPilotPlugin.cc:1168] [0m[1;36mComputed IMU topic to be: [0m[1;36mworld/runway/model/drone2/link/imu_link/sensor/imu_sensor/imu[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:376] [0m[1;36mIdentified joint [[0m[1;36mroll_joint[0m[1;36m] as Entity [[0m[1;36m119[0m[1;36m][0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:376] [0m[1;36mIdentified joint [[0m[1;36mpitch_joint[0m[1;36m] as Entity [[0m[1;36m120[0m[1;36m][0m
+[gz sim-1] [1;36m[Dbg] [JointPositionController.cc:376] [0m[1;36mIdentified joint [[0m[1;36myaw_joint[0m[1;36m] as Entity [[0m[1;36m118[0m[1;36m][0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mGstCameraPlugin: camera name [[0m[1;32mdrone2::pitch_link::camera[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;36m[Dbg] [CameraZoomPlugin.cc:502] [0m[1;36mCamera name: [[0m[1;36mdrone2::pitch_link::camera[0m[1;36m].[0m
+[gz sim-1] [1;36m[Dbg] [CameraSensor.cc:405] [0m[1;36mCamera images for [[0m[1;36mdrone1::pitch_link::camera[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone1/link/pitch_link/sensor/camera/image[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [CameraSensor.cc:695] [0m[1;36mCamera info for [[0m[1;36mdrone1::pitch_link::camera[0m[1;36m] advertised on [[0m[1;36m/world/runway/model/drone1/link/pitch_link/sensor/camera/camera_info[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [CameraSensor.cc:405] [0m[1;36mCamera images for [[0m[1;36mdrone2::pitch_link::camera[0m[1;36m] advertised on [[0m[1;36mworld/runway/model/drone2/link/pitch_link/sensor/camera/image[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [CameraSensor.cc:695] [0m[1;36mCamera info for [[0m[1;36mdrone2::pitch_link::camera[0m[1;36m] advertised on [[0m[1;36m/world/runway/model/drone2/link/pitch_link/sensor/camera/camera_info[0m[1;36m][0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [CameraSensor.cc:504] [0m[1;36mEnabling camera sensor: '[0m[1;36mdrone1::pitch_link::camera[0m[1;36m' data [0m[1;36mgeneration.[0m[1;36m[0m
+[gz sim-1] [1;36m[Dbg] [CameraSensor.cc:504] [0m[1;36mEnabling camera sensor: '[0m[1;36mdrone2::pitch_link::camera[0m[1;36m' data [0m[1;36mgeneration.[0m[1;36m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mGstCameraPlugin: image topic [[0m[1;32mworld/runway/model/drone1/link/pitch_link/sensor/camera/image[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mGstCameraPlugin: enable topic [[0m[1;32mworld/runway/model/drone1/link/pitch_link/sensor/camera/image/enable_streaming[0m[1;32m][0m[1;32m[0m
+[gz sim-1] [1;32m[Msg] [0m[1;32mGstCameraPlugin: image topic [[0m[1;32mworld/runway/model/drone2/link/pitch_link/sensor/camera/image[0m[1;32m][0m[1;32m[0m
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] JSON received:
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	timestamp
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	imu: gyro
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	imu: accel_body
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	position
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	quaternion
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	velocity
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	no_time_sync
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 	no_lockstep
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] 
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Forcing use_time_sync=0
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] validate_structures:536: Validating structures
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] validate_structures:536: Validating structures
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[exec -7] AP: ArduCopter V4.8.0-dev (755258db)
+[exec -12] AP: ArduCopter V4.8.0-dev (755258db)
+[exec -12] AP: d88f7d8019be4ab9bb66919a37e50793
+[exec -12] AP: Frame: QUAD/X
+[exec -7] AP: c88f7d8019be4ab9bb66919a37e50793
+[exec -7] AP: Frame: QUAD/X
+[exec -7] AP: RCInput: decoding UDP (Pulses)
+[exec -12] AP: RCInput: decoding UDP (Pulses)
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mbase_visual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mgimbal_visual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31myaw_visual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mroll_visual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mpitch_visual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mbase_visual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mvisual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mgimbal_visual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31myaw_visual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mroll_visual[0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:426] [0m[1;31mUnable to find file with URI [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [SystemPaths.cc:526] [0m[1;31mCould not resolve file [[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m[1;31m[0m
+[gz sim-2] [1;31m[GUI] [Err] [MeshManager.cc:211] [0m[1;31mUnable to find file[[0m[1;31mpackage://ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae[0m[1;31m][0m
+[gz sim-2] [1;31m[GUI] [Err] [SceneManager.cc:426] [0m[1;31mFailed to load geometry for visual: [0m[1;31mpitch_visual[0m[1;31m[0m
+[exec -7] AP: Calibrating barometer
+[exec -12] AP: Calibrating barometer
+[exec -12] FTP: request timed out: OP seq:0 sess:46 opcode:4 req_opcode:0 size:31 bc:0 ofs:0 plen=31 [64]
+[exec -7] FTP: request timed out: OP seq:0 sess:14 opcode:4 req_opcode:0 size:31 bc:0 ofs:0 plen=31 [64]
+[exec -12] AP: ArduCopter V4.8.0-dev (755258db)
+[exec -12] AP: d88f7d8019be4ab9bb66919a37e50793
+[exec -12] AP: Frame: QUAD/X
+[exec -7] AP: ArduCopter V4.8.0-dev (755258db)
+[exec -7] AP: c88f7d8019be4ab9bb66919a37e50793
+[exec -7] AP: Frame: QUAD/X
+[exec -7] Detected vehicle 1:1 on link 0
+[exec -7] link 1 OK
+[exec -7] online system 1
+[exec -7] STABILIZE> Mode STABILIZE
+[exec -12] Detected vehicle 2:1 on link 0
+[exec -12] link 1 OK
+[exec -12] online system 2
+[exec -12] STABILIZE> Mode STABILIZE
+[exec -7] AP: ArduCopter V4.8.0-dev (755258db)
+[exec -7] AP: c88f7d8019be4ab9bb66919a37e50793
+[exec -7] AP: Frame: QUAD/X
+[exec -12] AP: ArduCopter V4.8.0-dev (755258db)
+[exec -12] AP: d88f7d8019be4ab9bb66919a37e50793
+[exec -12] AP: Frame: QUAD/X
+[exec -7] paramftp: bad count 1428 should be 1418
+[exec -12] paramftp: bad count 1428 should be 1418
+[exec -7] Received 1418 parameters
+[exec -12] Received 1418 parameters
+[exec -7] Saved 1418 parameters to mav.parm
+[exec -12] Saved 1418 parameters to mav_2_1.parm
+[exec -7] AP: Barometer 1 calibration complete
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 1 -6] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[exec -7] AP: Barometer 2 calibration complete
+[micro_ros_agent-5] [35m[1792486552.302632][m info     | [34mRoot.cpp          [m | [37mcreate_client           [m | [32mcreate[m                 | client_key: 0xAD000001, session_id: 0x81
+[micro_ros_agent-5] [35m[1792486552.302808][m info     | [34mSessionManager.hpp[m | [37mestablish_session       [m | [32msession established[m    | client_key: 0xAD000001, address: 127.0.0.1:29118
+[exec -12] AP: Barometer 1 calibration complete
+[dds_use_ns.parm --use_sim_time True --synthetic-clock --sysid 2 -11] Loaded defaults from /root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/copter.parm,/root/ardu_ws/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_udp.parm,/root/ardu_ws/install/ardupilot_sitl/share/ardupilot_sitl/config/default_params/dds_use_ns.parm
+[exec -12] AP: Barometer 2 calibration complete
+[exec -7] AP: ArduPilot Ready
+[micro_ros_agent-5] [35m[1792486552.331142][m info     | [34mProxyClient.cpp   [m | [37mcreate_participant      [m | [32mparticipant created[m    | client_key: 0xAD000001, participant_id: 0x001(1)
+[exec -7] AP: DDS: initializing...
+[micro_ros_agent-5] [35m[1792486552.331977][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x000(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.332159][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x000(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.333143][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x000(5), publisher_id: 0x000(3)
+[micro_ros_agent-5] [35m[1792486552.333205][m info     | [34mRoot.cpp          [m | [37mcreate_client           [m | [32mcreate[m                 | client_key: 0xAD000002, session_id: 0x81
+[micro_ros_agent-5] [35m[1792486552.333221][m info     | [34mSessionManager.hpp[m | [37mestablish_session       [m | [32msession established[m    | client_key: 0xAD000002, address: 127.0.0.1:18369
+[exec -7] AP: DDS: Using UDP
+[exec -7] AP: DDS: Init complete
+[exec -12] AP: ArduPilot Ready
+[exec -12] AP: DDS: initializing...
+[exec -12] AP: DDS: Using UDP
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '0'
+[micro_ros_agent-5] [35m[1792486552.349755][m info     | [34mProxyClient.cpp   [m | [37mcreate_participant      [m | [32mparticipant created[m    | client_key: 0xAD000002, participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.349983][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x001(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.350072][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x001(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.350987][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x001(5), publisher_id: 0x001(3)
+[micro_ros_agent-5] [35m[1792486552.351150][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x000(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.351253][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x000(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.354020][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x000(5), publisher_id: 0x000(3)
+[micro_ros_agent-5] [35m[1792486552.354189][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x002(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.354306][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x002(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.355297][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x002(5), publisher_id: 0x002(3)
+[micro_ros_agent-5] [35m[1792486552.355440][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x001(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.355487][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x001(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.356444][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x001(5), publisher_id: 0x001(3)
+[micro_ros_agent-5] [35m[1792486552.356528][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x003(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.356615][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x003(3), participant_id: 0x001(1)
+[exec -12] AP: DDS: Init complete
+[micro_ros_agent-5] [35m[1792486552.359833][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x003(5), publisher_id: 0x003(3)
+[micro_ros_agent-5] [35m[1792486552.360260][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x002(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.360407][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x002(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.364926][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x002(5), publisher_id: 0x002(3)
+[micro_ros_agent-5] [35m[1792486552.365156][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x004(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.365257][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x004(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.366528][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x004(5), publisher_id: 0x004(3)
+[micro_ros_agent-5] [35m[1792486552.367020][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x003(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.367177][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x003(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.368260][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x003(5), publisher_id: 0x003(3)
+[micro_ros_agent-5] [35m[1792486552.368372][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x005(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.368455][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x005(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.374890][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x005(5), publisher_id: 0x005(3)
+[micro_ros_agent-5] [35m[1792486552.375103][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x004(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.375171][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x004(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.378008][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x004(5), publisher_id: 0x004(3)
+[micro_ros_agent-5] [35m[1792486552.378166][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x006(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.378242][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x006(3), participant_id: 0x001(1)
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '1'
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '2'
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '3'
+[micro_ros_agent-5] [35m[1792486552.386033][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x006(5), publisher_id: 0x006(3)
+[micro_ros_agent-5] [35m[1792486552.386257][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x005(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.386306][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x005(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.388845][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x005(5), publisher_id: 0x005(3)
+[micro_ros_agent-5] [35m[1792486552.389342][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x007(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.389412][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x007(3), participant_id: 0x001(1)
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '0'
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '1'
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '2'
+[micro_ros_agent-5] [35m[1792486552.393336][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x007(5), publisher_id: 0x007(3)
+[micro_ros_agent-5] [35m[1792486552.393521][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x006(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.393574][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x006(3), participant_id: 0x001(1)
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '3'
+[micro_ros_agent-5] [35m[1792486552.395982][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x006(5), publisher_id: 0x006(3)
+[micro_ros_agent-5] [35m[1792486552.396117][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x008(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.396159][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x008(3), participant_id: 0x001(1)
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '4'
+[micro_ros_agent-5] [35m[1792486552.402503][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x008(5), publisher_id: 0x008(3)
+[micro_ros_agent-5] [35m[1792486552.402672][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x007(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.402797][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x007(3), participant_id: 0x001(1)
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '5'
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '6'
+[micro_ros_agent-5] [35m[1792486552.406604][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x007(5), publisher_id: 0x007(3)
+[micro_ros_agent-5] [35m[1792486552.407012][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x009(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.407101][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x009(3), participant_id: 0x001(1)
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '4'
+[micro_ros_agent-5] [35m[1792486552.409500][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x009(5), publisher_id: 0x009(3)
+[micro_ros_agent-5] [35m[1792486552.409649][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x008(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.409700][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x008(3), participant_id: 0x001(1)
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '5'
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '6'
+[micro_ros_agent-5] [35m[1792486552.413312][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x008(5), publisher_id: 0x008(3)
+[micro_ros_agent-5] [35m[1792486552.413487][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00A(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.413541][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x00A(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.416494][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x00A(5), publisher_id: 0x00A(3)
+[micro_ros_agent-5] [35m[1792486552.416696][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x009(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.416758][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x009(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.419186][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x009(5), publisher_id: 0x009(3)
+[micro_ros_agent-5] [35m[1792486552.419367][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00B(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.419476][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x00B(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.421267][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x00B(5), publisher_id: 0x00B(3)
+[micro_ros_agent-5] [35m[1792486552.421384][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00A(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.421440][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x00A(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.422018][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x00A(5), publisher_id: 0x00A(3)
+[micro_ros_agent-5] [35m[1792486552.422554][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00C(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.422678][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x00C(4), participant_id: 0x001(1)
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '7'
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '8'
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '9'
+[micro_ros_agent-5] [35m[1792486552.426684][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x00C(6), subscriber_id: 0x00C(4)
+[micro_ros_agent-5] [35m[1792486552.426855][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00B(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.426915][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x00B(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.428588][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x00B(5), publisher_id: 0x00B(3)
+[micro_ros_agent-5] [35m[1792486552.429008][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00D(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.429061][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x00D(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.430693][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x00D(5), publisher_id: 0x00D(3)
+[micro_ros_agent-5] [35m[1792486552.431040][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00C(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.431302][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x00C(4), participant_id: 0x001(1)
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '7'
+[micro_ros_agent-5] [35m[1792486552.433163][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x00C(6), subscriber_id: 0x00C(4)
+[micro_ros_agent-5] [35m[1792486552.433316][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00E(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.433369][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000001, publisher_id: 0x00E(3), participant_id: 0x001(1)
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '8'
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '9'
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '10'
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '11'
+[exec -7] AP: DDS: Topic/Sub/Reader session pass for index '12'
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '13'
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '10'
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '11'
+[exec -12] AP: DDS: Topic/Sub/Reader session pass for index '12'
+[exec -7] fence present
+[exec -12] fence present
+[micro_ros_agent-5] [35m[1792486552.771260][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000001, datawriter_id: 0x00E(5), publisher_id: 0x00E(3)
+[micro_ros_agent-5] [35m[1792486552.771731][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00D(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.771812][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x00D(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.773246][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x00D(5), publisher_id: 0x00D(3)
+[micro_ros_agent-5] [35m[1792486552.773410][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x00F(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.773468][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x00F(4), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.774558][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x00F(6), subscriber_id: 0x00F(4)
+[micro_ros_agent-5] [35m[1792486552.774680][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00E(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.774737][m info     | [34mProxyClient.cpp   [m | [37mcreate_publisher        [m | [32mpublisher created[m      | client_key: 0xAD000002, publisher_id: 0x00E(3), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.775594][m info     | [34mProxyClient.cpp   [m | [37mcreate_datawriter       [m | [32mdatawriter created[m     | client_key: 0xAD000002, datawriter_id: 0x00E(5), publisher_id: 0x00E(3)
+[micro_ros_agent-5] [35m[1792486552.776057][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x010(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.776322][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x010(4), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.778084][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x010(6), subscriber_id: 0x010(4)
+[micro_ros_agent-5] [35m[1792486552.778221][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x00F(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.778269][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x00F(4), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.779531][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x00F(6), subscriber_id: 0x00F(4)
+[micro_ros_agent-5] [35m[1792486552.779788][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x011(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.779873][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x011(4), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.781089][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x011(6), subscriber_id: 0x011(4)
+[micro_ros_agent-5] [35m[1792486552.781959][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x010(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.782036][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x010(4), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.783370][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x010(6), subscriber_id: 0x010(4)
+[micro_ros_agent-5] [35m[1792486552.783702][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000001, topic_id: 0x012(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.783758][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000001, subscriber_id: 0x012(4), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.784775][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000001, datareader_id: 0x012(6), subscriber_id: 0x012(4)
+[micro_ros_agent-5] [35m[1792486552.785131][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x011(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.785228][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x011(4), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.786360][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x011(6), subscriber_id: 0x011(4)
+[exec -7] AP: DDS: Topic/Pub/Writer session pass for index '14'
+[exec -7] AP: DDS: Topic/Sub/Reader session pass for index '15'
+[micro_ros_agent-5] [35m[1792486552.791083][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x000(7), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.791466][m info     | [34mProxyClient.cpp   [m | [37mcreate_topic            [m | [32mtopic created[m          | client_key: 0xAD000002, topic_id: 0x012(2), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.791574][m info     | [34mProxyClient.cpp   [m | [37mcreate_subscriber       [m | [32msubscriber created[m     | client_key: 0xAD000002, subscriber_id: 0x012(4), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.793641][m info     | [34mProxyClient.cpp   [m | [37mcreate_datareader       [m | [32mdatareader created[m     | client_key: 0xAD000002, datareader_id: 0x012(6), subscriber_id: 0x012(4)
+[micro_ros_agent-5] [35m[1792486552.796123][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x001(7), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.798510][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x000(7), participant_id: 0x001(1)
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '13'
+[exec -12] AP: DDS: Topic/Pub/Writer session pass for index '14'
+[exec -12] AP: DDS: Topic/Sub/Reader session pass for index '15'
+[exec -12] AP: DDS: Topic/Sub/Reader session pass for index '16'
+[micro_ros_agent-5] [35m[1792486552.802763][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x002(7), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.809104][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x001(7), participant_id: 0x001(1)
+[exec -7] AP: DDS: Topic/Sub/Reader session pass for index '16'
+[micro_ros_agent-5] [35m[1792486552.812139][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x003(7), participant_id: 0x001(1)
+[exec -7] AP: DDS: Topic/Sub/Reader session pass for index '17'
+[exec -7] AP: DDS: Topic/Sub/Reader session pass for index '18'
+[exec -7] AP: DDS: Service/Replier session pass for index '0'
+[micro_ros_agent-5] [35m[1792486552.815920][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x002(7), participant_id: 0x001(1)
+[exec -7] AP: DDS: Service/Replier session pass for index '1'
+[exec -12] AP: DDS: Topic/Sub/Reader session pass for index '17'
+[exec -12] AP: DDS: Topic/Sub/Reader session pass for index '18'
+[exec -12] AP: DDS: Service/Replier session pass for index '0'
+[micro_ros_agent-5] [35m[1792486552.822935][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x004(7), participant_id: 0x001(1)
+[exec -12] AP: DDS: Service/Replier session pass for index '1'
+[micro_ros_agent-5] [35m[1792486552.824797][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x003(7), participant_id: 0x001(1)
+[exec -7] AP: DDS: Service/Replier session pass for index '2'
+[exec -7] AP: DDS: Service/Replier session pass for index '3'
+[micro_ros_agent-5] [35m[1792486552.829616][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000001, requester_id: 0x005(7), participant_id: 0x001(1)
+[micro_ros_agent-5] [35m[1792486552.834930][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x004(7), participant_id: 0x001(1)
+[exec -12] AP: DDS: Service/Replier session pass for index '2'
+[micro_ros_agent-5] [35m[1792486552.839169][m info     | [34mProxyClient.cpp   [m | [37mcreate_replier          [m | [32mreplier created[m        | client_key: 0xAD000002, requester_id: 0x005(7), participant_id: 0x001(1)
+[exec -7] AP: DDS: Service/Replier session pass for index '4'
+[exec -7] AP: DDS: Service/Replier session pass for index '5'
+[exec -7] AP: DDS: Initialization passed
+[exec -12] AP: DDS: Service/Replier session pass for index '3'
+[exec -12] AP: DDS: Service/Replier session pass for index '4'
+[exec -12] AP: DDS: Service/Replier session pass for index '5'
+[exec -12] AP: DDS: Initialization passed
+[exec -7] AP: Field Elevation Set: 584m
+[exec -12] AP: Field Elevation Set: 584m
+[exec -7] Flight battery warning
+[exec -12] Flight battery warning
+[exec -7] AP: EKF3 IMU0 initialised
+[exec -7] AP: EKF3 IMU1 initialised
+[exec -12] AP: EKF3 IMU0 initialised
+[exec -12] AP: EKF3 IMU1 initialised
+[exec -7] AP: EKF3 IMU0 tilt alignment complete
+[exec -12] AP: EKF3 IMU0 tilt alignment complete
+[exec -7] AP: EKF3 IMU1 tilt alignment complete
+[exec -12] AP: EKF3 IMU1 tilt alignment complete
+[exec -7] AP: EKF3 IMU1 MAG0 initial yaw alignment complete
+[exec -12] AP: EKF3 IMU1 MAG0 initial yaw alignment complete
+[exec -7] AP: EKF3 IMU0 MAG0 initial yaw alignment complete
+[exec -12] AP: EKF3 IMU0 MAG0 initial yaw alignment complete
+[exec -7] AP: GPS 1: probing for u-blox at 230400 baud
+[exec -12] AP: GPS 1: probing for u-blox at 230400 baud
+[exec -7] AP: GPS 1: detected u-blox
+[exec -12] AP: GPS 1: detected u-blox
+[exec -7] Flight battery 100 percent
+[exec -12] Flight battery 100 percent

@@ -1,0 +1,33 @@
+# copy = git archive HEAD (83a147d) + the 50 inventory entries; env -i, empty HOME, venv from requirements-dev.txt + constraints-verified.txt (Python 3.12.3)
+$ python -m tools.agri_scenario_distribution check <evidence>/distribution_inventory_site_export.json --root <scratch>/C27
+  "status": "OK",
+  "problems": []
+[rc 0]
+$ python -m tools.scenario_package validate-site missions/sites/synthetic_orchard_v1.site.json
+  "status": "VALID",
+[rc 0]
+$ python -m tools.scenario_package package --template missions/templates/agri_poi_visit_v1.json --site missions/sites/synthetic_orchard_v1.site.json --fleet missions/fleets/agri_demo_fleet.json --target sitl --out <scratch>/C27_out/b
+Package b9cff3e6b6950110 [SYNTHETIC, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval ABSENT
+  A1 drone_01: GENERATED -> plans/drone_01.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  A2 drone_02: GENERATED -> plans/drone_02.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+[rc 0]
+$ python -m tools.scenario_package package-historical --fleet missions/fleets/agri_demo_fleet.json --out <scratch>/C27_out/a
+Package da8fe142547421af [SITL_HISTORICAL, SITL_REHEARSAL]: COMPLETE_OFFLINE, deployment_ready=False, approval ABSENT
+  H2_drone_01 drone_01: GENERATED -> plans/drone_01.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+  H2_drone_02 drone_02: GENERATED -> plans/drone_02.plan (FILE_MATCHES_EXPECTATIONS; importer REDUCED)
+[rc 0]
+$ python -m tools.scenario_package verify <scratch>/C27_out/b
+  "status": "INTEGRITY_VERIFIED",
+  "problems": [],
+      "status": "FILE_MATCHES_EXPECTATIONS",
+      "status": "FILE_MATCHES_EXPECTATIONS",
+[rc 0]
+$ python -m tools.hermes_mission_validation --mission missions/examples/agri_demo_001_sector_a.json --export-qgc --output-dir <scratch>/C27_out/session
+    "status": "REFUSED",
+[rc 0]
+# package b from the copy is byte-identical to the evidence package
+# package a from the copy is byte-identical to the evidence package
+$ python -m pytest -q -p no:cacheprovider tests/test_scenario_package.py tests/test_site_geometry.py tests/test_qgroundcontrol_exporter.py tests/test_hermes_mission_validation.py tests/test_agri_scenario_flow.py
+........................................................................ [ 64%]
+.......................................                                  [100%]
+111 passed in 6.44s

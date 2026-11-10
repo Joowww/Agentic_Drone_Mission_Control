@@ -1,0 +1,63 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 7.55kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#2 DONE 1.2s
+
+#3 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#3 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#4 DONE 0.0s
+
+#5 [certs 1/2] FROM docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c
+#5 resolve docker.io/library/ubuntu:24.04@sha256:24737cef17f4e22b1977df7d9a05e77c4e28b7da5b8911f8d8ccda136bf3573c 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 64.46kB 0.0s done
+#6 DONE 0.0s
+
+#7 [deps 2/2] RUN python3 -m venv /opt/venv     && /opt/venv/bin/pip install --no-cache-dir --disable-pip-version-check         --report /opt/tfg-build/pip-install-report.json         -r /opt/tfg-build/requirements.txt -r /opt/tfg-build/requirements-observability.txt         -c /opt/tfg-build/constraints-verified.txt     && /opt/venv/bin/pip freeze --all > /opt/tfg-build/pip-freeze.txt
+#7 CACHED
+
+#8 [stage-3 1/5] COPY --from=deps /opt/venv /opt/venv
+#8 CACHED
+
+#9 [base 2/2] RUN --mount=type=bind,from=certs,source=/etc/ssl/certs/ca-certificates.crt,target=/run/tfg-ca.crt     sed -i -E "s#^URIs: .*#URIs: https://snapshot.ubuntu.com/ubuntu/20261024T000000Z/#"         /etc/apt/sources.list.d/ubuntu.sources     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt -o APT::Update::Error-Mode=any update     && apt-get -o Acquire::https::CaInfo=/run/tfg-ca.crt install -y --no-install-recommends         python3 python3-venv     && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [certs 2/2] RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
+#10 CACHED
+
+#11 [deps 1/2] COPY requirements.txt requirements-observability.txt constraints-verified.txt /opt/tfg-build/
+#11 CACHED
+
+#12 [stage-3 2/5] COPY --from=deps /opt/tfg-build/pip-install-report.json /opt/tfg-build/pip-freeze.txt /opt/tfg-provenance/
+#12 CACHED
+
+#13 [stage-3 3/5] COPY . /opt/tfg/
+#13 DONE 0.1s
+
+#14 [stage-3 4/5] RUN cd /opt/tfg && find . -type f -print0 | sort -z | xargs -0 sha256sum > /opt/tfg-provenance/files.sha256     && chmod -R a+rX,go-w /opt/tfg /opt/tfg-provenance
+#14 DONE 1.3s
+
+#15 [stage-3 5/5] WORKDIR /opt/tfg
+#15 DONE 0.0s
+
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 0.2s done
+#16 exporting manifest sha256:d9479617dc6fa0e30645112fa6e2bde5c3436ff012d4b50d0c174f70285cb966 0.0s done
+#16 exporting config sha256:7a87953749f8423ec89996ca7f5195d00ebe0fe4ca1c8a7d939b2238d65edd07 0.0s done
+#16 exporting attestation manifest sha256:82ad85cc089a69c96d87efe1478e28964eb40814241116e8be4b9d652523f713 0.0s done
+#16 exporting manifest list sha256:67bc37afc8be27da0ba7e7717b6a788e9cc0d3b39e8873947db5cd768d0d7085 0.0s done
+#16 naming to docker.io/tfg/app:2026.10.27 done
+#16 unpacking to docker.io/tfg/app:2026.10.27
+#16 unpacking to docker.io/tfg/app:2026.10.27 0.2s done
+#16 DONE 0.6s
+rc=0

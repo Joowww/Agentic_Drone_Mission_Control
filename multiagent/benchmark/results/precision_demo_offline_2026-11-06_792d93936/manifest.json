@@ -1,0 +1,217 @@
+{
+ "all_as_expected": true,
+ "command": "python -m multiagent.demo --all-scenarios --out <dir>/scenarios",
+ "commit": "792d939366583367bf65a11de27be65c408e5ffd",
+ "limitations": [
+  "colour-threshold detector on synthetic nadir images; not validated on real photographs",
+  "flat-ground hypothesis for depth; virtual camera parameters, no real calibration",
+  "scripted agents (no model) in every scenario",
+  "no executor other than the dry-run adapter"
+ ],
+ "provenance": {
+  "agents": "DETERMINISTIC_AGENT (scripted test doubles through the real contracts)",
+  "camera": "DECLARED_VIRTUAL",
+  "events": "TEST_FIXTURE",
+  "image": "SYNTHETIC_TEST",
+  "not_used": [
+   "REAL_LOCAL_LLM",
+   "SITL_SENSOR",
+   "PHYSICAL_SENSOR"
+  ],
+  "simulation": "OFFLINE_SIMULATION"
+ },
+ "scenarios": {
+  "ambiguous_detection": {
+   "as_expected": true,
+   "classification": "DETECTION_AMBIGUOUS_ROVER_KEEPS_WAITING",
+   "commands_sent": 0,
+   "expected": "DETECTION_AMBIGUOUS_ROVER_KEEPS_WAITING",
+   "ladder": [
+    "planning_completed"
+   ]
+  },
+  "disallowed_color": {
+   "as_expected": true,
+   "classification": "NO_DETECTION_ROVER_KEEPS_WAITING",
+   "commands_sent": 0,
+   "expected": "NO_DETECTION_ROVER_KEEPS_WAITING",
+   "ladder": [
+    "planning_completed"
+   ]
+  },
+  "duplicate_observation": {
+   "as_expected": true,
+   "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "commands_sent": 0,
+   "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed",
+    "proposal_validated",
+    "target_spatially_validated"
+   ]
+  },
+  "impossible_dependency": {
+   "as_expected": true,
+   "classification": "DEPENDENCY_IMPOSSIBLE",
+   "commands_sent": 0,
+   "expected": "DEPENDENCY_IMPOSSIBLE",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed",
+    "target_spatially_validated"
+   ]
+  },
+  "missing_camera_pose": {
+   "as_expected": true,
+   "classification": "TARGET_NOT_GEOREFERENCED",
+   "commands_sent": 0,
+   "expected": "TARGET_NOT_GEOREFERENCED",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed"
+   ]
+  },
+  "missing_depth": {
+   "as_expected": true,
+   "classification": "TARGET_NOT_GEOREFERENCED",
+   "commands_sent": 0,
+   "expected": "TARGET_NOT_GEOREFERENCED",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed"
+   ]
+  },
+  "missing_localization": {
+   "as_expected": true,
+   "classification": "EXECUTION_BLOCKED_NO_LOCALIZATION",
+   "commands_sent": 0,
+   "expected": "EXECUTION_BLOCKED_NO_LOCALIZATION",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed",
+    "proposal_validated",
+    "target_spatially_validated"
+   ]
+  },
+  "mission_cancelled": {
+   "as_expected": true,
+   "classification": "MISSION_CANCELLED",
+   "commands_sent": 0,
+   "expected": "MISSION_CANCELLED",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed",
+    "target_spatially_validated"
+   ]
+  },
+  "no_target": {
+   "as_expected": true,
+   "classification": "NO_DETECTION_ROVER_KEEPS_WAITING",
+   "commands_sent": 0,
+   "expected": "NO_DETECTION_ROVER_KEEPS_WAITING",
+   "ladder": [
+    "planning_completed"
+   ]
+  },
+  "red_target": {
+   "as_expected": true,
+   "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "commands_sent": 0,
+   "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed",
+    "proposal_validated",
+    "target_spatially_validated"
+   ]
+  },
+  "stale_observation": {
+   "as_expected": true,
+   "classification": "OBSERVATION_REFUSED",
+   "commands_sent": 0,
+   "expected": "OBSERVATION_REFUSED",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed"
+   ]
+  },
+  "tool_error": {
+   "as_expected": true,
+   "classification": "MISSION_ERROR",
+   "commands_sent": 0,
+   "expected": "MISSION_ERROR",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed",
+    "target_spatially_validated"
+   ]
+  },
+  "unassigned_objective": {
+   "as_expected": true,
+   "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION_WITH_UNASSIGNED",
+   "commands_sent": 0,
+   "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION_WITH_UNASSIGNED",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed",
+    "proposal_validated",
+    "target_spatially_validated"
+   ]
+  },
+  "unauthorized_execution": {
+   "as_expected": true,
+   "classification": "EXECUTION_REFUSED_NOT_AUTHORIZED",
+   "commands_sent": 0,
+   "expected": "EXECUTION_REFUSED_NOT_AUTHORIZED",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed",
+    "proposal_validated",
+    "target_spatially_validated"
+   ]
+  },
+  "wrong_frame": {
+   "as_expected": true,
+   "classification": "TARGET_NOT_GEOREFERENCED",
+   "commands_sent": 0,
+   "expected": "TARGET_NOT_GEOREFERENCED",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed"
+   ]
+  },
+  "yellow_target": {
+   "as_expected": true,
+   "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "commands_sent": 0,
+   "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION",
+   "ladder": [
+    "detection_obtained",
+    "planning_completed",
+    "proposal_validated",
+    "target_spatially_validated"
+   ]
+  }
+ },
+ "schema": "tfg.multiagent.precision-demo-evidence/1",
+ "timings": {
+  "basis": "time.perf_counter on this WSL2 machine, pure Python, no LLM; indicative only",
+  "coordinator_event_s": {
+   "median": 5.9229787439107895e-06,
+   "n": 500
+  },
+  "detector_320x240_s": {
+   "median": 0.24749807399348356,
+   "n": 5
+  },
+  "geometry_build_observation_s": {
+   "median": 3.0857991077937186e-05,
+   "n": 200
+  },
+  "perception_gate_s": {
+   "median": 0.0002557719999458641,
+   "n": 50
+  }
+ }
+}

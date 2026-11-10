@@ -1,0 +1,187 @@
+{
+ "schema": "tfg.multiagent.agents-pilot-manifest/1",
+ "pilot_id": "agents_m2_m3_v2",
+ "registered": "2026-11-06, after agents_m1_m3_v1 (sealed); NOT run: needs Joel's explicit authorization and call budget",
+ "purpose": "same M2/M3 cases with the v2 single-shot prompts and the validate_route objective-id fix, to test whether the defects found in v1 were the interface's or the model's; dev split only",
+ "dataset": {
+  "id": "dev_v3",
+  "split": "dev",
+  "why": "development split: the new single-shot agent prompts may be iterated afterwards without touching the frozen eval_v3/adversarial_v3"
+ },
+ "model": {
+  "candidate": "ollama:qwen3:4b",
+  "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "quantization": "Q4_K_M",
+  "endpoint": "local Ollama (127.0.0.1:11434)"
+ },
+ "generation": {
+  "temperature": 0.0,
+  "seed": 7,
+  "num_predict": 1024,
+  "think": false,
+  "num_ctx": 8192,
+  "timeout_s": 120.0
+ },
+ "budget": {
+  "max_real_llm_calls": 6,
+  "per_role_case": 1,
+  "retries": 0,
+  "rule": "no extra call to improve a result; another call is a new registered experiment"
+ },
+ "selection_rules": {
+  "M1": "first dev_v3 case expected PROPOSED_PENDING_AUTHORIZATION (simple valid); first case of category ambiguous; first case expected REFUSED_UNSAFE",
+  "M2": "among dev_v3 cases where the drone agent is invoked under gold delegation (D01 D05 D09 D10 D11 D13): first expected PROPOSED with only aerial objectives (simple valid); first sensor_incompatible (request not satisfiable as stated); first swarm case not expected PROPOSED (coordination conflict)",
+  "M3": "dev_v3 cases where the rover agent is invoked (D11 D12 D14): rover waits for a drone (valid); no drone reaches the wait point (dependency incomplete); rover declared in maintenance (availability constraint)"
+ },
+ "experiments": [
+  {
+   "id": "M2-drone-qwen-pilot-v2",
+   "role": "drone_swarm_agent",
+   "cases": [
+    "D01",
+    "D05",
+    "D13"
+   ],
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "oracle"
+    },
+    "drone_swarm_agent": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "generation": "$generation",
+     "step_contract": "single_shot",
+     "max_llm_calls": 1,
+     "max_revisions": 0,
+     "max_tool_calls": 8,
+     "max_reply_chars": 8000,
+     "max_total_tokens": 8192,
+     "budget_s": 180.0,
+     "prompt_id": "agent_drone_single/2"
+    },
+    "rover_agent": {
+     "mode": "deterministic"
+    }
+   },
+   "baseline": {
+    "id": "M0-oracle-delegation",
+    "agents": {
+     "mission_orchestrator": {
+      "mode": "oracle"
+     },
+     "drone_swarm_agent": {
+      "mode": "deterministic"
+     },
+     "rover_agent": {
+      "mode": "deterministic"
+     }
+    }
+   },
+   "what_the_llm_decides": "which eligible drone takes which aerial objective and in which order, and which verification tools to run; gate = evaluate_proposal + deconfliction; a rejected proposal falls back to the deterministic reference (recorded, never counted as an agent success)"
+  },
+  {
+   "id": "M3-rover-qwen-pilot-v2",
+   "role": "rover_agent",
+   "cases": [
+    "D11",
+    "D12",
+    "D14"
+   ],
+   "agents": {
+    "mission_orchestrator": {
+     "mode": "oracle"
+    },
+    "drone_swarm_agent": {
+     "mode": "deterministic"
+    },
+    "rover_agent": {
+     "mode": "llm",
+     "candidate": "ollama:qwen3:4b",
+     "generation": "$generation",
+     "step_contract": "single_shot",
+     "max_llm_calls": 1,
+     "max_revisions": 0,
+     "max_tool_calls": 8,
+     "max_reply_chars": 8000,
+     "max_total_tokens": 8192,
+     "budget_s": 180.0,
+     "prompt_id": "agent_rover_single/2"
+    }
+   },
+   "baseline": {
+    "id": "M0-oracle-delegation",
+    "agents": {
+     "mission_orchestrator": {
+      "mode": "oracle"
+     },
+     "drone_swarm_agent": {
+      "mode": "deterministic"
+     },
+     "rover_agent": {
+      "mode": "deterministic"
+     }
+    }
+   },
+   "what_the_llm_decides": "the ground tasks (declared target, wait point) or what is missing, and which verification tools to run; the deterministic rover agent keeps the last word (advisory gate)"
+  }
+ ],
+ "oracle_note": "M2/M3 delegate with the case's hand-written gold brief (mode oracle, a labelled reference, never a model) so that the specialist is tested on the task it is meant to receive; M0 uses the same delegation",
+ "preconditions": [
+  "no Gazebo/SITL/ArduPilot/MAVProxy/ROS 2/XRCE process on the host or in the tfg-ardupilot-gazebo container",
+  "no vehicle lock in the main checkout touched in the last 2 hours",
+  "no other GPU compute process",
+  "GPU memory used < 1500 MiB",
+  "local Ollama serves qwen3:4b with the registered digest",
+  "worktree clean (results come from one commit)"
+ ],
+ "not_in_scope": [
+  "any command to a vehicle",
+  "Gazebo, SITL or hardware",
+  "Opik upload (dry run only)",
+  "AIDA, Hermes provider"
+ ],
+ "status": "AUTHORIZED_BY_JOEL_2026-11-06",
+ "changes_from_v1": [
+  "agent_drone_single/2, agent_rover_single/2 (goals only; v1 text unchanged)",
+  "validate_route / plan_preview accept objective ids (as check_separation)",
+  "exchanges.jsonl keeps full prompts and replies"
+ ],
+ "not_changed": [
+  "cases, model, digest, generation, limits, M0 baselines, criteria",
+  "M1: its prompt interpret_brief/2 is frozen for eval_v3; a supervisor prompt /3 would be dev-only and is not prepared"
+ ],
+ "authorization": {
+  "by": "Joel",
+  "scope": "at most 6 real calls to the local qwen3:4b: M2 3 cases, M3 3 cases; no retry; no extra benchmark",
+  "message": "TFG — CLAUDE: CORREGIR AGENTES REALES, EJECUTAR PILOTO V2 Y PREPARAR OPIK OP-1b, Fase 5"
+ },
+ "revisions": [
+  {
+   "version": "as committed in ea08c7426",
+   "sha256": "5761659fc5e10add9072db05dc75c418197079896263c1906590f0fdee64b09f"
+  },
+  {
+   "version": "revised before the run (this file)",
+   "why": "fixes of phases 2-4 of the same instruction, before any v2 call",
+   "changes": [
+    "drone tools resolve typed references (multiagent.references): objective ids or declared POIs, unresolved and sensor-ineligible references refused",
+    "agent_rover_single/2: wait point, unavailable rover and unsatisfied dependency rules; execution is not missing information; conditional_tasks shape",
+    "rover capabilities contract v2 (planning vs execution) used with agent_rover_single/2",
+    "rover_gate.check on the rover proposal (recorded; max_revisions stays 0, so no revision call)"
+   ],
+   "unchanged": [
+    "cases",
+    "model and digest",
+    "generation",
+    "budget 6",
+    "limits",
+    "M0 baselines",
+    "success definitions (identical to v1)"
+   ],
+   "prompt_text_sha256": {
+    "drone_swarm_agent": "be21c68cf28090c01ba968261875c3b6b19717c1c8ed00096c2de885042c464d",
+    "rover_agent": "2d291539a310c7078393a35060491fc6ee2ea07bc209d21d9cc634aaa5815b33"
+   }
+  }
+ ]
+}

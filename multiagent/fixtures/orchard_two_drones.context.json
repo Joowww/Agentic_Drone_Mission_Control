@@ -1,0 +1,24 @@
+{
+  "schema": "tfg.multiagent.operating-context/1",
+  "context_id": "orchard_two_drones_v1",
+  "provenance": "SYNTHETIC",
+  "site_path": "missions/sites/synthetic_orchard_v2.site.json",
+  "fleet_path": "missions/fleets/agri_demo_fleet.json",
+  "drones": [
+    {"vehicle_id": "drone_01", "takeoff_point": "TAKEOFF_A", "sensors": ["rgb"], "battery_percent": 100.0,
+     "consumption_percent_per_minute": 0.8, "cruise_speed_kmh": 35.0, "max_wind_kmh": 30.0, "available": true,
+     "provenance": "SYNTHETIC"},
+    {"vehicle_id": "drone_02", "takeoff_point": "TAKEOFF_B", "sensors": ["multispectral"], "battery_percent": 60.0,
+     "consumption_percent_per_minute": 1.2, "cruise_speed_kmh": 30.0, "max_wind_kmh": 20.0, "available": true,
+     "provenance": "SYNTHETIC"}
+  ],
+  "rovers": [
+    {"vehicle_id": "rover_01", "start_point": "ROVER_START", "available": true, "provenance": "SYNTHETIC"}
+  ],
+  "altitude_m": 5.0,
+  "requested_speed_kmh": 10.0,
+  "minimum_battery_reserve_percent": 20.0,
+  "planning_margin_m": 1.0,
+  "wind_speed_kmh": 0.0,
+  "coordinate_match_tolerance_m": 0.5
+}

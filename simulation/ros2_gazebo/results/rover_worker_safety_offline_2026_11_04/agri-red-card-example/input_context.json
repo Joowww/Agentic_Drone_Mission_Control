@@ -1,0 +1,46 @@
+{
+  "lifecycle_id": "SYNTHETIC-EXAMPLE-LIFECYCLE",
+  "mission": {
+    "admits_ground_task_for": [
+      "red",
+      "yellow"
+    ],
+    "area": {
+      "max_x": 20.0,
+      "max_y": 20.0,
+      "min_x": -20.0,
+      "min_y": -20.0
+    },
+    "drone_id": "drone_01",
+    "mission_id": "agri_demo_001_h1_sector_a",
+    "sequence_id": "0df8dec9-6b2f-5a18-be4a-4a5221389a82"
+  },
+  "rover": {
+    "available": true,
+    "reason": "SYNTHETIC: not read from reservations",
+    "vehicle_id": "rover_01"
+  },
+  "rover_start": {
+    "evidence_sha256": "7ac46d28a1e5a613a31aedbb2110244f7a2a8f9df24cabdf56576d227dcb3756",
+    "frame": "odom",
+    "heading_rad": 0.0,
+    "pose_reference_sha256": "d30864bcbff0470dff071401db7aa1d50b8a79d7de68635d27feef28acd6e513",
+    "stamp_ns": 0,
+    "x_m": 0.0,
+    "y_m": 0.0
+  },
+  "transform": {
+    "from_frame": "drone_launch_enu",
+    "lifecycle_id": "SYNTHETIC-EXAMPLE-LIFECYCLE",
+    "method": "SE2",
+    "pose_reference_sha256": "d30864bcbff0470dff071401db7aa1d50b8a79d7de68635d27feef28acd6e513",
+    "schema": "tfg.agri.frame-transform/1",
+    "sha256": "bc1952d124eb31d954cc75e574eed34fcbafe75804a3e5540eb3dbe11613c150",
+    "source": "SYNTHETIC_TEST",
+    "status": "VERIFIED",
+    "to_frame": "odom",
+    "tx_m": -1.0,
+    "ty_m": -4.0,
+    "yaw_rad": 0.0
+  }
+}

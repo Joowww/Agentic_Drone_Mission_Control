@@ -1,0 +1,49 @@
+{
+  "drafts": [
+    {
+      "draft_id": "1ac2503e-0667-481d-a376-df0b0e49b11b",
+      "draft_revision": 1
+    },
+    {
+      "draft_id": "e219b490-74e4-4f93-9f6b-65d1898578b5",
+      "draft_revision": 1
+    },
+    {
+      "draft_id": "fd342a48-284a-4163-b644-18b7fde65bfe",
+      "draft_revision": 1
+    }
+  ],
+  "finalizations": [
+    {
+      "compatibility_defaults": [
+        {
+          "applies_on_finalization": true,
+          "path": "/mission_id",
+          "source": "COMPATIBILITY_DEFAULT",
+          "value": "agri_demo_001_h1_sector_a_001"
+        },
+        {
+          "applies_on_finalization": true,
+          "path": "/vehicle/vehicle_id",
+          "source": "COMPATIBILITY_DEFAULT",
+          "value": "drone_01"
+        }
+      ],
+      "draft_id": "e219b490-74e4-4f93-9f6b-65d1898578b5",
+      "draft_revision": 1,
+      "execution_status": "APPROVED",
+      "failure_reasons": [],
+      "finalization_id": "13162233-9bcd-4da2-b234-ff255ddff14a",
+      "flight_consent": "NOT_GRANTED",
+      "mission_id": "agri_demo_001_h1_sector_a_001",
+      "mission_sha256": "203779464bcb967eb66dd2b1a0f5ce0d3d48572d7e83fb536ce417dcc76e1e7c",
+      "mission_sha256_verified": true,
+      "mission_status": "FEASIBLE",
+      "qgc_export_reasons": [
+        "planned home AMSL altitude is required for plannedHomePosition; the mission only has altitudes relative to home and no placeholder is written"
+      ],
+      "qgc_export_status": "REFUSED"
+    }
+  ],
+  "source": "draft_state.json and finalization.json written by tools.hermes_mission_planning"
+}

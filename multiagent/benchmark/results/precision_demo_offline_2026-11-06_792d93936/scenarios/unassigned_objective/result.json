@@ -1,0 +1,424 @@
+{
+ "aerial_tasks": [
+  {
+   "points": [
+    "POI_1"
+   ],
+   "vehicle_id": "drone_01"
+  },
+  {
+   "points": [
+    "POI_3"
+   ],
+   "vehicle_id": "drone_02"
+  }
+ ],
+ "agent_records": {
+  "drone": {
+   "accepted_by_gate": true,
+   "decision_record": {
+    "accepted_after_revision": false,
+    "accepted_first_round": true,
+    "accepted_round": 0,
+    "llm_proposals": [
+     {
+      "accepted": true,
+      "findings": [],
+      "proposal": {
+       "assignments": {
+        "drone_01": [
+         "A1"
+        ],
+        "drone_02": [
+         "A2"
+        ]
+       }
+      },
+      "reason": null,
+      "round": 0,
+      "status": "FINAL"
+     }
+    ]
+   },
+   "final_allocation_from": "MODEL",
+   "llm_calls": 1,
+   "violations": []
+  },
+  "phase_b_aerial": {
+   "accepted_by_gate": null,
+   "agent": "drone_swarm_agent",
+   "llm_calls": 0,
+   "rounds": [],
+   "source": "PINNED_FROM_PHASE_A"
+  },
+  "rover_phase_a": {
+   "accepted_by_gate": true,
+   "contract": "v3",
+   "decision_record": {
+    "accepted_after_revision": false,
+    "accepted_first_round": true,
+    "accepted_round": 0,
+    "llm_proposals": [
+     {
+      "accepted": true,
+      "findings": [],
+      "proposal": {
+       "decisions": [
+        {
+         "decision": "WAIT_FOR_OBSERVATION",
+         "objective_id": "G1",
+         "reason": null,
+         "target_point": null
+        }
+       ]
+      },
+      "reason": null,
+      "round": 0,
+      "status": "FINAL"
+     }
+    ]
+   },
+   "llm_calls": 1,
+   "proposal": {
+    "decisions": [
+     {
+      "decision": "WAIT_FOR_OBSERVATION",
+      "objective_id": "G1",
+      "reason": null,
+      "target_point": null
+     }
+    ]
+   },
+   "reason": null,
+   "status": "FINAL"
+  },
+  "rover_phase_b": {
+   "accepted_by_gate": true,
+   "agreement": "AGREES",
+   "contract": "v3",
+   "decision_record": {
+    "accepted_after_revision": false,
+    "accepted_first_round": true,
+    "accepted_round": 0,
+    "llm_proposals": [
+     {
+      "accepted": true,
+      "findings": [],
+      "proposal": {
+       "decisions": [
+        {
+         "decision": "PLAN_TO_DECLARED_POI",
+         "objective_id": "G1",
+         "reason": null,
+         "target_point": "POI_3"
+        }
+       ]
+      },
+      "reason": null,
+      "round": 0,
+      "status": "FINAL"
+     }
+    ]
+   },
+   "llm_calls": 1,
+   "proposal": {
+    "decisions": [
+     {
+      "decision": "PLAN_TO_DECLARED_POI",
+      "objective_id": "G1",
+      "reason": null,
+      "target_point": "POI_3"
+     }
+    ]
+   },
+   "reason": null,
+   "status": "FINAL"
+  },
+  "supervisor": {
+   "brief": {
+    "aerial_objectives": [
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "required_sensor": "rgb"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "required_sensor": "multispectral"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A3",
+      "point_id": "POI_4",
+      "required_sensor": "thermal"
+     }
+    ],
+    "altitude_m": null,
+    "ambiguities": [],
+    "battery_percent": {},
+    "contradictions": [],
+    "drones": [],
+    "ground_objectives": [
+     {
+      "after_aerial": true,
+      "coordinates": null,
+      "description": "point indicated by a validated card observation",
+      "objective_id": "G1",
+      "point_id": null
+     }
+    ],
+    "rover": "rover_01",
+    "schema": "tfg.multiagent.mission-brief/2",
+    "site_id": null,
+    "unsafe_requests": [],
+    "vehicle_availability": [],
+    "wind_speed_kmh": null
+   },
+   "brief_planned_in_phase_a": {
+    "aerial_objectives": [
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A1",
+      "point_id": "POI_1",
+      "required_sensor": "rgb"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A2",
+      "point_id": "POI_3",
+      "required_sensor": "multispectral"
+     },
+     {
+      "coordinates": null,
+      "description": null,
+      "objective_id": "A3",
+      "point_id": "POI_4",
+      "required_sensor": "thermal"
+     }
+    ],
+    "altitude_m": null,
+    "ambiguities": [],
+    "battery_percent": {},
+    "contradictions": [],
+    "drones": [],
+    "ground_objectives": [],
+    "rover": "rover_01",
+    "schema": "tfg.multiagent.mission-brief/2",
+    "site_id": null,
+    "unsafe_requests": [],
+    "vehicle_availability": [],
+    "wind_speed_kmh": null
+   },
+   "data_kind": "SYNTHETIC",
+   "json_valid": true,
+   "model": "scripted:integrated_orchestrator",
+   "parse_error": null,
+   "reasons": [
+    "INCOMPATIBLE A3: drone_01: SENSOR_MISSING: drone_01 has no thermal sensor",
+    "INCOMPATIBLE A3: drone_02: SENSOR_MISSING: drone_02 has no thermal sensor"
+   ],
+   "status": "PARTIAL_PENDING_AUTHORIZATION"
+  }
+ },
+ "as_expected": true,
+ "classification": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION_WITH_UNASSIGNED",
+ "commands_sent": 0,
+ "console": [
+  "[  0.00s] operator      mission: Inspect POI_1 with the RGB camera and take multispectral images of POI_3. If a drone camera reports a red or yellow card, send rover_01 to the point it indicates once that observation has been validated. Also take thermal images of POI_4.",
+  "[  0.00s] supervisor    ... interpreting and delegating (agents: SIMULATED_MODELS)",
+  "[  0.09s] supervisor    status PARTIAL_PENDING_AUTHORIZATION (safety/3); 2 aerial task(s); ground objectives waiting: ['G1']",
+  "[  0.09s] drone_agent   drone_01 -> ['POI_1'] (0.1 min, start delay 45.0)",
+  "[  0.09s] drone_agent   drone_02 -> ['POI_3'] (0.1 min, start delay 0.0)",
+  "[  0.09s] drone_agent   UNASSIGNED A3: drone_01: SENSOR_MISSING: drone_01 has no thermal sensor",
+  "[  0.09s] rover_agent   phase A decision: [{'objective_id': 'G1', 'decision': 'WAIT_FOR_OBSERVATION', 'target_point': None, 'reason': None}] (gate ACCEPTED)",
+  "[  0.09s] perception    ... rendering SYNTHETIC_TEST image and detecting cards",
+  "[  0.69s] perception    detector: DETECTED [('red_card', [190.0, 120.0], 0.688)]",
+  "[  0.69s] geometry      BUILT {'chain': ['synthetic_orchard_local', 'drone_02/base_link', 'cam_down_fixture_optical'], 'depth_source': 'GROUND_PLANE_ASSUMPTION', 'ground_plane_z': 0.0, 'calibration': 'DECLARED_VIRTUAL', 'extrinsics_source': 'DECLARED_VIRTUAL', 'pose_source': 'TEST_FIXTURE', 'sigma_detection_m': 0.0667}",
+  "[  0.69s] perception    gate ACCEPTED: target POI_3 at (8.0, 4.0) sigma 0.12 m",
+  "[  0.69s] coordinator   mission TARGET_VALIDATED; ground {'G1': {'state': 'READY_FOR_AUTHORIZATION', 'target': 'POI_3', 'observation_id': 'unassigned_objective-obs-1', 'waits_for_task': 'AIR_drone_02'}}",
+  "[  0.69s] rover_agent   ... planning to the validated target (contract /3)",
+  "[  0.73s] rover_agent   decision [{'objective_id': 'G1', 'decision': 'PLAN_TO_DECLARED_POI', 'target_point': 'POI_3', 'reason': None}] -> AGREES",
+  "[  0.73s] supervisor    final proposal PARTIAL_PENDING_AUTHORIZATION; dependencies [('GROUND_rover_01', 'AIR_drone_02', 'POI_REACHED'), ('GROUND_rover_01', 'AIR_drone_01', 'COMPLETED')]",
+  "[  0.73s] executor      request tfg.multiagent.rover-execution-request/1 received by the dry-run adapter; state AWAITING_HUMAN_AUTHORIZATION; not executable yet: ['NO_NAVIGATION_PLAN: speed and timeout were not set by a human']",
+  "[  0.73s] result        PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION_WITH_UNASSIGNED (as expected); ladder ['planning_completed', 'detection_obtained', 'target_spatially_validated', 'proposal_validated']; commands sent 0"
+ ],
+ "coordinator": {
+  "aerial": {
+   "AIR_drone_01": "PENDING_AUTHORIZATION",
+   "AIR_drone_02": "PENDING_AUTHORIZATION"
+  },
+  "commands_sent": 0,
+  "events": 9,
+  "executing": [],
+  "ground": {
+   "G1": {
+    "observation_id": "unassigned_objective-obs-1",
+    "state": "READY_FOR_AUTHORIZATION",
+    "target": "POI_3",
+    "waits_for_task": "AIR_drone_02"
+   }
+  },
+  "mission": "AUTHORIZATION_REQUESTED",
+  "mission_reason": null,
+  "note": "offline coordination states only; nothing here moves a vehicle",
+  "separation": "DECONFLICTED_BY_START_DELAY",
+  "unassigned_objectives": [
+   {
+    "objective_id": "A3",
+    "reasons": [
+     "drone_01: SENSOR_MISSING: drone_01 has no thermal sensor",
+     "drone_02: SENSOR_MISSING: drone_02 has no thermal sensor"
+    ]
+   }
+  ]
+ },
+ "detection": {
+  "ambiguous": [],
+  "detections": [
+   {
+    "area_px": 154,
+    "aspect": 1.143,
+    "bbox_px": [
+     182,
+     113,
+     16,
+     14
+    ],
+    "center_px": [
+     190.0,
+     120.0
+    ],
+    "class": "red",
+    "fill_ratio": 0.688,
+    "mean_hsv": [
+     178.0,
+     215.3,
+     204.7
+    ],
+    "object_class": "red_card",
+    "score": 0.688,
+    "score_kind": "HEURISTIC_QUALITY",
+    "size_m": [
+     0.533,
+     0.467
+    ],
+    "touches_border": false
+   }
+  ],
+  "rejected": [],
+  "status": "DETECTED"
+ },
+ "execution_request": {
+  "authorization": null,
+  "dependencies": [
+   {
+    "after": "AIR_drone_02",
+    "condition": "POI_REACHED",
+    "point": "POI_3",
+    "task_id": "GROUND_rover_01"
+   },
+   {
+    "after": "AIR_drone_01",
+    "condition": "COMPLETED",
+    "task_id": "GROUND_rover_01"
+   }
+  ],
+  "expected_scope_sha256": null,
+  "frame": "synthetic_orchard_local",
+  "navigation_plan": null,
+  "proposal_sha256": "7fb6cbe76d12745c9284d9bc68e63d1b75337d29ad734834357acff2bb13a971",
+  "schema": "tfg.multiagent.rover-execution-request/1",
+  "state": "AWAITING_HUMAN_AUTHORIZATION",
+  "target": {
+   "point_id": "POI_3",
+   "start_point": "ROVER_START"
+  },
+  "task_id": "GROUND_rover_01",
+  "vehicle_id": "rover_01"
+ },
+ "executor": [
+  {
+   "stop_feedback": {
+    "error": "No actuator interface exists in this adapter",
+    "physical_effect": false,
+    "state": null,
+    "status": "NO_PHYSICAL_OUTPUT"
+   }
+  }
+ ],
+ "expected": "PLANNING_COMPLETED_EXECUTION_PENDING_AUTHORIZATION_WITH_UNASSIGNED",
+ "geometry": {
+  "calibration": "DECLARED_VIRTUAL",
+  "chain": [
+   "synthetic_orchard_local",
+   "drone_02/base_link",
+   "cam_down_fixture_optical"
+  ],
+  "depth_source": "GROUND_PLANE_ASSUMPTION",
+  "extrinsics_source": "DECLARED_VIRTUAL",
+  "ground_plane_z": 0.0,
+  "pose_source": "TEST_FIXTURE",
+  "sigma_detection_m": 0.0667
+ },
+ "geometry_refusal": [],
+ "observation_gate": {
+  "reasons": [],
+  "status": "ACCEPTED",
+  "target": {
+   "map_frame": "synthetic_orchard_local",
+   "matched_poi": "POI_3",
+   "object_class": "red_card",
+   "point_from": "BACK_PROJECTED_GROUND_PLANE_ASSUMPTION",
+   "sigma_m": 0.12,
+   "target_id": "red_card_1",
+   "x_m": 8.0,
+   "y_m": 4.0,
+   "z_m": 0.0
+  }
+ },
+ "physical_effect": false,
+ "provenance": {
+  "agents": "DETERMINISTIC_AGENT (scripted test doubles)",
+  "camera": "DECLARED_VIRTUAL",
+  "events": "TEST_FIXTURE",
+  "image": "SYNTHETIC_TEST",
+  "simulation": "OFFLINE_SIMULATION (no SITL, no sensor)"
+ },
+ "request_problems": [
+  "NO_NAVIGATION_PLAN: speed and timeout were not set by a human"
+ ],
+ "scenario": "unassigned_objective",
+ "schema": "tfg.multiagent.precision-demo/1",
+ "status_ladder": {
+  "detection_obtained": true,
+  "execution_authorized": false,
+  "mission_physically_completed": false,
+  "movement_executed": false,
+  "planning_completed": true,
+  "proposal_validated": true,
+  "target_spatially_validated": true
+ },
+ "supervisor": {
+  "final": "PARTIAL_PENDING_AUTHORIZATION",
+  "phase_a": "PARTIAL_PENDING_AUTHORIZATION",
+  "safety_policy": "safety/3"
+ },
+ "unassigned": [
+  {
+   "objective_id": "A3",
+   "reasons": [
+    "drone_01: SENSOR_MISSING: drone_01 has no thermal sensor",
+    "drone_02: SENSOR_MISSING: drone_02 has no thermal sensor"
+   ]
+  }
+ ],
+ "what": "an extra thermal objective no drone can take"
+}

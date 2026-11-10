@@ -1,0 +1,346 @@
+{
+  "correlation_with_native": {
+    "auxiliary_native_only": {
+      "by_task": {
+        "title_generation": {
+          "api_calls": 1,
+          "cache_read_tokens": 224,
+          "cache_write_tokens": 0,
+          "estimated_cost_usd": 0,
+          "input_tokens": 115,
+          "output_tokens": 14,
+          "reasoning_tokens": 0
+        }
+      },
+      "captured_by_plugin": false,
+      "reason": "Hermes emits pre/post_auxiliary_call for auxiliary tasks, not post_api_request; the plugin registers pre/post_api_request, api_request_error and post_tool_call only"
+    },
+    "fields": {},
+    "native_main_api_calls": 3,
+    "not_inferred": [
+      "http_request_count",
+      "internal_retries",
+      "billed_cost"
+    ],
+    "plugin_llm_calls": 3,
+    "plugin_llm_errors": 0,
+    "scope": "main_turn_only",
+    "verdict": "not_compared_more_than_one_call_or_errors"
+  },
+  "limits": [
+    "covers Hermes' main turn only; auxiliary title generation is not captured",
+    "token counters are Hermes-normalized; zeros may be unconfirmed",
+    "first_chunk_offset_s is not a verified TTFT",
+    "billed cost unknown; no cost is computed",
+    "one capture is not a representative sample"
+  ],
+  "mcp_tool_trial": {
+    "api_requests_with_offer_record": 3,
+    "executed": "OTHER_OR_UNREADABLE_TOOL_EXECUTED",
+    "final_response": "EQUALS_EXPECTED_STATUS",
+    "limits": [
+      "offered = tool names in each request body (pre_api_request), not a provider-side check",
+      "requested = tool_calls in the model's response (post_api_request)",
+      "executed = Hermes dispatched the call and emitted post_tool_call; status 'ok' means Hermes detected no error in the result, the project result itself is not captured",
+      "final response = model text; containing NOT_FOUND is consistent with, not proof of, the tool result",
+      "one trial is not a reliability or performance measurement"
+    ],
+    "llm_calls": 3,
+    "llm_errors": 0,
+    "offered": "OTHER_OR_UNREADABLE_TOOLS_OFFERED",
+    "requested": "OTHER_OR_UNREADABLE_TOOL_REQUESTED",
+    "requested_tool_names": [
+      null,
+      null
+    ],
+    "tool_calls": [
+      {
+        "duration_ms_measured": 28,
+        "error_type": null,
+        "status": "ok",
+        "tool_name": "tool_describe"
+      },
+      {
+        "duration_ms_measured": 17,
+        "error_type": null,
+        "status": "ok",
+        "tool_name": "mcp__tfg_mission_control__get_mission_state"
+      }
+    ],
+    "verdict": "ISOLATION_NOT_CONFIRMED"
+  },
+  "provenance_check": {
+    "files": [
+      {
+        "file": "hermes-events-2026-10-22.jsonl",
+        "problems": [],
+        "records": 1
+      }
+    ],
+    "ok": true
+  },
+  "summary": {
+    "comparative": {
+      "data_kinds": {
+        "captured_hermes_metadata": 5
+      },
+      "groups": [
+        {
+          "case_id": "mcp-get-mission-state",
+          "cost": {
+            "computed": false,
+            "reason": "no declared tariffs"
+          },
+          "experiment": "real-hermes-20261022",
+          "failures": {
+            "calls_sharing_api_request_with_an_error": 0,
+            "error_types": {},
+            "llm_error_count": 0,
+            "status_codes": {}
+          },
+          "first_chunk_offset_s": {
+            "caveat": "equals time-to-first-chunk only when the call had no retry",
+            "stats": {
+              "max": 6.285908937454224,
+              "mean": 4.573296149571736,
+              "median": 3.744243621826172,
+              "min": 3.6897358894348145,
+              "n": 3,
+              "sum": 13.71988844871521
+            }
+          },
+          "latency_s": {
+            "basis": "hermes_hook_wall_clock",
+            "excluded": {},
+            "scope": "api_call_from_first_attempt (includes retries)",
+            "stats": {
+              "max": 6.588220834732056,
+              "mean": 5.226990620295207,
+              "median": 5.27158784866333,
+              "min": 3.8211631774902344,
+              "n": 3,
+              "sum": 15.68097186088562
+            }
+          },
+          "model": "nous/poolside/laguna-s-2.1:free",
+          "sample_size": {
+            "calls_with_measured_latency": 3,
+            "calls_with_usage": 3,
+            "calls_without_measured_latency": 0,
+            "calls_without_usage": 0,
+            "llm_calls": 3,
+            "llm_errors": 0
+          },
+          "tokens": {
+            "derived_sums_not_additive_with_counters": {
+              "prompt_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "derived_sum_computed_by_hermes",
+                "nonzero_values": {
+                  "max": 3260,
+                  "mean": 2956.6666666666665,
+                  "median": 3003,
+                  "min": 2607,
+                  "n": 3,
+                  "sum": 8870
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 3260,
+                  "mean": 2956.6666666666665,
+                  "median": 3003,
+                  "min": 2607,
+                  "n": 3,
+                  "sum": 8870
+                },
+                "status_counts": {
+                  "derived_nonzero": 3
+                }
+              },
+              "total_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "derived_sum_computed_by_hermes",
+                "nonzero_values": {
+                  "max": 3263,
+                  "mean": 2999.0,
+                  "median": 3093,
+                  "min": 2641,
+                  "n": 3,
+                  "sum": 8997
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 3263,
+                  "mean": 2999.0,
+                  "median": 3093,
+                  "min": 2641,
+                  "n": 3,
+                  "sum": 8997
+                },
+                "status_counts": {
+                  "derived_nonzero": 3
+                }
+              }
+            },
+            "normalized_counters": {
+              "cache_read_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 672,
+                  "mean": 618.6666666666666,
+                  "median": 672,
+                  "min": 512,
+                  "n": 3,
+                  "sum": 1856
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 672,
+                  "mean": 618.6666666666666,
+                  "median": 672,
+                  "min": 512,
+                  "n": 3,
+                  "sum": 1856
+                },
+                "status_counts": {
+                  "nonzero_normalized": 3
+                }
+              },
+              "cache_write_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": null,
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 0,
+                  "mean": 0.0,
+                  "median": 0,
+                  "min": 0,
+                  "n": 3,
+                  "sum": 0
+                },
+                "status_counts": {
+                  "zero_unconfirmed": 3
+                }
+              },
+              "input_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 2588,
+                  "mean": 2338.0,
+                  "median": 2331,
+                  "min": 2095,
+                  "n": 3,
+                  "sum": 7014
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 2588,
+                  "mean": 2338.0,
+                  "median": 2331,
+                  "min": 2095,
+                  "n": 3,
+                  "sum": 7014
+                },
+                "status_counts": {
+                  "nonzero_normalized": 3
+                }
+              },
+              "output_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": {
+                  "max": 90,
+                  "mean": 42.333333333333336,
+                  "median": 34,
+                  "min": 3,
+                  "n": 3,
+                  "sum": 127
+                },
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 90,
+                  "mean": 42.333333333333336,
+                  "median": 34,
+                  "min": 3,
+                  "n": 3,
+                  "sum": 127
+                },
+                "status_counts": {
+                  "nonzero_normalized": 3
+                }
+              },
+              "reasoning_tokens": {
+                "absent_or_redacted": 0,
+                "kind": "hermes_normalized_provider_counter",
+                "nonzero_values": null,
+                "received_values_including_unconfirmed_zeros": {
+                  "max": 0,
+                  "mean": 0.0,
+                  "median": 0,
+                  "min": 0,
+                  "n": 3,
+                  "sum": 0
+                },
+                "status_counts": {
+                  "zero_unconfirmed": 3
+                }
+              }
+            },
+            "semantics": "Hermes-normalised summaries, not raw provider usage"
+          }
+        }
+      ],
+      "tools": [
+        {
+          "case_id": "mcp-get-mission-state",
+          "duration_source_counts": {
+            "hermes_reported_ms": 2
+          },
+          "experiment": "real-hermes-20261022",
+          "measured_duration_ms": {
+            "max": 28,
+            "mean": 22.5,
+            "median": 22.5,
+            "min": 17,
+            "n": 2,
+            "sum": 45
+          },
+          "note": "only duration_source=hermes_reported_ms counts as measured; 0 and timeout values are not",
+          "status_counts": {
+            "ok": 2
+          },
+          "tool_calls": 2
+        }
+      ]
+    },
+    "comparative_kinds": [
+      "captured_hermes_metadata"
+    ],
+    "events_read": 5,
+    "excluded_from_comparison": {},
+    "summary_version": "1"
+  },
+  "tool_offers": {
+    "offered_tool_names": [
+      [
+        "tool_search",
+        "tool_describe",
+        "tool_call"
+      ],
+      [
+        "tool_search",
+        "tool_describe",
+        "tool_call"
+      ],
+      [
+        "tool_search",
+        "tool_describe",
+        "tool_call"
+      ]
+    ],
+    "records": 3,
+    "tool_count": [
+      3,
+      3,
+      3
+    ]
+  },
+  "utility_version": "1"
+}

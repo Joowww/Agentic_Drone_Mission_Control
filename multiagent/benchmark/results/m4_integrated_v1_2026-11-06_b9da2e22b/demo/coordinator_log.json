@@ -1,0 +1,118 @@
+[
+ {
+  "event": {
+   "at": "2026-11-06T17:03:50.906155+00:00",
+   "phase": "INTERPRETED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "INTERPRETED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T17:03:50.906155+00:00",
+   "phase": "AERIAL_PLANNED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AERIAL_PLANNED",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T17:03:50.906155+00:00",
+   "phase": "VALIDATED",
+   "source": "TEST_FIXTURE",
+   "type": "MISSION_PHASE"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T17:03:51.406155+00:00",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "HEARTBEAT"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": null,
+    "state": "CONDITIONAL_AWAITING_OBSERVATION",
+    "target": null,
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T17:03:52.906155+00:00",
+   "event_id": "obs-event-1",
+   "observation_id": "red_target-obs-1",
+   "source": "TEST_FIXTURE",
+   "type": "OBSERVATION"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "red_target-obs-1",
+    "state": "BLOCKED_NO_DRONE_TASK_AT_TARGET",
+    "target": "POI_3",
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "APPLIED",
+  "reason": null
+ },
+ {
+  "event": {
+   "at": "2026-11-06T17:03:53.906155+00:00",
+   "point": "POI_3",
+   "source": "TEST_FIXTURE",
+   "task_id": "AIR_drone_02",
+   "type": "AERIAL_POINT_REACHED"
+  },
+  "ground": {
+   "G1": {
+    "observation_id": "red_target-obs-1",
+    "state": "BLOCKED_NO_DRONE_TASK_AT_TARGET",
+    "target": "POI_3",
+    "waits_for_task": null
+   }
+  },
+  "mission": "AWAITING_DETECTION",
+  "outcome": "REFUSED",
+  "reason": "unknown aerial task or a point outside its plan"
+ }
+]

@@ -1,0 +1,273 @@
+{
+  "turn_reasons": [],
+  "final_answer": "Borrador guardado con ID 76e4a7ee-3998-4584-8bdc-6bf54fb6a2a9 (revisión 1, estado INCOMPLETE).\n\nLo que ya está guardado:\n- Nombre: Parcela Loma Repetición\n- Modo de geometría: rectángulo\n- Dimensiones: 40 m (largo) x 20 m (ancho)\n\nDatos y decisiones pendientes para que los completes:\n\nGEOMETRÍA (definen el rectángulo en el terreno):\n1. Posición del punto de lanzamiento — latitud y longitud (home_latitude / home_longitude)\n2. Altura de lanzamiento en metros (home_altitude_m)\n3. Referencia de altura: relative_to_home o absoluta\n4. Altura de vuelo en metros (altitude_m)\n5. ¿Volver al punto de lanzamiento al final? (return_to_home)\n6. ¿Cerrar el recorrido? (es decir, regresar al primer punto tras recorrer el rectángulo) (close_route)\n7. Orientación del lado largo: grados desde el norte (0° = norte, 90° = este). ¿Qué dirección tiene el lado de 40 m?\n8. Sentido de recorrido: clockwise (horario) o counterclockwise (antihorario)\n9. ¿El punto de lanzamiento está en una esquina del rectángulo o en el centro? (home_position: corner/center)\n\nAERONAVE Y PILOTO:\n10. Tipo de vehículo: multirotor, fixed_wing, vtol, ugv\n11. Autopiloto: PX4, ArduPilot o unknown\n12. Velocidad de crucero en km/h\n\nOBJETIVO:\n13. Tipo de objetivo: transit, inspección, survey, agricultura de precisión, custom\n14. Objetivo concreto (qué se va a inspeccionar/encender)\n15. Descripción del objetivo\n\nOPERACIONAL (para validación de batería, viento, seguridad):\n16. Porcentaje de batería actual\n17. Consumo de batería %/minuto\n18. Velocidad del viento actual + dirección (o grados)\n19. Batería mínima de reserva (%)\n20. Velocidad máxima de viento segura (km/h)\n21. Altitud máxima autorizada (m)\n\nPuedes proveer todos los datos o ir por partes. No finalizo el borrador hasta que me los des todos, y no iniciaré simulaciones ni pediré ejecución de vuelo.",
+  "calls": [
+    {
+      "tool_name": "mcp__tfg_mission_control__update_mission_draft",
+      "args": {
+        "updates": {
+          "name": "Parcela Loma Repetición",
+          "geometry_intent": {
+            "mode": "rectangle",
+            "length_m": 40,
+            "width_m": 20
+          }
+        }
+      },
+      "status": "ok",
+      "result": {
+        "schema_version": 2,
+        "draft_id": "76e4a7ee-3998-4584-8bdc-6bf54fb6a2a9",
+        "draft_revision": 1,
+        "draft_sha256": "5d9b65201f929a710e923f430d16681446ff1be3dbe3d10ed4323be7755bcb7e",
+        "route_provenance": null,
+        "geometry_revision": 1,
+        "geometry_intent_sha256": "8c666b72ed23ed528cd3c3dd1c38fced2ab14efde6f7157fb54a2e142c350cf6",
+        "field_provenance": {
+          "/geometry_intent/mode": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "c871a1162412818dd345a86dbde92108d2ab020221959efd960d37c8c776837e"
+          },
+          "/geometry_intent/length_m": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "e15274dcfe2d0cb541e8aa23fef7aaaa116bfcbc937d35ffda9d4506c8d7e785"
+          },
+          "/geometry_intent/width_m": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "585348dbd28810f9a34f57be46f000c5f9effab894d074713d93fe7ccfeb3b76"
+          },
+          "/name": {
+            "source": "UNKNOWN",
+            "note": "Agent supplied value without operator attribution",
+            "authenticated": false,
+            "value_sha256": "c38574f2f30701097224211a2fddfdbdfb48384c555764a788c30704feb0bc56"
+          }
+        },
+        "provenance_status": "UNVERIFIED_AGENT_INPUT",
+        "updated_at": "2026-10-31T01:39:09.787332+00:00",
+        "status": "INCOMPLETE",
+        "draft": {
+          "geometry_intent": {
+            "mode": "rectangle",
+            "home_latitude": null,
+            "home_longitude": null,
+            "home_altitude_m": null,
+            "altitude_reference": null,
+            "altitude_m": null,
+            "return_to_home": null,
+            "close_route": null,
+            "offsets": null,
+            "length_m": 40.0,
+            "width_m": 20.0,
+            "orientation_deg": null,
+            "traversal": null,
+            "home_position": null
+          },
+          "mission_id": null,
+          "name": "Parcela Loma Repetición",
+          "vehicle_id": null,
+          "vehicle_type": null,
+          "autopilot": null,
+          "cruise_speed_kmh": null,
+          "battery_percent": null,
+          "battery_consumption_percent_per_minute": null,
+          "objective_type": null,
+          "objective_target": null,
+          "objective_description": null,
+          "home_latitude": null,
+          "home_longitude": null,
+          "home_altitude_m": null,
+          "waypoints": [],
+          "return_to_home": null,
+          "wind_speed_kmh": null,
+          "wind_direction_from": null,
+          "wind_direction_from_deg": null,
+          "minimum_battery_reserve_percent": null,
+          "maximum_wind_speed_kmh": null,
+          "maximum_altitude_m": null,
+          "low_battery_action": null,
+          "unsafe_wind_action": null,
+          "communication_loss_action": null
+        },
+        "geometry": {
+          "status": "INCOMPLETE",
+          "missing_fields": [
+            "home_latitude",
+            "home_longitude",
+            "home_altitude_m",
+            "altitude_reference",
+            "altitude_m",
+            "return_to_home",
+            "close_route",
+            "orientation_deg",
+            "traversal",
+            "home_position"
+          ]
+        },
+        "geometry_intent": {
+          "mode": "rectangle",
+          "home_latitude": null,
+          "home_longitude": null,
+          "home_altitude_m": null,
+          "altitude_reference": null,
+          "altitude_m": null,
+          "return_to_home": null,
+          "close_route": null,
+          "offsets": null,
+          "length_m": 40.0,
+          "width_m": 20.0,
+          "orientation_deg": null,
+          "traversal": null,
+          "home_position": null
+        },
+        "mission_missing_fields": [
+          "vehicle type",
+          "autopilot",
+          "vehicle cruise speed",
+          "current battery percentage",
+          "battery consumption percentage per minute",
+          "objective type",
+          "objective target",
+          "home latitude",
+          "home longitude",
+          "home altitude",
+          "wind speed",
+          "minimum battery reserve",
+          "maximum safe wind speed",
+          "maximum altitude",
+          "wind direction",
+          "at least one waypoint"
+        ],
+        "geometry_missing_fields": [
+          "home_latitude",
+          "home_longitude",
+          "home_altitude_m",
+          "altitude_reference",
+          "altitude_m",
+          "return_to_home",
+          "close_route",
+          "orientation_deg",
+          "traversal",
+          "home_position"
+        ],
+        "pending": {
+          "route_generation": [
+            "home_latitude",
+            "home_longitude",
+            "home_altitude_m",
+            "altitude_reference",
+            "altitude_m",
+            "return_to_home",
+            "close_route",
+            "orientation_deg",
+            "traversal",
+            "home_position"
+          ],
+          "mission_finalization": [
+            "vehicle type",
+            "autopilot",
+            "vehicle cruise speed",
+            "current battery percentage",
+            "battery consumption percentage per minute",
+            "objective type",
+            "objective target",
+            "home latitude",
+            "home longitude",
+            "home altitude",
+            "wind speed",
+            "minimum battery reserve",
+            "maximum safe wind speed",
+            "maximum altitude",
+            "wind direction",
+            "at least one waypoint",
+            "geometry.home_latitude",
+            "geometry.home_longitude",
+            "geometry.home_altitude_m",
+            "geometry.altitude_reference",
+            "geometry.altitude_m",
+            "geometry.return_to_home",
+            "geometry.close_route",
+            "geometry.orientation_deg",
+            "geometry.traversal",
+            "geometry.home_position"
+          ]
+        },
+        "missing_fields": [
+          "vehicle type",
+          "autopilot",
+          "vehicle cruise speed",
+          "current battery percentage",
+          "battery consumption percentage per minute",
+          "objective type",
+          "objective target",
+          "home latitude",
+          "home longitude",
+          "home altitude",
+          "wind speed",
+          "minimum battery reserve",
+          "maximum safe wind speed",
+          "maximum altitude",
+          "wind direction",
+          "at least one waypoint",
+          "geometry.home_latitude",
+          "geometry.home_longitude",
+          "geometry.home_altitude_m",
+          "geometry.altitude_reference",
+          "geometry.altitude_m",
+          "geometry.return_to_home",
+          "geometry.close_route",
+          "geometry.orientation_deg",
+          "geometry.traversal",
+          "geometry.home_position"
+        ],
+        "errors": [],
+        "stored_provenance_status": "UNVERIFIED_AGENT_INPUT",
+        "provenance_notice": "MCP input comes from the agent. Operator attribution is an unverified agent declaration, not proof of dialogue fidelity; no authenticated conversation source is stored.",
+        "compatibility_defaults": [
+          {
+            "path": "/mission_id",
+            "value": "parcela_loma_repetici_n_001",
+            "source": "COMPATIBILITY_DEFAULT",
+            "applies_on_finalization": true
+          },
+          {
+            "path": "/vehicle/vehicle_id",
+            "value": "drone_01",
+            "source": "COMPATIBILITY_DEFAULT",
+            "applies_on_finalization": true
+          },
+          {
+            "path": "/route/return_to_home",
+            "value": true,
+            "source": "COMPATIBILITY_DEFAULT",
+            "applies_on_finalization": false
+          },
+          {
+            "path": "/failsafe/low_battery_action",
+            "value": "RETURN_TO_HOME",
+            "source": "COMPATIBILITY_DEFAULT",
+            "applies_on_finalization": true
+          },
+          {
+            "path": "/failsafe/unsafe_wind_action",
+            "value": "RETURN_TO_HOME",
+            "source": "COMPATIBILITY_DEFAULT",
+            "applies_on_finalization": true
+          },
+          {
+            "path": "/failsafe/communication_loss_action",
+            "value": "RETURN_TO_HOME",
+            "source": "COMPATIBILITY_DEFAULT",
+            "applies_on_finalization": true
+          }
+        ]
+      }
+    }
+  ]
+}

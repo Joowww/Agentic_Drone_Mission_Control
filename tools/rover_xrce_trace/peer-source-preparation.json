@@ -1,0 +1,67 @@
+{
+  "schema": "tfg.xrce-trace-build-input/1",
+  "native_sources": {
+    "include/uxr/agent/message/InputMessage.hpp": "160adf40b4a054142829e3ad35596b3410348b68b5adc64d4e5a6520a1a95ffe",
+    "src/cpp/processor/Processor.cpp": "22cd40746b55a00c1d25473f73c48e55ff6358688c84b792dbe5ec19b652f6d9",
+    "include/uxr/agent/transport/endpoint/IPv4EndPoint.hpp": "8ac88670b9e7d2a03f8492da6a726c0685d914726e740f1921d64cf1fb5d57c2",
+    "include/uxr/agent/client/ProxyClient.hpp": "e6aadf4a082514ba111802c2c9ba1491fc364c5d723eb94df0c80b0ad210fd9b",
+    "CMakeLists.txt": "c3378bbc6a65bc6170564565b4fa3248f32a779683aca691528985b62fe01a0d",
+    "src/cpp/client/ProxyClient.cpp": "b4cdcc4ff92f263a399bc93ffe9f7b2df8301a81cc43ef5a97624545c19b904c",
+    "src/cpp/middleware/fastdds/FastDDSMiddleware.cpp": "213a0760077df770f565d26fc3975298adafcea8fb8a9bc409321a2b1d6a178f"
+  },
+  "source": "/home/joelm/TFG/ardupilot_ros2_ws/build/micro_ros_agent/agent/src/xrceagent",
+  "destination": "/tmp/tfg-xrce-peer-offline-3z3v4bpo/source",
+  "trace_header_sha256": "99fb2aad792232cc966d698132a63415beaa6ac20795f18253f1d1f52abd7afe",
+  "peer_header_sha256": "02389fb9f78f953f86ff02471a33e2a24be361a10438c42bbeca20946d096451",
+  "modified": {
+    "include/uxr/agent/message/InputMessage.hpp": "a48ac9804f99d7ef35abf452b640da78f7f3c76e2b7888401c4b1d6a8893cd24",
+    "src/cpp/processor/Processor.cpp": "c99ad823685600ca88b1b9b081595bd2f069890699f649885731e9926454c39f",
+    "include/uxr/agent/transport/endpoint/IPv4EndPoint.hpp": "8ac88670b9e7d2a03f8492da6a726c0685d914726e740f1921d64cf1fb5d57c2",
+    "include/uxr/agent/client/ProxyClient.hpp": "afe11724239b7e49d4f70f0b28ead09506d68d73a7192508eeb16ec7a43a557f",
+    "CMakeLists.txt": "57afd5f142c36af1ef44c51c49ba8a716c5a6649298eb2d67a2640351adebdf5",
+    "src/cpp/client/ProxyClient.cpp": "dd7f2021524de16fd285d07bb0db093ad043c428c0d657efbddaaab04256d3b4",
+    "src/cpp/middleware/fastdds/FastDDSMiddleware.cpp": "71e70679b26f3a18ff324fe6bbd4bcfcef118d10e92503352f15e2246ce0a390"
+  },
+  "prepared_offline": true,
+  "agent_compiled": false,
+  "agent_linked": false,
+  "agent_executed": false,
+  "installed_agent_changed": false,
+  "limitation": "Copied source variant only. Host synthetic peer/endpoint tests do not compile the complete Processor or agent. Full native/wrapper build+link and explicit new pair/manifest hash review required before another trial. Existing binary pair lacks peer metadata and remains unchanged.",
+  "recipe_sha256": "a43b4ead080359ba8f16f67ff4ac01f67e12ea59d5a48346703fcfb824cc7787",
+  "peer_contract_source_refs": [
+    {
+      "path": "/home/joelm/TFG/ardupilot_ros2_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/SessionManager.hpp",
+      "sha256": "d16a3a6168497e09aa87f062a219b186e6ec07db59c2070c86d18f488add90f9"
+    },
+    {
+      "path": "/home/joelm/TFG/ardupilot_ros2_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/Root.cpp",
+      "sha256": "e2e84a1b461573c6d5f4ebb0ce48c197b9ca3656b5fd13470a62bcd0120efad2"
+    },
+    {
+      "path": "/home/joelm/TFG/ardupilot_ros2_ws/build/micro_ros_agent/agent/src/xrceagent/src/cpp/processor/Processor.cpp",
+      "sha256": "22cd40746b55a00c1d25473f73c48e55ff6358688c84b792dbe5ec19b652f6d9"
+    },
+    {
+      "path": "/home/joelm/TFG/ardupilot_ros2_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/transport/endpoint/IPv4EndPoint.hpp",
+      "sha256": "8ac88670b9e7d2a03f8492da6a726c0685d914726e740f1921d64cf1fb5d57c2"
+    },
+    {
+      "path": "/home/joelm/TFG/ardupilot_ros2_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/client/session/Session.hpp",
+      "sha256": "98629a5e9b62a7fd4144dadd1b37b27f72f684852004c9429c8946bf3595db1f"
+    },
+    {
+      "path": "/home/joelm/TFG/ardupilot_ros2_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/client/session/stream/InputStream.hpp",
+      "sha256": "39f164e4a156461759d7bf78ccddb1127fe9a153c262837043fd1b6f3a6524b8"
+    },
+    {
+      "path": "/home/joelm/TFG/ardupilot_ros2_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/message/Packet.hpp",
+      "sha256": "50414d8393e1f8b9daca2da748e4bf77ece535cf9a495aed3105912ac8516d10"
+    },
+    {
+      "path": "/home/joelm/TFG/ardupilot_ros2_ws/build/micro_ros_agent/agent/src/xrceagent/include/uxr/agent/message/InputMessage.hpp",
+      "sha256": "160adf40b4a054142829e3ad35596b3410348b68b5adc64d4e5a6520a1a95ffe"
+    }
+  ],
+  "abi_changed": true
+}

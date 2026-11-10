@@ -1,0 +1,114 @@
+........................................................................ [  3%]
+........................................................................ [  7%]
+..................F..................................................... [ 11%]
+........................................................................ [ 15%]
+........................................................................ [ 19%]
+........................................................................ [ 23%]
+.......................................ss.....ss........................ [ 26%]
+........................x....xx......................................... [ 30%]
+........................................................................ [ 34%]
+........................................................................ [ 38%]
+........................................................................ [ 42%]
+........................................................................ [ 46%]
+........................................................................ [ 50%]
+........................................................................ [ 53%]
+......................................FFF...F......F.................... [ 57%]
+........................................................................ [ 61%]
+........................................................................ [ 65%]
+........................................................................ [ 69%]
+........................................................................ [ 73%]
+........................................................................ [ 76%]
+........................................................................ [ 80%]
+........................................................................ [ 84%]
+........................................................................ [ 88%]
+........................................................................ [ 92%]
+........................................................................ [ 96%]
+........................................................................ [100%]
+=================================== FAILURES ===================================
+_____ test_derived_closure_reader_pins_are_consumed_without_binary_changes _____
+
+tmp_path = PosixPath('/tmp/pytest-of-joelm/pytest-72/test_derived_closure_reader_pi0')
+
+    def test_derived_closure_reader_pins_are_consumed_without_binary_changes(tmp_path):
+        import hashlib
+        reader=json.loads((PREP/'reader.prepared.json').read_text())
+        before=copy.deepcopy(reader)
+        for name in ('tools/rover_xrce_trace/session_precheck.py','tools/rover_xrce_trace/historical_disposition.py'):
+            reader['source_hashes'][name]=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
+        path=tmp_path/'reader.json';path.write_text(json.dumps(reader))
+        result=selection_dry_run(ROOT,PREP/'agent.prepared.json',path,socket_helper_review=PREP/'socket-helper-review.json')
+>       assert result['selection_files_valid'] and not result['executed']
+E       assert (False)
+
+tests/test_rover_clock_path_preparation.py:36: AssertionError
+_ test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_050_authorized_capture_2026_10_30/e7fc9f9b-76d9-42a5-8276-e852a17451ad/sdk-evidence/18/journal.jsonl] _
+
+journal = 'simulation/ros2_gazebo/results/rover_050_authorized_capture_2026_10_30/e7fc9f9b-76d9-42a5-8276-e852a17451ad/sdk-evidence/18/journal.jsonl'
+
+    @pytest.mark.parametrize("journal", sorted(str(p.relative_to(ROOT)) for p in _pre_3_journals()))
+    def test_historical_captures_remain_readable_and_carry_no_odometry_fields(journal):
+        report = analyze_bytes((ROOT / journal).read_bytes())
+>       assert report["start"]["schema"] in ("tfg.rover.passive-capture/1", "tfg.rover.passive-capture/2")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/test_rover_passive_odometry_fields.py:205: TypeError
+_ test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_authorized_capture_2026_10_28/f15f176e-0710-42cc-9dd9-c0c5fa8448e1/sdk-evidence/18/journal.jsonl] _
+
+journal = 'simulation/ros2_gazebo/results/rover_authorized_capture_2026_10_28/f15f176e-0710-42cc-9dd9-c0c5fa8448e1/sdk-evidence/18/journal.jsonl'
+
+    @pytest.mark.parametrize("journal", sorted(str(p.relative_to(ROOT)) for p in _pre_3_journals()))
+    def test_historical_captures_remain_readable_and_carry_no_odometry_fields(journal):
+        report = analyze_bytes((ROOT / journal).read_bytes())
+>       assert report["start"]["schema"] in ("tfg.rover.passive-capture/1", "tfg.rover.passive-capture/2")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/test_rover_passive_odometry_fields.py:205: TypeError
+_ test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_identity_trial_2026_10_26/1cb9d86a-659b-4aa8-b7b1-214d2202210f/reader/journal.jsonl] _
+
+journal = 'simulation/ros2_gazebo/results/rover_identity_trial_2026_10_26/1cb9d86a-659b-4aa8-b7b1-214d2202210f/reader/journal.jsonl'
+
+    @pytest.mark.parametrize("journal", sorted(str(p.relative_to(ROOT)) for p in _pre_3_journals()))
+    def test_historical_captures_remain_readable_and_carry_no_odometry_fields(journal):
+        report = analyze_bytes((ROOT / journal).read_bytes())
+>       assert report["start"]["schema"] in ("tfg.rover.passive-capture/1", "tfg.rover.passive-capture/2")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/test_rover_passive_odometry_fields.py:205: TypeError
+_ test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_terminal_authorized_capture_2026_10_30/61282dad-fbbd-4256-bc8a-79739c182dba/sdk-evidence/18/journal.jsonl] _
+
+journal = 'simulation/ros2_gazebo/results/rover_terminal_authorized_capture_2026_10_30/61282dad-fbbd-4256-bc8a-79739c182dba/sdk-evidence/18/journal.jsonl'
+
+    @pytest.mark.parametrize("journal", sorted(str(p.relative_to(ROOT)) for p in _pre_3_journals()))
+    def test_historical_captures_remain_readable_and_carry_no_odometry_fields(journal):
+        report = analyze_bytes((ROOT / journal).read_bytes())
+>       assert report["start"]["schema"] in ("tfg.rover.passive-capture/1", "tfg.rover.passive-capture/2")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/test_rover_passive_odometry_fields.py:205: TypeError
+_______ test_historical_captures_have_no_fields_and_are_always_selected ________
+
+    def test_historical_captures_have_no_fields_and_are_always_selected():
+        paths = _pre_3_journals()
+>       assert len(paths) == 5  # the five pre-/3 captures, unchanged
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert 9 == 5
+E        +  where 9 = len([PosixPath('/home/joelm/TFG/Agentic_Drone_Mission_Control/simulation/ros2_gazebo/results/rover_050_authorized_capture_...2_gazebo/results/rover_passive_regression_2026_10_22/56c886cf-5df9-4ff7-9815-656d8c06c466/capture/journal.jsonl'), ...])
+
+tests/test_rover_passive_odometry_fields.py:249: AssertionError
+=========================== short test summary info ============================
+SKIPPED [4] tests/test_rover_failed_operational_close.py:91: Failed-start protected-stop invariant; successful layout covered separately
+XFAIL tests/test_rover_first_navigation.py::test_native_exchange_alarm_between_loop_and_cancel_still_cancels_the_future - Known race (Codex review): an alarm-raised TimeoutError between the end of the wait loop and future.cancel() skips the local cancellation. Fix proposed in docs/rover-first-navigation-sitl.md; this test turns XPASS when it is applied.
+XFAIL tests/test_rover_first_navigation_timing.py::test_worker_is_given_less_time_than_the_host_deadline - Known margin defect (Codex review): PipeRos2Session gives the worker the same timeout_s as the host alarm; see documentation/codex_review_rover_2026_11_04.md.
+XFAIL tests/test_rover_first_navigation_timing.py::test_a_status_gap_mid_navigation_must_not_cost_the_host_its_hold - Known margin defect (Codex review): a status gap longer than the call budget lets the host alarm fire before the worker reply, the session breaks and no HOLD is sent.
+FAILED tests/test_rover_clock_path_preparation.py::test_derived_closure_reader_pins_are_consumed_without_binary_changes
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_050_authorized_capture_2026_10_30/e7fc9f9b-76d9-42a5-8276-e852a17451ad/sdk-evidence/18/journal.jsonl]
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_authorized_capture_2026_10_28/f15f176e-0710-42cc-9dd9-c0c5fa8448e1/sdk-evidence/18/journal.jsonl]
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_identity_trial_2026_10_26/1cb9d86a-659b-4aa8-b7b1-214d2202210f/reader/journal.jsonl]
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_remain_readable_and_carry_no_odometry_fields[simulation/ros2_gazebo/results/rover_terminal_authorized_capture_2026_10_30/61282dad-fbbd-4256-bc8a-79739c182dba/sdk-evidence/18/journal.jsonl]
+FAILED tests/test_rover_passive_odometry_fields.py::test_historical_captures_have_no_fields_and_are_always_selected
+6 failed, 1859 passed, 4 skipped, 3 xfailed in 446.52s (0:07:26)
+rc=1

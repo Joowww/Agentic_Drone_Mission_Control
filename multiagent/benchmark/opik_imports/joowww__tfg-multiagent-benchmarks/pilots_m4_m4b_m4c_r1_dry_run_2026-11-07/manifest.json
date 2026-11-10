@@ -1,0 +1,50 @@
+{
+ "destination": {
+  "project": "tfg-multiagent-benchmarks",
+  "workspace": "joowww"
+ },
+ "note": "M4 and M4b are separate traces with their own pilot tag; M4b is never merged into M4. Sending needs a new explicit authorization; ids embed the original run times: id_window_findings is measured at preparation time, and after Opik's 24 h ingestion window they would need re-stamping (as OP-1b).",
+ "pilots": {
+  "m4": {
+   "already_in_ledger": [
+    null
+   ],
+   "egress_findings": [],
+   "id_window_findings": [],
+   "plan_sha256": "b9dbcb1c0434e539f200026a7831dd657957fcec36861db3f7ad3af77aa6db60",
+   "source": "m4_integrated_v1_2026-11-06_b9da2e22b",
+   "spans": 2,
+   "traces": [
+    "01a1b1d1-107a-76ef-b1ff-6d102d2f3a9a"
+   ]
+  },
+  "m4b": {
+   "already_in_ledger": [
+    null
+   ],
+   "egress_findings": [],
+   "id_window_findings": [],
+   "plan_sha256": "330c33e53791dd4887a0d5749b0d647b938fa39a7e35cb9c538aa1334417fa6d",
+   "source": "m4b_integrated_v1_2026-11-06_07db60a37",
+   "spans": 1,
+   "traces": [
+    "01a1b289-b894-7262-a7cd-29c1fc470052"
+   ]
+  },
+  "m4c_r1": {
+   "already_in_ledger": [
+    null
+   ],
+   "egress_findings": [],
+   "id_window_findings": [],
+   "plan_sha256": "ad33a62b69f133d0c4e5f2e56411cedf35424827a28aedc4b312d10e3bdfa75a",
+   "source": "m4c_r1_integrated_v1_2026-11-07_f1ec396c9",
+   "spans": 4,
+   "traces": [
+    "01a1b31b-f96e-726a-bbed-8acddacd1fd0"
+   ]
+  }
+ },
+ "schema": "tfg.multiagent.opik-pilot-dry-run/1",
+ "status": "DRY_RUN_NOT_SENT_NOT_AUTHORIZED"
+}

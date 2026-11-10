@@ -1,0 +1,1370 @@
+{
+  "schema": "tfg.agri-scenario-distribution/1",
+  "set": "app_image",
+  "base": "git HEAD contents",
+  "entries": [
+    {
+      "path": "agents/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "agents/mission_editor.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4390,
+      "sha256": "6ce60de7e2b1f75495d690856bd670875aaa57b7336f0cc270838da171fc358f"
+    },
+    {
+      "path": "agents/mission_planner.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4724,
+      "sha256": "bef3a23f008b835fcb2051c66af1d7bf79b74a5aefa2db3160f28ca40ee0383c"
+    },
+    {
+      "path": "editing/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "editing/deterministic_update_parser.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 11871,
+      "sha256": "cda35735d4ce8496563e462a1177d619ad383be3563b03223348f91ab8e19bc9"
+    },
+    {
+      "path": "editing/mission_update_guard.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 5248,
+      "sha256": "f3f8cbda921b276ba2c8d628f2f96042ca4373e6ba0e08a38148a6167584654b"
+    },
+    {
+      "path": "editing/mission_update_service.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 7906,
+      "sha256": "6a1801dc992fb6e1b4891d2b99eace407267b21b790b629e648eae7de73d2439"
+    },
+    {
+      "path": "graph/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "graph/agri_scenario_graph.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 13507,
+      "sha256": "051f843c59360855d7832446bb7dec168b12eabb720eacd75cf1e51fb212c5b2"
+    },
+    {
+      "path": "graph/waypoint_mission_graph.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1114,
+      "sha256": "f40d30480d709cbc8363f404e944e1c424f236009b5e5e557a91d57d9fa9244b"
+    },
+    {
+      "path": "graph/waypoint_nodes.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1777,
+      "sha256": "2ceebb4a27d2f20441fd5afc240d91c4b59792fcc51925ec5a105e1d6d10b3ea"
+    },
+    {
+      "path": "graph/waypoint_routes.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 526,
+      "sha256": "d945cc38c719459769ca91650ec66667cf60e004396967d074e21832c4bc9fa1"
+    },
+    {
+      "path": "graph/waypoint_state.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 373,
+      "sha256": "1e17a42e74fd111566be70e11932436e159165991705cee5f4e44193f09bf9d0"
+    },
+    {
+      "path": "inputs/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "inputs/json_loader.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1161,
+      "sha256": "a2550197e1374d3753be1be624cb6ffa3dafe4f9fd54c81b8864ca9a6f0caacf"
+    },
+    {
+      "path": "inputs/json_saver.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 726,
+      "sha256": "2dea61bfcfbf5fe2f0e0119a554309db95cdefeee225a22f79dde3d4be30559b"
+    },
+    {
+      "path": "inputs/qgc_plan_export.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 22307,
+      "sha256": "35d5ec346c796ca1e94f446884b03696ca6ae97f0452e64c1fe67c92e3c3e280"
+    },
+    {
+      "path": "inputs/qgroundcontrol_adapter.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 12773,
+      "sha256": "c956511ed30942ea91237ccfca9c463382cb335f2c15511bf407184180665de7"
+    },
+    {
+      "path": "inputs/qgroundcontrol_exporter.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2093,
+      "sha256": "a714627830f84c87f4113c2e43ec9c38206b9159a2cfb2b9cccf752fb96b2a4f"
+    },
+    {
+      "path": "main.py",
+      "kind": "entry",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 13664,
+      "sha256": "51030b5dba4e13267f0a5db2dc35faf251186a06fe748e2110bd56641a1d2203"
+    },
+    {
+      "path": "models/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "models/fleet.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3648,
+      "sha256": "849b38d37ae1321f12e723cf31f1796d41df5b489edafb97f951d463f223c9eb"
+    },
+    {
+      "path": "models/mission_definition.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3815,
+      "sha256": "1e98b4fabc9e066717fdca4792f5ea90196077e991676a9ae70ad2ef78a0d1a8"
+    },
+    {
+      "path": "models/mission_plan_draft.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2891,
+      "sha256": "efde7b17209124d1911b3822be3b2f4c80825d4d53835f58ec1892450beb1008"
+    },
+    {
+      "path": "models/mission_update.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2147,
+      "sha256": "9b687181f64c8c6aea54fb6bec8ec118d614a69f51b4c3f0c6aabf63861a6b9d"
+    },
+    {
+      "path": "models/qgc_import.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 957,
+      "sha256": "da1b328204d1114d8de5fcf00e7aa20cb9bd0c8f1042e08e0bc712e9fb71bf66"
+    },
+    {
+      "path": "models/scenario_template.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2649,
+      "sha256": "56eeda6aa82b6f789e2d7d0f94309bf1c238e6a7736a8238a6326ed70157c586"
+    },
+    {
+      "path": "models/site.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6287,
+      "sha256": "9de6203ca17e14cc845600168926b0a946c6e0543abb0a1005808857d764f97c"
+    },
+    {
+      "path": "observability/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "observability/capture_summary.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 10613,
+      "sha256": "702413f77c3a3e1fc820cfabc0c7f2ec2e6fd919befd8ef295054147f627a949"
+    },
+    {
+      "path": "observability/hermes_capture/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 272,
+      "sha256": "7b7c046c740e0ea6ce5531534a6bae30934cc31b9e9ba5b95c6704a8e07ac0e3"
+    },
+    {
+      "path": "observability/hermes_capture/capture.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 24609,
+      "sha256": "36f368f62f2530c27060670f66737e5b20dfe172cdf77fd06424d8391b5094c9"
+    },
+    {
+      "path": "observability/hermes_capture_run.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 97390,
+      "sha256": "50e4c5148b3ea577e94e5d9bbbe0252cb0e62eb2958c51413e1a853e63765f40"
+    },
+    {
+      "path": "observability/langsmith_export.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 31781,
+      "sha256": "d1717c9b4dea5cee15ffd464f77f57fb612943112be04fd8495ec794d3d86c90"
+    },
+    {
+      "path": "observability/mission_query_cases.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 14744,
+      "sha256": "84cae2a0f3c01700cb3e1009ab63da96d2284e50bb4f7a15f21f8bf98f263210"
+    },
+    {
+      "path": "observability/mission_report_acceptance.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4468,
+      "sha256": "84323823b23dec901b6dfbb7b692b1bbe8753c7e6f148312e694a7f686d57d7d"
+    },
+    {
+      "path": "observability/opik_export.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 41582,
+      "sha256": "580a74b0cb73572827693dea8cec454f61875b9c259341efbdbfe6417e482a14"
+    },
+    {
+      "path": "planning/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "planning/artifact_store.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2999,
+      "sha256": "df75043817f606ba46ec44d712fae385a1efbe5a9ee328419f2dbac0a208dfcd"
+    },
+    {
+      "path": "planning/deterministic_plan_parser.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3860,
+      "sha256": "e99b3df161300451211615dfc147d1b581c1ffb23d2a1e59b075af27c0401d94"
+    },
+    {
+      "path": "planning/draft_provenance.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6404,
+      "sha256": "d66e2fe8292c8105b1b7b14562c72c8c2739d746e4e3d0a9a918bc3bd06847fb"
+    },
+    {
+      "path": "planning/mission_artifacts.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 5372,
+      "sha256": "801ded05a20ad695392d9ba26f3cd7c05415108e49148e7fda3fb2697c306ec8"
+    },
+    {
+      "path": "planning/mission_plan_service.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 9091,
+      "sha256": "11d8f1f03c3e2b589c568304b3aefe2bb50b3bfd4307a3af7695701373352a5e"
+    },
+    {
+      "path": "planning/mission_revisions.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 10994,
+      "sha256": "6d7dad8ae03da7ab368589e8d9e10466b3c3d8828efc432003e505cf5564a74d"
+    },
+    {
+      "path": "planning/relative_routes.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 9070,
+      "sha256": "d3847791d340a2abc31b49fae3f6bf3eda7012ae55b30b9d5edbf2e403673573"
+    },
+    {
+      "path": "planning/scenario_instance.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 23711,
+      "sha256": "07fc8db10bbc6c73805cf363142b94cb46e1d51d911e4b9a6fad77554a13bf8a"
+    },
+    {
+      "path": "planning/site_geometry.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 9024,
+      "sha256": "c6c062a3cc29b5aa03ef15a4ce21e951211841c7a60eedfc0a2d29bd310066e0"
+    },
+    {
+      "path": "planning/site_validation.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 15848,
+      "sha256": "c80a7214076a14cbca5a87a946da7f8a41f2871e8dc873431573e848d2e9f8b9"
+    },
+    {
+      "path": "planning/verified_preflight.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4900,
+      "sha256": "58790eb2b65a6c28a8e9af58d2219c49222a73dfddd0d6e51c7a9f5460bf0bee"
+    },
+    {
+      "path": "replanning/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "replanning/waypoint_mission_replanner.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3831,
+      "sha256": "08a5acd00838065107bb906bb01eef8837eaca03b99539264de3e01a252d4dfe"
+    },
+    {
+      "path": "reporting/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reporting/agri_experiment_comparison.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 31531,
+      "sha256": "27eead83d5a89fd91807c98747bf21198c437d3c5496ba2b57f4c99317920758"
+    },
+    {
+      "path": "reporting/agri_scenario_summary.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 142063,
+      "sha256": "6958f2331ac792e77156356a9ef93f7a089ff2df850fbab406dbc02f689e85e4"
+    },
+    {
+      "path": "reporting/rover_identity_facts.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 10286,
+      "sha256": "96b6d6637f6ce0feb78f0a356fbe020f2132f466e58c5c7afb1d28a2a7ea8934"
+    },
+    {
+      "path": "reporting/virtual_preflight_analysis.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 8203,
+      "sha256": "1c5fcd4011cf4ba2ccb67eb2ef044831c01c1953693d008ae0335c7e68b75baf"
+    },
+    {
+      "path": "reporting/waypoint_mission_report.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4848,
+      "sha256": "03dc6dfba80d27b7e612c327c815d25f5d02f5e411607775d16d2af55a8cb641"
+    },
+    {
+      "path": "safety/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "safety/altitude_guard.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1356,
+      "sha256": "f453ec283a6c73f9b8f42ad90a5774c1ff826d7a7575e4453f7767efee327752"
+    },
+    {
+      "path": "safety/battery_guard.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2050,
+      "sha256": "92665ca556921a3e8fb629b29c928eccdf2a5ffe2780cc31c158b0695ab9e59e"
+    },
+    {
+      "path": "safety/mission_safety_analysis.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3456,
+      "sha256": "78e606ab2d4dbca0625c2791e75726d49215a0dd301120d5f5d840b52ebb2231"
+    },
+    {
+      "path": "safety/wind_guard.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 977,
+      "sha256": "da573c903c38700bfcc5d937512a9fbcd6af8e734c7e7dbeec0b8e1637da51f3"
+    },
+    {
+      "path": "sessions/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "sessions/structured_mission_session.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 9898,
+      "sha256": "3869a1e6a4f574f952f5350bbc7639b8e8056ea8bc03f001d06daaabd8938dcb"
+    },
+    {
+      "path": "tools/__init__.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tools/agri_ground_coordinator.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 36741,
+      "sha256": "b0f5b8407b77ae0d760c8e0d35b0b31943f2686ead9b8dddf264423be5a323f8"
+    },
+    {
+      "path": "tools/agri_ground_demo.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 11259,
+      "sha256": "a52b89b5f52dbc0fb5e04fc15fe82ec60aee80eae79bdd129a796dd1947007d4"
+    },
+    {
+      "path": "tools/agri_scenario_distribution.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 20684,
+      "sha256": "cb9fc64afb79a9bf2424921d28d500e4224a5629ecf1a8654da62c3f3c2227ef"
+    },
+    {
+      "path": "tools/agri_scenario_flow.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 34058,
+      "sha256": "057f550555d06cbf152903da6081b1257b344d1867d10dfff0eed58d7515217b"
+    },
+    {
+      "path": "tools/execution_diagnostics.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 5501,
+      "sha256": "552782f479afd4fdbee008f0f68cd8a2cf70bd8d35ff80f6675e4538a551d838"
+    },
+    {
+      "path": "tools/flight_dynamics.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3010,
+      "sha256": "7649e201eb6c245ad9735e0136a0613c5fda18e1dbb42d39479df4b0e2758c54"
+    },
+    {
+      "path": "tools/hermes_mission_planning.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 15588,
+      "sha256": "63f47b38a08e67f529ac6da6e49181c20cc1fced2bd7529e74c64e175f378a54"
+    },
+    {
+      "path": "tools/hermes_mission_validation.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 7150,
+      "sha256": "a4720d052aa3885fdcf23ed66e1f34aa3cb45bc7f07bc6d6d0439ba5d2298d26"
+    },
+    {
+      "path": "tools/mission_energy_analysis.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1478,
+      "sha256": "bbacadda93e04ecc95b3d53dcb2e2e02ba12d1699e157fe9b0c5b59b370650bf"
+    },
+    {
+      "path": "tools/mission_execution_gate.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3553,
+      "sha256": "59b80f39c3a4270fc0fc5f635457fa5a623331ff5a09084bef7dd3b45585928c"
+    },
+    {
+      "path": "tools/mission_report_query.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 13602,
+      "sha256": "ee39af7f7f263ecf87f8362a1e9e423925ec882967ec7ef16006bfc713ab6b2a"
+    },
+    {
+      "path": "tools/prearm_diagnostics.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6445,
+      "sha256": "986256aa77a09062fcfe4d49240646bba00fec831b263271d9c5ec87d0104ace"
+    },
+    {
+      "path": "tools/preflight_sequences.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 16080,
+      "sha256": "80aae52ed0e220d7d43222bb2151517e8ca7055cd321be90b0cb805fab33389b"
+    },
+    {
+      "path": "tools/qgc_plan_compare.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 19816,
+      "sha256": "0615dcfec226fe2d39f8d614c2b34320a464d6e5436d833122269dee05ef73e5"
+    },
+    {
+      "path": "tools/ros2_flight_control.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 9276,
+      "sha256": "74788a22b7b79fe4e3d071c65e75bb5bbe781f841cd6d787a4d1462ba586b02e"
+    },
+    {
+      "path": "tools/route_flight_analysis.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2597,
+      "sha256": "8b35c9b2d88b0aab82437bbd3fc79a8af17e61dc51d131121f4fd6281ee46c61"
+    },
+    {
+      "path": "tools/route_geometry.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 5420,
+      "sha256": "d8ab1deb060362200ac45a4eeb15ba1a64c015fabe20ed41f188c63978c274a9"
+    },
+    {
+      "path": "tools/rover_control.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 37487,
+      "sha256": "a22d5de7faca8f6c76d1c9c9e3f8bf7496c6257efe3c30cbaa32f26fb1c64a30"
+    },
+    {
+      "path": "tools/rover_environment_identity.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6607,
+      "sha256": "a98cf7e8d693f9d360b8b62c33caf2938d174b10d4e9d44b1e102567ca7720f0"
+    },
+    {
+      "path": "tools/rover_ground_executor.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 36518,
+      "sha256": "ab94c075ea38d246992c9ea6435680afa2551ea172c6ccca80f663862eb1ae3a"
+    },
+    {
+      "path": "tools/rover_identity_inventory.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 42186,
+      "sha256": "e37d7128d47c4dc38acb1f93fbc1dd78c58e908d72d136e585cf06f2fe332d1b"
+    },
+    {
+      "path": "tools/rover_passive_journal.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 37972,
+      "sha256": "ea4582ff722079a08e13e2a1fa79780899278b9e1713eddb4ff8f2ecad4c1810"
+    },
+    {
+      "path": "tools/rover_xrce_trace/budget.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3585,
+      "sha256": "c498401151ded2b01e11cb34faef59d519e7eb3165f57e979f4ba448211cdd46"
+    },
+    {
+      "path": "tools/scenario_package.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 24571,
+      "sha256": "646c99f18945400123e51ab92d835de629a15effb5117724625b808d83215f59"
+    },
+    {
+      "path": "tools/simulated_vehicle.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4006,
+      "sha256": "4efdbf5f1b991fec260b2b856696261d3b386ffb6330e147bd6f3ad7f2003e8c"
+    },
+    {
+      "path": "tools/simulation_mission_executor.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 29717,
+      "sha256": "8eeadcb8b9200f414a36ed62e64cb04cef01c04c37ea8f479b0a88136e8be828"
+    },
+    {
+      "path": "tools/simulation_mission_mapper.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2982,
+      "sha256": "9bd98b4df490c03505d1fbac6349c567638602c3498df4493025acd8b111cc90"
+    },
+    {
+      "path": "tools/simulation_profiles.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 5051,
+      "sha256": "4d7f0eba83deb5bf9bb30038769b69d240530fedbc1db023d48963cb75749237"
+    },
+    {
+      "path": "tools/simulation_status.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6356,
+      "sha256": "d6c9adbc25d1b75d7dadf61c01558c5a624c8aee158589e37a813b47051df495"
+    },
+    {
+      "path": "tools/vehicle_execution_lock.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 18841,
+      "sha256": "50f5a6d971085904dbed2f291db741ac49f4206dd4cf03f455f4aad908a0c9d3"
+    },
+    {
+      "path": "tools/virtual_preflight_jobs.py",
+      "kind": "code",
+      "purpose": "static import closure of the offline entrypoints",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 15347,
+      "sha256": "64ec1039eacd53d654ab1311e3b2003f7fb530dabfbfe205b646ad164485fd17"
+    },
+    {
+      "path": "requirements.txt",
+      "kind": "dependencies",
+      "purpose": "direct runtime dependencies",
+      "git": "tracked_modified",
+      "required": true,
+      "type": "file",
+      "size_bytes": 645,
+      "sha256": "13cad67c39fbe75d3b855ec5964f6a43422fe58288b63d9058dce0a8810d1009"
+    },
+    {
+      "path": "requirements-observability.txt",
+      "kind": "dependencies",
+      "purpose": "capture validation (jsonschema) used by the evidence checks",
+      "git": "tracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 537,
+      "sha256": "8a8d8a58a37143d44eb2968068221018914901bd85ad6e5ce24d104b7103c659"
+    },
+    {
+      "path": "constraints-verified.txt",
+      "kind": "dependencies",
+      "purpose": "exact versions verified in a clean isolated install",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2026,
+      "sha256": "157d76fc0623d3af47225a604b3dcbf8ed15e2b93b35da4d8fc43d344b923cad"
+    },
+    {
+      "path": "deploy/app/entry.py",
+      "kind": "entry",
+      "purpose": "image ENTRYPOINT: python3 -m/-c/script with a clean early Ctrl+C",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1724,
+      "sha256": "beca0f255cdbc270ef285aaa9216d32122bfac60d65a6e4a11e0d3907e224d29"
+    },
+    {
+      "path": "missions/examples/agri_demo_001_sector_a.json",
+      "kind": "reference",
+      "purpose": "H0 reference of drone_01 (geometry check)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1653,
+      "sha256": "82ce067c7c83f1b50517e87f904aeb19cfcfadcc6a1063726cfe955367fbe156"
+    },
+    {
+      "path": "missions/examples/agri_demo_001_sector_b.json",
+      "kind": "reference",
+      "purpose": "H0 reference of drone_02 (geometry check)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 1653,
+      "sha256": "722c66b9c9e8c0d2e862beceda9c196e7c1b8354ff9576e85632d93997c584af"
+    },
+    {
+      "path": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24",
+      "kind": "evidence",
+      "purpose": "conserved H2 copies (archive source)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "ad580948a471b1fd4b03c796f6b757002412303c1e33cd1d924f98fb5cc7431d",
+      "files": 27,
+      "size_bytes": 351420
+    },
+    {
+      "path": "evaluation/observability/agri_planning_h1_nous_2026_10_24",
+      "kind": "evidence",
+      "purpose": "H1 binding record (BOUND)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "c897e431ca9f30f6ab3cb282e8ec5f41d721cf24f3389d68e56ab0e926e004b8",
+      "files": 10,
+      "size_bytes": 39838
+    },
+    {
+      "path": "evaluation/observability/agri_scenario_h3b_nous_2026_10_24",
+      "kind": "evidence",
+      "purpose": "recorded H3b capture: view received and acceptance (no inference)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "24594730c039357128d7ee4868f5189e558f4f05e60b9c85a3635053583ec5ef",
+      "files": 14,
+      "size_bytes": 52728
+    },
+    {
+      "path": "evaluation/observability/agri_scenario_view_h2_2026_10_24",
+      "kind": "evidence",
+      "purpose": "saved H2 view (regression)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "0c397f3fd066e2ea8278f77115b320d69f98a00c39290f1900e378d8db339ccf",
+      "files": 3,
+      "size_bytes": 11200
+    },
+    {
+      "path": "missions/sites/synthetic_orchard_v1.site.json",
+      "kind": "example",
+      "purpose": "SYNTHETIC site",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6680,
+      "sha256": "0db007e872c8c9d04ae4cc24b733d7753dfbd7e814fe3ab725ee580785e3eb05"
+    },
+    {
+      "path": "missions/sites/synthetic_orchard_v2.site.json",
+      "kind": "example",
+      "purpose": "SYNTHETIC site, POI_1 moved",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6708,
+      "sha256": "7b27b00719dd1e6a7c309dff3b4b1b129a9a8b699e21e7b0d94e059e35356d14"
+    },
+    {
+      "path": "missions/sites/dronelab.template.site.json",
+      "kind": "example",
+      "purpose": "DroneLab template pending measurement",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4348,
+      "sha256": "10c6ee168ab4fe6473d01101f9494b97bd934ba6da85776b0996e0117800d8a7"
+    },
+    {
+      "path": "missions/fleets/agri_demo_fleet.json",
+      "kind": "example",
+      "purpose": "logical fleet",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3074,
+      "sha256": "9a2ffcfa2539a17c7e4b746ed485e949e0a905096c936b7b2ffaf0c938ce41c1"
+    },
+    {
+      "path": "missions/templates/agri_poi_visit_v1.json",
+      "kind": "example",
+      "purpose": "scenario template",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2173,
+      "sha256": "62dd9c06a8520d76d9e6d0bc16c75f1fbb635a97fbef5454fdb0540ab827d314"
+    },
+    {
+      "path": "missions/templates/agri_poi_visit_crossing_v1.json",
+      "kind": "example",
+      "purpose": "test variant: exclusion crossing",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2160,
+      "sha256": "84f2e4ce6bddbeda386ba13c137173e0d8247fe991c0d1c922cfca9ec3740c79"
+    },
+    {
+      "path": "missions/templates/agri_poi_visit_unresolved_fleet_v1.json",
+      "kind": "example",
+      "purpose": "test variant: unresolved fleet",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 2504,
+      "sha256": "6435f1a2cf905d471297f8bfe5058e21a6069f08a40cd8dadc888c05db9bd659"
+    },
+    {
+      "path": "evaluation/observability/agri_scenario_h3_nous_2026_10_24",
+      "kind": "evidence",
+      "purpose": "H3 turn (experimental comparison)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "f882fff1a645ef90a172391ddde0a3dd33eed6817361bf31ed4761e9442b449b",
+      "files": 13,
+      "size_bytes": 48540
+    },
+    {
+      "path": "evaluation/observability/agri_scenario_pilot_nous_2026_10_24",
+      "kind": "evidence",
+      "purpose": "pilot runs (experimental comparison)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "b91d242a31c6cdf93c8ddc82d18125e95a1efa90bcf40e548a0fe109ce114b92",
+      "files": 164,
+      "size_bytes": 793594
+    },
+    {
+      "path": "evaluation/observability/agri_scenario_pilot_audit_2026_10_25",
+      "kind": "evidence",
+      "purpose": "pilot audit and post-fix acceptance (experimental comparison)",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "887a6b6e245497f295a97c180876d02808f319cc5c64a09b84f27c2594cc4da5",
+      "files": 16,
+      "size_bytes": 94582
+    },
+    {
+      "path": "evaluation/observability/agri_export_semantics_2026_10_27",
+      "kind": "evidence",
+      "purpose": "sealed V2 packages, including the .plan of the first QGroundControl import",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "ced639fb7304e461ed4f6cb3c7d43a7a7eb2893dc54468f3943783e78d00ac52",
+      "files": 26,
+      "size_bytes": 147982
+    },
+    {
+      "path": "evaluation/observability/qgc_first_import_2026_10_27",
+      "kind": "evidence",
+      "purpose": "first QGroundControl import: original and QGC-saved .plan, comparison, screenshots",
+      "git": "untracked",
+      "required": true,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "9e8139054526c65fd7b038b44c610a71e9ea05320ee1bfdb40e99583c2e11034",
+      "files": 22,
+      "size_bytes": 439802
+    },
+    {
+      "path": "simulation/ros2_gazebo/results/rover_worker_lifecycle_2026_10_25/4ac58516-8fad-457e-918e-253483a2d728",
+      "kind": "optional_evidence",
+      "purpose": "closed /3 capture for the measured facts (owner: Codex). Without it the query and the demo run unchanged and requested metrics are NOT_AVAILABLE",
+      "git": "untracked",
+      "required": false,
+      "type": "directory",
+      "manifest": "manifest.json",
+      "manifest_sha256": "a88a09f9cfcce654709a6524eb30da3867408e8c48b8e7631dd7b8c7d9bdf8a5",
+      "files": 120,
+      "size_bytes": 6153318
+    },
+    {
+      "path": "simulation/ros2_gazebo/results/rover_identity_trial_2026_10_26/1cb9d86a-659b-4aa8-b7b1-214d2202210f",
+      "kind": "optional_evidence",
+      "purpose": "closed rover identity session (owner: Codex). Without it the identity facts are NOT_AVAILABLE and nothing else changes",
+      "git": "untracked",
+      "required": false,
+      "type": "directory",
+      "manifest": "manifest.json",
+      "manifest_sha256": "4d9558a2e31b9ea2ec42eca6d8b18cc007ce2cf4049bab011fa561ad59e34faf",
+      "files": 165,
+      "size_bytes": 2282937
+    },
+    {
+      "path": "evaluation/observability/agri_site_fleet_export_2026_10_27",
+      "kind": "optional_evidence",
+      "purpose": "first packages (profile V1, superseded): verify reports PROFILE_SUPERSEDED after integrity",
+      "git": "untracked",
+      "required": false,
+      "type": "directory",
+      "manifest": "SHA256SUMS",
+      "manifest_sha256": "08e9320e3388c96e99b5dd76f19e1de4f01cc05e45493dbe16b7d377669cbc70",
+      "files": 84,
+      "size_bytes": 385382
+    },
+    {
+      "path": "deploy/compose.yaml",
+      "kind": "distribution",
+      "purpose": "services app, app-dev and qgc (project tfg-dist)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3702,
+      "sha256": "ebec04b7025d76228755e80b774da7fe072ea4e589011bc4f3eb8dda34f0d1e5"
+    },
+    {
+      "path": "deploy/app/Dockerfile",
+      "kind": "distribution",
+      "purpose": "application image recipe",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 3528,
+      "sha256": "f7edcc00dd905474f8b4581636d5d061f68e8a32393bf09a1630e03a736adc54"
+    },
+    {
+      "path": "deploy/app/Dockerfile.dockerignore",
+      "kind": "distribution",
+      "purpose": "generated build-context allowlist",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4130,
+      "sha256": "6ce613288700013f463afd2a611bf77767d6e1213da23d86b066b6a046705cba"
+    },
+    {
+      "path": "deploy/app/student_walkthrough.sh",
+      "kind": "distribution",
+      "purpose": "offline walkthrough with expected outcomes",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6021,
+      "sha256": "7292f83c2a136a936a7987263e29d95d111a590c7e50a455c4d2bf2363c0c1a9"
+    },
+    {
+      "path": "deploy/vscode/tasks.json",
+      "kind": "distribution",
+      "purpose": "VS Code tasks template (copy or merge into .vscode/tasks.json)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 6218,
+      "sha256": "c5822d50d29a7297d40055c8307dbba2751d0089b56b5a5e122db9d607b8ef6e"
+    },
+    {
+      "path": "deploy/qgc/Dockerfile",
+      "kind": "distribution",
+      "purpose": "QGroundControl 5.1.5 image recipe",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 4529,
+      "sha256": "65ccd9c80305efcbb46ac54ef57d4e232b8aecb0dec0eb3ff7ca06e483b76254"
+    },
+    {
+      "path": "deploy/qgc/QGroundControl.ini",
+      "kind": "distribution",
+      "purpose": "QGC settings: every AutoConnect disabled",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 164,
+      "sha256": "f2af03024395a551c4cb2b621a05bef226606d137eb586511b52f2bae5c9af42"
+    },
+    {
+      "path": "deploy/qgc/entrypoint.sh",
+      "kind": "distribution",
+      "purpose": "QGC entrypoint",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 571,
+      "sha256": "9a68a88ac12324def0a9a5995bf407c3e1afb86d76c1f0342876a4974e721924"
+    },
+    {
+      "path": "tests/test_agri_scenario_flow.py",
+      "kind": "test",
+      "purpose": "flow, inventory and app image allowlist",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 25988,
+      "sha256": "d6cd64d43e9c300a33ea547c6a1624838514a98a69f1ffd8a297c969c904da19"
+    },
+    {
+      "path": "docs/student-environment.md",
+      "kind": "doc",
+      "purpose": "student guide of the containerized environment",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 10943,
+      "sha256": "2be3d855785e466247793080c03b6f17649184a7088a01110dac9b7931c6db53"
+    },
+    {
+      "path": "docs/simulator-distribution-handoff.md",
+      "kind": "doc",
+      "purpose": "pending simulator distribution (handoff)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 5309,
+      "sha256": "a94788f4aa197c32ad2aa7bd3a57c791d099001e55913ca338012a52ef3e3c18"
+    },
+    {
+      "path": "docs/qgc-first-import-procedure.md",
+      "kind": "doc",
+      "purpose": "first QGroundControl import (executed 27/10/2026)",
+      "git": "untracked",
+      "required": true,
+      "type": "file",
+      "size_bytes": 8073,
+      "sha256": "c566ca80523bdf955f86fc45a554dce6bdce39f05ee0bcfb9f410876af81c942"
+    }
+  ],
+  "total_size_bytes": 12071653,
+  "required_size_bytes": 3250016,
+  "not_needed": [
+    "missions/generated (local stores)",
+    "private Hermes sessions (~/.hermes)",
+    "credentials or API keys",
+    "live container temporaries",
+    ".venv (use the requirements)"
+  ]
+}

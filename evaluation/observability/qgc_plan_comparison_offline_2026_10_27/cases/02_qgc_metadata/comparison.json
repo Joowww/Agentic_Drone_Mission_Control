@@ -1,0 +1,38 @@
+{
+  "schema": "tfg.qgc-plan-comparison/1",
+  "original_sha256": "692c8075133ef62bdb4a051892387ce62213fb2c8ae3a905904d2f157d142c8d",
+  "saved_sha256": "929cbbf2fad480c316f1f74d97bbd2774a1f5d905cd32e86056f408e6042d82c",
+  "verdict_scope": "comparison of two files only; not a QGroundControl or vehicle compatibility verdict",
+  "status": "NO_SEMANTIC_DIFFERENCES",
+  "differences": [
+    {
+      "category": "QGC_METADATA",
+      "path": "/groundStation",
+      "original": "QGroundControl",
+      "saved": "QGroundControl (synthetic)",
+      "detail": "groundStation: changed"
+    },
+    {
+      "category": "QGC_METADATA",
+      "path": "/mission/items/1/Altitude",
+      "original": 0,
+      "saved": null,
+      "detail": "Altitude not written by QGC for this item"
+    },
+    {
+      "category": "QGC_METADATA",
+      "path": "/mission/items/1/AltitudeMode",
+      "original": 1,
+      "saved": null,
+      "detail": "AltitudeMode not written by QGC for this item"
+    }
+  ],
+  "counts": {
+    "PRESENTATION": 0,
+    "QGC_METADATA": 3,
+    "SEMANTIC_CHANGE": 0,
+    "ADDED": 0,
+    "REMOVED": 0,
+    "UNDETERMINED": 0
+  }
+}

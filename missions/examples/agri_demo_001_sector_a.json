@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "mission_id": "agri_demo_001_sector_a",
+  "name": "agri_demo_001 sector A - declared points of interest",
+  "source": "json",
+  "vehicle": {
+    "vehicle_id": "drone_01",
+    "vehicle_type": "multirotor",
+    "autopilot": "ArduPilot",
+    "cruise_speed_kmh": 35.0,
+    "battery_percent": 100.0,
+    "battery_consumption_percent_per_minute": 0.8
+  },
+  "objective": {
+    "objective_type": "precision_agriculture",
+    "target": "agri_demo_001_sector_a",
+    "description": "Navigate over operator-declared points of interest; offsets are relative to this vehicle's own launch position. No imagery or crop detection."
+  },
+  "route": {
+    "mode": "waypoints",
+    "home": {
+      "latitude": 41.275,
+      "longitude": 1.987,
+      "altitude_m": 0.0
+    },
+    "waypoints": [
+      {
+        "waypoint_id": "POI_A1",
+        "latitude": 41.275071864893995,
+        "longitude": 1.9869521890102217,
+        "altitude_m": 5.0,
+        "speed_kmh": 10.0,
+        "action": "navigate"
+      },
+      {
+        "waypoint_id": "POI_A2",
+        "latitude": 41.275143729788,
+        "longitude": 1.9869521890102217,
+        "altitude_m": 5.0,
+        "speed_kmh": 10.0,
+        "action": "navigate"
+      }
+    ],
+    "return_to_home": true
+  },
+  "environment": {
+    "wind_speed_kmh": 0.0,
+    "wind_direction_from_deg": 0.0
+  },
+  "constraints": {
+    "minimum_battery_reserve_percent": 20.0,
+    "maximum_wind_speed_kmh": 30.0,
+    "maximum_altitude_m": 120.0
+  },
+  "failsafe": {
+    "low_battery_action": "RETURN_TO_HOME",
+    "unsafe_wind_action": "RETURN_TO_HOME",
+    "communication_loss_action": "RETURN_TO_HOME"
+  }
+}

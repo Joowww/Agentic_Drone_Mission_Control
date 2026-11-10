@@ -1,0 +1,302 @@
+{
+  "schema": "tfg.site/1",
+  "site_id": "synthetic_hermes_rehearsal",
+  "version": 1,
+  "name": "SINTÉTICO - ensayo offline de las dos misiones finalizadas por Hermes (no es DroneLab ni un campo real)",
+  "status": "SYNTHETIC",
+  "provenance": {
+    "kind": "SYNTHETIC",
+    "source": "designed on 30/10/2026 as an offline SITL rehearsal for the agri_demo_001 sector A/B missions finalized by Hermes (offsets N8/N16, E-4 and E+4 from each takeoff)",
+    "notes": "Geometry invented; not DroneLab, not a field, not a proposal for hardware. Placed at the ArduPilot SITL default location (CMAC) like synthetic_orchard_v1, which is unchanged."
+  },
+  "units": {
+    "length": "m",
+    "angle": "deg"
+  },
+  "local_frame": {
+    "frame_id": "synthetic_hermes_rehearsal_local",
+    "convention": "ENU_ROTATED",
+    "origin_point_id": "ORIGIN",
+    "y_axis_bearing_deg": 0.0,
+    "orientation_verification": "SYNTHETIC",
+    "orientation_source": "synthetic: +y = true north"
+  },
+  "geo_reference": {
+    "latitude": -35.363262,
+    "longitude": 149.165237,
+    "horizontal_datum": "WGS84",
+    "source": "ArduPilot SITL default location CMAC (H2 simulation_origin rounded to 1e-6 deg)",
+    "uncertainty_m": null,
+    "verification": "SYNTHETIC"
+  },
+  "vertical_reference": {
+    "origin_ground_amsl_m": 584.0,
+    "vertical_datum": "as reported by SITL (simulation)",
+    "terrain": "DECLARED_FLAT",
+    "source": "H2 simulation_origin altitude",
+    "uncertainty_m": null,
+    "verification": "SYNTHETIC"
+  },
+  "vertical_limits": {
+    "max_altitude_m": 30.0,
+    "reference": "above_site_origin_ground",
+    "source": "synthetic"
+  },
+  "operation_perimeter": {
+    "zone_id": "PERIMETER",
+    "polygon": [
+      [
+        -22,
+        -12
+      ],
+      [
+        22,
+        -12
+      ],
+      [
+        22,
+        18
+      ],
+      [
+        0,
+        24
+      ],
+      [
+        -22,
+        18
+      ]
+    ],
+    "verification": "SYNTHETIC",
+    "uncertainty_m": null,
+    "description": "non-rectangular synthetic rehearsal perimeter"
+  },
+  "exclusions": [
+    {
+      "zone_id": "CENTRAL_HEDGE",
+      "polygon": [
+        [
+          -2,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          14
+        ],
+        [
+          -2,
+          14
+        ]
+      ],
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "synthetic hedge between the two sectors, full height",
+      "kind": "obstacle",
+      "applies_to": [
+        "air",
+        "ground"
+      ]
+    },
+    {
+      "zone_id": "NORTH_ROW",
+      "polygon": [
+        [
+          -20,
+          16
+        ],
+        [
+          20,
+          16
+        ],
+        [
+          20,
+          18
+        ],
+        [
+          -20,
+          18
+        ]
+      ],
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "synthetic tree row north of both sectors",
+      "kind": "obstacle",
+      "applies_to": [
+        "air",
+        "ground"
+      ]
+    },
+    {
+      "zone_id": "STORE",
+      "polygon": [
+        [
+          12,
+          -10
+        ],
+        [
+          16,
+          -10
+        ],
+        [
+          16,
+          -6
+        ],
+        [
+          12,
+          -6
+        ]
+      ],
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "synthetic low store, ground only",
+      "kind": "obstacle",
+      "applies_to": [
+        "ground"
+      ]
+    }
+  ],
+  "takeoff_landing_zones": [
+    {
+      "zone_id": "PAD_A",
+      "polygon": [
+        [
+          -8,
+          -8
+        ],
+        [
+          -4,
+          -8
+        ],
+        [
+          -4,
+          -4
+        ],
+        [
+          -8,
+          -4
+        ]
+      ],
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "pad A (sector A)"
+    },
+    {
+      "zone_id": "PAD_B",
+      "polygon": [
+        [
+          4,
+          -8
+        ],
+        [
+          8,
+          -8
+        ],
+        [
+          8,
+          -4
+        ],
+        [
+          4,
+          -4
+        ]
+      ],
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "pad B (sector B)"
+    }
+  ],
+  "rover_start_zones": [
+    {
+      "zone_id": "ROVER_BAY",
+      "polygon": [
+        [
+          -2,
+          -11
+        ],
+        [
+          2,
+          -11
+        ],
+        [
+          2,
+          -8
+        ],
+        [
+          -2,
+          -8
+        ]
+      ],
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "rover start bay"
+    }
+  ],
+  "rover_drivable_area": {
+    "zone_id": "DRIVABLE",
+    "polygon": [
+      [
+        -20,
+        -11.5
+      ],
+      [
+        20,
+        -11.5
+      ],
+      [
+        20,
+        6
+      ],
+      [
+        -20,
+        6
+      ]
+    ],
+    "verification": "SYNTHETIC",
+    "uncertainty_m": null,
+    "description": "strip south of the hedge and the tree row"
+  },
+  "points": [
+    {
+      "point_id": "ORIGIN",
+      "kind": "reference",
+      "x_m": 0.0,
+      "y_m": 0.0,
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "local origin"
+    },
+    {
+      "point_id": "TAKEOFF_A",
+      "kind": "planned_takeoff",
+      "x_m": -6.0,
+      "y_m": -6.0,
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "planned takeoff A",
+      "zone_id": "PAD_A"
+    },
+    {
+      "point_id": "TAKEOFF_B",
+      "kind": "planned_takeoff",
+      "x_m": 6.0,
+      "y_m": -6.0,
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "planned takeoff B",
+      "zone_id": "PAD_B"
+    },
+    {
+      "point_id": "ROVER_START",
+      "kind": "rover_start",
+      "x_m": 0.0,
+      "y_m": -9.5,
+      "verification": "SYNTHETIC",
+      "uncertainty_m": null,
+      "description": "rover start",
+      "zone_id": "ROVER_BAY"
+    }
+  ]
+}

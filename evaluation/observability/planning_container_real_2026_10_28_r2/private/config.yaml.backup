@@ -1,0 +1,25 @@
+# Hermes configuration template of the TFG planning profile (deploy/planner).
+# deploy/planner/hermes_home.py copies it ONCE into an empty HERMES_HOME and never overwrites it.
+# No credentials here: `hermes auth` stores the operator's own provider login inside HERMES_HOME.
+# Provider and model are the ones of the executed H1 planning turn (24/10/2026, Hermes d923a5eb).
+# The planning home additionally gets mcp_servers.tfg-mission-control.tools (include filter) and
+# tools.tool_search.enabled "off", added by the existing restrict_mcp_text/disable_tool_search_text.
+model:
+  provider: nous
+  default: poolside/laguna-s-2.1:free
+platform_toolsets:
+  cli:
+    - tfg-mission-control
+telemetry:
+  shared_metrics:
+    enabled: false
+    send: false
+mcp_servers:
+  tfg-mission-control:
+    command: /opt/tfg/.venv/bin/python
+    args:
+      - -m
+      - tools.hermes_mcp_server
+    env:
+      PYTHONPATH: /opt/tfg
+    enabled: true

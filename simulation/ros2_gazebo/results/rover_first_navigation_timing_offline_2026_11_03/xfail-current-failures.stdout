@@ -1,0 +1,33 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+____________ test_worker_is_given_less_time_than_the_host_deadline _____________
+
+    @pytest.mark.xfail(strict=True, reason='Known margin defect (Codex review): PipeRos2Session gives the worker the '
+                       'same timeout_s as the host alarm; see documentation/codex_review_rover_2026_11_04.md.')
+    def test_worker_is_given_less_time_than_the_host_deadline():
+        s, transport, backend, clock = pipe_session()
+        s.observe(timeout_s=1.0)
+>       assert transport.sent[-1]['args']['timeout_s'] < 1.0
+E       assert 1.0 < 1.0
+
+tests/test_rover_first_navigation_timing.py:186: AssertionError
+_______ test_a_status_gap_mid_navigation_must_not_cost_the_host_its_hold _______
+
+setup = (PosixPath('/tmp/pytest-of-joelm/pytest-77/test_a_status_gap_mid_navigati0/mission.json'), {'kind': 'ROVER_BOUNDED_CON...sts.test_rover_ground_executor.Session object at 0x747979230110>, <function setup.<locals>.<lambda> at 0x74797906fb00>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x747979230800>
+
+    @pytest.mark.xfail(strict=True, reason='Known margin defect (Codex review): a status gap longer than the call budget '
+                       'lets the host alarm fire before the worker reply, the session breaks and no HOLD is sent.')
+    def test_a_status_gap_mid_navigation_must_not_cost_the_host_its_hold(setup, monkeypatch):
+        report, rover, holder, _ = run(setup, monkeypatch, configure=host_deadline(monkeypatch, freeze=gap_mid_navigation),
+                                       rover_factory=cadenced(1.2))
+        # Today: host_alarms 1, session broken (TimeoutError), commands [GUIDED, ARM] only, rover left armed in GUIDED.
+>       assert holder['loop'].host_alarms == 0 and not holder['session'].broken
+E       assert (1 == 0)
+E        +  where 1 = <tests.test_rover_pipe_worker.Loopback object at 0x74797947ac00>.host_alarms
+
+tests/test_rover_first_navigation_timing.py:195: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_rover_first_navigation_timing.py::test_worker_is_given_less_time_than_the_host_deadline
+FAILED tests/test_rover_first_navigation_timing.py::test_a_status_gap_mid_navigation_must_not_cost_the_host_its_hold
+2 failed, 7 deselected in 1.11s

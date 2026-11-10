@@ -205,10 +205,13 @@ def analyze_waypoint_route(
             "leg_number": index + 1,
             "from": start["point_id"],
             "to": end["point_id"],
+            # Rounded for presentation only; calculations use the exact value.
             "distance_km": round(
                 distance_km,
                 3,
             ),
+            "distance_km_exact":
+                distance_km,
             "bearing_deg": round(
                 bearing_deg,
                 2,

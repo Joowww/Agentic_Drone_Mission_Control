@@ -1,0 +1,85 @@
+{
+  "automatic_retry": false,
+  "capture_files": [
+    "capture-provenance-31207a13-c2f3-4ed6-9512-7467eafcb7dd.json",
+    "hermes-events-2026-10-28.jsonl",
+    "hermes-tool-offers-2026-10-28.jsonl"
+  ],
+  "case_id": "mcp-agri-planning-container",
+  "config_sha256_edited": "a67eb1952b61e5ff585ba90da26a7a1e97f459a6f9c45d9cb96e810b3ba0d3ae",
+  "config_sha256_original": "11553db7564c57786d6bd4dc47c5eedf0ead3afb22948c513abeb21b711e8331",
+  "elapsed_wall_s": 15.375,
+  "finished_at_utc": "2026-10-28T08:04:54.334584+00:00",
+  "hermes_invocations": 1,
+  "mcp_tool_trial": {
+    "expected_arguments": {},
+    "expected_final_answer": null,
+    "expected_structured_answer": null,
+    "mcp_schema_cache_sha256_after": "b21b1d81c5506e48edd97f89a12220906f3af32f361bc1eb4326976fdc043cab",
+    "mcp_schema_cache_sha256_before": null,
+    "mcp_server_processes_after": 0,
+    "prompt": "Prepara dos misiones de planificación para el escenario agrícola de demostración agri_demo_001. Usa solo estos datos, que aporta el operador; no inventes, completes ni cambies ninguno. Los puntos de interés son datos declarados del escenario, no detecciones, y no se toman imágenes. Batería, consumo y viento son valores de referencia del escenario, no lecturas reales. No arranques simulaciones ni pidas ejecutar vuelos.\nDatos comunes: multirrotor ArduPilot; velocidad de crucero 35 km/h; batería 100 %; consumo 0.8 % por minuto; objective_type precision_agriculture; viento 0 km/h desde 0 grados; reserva mínima de batería 20 %; viento máximo 30 km/h; altitud máxima 120 m; low_battery_action, unsafe_wind_action y communication_loss_action RETURN_TO_HOME. Ruta en geometry_intent con mode offsets: home en latitud 41.275, longitud 1.987 y altitud 0; altitude_reference relative_to_home; altitude_m 5; return_to_home true; close_route false.\nMisión 1: mission_id agri_demo_001_h1_sector_a; name \"agri_demo_001 H1 sector A\"; vehicle_id drone_01; objective_target agri_demo_001_sector_a; offsets en este orden: POI_A1 north_m 8, east_m -4; POI_A2 north_m 16, east_m -4.\nMisión 2: mission_id agri_demo_001_h1_sector_b; name \"agri_demo_001 H1 sector B\"; vehicle_id drone_02; objective_target agri_demo_001_sector_b; offsets en este orden: POI_B1 north_m 8, east_m 4; POI_B2 north_m 16, east_m 4.\nPara cada misión, crea un borrador con update_mission_draft con todos sus datos y la ruta en geometry_intent, y después finalízalo con finalize_mission_draft usando su draft_id y su draft_revision. Al terminar, responde solo un objeto JSON con, para cada mission_id, su finalization_id, status y validation.execution_status.",
+    "prompt_sha256": "068d17ea035321779ab63675008f74d452a21f221be004696bd690a5b20b541a",
+    "queried_run_id": null,
+    "registry_name": null,
+    "registry_names": [
+      "mcp__tfg_mission_control__update_mission_draft",
+      "mcp__tfg_mission_control__finalize_mission_draft"
+    ],
+    "result_expectation_pointers": [],
+    "result_expectation_sha256": null,
+    "run_must_exist": false,
+    "server": "tfg-mission-control",
+    "server_sources_sha256": {
+      "tools/hermes_mcp_server.py": "7083b65763f8279e6a9641ed83241685698745278e1af61fd5976f4817a9ad7e",
+      "tools/mission_external_view.py": "394d0c1978b80ba475b15204646f8d7c2aeb39c83a8d52ebd92111c7f7627335",
+      "tools/mission_response_views.py": "b80593fab857562b3eb0819c2c74fa0b503fb5a526cc16f4f3791658146b0752",
+      "tools/mission_state.py": "e66dd901f37572bf0f174928398da919ea1d55d4290330c993e1d5551028d2be",
+      "tools/virtual_preflight_jobs.py": "64ec1039eacd53d654ab1311e3b2003f7fb530dabfbfe205b646ad164485fd17"
+    },
+    "tool": null,
+    "tool_classification": "planning writes only: missions/generated/drafts/<draft_id>/: draft.json, draft_state.json, draft.lock; and per finalization <finalization_id>/: source_draft.json, source_draft_state.json, mission.json, <mission_id>.plan, finalization.json. No simulation, vehicle, reservation or preflight effect.",
+    "tool_search_enabled": "off",
+    "tools": [
+      "update_mission_draft",
+      "finalize_mission_draft"
+    ],
+    "tools_filter": {
+      "include": [
+        "update_mission_draft",
+        "finalize_mission_draft"
+      ],
+      "prompts": false,
+      "resources": false
+    },
+    "toolsets_argument": "tfg-mission-control",
+    "trial_case": "agri-planning-container"
+  },
+  "model_configured": "tfg-test-double",
+  "plugin_installed_sha256": {
+    "__init__.py": "7b7c046c740e0ea6ce5531534a6bae30934cc31b9e9ba5b95c6704a8e07ac0e3",
+    "capture.py": "36f368f62f2530c27060670f66737e5b20dfe172cdf77fd06424d8391b5094c9",
+    "event.schema.json": "e5b9f3d076eadcdb0bd40215a15a3d37978ab3da72bbd0f1d1613a3d354fa7a3",
+    "plugin.yaml": "a7768459ed16ecea4728df170d72b0a1d1ed8df2fdda7608e0efbcb35945a09d",
+    "tool-offer.schema.json": "db03ee96f1534c320a6ba9adef0f5d1ad5b274c0fa7cec9617a6322ccc061089",
+    "tool-result-check.schema.json": "e36437cce2ad2fe6e6d613e0920163df205c8d71601d0e73a1f6a4f67e7f44e9"
+  },
+  "prompt_sha256": "068d17ea035321779ab63675008f74d452a21f221be004696bd690a5b20b541a",
+  "provider_configured": "custom",
+  "restore": {
+    "config": "restored",
+    "error_type": null,
+    "ok": true,
+    "plugin": "removed"
+  },
+  "return_code": 0,
+  "run_id": "double-runner-check",
+  "started_at_utc": "2026-10-28T08:04:38.959092+00:00",
+  "stderr_bytes": 0,
+  "stdout_sha256": "1fad049e9212565607d0848650983e4482bf14788373b3f434673ab06cdee355",
+  "timed_out": false,
+  "timeout_s": 300.0,
+  "toolset_selection": "tfg-mission-control",
+  "utility_version": "1",
+  "verified_hermes_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8"
+}

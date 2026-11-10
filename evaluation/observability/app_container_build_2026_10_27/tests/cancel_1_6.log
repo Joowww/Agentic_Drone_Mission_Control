@@ -1,0 +1,41 @@
+ Container tfg-cancel-cancel_1_6 Creating 
+ Container tfg-cancel-cancel_1_6 Created 
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/opt/tfg/tools/agri_scenario_flow.py", line 22, in <module>
+    from graph.agri_scenario_graph import agri_scenario_graph, flow_record
+  File "/opt/tfg/graph/agri_scenario_graph.py", line 27, in <module>
+    from reporting import agri_scenario_summary as summary
+  File "/opt/tfg/reporting/agri_scenario_summary.py", line 30, in <module>
+    from tools import hermes_mission_planning as planning
+  File "/opt/tfg/tools/hermes_mission_planning.py", line 19, in <module>
+    from tools.hermes_mission_validation import validate_mission_file
+  File "/opt/tfg/tools/hermes_mission_validation.py", line 33, in <module>
+    from sessions.structured_mission_session import (
+  File "/opt/tfg/sessions/structured_mission_session.py", line 3, in <module>
+    from agents.mission_editor import (
+  File "/opt/tfg/agents/mission_editor.py", line 1, in <module>
+    from langchain_ollama import (
+  File "/opt/venv/lib/python3.12/site-packages/langchain_ollama/__init__.py", line 20, in <module>
+    from langchain_ollama.chat_models import ChatOllama
+  File "/opt/venv/lib/python3.12/site-packages/langchain_ollama/chat_models.py", line 86, in <module>
+    from ollama import AsyncClient, Client, Message
+  File "/opt/venv/lib/python3.12/site-packages/ollama/__init__.py", line 1, in <module>
+    from ollama._client import AsyncClient, Client
+  File "/opt/venv/lib/python3.12/site-packages/ollama/_client.py", line 29, in <module>
+    from ollama._utils import convert_function_to_tool
+  File "/opt/venv/lib/python3.12/site-packages/ollama/_utils.py", line 10, in <module>
+    from ollama._types import Tool
+  File "/opt/venv/lib/python3.12/site-packages/ollama/_types.py", line 661, in <module>
+    class SystemOneChoiceAnswer(SubscriptableBaseModel):
+  File "/opt/venv/lib/python3.12/site-packages/pydantic/_internal/_model_construction.py", line 243, in __new__
+    set_model_fields(cls, config_wrapper=config_wrapper, ns_resolver=ns_resolver)
+  File "/opt/venv/lib/python3.12/site-packages/pydantic/_internal/_model_construction.py", line 579, in set_model_fields
+    fields, pydantic_extra_info, class_vars = collect_model_fields(
+                                              ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/pydantic/_internal/_fields.py", line 291, in collect_model_fields
+    assigned_value = getattr(cls, ann_name, PydanticUndefined)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+

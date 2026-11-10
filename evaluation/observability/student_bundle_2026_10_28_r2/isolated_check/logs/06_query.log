@@ -1,0 +1,37 @@
+ Container tfg-entrega-r2-prueba-app-run-5fbc7edbd6fb Creating 
+ Container tfg-entrega-r2-prueba-app-run-5fbc7edbd6fb Created 
+
+[ESCENARIO agri_demo_001] modo query · origen REAL_HISTORICAL · sin órdenes ni procesos operativos · Ctrl+C para salir
+
+[load_artifacts] trabajando · espera: conserved H1/H2 artifacts, verified by their manifests
+[load_artifacts] resultado: LOADED · motivo: 2 missions; binding record b28fceb02c5f
+
+[bind_and_validate] trabajando · espera: deterministic validation, execution compatibility and H0 geometry of each mission
+[bind_and_validate] resultado: BOUND · motivo: drone_01 321ad647ab9c, drone_02 079e25a30242
+
+[aerial_sequence] trabajando · espera: the sequence coordinator's record (read-only; no admission or launch)
+[aerial_sequence] resultado: FINISHED/PASSED · motivo: conserved copies verified (23 files)
+
+[scenario_view] trabajando · espera: the scenario interpretation of the sequence against the binding
+[scenario_view] resultado: OK · motivo: scenario AERIAL_COMPLETED_GROUND_PENDING; R1 dependency MET
+
+[hermes_evidence] trabajando · espera: recorded Hermes captures (no inference)
+[hermes_evidence] resultado: RECORDED_CAPTURE · motivo: H1 BOUND; H3b STRUCTURED_VALIDATED_EXPLANATION_UNREVIEWED; view received by H3b equals this view
+
+[r1_prepare] trabajando · espera: R1 inputs, current executor facts and measured facts (dry-run)
+[r1_prepare] resultado: MET/NOT_ELIGIBLE · motivo: blockers: required_data_present, operational_rover_policy_enabled
+
+[r1_coordinate] trabajando · espera: the ground coordinator's record (query: read-only; demo: TEST_DOUBLE executor)
+[r1_coordinate] resultado: NOT_REQUESTED · motivo: no R1 record under this key; a request needs an authorization and the ground coordinator's request entry with the real adapter (not reachable from here)
+
+[report] trabajando · espera: deterministic rendering of the view, the R1 preparation and the R1 record
+[report] resultado: AERIAL_COMPLETED_GROUND_PENDING · motivo: scenario complete: False
+
+[ESCENARIO agri_demo_001] origen: REAL_HISTORICAL · modo: query
+Estado del flujo: COMPLETED_FLOW (última etapa report)
+Escenario: AERIAL_COMPLETED_GROUND_PENDING; completo: no
+R1 · dependencia: MET · elegibilidad (vista histórica): BLOCKED_PENDING · elegibilidad (esta preparación): NOT_ELIGIBLE [required_data_present, operational_rover_policy_enabled]
+R1 · autorización: ABSENT · solicitud: NOT_REQUESTED_VIA_THIS_COORDINATOR · ejecución: NOT_STARTED
+Coordinador R1: NOT_REQUESTED; aceptación: sin resultado; motivo: no R1 record under this key; a request needs an authorization and the ground coordinator's request entry with the real adapter (not reachable from here)
+Informe: /work/consulta_1/scenario_report.md
+Registro del flujo: /work/consulta_1/flow_record.json

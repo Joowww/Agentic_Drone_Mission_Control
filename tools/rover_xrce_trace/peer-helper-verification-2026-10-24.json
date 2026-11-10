@@ -1,0 +1,139 @@
+{
+  "kind": "STATIC_READS_NO_SIMULATION_NO_AGENT",
+  "calls": [
+    {
+      "command": [
+        "docker",
+        "info",
+        "--format",
+        "{{.ID}}"
+      ],
+      "return_code": 0,
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "--type",
+        "container",
+        "--format",
+        "{\"container_id\":{{json .Id}},\"image_id\":{{json .Image}},\"state\":{{json .State}}}",
+        "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f"
+      ],
+      "return_code": 0,
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+        "python3",
+        "-B",
+        "-c",
+        "import json,hashlib,subprocess\nfrom pathlib import Path\npaths=[('/tmp/tfg-peer-build-20261024-swzvihrs-build/agent-build/micro_ros_agent', '2c81395a0aaf5aaac094e302c69edbe357975f200947578e9b4ca7eaf17a63a8'), ('/tmp/tfg-peer-build-20261024-swzvihrs-build/native-build/libmicroxrcedds_agent.so.2.4.2', 'cf2537265cb64b9ea0f52737306be6166e0a4456a4a2c94b21319b2298a097fa'), ('/tmp/tfg-rover-quota-cap-link-fefyp58g/build/rover_passive_collector', '94c0a9dd4a454c41561b0355803a7232ae001cf842336124341163ff5cf90d93')]\nout=[]\nfor name,h in paths:\n p=Path(name);out.append({'path':name,'exists':p.is_file(),'sha256':hashlib.sha256(p.read_bytes()).hexdigest() if p.is_file() else None,'expected_sha256':h,'real_path':str(p.resolve())})\nr=subprocess.run(['dpkg-query','-W','-f=${Package} ${Version}\\n','libgl1-mesa-dri','libegl-mesa0','libglx-mesa0'],capture_output=True,timeout=3)\nprint(json.dumps({'artifacts':out,'graphics_packages':{'return_code':r.returncode,'stdout':r.stdout.decode(),'stderr':r.stderr.decode()}}))\n"
+      ],
+      "return_code": 0,
+      "stderr": ""
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/tmp/tfg-peer-build-20261024-swzvihrs-build/agent-build/micro_ros_agent",
+      "exists": true,
+      "sha256": "2c81395a0aaf5aaac094e302c69edbe357975f200947578e9b4ca7eaf17a63a8",
+      "expected_sha256": "2c81395a0aaf5aaac094e302c69edbe357975f200947578e9b4ca7eaf17a63a8",
+      "real_path": "/tmp/tfg-peer-build-20261024-swzvihrs-build/agent-build/micro_ros_agent"
+    },
+    {
+      "path": "/tmp/tfg-peer-build-20261024-swzvihrs-build/native-build/libmicroxrcedds_agent.so.2.4.2",
+      "exists": true,
+      "sha256": "cf2537265cb64b9ea0f52737306be6166e0a4456a4a2c94b21319b2298a097fa",
+      "expected_sha256": "cf2537265cb64b9ea0f52737306be6166e0a4456a4a2c94b21319b2298a097fa",
+      "real_path": "/tmp/tfg-peer-build-20261024-swzvihrs-build/native-build/libmicroxrcedds_agent.so.2.4.2"
+    },
+    {
+      "path": "/tmp/tfg-rover-quota-cap-link-fefyp58g/build/rover_passive_collector",
+      "exists": true,
+      "sha256": "94c0a9dd4a454c41561b0355803a7232ae001cf842336124341163ff5cf90d93",
+      "expected_sha256": "94c0a9dd4a454c41561b0355803a7232ae001cf842336124341163ff5cf90d93",
+      "real_path": "/tmp/tfg-rover-quota-cap-link-fefyp58g/build/rover_passive_collector"
+    }
+  ],
+  "status": "AVAILABLE_HASHES_MATCH",
+  "environment": {
+    "container_id": "0274e4fd856ab21e888a1820ea3867f2e2ec8641e0cb39c4658d8f01f9fcd30f",
+    "image_id": "sha256:5d5de3c69e2af0a4d565e74e4637b26880f574c7db5d8f3f8b90f479983e3d66",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-10-21T06:18:55.300888Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 36004,
+      "Restarting": false,
+      "Running": true,
+      "StartedAt": "2026-10-21T08:24:48.062034411Z",
+      "Status": "running"
+    },
+    "engine_id": "2c4ad774-b7c7-4d26-ba0e-690fb9d0ff99"
+  },
+  "graphics_packages": {
+    "return_code": 0,
+    "stdout": "libegl-mesa0 23.2.1-1ubuntu3.1~22.04.4\nlibgl1-mesa-dri 23.2.1-1ubuntu3.1~22.04.4\nlibglx-mesa0 23.2.1-1ubuntu3.1~22.04.4\n",
+    "stderr": ""
+  },
+  "host_helpers": {
+    "tools/rover_xrce_trace/selection.py": "7ff2a2850f135b89949f2e9d43fb9caf898ce82e47a8e8f504e96d30aac12f71",
+    "tools/rover_xrce_trace/monitor.py": "c60712301b2fb90b1a46c1ad3f6ad98f46d2983bc67c1240207723f694e01fce",
+    "tools/rover_xrce_trace/socket_inventory.py": "8f541fde54bb6f0d9fb0344913012012891b6429088dd4ef5da75eb83ea82907",
+    "tools/rover_xrce_trace/session_precheck.py": "dce33cc746235579874d33d2fb0de2040bbb3acce99f1045216e37789f7788dc"
+  },
+  "native_inputs_unchanged": true,
+  "rebuild_required": false,
+  "offline_tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_rover_socket_inventory.py tests/test_rover_diagnostic_selection.py tests/test_rover_xrce_trace.py tests/test_rover_xrce_peer.py tests/test_rover_session_precheck.py",
+    "passed": 131,
+    "duration_s": 6.15,
+    "scope": "Fake /proc and transport, host synthetic C++, local serialization/readers; no operational agent/monitor/collector",
+    "initial_run": "128 passed, 3 failed; corrected directly related assertions/provenance validation and contradiction fixture; subsequent run 131 passed.",
+    "final_targeted_regression": {
+      "command": ".venv/bin/python -m pytest -q tests/test_rover_socket_inventory.py",
+      "passed": 42,
+      "duration_s": 0.68,
+      "reason": "Added explicit missing declared-context case and handled its Incomplete exception as a closed analysis result; only affected suite rerun."
+    }
+  },
+  "synthetic_fixture": {
+    "kind": "SYNTHETIC_NOT_RUNTIME_NOT_RECONSTRUCTED_HISTORY",
+    "processes": 32,
+    "reads": 802,
+    "expanded_bytes": 137673,
+    "serialized_bytes": 69490,
+    "unchanged_serialized_limit_bytes": 131072
+  },
+  "syntax": "py_compile for changed Python code/tests and bash -n existing build.sh passed",
+  "whitespace": "git diff --check and explicit changed/untracked code/docs checks passed; raw historical logs not normalized",
+  "preserved_trials": [
+    {
+      "trial": "eb113b19-4923-4983-bed4-2e99db1aa512",
+      "entries_verified": 119,
+      "manifest_sha256": "42ab6eb1046f4f0983441b1c4949d4ade27444a015301b0829acdd39082a7a86"
+    },
+    {
+      "trial": "3c3b6544-3324-4ac6-970d-776cb059d4c8",
+      "entries_verified": 41,
+      "manifest_sha256": "acb2fd60d92aec0d25a2b979368cf5e5967c92e8b3e8fe6923aa134f03e0304e"
+    },
+    {
+      "trial": "f3380567-b48a-4e47-b4c5-c3be066a76d1",
+      "entries_verified": 55,
+      "manifest_sha256": "9e8b4688df4d49b8691da05e3e736c65e674d16318381ab404c7268b0c3db5d2"
+    }
+  ],
+  "historical_pending_paths_present": 198,
+  "historical_pending_verification": "Presence only; original trial byte checks are above.",
+  "index": "EMPTY; no staging/commit/push"
+}

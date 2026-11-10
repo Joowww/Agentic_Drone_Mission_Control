@@ -1,0 +1,1150 @@
+{
+ "opik_bodies": [
+  {
+   "cases": [
+    "E01",
+    "E04",
+    "E07",
+    "E11",
+    "E12",
+    "E18",
+    "E19",
+    "E20",
+    "E21",
+    "E22",
+    "E27"
+   ],
+   "experiment": {
+    "dataset_name": "multiagent-eval_v2",
+    "id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+    "metadata": {
+     "agent_role": "mission_orchestrator (interpreter)",
+     "candidate": "ollama:qwen3:4b",
+     "data_kind": "MODEL_OUTPUT_OVER_SYNTHETIC_CASES",
+     "dataset_sha256": "0bee0e32672c9b99a82c240a17cef050e650c0443268b54e23285ea0107c3cd7",
+     "dataset_version": "2",
+     "experiment_id": "PILOT-qwen3_4b_pilot_v1-qwen-20261104T173941",
+     "generation": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "seed": 7,
+      "temperature": 0.0,
+      "think": false,
+      "timeout_s": 120.0
+     },
+     "items": 11,
+     "pipeline": "v1",
+     "prompt_id": "interpret_brief/1",
+     "registry_id": "A1-qwen-local-pilot",
+     "source": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+     "task": "INTERPRET_BRIEF"
+    },
+    "name": "eval_v2@2 | ollama:qwen3:4b | interpret_brief/1 | pipeline v1 | pilot_v1",
+    "project_name": "tfg-multiagent-benchmarks",
+    "status": "completed",
+    "tags": [
+     "tfg-multiagent",
+     "historical-import",
+     "comparison:A"
+    ],
+    "type": "regular"
+   },
+   "experiment_sha256": "9954d0e25ec42e62222cff7f97e6d8f1873763c614be57921eabad999dcdc872",
+   "items": {
+    "experiment_items": [
+     {
+      "dataset_item_id": "01a1a3da-fc00-72df-9ec3-1a4c03cdcee3",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-42f9-72ce-8408-9907fcd429f3"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-75c3-b608-b1eb96cb0eb0",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-a08b-722f-8911-a00f50bff938"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7e0b-a9fe-4aa1cf63b675",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-e360-7b24-9ca0-f4088fe20e36"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-755f-8d9f-e6322a498f6b",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76f-0c63-718d-bd1f-d55a5cb9e22b"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7202-8132-4c7a4a51045b",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76f-3630-79b4-9798-92f88ae04807"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7295-91b9-35b11d9b9d94",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76f-69e4-7514-b592-8f9f3ea093c1"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-771b-8c59-24642646114e",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76f-c706-70f5-8cd1-47152266139e"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7e7c-b3b7-07ed658ff4ac",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76f-f369-7833-a0b3-ea9b12f37707"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7772-aa85-c79a990d4294",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a770-3262-7a3b-b518-5f07a4317d0a"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7ee6-a652-b1a05eeffc9a",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a770-6e4e-7fb9-b1b1-791fb61c13d7"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7d40-8ca3-8ebed5bdc6f6",
+      "experiment_id": "01a1a3da-fc00-72cb-9a67-4cb2d9acd1ee",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a770-9a63-7a14-8048-ce0dc1ab9488"
+     }
+    ]
+   },
+   "items_sha256": "94c2ff87a39ac0a841abf51efafe98df1e8c2c2b60496817f99d2c23e1495f1c",
+   "requires_traces_sent_first": true
+  },
+  {
+   "cases": [
+    "E01",
+    "E04",
+    "E07",
+    "E11",
+    "E12",
+    "E18",
+    "E19",
+    "E20",
+    "E21",
+    "E22",
+    "E27"
+   ],
+   "experiment": {
+    "dataset_name": "multiagent-eval_v2",
+    "id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+    "metadata": {
+     "agent_role": "mission_orchestrator (interpreter)",
+     "candidate": "rules",
+     "data_kind": "SYNTHETIC_DETERMINISTIC_BASELINE",
+     "dataset_sha256": "0bee0e32672c9b99a82c240a17cef050e650c0443268b54e23285ea0107c3cd7",
+     "dataset_version": "2",
+     "experiment_id": "PILOT-qwen3_4b_pilot_v1-rules-20261104T173941",
+     "generation": {},
+     "items": 11,
+     "pipeline": "v1",
+     "prompt_id": null,
+     "registry_id": "A2-rules-pilot",
+     "source": "multiagent/benchmark/results/pilot_qwen3_4b_v1_2026-11-04_c00b737d3",
+     "task": "INTERPRET_BRIEF"
+    },
+    "name": "eval_v2@2 | rules | no-prompt | pipeline v1 | pilot_v1",
+    "project_name": "tfg-multiagent-benchmarks",
+    "status": "completed",
+    "tags": [
+     "tfg-multiagent",
+     "historical-import",
+     "comparison:A"
+    ],
+    "type": "regular"
+   },
+   "experiment_sha256": "ceb37443ad41ba7e087067e82721db36a497c5d31ee8dcc1ca20d97bfc8019c5",
+   "items": {
+    "experiment_items": [
+     {
+      "dataset_item_id": "01a1a3da-fc00-72df-9ec3-1a4c03cdcee3",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3ab2-7eaa-ad7e-557b4dd5dd57"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-75c3-b608-b1eb96cb0eb0",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3ad9-756b-8678-087a8f8874ea"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7e0b-a9fe-4aa1cf63b675",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3b13-7ef8-9d0a-5abe81b4db8c"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-755f-8d9f-e6322a498f6b",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3b32-7d18-9d73-d739f1831b28"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7202-8132-4c7a4a51045b",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3b53-7760-96ec-2cd4465ed650"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7295-91b9-35b11d9b9d94",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3bba-7b66-8512-03f3b1ac6bcb"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-771b-8c59-24642646114e",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3c6a-7b18-8ac7-196dee5838ba"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7e7c-b3b7-07ed658ff4ac",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3cab-7b59-9069-8d6d81738d8e"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7772-aa85-c79a990d4294",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3ce9-7c9f-be58-c8395ee765bf"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7ee6-a652-b1a05eeffc9a",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3d0a-7d48-bf6c-6e5ce4844fb1"
+     },
+     {
+      "dataset_item_id": "01a1a3da-fc00-7d40-8ca3-8ebed5bdc6f6",
+      "experiment_id": "01a1a3da-fc00-791a-bc8d-5747432628b8",
+      "project_name": "tfg-multiagent-benchmarks",
+      "trace_id": "01a1a76e-3d47-7612-b863-dd96f133b6b4"
+     }
+    ]
+   },
+   "items_sha256": "35b7a1ab0c6f2561ea6a6e223d431a8bda0d871a44c7a0e5bc31068ac07a2f88",
+   "requires_traces_sent_first": true
+  }
+ ],
+ "registry": [
+  {
+   "agent_role": "mission_orchestrator (interpreter)",
+   "cases": [
+    "E01",
+    "E04",
+    "E07",
+    "E11",
+    "E12",
+    "E18",
+    "E19",
+    "E20",
+    "E21",
+    "E22",
+    "E27"
+   ],
+   "comparison": "A",
+   "dataset": {
+    "id": "eval_v2",
+    "sha256": "0bee0e32672c9b99a82c240a17cef050e650c0443268b54e23285ea0107c3cd7",
+    "split": "eval",
+    "version": "2"
+   },
+   "generation": {
+    "num_ctx": 8192,
+    "num_predict": 1024,
+    "seed": 7,
+    "temperature": 0.0,
+    "think": false,
+    "timeout_s": 120.0
+   },
+   "id": "A1-qwen-local-pilot",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied"
+   ],
+   "model": {
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+    "name": "qwen3:4b",
+    "provider": "ollama"
+   },
+   "name": "eval_v2@2 | ollama:qwen3:4b | interpret_brief/1 | pipeline v1 | pilot_v1",
+   "note": null,
+   "prompt": "interpret_brief/1",
+   "provenance": "pilot_qwen3_4b_v1_2026-11-04_c00b737d3 (sealed); E07 sent and verified, 10 prepared",
+   "repetitions": 1,
+   "seed": 7,
+   "status": "EXECUTED_HISTORICAL",
+   "task": "INTERPRET_BRIEF",
+   "traces": [
+    "01a1a76e-42f9-72ce-8408-9907fcd429f3",
+    "01a1a76e-a08b-722f-8911-a00f50bff938",
+    "01a1a76e-e360-7b24-9ca0-f4088fe20e36",
+    "01a1a76f-0c63-718d-bd1f-d55a5cb9e22b",
+    "01a1a76f-3630-79b4-9798-92f88ae04807",
+    "01a1a76f-69e4-7514-b592-8f9f3ea093c1",
+    "01a1a76f-c706-70f5-8cd1-47152266139e",
+    "01a1a76f-f369-7833-a0b3-ea9b12f37707",
+    "01a1a770-3262-7a3b-b518-5f07a4317d0a",
+    "01a1a770-6e4e-7fb9-b1b1-791fb61c13d7",
+    "01a1a770-9a63-7a14-8048-ce0dc1ab9488"
+   ]
+  },
+  {
+   "agent_role": "mission_orchestrator (interpreter)",
+   "cases": [
+    "E01",
+    "E04",
+    "E07",
+    "E11",
+    "E12",
+    "E18",
+    "E19",
+    "E20",
+    "E21",
+    "E22",
+    "E27"
+   ],
+   "comparison": "A",
+   "dataset": {
+    "id": "eval_v2",
+    "sha256": "0bee0e32672c9b99a82c240a17cef050e650c0443268b54e23285ea0107c3cd7",
+    "split": "eval",
+    "version": "2"
+   },
+   "generation": {},
+   "id": "A2-rules-pilot",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied"
+   ],
+   "model": {
+    "digest": null,
+    "name": "rules-interpreter",
+    "provider": "deterministic"
+   },
+   "name": "eval_v2@2 | rules | no-prompt | pipeline v1 | pilot_v1",
+   "note": "compared case by case with A1; never ranked as a model",
+   "prompt": null,
+   "provenance": "same sealed pilot (rules ran on the same 11 cases); DETERMINISTIC_BASELINE, not an LLM",
+   "repetitions": 1,
+   "seed": null,
+   "status": "EXECUTED_HISTORICAL",
+   "task": "INTERPRET_BRIEF",
+   "traces": [
+    "01a1a76e-3ab2-7eaa-ad7e-557b4dd5dd57",
+    "01a1a76e-3ad9-756b-8678-087a8f8874ea",
+    "01a1a76e-3b13-7ef8-9d0a-5abe81b4db8c",
+    "01a1a76e-3b32-7d18-9d73-d739f1831b28",
+    "01a1a76e-3b53-7760-96ec-2cd4465ed650",
+    "01a1a76e-3bba-7b66-8512-03f3b1ac6bcb",
+    "01a1a76e-3c6a-7b18-8ac7-196dee5838ba",
+    "01a1a76e-3cab-7b59-9069-8d6d81738d8e",
+    "01a1a76e-3ce9-7c9f-be58-c8395ee765bf",
+    "01a1a76e-3d0a-7d48-bf6c-6e5ce4844fb1",
+    "01a1a76e-3d47-7612-b863-dd96f133b6b4"
+   ]
+  },
+  {
+   "agent_role": "mission_orchestrator",
+   "cases": "ALL",
+   "comparison": "A",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "temperature": 0.0
+   },
+   "id": "A3-aida-qwen",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied"
+   ],
+   "model": {
+    "digest": "UNKNOWN",
+    "name": "AIDA_QWEN_MODEL",
+    "provider": "aida-hpc"
+   },
+   "name": "eval_v3@3 | aida-qwen | interpret_brief/2 | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2",
+   "provenance": "plan_v1 EXP-05",
+   "repetitions": 1,
+   "seed": null,
+   "status": "BLOCKED_NEEDS_VPN_AND_CREDENTIAL",
+   "task": "INTERPRET_BRIEF",
+   "traces": []
+  },
+  {
+   "agent_role": "mission_orchestrator",
+   "cases": "ALL",
+   "comparison": "A",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "temperature": 0.0
+   },
+   "id": "A4-hermes-provider",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied"
+   ],
+   "model": {
+    "digest": "UNKNOWN",
+    "name": "poolside/laguna-s-2.1:free",
+    "provider": "nous (Hermes)"
+   },
+   "name": "eval_v3@3 | hermes | interpret_brief/2 | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2",
+   "provenance": "plan_v1 EXP-07",
+   "repetitions": 1,
+   "seed": null,
+   "status": "BLOCKED_NEEDS_ENDPOINT_AND_CREDENTIAL",
+   "task": "INTERPRET_BRIEF",
+   "traces": []
+  },
+  {
+   "agent_role": "mission_orchestrator",
+   "cases": "ALL",
+   "comparison": "B",
+   "dataset": {
+    "id": "eval_v2",
+    "sha256": "0bee0e32672c9b99a82c240a17cef050e650c0443268b54e23285ea0107c3cd7",
+    "split": "eval",
+    "version": "2"
+   },
+   "generation": {
+    "num_ctx": 8192,
+    "num_predict": 1024,
+    "seed": 7,
+    "temperature": 0.0,
+    "think": false,
+    "timeout_s": 120.0
+   },
+   "id": "B1-think-off-full",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied"
+   ],
+   "model": {
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+    "name": "qwen3:4b",
+    "provider": "ollama"
+   },
+   "name": "eval_v2@2 | ollama:qwen3:4b | interpret_brief/1 | pipeline v1 | think off",
+   "note": null,
+   "prompt": "interpret_brief/1",
+   "provenance": "plan_v1 EXP-01 (the pilot covers 11 of 33 cases only)",
+   "repetitions": 1,
+   "seed": 7,
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "INTERPRET_BRIEF",
+   "traces": []
+  },
+  {
+   "agent_role": "mission_orchestrator",
+   "cases": "ALL",
+   "comparison": "B",
+   "dataset": {
+    "id": "eval_v2",
+    "sha256": "0bee0e32672c9b99a82c240a17cef050e650c0443268b54e23285ea0107c3cd7",
+    "split": "eval",
+    "version": "2"
+   },
+   "generation": {
+    "num_ctx": 8192,
+    "num_predict": 4096,
+    "seed": 7,
+    "temperature": 0.0,
+    "think": true,
+    "timeout_s": 300.0
+   },
+   "id": "B2-think-on-full",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied"
+   ],
+   "model": {
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+    "name": "qwen3:4b",
+    "provider": "ollama"
+   },
+   "name": "eval_v2@2 | ollama:qwen3:4b | interpret_brief/1 | pipeline v1 | think on",
+   "note": null,
+   "prompt": "interpret_brief/1",
+   "provenance": "plan_v1 EXP-02",
+   "repetitions": 1,
+   "seed": 7,
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "INTERPRET_BRIEF",
+   "traces": []
+  },
+  {
+   "agent_role": "mission_orchestrator",
+   "cases": "ALL",
+   "comparison": "C",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "num_ctx": 8192,
+    "num_predict": 1024,
+    "seed": 7,
+    "temperature": 0.0,
+    "think": false,
+    "timeout_s": 120.0
+   },
+   "id": "C1-prompt-v2",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied"
+   ],
+   "model": {
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+    "name": "qwen3:4b",
+    "provider": "ollama"
+   },
+   "name": "eval_v3@3 | ollama:qwen3:4b | interpret_brief/2 | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2",
+   "provenance": "plan_v1 EXP-04 (+ adversarial_v3)",
+   "repetitions": 1,
+   "seed": 7,
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "INTERPRET_BRIEF",
+   "traces": []
+  },
+  {
+   "agent_role": "mission_orchestrator",
+   "cases": "ALL",
+   "comparison": "C",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "num_ctx": 8192,
+    "num_predict": 1024,
+    "seed": 7,
+    "temperature": 0.0,
+    "think": false,
+    "timeout_s": 120.0
+   },
+   "id": "C2-prompt-v1",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied"
+   ],
+   "model": {
+    "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+    "name": "qwen3:4b",
+    "provider": "ollama"
+   },
+   "name": "eval_v3@3 | ollama:qwen3:4b | interpret_brief/1 | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/1",
+   "provenance": "plan_v1 EXP-04b",
+   "repetitions": 1,
+   "seed": 7,
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "INTERPRET_BRIEF",
+   "traces": []
+  },
+  {
+   "agent_role": "per-role configuration",
+   "cases": "ALL",
+   "comparison": "D",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "drone_swarm_agent": {},
+    "mission_orchestrator": {},
+    "rover_agent": {}
+   },
+   "id": "M0-deterministic",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied",
+    "agent_success",
+    "fallback_used",
+    "replanning_required",
+    "conflicts_resolved",
+    "dependency_valid",
+    "iterations_used"
+   ],
+   "model": {
+    "drone_swarm_agent": "deterministic",
+    "mission_orchestrator": "deterministic",
+    "rover_agent": "deterministic"
+   },
+   "name": "eval_v3@3 | M0-deterministic | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2 (supervisor in llm mode)",
+   "provenance": "experiments/multiagent_matrix_v1.json",
+   "repetitions": 1,
+   "seed": null,
+   "status": "RUNNABLE_OFFLINE_NOT_RUN",
+   "task": "MULTI_AGENT",
+   "traces": []
+  },
+  {
+   "agent_role": "per-role configuration",
+   "cases": "ALL",
+   "comparison": "D",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "drone_swarm_agent": {},
+    "mission_orchestrator": {
+     "num_ctx": 8192,
+     "num_predict": 1024,
+     "seed": 7,
+     "temperature": 0.0,
+     "think": false,
+     "timeout_s": 120.0
+    },
+    "rover_agent": {}
+   },
+   "id": "M1-supervisor-qwen",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied",
+    "agent_success",
+    "fallback_used",
+    "replanning_required",
+    "conflicts_resolved",
+    "dependency_valid",
+    "iterations_used"
+   ],
+   "model": {
+    "drone_swarm_agent": "deterministic",
+    "mission_orchestrator": "ollama:qwen3:4b",
+    "rover_agent": "deterministic"
+   },
+   "name": "eval_v3@3 | M1-supervisor-qwen | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2 (supervisor in llm mode)",
+   "provenance": "experiments/multiagent_matrix_v1.json",
+   "repetitions": 1,
+   "seed": null,
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "MULTI_AGENT",
+   "traces": []
+  },
+  {
+   "agent_role": "per-role configuration",
+   "cases": "ALL",
+   "comparison": "D",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "drone_swarm_agent": {
+     "num_ctx": 8192,
+     "num_predict": 1024,
+     "seed": 7,
+     "temperature": 0.0,
+     "think": false,
+     "timeout_s": 120.0
+    },
+    "mission_orchestrator": {},
+    "rover_agent": {}
+   },
+   "id": "M2-drone-qwen",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied",
+    "agent_success",
+    "fallback_used",
+    "replanning_required",
+    "conflicts_resolved",
+    "dependency_valid",
+    "iterations_used"
+   ],
+   "model": {
+    "drone_swarm_agent": "ollama:qwen3:4b",
+    "mission_orchestrator": "deterministic",
+    "rover_agent": "deterministic"
+   },
+   "name": "eval_v3@3 | M2-drone-qwen | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2 (supervisor in llm mode)",
+   "provenance": "experiments/multiagent_matrix_v1.json",
+   "repetitions": 1,
+   "seed": null,
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "MULTI_AGENT",
+   "traces": []
+  },
+  {
+   "agent_role": "per-role configuration",
+   "cases": "ALL",
+   "comparison": "D",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "drone_swarm_agent": {},
+    "mission_orchestrator": {},
+    "rover_agent": {
+     "num_ctx": 8192,
+     "num_predict": 1024,
+     "seed": 7,
+     "temperature": 0.0,
+     "think": false,
+     "timeout_s": 120.0
+    }
+   },
+   "id": "M3-rover-qwen",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied",
+    "agent_success",
+    "fallback_used",
+    "replanning_required",
+    "conflicts_resolved",
+    "dependency_valid",
+    "iterations_used"
+   ],
+   "model": {
+    "drone_swarm_agent": "deterministic",
+    "mission_orchestrator": "deterministic",
+    "rover_agent": "ollama:qwen3:4b"
+   },
+   "name": "eval_v3@3 | M3-rover-qwen | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2 (supervisor in llm mode)",
+   "provenance": "experiments/multiagent_matrix_v1.json",
+   "repetitions": 1,
+   "seed": null,
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "MULTI_AGENT",
+   "traces": []
+  },
+  {
+   "agent_role": "per-role configuration",
+   "cases": "ALL",
+   "comparison": "D",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "drone_swarm_agent": {
+     "num_ctx": 8192,
+     "num_predict": 1024,
+     "seed": 7,
+     "temperature": 0.0,
+     "think": false,
+     "timeout_s": 120.0
+    },
+    "mission_orchestrator": {
+     "num_ctx": 8192,
+     "num_predict": 1024,
+     "seed": 7,
+     "temperature": 0.0,
+     "think": false,
+     "timeout_s": 120.0
+    },
+    "rover_agent": {
+     "num_ctx": 8192,
+     "num_predict": 1024,
+     "seed": 7,
+     "temperature": 0.0,
+     "think": false,
+     "timeout_s": 120.0
+    }
+   },
+   "id": "M4-all-qwen-shared",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied",
+    "agent_success",
+    "fallback_used",
+    "replanning_required",
+    "conflicts_resolved",
+    "dependency_valid",
+    "iterations_used"
+   ],
+   "model": {
+    "drone_swarm_agent": "ollama:qwen3:4b",
+    "mission_orchestrator": "ollama:qwen3:4b",
+    "rover_agent": "ollama:qwen3:4b"
+   },
+   "name": "eval_v3@3 | M4-all-qwen-shared | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2 (supervisor in llm mode)",
+   "provenance": "experiments/multiagent_matrix_v1.json",
+   "repetitions": 1,
+   "seed": null,
+   "status": "CONFIGURED_NOT_RUN",
+   "task": "MULTI_AGENT",
+   "traces": []
+  },
+  {
+   "agent_role": "per-role configuration",
+   "cases": "ALL",
+   "comparison": "D",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "drone_swarm_agent": {
+     "num_ctx": 8192,
+     "num_predict": 1024,
+     "seed": 7,
+     "temperature": 0.0,
+     "think": false,
+     "timeout_s": 120.0
+    },
+    "mission_orchestrator": {
+     "temperature": 0.0
+    },
+    "rover_agent": {
+     "temperature": 0.0
+    }
+   },
+   "id": "M5-mixed-models",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied",
+    "agent_success",
+    "fallback_used",
+    "replanning_required",
+    "conflicts_resolved",
+    "dependency_valid",
+    "iterations_used"
+   ],
+   "model": {
+    "drone_swarm_agent": "ollama:qwen3:4b",
+    "mission_orchestrator": "aida-qwen",
+    "rover_agent": "hermes"
+   },
+   "name": "eval_v3@3 | M5-mixed-models | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2 (supervisor in llm mode)",
+   "provenance": "experiments/multiagent_matrix_v1.json",
+   "repetitions": 1,
+   "seed": null,
+   "status": "BLOCKED_NEEDS_AIDA_AND_HERMES",
+   "task": "MULTI_AGENT",
+   "traces": []
+  },
+  {
+   "agent_role": "per-role configuration",
+   "cases": "ALL",
+   "comparison": "D",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {
+    "drone_swarm_agent": {
+     "temperature": 0.0
+    },
+    "mission_orchestrator": {
+     "temperature": 0.0
+    },
+    "rover_agent": {
+     "temperature": 0.0
+    }
+   },
+   "id": "M6-all-aida-qwen",
+   "metrics": [
+    "case_pass",
+    "extraction_accuracy",
+    "schema_valid",
+    "safety_ok",
+    "expected_status_match",
+    "unsafe_request_detected",
+    "safe_refused",
+    "constraints_satisfied",
+    "agent_success",
+    "fallback_used",
+    "replanning_required",
+    "conflicts_resolved",
+    "dependency_valid",
+    "iterations_used"
+   ],
+   "model": {
+    "drone_swarm_agent": "aida-qwen",
+    "mission_orchestrator": "aida-qwen",
+    "rover_agent": "aida-qwen"
+   },
+   "name": "eval_v3@3 | M6-all-aida-qwen | pipeline v2",
+   "note": null,
+   "prompt": "interpret_brief/2 (supervisor in llm mode)",
+   "provenance": "experiments/multiagent_matrix_v1.json",
+   "repetitions": 1,
+   "seed": null,
+   "status": "BLOCKED_NEEDS_AIDA",
+   "task": "MULTI_AGENT",
+   "traces": []
+  },
+  {
+   "agent_role": "drone_swarm_agent",
+   "cases": [
+    "1 drone",
+    "2 drones",
+    "3 drones",
+    "5 drones"
+   ],
+   "comparison": "E",
+   "dataset": {
+    "id": "swarm scenarios",
+    "sha256": null,
+    "split": "dev",
+    "version": "v1"
+   },
+   "generation": {},
+   "id": "E1-coordination-scenarios",
+   "metrics": [
+    "coordination_valid",
+    "conflicts_detected",
+    "conflicts_resolved",
+    "replanning_required"
+   ],
+   "model": {
+    "name": "deterministic allocator + deconfliction"
+   },
+   "name": "scenarios 1/2/3/5 drones | deterministic",
+   "note": "to appear in Opik it must be re-run with traces (new run, labelled as such)",
+   "prompt": null,
+   "provenance": "results/v2_2026-11-04_452e89a2f/scalability (sealed); no Opik traces were kept",
+   "repetitions": 1,
+   "seed": null,
+   "status": "EXECUTED_OFFLINE_NO_TRACES",
+   "task": "COORDINATION",
+   "traces": []
+  },
+  {
+   "agent_role": "all three",
+   "cases": [
+    "demo"
+   ],
+   "comparison": "E",
+   "dataset": {
+    "id": "demo",
+    "sha256": null,
+    "split": "demo",
+    "version": "1"
+   },
+   "generation": {},
+   "id": "E2-multiagent-demo-simulated",
+   "metrics": [
+    "replanning_required",
+    "replanning_success",
+    "dependency_valid"
+   ],
+   "model": {
+    "name": "scripted test doubles"
+   },
+   "name": "swarm_3_tight | simulated agents | demo",
+   "note": "never a model result; only uploadable with its test-double labels and a separate authorization",
+   "prompt": "agent_drone/1, agent_rover/1",
+   "provenance": "multiagent.demo --multiagent-simulated",
+   "repetitions": 1,
+   "seed": null,
+   "status": "SIMULATED_ONLY_NOT_UPLOADED",
+   "task": "COORDINATION",
+   "traces": []
+  },
+  {
+   "agent_role": "advisory classifier",
+   "cases": "ALL",
+   "comparison": "F",
+   "dataset": {
+    "id": "eval_v3",
+    "sha256": "333a0b7fc1f8105c9b322617c00443da2425a87df84ba63fd5a55216aa6deece",
+    "split": "eval",
+    "version": "3"
+   },
+   "generation": {},
+   "id": "F1-clef-classify",
+   "metrics": [
+    "top-label accuracy",
+    "Brier score"
+   ],
+   "model": {
+    "digest": "UNKNOWN",
+    "name": "clef",
+    "provider": "aida-hpc"
+   },
+   "name": "eval_v3@3 | aida-clef | CLASSIFY_REQUEST",
+   "note": null,
+   "prompt": null,
+   "provenance": "plan_v1 EXP-06",
+   "repetitions": 1,
+   "seed": null,
+   "status": "BLOCKED_NEEDS_AIDA",
+   "task": "CLASSIFY_REQUEST",
+   "traces": []
+  },
+  {
+   "agent_role": "advisory decision",
+   "cases": [
+    "swarm_3",
+    "swarm_5"
+   ],
+   "comparison": "F",
+   "dataset": {
+    "id": "swarm scenarios",
+    "sha256": null,
+    "split": "eval",
+    "version": "v1"
+   },
+   "generation": {},
+   "id": "F2-clef-select-allocation",
+   "metrics": [
+    "chosen option rank",
+    "Brier score"
+   ],
+   "model": {
+    "digest": "UNKNOWN",
+    "name": "clef",
+    "provider": "aida-hpc"
+   },
+   "name": "swarm scenarios | aida-clef | SELECT_ALLOCATION",
+   "note": "never evaluated as a plan generator",
+   "prompt": null,
+   "provenance": "pilots/aida_pilot_v1.json",
+   "repetitions": 1,
+   "seed": null,
+   "status": "BLOCKED_NEEDS_AIDA",
+   "task": "SELECT_ALLOCATION",
+   "traces": []
+  }
+ ],
+ "rule": "comparisons only over the same dataset version and task; dev, eval and adversarial never pooled"
+}
