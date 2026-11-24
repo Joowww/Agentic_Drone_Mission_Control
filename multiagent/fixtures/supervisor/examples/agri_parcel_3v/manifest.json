@@ -1,0 +1,116 @@
+{
+  "approval": {
+    "note": "a validated manifest is not an approval; an approval is not an execution",
+    "per_vehicle": true,
+    "required": true
+  },
+  "created_at": "2026-11-24T21:31:40Z",
+  "data_kind": "SYNTHETIC",
+  "dependencies": [
+    {
+      "after": "AIR_drone_01",
+      "condition": "COMPLETED",
+      "reason": "air-ground proximity 0.00 m < 8.5 m: sequential",
+      "task_id": "GROUND_rover_01"
+    },
+    {
+      "after": "AIR_drone_02",
+      "condition": "COMPLETED",
+      "reason": "air-ground proximity 0.00 m < 8.5 m: sequential",
+      "task_id": "GROUND_rover_01"
+    }
+  ],
+  "execution_order": [
+    "AIR_drone_01",
+    "AIR_drone_02",
+    "GROUND_rover_01"
+  ],
+  "intent_sha256": "443347cf747de71f790b6c3a6186c841b94a952a8237e2ff690838630d056445",
+  "manifest_sha256": "0f458143078982b846f7d7bd57ff1c8b97ece7e8121962c78de939919aa187ee",
+  "mission_id": "SUP-20261124T213139Z-0ca712d79a",
+  "proposal_sha256": "9f56dc0a5fae90e3f87a8913656ddc9da20a72754170f7f42e034afa6e57dba3",
+  "scenario_id": "agri_parcel_three_vehicles_v1",
+  "schema": "tfg.multiagent.mission-manifest/1",
+  "vehicles": [
+    {
+      "executor": {
+        "capability": "EXECUTE_GUIDED_WAYPOINT_MISSION_SITL",
+        "name": "tools.preflight_sequences.start_preflight_sequence (two drones, sequential) | tools.virtual_preflight.run_virtual_preflight (one drone)",
+        "status": "DEMONSTRATED_SITL"
+      },
+      "mandatory": true,
+      "mission_json": {
+        "path": "plans/drone_1.mission.json",
+        "sha256": "fc92e27d1e7ea7702c5cae4daa72ae9e82a2a55ef8c96a5f94b2fd23164e2c61"
+      },
+      "plan": {
+        "firmwareType": 3,
+        "items": 6,
+        "path": "plans/drone_1.plan",
+        "profile": "QGC_PLAN_ARDUCOPTER_V2",
+        "sha256": "5e51b4740f2df585651e36cae8a4c1baa6edd6bf02f882e2eeab7691074518ef",
+        "vehicleType": 2
+      },
+      "role": "drone",
+      "sitl_binding": {
+        "simulated_vehicle": "v1",
+        "vehicle_id": "drone_01"
+      },
+      "task_id": "AIR_drone_01",
+      "validation": "PASS",
+      "vehicle_class": "ArduCopter",
+      "vehicle_id": "drone_01"
+    },
+    {
+      "executor": {
+        "capability": "EXECUTE_GUIDED_WAYPOINT_MISSION_SITL",
+        "name": "tools.preflight_sequences.start_preflight_sequence (two drones, sequential) | tools.virtual_preflight.run_virtual_preflight (one drone)",
+        "status": "DEMONSTRATED_SITL"
+      },
+      "mandatory": true,
+      "mission_json": {
+        "path": "plans/drone_2.mission.json",
+        "sha256": "250cbe5d594ddd0ed155deddc26a52443e988bd39f3d4db6fdbf8afec849b7f8"
+      },
+      "plan": {
+        "firmwareType": 3,
+        "items": 6,
+        "path": "plans/drone_2.plan",
+        "profile": "QGC_PLAN_ARDUCOPTER_V2",
+        "sha256": "3a712c63f69777ca54bc6f6380c576a41a33774a0afba616a84dbb37a81a6b39",
+        "vehicleType": 2
+      },
+      "role": "drone",
+      "sitl_binding": {
+        "simulated_vehicle": "v2",
+        "vehicle_id": "drone_02"
+      },
+      "task_id": "AIR_drone_02",
+      "validation": "PASS",
+      "vehicle_class": "ArduCopter",
+      "vehicle_id": "drone_02"
+    },
+    {
+      "executor": {
+        "capability": "EXECUTE_PLAN_MISSION_SITL",
+        "name": null,
+        "status": "NOT_IMPLEMENTED"
+      },
+      "mandatory": true,
+      "plan": {
+        "firmwareType": 3,
+        "items": 5,
+        "path": "plans/rover.plan",
+        "profile": "QGC_PLAN_ARDUROVER_V1",
+        "sha256": "1cc10a728ef039017514564d9ab9efcbd7b8cb85d55c9c3da9dba34ce08d3de9",
+        "vehicleType": 10
+      },
+      "role": "rover",
+      "sitl_binding": null,
+      "task_id": "GROUND_rover_01",
+      "validation": "PASS",
+      "vehicle_class": "ArduRover",
+      "vehicle_id": "rover_01"
+    }
+  ]
+}

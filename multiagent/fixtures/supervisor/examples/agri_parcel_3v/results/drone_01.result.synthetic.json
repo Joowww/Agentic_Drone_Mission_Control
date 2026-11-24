@@ -1,0 +1,65 @@
+{
+  "created_at": "2026-11-24T21:31:50Z",
+  "criteria": [
+    {
+      "description": "TEST DOUBLE: not a readback",
+      "id": "mission_readback_match",
+      "result": "pass"
+    },
+    {
+      "id": "all_waypoints_reached",
+      "measured": 3,
+      "result": "pass",
+      "threshold": 3,
+      "unit": "wp"
+    },
+    {
+      "id": "mission_end_reached",
+      "result": "pass"
+    }
+  ],
+  "environment": {
+    "ardupilot_version": "synthetic",
+    "simulator": "synthetic"
+  },
+  "evidence": [
+    {
+      "description": "Executor log (synthetic test double)",
+      "kind": "executor_log",
+      "path": "evidence/executor.log",
+      "sha256": "84ce30017636990a5ce1a61d6e3c86b9b0893b829137fefcc425e72b3186b675"
+    }
+  ],
+  "execution": {
+    "finished_at": "2026-11-24T21:31:50Z",
+    "started_at": "2026-11-24T21:31:50Z",
+    "status": "completed"
+  },
+  "group_id": "SUP-20261124T213139Z-0ca712d79a",
+  "metrics": {},
+  "mission": {
+    "executed_plan_sha256": "5e51b4740f2df585651e36cae8a4c1baa6edd6bf02f882e2eeab7691074518ef",
+    "source_plan_name": "drone_1.plan",
+    "source_plan_sha256": "5e51b4740f2df585651e36cae8a4c1baa6edd6bf02f882e2eeab7691074518ef",
+    "transformations": [],
+    "transformed": false
+  },
+  "producer": {
+    "name": "tfg-multiagent-supervisor",
+    "version": "1"
+  },
+  "run_id": "SUP-20261124T213139Z-0ca712d79a.drone_01.test_double",
+  "schema": "safeflight.sitl-result",
+  "schema_version": 1,
+  "synthetic": true,
+  "vehicle": {
+    "autopilot": "ArduPilot",
+    "frame": "synthetic",
+    "vehicle": "ArduCopter",
+    "vehicle_id": "drone_01"
+  },
+  "verdict": {
+    "reasons": [],
+    "result": "pass"
+  }
+}

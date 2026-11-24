@@ -1,0 +1,52 @@
+{
+  "admission_check": {
+    "fingerprint": "b05cb3a8158fb0db5876553d765890d19f05909b60b0543e23b60221053ca576",
+    "function": "tools.preflight_sequences._inputs",
+    "mission_sha256": [
+      "fc92e27d1e7ea7702c5cae4daa72ae9e82a2a55ef8c96a5f94b2fd23164e2c61",
+      "250cbe5d594ddd0ed155deddc26a52443e988bd39f3d4db6fdbf8afec849b7f8"
+    ],
+    "missions_root": "<out>/copy_real/execution",
+    "vehicle_selection": [
+      {
+        "simulated_vehicle": "v1",
+        "vehicle_id": "drone_01"
+      },
+      {
+        "simulated_vehicle": "v2",
+        "vehicle_id": "drone_02"
+      }
+    ]
+  },
+  "authorization": {
+    "authenticated": false,
+    "note": "the H2 model: a declared statement, not authenticated",
+    "source": "OPERATOR_DECLARED_VIA_AGENT",
+    "statement": "example approval drone_01 (TEST_FIXTURE) | example approval drone_02 (TEST_FIXTURE)"
+  },
+  "commands": [],
+  "effects": "mission snapshot files only; no reservation, no process, no simulator, no vehicle",
+  "execution_path": {
+    "entry": "tools.preflight_sequences.start_preflight_sequence",
+    "note": "the second mission starts only after the first PASSED; this is stricter than the planned start offset",
+    "realization": "SEQUENTIAL_H2"
+  },
+  "mission_id": "SUP-20261124T213139Z-0ca712d79a",
+  "mode": "OFFLINE_TEST",
+  "problems": [],
+  "proposal_sha256": "08f8229aa5ce34feee6db7fc90e36739c32138e9d7ce346e7b3b54699a212fd3",
+  "schema": "tfg.multiagent.drone-execution-request/1",
+  "status": "READY_TO_REQUEST_EXECUTION",
+  "submitted": false,
+  "would_call": {
+    "args": {
+      "authorization_statement": "example approval drone_01 (TEST_FIXTURE) | example approval drone_02 (TEST_FIXTURE)",
+      "mission_paths": [
+        "<out>/copy_real/execution/h2_request/drone_01.json",
+        "<out>/copy_real/execution/h2_request/drone_02.json"
+      ],
+      "request_key": "SUP-20261124T213139Z-0ca712d79a-drones"
+    },
+    "function": "tools.preflight_sequences.start_preflight_sequence"
+  }
+}

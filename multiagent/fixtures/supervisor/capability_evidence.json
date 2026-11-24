@@ -1,0 +1,37 @@
+{
+  "schema": "tfg.multiagent.capability-evidence/1",
+  "evidence_id": "capability_evidence_2026_11_24",
+  "note": "What each vehicle class has actually demonstrated. A capability not listed here is NOT_IMPLEMENTED. Statuses: DEMONSTRATED_SITL (a real ArduPilot SITL run with sealed evidence), OFFLINE_VALIDATED (implemented and covered by offline tests only), PENDING_CONTROLLER (depends on a controller that is not accepted yet), NOT_IMPLEMENTED.",
+  "classes": {
+    "ArduCopter": {
+      "PLAN_AERIAL_ROUTE": {"status": "OFFLINE_VALIDATED", "implementation": "multiagent.drone_agent.plan_aerial"},
+      "CHECK_ALTITUDE_BATTERY_WIND": {"status": "OFFLINE_VALIDATED", "implementation": "multiagent.swarm.route_candidate + tools.hermes_mission_validation.validate_mission",
+                                      "note": "wind is a declared input; no live wind source exists"},
+      "GENERATE_ARDUCOPTER_PLAN": {"status": "OFFLINE_VALIDATED", "implementation": "inputs.qgc_plan_export.build_plan (QGC_PLAN_ARDUCOPTER_V2)"},
+      "EXECUTE_GUIDED_WAYPOINT_MISSION_SITL": {
+        "status": "DEMONSTRATED_SITL",
+        "executor": "tools.preflight_sequences.start_preflight_sequence (two drones, sequential) | tools.virtual_preflight.run_virtual_preflight (one drone)",
+        "boundary": "tools/multiagent_drone_sequence.py via multiagent.drone_execution_bridge.request_execution",
+        "what": "GUIDED, ARM, TAKEOFF, waypoints, return to launch coordinate, LAND; executor status COMPLETED, analysis PASSED",
+        "evidence": [
+          {"path": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24/README.md", "sha256": "7cfcdf104c4431d308b668d341cb2cb1d641b7045b4372f2a94f9ef9962e7e33"},
+          {"path": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24/child_1_2f7db1f6/report.json", "sha256": "183a68b92db7c03543066f0ddbb6de5524870866a854ca237b69ed92d4088864"},
+          {"path": "simulation/ros2_gazebo/results/agri_demo_h2_2026_10_24/child_2_febf7c4f/report.json", "sha256": "f7884a1c52341d5cb5c7e9cda62695bbbf3e3e7fc1d7e9d68bc4ee92b2785850"}],
+        "date": "2026-10-24",
+        "limits": "the executor flies the MissionDefinition JSON in GUIDED; the .plan is NOT uploaded. The .plan and the mission are bound by mission_sha256 only."},
+      "EXECUTE_PLAN_AUTO_MISSION_SITL": {"status": "NOT_IMPLEMENTED", "note": "no MAVLink mission upload + AUTO executor exists in the repository"}
+    },
+    "ArduRover": {
+      "PLAN_GROUND_ROUTE": {"status": "OFFLINE_VALIDATED", "implementation": "multiagent.supervisor.rover_route.plan_rover_route"},
+      "CHECK_SPEED_DISTANCE_LIMITS": {"status": "OFFLINE_VALIDATED", "implementation": "multiagent.supervisor.rover_route"},
+      "GENERATE_ARDUROVER_PLAN": {"status": "OFFLINE_VALIDATED", "implementation": "inputs.qgc_rover_plan_export.build_rover_plan (QGC_PLAN_ARDUROVER_V1)"},
+      "EXECUTE_GUIDED_SINGLE_GOAL_SITL": {
+        "status": "PENDING_CONTROLLER",
+        "executor": "tools.rover_ground_executor.admit_ground_trial (bounded one-shot GUIDED trial; operational policy CLOSED)",
+        "contract": "tfg.rover.mission-execution/2 (tools.rover_mission_payload) via tools.rover_payload_executor_adapter",
+        "note": "the one-metre GUIDED trial is being finished by the rover controller work; no accepted SITL motion evidence is registered here"},
+      "EXECUTE_PLAN_MISSION_SITL": {"status": "NOT_IMPLEMENTED",
+        "note": "the rover controller accepts ONE navigation goal; a multi-waypoint .plan mission needs the executor contract tfg.rover.plan-mission-execution/1 (multiagent/supervisor/executors.py)"}
+    }
+  }
+}

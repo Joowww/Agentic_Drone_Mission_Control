@@ -1,0 +1,123 @@
+[
+  {
+    "at": "2026-11-24T21:31:39Z",
+    "decision": "INTENT_DETERMINISTIC",
+    "detail": {
+      "aerial_points": [],
+      "aerial_scope": "PARCEL",
+      "aerial_sectors": 2,
+      "altitude_m": null,
+      "battery_percent": {},
+      "contradictions": [],
+      "drones_requested": 2,
+      "ground_point_count": 3,
+      "ground_points": [],
+      "named_vehicles": [],
+      "return_to_start": true,
+      "rovers_requested": 1,
+      "schema": "tfg.multiagent.supervisor-intent/1",
+      "source": "DETERMINISTIC",
+      "unsafe_requests": [],
+      "wind_speed_kmh": null
+    },
+    "stage": "intake"
+  },
+  {
+    "at": "2026-11-24T21:31:39Z",
+    "decision": "WIND_FROM_DECLARED_CONTEXT",
+    "detail": {
+      "provenance": "SYNTHETIC",
+      "wind_speed_kmh": 0.0
+    },
+    "stage": "screen"
+  },
+  {
+    "at": "2026-11-24T21:31:39Z",
+    "decision": "SECTORS_AND_GROUND_POINTS",
+    "detail": {
+      "ground_points": [
+        "POI_1",
+        "POI_3",
+        "POI_5"
+      ],
+      "sectors": [
+        {
+          "points": [
+            "POI_1",
+            "POI_2",
+            "POI_3"
+          ],
+          "sector_id": "SECTOR_A"
+        },
+        {
+          "points": [
+            "POI_4",
+            "POI_5",
+            "POI_6"
+          ],
+          "sector_id": "SECTOR_B"
+        }
+      ],
+      "source": "declared scenario points"
+    },
+    "stage": "decompose"
+  },
+  {
+    "at": "2026-11-24T21:31:39Z",
+    "decision": "SECTORS_ASSIGNED",
+    "detail": {
+      "assignment": {
+        "drone_01": [
+          "POI_4",
+          "POI_5",
+          "POI_6"
+        ],
+        "drone_02": [
+          "POI_1",
+          "POI_2",
+          "POI_3"
+        ]
+      },
+      "criterion": "feasible for each drone agent; minimum makespan, then total time",
+      "makespan_min": 0.5504
+    },
+    "stage": "assign"
+  },
+  {
+    "at": "2026-11-24T21:31:40Z",
+    "decision": "AERIAL_PLAN_DECONFLICTED",
+    "detail": {
+      "coordination": "DECONFLICTED_BY_START_DELAY",
+      "schedule": {
+        "drone_01": {
+          "nominal_end_s": 58.02,
+          "start_delay_s": 0.0
+        },
+        "drone_02": {
+          "nominal_end_s": 108.36,
+          "start_delay_s": 60.0
+        }
+      }
+    },
+    "stage": "joint_check"
+  },
+  {
+    "at": "2026-11-24T21:31:40Z",
+    "decision": "AIR_GROUND_ORDERING",
+    "detail": [
+      {
+        "after": "AIR_drone_01",
+        "condition": "COMPLETED",
+        "reason": "air-ground proximity 0.00 m < 8.5 m: sequential",
+        "task_id": "GROUND_rover_01"
+      },
+      {
+        "after": "AIR_drone_02",
+        "condition": "COMPLETED",
+        "reason": "air-ground proximity 0.00 m < 8.5 m: sequential",
+        "task_id": "GROUND_rover_01"
+      }
+    ],
+    "stage": "assemble"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "schema": "tfg.multiagent.supervisor-scenario/1",
+  "scenario_id": "agri_parcel_three_vehicles_v1",
+  "provenance": "SYNTHETIC",
+  "description": "Synthetic agricultural parcel on the swarm field: two ArduCopter drones and one ArduRover. Every value is a planning declaration, not a measurement.",
+  "context_path": "multiagent/fixtures/swarm_2.context.json",
+  "evidence_path": "multiagent/fixtures/supervisor/capability_evidence.json",
+  "parcel": {
+    "parcel_id": "PARCEL_SOUTH",
+    "aerial_survey_points": ["POI_1", "POI_2", "POI_3", "POI_4", "POI_5", "POI_6"],
+    "ground_visit_points": ["POI_1", "POI_3", "POI_5"]
+  },
+  "rover_limits": {
+    "max_speed_mps": 1.0,
+    "max_leg_length_m": 60.0,
+    "max_route_length_m": 200.0,
+    "timeout_margin_factor": 2.0,
+    "battery_percent": 80.0,
+    "consumption_percent_per_km": 10.0,
+    "minimum_battery_reserve_percent": 20.0,
+    "provenance": "SYNTHETIC"
+  },
+  "availability_overrides": {}
+}

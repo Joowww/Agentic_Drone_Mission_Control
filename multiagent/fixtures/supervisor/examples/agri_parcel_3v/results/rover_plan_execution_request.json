@@ -1,0 +1,162 @@
+{
+  "adapter": "ARDUROVER_PLAN_MISSION",
+  "admission_check": {
+    "formal": [],
+    "note": "ADMISSIBLE is a format verdict; it never authorizes motion",
+    "pending": [
+      "EXECUTION_BINDING_MISSING: live session/engine/container/image/boot identity",
+      "FRAME_EVIDENCE_MISSING: verified geographic -> local odom transform",
+      "LIMITS_INCOMPLETE: ['lateral_m', 'stop'] must be approved for the complete route",
+      "AUTHORITY_MISSING: START, SITL policy, motion, stop/disarm and restoration approvals"
+    ],
+    "status": "FORMALLY_VALID_PENDING_LIVE_EVIDENCE"
+  },
+  "contract": {
+    "distinct_from": "the one-metre GUIDED trial: one bounded motion, not a waypoint mission",
+    "executor_obligations": [
+      "re-check plan sha256, identity, limits, frame evidence and every authority reference at admission",
+      "upload with the MAVLink mission protocol, read back, compare item by item; reject aerial or skipped items",
+      "run through the existing safe core/ARM/stop path (never a second MAVLink or arming path)",
+      "write safeflight.sitl-result v1 with original/executed hashes, per-waypoint evidence, stop/disarm",
+      "return tfg.multiagent.vehicle-observation/1 with data_kind REAL_SITL and evidence paths/hashes"
+    ],
+    "fields_and_admission": "multiagent/supervisor/rover_contract.py (build_request, check_request)",
+    "schema": "tfg.rover.plan-mission-execution/1",
+    "status": "SPECIFIED_BY_ROVER_CONTROLLER_NO_HANDLER"
+  },
+  "plan_request": {
+    "authority": null,
+    "execution_binding": null,
+    "frame_evidence": null,
+    "limits": {
+      "distance_m": 125.392,
+      "lateral_m": null,
+      "speed_mps": 1.0,
+      "stop": null
+    },
+    "plan": {
+      "firmware_type": 3,
+      "path": "plans/rover.plan",
+      "sha256": "1cc10a728ef039017514564d9ab9efcbd7b8cb85d55c9c3da9dba34ce08d3de9",
+      "vehicle_type": 10
+    },
+    "request_id": "SUP-20261124T213139Z-0ca712d79a.rover_01.f87dea65",
+    "route": [
+      {
+        "command": 178,
+        "doJumpId": 1,
+        "frame": 2,
+        "index": 0,
+        "params": [
+          1,
+          1.0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "command": 16,
+        "doJumpId": 2,
+        "frame": 3,
+        "index": 1,
+        "params": [
+          0,
+          0,
+          0,
+          null,
+          -35.36321708,
+          149.16490654,
+          0
+        ]
+      },
+      {
+        "command": 16,
+        "doJumpId": 3,
+        "frame": 3,
+        "index": 2,
+        "params": [
+          0,
+          0,
+          0,
+          null,
+          -35.36321708,
+          149.165237,
+          0
+        ]
+      },
+      {
+        "command": 16,
+        "doJumpId": 4,
+        "frame": 3,
+        "index": 3,
+        "params": [
+          0,
+          0,
+          0,
+          null,
+          -35.36321708,
+          149.16556746,
+          0
+        ]
+      },
+      {
+        "command": 16,
+        "doJumpId": 5,
+        "frame": 3,
+        "index": 4,
+        "params": [
+          0,
+          0,
+          0,
+          null,
+          -35.36333386,
+          149.165237,
+          0
+        ]
+      }
+    ],
+    "schema": "tfg.rover.plan-mission-execution/1",
+    "supervisor_context": {
+      "approval_id": "ff009783efea03efa1800360597d025db4e5187dc5337b6ac64806ed9768f82e",
+      "contract_source": {
+        "document": "docs/rover-demo-supervisor-contract.md (rover controller work, main checkout)",
+        "read_at": "2026-11-24",
+        "sha256": "636d7bddefefdf2d4d95a0edc292612d15574149092b60c2ef01da3d51cc5114",
+        "status": "PREPARED_BY_OWNER_NOT_COMMITTED_NO_HANDLER"
+      },
+      "dependencies": [
+        {
+          "after": "AIR_drone_01",
+          "condition": "COMPLETED",
+          "reason": "air-ground proximity 0.00 m < 8.5 m: sequential",
+          "task_id": "GROUND_rover_01"
+        },
+        {
+          "after": "AIR_drone_02",
+          "condition": "COMPLETED",
+          "reason": "air-ground proximity 0.00 m < 8.5 m: sequential",
+          "task_id": "GROUND_rover_01"
+        }
+      ],
+      "manifest_sha256": "0f458143078982b846f7d7bd57ff1c8b97ece7e8121962c78de939919aa187ee",
+      "mission_id": "SUP-20261124T213139Z-0ca712d79a",
+      "session_id": "EX1",
+      "task_id": "GROUND_rover_01",
+      "timeout_s": 250.782
+    },
+    "vehicle_id": "rover_01"
+  },
+  "reasons": [
+    "EXECUTOR_NOT_AVAILABLE: no handler accepts tfg.rover.plan-mission-execution/1 yet (EXECUTE_PLAN_MISSION_SITL is NOT_IMPLEMENTED)",
+    "EXECUTION_BINDING_MISSING: live session/engine/container/image/boot identity",
+    "FRAME_EVIDENCE_MISSING: verified geographic -> local odom transform",
+    "LIMITS_INCOMPLETE: ['lateral_m', 'stop'] must be approved for the complete route",
+    "AUTHORITY_MISSING: START, SITL policy, motion, stop/disarm and restoration approvals"
+  ],
+  "single_goal_status": "NOT_APPLICABLE: 3 waypoint(s) + return; the one-goal GUIDED controller takes exactly one goal",
+  "status": "BLOCKED",
+  "submitted": false
+}

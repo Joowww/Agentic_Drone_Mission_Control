@@ -1,0 +1,71 @@
+{
+  "approval": {
+    "approval_id": "ff009783efea03efa1800360597d025db4e5187dc5337b6ac64806ed9768f82e",
+    "source": "TEST_FIXTURE",
+    "status": "APPROVED"
+  },
+  "criteria": [
+    {
+      "description": "TEST DOUBLE: not a readback",
+      "id": "mission_readback_match",
+      "result": "pass"
+    },
+    {
+      "id": "all_waypoints_reached",
+      "measured": 3,
+      "result": "fail",
+      "threshold": 4,
+      "unit": "wp"
+    },
+    {
+      "id": "mission_end_reached",
+      "result": "fail"
+    }
+  ],
+  "errors": [
+    "TEST_DOUBLE scripted outcome FAILED"
+  ],
+  "execution": {
+    "confirmed": true,
+    "data_kind": "TEST_DOUBLE",
+    "executor": "OFFLINE_TEST_DOUBLE",
+    "physical_effect": false,
+    "state": "FAILED"
+  },
+  "gate": {
+    "approval_id": "ff009783efea03efa1800360597d025db4e5187dc5337b6ac64806ed9768f82e",
+    "capability": {
+      "capability": "EXECUTE_PLAN_MISSION_SITL",
+      "executable_real": false,
+      "reasons": [
+        "CAPABILITY_NOT_DEMONSTRATED: EXECUTE_PLAN_MISSION_SITL is NOT_IMPLEMENTED"
+      ],
+      "status": "NOT_IMPLEMENTED"
+    },
+    "checked_at": "2026-11-24T21:31:50Z",
+    "reasons": [],
+    "safety_checks": "NOT_APPLICABLE_TEST_DOUBLE",
+    "status": "PASS"
+  },
+  "mandatory": true,
+  "metrics": {},
+  "plan": {
+    "firmwareType": 3,
+    "items": 5,
+    "path": "plans/rover.plan",
+    "profile": "QGC_PLAN_ARDUROVER_V1",
+    "sha256": "1cc10a728ef039017514564d9ab9efcbd7b8cb85d55c9c3da9dba34ce08d3de9",
+    "vehicleType": 10
+  },
+  "safeflight_result": {
+    "path": "results/rover_01/result.json",
+    "receipt": false,
+    "synthetic": true,
+    "verdict": "fail"
+  },
+  "schema": "tfg.multiagent.vehicle-result/1",
+  "task_id": "GROUND_rover_01",
+  "validation": "PASS",
+  "vehicle_class": "ArduRover",
+  "vehicle_id": "rover_01"
+}

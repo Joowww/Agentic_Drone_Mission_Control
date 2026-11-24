@@ -1,0 +1,55 @@
+{
+  "completion_rule": "COMPLETED requires every mandatory vehicle COMPLETED in REAL_SITL with no failed criterion; a test double reaches COMPLETED_TEST_DOUBLE at most",
+  "data_kind": "SYNTHETIC",
+  "decisions_sha256": "e108723baf5b40d6d8226db52624257a6ce8e48c00776cc7f89a616be326c1e0",
+  "manifest_sha256": "0f458143078982b846f7d7bd57ff1c8b97ece7e8121962c78de939919aa187ee",
+  "mission_id": "SUP-20261124T213139Z-0ca712d79a",
+  "reasons": [],
+  "schema": "tfg.multiagent.global-result/1",
+  "status": "PLANNED_PENDING_APPROVAL",
+  "trace_sha256": "6f8c8120a3615a9a080f80f4f177da2873228ef6bb34924d1919f1c560756525",
+  "vehicles": [
+    {
+      "approval": "NOT_APPROVED",
+      "data_kind": null,
+      "errors": [],
+      "execution_confirmed": false,
+      "execution_state": "NOT_EXECUTED",
+      "mandatory": true,
+      "metrics": {},
+      "plan_sha256": "5e51b4740f2df585651e36cae8a4c1baa6edd6bf02f882e2eeab7691074518ef",
+      "task_id": "AIR_drone_01",
+      "validation": "PASS",
+      "vehicle_class": "ArduCopter",
+      "vehicle_id": "drone_01"
+    },
+    {
+      "approval": "NOT_APPROVED",
+      "data_kind": null,
+      "errors": [],
+      "execution_confirmed": false,
+      "execution_state": "NOT_EXECUTED",
+      "mandatory": true,
+      "metrics": {},
+      "plan_sha256": "3a712c63f69777ca54bc6f6380c576a41a33774a0afba616a84dbb37a81a6b39",
+      "task_id": "AIR_drone_02",
+      "validation": "PASS",
+      "vehicle_class": "ArduCopter",
+      "vehicle_id": "drone_02"
+    },
+    {
+      "approval": "NOT_APPROVED",
+      "data_kind": null,
+      "errors": [],
+      "execution_confirmed": false,
+      "execution_state": "NOT_EXECUTED",
+      "mandatory": true,
+      "metrics": {},
+      "plan_sha256": "1cc10a728ef039017514564d9ab9efcbd7b8cb85d55c9c3da9dba34ce08d3de9",
+      "task_id": "GROUND_rover_01",
+      "validation": "PASS",
+      "vehicle_class": "ArduRover",
+      "vehicle_id": "rover_01"
+    }
+  ]
+}
