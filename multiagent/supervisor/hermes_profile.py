@@ -47,8 +47,31 @@ SECRET_ENV = re.compile(r"(API_KEY|_TOKEN|SECRET|PASSWORD|^OPIK_|^NOUS_|^OPENROU
 SESSION_SCHEMA = "tfg.multiagent.hermes-session/1"
 
 
-def config(*, out: Path, python: Path, provider: str, scenario: str | None = None) -> dict:
+def supervisor_model_env(supervisor_provider: str | None, environ=None) -> dict:
+    """Env block of the MCP server for the SUPERVISOR's interpretation model (distinct from Hermes' own model).
+    Only names, paths and the operator's transport opt-in: never a credential value."""
+    if not supervisor_provider:
+        return {}
+    env = os.environ if environ is None else environ
+    spec = providers.specs(env)[supervisor_provider]
+    block = {"TFG_LLM_PROVIDER": supervisor_provider, "TFG_LLM_FALLBACK": ""}
+    if spec.key_env:
+        key_file = env.get(spec.key_env + "_FILE")
+        if not key_file:
+            raise SystemExit(f"{spec.key_env}_FILE must name the private key file (the key itself is never written)")
+        block[spec.key_env + "_FILE"] = key_file
+    if spec.insecure_optin_env and env.get(spec.insecure_optin_env):
+        block[spec.insecure_optin_env] = env[spec.insecure_optin_env]
+    check = providers.transport_check(spec, block)
+    if not check["ok"]:
+        raise SystemExit("supervisor model refused: " + "; ".join(check["problems"]))
+    return block
+
+
+def config(*, out: Path, python: Path, provider: str, scenario: str | None = None,
+           supervisor_provider: str | None = None, environ=None) -> dict:
     entry = mcp_server.hermes_profile_entry(str(python), str(out), scenario)
+    entry[mcp_server.SERVER]["env"].update(supervisor_model_env(supervisor_provider, environ))
     return {
         "model": providers.hermes_model_block(provider),
         "fallback_providers": [],
@@ -67,14 +90,15 @@ def config(*, out: Path, python: Path, provider: str, scenario: str | None = Non
 
 
 def prepare(*, out: Path, provider: str = "ollama-local", home: Path = HOME, python: Path | None = None,
-            scenario: str | None = None) -> dict:
+            scenario: str | None = None, supervisor_provider: str | None = None) -> dict:
     if not (home / "config.yaml").exists():
         raise SystemExit(f"profile {home} does not exist: run `hermes profile create {PROFILE} --no-skills --no-alias`")
     python = python or Path(sys.executable)
     mcp_server.out_root({"TFG_SUPERVISOR_OUT": str(out)})        # same checks as the server (private, outside repo)
-    cfg = config(out=out, python=python, provider=provider, scenario=scenario)
+    cfg = config(out=out, python=python, provider=provider, scenario=scenario, supervisor_provider=supervisor_provider)
     header = (f"# Hermes profile {PROFILE}, written by multiagent.supervisor.hermes_profile prepare.\n"
-              f"# Provider {provider}; MCP server {mcp_server.SERVER} only (planning/status, no approval or "
+              f"# Hermes model: {provider}; supervisor interpretation model: {supervisor_provider or 'none'}.\n"
+              f"# MCP server {mcp_server.SERVER} only (planning/status, no approval or "
               "execution); capture plugin. No credential value is stored here (key_env names a variable).\n")
     text = header + yaml.safe_dump(cfg, sort_keys=False)
     (home / "config.yaml").write_text(text, encoding="utf-8")
@@ -83,6 +107,8 @@ def prepare(*, out: Path, provider: str = "ollama-local", home: Path = HOME, pyt
     for name in PLUGIN_FILES:
         shutil.copyfile(PLUGIN_SOURCE / name, plugin_dir / name)
     return {"profile": str(home), "provider": provider, "model": cfg["model"],
+            "supervisor_model_env": {k: v for k, v in cfg["mcp_servers"][mcp_server.SERVER]["env"].items()
+                                     if k not in ("PYTHONPATH", "TFG_SUPERVISOR_OUT")},
             "config_sha256": hashlib.sha256(text.encode()).hexdigest(), "mcp_tools": list(mcp_server.TOOLS)}
 
 
@@ -235,6 +261,71 @@ def reanalyze(run_dir: Path, out: Path) -> dict:
     return report
 
 
+def upc_model_identity(environ) -> dict:
+    """The model behind eetac-llm as the server publishes it (/v1/model/info): upstream id, context window. One
+    authenticated GET; the key is read from the private file in memory only."""
+    import urllib.request
+    spec = providers.specs(environ)["eetac"]
+    check = providers.transport_check(spec, environ)
+    if not check["ok"]:
+        return {"status": "NOT_CHECKED", "problems": check["problems"]}
+    key = providers.resolve_secret(spec.key_env, environ)
+    req = urllib.request.Request(spec.base_url + "/v1/model/info", headers={"Authorization": f"Bearer {key}"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:  # noqa: S310 - opt-in, host-bound transport
+            data = json.loads(r.read())["data"][0]
+    except Exception as exc:  # noqa: BLE001
+        return {"status": "ERROR", "error": f"{type(exc).__name__}: {str(exc)[:120]}"}
+    finally:
+        del key
+    return {"status": "OK", "model_name": data.get("model_name"),
+            "upstream_model": (data.get("litellm_params") or {}).get("model"),
+            "serving": (data.get("litellm_params") or {}).get("custom_llm_provider"),
+            "max_input_tokens": (data.get("model_info") or {}).get("max_input_tokens")}
+
+
+def supervisor_model_evidence(configured: str | None, model_calls: list[dict], missions: dict, out: Path,
+                              server_env: dict) -> dict:
+    """Proof that the supervisor's interpretation came from the configured model in THIS session: an OK call record
+    from the MCP server process, no fallback, and every planned mission's request.json carrying that provenance."""
+    if not configured:
+        return {"required": False, "ok": None, "configured_provider": None}
+    ok_calls = [c for c in model_calls if c.get("status") == "OK" and c.get("provider") == configured
+                and not c.get("fallback")]
+    provenance = {}
+    for mid in missions:
+        req = out / mid / "request.json"
+        data = json.loads(req.read_bytes()) if req.exists() else {}
+        p = data.get("intent_provenance") or {}
+        provenance[mid] = {"status": p.get("status"), "provider": p.get("provider"), "model": p.get("model"),
+                           "model_intent": data.get("model_intent"),
+                           "record_run_ids": [r.get("run_id") for r in p.get("records") or []]}
+    planned = [m for m, c in missions.items() if c["status"] == "PLANNED_PENDING_APPROVAL"]
+    linked = all(provenance[m]["status"] == "MODEL_INTENT" and provenance[m]["provider"] == configured and
+                 set(provenance[m]["record_run_ids"]) & {c.get("run_id") for c in ok_calls} for m in planned)
+    identity = upc_model_identity({**os.environ, **server_env}) if configured == "eetac" else None
+    return {"required": True, "configured_provider": configured, "ok": bool(ok_calls) and bool(planned) and linked,
+            "model_calls": [{k: c.get(k) for k in ("run_id", "provider", "model", "response_model", "status",
+                                                   "error_class", "http_status", "latency_s", "fallback",
+                                                   "plaintext_optin", "prompt_sha256", "response_sha256", "usage")}
+                            for c in model_calls],
+            "mission_provenance": provenance, "upstream_identity": identity}
+
+
+def model_transport(cfg: dict, environ) -> dict:
+    """The providers' transport policy applied to the Hermes model block: a key is sent over plain HTTP to a
+    non-loopback host only with the operator's explicit, host-bound opt-in (e.g. EETAC_ALLOW_HTTP_OVER_VPN)."""
+    model = cfg.get("model") or {}
+    base = str(model.get("base_url") or "").rstrip("/")
+    base = base[:-3] if base.endswith("/v1") else base
+    spec = next((s for s in providers.specs(environ).values() if s.base_url.rstrip("/") == base),
+                providers.ProviderSpec("custom", base, str(model.get("default")), model.get("key_env")))
+    if spec.key_env != model.get("key_env"):
+        spec = providers.ProviderSpec(spec.name, spec.base_url, spec.model, model.get("key_env"),
+                                      insecure_optin_env=spec.insecure_optin_env)
+    return {**providers.transport_check(spec, environ), "provider": spec.name, "model": model.get("default")}
+
+
 def session(*, text: str, out: Path, run_dir: Path, home: Path = HOME, timeout: float = 600,
             provider: str | None = None) -> dict:
     run_dir = Path(run_dir)
@@ -246,6 +337,11 @@ def session(*, text: str, out: Path, run_dir: Path, home: Path = HOME, timeout: 
     key_env = (cfg.get("model") or {}).get("key_env")
     run_id = "hermes-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     env = clean_env(home, keep=(key_env,) if key_env else ())
+    transport = model_transport(cfg, os.environ)
+    if not transport["ok"]:
+        raise SystemExit("Hermes not started: " + "; ".join(transport["problems"]))
+    if key_env:   # the value goes only into the Hermes child environment (from $KEY or the private $KEY_FILE)
+        env[key_env] = providers.resolve_secret(key_env, os.environ)
     env.update({"TFG_OBSERVABILITY_CAPTURE": "1", "TFG_OBSERVABILITY_DIR": str(run_dir / "capture"),
                 "TFG_OBSERVABILITY_RUN_ID": run_id, "TFG_OBSERVABILITY_CASE_ID": "supervisor-3v"})
     # the MCP server process inherits Hermes' environment for the variables it is given in the profile; the run id
@@ -256,6 +352,9 @@ def session(*, text: str, out: Path, run_dir: Path, home: Path = HOME, timeout: 
             "--usage-file", str(run_dir / "native-usage.json")]
     calls_log = out / mcp_server.CALL_LOG
     log_before = calls_log.read_text().count("\n") if calls_log.exists() else 0
+    model_log = out / mcp_server.MODEL_CALL_LOG
+    model_before = model_log.read_text().count("\n") if model_log.exists() else 0
+    server_env = ((cfg.get("mcp_servers") or {}).get(mcp_server.SERVER) or {}).get("env") or {}
     missions_before = {p.name for p in out.iterdir() if p.is_dir()} if out.is_dir() else set()
     started_epoch, started = time.time(), time.monotonic()
     with open(run_dir / "stdout.txt", "xb") as so, open(run_dir / "stderr.txt", "xb") as se:
@@ -271,16 +370,25 @@ def session(*, text: str, out: Path, run_dir: Path, home: Path = HOME, timeout: 
                                                   if calls_log.exists() else [])]
     missions = sorted({p.name for p in out.iterdir() if p.is_dir()} - missions_before)
     mission_checks = {mid: mission_check(out, mid) for mid in missions}
+    model_calls = [json.loads(line) for line in (model_log.read_text().splitlines()[model_before:]
+                                                 if model_log.exists() else [])]
+    supervisor_model = supervisor_model_evidence(server_env.get("TFG_LLM_PROVIDER"), model_calls, mission_checks,
+                                                 out, server_env)
     verdict = verdict_of(server_calls, _capture_tools(run_dir / "capture"), mission_checks)
+    if supervisor_model["required"] and verdict == "HERMES_USED_SUPERVISOR_PLANNED" and not supervisor_model["ok"]:
+        verdict = "SUPERVISOR_MODEL_NOT_PROVEN"
     stdout = (run_dir / "stdout.txt").read_text(errors="replace")
     report = {
         "schema": SESSION_SCHEMA, "run_id": run_id, "profile": str(home), "hermes_bin": str(HERMES_BIN),
-        "model": cfg.get("model"), "return_code": rc, "timed_out": timed_out, "elapsed_s": elapsed,
+        "model": cfg.get("model"), "transport": {k: transport[k] for k in ("provider", "scheme", "host",
+                                                                           "credential_env", "credential_present",
+                                                                           "plaintext_optin")}, "return_code": rc, "timed_out": timed_out, "elapsed_s": elapsed,
         "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(), "operator_text": text,
         "hermes_sessions": _session_rows(home, started_epoch),
         "capture_tool_calls": _capture_tools(run_dir / "capture"),
         "capture_api_calls": _capture_api_calls(run_dir / "capture"),
         "server_tool_calls": server_calls, "missions_created": mission_checks,
+        "supervisor_model": supervisor_model,
         "verdict": verdict, "answer_check": answer_check(stdout, mission_checks, verdict),
         "final_answer_excerpt": stdout[-3000:],
         "evidence_rule": "tool use is proved by the server's own log and the files on disk, never by the answer"}
@@ -324,6 +432,9 @@ def main(argv=None) -> int:
     a.add_argument("--out", required=True)
     a.add_argument("--provider", default="ollama-local", choices=sorted(providers.specs()))
     a.add_argument("--scenario")
+    a.add_argument("--supervisor-provider", choices=sorted(providers.specs()),
+                   help="interpretation model used INSIDE the MCP server (e.g. eetac); its key file path and "
+                        "transport opt-in are taken from <KEY>_FILE and the opt-in variable of this shell")
     sub.add_parser("verify")
     s = sub.add_parser("session")
     s.add_argument("--out", required=True); s.add_argument("--run-dir", required=True)  # noqa: E702
@@ -335,7 +446,8 @@ def main(argv=None) -> int:
     r.add_argument("--out", required=True); r.add_argument("--run-dir", required=True)  # noqa: E702
     args = p.parse_args(argv)
     if args.cmd == "prepare":
-        print(json.dumps(prepare(out=Path(args.out), provider=args.provider, scenario=args.scenario), indent=2))
+        print(json.dumps(prepare(out=Path(args.out), provider=args.provider, scenario=args.scenario,
+                                 supervisor_provider=args.supervisor_provider), indent=2))
     elif args.cmd == "verify":
         r = verify()
         print(json.dumps(r, indent=2))

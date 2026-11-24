@@ -238,6 +238,62 @@ Están implementados en `multiagent/supervisor/providers.py`, sobre los adaptado
 | `aida-qwen` | `https://aida-hpc.widening.eu/v1/chat/completions` | `qwen` | `AIDA_TOKEN` | Probado offline. HTTPS alcanzable (401 sin token). Sin prueba remota: falta un token **nuevo** (el anterior se considera expuesto) y la autorización de Roberto |
 | `aida-clef` (asesor) | `https://aida-hpc.widening.eu/v1/systemone` | `clef` | `AIDA_TOKEN` | Probado offline. **El contrato está pendiente de validar contra la API real** (ver abajo) |
 
+**EETAC verificado el 24/11/2026**, con autorización expresa del operador para usar HTTP a través de UPCLink.
+
+- **Clave:** está en `~/.config/tfg/eetac_api_key` (permisos 600). El proceso la recibe mediante `EETAC_API_KEY_FILE`, la carga en memoria y nunca la pone en argumentos, registros ni archivos; se ha comprobado buscándola en sesiones, perfil y worktree.
+- **Modelo real** (lo publica `/v1/model/info`): `Qwen3-Coder-30B-A3B-Instruct-AWQ`, servido por vLLM detrás de un proxy LiteLLM. Contexto de 32 768 tokens.
+- **Autenticación e inferencia:** OK. `/v1/chat/completions` respondió en 0,41 s; la prueba remota `test_remote_chat_completion[eetac]` pasa.
+- **Supervisor con EETAC:** OK. `plan --llm-intent` con `TFG_LLM_PROVIDER=eetac` llevó a LangGraph y a los tres `.plan`, con manifiesto `151b33b5…`. La intención coincidió con la lectura determinista; tardó 0,81 s y no hubo respaldo.
+- **Llamadas a herramientas: NO admitidas.** El vLLM no se lanzó con un parser de llamadas a herramientas:
+  - `tool_choice` `auto` (el modo de Hermes) o sin `tool_choice` da HTTP 400: «requires --enable-auto-tool-choice and --tool-call-parser».
+  - `required` y una función forzada por nombre dan HTTP 400: «requires --tool-call-parser».
+  - Con `none`, el modelo escribe la llamada como texto XML (`<tool_call><function=…><parameter=…>`). Ese es el formato que interpreta el parser `qwen3_coder` de vLLM.
+- **Hermes con EETAC: NO arranca.** Hermes v0.22.2 exige al menos 64 000 tokens de contexto y `eetac-llm` declara 32 768. No se declara una ventana falsa en el perfil.
+- **Para que Hermes funcione con EETAC, la UPC tendría que cambiar el servidor.** El cliente no puede resolverlo:
+  - lanzar vLLM con `--enable-auto-tool-choice --tool-call-parser qwen3_coder`;
+  - servir el modelo con al menos 64K de contexto (`--max-model-len` ≥ 65536, si el modelo y la GPU lo permiten).
+  
+  La alternativa sería un traductor local que convierta el XML en llamadas estructuradas. No está implementado: sería un camino paralelo al cliente de Hermes.
+
+**Demostración integrada Hermes local + EETAC** (24/11/2026). Hermes no puede usar EETAC como modelo propio: no hay llamadas a herramientas y la ventana es de 32K. Por eso cada modelo hace un papel distinto:
+
+- **Hermes** usa Qwen3-4B local solo para conversar e invocar las herramientas MCP.
+- **El servidor MCP del supervisor** tiene `TFG_LLM_PROVIDER=eetac` y, desde su propio proceso, pide a EETAC la interpretación de la misión.
+- **La clave** solo la lee el servidor MCP, desde `EETAC_API_KEY_FILE`. Hermes y su modelo nunca la ven.
+- **Si EETAC falla o el transporte no está aceptado**, `supervisor_plan_mission` devuelve `BLOCKED_INTERPRETATION_MODEL`. No se escribe ninguna misión ni se usa la lectura determinista en su lugar.
+- **Hermes pasó una intención propia**: queda registrada como recibida y no se usa.
+
+Configuración y sesión (la clave no aparece en ningún argumento):
+
+```bash
+cd /home/joelm/TFG/Agentic_Drone_Mission_Control_supervisor && EETAC_API_KEY_FILE=$HOME/.config/tfg/eetac_api_key EETAC_ALLOW_HTTP_OVER_VPN=raonador.upc.edu PYTHONPATH=$PWD /home/joelm/TFG/Agentic_Drone_Mission_Control/.venv/bin/python -m multiagent.supervisor.hermes_profile prepare --out ~/tfg-supervisor-runs/out --provider ollama-local --supervisor-provider eetac
+```
+```bash
+cd /home/joelm/TFG/Agentic_Drone_Mission_Control_supervisor && bash deploy/hermes_local_demo/ollama_demo_instance.sh start && PYTHONPATH=$PWD /home/joelm/TFG/Agentic_Drone_Mission_Control/.venv/bin/python -m multiagent.supervisor.hermes_profile session --out ~/tfg-supervisor-runs/out --run-dir ~/tfg-supervisor-runs/eetac/session-NEW --text "Planifica la inspección de una parcela agrícola utilizando dos drones y un rover. Divide el terreno en dos sectores aéreos y asigna tres puntos terrestres al rover. Todos deben regresar a su punto de origen."
+```
+
+`session.json` añade `supervisor_model`, que exige tres cosas para cada misión planificada:
+
+1. Una llamada OK al proveedor configurado, sin respaldo, registrada por el servidor MCP en `<out>/model_calls.jsonl`.
+2. Que `request.json` lleve esa procedencia enlazada por `run_id`.
+3. La identidad publicada por la UPC.
+
+Si falta algo, el veredicto es `SUPERVISOR_MODEL_NOT_PROVEN`.
+
+Sesión real `session-h01` (`hermes-20261124T215645Z`, 105 s), veredicto `HERMES_USED_SUPERVISOR_PLANNED` con `supervisor_model.ok = true`:
+
+- **Herramientas ejecutadas por Hermes** (captura): `supervisor_registry`, `supervisor_plan_mission` y `supervisor_get_manifest`.
+- **Llamada a EETAC** (registro del servidor MCP):
+  - `run_id` `mcp-7a9f8569f70d`, HTTP 200, 1,15 s, 134 + 47 tokens, sin respaldo;
+  - modelo informado `eetac-llm`, identidad publicada `Qwen3-Coder-30B-A3B-Instruct-AWQ` (vLLM, 32 768 tokens).
+- **Interpretación de EETAC:** `{drones_requested: 2, rovers_requested: 1, aerial_sectors: 2, ground_point_count: 3, return_to_start: true}`. Coincide con el texto.
+- **LangGraph:** 31 spans de traza; misión `SUP-20261124T215735Z-9c3e8ce770`, manifiesto `5bec8856…`.
+- **Planes:**
+  - `drone_1.plan` `5e51b474…`
+  - `drone_2.plan` `3a712c63…`
+  - `rover.plan` `1cc10a72…`
+- **Estado:** `PLANNED_PENDING_APPROVAL`, sin aprobaciones ni ejecución. La clave no aparece en ningún archivo.
+
 **Transporte de EETAC.** Sondeo sin credenciales del 24/11: el puerto 4000 solo responde por HTTP (el TLS falla con «wrong version number») y el 443 no responde.
 
 - Por defecto la clave **no se envía**.

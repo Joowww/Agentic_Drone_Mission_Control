@@ -79,6 +79,48 @@ def _loopback(host: str | None) -> bool:
         return False
 
 
+ROOT = Path(__file__).resolve().parents[2]
+
+
+class SecretFileError(ProviderRefused):
+    pass
+
+
+def resolve_secret(key_env: str | None, environ=None) -> str | None:
+    """The credential value: ``$KEY`` or, if unset, the content of the file named by ``$KEY_FILE``. The file must be
+    a regular file outside the repository, owned by this user and not readable by group/others (chmod 600). The
+    value is returned to the caller only to be put in the Authorization header of a child request; it is never
+    logged, recorded or written anywhere by this module."""
+    if not key_env:
+        return None
+    env = os.environ if environ is None else environ
+    if env.get(key_env):
+        return env[key_env]
+    path = env.get(key_env + "_FILE")
+    if not path:
+        return None
+    f = Path(path).expanduser()
+    if not f.is_absolute() or not f.is_file() or f.is_symlink():
+        raise SecretFileError(f"{key_env}_FILE must name an existing regular file (absolute path)")
+    resolved = f.resolve()
+    if resolved == ROOT or ROOT in resolved.parents:
+        raise SecretFileError(f"{key_env}_FILE must be outside the repository")
+    st = resolved.stat()
+    if st.st_uid != os.getuid() or st.st_mode & 0o077:
+        raise SecretFileError(f"{key_env}_FILE must be owned by you and not accessible by group/others (chmod 600)")
+    value = resolved.read_text(encoding="utf-8").strip()
+    if not value or "\n" in value:
+        raise SecretFileError(f"{key_env}_FILE must hold exactly one non-empty line")
+    return value
+
+
+def _present(key_env, env) -> bool:
+    try:
+        return bool(resolve_secret(key_env, env))
+    except SecretFileError:
+        return False
+
+
 def transport_check(spec: ProviderSpec, environ=None) -> dict:
     """Whether a call to ``spec`` may carry its credential. Reads no secret value, only whether it is set."""
     env = os.environ if environ is None else environ
@@ -87,8 +129,13 @@ def transport_check(spec: ProviderSpec, environ=None) -> dict:
     if url.scheme not in ("http", "https"):
         problems.append(f"UNSUPPORTED_SCHEME: {url.scheme!r}")
     if spec.key_env:
-        if not env.get(spec.key_env):
-            problems.append(f"CREDENTIAL_NOT_SET: {spec.key_env}")
+        try:
+            present = bool(resolve_secret(spec.key_env, env))
+        except SecretFileError as exc:
+            present = False
+            problems.append(f"CREDENTIAL_FILE_INVALID: {exc}")
+        if not present and not problems:
+            problems.append(f"CREDENTIAL_NOT_SET: {spec.key_env} (or {spec.key_env}_FILE)")
         if url.scheme == "http" and not _loopback(url.hostname):
             allowed = env.get(spec.insecure_optin_env or "", "")
             if spec.insecure_optin_env and allowed == url.hostname:
@@ -99,7 +146,7 @@ def transport_check(spec: ProviderSpec, environ=None) -> dict:
                                 + (f" (opt-in: {spec.insecure_optin_env}={url.hostname})"
                                    if spec.insecure_optin_env else ""))
     return {"provider": spec.name, "scheme": url.scheme, "host": url.hostname, "port": url.port,
-            "credential_env": spec.key_env, "credential_present": bool(spec.key_env and env.get(spec.key_env)),
+            "credential_env": spec.key_env, "credential_present": _present(spec.key_env, env),
             "plaintext_optin": optin, "ok": not problems, "problems": problems}
 
 
@@ -189,10 +236,11 @@ class ProviderClient:
                     last = ProviderRefused(rec["error"])
                     break
                 started = time.perf_counter()
-                old = os.environ.get(spec.key_env) if spec.key_env and self.environ is not None else None
+                old = os.environ.get(spec.key_env) if spec.key_env else None
                 try:
-                    if spec.key_env and self.environ is not None and env.get(spec.key_env):
-                        os.environ[spec.key_env] = env[spec.key_env]   # the adapter reads os.environ at call time
+                    secret = resolve_secret(spec.key_env, env) if spec.key_env else None
+                    if secret:
+                        os.environ[spec.key_env] = secret   # the adapter reads os.environ at call time
                     response = self._adapter(spec).complete(messages)
                     rec.update(status="OK", error_class=None, http_status=200,
                                latency_s=round(response.latency_s, 4), response_model=response.model,
@@ -208,7 +256,7 @@ class ProviderClient:
                     if cls not in RETRYABLE:
                         break
                 finally:
-                    if spec.key_env and self.environ is not None:
+                    if spec.key_env:
                         if old is None:
                             os.environ.pop(spec.key_env, None)
                         else:
@@ -362,8 +410,9 @@ class ClefAdvisor:
                                     timeout_s=self.timeout_s, transport=self.transport, provider="aida-clef")
         old = os.environ.get(spec.key_env)
         try:
-            if self.environ is not None and env.get(spec.key_env):
-                os.environ[spec.key_env] = env[spec.key_env]
+            secret = resolve_secret(spec.key_env, env)
+            if secret:
+                os.environ[spec.key_env] = secret
             reply, elapsed = adapter._post(adapter.path, clef_state_request(spec.model, state, questions))
             rec.update(status="OK", latency_s=round(elapsed, 4), advice=clef_state_parse(reply, questions),
                        data_kind="MODEL_OUTPUT")
@@ -371,11 +420,10 @@ class ClefAdvisor:
             cls, code = _classify(exc)
             rec.update(status="ERROR", error_class=cls, http_status=code, error=str(exc)[:200])
         finally:
-            if self.environ is not None:
-                if old is None:
-                    os.environ.pop(spec.key_env, None)
-                else:
-                    os.environ[spec.key_env] = old
+            if old is None:
+                os.environ.pop(spec.key_env, None)
+            else:
+                os.environ[spec.key_env] = old
         return self._done(rec)
 
     def _done(self, rec: dict) -> dict:

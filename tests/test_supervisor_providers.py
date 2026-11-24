@@ -257,3 +257,23 @@ def test_remote_chat_completion(name):
 def test_remote_clef():
     rec = pv.ClefAdvisor().advise({"task": "visit three ground points"}, QUESTIONS)
     assert rec["status"] == "OK", rec
+
+
+# ------------------------------------------------------------------------------------------ key from a private file
+def test_key_file_is_used_only_when_private_and_never_recorded(tmp_path):
+    key = tmp_path / "eetac_key"
+    key.write_text(SECRET + "\n")
+    key.chmod(0o600)
+    env = {"TFG_LLM_PROVIDER": "eetac", "EETAC_API_KEY_FILE": str(key), "EETAC_ALLOW_HTTP_OVER_VPN": "raonador.upc.edu"}
+    t = FakeTransport(reply("ok", "eetac-llm"))
+    resp, rec = client(env, t).complete([{"role": "user", "content": "x"}])
+    assert t.seen[0]["headers"]["Authorization"] == f"Bearer {SECRET}" and SECRET not in json.dumps(rec)
+    assert "EETAC_API_KEY" not in os.environ
+    key.chmod(0o644)
+    t2 = FakeTransport(reply("ok"))
+    with pytest.raises(pv.ProviderRefused, match="CREDENTIAL_FILE_INVALID"):
+        client(env, t2).complete([{"role": "user", "content": "x"}])
+    assert t2.seen == []
+    inside = ROOT / "multiagent" / "fixtures" / "supervisor" / "README_not_a_key"
+    with pytest.raises(pv.SecretFileError):
+        pv.resolve_secret("EETAC_API_KEY", {"EETAC_API_KEY_FILE": str(inside)})

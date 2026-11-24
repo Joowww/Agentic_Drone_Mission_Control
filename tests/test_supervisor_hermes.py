@@ -142,3 +142,13 @@ def test_attempts_are_bounded_and_a_refusal_is_never_retried(tmp_path, verdicts,
 def test_attempt_limit_cannot_be_raised():
     with pytest.raises(SystemExit):
         hp.session_with_attempts(text="t", out=Path("/x"), run_dir=Path("/x/run"), max_attempts=3)
+
+
+def test_hermes_model_transport_follows_the_provider_policy():
+    from multiagent.supervisor import providers
+    eetac = {"model": providers.hermes_model_block("eetac")}
+    assert not hp.model_transport(eetac, {"EETAC_API_KEY": "k"})["ok"]                # HTTP without opt-in
+    ok = hp.model_transport(eetac, {"EETAC_API_KEY": "k", "EETAC_ALLOW_HTTP_OVER_VPN": "raonador.upc.edu"})
+    assert ok["ok"] and ok["provider"] == "eetac" and ok["plaintext_optin"]
+    assert hp.model_transport({"model": providers.hermes_model_block("ollama-local")}, {})["ok"]
+    assert not hp.model_transport({"model": providers.hermes_model_block("aida-qwen")}, {})["ok"]   # no token

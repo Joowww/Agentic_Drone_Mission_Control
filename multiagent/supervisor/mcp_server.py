@@ -66,7 +66,8 @@ def _logged(name):
             try:
                 out = fn(*args, **kwargs)
                 record.update(status="OK", mission_id=(out or {}).get("mission_id"),
-                              result_status=(out or {}).get("status"))
+                              result_status=(out or {}).get("status"),
+                              interpretation=((out or {}).get("interpretation") or {}).get("provider"))
                 return out
             except Exception as exc:
                 record.update(status="ERROR", error=f"{type(exc).__name__}: {str(exc)[:200]}")
@@ -96,9 +97,40 @@ def supervisor_registry() -> dict:
                       "sealed evidence (DEMONSTRATED_SITL) or are not demonstrated"}
 
 
+MODEL_CALL_LOG = "model_calls.jsonl"   # tfg.multiagent.model-call/1 records of the supervisor's interpretation model
+
+
+def _model_interpretation(text: str, hermes_intent: dict | None) -> tuple[dict | None, dict | None]:
+    """When the server is configured with TFG_LLM_PROVIDER (e.g. eetac), the supervisor's interpretation model is
+    called HERE, inside the MCP server process (Hermes never sees its credential). (None, None) when no provider is
+    configured: the behaviour is then the one of the planning-only server (Hermes intent, if any, plus the
+    deterministic reading). A configured provider that fails returns a BLOCKED provenance: the caller must not plan."""
+    if not os.environ.get("TFG_LLM_PROVIDER"):
+        return hermes_intent, ({"source": "HERMES_INTENT_ARGUMENT"} if hermes_intent is not None else None)
+    from multiagent.supervisor import providers
+    import uuid
+    client = providers.ProviderClient.from_env(log_path=out_root() / MODEL_CALL_LOG)
+    intent, prov = providers.model_intent(client, text, run_id="mcp-" + uuid.uuid4().hex[:12])
+    prov = {**prov, "configured_provider": client.chain[0].name,
+            "fallback_chain": [s.name for s in client.chain[1:]],
+            "hermes_intent_received": hermes_intent is not None,
+            "hermes_intent_use": "NOT_USED: the configured interpretation model is the only model intent"}
+    return intent, prov
+
+
 def supervisor_plan_mission(text: str, intent: dict | None = None) -> dict:
+    model_intent, provenance = _model_interpretation(text, intent)
+    if provenance is not None and os.environ.get("TFG_LLM_PROVIDER") and provenance.get("status") != "MODEL_INTENT":
+        last = (provenance.get("records") or [{}])[-1]
+        return {"mission_id": None, "status": "BLOCKED_INTERPRETATION_MODEL",
+                "reasons": [f"{provenance.get('configured_provider')}: {provenance.get('status')} "
+                            f"({last.get('error_class') or provenance.get('error') or provenance.get('error_class')})",
+                            "no plan was generated: the deterministic reading is not used in place of the "
+                            "configured model"],
+                "interpretation": {k: provenance.get(k) for k in ("status", "configured_provider", "fallback_chain")},
+                "movement_authorized": False}
     sup = _supervisor()
-    result = sup.plan(text, model_intent=intent)
+    result = sup.plan(text, model_intent=model_intent, intent_provenance=provenance)
     mdir = Path(result["mission_dir"])
     proposal = json.loads((mdir / "proposal.json").read_bytes())
     decisions = json.loads((mdir / "decisions.json").read_bytes())
@@ -113,8 +145,19 @@ def supervisor_plan_mission(text: str, intent: dict | None = None) -> dict:
             "dependencies": (manifest or {}).get("dependencies", []),
             "mission_dir": result["mission_dir"],
             "manifest_sha256": (manifest or {}).get("manifest_sha256"),
+            "interpretation": _interpretation_summary(provenance),
             "next_step": "the operator reviews and approves each vehicle with the CLI; nothing has been executed",
             "movement_authorized": False}
+
+
+def _interpretation_summary(prov: dict | None) -> dict | None:
+    if not prov:
+        return None
+    ok = next((r for r in prov.get("records") or [] if r.get("status") == "OK"), {})
+    return {"status": prov.get("status") or prov.get("source"), "provider": prov.get("provider"),
+            "model": prov.get("model"), "response_model": ok.get("response_model"),
+            "latency_s": ok.get("latency_s"), "run_id": ok.get("run_id"),
+            "fallback_used": bool(ok.get("fallback"))}
 
 
 def _route(proposal: dict, vehicle_id: str) -> list[str]:
